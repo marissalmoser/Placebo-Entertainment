@@ -15,14 +15,19 @@ using UnityEngine.Events;
 public class NpcEventListener : MonoBehaviour
 {
     [SerializeField] private NpcEvent npcEvent;
+    [SerializeField] private string targetEventTag;
     [SerializeField] private UnityEvent onEventTriggered;
 
     /// <summary>
-    /// Called by NpcEvent to invoke a local UnityEvent.
+    /// Called by NpcEvent to invoke a local UnityEvent if the incoming event tag
+    /// matches to target.
     /// </summary>
-    public void OnEventTriggered()
+    public void OnEventTriggered(string eventTag)
     {
-        onEventTriggered.Invoke();
+        if (eventTag.Equals(targetEventTag))
+        {
+            onEventTriggered.Invoke();
+        }
     }
 
     private void OnEnable()

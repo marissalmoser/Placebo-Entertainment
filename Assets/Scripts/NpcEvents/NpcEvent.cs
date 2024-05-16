@@ -16,13 +16,14 @@ public class NpcEvent : ScriptableObject
     private List<NpcEventListener> _eventListeners = new List<NpcEventListener>();
 
     /// <summary>
-    /// Called from another script to trigger this event.
+    /// Called from another script to trigger this event. Event tags serve to 
+    /// distinguish events related to different NPCs, quests, items, etc.
     /// </summary>
-    public void TriggerEvent()
+    public void TriggerEvent(string eventTag)
     {
         for (int i = 0; i < _eventListeners.Count; ++i)
         {
-            _eventListeners[i].OnEventTriggered();
+            _eventListeners[i].OnEventTriggered(eventTag);
         }
     }
 
