@@ -14,9 +14,9 @@ using UnityEngine.Events;
 
 public class NpcEventListener : MonoBehaviour
 {
-    [SerializeField] private NpcEvent npcEvent;
-    [SerializeField] private string targetEventTag;
-    [SerializeField] private UnityEvent onEventTriggered;
+    [SerializeField] private NpcEvent _npcEvent;
+    [SerializeField] private string _targetEventTag;
+    [SerializeField] private UnityEvent _onEventTriggered;
 
     /// <summary>
     /// Called by NpcEvent to invoke a local UnityEvent if the incoming event tag
@@ -24,19 +24,19 @@ public class NpcEventListener : MonoBehaviour
     /// </summary>
     public void OnEventTriggered(string eventTag)
     {
-        if (eventTag.Equals(targetEventTag))
+        if (eventTag.Equals(_targetEventTag))
         {
-            onEventTriggered.Invoke();
+            _onEventTriggered.Invoke();
         }
     }
 
     private void OnEnable()
     {
-        npcEvent.AddListener(this);
+        _npcEvent.AddListener(this);
     }
 
     private void OnDisable()
     {
-        npcEvent.RemoveListener(this);
+        _npcEvent.RemoveListener(this);
     }
 }
