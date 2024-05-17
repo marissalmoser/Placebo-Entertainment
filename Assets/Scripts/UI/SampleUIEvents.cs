@@ -77,6 +77,9 @@ namespace PlaceboEntertainment.UI
             Debug.Log("Clicked any button.");
         }
 
+        /// <summary>
+        /// Tries to create a button in the list, just an experiment to see how runtime additions work.
+        /// </summary>
         [ContextMenu("Try Duplicate Button")]
         private void TryDuplicateButton()
         {
