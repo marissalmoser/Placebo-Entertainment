@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Android;
 
-public class Wire : MonoBehaviour
+public class MGWire : MonoBehaviour
 {
     [SerializeField] private WireNum _wireNum;
 
