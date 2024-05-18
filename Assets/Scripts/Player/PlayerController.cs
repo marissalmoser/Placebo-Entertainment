@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
    // float defaultFOV;
 
     PlayerControls playerControls;
-    InputAction move, reset, quit;
+    public InputAction move, interact, reset, quit;
 
     Rigidbody rb;
     CinemachineVirtualCamera mainCamera;
@@ -54,6 +54,7 @@ public class PlayerController : MonoBehaviour
         playerControls.BasicControls.Enable();
 
         move = playerControls.FindAction("Move");
+        interact = playerControls.FindAction("Interact");
         reset = playerControls.FindAction("Reset");
         quit = playerControls.FindAction("Quit");
 
