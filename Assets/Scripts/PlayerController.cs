@@ -1,10 +1,9 @@
 /*****************************************************************************
 // File Name :         PlayerController.cs
-// Author :            Nick Grinsteasd
-// Creation Date :     
+// Author :            Nick Grinsteasd & Mark Hanson
+// Creation Date :     5/16/2024
 //
-// Brief Description : A 3D player controller with options to jump and cut with
-                       a laser.
+// Brief Description : All player actions which includes movement, looking around, and interacting with the world
 *****************************************************************************/
 using System.Collections;
 using System.Collections.Generic;
@@ -24,7 +23,7 @@ public class PlayerController : MonoBehaviour
    // float defaultFOV;
 
     PlayerControls playerControls;
-    InputAction move, jump, reset, quit;
+    InputAction move, reset, quit;
 
     Rigidbody rb;
     CinemachineVirtualCamera mainCamera;
@@ -55,8 +54,6 @@ public class PlayerController : MonoBehaviour
         playerControls.BasicControls.Enable();
 
         move = playerControls.FindAction("Move");
-        //slash = playerControls.FindAction("Slash");
-        jump = playerControls.FindAction("Jump");
         reset = playerControls.FindAction("Reset");
         quit = playerControls.FindAction("Quit");
 
@@ -165,13 +162,6 @@ public class PlayerController : MonoBehaviour
 if (!isGrounded)
             isGrounded = Physics.CheckSphere(groundChecker.position, groundDistance, groundMask);
 
-        // Jump
-        if (jump.IsPressed() && isGrounded)
-        {
-            isGrounded = false;
-            //float verticalVelocity = Mathf.Sqrt(jumpHeight *  Physics.gravity.y);
-            rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
-        }
 
         if (reset.IsPressed())
         {
