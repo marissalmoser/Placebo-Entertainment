@@ -1,0 +1,74 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="FilterElementContainer" src="project://database/Assets/UI%20Toolkit/TabbedMenu/FilterElementContainer.uxml?fileID=9197481963319205126&amp;guid=984473c9910493c45bd6ce847f57fa79&amp;type=3#FilterElementContainer" />
+    <ui:Template name="ScheduleEntry" src="project://database/Assets/UI%20Toolkit/TabbedMenu/ScheduleEntry.uxml?fileID=9197481963319205126&amp;guid=3a1513d3d4e2bab479e69f015fd9808a&amp;type=3#ScheduleEntry" />
+    <ui:Template name="EmptyScheduleEntry" src="project://database/Assets/UI%20Toolkit/TabbedMenu/EmptyScheduleEntry.uxml?fileID=9197481963319205126&amp;guid=8a6092203ce997244bc858b05f625324&amp;type=3#EmptyScheduleEntry" />
+    <Style src="project://database/Assets/UI%20Toolkit/TabbedMenu/TabbedMenu.uss?fileID=7433441132597879392&amp;guid=ec4a02a9438bd964896d72ba06af6e95&amp;type=3#TabbedMenu" />
+    <ui:VisualElement name="tabs" class="tabs" style="flex-grow: 1; height: 2%;">
+        <ui:Label tabindex="-1" text="Map" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MapTab" class="tab currentlyUnSelectedTab" />
+        <ui:Label tabindex="-1" text="Schedule" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ScheduleTab" class="tab currentlySelectedTab" />
+    </ui:VisualElement>
+    <ui:VisualElement name="Divider" class="divider" />
+    <ui:VisualElement name="tabContent" class="tabContent">
+        <ui:VisualElement name="MapContent" class="mapBackground unselectedContent" style="flex-direction: row; height: 100%; width: 100%; flex-wrap: nowrap;">
+            <ui:VisualElement name="MapContainer" class="mapContainer">
+                <ui:VisualElement name="MapHolder" class="mapHolder">
+                    <ui:VisualElement name="Map" class="mapImage" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/UI%20Toolkit/TabbedMenu/Map.png?fileID=2800000&amp;guid=db9889df8c131da43b36ad102c0f905e&amp;type=3#Map&quot;);" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="ClockContainer" class="clockContainer">
+                <ui:VisualElement name="Clock" class="clock" />
+                <ui:VisualElement name="DigitalClock" class="digitalClock" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="ScheduleContent" class="scheduleContent" style="flex-grow: 1;">
+            <ui:VisualElement name="FilterContainer" class="filterContainer">
+                <ui:Instance template="FilterElementContainer" name="FilterElementContainer" />
+                <ui:VisualElement name="FilterElementContainer">
+                    <ui:VisualElement name="FilterElementContainer" class="filterElementContainer" style="align-self: flex-start; width: 132px;">
+                        <ui:VisualElement name="FilterIcon" class="filterElementIcon" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/TabbedMenu/Schedual_robot_icon.png?fileID=2800000&amp;guid=7afc7b0667e6b294296f2ae695d61896&amp;type=3#Schedual_robot_icon&quot;);" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="FilterElementContainer">
+                    <ui:VisualElement name="FilterElementContainer" class="filterElementContainer" style="align-self: flex-start; width: 132px;">
+                        <ui:VisualElement name="FilterIcon" class="filterElementIcon" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/TabbedMenu/Schedual_coward_icon.png?fileID=2800000&amp;guid=2f1c42485d579e740b5df02db7caf262&amp;type=3#Schedual_coward_icon&quot;);" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="FilterElementContainer">
+                    <ui:VisualElement name="FilterElementContainer" class="filterElementContainer" style="align-self: flex-start; width: 132px;">
+                        <ui:VisualElement name="FilterIcon" class="filterElementIcon" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/TabbedMenu/Schedual_goop_icon.png?fileID=2800000&amp;guid=075cd450a3246e74bbd8290191da4cd7&amp;type=3#Schedual_goop_icon&quot;);" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="FilterElementContainer">
+                    <ui:VisualElement name="FilterElementContainer" class="filterElementContainer" style="align-self: flex-start; width: 132px;">
+                        <ui:VisualElement name="FilterIcon" class="filterElementIcon" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/TabbedMenu/Schedual_gnome_icon.png?fileID=2800000&amp;guid=1cb9ecf11c7b2794598669965c452003&amp;type=3#Schedual_gnome_icon&quot;);" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="FilterElementContainer">
+                    <ui:VisualElement name="FilterElementContainer" class="filterElementContainer" style="align-self: flex-start; width: 132px;">
+                        <ui:VisualElement name="FilterIcon" class="filterElementIcon" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/TabbedMenu/Schedual_fish_icon.png?fileID=2800000&amp;guid=61dc358d2596a814ab1efbac301fa59f&amp;type=3#Schedual_fish_icon&quot;);" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="FilterElementContainer">
+                    <ui:VisualElement name="FilterElementContainer" class="filterElementContainer" style="align-self: flex-start; width: 132px;">
+                        <ui:VisualElement name="FilterIcon" class="filterElementIcon" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/TabbedMenu/Schedual_gladiator_icon.png?fileID=2800000&amp;guid=8522448d8aa6e5940834d16813b562da&amp;type=3#Schedual_gladiator_icon&quot;);" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="FilterElementContainer">
+                    <ui:VisualElement name="FilterElementContainer" class="filterElementContainer" style="align-self: flex-start; width: 132px;">
+                        <ui:VisualElement name="FilterIcon" class="filterElementIcon" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/TabbedMenu/Schedual_angel_icon.png?fileID=2800000&amp;guid=54c74321a2364ab4290b5cbfb7a96cae&amp;type=3#Schedual_angel_icon&quot;);" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="ScheduleContainer" class="scheduleContainer" style="flex-grow: 1; align-items: stretch;">
+                <UI.Components.DragScrollView horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" Interactable="true" touch-scroll-type="Clamped" elastic-animation-interval-ms="3" elasticity="0.25" mouse-wheel-scroll-size="40">
+                    <ui:Instance template="ScheduleEntry" name="ScheduleEntry" />
+                    <ui:Instance template="EmptyScheduleEntry" name="EmptyScheduleEntry" />
+                    <ui:Instance template="EmptyScheduleEntry" name="EmptyScheduleEntry" />
+                    <ui:Instance template="EmptyScheduleEntry" name="EmptyScheduleEntry" />
+                    <ui:Instance template="EmptyScheduleEntry" name="EmptyScheduleEntry" />
+                    <ui:Instance template="EmptyScheduleEntry" name="EmptyScheduleEntry" />
+                </UI.Components.DragScrollView>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
