@@ -6,9 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="0ca99064-d62d-4298-bd79-b6c397975cbd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Placebo-Entertainment/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Placebo-Entertainment/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/UI_Sample.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/UI_Sample.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/TabbedMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/TabbedMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/TabbedMenuController.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/TabbedMenuController.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/UI Toolkit/TabbedMenu/TabbedMenu.uxml" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI Toolkit/TabbedMenu/TabbedMenu.uxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -99,7 +98,7 @@
       <updated>1715999423766</updated>
       <workItem from="1715999427288" duration="536000" />
       <workItem from="1716151836642" duration="1843000" />
-      <workItem from="1716229687723" duration="2620000" />
+      <workItem from="1716229687723" duration="4993000" />
     </task>
     <servers />
   </component>
