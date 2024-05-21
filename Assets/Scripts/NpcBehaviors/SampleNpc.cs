@@ -20,13 +20,13 @@ public class SampleNpc : BaseNpc
     {
         base.Initialize();
 
-        // Other stuff unique to this NPC goes here
+        // Other setup unique to this NPC goes here
     }
 
-    public override void CheckPrerequisite()
+    public override void CheckForStateChange()
     {
         // This method should contain various checks to determine the next state
-            // to go to
+        // to go to
     }
 
     protected override void EnterIdle()
@@ -38,7 +38,7 @@ public class SampleNpc : BaseNpc
 
     protected override void EnterMinigameReady()
     {
-        base.EnterMinigameReady();
+        //base.EnterMinigameReady();
 
         EnterPlayingMinigame(); // If a NPC doesn't use a certain state, it can be skipped
     }
