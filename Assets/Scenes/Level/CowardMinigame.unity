@@ -694,6 +694,10 @@ PrefabInstance:
       propertyPath: m_VerticalAxis.m_MaxValue
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 2551798037196601148, guid: 3be541bf17ad1444781935d7cfa70d60, type: 3}
+      propertyPath: m_VerticalAxis.m_MinValue
+      value: -90
+      objectReference: {fileID: 0}
     - target: {fileID: 4016747490110712917, guid: 3be541bf17ad1444781935d7cfa70d60, type: 3}
       propertyPath: m_Name
       value: Cinemachine
