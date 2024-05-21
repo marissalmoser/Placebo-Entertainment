@@ -10,6 +10,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem;
 
 public abstract class BaseNpc : MonoBehaviour
 {
@@ -82,13 +83,15 @@ public abstract class BaseNpc : MonoBehaviour
     [SerializeField] protected StateDataGroup<Vector3> _navigationPositions;
     [SerializeField] protected StateDataGroup<Animation> _stateAnimations;
 
-    protected NavMeshAgent navAgent;
-    protected Animator animator;
+    protected PlayerControls _playerControls;
+    protected NavMeshAgent _navAgent;
+    protected Animator _animator;
 
     protected NpcStates _currentState = NpcStates.DefaultIdle;
     protected bool[] _canChangeStates = { false, false, false, false, false };
 
     protected bool _canInteract = false;
+    protected bool _isInteracting = false;
     protected bool _haveBypassItem = false;
 
     /// <summary>
@@ -96,20 +99,61 @@ public abstract class BaseNpc : MonoBehaviour
     /// </summary>
     protected virtual void Initialize()
     {
-        navAgent = GetComponent<NavMeshAgent>();
-        animator = GetComponent<Animator>();
+        _playerControls = new PlayerControls();
+        _playerControls.Enable();
+        InputAction interact = _playerControls.FindAction("Interact");
+        interact.performed += ctx => Interact();
+
+        _navAgent = GetComponent<NavMeshAgent>();
+        _animator = GetComponent<Animator>();
 
         EnterIdle();
     }
 
     /// <summary>
-    /// Called when player presses button to interact with NPC
+    /// Called when player presses button to interact with NPC.
     /// </summary>
     public void Interact()
     {
         if (_canInteract)
         {
-            // TODO: display dialogue based on current state
+            DialogueGroup currentDialogue = _stateDialogue.GetStateData(_currentState);
+            
+            if (currentDialogue.CanTalk)
+            {
+                if (_isInteracting == false)
+                {
+                    _isInteracting = true;
+
+                    // TODO: replace the following block of code to make it
+                    // display text in UI
+                    Debug.Log(currentDialogue.InitialNpcDialogue);
+                    string[] responses = currentDialogue.PlayerResponses;
+                    string tempPrintString = "";
+                    foreach (string response in responses)
+                    {
+                        tempPrintString += response;
+                        tempPrintString += "  ";
+                    }
+                    Debug.Log(tempPrintString);
+                }
+                else
+                {
+                    _isInteracting = false;
+
+                    // TODO: replace the following block of code to make it
+                    // display text in UI
+                    string[] responses = currentDialogue.NpcResponses;
+                    string tempPrintString = "";
+                    foreach (string response in responses)
+                    {
+                        tempPrintString += response;
+                        tempPrintString += "  ";
+                    }
+                    Debug.Log(tempPrintString);
+                }
+                
+            }
         }
     }
 
@@ -169,18 +213,18 @@ public abstract class BaseNpc : MonoBehaviour
     /// </summary>
     private void StateUpdateHelper()
     {
-        if (navAgent != null)
+        if (_navAgent != null && _navAgent.isOnNavMesh)
         {
             Vector3 newPosition = _navigationPositions.GetStateData(_currentState);
-            navAgent.SetDestination(newPosition);
+            _navAgent.SetDestination(newPosition);
         }
 
-        if (animator != null)
+        if (_animator != null)
         {
             Animation newAnimation = _stateAnimations.GetStateData(_currentState);
             if (newAnimation != null)
             {
-                animator.Play(newAnimation.name);
+                _animator.Play(newAnimation.name);
             }
         }
     }

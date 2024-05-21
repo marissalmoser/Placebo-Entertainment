@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 1866844575688752464}
   - component: {fileID: 886804196087669012}
   m_Layer: 0
-  m_Name: SamplePlayer
+  m_Name: SampleNpc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -179,20 +179,28 @@ MonoBehaviour:
       - Response A
       - Response B
     _minigameReadyState:
-      _canTalk: 0
-      _initialNpcDialogue: 
-      _playerResponses: []
-      _npcResponses: []
+      _canTalk: 1
+      _initialNpcDialogue: Pre Minigame Dialogue
+      _playerResponses:
+      - Option C
+      - Option D
+      - Option E
+      _npcResponses:
+      - Response C
+      - Response D
+      - Response E
     _playingMinigameState:
       _canTalk: 0
       _initialNpcDialogue: 
       _playerResponses: []
       _npcResponses: []
     _postMinigameState:
-      _canTalk: 0
-      _initialNpcDialogue: 
-      _playerResponses: []
-      _npcResponses: []
+      _canTalk: 1
+      _initialNpcDialogue: Post Minigame Dialogue
+      _playerResponses:
+      - Option F
+      _npcResponses:
+      - Response F
     _failureState:
       _canTalk: 0
       _initialNpcDialogue: 
