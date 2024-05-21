@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="0ca99064-d62d-4298-bd79-b6c397975cbd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Placebo-Entertainment/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Placebo-Entertainment/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/UI_Sample.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/UI_Sample.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/TabbedMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/TabbedMenu.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/UI Toolkit/TabbedMenu/TabbedMenu.uxml" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI Toolkit/TabbedMenu/TabbedMenu.uxml" afterDir="false" />
     </list>
@@ -19,7 +18,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/TabbedMenuController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d95d42d5310b4f1ba9374f7ac0776df61744c0/ca/40052589/Translate.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -98,7 +97,7 @@
       <updated>1715999423766</updated>
       <workItem from="1715999427288" duration="536000" />
       <workItem from="1716151836642" duration="1843000" />
-      <workItem from="1716229687723" duration="4993000" />
+      <workItem from="1716229687723" duration="6551000" />
     </task>
     <servers />
   </component>
