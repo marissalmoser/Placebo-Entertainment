@@ -17,8 +17,22 @@ namespace PlaceboEntertainment.UI
     /// </summary>
     public class TabbedMenu : MonoBehaviour
     {
-        private VisualElement _root;
+        [SerializeField] private UIDocument tabMenu;
+        [SerializeField] private UIDocument interactPromptMenu;
+        [SerializeField] private UIDocument notificationPopupMenu;
+        [Tooltip("The player object to base position & rotation off of for the mini-map.")]
+        [SerializeField] private Transform playerTransform;
+        [Tooltip("Rotation offset of the player's y-axis euler angles.")]
+        [SerializeField] private float miniMapIndicatorEulerOffset = -90f;
+        [Tooltip("Boundaries for the dimensions of the map.")]
+        [SerializeField] private Transform mapBoundaryUpperLeft,
+            mapBoundaryUpperRight,
+            mapBoundaryLowerLeft,
+            mapBoundaryLowerRight;
+        private VisualElement _tabMenuRoot;
         private VisualElement _playerObject;
+        private Label _interactText;
+        private const string TalkPromptName = "TalkPrompt";
         private const string TabClassName = "tab";
         private const string SelectedTabClassName = "currentlySelectedTab";
         private const string UnSelectedTabClassName = "currentlyUnSelectedTab";
@@ -26,12 +40,6 @@ namespace PlaceboEntertainment.UI
         private const string ContentNameSuffix = "Content";
         private const string HideClassName = "unselectedContent";
         private const string PlayerName = "Player";
-        [SerializeField] private Transform playerTransform;
-        [FormerlySerializedAs("miniMapIndicatorOffset")] [SerializeField] private float miniMapIndicatorEulerOffset = -90f;
-        [SerializeField] private Transform mapBoundaryUpperLeft,
-            mapBoundaryUpperRight,
-            mapBoundaryLowerLeft,
-            mapBoundaryLowerRight;
 
         /// <summary>
         /// Visualizes the boundaries of the world space map.
@@ -52,9 +60,9 @@ namespace PlaceboEntertainment.UI
         /// </summary>
         private void Awake()
         {
-            var menu = GetComponent<UIDocument>();
-            _root = menu.rootVisualElement;
-            _playerObject = _root.Q(PlayerName);
+            _tabMenuRoot = tabMenu.rootVisualElement;
+            _playerObject = _tabMenuRoot.Q(PlayerName);
+            _interactText = interactPromptMenu.rootVisualElement.Q<Label>(TalkPromptName);
         }
 
         /// <summary>
@@ -63,6 +71,11 @@ namespace PlaceboEntertainment.UI
         private void OnEnable()
         {
             RegisterTabCallbacks();
+            //note(alec): unity recommends setting their styles to hide rather than enabling/disabling the behavior.
+            //stupid IMO but this way the callbacks stay registered.
+            tabMenu.rootVisualElement.style.display = DisplayStyle.None;
+            interactPromptMenu.rootVisualElement.style.display = DisplayStyle.None;
+            notificationPopupMenu.rootVisualElement.style.display = DisplayStyle.None;
         }
 
         /// <summary>
@@ -154,7 +167,7 @@ namespace PlaceboEntertainment.UI
         /// <returns>A UQueryBuilder containing all found tabs.</returns>
         private UQueryBuilder<Label> GetAllTabs()
         {
-            return _root.Query<Label>(className: TabClassName);
+            return _tabMenuRoot.Query<Label>(className: TabClassName);
         }
 
         /// <summary>
@@ -190,7 +203,7 @@ namespace PlaceboEntertainment.UI
         /// <returns>A visual element containing the tab's content. Can be an empty visual element.</returns>
         private VisualElement FindContent(Label tab)
         {
-            return _root.Q(ContentName(tab));
+            return _tabMenuRoot.Q(ContentName(tab));
         }
 
         /// <summary>
@@ -202,6 +215,47 @@ namespace PlaceboEntertainment.UI
         private static string ContentName(Label tab)
         {
             return tab.name.Replace(TabNameSuffix, ContentNameSuffix);
+        }
+
+        /// <summary>
+        /// Enables or disables the schedule menu.
+        /// </summary>
+        /// <param name="show">Whether or not to show the menu.</param>
+        public void ToggleSchedule(bool show)
+        {
+            if (tabMenu == null) return;
+            tabMenu.rootVisualElement.style.display = show ? DisplayStyle.Flex : DisplayStyle.None;
+        }
+
+        [ContextMenu("ShowSchedule")]
+        private void ShowSchedule() => ToggleSchedule(true);
+        [ContextMenu("HideSchedule")]
+        private void HideSchedule() => ToggleSchedule(false);
+        
+        /// <summary>
+        /// Enables or disables the interact prompt.
+        /// Allows setting the text of the prompt.
+        /// </summary>
+        /// <param name="show">Whether or not to show the prompt.</param>
+        /// <param name="text">The text to set the prompt as. Defaults to "TALK"</param>
+        public void ToggleInteractPrompt(bool show, string text = "TALK")
+        {
+            if (interactPromptMenu == null) return;
+            if (show)
+            {
+                _interactText.text = text;
+            }
+            interactPromptMenu.rootVisualElement.style.display = show ? DisplayStyle.Flex : DisplayStyle.None;
+        }
+
+        /// <summary>
+        /// Enables or disables the schedule updated notification.
+        /// </summary>
+        /// <param name="show">Whether or not to show the pop-up.</param>
+        public void ToggleScheduleNotification(bool show)
+        {
+            if (notificationPopupMenu == null) return;
+            notificationPopupMenu.rootVisualElement.style.display = show ? DisplayStyle.Flex : DisplayStyle.None;
         }
     }
 }
