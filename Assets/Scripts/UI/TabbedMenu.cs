@@ -1,11 +1,12 @@
 /******************************************************************
-*    Author: Alec Pizziferro
-*    Contributors: Nullptr
-*    Date Created: 5/20/2024
-*    Description: A menu controller script that contains a minimap and schedule.
-*******************************************************************/
+ *    Author: Alec Pizziferro
+ *    Contributors: Nullptr
+ *    Date Created: 5/20/2024
+ *    Description: A menu controller script that contains a minimap and schedule.
+ *******************************************************************/
 
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UIElements;
@@ -17,21 +18,71 @@ namespace PlaceboEntertainment.UI
     /// </summary>
     public class TabbedMenu : MonoBehaviour
     {
+        #region Serialized
+
         [SerializeField] private UIDocument tabMenu;
         [SerializeField] private UIDocument interactPromptMenu;
         [SerializeField] private UIDocument notificationPopupMenu;
-        [Tooltip("The player object to base position & rotation off of for the mini-map.")]
-        [SerializeField] private Transform playerTransform;
-        [Tooltip("Rotation offset of the player's y-axis euler angles.")]
-        [SerializeField] private float miniMapIndicatorEulerOffset = -90f;
-        [Tooltip("Boundaries for the dimensions of the map.")]
-        [SerializeField] private Transform mapBoundaryUpperLeft,
+
+        [Tooltip("The player object to base position & rotation off of for the mini-map.")] [SerializeField]
+        private Transform playerTransform;
+
+        [Tooltip("Rotation offset of the player's y-axis euler angles.")] [SerializeField]
+        private float miniMapIndicatorEulerOffset = -90f;
+
+        [Tooltip("Boundaries for the dimensions of the map.")] [SerializeField]
+        private Transform mapBoundaryUpperLeft,
             mapBoundaryUpperRight,
             mapBoundaryLowerLeft,
             mapBoundaryLowerRight;
+
+        [SerializeField] private VisualTreeAsset emptyScheduleEntry;
+        [SerializeField] private VisualTreeAsset fulfilledScheduleEntry;
+
+        #endregion
+        
+        #region Public
+        /// <summary>
+        /// Helper struct for populating entries of the schedule.
+        /// </summary>
+        public struct ScheduleEntry
+        {
+            public readonly string TimeStamp;
+            public readonly string Description;
+            public readonly string ItemName;
+            public readonly Texture2D Icon;
+
+            /// <summary>
+            /// Constructor for making an entry.
+            /// </summary>
+            /// <param name="timeStamp">The time of the event in the format "XX:XX"</param>
+            /// <param name="description">The description of the event.</param>
+            /// <param name="itemName">The name of the item found, can be empty.</param>
+            /// <param name="icon">The texture for the icon found, can be null.</param>
+            public ScheduleEntry(string timeStamp, string description, string itemName, Texture2D icon)
+            {
+                TimeStamp = timeStamp ?? string.Empty;
+                Description = description ?? string.Empty;
+                ItemName = itemName ?? string.Empty;
+                Icon = icon;
+            }
+        }
+        
+        #endregion
+
+        #region Private
+
         private VisualElement _tabMenuRoot;
         private VisualElement _playerObject;
         private Label _interactText;
+        private VisualElement _scheduleContainer;
+        private Dictionary<string, VisualElement> _scheduleEntries = new();
+
+
+        #endregion
+
+        #region Constants
+
         private const string TalkPromptName = "TalkPrompt";
         private const string TabClassName = "tab";
         private const string SelectedTabClassName = "currentlySelectedTab";
@@ -40,6 +91,14 @@ namespace PlaceboEntertainment.UI
         private const string ContentNameSuffix = "Content";
         private const string HideClassName = "unselectedContent";
         private const string PlayerName = "Player";
+        private const string ScheduleContainerName = "ScheduleList";
+        private const string ScheduleTimeStampName = "TimeStamp";
+        private const string ScheduleDescriptionName = "Description";
+        private const string ScheduleItemName = "ItemName";
+        private const string ScheduleIconName = "Icon";
+        private const string ScheduleEntryName = "ScheduleEntry";
+
+        #endregion
 
         /// <summary>
         /// Visualizes the boundaries of the world space map.
@@ -63,6 +122,7 @@ namespace PlaceboEntertainment.UI
             _tabMenuRoot = tabMenu.rootVisualElement;
             _playerObject = _tabMenuRoot.Q(PlayerName);
             _interactText = interactPromptMenu.rootVisualElement.Q<Label>(TalkPromptName);
+            _scheduleContainer = _tabMenuRoot.Q(ScheduleContainerName);
         }
 
         /// <summary>
@@ -112,7 +172,8 @@ namespace PlaceboEntertainment.UI
             //map position = width of element * % of each axis. rotation is just the vertical rotation of the player.
             _playerObject.style.translate =
                 new Translate(xAxis * parent.resolvedStyle.width, yAxis * parent.resolvedStyle.height);
-            _playerObject.style.rotate = new Rotate(Angle.Degrees(playerTransform.eulerAngles.y + miniMapIndicatorEulerOffset));
+            _playerObject.style.rotate =
+                new Rotate(Angle.Degrees(playerTransform.eulerAngles.y + miniMapIndicatorEulerOffset));
         }
 
         /// <summary>
@@ -123,7 +184,7 @@ namespace PlaceboEntertainment.UI
             UQueryBuilder<Label> tabs = GetAllTabs();
             tabs.ForEach(tab => { tab.RegisterCallback<ClickEvent>(TabOnClick); });
         }
-        
+
         /// <summary>
         /// Un-Registers the click callback of tabs to the tabOnClick method.
         /// </summary>
@@ -211,7 +272,7 @@ namespace PlaceboEntertainment.UI
         /// of tabs and their respective contents. This works by replacing the suffix of "Tab" to "Content"
         /// </summary>
         /// <param name="tab"></param>
-        /// <returns></returns>
+        /// <returns>A string in the format TabNameContent.</returns>
         private static string ContentName(Label tab)
         {
             return tab.name.Replace(TabNameSuffix, ContentNameSuffix);
@@ -227,11 +288,86 @@ namespace PlaceboEntertainment.UI
             tabMenu.rootVisualElement.style.display = show ? DisplayStyle.Flex : DisplayStyle.None;
         }
 
+        #region Testing Helper Methods
+
         [ContextMenu("ShowSchedule")]
         private void ShowSchedule() => ToggleSchedule(true);
+
         [ContextMenu("HideSchedule")]
         private void HideSchedule() => ToggleSchedule(false);
+
+        [ContextMenu("Add Item to Schedule")]
+        private void AddScheduleItemsTest()
+        {
+            AddScheduleEntry(new ScheduleEntry("05:00", "Entry number5", "Icon Name", null));
+            AddScheduleEntry(new ScheduleEntry("01:00", "Entry number1", "Icon Name", null));
+            AddScheduleEntry(new ScheduleEntry("03:50", "Entry number3", "Icon Name", null));
+            AddScheduleEntry(new ScheduleEntry("03:00", "Entry number3", "Icon Name", null));
+            AddEmptyScheduleEntry("05:49");
+            AddScheduleEntry(new ScheduleEntry("03:00", "Entry number3", "Icon Name", null));
+            AddScheduleEntry(new ScheduleEntry("03:01", "Entry number3", "Icon Name", null));
+            AddScheduleEntry(new ScheduleEntry("03:49", "Entry number3", "Icon Name", null));
+            AddEmptyScheduleEntry("13:40");
+            AddEmptyScheduleEntry("10:59");
+            AddScheduleEntry(new ScheduleEntry("04:00", "Entry number4", "Icon Name", null));
+            AddScheduleEntry(new ScheduleEntry("02:00", "Entry number2", "Icon Name", null));
+            AddScheduleEntry(new ScheduleEntry("03:30", "Entry number3", "Icon Name", null));
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Adds a schedule entry with the appropriate data, adds it to the schedule, then sorts it.
+        /// </summary>
+        /// <param name="entry">The entry to add.</param>
+        public void AddScheduleEntry(ScheduleEntry entry)
+        {
+            TryRemoveScheduleItem(entry.TimeStamp);
+            var newEntry = fulfilledScheduleEntry.Instantiate();
+            newEntry.Q<Label>(ScheduleTimeStampName).text = entry.TimeStamp;
+            newEntry.Q<Label>(ScheduleDescriptionName).text = entry.Description;
+            newEntry.Q<Label>(ScheduleItemName).text = entry.ItemName;
+            newEntry.Q(ScheduleIconName).style.backgroundImage = entry.Icon;
+            _scheduleContainer.Add(newEntry);
+            _scheduleContainer.Sort(CompareTimeStamps);
+            _scheduleEntries.Add(entry.TimeStamp, newEntry);
+        }
+
+        /// <summary>
+        /// Adds an empty schedule entry.
+        /// </summary>
+        /// <param name="timeStamp">The time of the entry.</param>
+        public void AddEmptyScheduleEntry(string timeStamp)
+        {
+            TryRemoveScheduleItem(timeStamp);
+            var newEntry = emptyScheduleEntry.Instantiate();
+            newEntry.Q<Label>(ScheduleTimeStampName).text = timeStamp;
+            _scheduleContainer.Add(newEntry);
+            _scheduleEntries.Add(timeStamp, newEntry);
+        }
+
+        /// <summary>
+        /// Attempts to remove a schedule entry with the matching timestamp.
+        /// </summary>
+        /// <param name="timeStamp">The timestamp of the entry to remove. Works for both empty and filled.</param>
+        public void TryRemoveScheduleItem(string timeStamp)
+        {
+            if (!_scheduleEntries.TryGetValue(timeStamp, out var element)) return;
+            _scheduleContainer.Remove(element);
+            _scheduleEntries.Remove(timeStamp);
+        }
         
+        /// <summary>
+        /// Removes all schedule entries. Adds in a single empty entry, could add more if needed.
+        /// </summary>
+        public void RemoveAllScheduleItems()
+        {
+            _scheduleContainer.Query(ScheduleEntryName).ForEach(element =>
+                { element.parent.Remove(element); });
+            //TODO figure out how long the timeline will be and add empty entries to populate
+            AddEmptyScheduleEntry("00:00");
+        }
+
         /// <summary>
         /// Enables or disables the interact prompt.
         /// Allows setting the text of the prompt.
@@ -245,6 +381,7 @@ namespace PlaceboEntertainment.UI
             {
                 _interactText.text = text;
             }
+
             interactPromptMenu.rootVisualElement.style.display = show ? DisplayStyle.Flex : DisplayStyle.None;
         }
 
@@ -256,6 +393,41 @@ namespace PlaceboEntertainment.UI
         {
             if (notificationPopupMenu == null) return;
             notificationPopupMenu.rootVisualElement.style.display = show ? DisplayStyle.Flex : DisplayStyle.None;
+        }
+
+        /// <summary>
+        /// Comparision function for schedule entries. Sorts by timestamp.
+        /// </summary>
+        /// <param name="schedule1">The first entry to compare against.</param>
+        /// <param name="schedule2">The second entry to compare against.</param>
+        /// <returns>A comparision int for the side that is the higher. Returns 0 otherwise.</returns>
+        private static int CompareTimeStamps(VisualElement schedule1, VisualElement schedule2)
+        {
+            //guard cluases for empty comparisons or missing elements
+            if (schedule1 == null || schedule2 == null) return 0;
+            var label1 = schedule1.Q<Label>(ScheduleTimeStampName);
+            var label2 = schedule2.Q<Label>(ScheduleTimeStampName);
+            if (label1 == null || label2 == null) return 0;
+            
+            //"00:00" -> 0000
+            string stamp1 = label1.text;
+            string stamp2 = label2.text;
+            stamp1 = stamp1.Replace(":", "");
+            stamp2 = stamp2.Replace(":", "");
+            int stampNum = int.Parse(stamp1);
+            int otherNum = int.Parse(stamp2);
+
+            if (stampNum > otherNum)
+            {
+                return 1;
+            }
+
+            if (stampNum < otherNum)
+            {
+                return -1;
+            }
+
+            return 0;
         }
     }
 }

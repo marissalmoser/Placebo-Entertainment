@@ -3,6 +3,7 @@
     using UnityEngine.UIElements;
     
     //https://forum.unity.com/threads/scrollview-with-drag-scrolling.1195807/
+    //THIS IS A MODIFIED UNITY COMPONENT BECAUSE UNITY IS STUPID
     namespace UI.Components
     {
         public class DragScrollView : ScrollView

@@ -62,12 +62,8 @@
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="ScheduleContainer" class="scheduleContainer" style="flex-grow: 1; align-items: stretch;">
-                <UI.Components.DragScrollView horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" Interactable="true" touch-scroll-type="Clamped" elastic-animation-interval-ms="3" elasticity="0.25" mouse-wheel-scroll-size="40">
+                <UI.Components.DragScrollView horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" Interactable="true" touch-scroll-type="Clamped" elastic-animation-interval-ms="3" elasticity="0.25" mouse-wheel-scroll-size="200" name="ScheduleList">
                     <ui:Instance template="ScheduleEntry" name="ScheduleEntry" />
-                    <ui:Instance template="EmptyScheduleEntry" name="EmptyScheduleEntry" />
-                    <ui:Instance template="EmptyScheduleEntry" name="EmptyScheduleEntry" />
-                    <ui:Instance template="EmptyScheduleEntry" name="EmptyScheduleEntry" />
-                    <ui:Instance template="EmptyScheduleEntry" name="EmptyScheduleEntry" />
                     <ui:Instance template="EmptyScheduleEntry" name="EmptyScheduleEntry" />
                 </UI.Components.DragScrollView>
             </ui:VisualElement>
