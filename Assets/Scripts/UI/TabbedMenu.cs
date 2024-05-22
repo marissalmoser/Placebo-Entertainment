@@ -289,15 +289,27 @@ namespace PlaceboEntertainment.UI
         }
 
         #region Testing Helper Methods
+        
+        //NOTE: These methods are designed for testing in editor ONLY. They are not meant for production code.
 
         [ContextMenu("ShowSchedule")]
-        private void ShowSchedule() => ToggleSchedule(true);
+        internal void ShowSchedule() => ToggleSchedule(true);
 
         [ContextMenu("HideSchedule")]
-        private void HideSchedule() => ToggleSchedule(false);
+        internal void HideSchedule() => ToggleSchedule(false);
+        [ContextMenu("ShowInteractPrompt")]
+        internal void ShowInteractPrompt() => ToggleInteractPrompt(true);
+
+        [ContextMenu("HideInteractPrompt")]
+        internal void HideInteractPrompt() => ToggleInteractPrompt(false);
+        [ContextMenu("ShowInteractPrompt")]
+        internal void ShowNotification() => ToggleScheduleNotification(true);
+
+        [ContextMenu("HideInteractPrompt")]
+        internal void HideNotification() => ToggleScheduleNotification(false);
 
         [ContextMenu("Add Item to Schedule")]
-        private void AddScheduleItemsTest()
+        internal void AddScheduleItemsTest()
         {
             AddScheduleEntry(new ScheduleEntry("05:00", "Entry number5", "Icon Name", null));
             AddScheduleEntry(new ScheduleEntry("01:00", "Entry number1", "Icon Name", null));
@@ -313,6 +325,8 @@ namespace PlaceboEntertainment.UI
             AddScheduleEntry(new ScheduleEntry("02:00", "Entry number2", "Icon Name", null));
             AddScheduleEntry(new ScheduleEntry("03:30", "Entry number3", "Icon Name", null));
         }
+        
+        
 
         #endregion
 
