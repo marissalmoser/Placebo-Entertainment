@@ -22,11 +22,11 @@ public abstract class BaseNpc : MonoBehaviour
     [System.Serializable]
     protected struct StateDataGroup<T>
     {
-        [SerializeField] T _idleState;
-        [SerializeField] T _minigameReadyState;
-        [SerializeField] T _playingMinigameState;
-        [SerializeField] T _postMinigameState;
-        [SerializeField] T _failureState;
+        [SerializeField] private T _idleState;
+        [SerializeField] private T _minigameReadyState;
+        [SerializeField] private T _playingMinigameState;
+        [SerializeField] private T _postMinigameState;
+        [SerializeField] private T _failureState;
 
         /// <summary>
         /// Returns data for a provided state
@@ -65,10 +65,10 @@ public abstract class BaseNpc : MonoBehaviour
     [System.Serializable]
     protected struct DialogueGroup
     {
-        [SerializeField] bool _canTalk;
-        [SerializeField] string _initialNpcDialogue;
-        [SerializeField] string[] _playerResponses;
-        [SerializeField] string[] _npcResponses;
+        [SerializeField] private bool _canTalk;
+        [SerializeField] private string _initialNpcDialogue;
+        [SerializeField] private string[] _playerResponses;
+        [SerializeField] private string[] _npcResponses;
 
         public bool CanTalk { get => _canTalk; }
         public string InitialNpcDialogue { get => _initialNpcDialogue; }
@@ -88,14 +88,22 @@ public abstract class BaseNpc : MonoBehaviour
     protected Animator _animator;
 
     protected NpcStates _currentState = NpcStates.DefaultIdle;
-    protected bool[] _canChangeStates = { false, false, false, false, false };
 
     protected bool _canInteract = false;
     protected bool _isInteracting = false;
     protected bool _haveBypassItem = false;
 
     /// <summary>
-    /// Should be called by derived classes, handles basic NPC setup
+    /// Invoking Initialize() on Awake to set up NPC
+    /// </summary>
+    protected void Awake()
+    {
+        Initialize();
+    }
+
+    /// <summary>
+    /// Handles basic NPC setup and derived classes can expand upon this to add
+    /// unique functionality
     /// </summary>
     protected virtual void Initialize()
     {
@@ -121,7 +129,7 @@ public abstract class BaseNpc : MonoBehaviour
             
             if (currentDialogue.CanTalk)
             {
-                if (_isInteracting == false)
+                if (!_isInteracting)
                 {
                     _isInteracting = true;
 
@@ -173,7 +181,7 @@ public abstract class BaseNpc : MonoBehaviour
 
     #region StateFunctions
     /// <summary>
-    /// The following six State functions are used to have the NPC enter a new state.
+    /// The following five State functions are used to have the NPC enter a new state.
     /// Each handles any general setup for the given state.
     /// </summary>
     protected virtual void EnterIdle()

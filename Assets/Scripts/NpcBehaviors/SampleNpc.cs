@@ -11,11 +11,6 @@ using UnityEngine;
 
 public class SampleNpc : BaseNpc
 {
-    private void Awake()
-    {
-        Initialize();
-    }
-
     // Update method code for testing
     private void Update()
     {
@@ -28,13 +23,6 @@ public class SampleNpc : BaseNpc
         {
             EnterFailure();
         }
-    }
-
-    protected override void Initialize()
-    {
-        base.Initialize();
-
-        // Other setup unique to this NPC goes here
     }
 
     public override void CheckForStateChange()
