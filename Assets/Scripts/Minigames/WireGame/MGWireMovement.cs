@@ -7,8 +7,6 @@
                        https://www.youtube.com/watch?v=8rI1D1YQmhM
 *****************************************************************************/
 
-
-
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -37,6 +35,15 @@ public class MGWireMovement : MonoBehaviour
     {
         _segments = new Transform[_segmentCount];
         GenerateSegments();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown("space"))
+        {
+            Debug.Log("space");
+            ChangeEndKinematic();
+        }
     }
 
     private void OnDrawGizmos()
@@ -74,15 +81,13 @@ public class MGWireMovement : MonoBehaviour
         JoinSegment(_endTrans, prevTrans, true, true);
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown("space"))
-        {
-            Debug.Log("space");
-            ChangeEndKinematic();
-        }
-    }
-
+    /// <summary>
+    /// Connects a segment to the previous segment
+    /// </summary>
+    /// <param name="currentTrans">current being added</param>
+    /// <param name="connectedTrans">segment that is being connected to</param>
+    /// <param name="isKinematic">rb kinematic</param>
+    /// <param name="isCloseConnected">is last connection</param>
     private void JoinSegment(Transform currentTrans, Transform connectedTrans,
         bool isKinematic = false, bool isCloseConnected = false)
     {
@@ -146,7 +151,7 @@ public class MGWireMovement : MonoBehaviour
     /// </summary>
     private void ChangeEndKinematic()
     {
-        Rigidbody rb = _segments[_segmentCount - 1].GetComponent<Rigidbody>();
+        Rigidbody rb = _endTrans.GetComponent<Rigidbody>();
         rb.isKinematic = !rb.isKinematic;
     }
 }
