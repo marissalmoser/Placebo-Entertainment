@@ -11,6 +11,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Assertions;
 using static UnityEngine.Rendering.HableCurve;
 
 public class MGWireMovement : MonoBehaviour
@@ -46,13 +47,13 @@ public class MGWireMovement : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
+    /*private void OnDrawGizmos()
     {
         for(int i = 0; i < _segments.Length; i++)
         {
             Gizmos.DrawWireSphere(_segments[i].position, 0.1f);
         }
-    }
+    }*/
 
     /// <summary>
     /// Spawn wire segments
@@ -76,6 +77,8 @@ public class MGWireMovement : MonoBehaviour
             JoinSegment(segment.transform, prevTrans);
 
             prevTrans = segment.transform;
+
+            GenerateSphereObj(_segments[i], (i == _segmentCount - 1));
         }
 
         JoinSegment(_endTrans, prevTrans, true, true);
@@ -153,5 +156,16 @@ public class MGWireMovement : MonoBehaviour
     {
         Rigidbody rb = _endTrans.GetComponent<Rigidbody>();
         rb.isKinematic = !rb.isKinematic;
+    }
+
+    /// <summary>
+    /// Generates a sphere over the segment to visualize it
+    /// </summary>
+    /// <param name="parentObj"></param>
+    private void GenerateSphereObj(Transform parentObj, bool isLastSegment)
+    {
+        MGWire wireRef = GetComponentInParent<MGWire>();
+        Assert.IsNotNull(wireRef);
+        wireRef.CreateSegmentSphere(parentObj, isLastSegment);
     }
 }
