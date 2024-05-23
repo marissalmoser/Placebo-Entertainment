@@ -12,7 +12,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Inventory System/Inventory Collectable")]
 public class InventoryItemData : ScriptableObject
 {
-    public Sprite Dcon;
+    public Sprite Icon;
     public int MaxStackSize;
     public string DisplayName;
     [TextArea(4, 4)] public string DisplayDescription;
