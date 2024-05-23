@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PlaceboEntertainment.UI;
 
 public class DoorBehavior : MonoBehaviour
 {
@@ -39,6 +40,9 @@ public class DoorBehavior : MonoBehaviour
         if (col.gameObject.tag == "Player")
         {
             _interactable = true;
+
+            //enable UI
+            TabbedMenu.Instance.ToggleInteractPrompt(true, "DOOR");
         }
     }
     void OnTriggerExit(Collider col)
@@ -47,6 +51,9 @@ public class DoorBehavior : MonoBehaviour
         if (col.gameObject.tag == "Player")
         {
             _interactable = false;
+
+            //disabe UI
+            TabbedMenu.Instance.ToggleInteractPrompt(false);
         }
     }
 

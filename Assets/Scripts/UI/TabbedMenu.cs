@@ -88,7 +88,7 @@ namespace PlaceboEntertainment.UI
 
         #region Constants
 
-        private const string TalkPromptName = "TalkPrompt";
+        private const string TalkPromptName = "TextPrompt";
         private const string TabClassName = "tab";
         private const string SelectedTabClassName = "currentlySelectedTab";
         private const string UnSelectedTabClassName = "currentlyUnSelectedTab";
