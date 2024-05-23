@@ -30,6 +30,9 @@ public class PlayerController : MonoBehaviour
     CinemachineTransposer transposer;
     //[SerializeField] GameObject laser;
 
+    PlayerInteractSystem _InteractionCheck;
+    private bool _doOnce;
+
     bool isMoving = false;
     Vector2 moveDirection;
     Vector3 velocity;
@@ -52,6 +55,9 @@ public class PlayerController : MonoBehaviour
 
         playerControls = new PlayerControls();
         playerControls.BasicControls.Enable();
+
+        _InteractionCheck = new PlayerInteractSystem("Default None");
+        _doOnce = true;
 
         move = playerControls.FindAction("Move");
         interact = playerControls.FindAction("Interact");
@@ -76,7 +82,6 @@ public class PlayerController : MonoBehaviour
         //slash.canceled += ctx => cameraLens.FieldOfView = defaultFOV;
        // slash.canceled += ctx => StartZoom(false);
     }
-
     /// <summary>
     /// Initiates a camera zoom when inputs are recieved
     /// </summary>
@@ -163,7 +168,10 @@ public class PlayerController : MonoBehaviour
 if (!isGrounded)
             isGrounded = Physics.CheckSphere(groundChecker.position, groundDistance, groundMask);
 
-
+        if (interact.IsPressed() && _doOnce == true)
+        {
+            _InteractionCheck.CallInteract();
+        }
         if (reset.IsPressed())
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -175,5 +183,16 @@ if (!isGrounded)
 
         // Player Rotation
         transform.rotation = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0);
+    }
+    void OnTriggerEnter(Collider col)
+    {
+        if(col.tag == "Interactable")
+        {
+            _InteractionCheck = new PlayerInteractSystem(col.name);
+        }
+    }
+    void OnTriggerExit(Collider col)
+    {
+        _InteractionCheck = new PlayerInteractSystem("Default None");
     }
 }
