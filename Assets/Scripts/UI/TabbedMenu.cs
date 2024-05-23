@@ -18,6 +18,11 @@ namespace PlaceboEntertainment.UI
     /// </summary>
     public class TabbedMenu : MonoBehaviour
     {
+        #region Singleton
+
+        public static TabbedMenu Instance { get; private set; }
+
+        #endregion
         #region Serialized
 
         [SerializeField] private UIDocument tabMenu;
@@ -119,6 +124,10 @@ namespace PlaceboEntertainment.UI
         /// </summary>
         private void Awake()
         {
+            if (Instance != null && Instance != this)
+            {
+                Destroy(Instance.gameObject);
+            }
             _tabMenuRoot = tabMenu.rootVisualElement;
             _playerObject = _tabMenuRoot.Q(PlayerName);
             _interactText = interactPromptMenu.rootVisualElement.Q<Label>(TalkPromptName);
