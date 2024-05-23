@@ -128,6 +128,7 @@ namespace PlaceboEntertainment.UI
             {
                 Destroy(Instance.gameObject);
             }
+            Instance = this;
             _tabMenuRoot = tabMenu.rootVisualElement;
             _playerObject = _tabMenuRoot.Q(PlayerName);
             _interactText = interactPromptMenu.rootVisualElement.Q<Label>(TalkPromptName);

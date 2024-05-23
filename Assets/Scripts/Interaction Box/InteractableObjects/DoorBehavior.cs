@@ -42,7 +42,10 @@ public class DoorBehavior : MonoBehaviour
             _interactable = true;
 
             //enable UI
-            TabbedMenu.Instance.ToggleInteractPrompt(true, "DOOR");
+            if(!_isOpened && !_isLocked)
+            {
+                TabbedMenu.Instance.ToggleInteractPrompt(true, "DOOR");
+            }
         }
     }
     void OnTriggerExit(Collider col)
@@ -59,14 +62,22 @@ public class DoorBehavior : MonoBehaviour
 
     private void OpenDoor()
     {
-        print("open sesame");
+        //print("open sesame");
         _isOpened = true;
         _anim.SetTrigger("_openDoor");
+        //disabe UI
+        TabbedMenu.Instance.ToggleInteractPrompt(false);
     }
 
     public void UnlockDoor()
     {
         _isLocked = false;
-        OpenDoor();
+        if (!_isOpened && _interactable)
+        {
+            TabbedMenu.Instance.ToggleInteractPrompt(true, "DOOR");
+        }
+
+        //if unlocking door should open the door:
+        //OpenDoor();
     }
 }

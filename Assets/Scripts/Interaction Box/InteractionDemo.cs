@@ -40,7 +40,7 @@ public class InteractionDemo : MonoBehaviour
         {
             _interactable = true;
 
-            //enable UI
+            //enable UI- change "INTERACT" to the object being interacted with
             TabbedMenu.Instance.ToggleInteractPrompt(true, "INTERACT");
         }
     }
