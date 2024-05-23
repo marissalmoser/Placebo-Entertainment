@@ -13,19 +13,31 @@ public class PlayerInteractSystem
 {
     public string ObjectName;
 
-
+    /// <summary>
+    /// When adding no variable within a new player interaction goes to the default which is none
+    /// </summary>
     public PlayerInteractSystem()
     {
         ObjectName = "Default None";
     }
+    /// <summary>
+    /// A function used to switch out the object name used for when its actually detecting a new object
+    /// </summary>
+    /// <param name="_newDetection"></param>
     public PlayerInteractSystem(string _newDetection)
     {
         ObjectName = _newDetection;
     }
+    /// <summary>
+    /// A function to switch back to default detection which is none
+    /// </summary>
     public void BackToDefault()
     {
         ObjectName = "Default None";
     }
+    /// <summary>
+    /// Whenever pressing E it runs through the list of different interactable objects and which ones zone its in 
+    /// </summary>
     public void CallInteract()
     {
         switch (ObjectName)
