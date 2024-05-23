@@ -1,0 +1,5 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="FilterElementContainer" class="filterElementContainer" style="align-self: flex-start;">
+        <ui:VisualElement name="FilterIcon" class="filterElementIcon" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/TabbedMenu/Schedual_player_icon.png?fileID=2800000&amp;guid=25aa2dad37556b64eacbe2a8414b21b4&amp;type=3#Schedual_player_icon&quot;);" />
+    </ui:VisualElement>
+</ui:UXML>

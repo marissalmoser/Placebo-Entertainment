@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <ui:VisualElement name="EmptyScheduleEntry">
+        <ui:VisualElement name="ScheduleEntry" class="scheduleEntry">
+            <ui:Label tabindex="-1" text="01:00" parse-escape-sequences="true" display-tooltip-when-elided="true" name="TimeStamp" class="timeStamp" />
+            <ui:VisualElement name="DescriptionHolder" class="descriptionContainer" style="background-color: rgb(37, 37, 37);">
+                <ui:Label tabindex="-1" text="???" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Description" class="descriptionText" style="color: rgb(255, 255, 255);" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
