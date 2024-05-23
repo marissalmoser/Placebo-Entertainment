@@ -12,10 +12,18 @@ public class RobotNpc : BaseNpc
 {
     [SerializeField] private NpcEvent unlockDoorsEvent;
 
-    [SerializeField] private float _timeToDeath;
+    [SerializeField] private float _secondsUntilDeath;
     private float _timeElapsed = 0f;
 
     private bool _hasLightbulb = false;
+
+    /// <summary>
+    /// Invoked by event upon collecting lightbulb item
+    /// </summary>
+    public void CollectLightbulb()
+    {
+        _hasLightbulb = true;
+    }
 
     /// <summary>
     /// Called when engaging in dialogue during idle state and when recieving
@@ -73,7 +81,7 @@ public class RobotNpc : BaseNpc
     /// <returns>Waits one second</returns>
     private IEnumerator DeathTimer()
     {
-        while (_timeElapsed < _timeToDeath)
+        while (_timeElapsed < _secondsUntilDeath)
         {
             yield return new WaitForSeconds(1f);
 

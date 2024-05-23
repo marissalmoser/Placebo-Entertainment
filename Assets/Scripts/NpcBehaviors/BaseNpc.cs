@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
+using PlaceboEntertainment.UI;
 
 public abstract class BaseNpc : MonoBehaviour
 {
@@ -86,6 +87,7 @@ public abstract class BaseNpc : MonoBehaviour
     protected PlayerControls _playerControls;
     protected NavMeshAgent _navAgent;
     protected Animator _animator;
+    protected TabbedMenu _tabbedMenu;
 
     protected NpcStates _currentState = NpcStates.DefaultIdle;
 
@@ -112,6 +114,7 @@ public abstract class BaseNpc : MonoBehaviour
         InputAction interact = _playerControls.FindAction("Interact");
         interact.performed += ctx => Interact();
 
+        _tabbedMenu = TabbedMenu.Instance;
         _navAgent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
 
@@ -126,6 +129,10 @@ public abstract class BaseNpc : MonoBehaviour
         if (_canInteract)
         {
             DialogueGroup currentDialogue = _stateDialogue.GetStateData(_currentState);
+            if (_tabbedMenu != null)
+            {
+                _tabbedMenu.ToggleInteractPrompt(false);
+            }
             
             if (currentDialogue.CanTalk)
             {
@@ -248,6 +255,10 @@ public abstract class BaseNpc : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             _canInteract = true;
+            if (_tabbedMenu != null)
+            {
+                _tabbedMenu.ToggleInteractPrompt(true);
+            }
         }
     }
 
@@ -260,6 +271,10 @@ public abstract class BaseNpc : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             _canInteract = false;
+            if (_tabbedMenu != null)
+            {
+                _tabbedMenu.ToggleInteractPrompt(false);
+            }
         }
     }
     #endregion
