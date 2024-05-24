@@ -12,8 +12,8 @@ using UnityEngine;
 
 public class MGWireState : MonoBehaviour
 {
-    private int _maxAttachments;
-    private int _currentAttachments;
+    private const int _maxAttachments = 3;
+    private int _currentAttachments = 0;
 
     private void OnEnable()
     {

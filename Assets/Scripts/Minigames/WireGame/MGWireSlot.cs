@@ -18,11 +18,17 @@ public class MGWireSlot : MonoBehaviour
 
     [SerializeField] private MGWire.EWireNum _matchingWire;
 
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireCube(transform.position, new Vector3(0.1f, 0.1f, 0.1f));
+    }
+
     /// <summary>
     /// Checks to see if the wire was correct
     /// </summary>
     /// <param name="wire"></param>
-    private void CheckWire(ref MGWire wire)
+    public void CheckWire(MGWire wire)
     {
         Assert.IsNotNull(wire, "Make sure the object passed in is a valid wire");
 

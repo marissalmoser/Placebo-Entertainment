@@ -40,11 +40,11 @@ public class MGWireMovement : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown("space"))
+        /*if (Input.GetKeyDown("space"))
         {
             Debug.Log("space");
-            ChangeEndKinematic();
-        }
+            ChangeEndKinematic(true);
+        }*/
     }
 
     /*private void OnDrawGizmos()
@@ -152,10 +152,10 @@ public class MGWireMovement : MonoBehaviour
     /// Changes kinematic property of last wire point so it can dangle or be
     /// moved by the player
     /// </summary>
-    private void ChangeEndKinematic()
+    public void ChangeEndKinematic(bool isKine)
     {
         Rigidbody rb = _endTrans.GetComponent<Rigidbody>();
-        rb.isKinematic = !rb.isKinematic;
+        rb.isKinematic = isKine;
     }
 
     /// <summary>
