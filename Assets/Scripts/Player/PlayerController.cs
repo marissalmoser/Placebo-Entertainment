@@ -57,13 +57,15 @@ public class PlayerController : MonoBehaviour
         playerControls.BasicControls.Enable();
 
         _InteractionCheck = new PlayerInteractSystem("Default None");
-        _doOnce = true;
+        _doOnce = false;
 
         move = playerControls.FindAction("Move");
         interact = playerControls.FindAction("Interact");
         reset = playerControls.FindAction("Reset");
         quit = playerControls.FindAction("Quit");
 
+        interact.performed += ctx => _doOnce = true;
+        interact.canceled += ctx => _doOnce = false;
         move.performed += ctx => moveDirection = move.ReadValue<Vector2>();
         move.performed += ctx => isMoving = true;
         move.canceled += ctx => moveDirection = move.ReadValue<Vector2>();
@@ -168,9 +170,13 @@ public class PlayerController : MonoBehaviour
 if (!isGrounded)
             isGrounded = Physics.CheckSphere(groundChecker.position, groundDistance, groundMask);
 
-        if (interact.IsPressed() && _doOnce == true)
+        if (_doOnce == true)
         {
             _InteractionCheck.CallInteract();
+        }
+        if(_doOnce == false)
+        {
+            _InteractionCheck.ReleaseInteract();
         }
         if (reset.IsPressed())
         {
@@ -193,6 +199,7 @@ if (!isGrounded)
     }
     void OnTriggerExit(Collider col)
     {
+        _InteractionCheck.ReleaseInteract();
         _InteractionCheck = new PlayerInteractSystem("Default None");
     }
 }

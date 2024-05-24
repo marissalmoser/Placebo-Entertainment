@@ -58,4 +58,17 @@ public class PlayerInteractSystem
             
         }
     }
+    public void ReleaseInteract()
+    {
+        switch(ObjectName)
+        {
+            case "Ripcord":
+                GameObject RcObject = GameObject.Find("Ripcord");
+                RipcordBehavior _rc = RcObject.GetComponent<RipcordBehavior>();
+                _rc.PressedE = false;
+                break;
+                default:
+                break;
+        }
+    }
 }
