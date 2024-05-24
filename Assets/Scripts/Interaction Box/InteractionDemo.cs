@@ -8,6 +8,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PlaceboEntertainment.UI;
 
 public class InteractionDemo : MonoBehaviour
 {
@@ -38,6 +39,9 @@ public class InteractionDemo : MonoBehaviour
         if(col.gameObject.tag == "Player")
         {
             _interactable = true;
+
+            //enable UI- change "INTERACT" to the object being interacted with
+            TabbedMenu.Instance.ToggleInteractPrompt(true, "INTERACT");
         }
     }
     void OnTriggerExit(Collider col)
@@ -46,6 +50,9 @@ public class InteractionDemo : MonoBehaviour
         if(col.gameObject.tag == "Player")
         {
             _interactable = false;
+
+            //disabe UI
+            TabbedMenu.Instance.ToggleInteractPrompt(false);
         }
     }
 }
