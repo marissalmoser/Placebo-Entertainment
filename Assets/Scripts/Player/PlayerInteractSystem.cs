@@ -48,6 +48,11 @@ public class PlayerInteractSystem
             case "Default None":
                 Debug.Log("No action was done");
                 break;
+            case "Ripcord":
+                GameObject RcObject = GameObject.Find("Ripcord");
+                RipcordBehavior _rc = RcObject.GetComponent<RipcordBehavior>();
+                _rc.PressedE = true;
+                break;
             default:
                 break;
             
