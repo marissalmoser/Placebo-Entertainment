@@ -1,0 +1,16 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/SampleStyle.uss?fileID=7433441132597879392&amp;guid=058f188a3e0d52148a85d8eea3be21ff&amp;type=3#SampleStyle" />
+    <ui:VisualElement name="Container" style="flex-grow: 1; background-color: rgb(128, 128, 128); background-image: none;">
+        <ui:Label tabindex="-1" text="A Menu!" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Header" class="header" />
+        <ui:ScrollView>
+            <ui:Button text="Start" parse-escape-sequences="true" display-tooltip-when-elided="true" name="StartButton" class="button" />
+            <ui:Button text="Settings" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SettingsButton" class="button" />
+            <ui:Button text="Yah Button!" parse-escape-sequences="true" display-tooltip-when-elided="true" class="button" />
+            <ui:Button text="Yah Button!" parse-escape-sequences="true" display-tooltip-when-elided="true" class="button" />
+            <ui:Button text="Yah Button!" parse-escape-sequences="true" display-tooltip-when-elided="true" class="button" />
+            <ui:Button text="Yah Button!" parse-escape-sequences="true" display-tooltip-when-elided="true" class="button" />
+            <ui:Button text="Yah Button!" parse-escape-sequences="true" display-tooltip-when-elided="true" class="button" />
+            <ui:Button text="Yah Button!" parse-escape-sequences="true" display-tooltip-when-elided="true" class="button" />
+        </ui:ScrollView>
+    </ui:VisualElement>
+</ui:UXML>

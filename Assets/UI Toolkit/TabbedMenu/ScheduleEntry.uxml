@@ -1,0 +1,12 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <ui:VisualElement name="ScheduleEntry" class="scheduleEntry">
+        <ui:Label tabindex="-1" text="12:00" parse-escape-sequences="true" display-tooltip-when-elided="true" name="TimeStamp" class="timeStamp" />
+        <ui:VisualElement name="DescriptionHolder" class="descriptionContainer">
+            <ui:Label tabindex="-1" text="Player opened the lab door." parse-escape-sequences="true" display-tooltip-when-elided="true" name="Description" class="descriptionText" />
+            <ui:VisualElement name="ItemContainer" class="itemContainer">
+                <ui:VisualElement name="Icon" class="icon" />
+                <ui:Label tabindex="-1" text="Item" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ItemName" class="itemName" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
