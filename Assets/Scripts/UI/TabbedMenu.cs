@@ -8,8 +8,10 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 using UnityEngine.UIElements;
+using Cursor = UnityEngine.Cursor;
 
 namespace PlaceboEntertainment.UI
 {
@@ -82,6 +84,7 @@ namespace PlaceboEntertainment.UI
         private Label _interactText;
         private VisualElement _scheduleContainer;
         private Dictionary<string, VisualElement> _scheduleEntries = new();
+        private bool _scheduleVisible = false;
 
 
         #endregion
@@ -148,12 +151,26 @@ namespace PlaceboEntertainment.UI
             notificationPopupMenu.rootVisualElement.style.display = DisplayStyle.None;
         }
 
+        private void Start()
+        {
+            PlayerController.Instance.PlayerControls.BasicControls.OpenSchedule.performed += OpenScheduleOnPerformed;
+        }
+
+        private void OpenScheduleOnPerformed(InputAction.CallbackContext obj)
+        {
+            _scheduleVisible = !_scheduleVisible;
+            Cursor.visible = _scheduleVisible;
+            Cursor.lockState = _scheduleVisible ? CursorLockMode.None : CursorLockMode.Locked;
+            ToggleSchedule(_scheduleVisible);
+        }
+
         /// <summary>
         /// Invokes the un-register callbacks function
         /// </summary>
         private void OnDisable()
         {
             UnRegisterTabCallbacks();
+            PlayerController.Instance.PlayerControls.BasicControls.OpenSchedule.performed -= OpenScheduleOnPerformed;
         }
 
         /// <summary>
