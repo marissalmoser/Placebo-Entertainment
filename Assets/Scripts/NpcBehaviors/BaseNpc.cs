@@ -15,6 +15,7 @@ using PlaceboEntertainment.UI;
 
 public abstract class BaseNpc : MonoBehaviour
 {
+    #region Structs
     /// <summary>
     /// Structure used to store a collection of data related to the different states
     /// Example: A StateDataGroup<Animation> could hold idle animations for each state
@@ -59,28 +60,46 @@ public abstract class BaseNpc : MonoBehaviour
     }
 
     /// <summary>
-    /// Structure to hold a collection of dialogue options and responses
-    /// Note: This assumes NPC's won't have any alternative dialogue based on 
-    /// various conditions. Subclasses will handle any alternative dialogue.
+    /// Acts as a node in the dialogue tree, contains NPC's dialogue and potential
+    /// player responses
     /// </summary>
     [System.Serializable]
-    protected struct DialogueGroup
+    protected struct DialogueNode
     {
-        [SerializeField] private bool _canTalk;
-        [SerializeField] private string _initialNpcDialogue;
-        [SerializeField] private string[] _playerResponses;
-        [SerializeField] private string[] _npcResponses;
+        [SerializeField] private NpcEvent _eventToTrigger;
+        [SerializeField] private string _eventTag;
+        [SerializeField] private string[] _dialogue;
+        [SerializeField] private bool _endsDialogue;
+        [SerializeField] private PlayerResponse[] _playerResponses;
 
-        public bool CanTalk { get => _canTalk; }
-        public string InitialNpcDialogue { get => _initialNpcDialogue; }
-        public string[] PlayerResponses { get => _playerResponses; }
-        public string[] NpcResponses { get => _npcResponses; }
+        public NpcEvent EventToTrigger { get => _eventToTrigger; }
+        public string EventTag { get => _eventTag; }
+        public string[] Dialogue { get => _dialogue; }
+        public bool EndsDialogue { get => _endsDialogue; }
+        public PlayerResponse[] PlayerResponses { get => _playerResponses; }
     }
+
+    /// <summary>
+    /// Structure for a player response, containing a dialogue string, the index
+    /// of the next node, and other any prerequisite checks
+    /// </summary>
+    [System.Serializable]
+    protected struct PlayerResponse
+    {
+        [SerializeField] private bool _hasPrerequisiteCheck;
+        [SerializeField] private string _answer;
+        [SerializeField] private int _nextResponseIndex;
+
+        public bool HasPrerequisiteCheck { get => _hasPrerequisiteCheck; }
+        public string Answer { get => _answer; }
+        public int NextResponseIndex { get => _nextResponseIndex; }
+    }
+    #endregion
 
     [SerializeField] protected NpcEvent _startMinigameEvent;
     [SerializeField] protected string _eventTag;
 
-    [SerializeField] protected StateDataGroup<DialogueGroup> _stateDialogue;
+    [SerializeField] protected StateDataGroup<DialogueNode[]> _stateDialogueTrees;
     [SerializeField] protected StateDataGroup<Vector3> _navigationPositions;
     [SerializeField] protected StateDataGroup<Animation> _stateAnimations;
 
@@ -91,7 +110,9 @@ public abstract class BaseNpc : MonoBehaviour
 
     protected NpcStates _currentState = NpcStates.DefaultIdle;
 
+    protected int _currentDialogueIndex = 0;
     protected bool _canInteract = false;
+    protected bool _shouldEndDialogue = false;
     protected bool _isInteracting = false;
     protected bool _haveBypassItem = false;
 
@@ -122,54 +143,107 @@ public abstract class BaseNpc : MonoBehaviour
     }
 
     /// <summary>
-    /// Called when player presses button to interact with NPC.
+    /// Called when player presses button to interact to initiate an interaction with
+    /// a NPC or when giving a dialogue response.
     /// </summary>
-    public void Interact()
+    /// <param name="responseIndex">Index in the dialogue tree, assumes 0 by default</param>
+    public void Interact(int responseIndex = 0)
     {
         if (_canInteract)
         {
-            DialogueGroup currentDialogue = _stateDialogue.GetStateData(_currentState);
-            if (_tabbedMenu != null)
+            if (_isInteracting == false)
             {
-                _tabbedMenu.ToggleInteractPrompt(false);
+                if (_tabbedMenu != null)
+                {
+                    _tabbedMenu.ToggleInteractPrompt(true);
+                }
+                _isInteracting = true;
+                _currentDialogueIndex = 0;
+                // TODO: turn on dialogue UI here
             }
-            
-            if (currentDialogue.CanTalk)
+
+            if (_shouldEndDialogue)
             {
-                if (!_isInteracting)
-                {
-                    _isInteracting = true;
+                _isInteracting = false;
+                _shouldEndDialogue = false;
+                // TODO: turn off dialogue UI here
+                return;
+            }
 
-                    // TODO: replace the following block of code to make it
-                    // display text in UI
-                    Debug.Log(currentDialogue.InitialNpcDialogue);
-                    string[] responses = currentDialogue.PlayerResponses;
-                    string tempPrintString = "";
-                    foreach (string response in responses)
-                    {
-                        tempPrintString += response;
-                        tempPrintString += "  ";
-                    }
-                    Debug.Log(tempPrintString);
-                }
-                else
-                {
-                    _isInteracting = false;
+            int newNodeIndex = responseIndex;
+            if (responseIndex != 0)
+            {
+                DialogueNode currentNode = _stateDialogueTrees.GetStateData(_currentState)[_currentDialogueIndex];
+                newNodeIndex = currentNode.PlayerResponses[responseIndex].NextResponseIndex;
+            }
 
-                    // TODO: replace the following block of code to make it
-                    // display text in UI
-                    string[] responses = currentDialogue.NpcResponses;
-                    string tempPrintString = "";
-                    foreach (string response in responses)
-                    {
-                        tempPrintString += response;
-                        tempPrintString += "  ";
-                    }
-                    Debug.Log(tempPrintString);
+            GetNpcResponse(newNodeIndex);
+        }
+    }
+
+    /// <summary>
+    /// Called to display an NPC's dialogue for a given index of the dialogue tree
+    /// </summary>
+    /// <param name="nextNodeIndex">Index in the dialogue tree</param>
+    protected void GetNpcResponse(int nextNodeIndex)
+    {
+        if (_isInteracting && nextNodeIndex < _stateDialogueTrees.GetStateData(_currentState).Length)
+        {
+            // TODO: hide player response buttons here
+
+            _currentDialogueIndex = nextNodeIndex;
+            DialogueNode currentNode = _stateDialogueTrees.GetStateData(_currentState)[_currentDialogueIndex];
+            Debug.Log(currentNode.Dialogue[0]); // TODO: display dialogue here
+
+            // Triggers a dialogue event if there is one
+            if (currentNode.EventToTrigger != null)
+            {
+                currentNode.EventToTrigger.TriggerEvent(currentNode.EventTag);
+            }
+
+            // Checks if this node is a leaf
+            if (currentNode.EndsDialogue)
+            {
+                _shouldEndDialogue = true;
+                return;
+            }
+
+            GetPlayerResponses();
+        }
+    }
+
+    /// <summary>
+    /// Called by GetNpcResponse to display corresponding player responses
+    /// </summary>
+    protected void GetPlayerResponses()
+    {
+        if (_isInteracting)
+        {
+            DialogueNode currentNode = _stateDialogueTrees.GetStateData(_currentState)[_currentDialogueIndex];
+
+            // Displays player dialogue options
+            PlayerResponse option;
+            for (int i = 0; i < currentNode.PlayerResponses.Length; ++i)
+            {
+                option = currentNode.PlayerResponses[i];
+
+                // Checking if option should display
+                if (!option.HasPrerequisiteCheck || CheckDialoguePrerequisite(option))
+                {
+                    Debug.Log(option.Answer); // TODO: display player option in UI
                 }
-                
             }
         }
+    }
+
+    /// <summary>
+    /// This method should be overriden by subclasses and filled with NPC specific
+    /// logic. That overriden function should not call this base function.
+    /// </summary>
+    /// <returns>Whether prerequisite is met or not</returns>
+    protected virtual bool CheckDialoguePrerequisite(PlayerResponse option)
+    {
+        return true;
     }
 
     /// <summary>
