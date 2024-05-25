@@ -283,7 +283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb64bd2716796c041b825448db1ff54a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WireNum: 2
+  WireID: 0
   _wireColor: {r: 0, g: 0.6694646, b: 1, a: 1}
   _interactColor: {r: 0, g: 1, b: 0.038576603, a: 1}
   _sphereScale: 0.3
