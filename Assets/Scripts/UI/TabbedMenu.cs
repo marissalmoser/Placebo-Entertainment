@@ -88,7 +88,7 @@ namespace PlaceboEntertainment.UI
 
         #region Constants
 
-        private const string TalkPromptName = "TalkPrompt";
+        private const string TalkPromptName = "TextPrompt";
         private const string TabClassName = "tab";
         private const string SelectedTabClassName = "currentlySelectedTab";
         private const string UnSelectedTabClassName = "currentlyUnSelectedTab";
@@ -128,6 +128,7 @@ namespace PlaceboEntertainment.UI
             {
                 Destroy(Instance.gameObject);
             }
+            Instance = this;
             _tabMenuRoot = tabMenu.rootVisualElement;
             _playerObject = _tabMenuRoot.Q(PlayerName);
             _interactText = interactPromptMenu.rootVisualElement.Q<Label>(TalkPromptName);
