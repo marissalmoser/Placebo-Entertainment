@@ -16,6 +16,8 @@ using static UnityEngine.Rendering.HableCurve;
 
 public class MGWireMovement : MonoBehaviour
 {
+    private Transform[] _segments;
+    [SerializeField] Transform _segmentParent;
     [SerializeField] Transform _startTrans, _endTrans;
     [SerializeField] int _segmentCount = 10;
     [SerializeField] float _totalLength = 10f;
@@ -28,9 +30,6 @@ public class MGWireMovement : MonoBehaviour
     [SerializeField] float _angularDrag = 1f;
 
     [SerializeField] bool _usePhysics = false;
-
-    private Transform[] _segments;
-    [SerializeField] Transform _segmentParent;
 
     private void Start()
     {
