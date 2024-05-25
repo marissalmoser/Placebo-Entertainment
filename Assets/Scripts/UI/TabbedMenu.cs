@@ -151,11 +151,18 @@ namespace PlaceboEntertainment.UI
             notificationPopupMenu.rootVisualElement.style.display = DisplayStyle.None;
         }
 
+        /// <summary>
+        /// Assigns the performed action of the tab key to opening/closing the schedule UI.
+        /// </summary>
         private void Start()
         {
             PlayerController.Instance.PlayerControls.BasicControls.OpenSchedule.performed += OpenScheduleOnPerformed;
         }
 
+        /// <summary>
+        /// Callback that gets fired when the tab key is pressed.
+        /// </summary>
+        /// <param name="obj">Callback context of the key that was presed.</param>
         private void OpenScheduleOnPerformed(InputAction.CallbackContext obj)
         {
             _scheduleVisible = !_scheduleVisible;
@@ -353,8 +360,6 @@ namespace PlaceboEntertainment.UI
             AddScheduleEntry(new ScheduleEntry("03:30", "Entry number3", "Icon Name", null));
         }
         
-        
-
         #endregion
 
         /// <summary>
