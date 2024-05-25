@@ -23,7 +23,7 @@ public class Interact : MonoBehaviour
 
     [SerializeField] private GameObject _targetGameObj;
     [SerializeField] private GameObject _interactable;
-    public bool CanInteract { get; private set; }
+    private bool _canInteract;
 
     //raycast variables
     private RaycastHit _colliderHit;
@@ -32,33 +32,54 @@ public class Interact : MonoBehaviour
 
     private void Awake()
     {
+        //is there a better way to do this?
         _map = GetComponent<PlayerInput>().currentActionMap;
         _map.Enable();
-
         _interact = _map.FindAction("Interact");
         _interact.started += InteractPressed;
 
-        CanInteract = true;
-        StartCoroutine(DetectInteractable());
+        StartDetectingInteractions();
     }
 
     /// <summary>
-    /// Raycasts in front of player to check if there is an item to be interacted
-    /// with, if so , calls the interaction behavior on that object.
+    /// Called when Interact input is started. Calls Interact() on the detected
+    /// interactable game object
     /// </summary>
     private void InteractPressed(InputAction.CallbackContext ctx)
     {
         if(_interactable != null)
         {
-            //Calls Interact() on the target game object
-            _targetGameObj.GetComponent<Interactable>().Interact(gameObject);
+            _interactable.GetComponent<IInteractable>().Interact(gameObject);
         }
           
     }
 
+    /// <summary>
+    /// Starts the Detect Interactable coroutine
+    /// </summary>
+    public void StartDetectingInteractions()
+    {
+        _canInteract = true;
+        StartCoroutine(DetectInteractable());
+    }
+
+    /// <summary>
+    /// Ends the Detect Interactable coroutine
+    /// </summary>
+    public void StopDetectingInteractions()
+    {
+        _canInteract = false;
+    }
+
+    /// <summary>
+    /// A couroutine that detects if there is an interactable object in from of
+    /// the player using a raycast. This coroutine can be stopped with the public 
+    /// Start/StopDetectingInteraction function
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator DetectInteractable()
     {
-        while(CanInteract)
+        while(_canInteract)
         {
             //Casts Raycast in the center of the screen
             Ray r = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
@@ -66,15 +87,16 @@ public class Interact : MonoBehaviour
             {
                 _targetGameObj = _colliderHit.transform.gameObject;
 
-                if (_targetGameObj.TryGetComponent(out Interactable interactable))
+                //sets the _interactable variable for the InteractPressed function
+                if (_targetGameObj.TryGetComponent(out IInteractable interactable))
                 {
                     _interactable = _targetGameObj;
-                    _interactable.GetComponent<Interactable>().DisplayInteractUI();
+                    _interactable.GetComponent<IInteractable>().DisplayInteractUI();
                 }
-                else
+                else if (_interactable != null)
                 {
+                    _interactable.GetComponent<IInteractable>().HideInteractUI();
                     _interactable = null;
-                    //TabbedMenu.Instance.ToggleInteractPrompt(false);
                 }
             }
             yield return null;
