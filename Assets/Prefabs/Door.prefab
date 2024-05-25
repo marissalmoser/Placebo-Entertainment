@@ -770,12 +770,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.9917963, y: 4.2743134, z: 5.1015854}
-  m_Center: {x: 0.076818794, y: 1.6371605, z: 0.073353805}
+  m_Size: {x: 0.37840468, y: 4.2743134, z: 5.1015854}
+  m_Center: {x: -0.10151698, y: 1.6371605, z: 0.07335377}
 --- !u!95 &6136376905392929053
 Animator:
   serializedVersion: 5
