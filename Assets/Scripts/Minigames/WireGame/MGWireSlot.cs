@@ -16,28 +16,28 @@ public class MGWireSlot : MonoBehaviour
 {
     public static Action CorrectWire;
 
-    [SerializeField] private MGWire.EWireNum _matchingWire;
+    [SerializeField] private MGWire.EWireID _matchingWire;
 
 
-    private void OnDrawGizmos()
+  /*private void OnDrawGizmos()
     {
         Gizmos.DrawWireCube(transform.position, new Vector3(0.1f, 0.1f, 0.1f));
-    }
+    }*/
 
     /// <summary>
-    /// Checks to see if the wire was correct
+    /// Checks to see if the wire plaaced in the slot was the corrent wire
     /// </summary>
     /// <param name="wire"></param>
     public void CheckWire(MGWire wire)
     {
-        Assert.IsNotNull(wire, "Make sure the object passed in is a valid wire");
+        Assert.IsNotNull(wire, "Make sure the object passed in is a " +
+            "valid wire");
 
-        if(wire.WireNum.Equals(_matchingWire))
+        if(wire.WireID.Equals(_matchingWire))
         {
             CorrectWire?.Invoke();
         }
 
-        // TODO: Wire was incorrect match
-
+        // TODO: Add logic for if the wire was incorrect match
     }
 }

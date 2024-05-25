@@ -3,7 +3,8 @@
 // Author :            Andrea Swihart-DeCoster
 // Creation Date :     05/21/24
 //
-// Brief Description : Controls the wire logic
+// Brief Description : Contains the logic and properties for the wire itself
+                       and any relevant gameplay logic for how the wire works.
 *****************************************************************************/
 
 using FMOD;
@@ -15,22 +16,19 @@ using UnityEngine.Rendering;
 
 public class MGWire : MonoBehaviour
 {
-    public EWireNum WireNum;
+    public EWireID WireID;
     [SerializeField] private Color _wireColor;
     [SerializeField] private Color _interactColor;
 
     [SerializeField] float _sphereScale;
 
-    /// <summary>
-    /// Whether the wire has entered the slot zone
-    /// </summary>
-    private bool _canSlot = false;
+    private bool _canConnectToSlot = false;
 
     private MGWireSlot _currentSlot = null;
-    private MGWireMovement _wireMovement;
-    private bool _correctlySlotted = false;
+    private MGWireMovement _mgWireMovement;
+    private bool _isCorrectlySlotted = false;
 
-    public enum EWireNum
+    public enum EWireID
     {
         ONE, TWO, THREE
     }
@@ -39,54 +37,83 @@ public class MGWire : MonoBehaviour
     {
         if (TryGetComponent<MGWireMovement>(out MGWireMovement wireMove))
         {
-            _wireMovement = wireMove;
+            _mgWireMovement = wireMove;
         }
     }
 
+    /// <summary>
+    /// Called when the player interacts with the wire. Changes the wire
+    /// to be kinematic so the player has direct control over it.
+    /// </summary>
     private void OnInteract()
     {
         // TODO: When the player interacts with a wire, make the end
         // kinematic and have it follow the players direction
-        _wireMovement.ChangeEndKinematic(true);
+        _mgWireMovement.ChangeEndKinematic(true);
     }
 
+    /// <summary>
+    /// When the player lets go of the wire, kinematic is turned on and
+    /// attempts to place the wire in a slot
+    /// </summary>
     private void OnDrop()
     {
-        // TODO: If the wire is in a slot, call PlaceWire()
-        // Otherwise, make the wire non-kinematic
-        _wireMovement.ChangeEndKinematic(true);
+        // TODO: This should be called when the player lets go of the wire.
+        _mgWireMovement.ChangeEndKinematic(true);
 
         PlaceWire();
     }
 
+    /// <summary>
+    /// Called when the trigger on the end of the wire is entered.
+    /// Enables connection with the slot
+    /// </summary>
+    /// <param name="slot"></param>
     public void EndTriggerEnter(MGWireSlot slot)
     {
-        _canSlot = true;
+        _canConnectToSlot = true;
         _currentSlot = slot;
 
         // TODO: This is not a good spot to call PlaceWire(); Find a better
         // solution where the placewire function properly "slots" the wire
         OnDrop();
     }
-
+    
+    /// <summary>
+    /// Called when the player moves the end of the wire outside of a slots 
+    /// trigger
+    /// </summary>
     public void EndTriggerExit()
     {
-        _canSlot = false;
+        _canConnectToSlot = false;
         _currentSlot = null;
     }
 
     /// <summary>
-    /// What happens when the player puts the wire in a spot?
+    /// Called after the player drops the wire. This attempts to connect it
+    /// to a slot, otherwise kinematics are disabled and it responds to
+    /// physics.
     /// </summary>
     private void PlaceWire()
     {
-        if (_canSlot && _currentSlot && !_correctlySlotted)
+        if (_canConnectToSlot && _currentSlot && !_isCorrectlySlotted)
         {
-            _correctlySlotted = true;
+            _isCorrectlySlotted = true;
             _currentSlot.CheckWire(this);
+        }
+        else if (!_canConnectToSlot)
+        {
+            _mgWireMovement.ChangeEndKinematic(false);
         }
     }
 
+    /// <summary>
+    /// Creates a sphere on a segment to visualize the wire. This is temporary
+    /// until we have art assets
+    /// </summary>
+    /// <param name="parentObj">parent for the sphere</param>
+    /// <param name="isEndSegment">defaulted to false, true if this is 
+    /// the last sphere so it knows to set it to a unique color.</param>
     public void CreateSegmentSphere(Transform parentObj, bool isEndSegment = false)
     {
         GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
@@ -102,19 +129,27 @@ public class MGWire : MonoBehaviour
         SetWireColor(sphere.GetComponent<MeshRenderer>().material, isEndSegment);
     }
 
+    /// <summary>
+    /// Sets the color of the sphere of the wire. Each wire has a different 
+    /// color to indicate where it will be slotted [Will be a different
+    /// indication method after first playable]
+    /// </summary>
+    /// <param name="mat">material for the color to be applied</param>
+    /// <param name="isEndSegment">Unique color is set if it's the 
+    /// last segment</param>
     private void SetWireColor(Material mat, bool isEndSegment)
     {
         if(!isEndSegment)
         {
-            switch (WireNum)
+            switch (WireID)
             {
-                case EWireNum.ONE:
+                case EWireID.ONE:
                     mat.color = _wireColor;
                     break;
-                case EWireNum.TWO:
+                case EWireID.TWO:
                     mat.color = _wireColor;
                     break;
-                case EWireNum.THREE:
+                case EWireID.THREE:
                     mat.color = _wireColor;
                     break;
             }

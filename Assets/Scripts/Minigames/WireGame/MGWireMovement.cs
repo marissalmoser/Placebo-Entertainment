@@ -56,7 +56,7 @@ public class MGWireMovement : MonoBehaviour
     }*/
 
     /// <summary>
-    /// Spawn wire segments
+    /// Spawns wire segments
     /// </summary>
     private void GenerateSegments()
     {
@@ -149,8 +149,8 @@ public class MGWireMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// Changes kinematic property of last wire point so it can dangle or be
-    /// moved by the player
+    /// Changes kinematic property of last wire point so it dangles like a wire
+    /// or remains in place to be stationary or be controlled by the player.
     /// </summary>
     public void ChangeEndKinematic(bool isKine)
     {
@@ -159,9 +159,10 @@ public class MGWireMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// Generates a sphere over the segment to visualize it
+    /// Has the wire class generate a sphere over the segment to visualize it.
     /// </summary>
-    /// <param name="parentObj"></param>
+    /// <param name="parentObj">parent of the segment</param>
+    /// <param name="isLastSegment">if it's the last wire segment</param>
     private void GenerateSphereObj(Transform parentObj, bool isLastSegment)
     {
         MGWire wireRef = GetComponentInParent<MGWire>();
