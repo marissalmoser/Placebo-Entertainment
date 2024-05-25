@@ -189,8 +189,11 @@ MonoBehaviour:
       _eventTag: 
       _dialogue:
       - Dialogue A
-      _endsDialogue: 1
-      _playerResponses: []
+      _endsDialogue: 0
+      _playerResponses:
+      - _hasPrerequisiteCheck: 0
+        _answer: Continue
+        _nextResponseIndex: 4
     - _eventToTrigger: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
       _eventTag: Testing
       _dialogue:
@@ -201,6 +204,12 @@ MonoBehaviour:
       _eventTag: 
       _dialogue:
       - Cool Bypass Dialogue C
+      _endsDialogue: 1
+      _playerResponses: []
+    - _eventToTrigger: {fileID: 0}
+      _eventTag: 
+      _dialogue:
+      - Dialogue D
       _endsDialogue: 1
       _playerResponses: []
     _minigameReadyState: []

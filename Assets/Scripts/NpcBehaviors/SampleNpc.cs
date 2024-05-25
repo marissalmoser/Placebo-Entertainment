@@ -31,11 +31,11 @@ public class SampleNpc : BaseNpc
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
-            GetNpcResponse(1);
+            Interact(0);
         if (Input.GetKeyDown(KeyCode.Alpha2))
-            GetNpcResponse(2);
+            Interact(1);
         if (Input.GetKeyDown(KeyCode.Alpha3))
-            GetNpcResponse(3);
+            Interact(2);
     }
 
     protected override bool CheckDialoguePrerequisite(PlayerResponse option)

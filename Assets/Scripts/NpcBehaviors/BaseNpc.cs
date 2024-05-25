@@ -142,6 +142,7 @@ public abstract class BaseNpc : MonoBehaviour
         EnterIdle();
     }
 
+    #region DialogueFunctions
     /// <summary>
     /// Called when player presses button to interact to initiate an interaction with
     /// a NPC or when giving a dialogue response.
@@ -151,6 +152,8 @@ public abstract class BaseNpc : MonoBehaviour
     {
         if (_canInteract)
         {
+            int newNodeIndex = 0;
+
             if (_isInteracting == false)
             {
                 if (_tabbedMenu != null)
@@ -161,6 +164,15 @@ public abstract class BaseNpc : MonoBehaviour
                 _currentDialogueIndex = 0;
                 // TODO: turn on dialogue UI here
             }
+            else
+            {   
+                // If you're already talking, determines which node to go to based on player response
+                DialogueNode currentNode = _stateDialogueTrees.GetStateData(_currentState)[_currentDialogueIndex];
+                if (responseIndex < currentNode.PlayerResponses.Length)
+                {
+                    newNodeIndex = currentNode.PlayerResponses[responseIndex].NextResponseIndex;
+                }
+            }
 
             if (_shouldEndDialogue)
             {
@@ -169,14 +181,7 @@ public abstract class BaseNpc : MonoBehaviour
                 // TODO: turn off dialogue UI here
                 return;
             }
-
-            int newNodeIndex = responseIndex;
-            if (responseIndex != 0)
-            {
-                DialogueNode currentNode = _stateDialogueTrees.GetStateData(_currentState)[_currentDialogueIndex];
-                newNodeIndex = currentNode.PlayerResponses[responseIndex].NextResponseIndex;
-            }
-
+            
             GetNpcResponse(newNodeIndex);
         }
     }
@@ -245,6 +250,7 @@ public abstract class BaseNpc : MonoBehaviour
     {
         return true;
     }
+    #endregion
 
     /// <summary>
     /// When called, checks if the NPC should change to a new state
