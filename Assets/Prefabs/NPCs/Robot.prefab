@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1813159210467846255
+--- !u!1 &4556153407337933796
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,28 +8,29 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7760235768858286636}
-  - component: {fileID: 3241478675477886158}
-  - component: {fileID: 190002347449952546}
-  - component: {fileID: 1608744599569339440}
-  - component: {fileID: 6688788746275990041}
-  - component: {fileID: 4903026629208649315}
-  - component: {fileID: 1866844575688752464}
-  - component: {fileID: 886804196087669012}
+  - component: {fileID: 5155935945816834384}
+  - component: {fileID: 968178768747916343}
+  - component: {fileID: 5615582337182177422}
+  - component: {fileID: 9144484468842581267}
+  - component: {fileID: 8850794281488733885}
+  - component: {fileID: 3131129064344898019}
+  - component: {fileID: 869825619415053396}
+  - component: {fileID: 6882198576666297318}
+  - component: {fileID: -4305299369955277029}
   m_Layer: 0
-  m_Name: SampleNpc
+  m_Name: Robot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7760235768858286636
+--- !u!4 &5155935945816834384
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1813159210467846255}
+  m_GameObject: {fileID: 4556153407337933796}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -38,21 +39,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &3241478675477886158
+--- !u!33 &968178768747916343
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1813159210467846255}
+  m_GameObject: {fileID: 4556153407337933796}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &190002347449952546
+--- !u!23 &5615582337182177422
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1813159210467846255}
+  m_GameObject: {fileID: 4556153407337933796}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -88,13 +89,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &1608744599569339440
+--- !u!136 &9144484468842581267
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1813159210467846255}
+  m_GameObject: {fileID: 4556153407337933796}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -111,13 +112,13 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!135 &6688788746275990041
+--- !u!135 &8850794281488733885
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1813159210467846255}
+  m_GameObject: {fileID: 4556153407337933796}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -132,13 +133,13 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 3
   m_Center: {x: 0, y: 0, z: 0}
---- !u!195 &4903026629208649315
+--- !u!195 &3131129064344898019
 NavMeshAgent:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1813159210467846255}
+  m_GameObject: {fileID: 4556153407337933796}
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
@@ -154,58 +155,45 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1866844575688752464
+--- !u!114 &869825619415053396
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1813159210467846255}
+  m_GameObject: {fileID: 4556153407337933796}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 274fc5b4b31a8c847b6024fcd5ec432a, type: 3}
+  m_Script: {fileID: 11500000, guid: 0f73dec73f2ec2d4c8fc2b9b5defef6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _startMinigameEvent: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
-  _eventTag: Sample
-  _stateDialogue:
+  _eventTag: Robot
+  _stateDialogueTrees:
     _idleState:
-      _canTalk: 1
-      _initialNpcDialogue: Hello!
+    - _dialogue:
+      - npc response
+      _endsDialogue: 1
       _playerResponses:
-      - Option A
-      - Option B
-      _npcResponses:
-      - Response A
-      - Response B
-    _minigameReadyState:
-      _canTalk: 1
-      _initialNpcDialogue: Pre Minigame Dialogue
-      _playerResponses:
-      - Option C
-      - Option D
-      - Option E
-      _npcResponses:
-      - Response C
-      - Response D
-      - Response E
-    _playingMinigameState:
-      _canTalk: 0
-      _initialNpcDialogue: 
+      - _hasPrerequisiteCheck: 0
+        _answer: hello
+        _nextResponseIndex: 1
+      - _hasPrerequisiteCheck: 0
+        _answer: can if help yo
+        _nextResponseIndex: 2
+    - _dialogue: []
+      _endsDialogue: 0
       _playerResponses: []
-      _npcResponses: []
+    - _dialogue: []
+      _endsDialogue: 0
+      _playerResponses: []
+    _minigameReadyState: []
+    _playingMinigameState: []
     _postMinigameState:
-      _canTalk: 1
-      _initialNpcDialogue: Post Minigame Dialogue
-      _playerResponses:
-      - Option F
-      _npcResponses:
-      - Response F
-    _failureState:
-      _canTalk: 0
-      _initialNpcDialogue: 
+    - _dialogue: []
+      _endsDialogue: 0
       _playerResponses: []
-      _npcResponses: []
+    _failureState: []
   _navigationPositions:
     _idleState: {x: 0, y: 0, z: 0}
     _minigameReadyState: {x: 0, y: 0, z: 0}
@@ -218,26 +206,57 @@ MonoBehaviour:
     _playingMinigameState: {fileID: 0}
     _postMinigameState: {fileID: 0}
     _failureState: {fileID: 0}
---- !u!114 &886804196087669012
+  unlockDoorsEvent: {fileID: 0}
+  _secondsUntilDeath: 60
+--- !u!114 &6882198576666297318
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1813159210467846255}
+  m_GameObject: {fileID: 4556153407337933796}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a0acc881a336094997b0fb61c6d1983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _npcEvent: {fileID: 11400000, guid: b0ff38f0f20db8a4ab04033934de185c, type: 2}
-  _targetEventTag: SampleBypass
+  _targetEventTag: Lightbulb
   _onEventTriggered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1866844575688752464}
-        m_TargetAssemblyTypeName: BaseNpc, Assembly-CSharp
-        m_MethodName: CollectedBypassItem
+      - m_Target: {fileID: 869825619415053396}
+        m_TargetAssemblyTypeName: RobotNpc, Assembly-CSharp
+        m_MethodName: CollectLightbulb
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &-4305299369955277029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4556153407337933796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a0acc881a336094997b0fb61c6d1983, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _npcEvent: {fileID: 11400000, guid: 8b7b5ccfabcfc4d4f96da8928978e41e, type: 2}
+  _targetEventTag: Robot
+  _onEventTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 869825619415053396}
+        m_TargetAssemblyTypeName: RobotNpc, Assembly-CSharp
+        m_MethodName: CheckForStateChange
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
