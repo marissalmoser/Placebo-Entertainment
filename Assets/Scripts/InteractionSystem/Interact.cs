@@ -14,7 +14,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using PlaceboEntertainment.UI;
 
 public class Interact : MonoBehaviour
 {
@@ -72,7 +71,7 @@ public class Interact : MonoBehaviour
     }
 
     /// <summary>
-    /// A couroutine that detects if there is an interactable object in from of
+    /// A coroutine that detects if there is an interactable object in front of
     /// the player using a raycast. This coroutine can be stopped with the public 
     /// Start/StopDetectingInteraction function
     /// </summary>
