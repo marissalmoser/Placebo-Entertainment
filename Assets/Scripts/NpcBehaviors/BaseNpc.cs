@@ -89,10 +89,12 @@ public abstract class BaseNpc : MonoBehaviour
         [SerializeField] private bool _hasPrerequisiteCheck;
         [SerializeField] private string _answer;
         [SerializeField] private int _nextResponseIndex;
+        [SerializeField] private bool _endsDialogue;
 
         public bool HasPrerequisiteCheck { get => _hasPrerequisiteCheck; }
         public string Answer { get => _answer; }
         public int NextResponseIndex { get => _nextResponseIndex; }
+        public bool EndsDialogue { get => _endsDialogue; }
     }
     #endregion
 

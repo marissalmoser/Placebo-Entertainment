@@ -10,8 +10,6 @@ using UnityEngine;
 
 public class RobotNpc : BaseNpc
 {
-    [SerializeField] private NpcEvent unlockDoorsEvent;
-
     [SerializeField] private float _secondsUntilDeath;
     private float _timeElapsed = 0f;
 
@@ -52,17 +50,6 @@ public class RobotNpc : BaseNpc
         base.EnterIdle();
 
         StartCoroutine("DeathTimer");
-    }
-
-    /// <summary>
-    /// Moves straight into pre-minigame dialogue with bypass check
-    /// </summary>
-    protected override void EnterMinigameReady()
-    {
-        base.EnterMinigameReady();
-
-        Interact();
-        // TODO: add bypass check with minigame trigger?
     }
 
     /// <summary>
