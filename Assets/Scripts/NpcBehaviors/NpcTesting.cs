@@ -14,6 +14,8 @@ public class NpcTesting : MonoBehaviour
     [SerializeField] private BaseNpc _npcToTest;
     [SerializeField] private NpcEvent _eventToTrigger;
     [SerializeField] private string _eventTag;
+    [SerializeField] private NpcEvent _secondaryEvent;
+    [SerializeField] private string _secondaryEventTag;
 
     // Update is called once per frame
     void Update()
@@ -41,6 +43,12 @@ public class NpcTesting : MonoBehaviour
         {
             Debug.Log("Event triggered");
             _eventToTrigger.TriggerEvent(_eventTag);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            Debug.Log("Secondary event triggered");
+            _secondaryEvent.TriggerEvent(_secondaryEventTag);
         }
     }
 }
