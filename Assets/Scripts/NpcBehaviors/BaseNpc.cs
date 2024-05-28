@@ -66,16 +66,16 @@ public abstract class BaseNpc : MonoBehaviour
     [System.Serializable]
     protected struct DialogueNode
     {
-        [SerializeField] private NpcEvent _eventToTrigger;
-        [SerializeField] private string _eventTag;
+        //[SerializeField] private NpcEvent _eventToTrigger;
+        //[SerializeField] private string _eventTag;
         [SerializeField] private string[] _dialogue;
-        [SerializeField] private bool _endsDialogue;
+        //[SerializeField] private bool _endsDialogue;
         [SerializeField] private PlayerResponse[] _playerResponses;
 
-        public NpcEvent EventToTrigger { get => _eventToTrigger; }
-        public string EventTag { get => _eventTag; }
+        //public NpcEvent EventToTrigger { get => _eventToTrigger; }
+        //public string EventTag { get => _eventTag; }
         public string[] Dialogue { get => _dialogue; }
-        public bool EndsDialogue { get => _endsDialogue; }
+        //public bool EndsDialogue { get => _endsDialogue; }
         public PlayerResponse[] PlayerResponses { get => _playerResponses; }
     }
 
@@ -86,13 +86,19 @@ public abstract class BaseNpc : MonoBehaviour
     [System.Serializable]
     protected struct PlayerResponse
     {
+        [SerializeField] private NpcEvent _eventToTrigger;
+        [SerializeField] private string _eventTag;
         [SerializeField] private bool _hasPrerequisiteCheck;
         [SerializeField] private string _answer;
-        [SerializeField] private int _nextResponseIndex;
+        [SerializeField] private int[] _nextResponseIndex;
+        [SerializeField] private bool _endsDialogue;
 
+        public NpcEvent EventToTrigger { get => _eventToTrigger; }
+        public string EventTag { get => _eventTag; }
         public bool HasPrerequisiteCheck { get => _hasPrerequisiteCheck; }
         public string Answer { get => _answer; }
-        public int NextResponseIndex { get => _nextResponseIndex; }
+        public int[] NextResponseIndex { get => _nextResponseIndex; }
+        public bool EndsDialogue { get => _endsDialogue; }
     }
     #endregion
 
@@ -154,6 +160,7 @@ public abstract class BaseNpc : MonoBehaviour
         {
             int newNodeIndex = 0;
 
+            // First interaction
             if (_isInteracting == false)
             {
                 if (_tabbedMenu != null)
@@ -164,14 +171,38 @@ public abstract class BaseNpc : MonoBehaviour
                 _currentDialogueIndex = 0;
                 // TODO: turn on dialogue UI here
             }
-            else
+            // For future interactions determine which dialogue node to go to
+            else if (_stateDialogueTrees.GetStateData(_currentState).Length > 0)
             {   
-                // If you're already talking, determines which node to go to based on player response
                 DialogueNode currentNode = _stateDialogueTrees.GetStateData(_currentState)[_currentDialogueIndex];
-                if (responseIndex < currentNode.PlayerResponses.Length)
+                PlayerResponse currentResponse = currentNode.PlayerResponses[responseIndex];
+
+                // Checks if dialogue option should trigger an event
+                if (currentResponse.EventToTrigger != null)
                 {
-                    newNodeIndex = currentNode.PlayerResponses[responseIndex].NextResponseIndex;
+                    if (currentResponse.EventToTrigger.name.Equals("OnMinigameStart"))
+                    {
+                        EnterPlayingMinigame();
+                    }
+                    currentResponse.EventToTrigger.TriggerEvent(currentResponse.EventTag);
                 }
+
+                // Checks if dialogue option should end the current dialogue
+                if (currentResponse.EndsDialogue)
+                {
+                    _shouldEndDialogue = true;
+                }
+
+                // If dialogue didn't end, determines which node to go to next
+                if (!_shouldEndDialogue && responseIndex < currentNode.PlayerResponses.Length)
+                {
+                    newNodeIndex = ChooseDialoguePath(currentResponse);
+                }
+            }
+            else
+            {
+                // Failsafe for entering a new state mid-dialogue that has no dialogue
+                _shouldEndDialogue = true; 
             }
 
             if (_shouldEndDialogue)
@@ -198,20 +229,7 @@ public abstract class BaseNpc : MonoBehaviour
 
             _currentDialogueIndex = nextNodeIndex;
             DialogueNode currentNode = _stateDialogueTrees.GetStateData(_currentState)[_currentDialogueIndex];
-            Debug.Log(currentNode.Dialogue[0]); // TODO: display dialogue here
-
-            // Triggers a dialogue event if there is one
-            if (currentNode.EventToTrigger != null)
-            {
-                currentNode.EventToTrigger.TriggerEvent(currentNode.EventTag);
-            }
-
-            // Checks if this node is a leaf
-            if (currentNode.EndsDialogue)
-            {
-                _shouldEndDialogue = true;
-                return;
-            }
+            Debug.Log(ChooseDialogueFromNode(currentNode)); // TODO: display dialogue here
 
             GetPlayerResponses();
         }
@@ -249,6 +267,30 @@ public abstract class BaseNpc : MonoBehaviour
     protected virtual bool CheckDialoguePrerequisite(PlayerResponse option)
     {
         return true;
+    }
+
+    /// <summary>
+    /// This method handles cases when an NPC's dialogue node may have multiple
+    /// potential responses. If an NPC has such a case, it should override this
+    /// and add its own logic.
+    /// </summary>
+    /// <param name="node">DialogueNode being examined</param>
+    /// <returns>String dialogue response</returns>
+    protected virtual string ChooseDialogueFromNode(DialogueNode node)
+    {
+        return node.Dialogue[0];
+    }
+
+    /// <summary>
+    /// This method handles cases when a player response may lead to more than one
+    /// potential response. If an NPC has such a case, it should override this
+    /// and add its own logic.
+    /// </summary>
+    /// <param name="option">PlayerResponse being examined</param>
+    /// <returns>int index of the next dialogue node</returns>
+    protected virtual int ChooseDialoguePath(PlayerResponse option)
+    {
+        return option.NextResponseIndex[0];
     }
     #endregion
 
