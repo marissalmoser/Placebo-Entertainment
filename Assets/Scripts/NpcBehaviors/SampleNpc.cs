@@ -19,10 +19,31 @@ public class SampleNpc : BaseNpc
             CheckForStateChange();
         }
 
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            Debug.Log("Acquired bypass item");
+            CollectedBypassItem();
+        }
+
         if (Input.GetKeyDown(KeyCode.F))
         {
             EnterFailure();
         }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+            Interact(0);
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+            Interact(1);
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+            Interact(2);
+    }
+
+    protected override bool CheckDialoguePrerequisite(PlayerResponse option)
+    {
+        if (_haveBypassItem)
+            return true;
+        else
+            return false;
     }
 
     public override void CheckForStateChange()
