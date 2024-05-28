@@ -168,44 +168,69 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startMinigameEvent: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
   _eventTag: Sample
-  _stateDialogue:
+  _stateDialogueTrees:
     _idleState:
-      _canTalk: 1
-      _initialNpcDialogue: Hello!
+    - _dialogue:
+      - First Dialogue
       _playerResponses:
-      - Option A
-      - Option B
-      _npcResponses:
-      - Response A
-      - Response B
-    _minigameReadyState:
-      _canTalk: 1
-      _initialNpcDialogue: Pre Minigame Dialogue
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 
+        _hasPrerequisiteCheck: 0
+        _answer: Option A
+        _nextResponseIndex: 1
+        _endsDialogue: 0
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 
+        _hasPrerequisiteCheck: 0
+        _answer: Option B
+        _nextResponseIndex: 2
+        _endsDialogue: 0
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 
+        _hasPrerequisiteCheck: 1
+        _answer: Bypass Option C
+        _nextResponseIndex: 3
+        _endsDialogue: 0
+    - _dialogue:
+      - Dialogue A
       _playerResponses:
-      - Option C
-      - Option D
-      - Option E
-      _npcResponses:
-      - Response C
-      - Response D
-      - Response E
-    _playingMinigameState:
-      _canTalk: 0
-      _initialNpcDialogue: 
-      _playerResponses: []
-      _npcResponses: []
-    _postMinigameState:
-      _canTalk: 1
-      _initialNpcDialogue: Post Minigame Dialogue
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 
+        _hasPrerequisiteCheck: 0
+        _answer: Continue
+        _nextResponseIndex: 4
+        _endsDialogue: 0
+    - _dialogue:
+      - Dialogue B
       _playerResponses:
-      - Option F
-      _npcResponses:
-      - Response F
-    _failureState:
-      _canTalk: 0
-      _initialNpcDialogue: 
-      _playerResponses: []
-      _npcResponses: []
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 
+        _hasPrerequisiteCheck: 0
+        _answer: Bye
+        _nextResponseIndex: 0
+        _endsDialogue: 1
+    - _dialogue:
+      - Cool Bypass Dialogue C
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 
+        _hasPrerequisiteCheck: 0
+        _answer: Bye
+        _nextResponseIndex: 0
+        _endsDialogue: 1
+    - _dialogue:
+      - Dialogue D
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 
+        _hasPrerequisiteCheck: 0
+        _answer: Bye
+        _nextResponseIndex: 0
+        _endsDialogue: 1
+    _minigameReadyState: []
+    _playingMinigameState: []
+    _postMinigameState: []
+    _failureState: []
   _navigationPositions:
     _idleState: {x: 0, y: 0, z: 0}
     _minigameReadyState: {x: 0, y: 0, z: 0}
