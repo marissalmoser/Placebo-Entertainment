@@ -13,12 +13,12 @@ public class NPCInteractionBehavior : MonoBehaviour, IInteractable
 
     public void DisplayInteractUI()
     {
-        //TabbedMenu.Instance.ToggleInteractPrompt(true, _npcName);
+        TabbedMenu.Instance.ToggleInteractPrompt(true, _npcName);
     }
 
     public void HideInteractUI()
     {
-        //TabbedMenu.Instance.ToggleInteractPrompt(false);
+        TabbedMenu.Instance.ToggleInteractPrompt(false);
     }
 
 }

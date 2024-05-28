@@ -17,7 +17,7 @@ using UnityEngine.InputSystem;
 
 public class Interact : MonoBehaviour
 {
-    private InputActionMap _map;
+    PlayerControls _playerControls;
     private InputAction _interact;
 
     [SerializeField] private GameObject _targetGameObj;
@@ -31,10 +31,9 @@ public class Interact : MonoBehaviour
 
     private void Awake()
     {
-        //is there a better way to do this?
-        _map = GetComponent<PlayerInput>().currentActionMap;
-        _map.Enable();
-        _interact = _map.FindAction("Interact");
+        _playerControls = new PlayerControls();
+        _playerControls.BasicControls.Enable();
+        _interact = _playerControls.FindAction("Interact");
         _interact.started += InteractPressed;
 
         StartDetectingInteractions();
@@ -95,9 +94,14 @@ public class Interact : MonoBehaviour
                 else if (_interactable != null)
                 {
                     _interactable.GetComponent<IInteractable>().HideInteractUI();
-                    _interactable = null;
+                   _interactable = null;
                 }
             }
+            //if(_interactable != null)
+            //{
+            //    _interactable.GetComponent<IInteractable>().HideInteractUI();
+            //    _interactable = null;
+            //}
             yield return null;
         }
     }

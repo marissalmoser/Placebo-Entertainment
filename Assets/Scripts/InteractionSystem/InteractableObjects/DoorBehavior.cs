@@ -42,11 +42,11 @@ public class DoorBehavior : MonoBehaviour, IInteractable
     {
         if(!_isLocked && !_isOpened)
         {
-            //TabbedMenu.Instance.ToggleInteractPrompt(true, "DOOR");
+            TabbedMenu.Instance.ToggleInteractPrompt(true, "DOOR");
         }
         else if(!_isOpened)
         {
-            //TabbedMenu.Instance.ToggleInteractPrompt(true, "LOCKED DOOR");
+            TabbedMenu.Instance.ToggleInteractPrompt(true, "LOCKED DOOR");
         }
 
     }
@@ -56,7 +56,7 @@ public class DoorBehavior : MonoBehaviour, IInteractable
     /// </summary>
     public void HideInteractUI()
     {
-        //TabbedMenu.Instance.ToggleInteractPrompt(false);
+        TabbedMenu.Instance.ToggleInteractPrompt(false);
     }
 
     /// <summary>
@@ -68,7 +68,7 @@ public class DoorBehavior : MonoBehaviour, IInteractable
         _anim.SetTrigger("_openDoor");
         GetComponent<BoxCollider>().enabled = false;
         //disabe UI - should I just remove the interactable script from the door?
-        //HideInteractUI();
+        HideInteractUI();
     }
 
     /// <summary>
