@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 869825619415053396}
   - component: {fileID: 6882198576666297318}
   - component: {fileID: -4305299369955277029}
+  - component: {fileID: 5733872519525670202}
   m_Layer: 0
   m_Name: Robot
   m_TagString: Untagged
@@ -171,97 +172,127 @@ MonoBehaviour:
   _eventTag: Robot
   _stateDialogueTrees:
     _idleState:
-    - _eventToTrigger: {fileID: 0}
-      _eventTag: 
-      _dialogue:
+    - _dialogue:
       - "You there! Praise the sun, I need your assistance. I\u2019m low on power
         and am afraid I will die if I do not receive my solar light bulb in (time
         left). Have you seen it?"
       - Have you found my solar light bulb?
-      _endsDialogue: 0
       _playerResponses:
-      - _hasPrerequisiteCheck: 0
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 
+        _hasPrerequisiteCheck: 0
         _answer: A Solar light bulb?
-        _nextResponseIndex: 1
-      - _hasPrerequisiteCheck: 0
+        _nextResponseIndex: 01000000
+        _endsDialogue: 0
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 
+        _hasPrerequisiteCheck: 0
         _answer: No.
-        _nextResponseIndex: 2
-      - _hasPrerequisiteCheck: 0
+        _nextResponseIndex: 02000000
+        _endsDialogue: 0
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 
+        _hasPrerequisiteCheck: 0
         _answer: Here it is!
-        _nextResponseIndex: 3
-    - _eventToTrigger: {fileID: 0}
-      _eventTag: 
-      _dialogue:
+        _nextResponseIndex: 0300000004000000
+        _endsDialogue: 0
+    - _dialogue:
       - "Yes, my solar light bulb! I typically run on solar power but we haven\u2019t
         seen the sun in weeks so I've been using a solar light bulb to get by. I
         was able to check everywhere but the storage room. I\u2019ve only got (time
         left) of stored power left. What are you standing around for? Go find it!"
-      _endsDialogue: 1
-      _playerResponses: []
-    - _eventToTrigger: {fileID: 0}
-      _eventTag: 
-      _dialogue:
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 
+        _hasPrerequisiteCheck: 0
+        _answer: '*Leave*'
+        _nextResponseIndex: 
+        _endsDialogue: 1
+    - _dialogue:
       - "We haven\u2019t seen the sun in ages and I\u2019ve only got (time left)
         of stored power left. What are you standing around for? Please! Go find it!"
-      _endsDialogue: 1
-      _playerResponses: []
-    - _eventToTrigger: {fileID: 0}
-      _eventTag: 
-      _dialogue:
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 
+        _hasPrerequisiteCheck: 0
+        _answer: '*Leave*'
+        _nextResponseIndex: 
+        _endsDialogue: 1
+    - _dialogue:
       - Oh praise the holy sun! Thank you! But quick, do you mind connecting those
         wires for me?
-      - "What? No you don\u2019t. It\u2019s rude to tease a dying robot you know."
-      _endsDialogue: 0
       _playerResponses:
-      - _hasPrerequisiteCheck: 0
+      - _eventToTrigger: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
+        _eventTag: Robot
+        _hasPrerequisiteCheck: 0
         _answer: Of course!
-        _nextResponseIndex: 4
-      - _hasPrerequisiteCheck: 1
+        _nextResponseIndex: 
+        _endsDialogue: 1
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 
+        _hasPrerequisiteCheck: 0
         _answer: Those are going to have to be recalibrated. Here this should help
           speed things up.
-        _nextResponseIndex: 5
-    - _eventToTrigger: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
-      _eventTag: Robot
-      _dialogue: []
-      _endsDialogue: 1
-      _playerResponses: []
-    - _eventToTrigger: {fileID: 0}
-      _eventTag: 
-      _dialogue:
+        _nextResponseIndex: 05000000
+        _endsDialogue: 0
+    - _dialogue:
+      - "What? No you don\u2019t. It\u2019s rude to tease a dying robot you know."
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 
+        _hasPrerequisiteCheck: 0
+        _answer: '*Leave*'
+        _nextResponseIndex: 
+        _endsDialogue: 1
+    - _dialogue:
       - "You haven\u2019t got anything there. Would you please stop wasting time
         and help connect these wires."
-      _endsDialogue: 1
-      _playerResponses: []
+      _playerResponses:
+      - _eventToTrigger: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
+        _eventTag: Robot
+        _hasPrerequisiteCheck: 0
+        _answer: '*Help with the wires*'
+        _nextResponseIndex: 
+        _endsDialogue: 1
     _minigameReadyState: []
     _playingMinigameState: []
     _postMinigameState:
-    - _eventToTrigger: {fileID: 0}
-      _eventTag: 
-      _dialogue:
+    - _dialogue:
       - "That\u2019s much better! Thank you for the help."
-      _endsDialogue: 0
       _playerResponses:
-      - _hasPrerequisiteCheck: 0
+      - _eventToTrigger: {fileID: 11400000, guid: 0dc09a2e909bfa14ba070b27da962183, type: 2}
+        _eventTag: Robot
+        _hasPrerequisiteCheck: 0
         _answer: "I\u2019m trying to get to the bridge. Can you help me?"
-        _nextResponseIndex: 1
-      - _hasPrerequisiteCheck: 0
+        _nextResponseIndex: 01000000
+        _endsDialogue: 0
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 
+        _hasPrerequisiteCheck: 0
         _answer: Who was that in the storage room?
-        _nextResponseIndex: 2
-    - _eventToTrigger: {fileID: 0}
-      _eventTag: Doors
-      _dialogue:
+        _nextResponseIndex: 02000000
+        _endsDialogue: 0
+    - _dialogue:
       - "The bridge you say? I don\u2019t have clearance to the bridge, but I can
         get you to the next room. *Unlocks doors* There you go!"
-      _endsDialogue: 1
-      _playerResponses: []
-    - _eventToTrigger: {fileID: 0}
-      _eventTag: "Oh him? That\u2019s the engineer but he\u2019s more of a coward
-        if you ask me. Not to mention his tendency to take what doesn\u2019t belong
-        to him. I wouldn\u2019t trust him, I know I don\u2019t."
-      _dialogue:
-      - "That\u2019s much better! Thank you for the help."
-      _endsDialogue: 1
-      _playerResponses: []
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 
+        _hasPrerequisiteCheck: 0
+        _answer: Leave
+        _nextResponseIndex: 
+        _endsDialogue: 1
+    - _dialogue:
+      - "Oh him? That\u2019s the engineer but he\u2019s more of a coward if you ask
+        me. Not to mention his tendency to take what doesn\u2019t belong to him.
+        I wouldn\u2019t trust him, I know I don\u2019t."
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 
+        _hasPrerequisiteCheck: 0
+        _answer: Leave
+        _nextResponseIndex: 
+        _endsDialogue: 1
     _failureState: []
   _navigationPositions:
     _idleState: {x: 0, y: 0, z: 0}
@@ -275,7 +306,6 @@ MonoBehaviour:
     _playingMinigameState: {fileID: 0}
     _postMinigameState: {fileID: 0}
     _failureState: {fileID: 0}
-  unlockDoorsEvent: {fileID: 0}
   _secondsUntilDeath: 60
 --- !u!114 &6882198576666297318
 MonoBehaviour:
@@ -326,6 +356,35 @@ MonoBehaviour:
       - m_Target: {fileID: 869825619415053396}
         m_TargetAssemblyTypeName: RobotNpc, Assembly-CSharp
         m_MethodName: CheckForStateChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &5733872519525670202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4556153407337933796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a0acc881a336094997b0fb61c6d1983, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _npcEvent: {fileID: 11400000, guid: b0ff38f0f20db8a4ab04033934de185c, type: 2}
+  _targetEventTag: RobotBypass
+  _onEventTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 869825619415053396}
+        m_TargetAssemblyTypeName: BaseNpc, Assembly-CSharp
+        m_MethodName: CollectedBypassItem
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
