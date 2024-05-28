@@ -28,6 +28,7 @@ namespace PlaceboEntertainment.UI
         [SerializeField] private UIDocument tabMenu;
         [SerializeField] private UIDocument interactPromptMenu;
         [SerializeField] private UIDocument notificationPopupMenu;
+        [SerializeField] private UIDocument dialogueMenu;
 
         [Tooltip("The player object to base position & rotation off of for the mini-map.")] [SerializeField]
         private Transform playerTransform;
@@ -82,7 +83,13 @@ namespace PlaceboEntertainment.UI
         private Label _interactText;
         private VisualElement _scheduleContainer;
         private Dictionary<string, VisualElement> _scheduleEntries = new();
-
+        private Label _dialogueText;
+        private Button _dialogueOption1;
+        private EventCallback<ClickEvent> _optionEvent1;
+        private Button _dialogueOption2;
+        private EventCallback<ClickEvent> _optionEvent2;
+        private Button _dialogueOption3;
+        private EventCallback<ClickEvent> _optionEvent3;
 
         #endregion
 
@@ -102,6 +109,10 @@ namespace PlaceboEntertainment.UI
         private const string ScheduleItemName = "ItemName";
         private const string ScheduleIconName = "Icon";
         private const string ScheduleEntryName = "ScheduleEntry";
+        private const string DialogueLabelName = "BottomBar";
+        private const string DialogueOption1Name = "DialogueOption1";
+        private const string DialogueOption2Name = "DialogueOption2";
+        private const string DialogueOption3Name = "DialogueOption3";
 
         #endregion
 
@@ -133,6 +144,10 @@ namespace PlaceboEntertainment.UI
             _playerObject = _tabMenuRoot.Q(PlayerName);
             _interactText = interactPromptMenu.rootVisualElement.Q<Label>(TalkPromptName);
             _scheduleContainer = _tabMenuRoot.Q(ScheduleContainerName);
+            _dialogueText = dialogueMenu.rootVisualElement.Q<Label>(DialogueLabelName);
+            _dialogueOption1 = dialogueMenu.rootVisualElement.Q<Button>(DialogueOption1Name);
+            _dialogueOption2 = dialogueMenu.rootVisualElement.Q<Button>(DialogueOption2Name);
+            _dialogueOption3 = dialogueMenu.rootVisualElement.Q<Button>(DialogueOption3Name);
         }
 
         /// <summary>
@@ -143,6 +158,7 @@ namespace PlaceboEntertainment.UI
             RegisterTabCallbacks();
             //note(alec): unity recommends setting their styles to hide rather than enabling/disabling the behavior.
             //stupid IMO but this way the callbacks stay registered.
+            dialogueMenu.rootVisualElement.style.display = DisplayStyle.None;
             tabMenu.rootVisualElement.style.display = DisplayStyle.None;
             interactPromptMenu.rootVisualElement.style.display = DisplayStyle.None;
             notificationPopupMenu.rootVisualElement.style.display = DisplayStyle.None;
@@ -298,9 +314,32 @@ namespace PlaceboEntertainment.UI
             tabMenu.rootVisualElement.style.display = show ? DisplayStyle.Flex : DisplayStyle.None;
         }
 
+        /// <summary>
+        /// Enables or disables the dialogue display.
+        /// </summary>
+        /// <param name="show">Whether or not to show the dialogue display.</param>
+        public void ToggleDialogue(bool show)
+        {
+            if (dialogueMenu == null) return;
+            dialogueMenu.rootVisualElement.style.display = show ? DisplayStyle.Flex : DisplayStyle.None;
+        }
+
         #region Testing Helper Methods
         
         //NOTE: These methods are designed for testing in editor ONLY. They are not meant for production code.
+
+        [ContextMenu("Show Dialogue")]
+        internal void ShowDialogue() => ToggleDialogue(true);
+        
+        [ContextMenu("Hide Dialogue")]
+        internal void HideDialogue() => ToggleDialogue(false);
+
+        [ContextMenu("Try show Text")]
+        internal void TestText() => DisplayDialogue("Dave", "I LOVE GAMING!");
+
+        [ContextMenu("Try Option 1")]
+        internal void TestOption1() => SetDialogueOption1("I choose this one", TestOnClick);
+        internal void TestOnClick(ClickEvent evt) => print("hello :)");
 
         [ContextMenu("ShowSchedule")]
         internal void ShowSchedule() => ToggleSchedule(true);
@@ -417,6 +456,51 @@ namespace PlaceboEntertainment.UI
         {
             if (notificationPopupMenu == null) return;
             notificationPopupMenu.rootVisualElement.style.display = show ? DisplayStyle.Flex : DisplayStyle.None;
+        }
+
+        public void DisplayDialogue(string charName, string dialogueText)
+        {
+            if (_dialogueText == null) return;
+            _dialogueText.text = $"<color=\"orange\">{charName} <color=\"white\">- {dialogueText}";
+        }
+        
+        //todo make this procedural
+
+        public void SetDialogueOption1(string text, EventCallback<ClickEvent> onClick)
+        {
+            SetDialogueOptionInternal(_dialogueOption1, text, _optionEvent1, onClick);
+            _optionEvent1 = onClick;
+        }
+        
+        public void SetDialogueOption2(string text, EventCallback<ClickEvent> onClick)
+        {
+            SetDialogueOptionInternal(_dialogueOption2, text, _optionEvent2, onClick);
+            _optionEvent2 = onClick;
+        }
+        
+        
+        public void SetDialogueOption3(string text, EventCallback<ClickEvent> onClick)
+        {
+            SetDialogueOptionInternal(_dialogueOption3, text, _optionEvent3, onClick);
+            _optionEvent3 = onClick;
+        }
+
+        private void SetDialogueOptionInternal(Button button, string text, EventCallback<ClickEvent> oldEvt, EventCallback<ClickEvent> newEvt)
+        {
+            if (button == null) return;
+            if (string.IsNullOrWhiteSpace(text))
+            {
+                button.style.display = DisplayStyle.None;
+                return;
+            }
+
+            button.style.display = DisplayStyle.Flex;
+            button.text = text;
+            if (oldEvt != null)
+            {
+                button.UnregisterCallback(oldEvt);
+            }
+            button.RegisterCallback(newEvt);
         }
 
         /// <summary>

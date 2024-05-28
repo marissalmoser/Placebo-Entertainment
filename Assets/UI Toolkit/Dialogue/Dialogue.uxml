@@ -1,0 +1,14 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/Dialogue/DialogueStyle.uss?fileID=7433441132597879392&amp;guid=64732f5cad8e0f643b27c37c6fe1d0f1&amp;type=3#DialogueStyle" />
+    <ui:VisualElement name="DialogueMenu" style="flex-grow: 1;">
+        <ui:VisualElement name="TopBar" class="Bar" style="flex-grow: 0; width: 100%; height: 15%;" />
+        <ui:VisualElement name="SceneView" style="flex-grow: 0; align-self: flex-end; width: 100%; height: 70%; align-items: flex-end;">
+            <ui:VisualElement name="DialogueOptionContainer" style="flex-grow: 0; background-color: rgba(255, 0, 0, 0); width: 26%; flex-direction: column; height: 100%; justify-content: flex-end;">
+                <ui:Button text="- Dialogue opt 1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="DialogueOption1" class="DialogueButton" />
+                <ui:Button text="- Dialogue opt 1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="DialogueOption2" class="DialogueButton" />
+                <ui:Button text="- Dialogue opt 1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="DialogueOption3" class="DialogueButton" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:Label tabindex="-1" text="&lt;color=&quot;orange&quot;&gt;Dave &lt;color=&quot;white&quot;&gt;- Hi there. How&apos;s it going?" parse-escape-sequences="true" display-tooltip-when-elided="true" name="BottomBar" class="Bar" style="width: 100%; height: 15%;" />
+    </ui:VisualElement>
+</ui:UXML>

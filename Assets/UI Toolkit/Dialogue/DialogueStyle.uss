@@ -1,0 +1,28 @@
+.Bar {
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    -unity-text-align: middle-center;
+    font-size: 50px;
+    -unity-font-style: bold;
+}
+
+.DialogueButton {
+    background-color: rgb(114, 125, 130);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    width: 95%;
+    height: 107px;
+    color: rgb(253, 253, 253);
+    font-size: 30px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    margin-bottom: 2%;
+    transition-duration: 0.15s;
+}
+
+.DialogueButton:hover {
+    scale: 1.1 1.1;
+    transition-duration: 0.15s;
+}
