@@ -10,12 +10,12 @@ using UnityEngine;
 
 public class RobotNpc : BaseNpc
 {
-    [SerializeField] private NpcEvent unlockDoorsEvent;
-
     [SerializeField] private float _secondsUntilDeath;
     private float _timeElapsed = 0f;
 
     private bool _hasLightbulb = false;
+    private bool _hasRepairedRobot = false;
+    private bool _isFirstInteraction = true;
 
     /// <summary>
     /// Invoked by event upon collecting lightbulb item
@@ -26,18 +26,10 @@ public class RobotNpc : BaseNpc
     }
 
     /// <summary>
-    /// Called when engaging in dialogue during idle state and when recieving
-    /// an event upon minigame completion
+    /// Called  when recieving an event upon minigame completion to change states
     /// </summary>
     public override void CheckForStateChange()
     {
-        if (_hasLightbulb && _currentState == NpcStates.DefaultIdle)
-        {
-            StopAllCoroutines();
-
-            EnterMinigameReady();
-        }
-
         if (_currentState == NpcStates.PlayingMinigame)
         {
             EnterPostMinigame();
@@ -55,17 +47,6 @@ public class RobotNpc : BaseNpc
     }
 
     /// <summary>
-    /// Moves straight into pre-minigame dialogue with bypass check
-    /// </summary>
-    protected override void EnterMinigameReady()
-    {
-        base.EnterMinigameReady();
-
-        Interact();
-        // TODO: add bypass check with minigame trigger?
-    }
-
-    /// <summary>
     /// Moves straight into post-minigame dialogue
     /// </summary>
     protected override void EnterPostMinigame()
@@ -73,6 +54,68 @@ public class RobotNpc : BaseNpc
         base.EnterPostMinigame();
 
         Interact();
+    }
+
+    /// <summary>
+    /// Determines whether to use first or second interaction dialogue for 
+    /// Robot Interaction 1
+    /// </summary>
+    /// <param name="node">DialogueNode being checked</param>
+    /// <returns>string dialogue to display</returns>
+    protected override string ChooseDialogueFromNode(DialogueNode node)
+    {
+        if (node.Dialogue.Length == 1 || _isFirstInteraction)
+        {
+            _isFirstInteraction = false;
+            string temp = node.Dialogue[0];
+            if (temp.Contains("(time left)"))
+            {
+                int timeRemaining = (int)(_secondsUntilDeath - _timeElapsed);
+                temp = temp.Replace("(time left)", timeRemaining.ToString() + " seconds");
+            }
+
+            return temp;
+        }
+
+        return node.Dialogue[1];
+    }
+
+    /// <summary>
+    /// Checks for if player has lightbulb or bypass item to determine which
+    /// dialogue paths to take
+    /// </summary>
+    /// <param name="option">PlayerResponse being checked</param>
+    /// <returns>Index of next dialogue node</returns>
+    protected override int ChooseDialoguePath(PlayerResponse option)
+    {
+        // Trying to repair robot and you have lightbulb
+        if (!_hasRepairedRobot && _hasLightbulb)
+        {
+            _hasRepairedRobot = true;
+            return option.NextResponseIndex[0];
+        }
+        // Trying to repair robot without the lightbulb
+        else if (!_hasRepairedRobot && !_hasLightbulb && option.NextResponseIndex.Length > 1)
+        {
+            return option.NextResponseIndex[1];
+        }
+        // Bypass for minigame
+        else if (_hasRepairedRobot && _haveBypassItem && _currentState != NpcStates.PostMinigame)
+        {
+            _shouldEndDialogue = true;
+            Invoke("EnterPostMinigame", 0.2f);
+            return 0;
+        }
+        // Option only has one path
+        else if (option.NextResponseIndex.Length == 1)
+        {
+            return option.NextResponseIndex[0];
+        }
+        // Don't have minigame bypass
+        else
+        {
+            return option.NextResponseIndex[1];
+        }
     }
 
     /// <summary>
@@ -88,7 +131,7 @@ public class RobotNpc : BaseNpc
             _timeElapsed += 1f;
         }
 
-        if (_currentState == NpcStates.DefaultIdle)
+        if (!_hasRepairedRobot)
         {
             EnterFailure();
         }

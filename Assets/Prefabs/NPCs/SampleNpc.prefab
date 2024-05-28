@@ -170,48 +170,63 @@ MonoBehaviour:
   _eventTag: Sample
   _stateDialogueTrees:
     _idleState:
-    - _eventToTrigger: {fileID: 0}
-      _eventTag: 
-      _dialogue:
+    - _dialogue:
       - First Dialogue
-      _endsDialogue: 0
       _playerResponses:
-      - _hasPrerequisiteCheck: 0
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 
+        _hasPrerequisiteCheck: 0
         _answer: Option A
         _nextResponseIndex: 1
-      - _hasPrerequisiteCheck: 0
+        _endsDialogue: 0
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 
+        _hasPrerequisiteCheck: 0
         _answer: Option B
         _nextResponseIndex: 2
-      - _hasPrerequisiteCheck: 1
+        _endsDialogue: 0
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 
+        _hasPrerequisiteCheck: 1
         _answer: Bypass Option C
         _nextResponseIndex: 3
-    - _eventToTrigger: {fileID: 0}
-      _eventTag: 
-      _dialogue:
+        _endsDialogue: 0
+    - _dialogue:
       - Dialogue A
-      _endsDialogue: 0
       _playerResponses:
-      - _hasPrerequisiteCheck: 0
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 
+        _hasPrerequisiteCheck: 0
         _answer: Continue
         _nextResponseIndex: 4
-    - _eventToTrigger: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
-      _eventTag: Testing
-      _dialogue:
+        _endsDialogue: 0
+    - _dialogue:
       - Dialogue B
-      _endsDialogue: 1
-      _playerResponses: []
-    - _eventToTrigger: {fileID: 0}
-      _eventTag: 
-      _dialogue:
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 
+        _hasPrerequisiteCheck: 0
+        _answer: Bye
+        _nextResponseIndex: 0
+        _endsDialogue: 1
+    - _dialogue:
       - Cool Bypass Dialogue C
-      _endsDialogue: 1
-      _playerResponses: []
-    - _eventToTrigger: {fileID: 0}
-      _eventTag: 
-      _dialogue:
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 
+        _hasPrerequisiteCheck: 0
+        _answer: Bye
+        _nextResponseIndex: 0
+        _endsDialogue: 1
+    - _dialogue:
       - Dialogue D
-      _endsDialogue: 1
-      _playerResponses: []
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 
+        _hasPrerequisiteCheck: 0
+        _answer: Bye
+        _nextResponseIndex: 0
+        _endsDialogue: 1
     _minigameReadyState: []
     _playingMinigameState: []
     _postMinigameState: []
