@@ -167,6 +167,7 @@ public class PlayerController : MonoBehaviour
 //}
 
 // Ground Check
+
 if (!isGrounded)
             isGrounded = Physics.CheckSphere(groundChecker.position, groundDistance, groundMask);
 
@@ -195,6 +196,10 @@ if (!isGrounded)
         if(col.tag == "Interactable")
         {
             _InteractionCheck = new PlayerInteractSystem(col.name);
+        }
+        else
+        {
+            _InteractionCheck = new PlayerInteractSystem("Default None");
         }
     }
     void OnTriggerExit(Collider col)

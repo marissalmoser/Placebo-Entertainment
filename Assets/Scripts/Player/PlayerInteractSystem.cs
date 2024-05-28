@@ -43,10 +43,10 @@ public class PlayerInteractSystem
         switch (ObjectName)
         {
             case "Test":
-                    Debug.Log("E has been pressed");
+                    //Debug.Log("E has been pressed");
                 break;
             case "Default None":
-                Debug.Log("No action was done");
+                //Debug.Log("No action was done");
                 break;
             case "Ripcord":
                 GameObject RcObject = GameObject.Find("Ripcord");
