@@ -156,6 +156,7 @@ namespace PlaceboEntertainment.UI
             _dialogueOption1 = dialogueMenu.rootVisualElement.Q<Button>(DialogueOption1Name);
             _dialogueOption2 = dialogueMenu.rootVisualElement.Q<Button>(DialogueOption2Name);
             _dialogueOption3 = dialogueMenu.rootVisualElement.Q<Button>(DialogueOption3Name);
+            //auto sizers for the text. Unity does not provide one out of the box...WTF?
             _labelControl = new AutoFitLabelControl(_dialogueText, 35f, 75f);
             _dialogueOptionControl1 = new AutoFitLabelControl(_dialogueOption1, 16f, 30f);
             _dialogueOptionControl2 = new AutoFitLabelControl(_dialogueOption2, 16f, 30f);
@@ -479,48 +480,85 @@ namespace PlaceboEntertainment.UI
             notificationPopupMenu.rootVisualElement.style.display = show ? DisplayStyle.Flex : DisplayStyle.None;
         }
 
+        /// <summary>
+        /// Displays the dialogue for the character. Auto formats the text to be orange for the name.
+        /// </summary>
+        /// <param name="charName"></param>
+        /// <param name="dialogueText"></param>
         public void DisplayDialogue(string charName, string dialogueText)
         {
             if (_dialogueText == null) return;
             _dialogueText.text = $"<color=\"orange\">{charName} <color=\"white\">- {dialogueText}";
         }
         
-        //todo make this procedural
+        //todo REWRITE THIS WHOLE SECTION
 
+        /// <summary>
+        /// Sets the dialogue option 1 text. Does not set any callbacks.
+        /// </summary>
+        /// <param name="text">The dialogue to display to unformatted.</param>
         public void SetDialogueOption1(string text)
         {
             SetDialogueOptionInternal(_dialogueOption1, text);
         }
 
+        /// <summary>
+        /// Invokes the option 1 unity event. 
+        /// </summary>
+        /// <param name="evt">Click Event that fired.</param>
         private void InvokeUnityEvent1OnClick(ClickEvent evt)
         {
             Option1?.Invoke();
         }
         
+        /// <summary>
+        /// Sets the dialogue option 2 text. Does not set any callbacks.
+        /// </summary>
+        /// <param name="text">The dialogue to display to unformatted.</param>
         public void SetDialogueOption2(string text)
         {
             SetDialogueOptionInternal(_dialogueOption2, text);
         }
+        
+        // <summary>
+        /// Invokes the option 2 unity event. 
+        /// </summary>
+        /// <param name="evt">Click Event that fired.</param>
         private void InvokeUnityEvent2OnClick(ClickEvent evt)
         {
             Option2?.Invoke();
         }
         
+        /// <summary>
+        /// Sets the dialogue option 3 text. Does not set any callbacks.
+        /// </summary>
+        /// <param name="text">The dialogue to display to unformatted.</param>
         public void SetDialogueOption3(string text)
         {
             SetDialogueOptionInternal(_dialogueOption3, text);
         }
+        
+        // <summary>
+        /// Invokes the option 3 unity event. 
+        /// </summary>
+        /// <param name="evt">Click Event that fired.</param>
         private void InvokeUnityEvent3OnClick(ClickEvent evt)
         {
             Option3?.Invoke();
         }
 
+        /// <summary>
+        /// Sets the dialogue button at the index. Must be between 0-2. NPC cannot be null.
+        /// </summary>
+        /// <param name="index">The index of the dialogue option.</param>
+        /// <param name="text">The text for the option.</param>
+        /// <param name="npc">The npc to link to.</param>
         public void SetDialogueOption(int index, string text, BaseNpc npc)
         {
-            if (index > 2) return;
+            if (index > 2 || index < 0) return;
             switch (index)
             {
-                case 0:
+                case 0: //Sets the text, clears the previous callbacks, assigns the click event.
                     SetDialogueOption1(text);
                     Option1 = null;
                     Option1 += () => npc.Interact(index);
@@ -538,6 +576,9 @@ namespace PlaceboEntertainment.UI
             }
         }
 
+        /// <summary>
+        /// Clears all dialogue options and makes them go away.
+        /// </summary>
         public void ClearDialogueOptions()
         {
             SetDialogueOption1(null);
@@ -545,6 +586,11 @@ namespace PlaceboEntertainment.UI
             SetDialogueOption3(null);
         }
 
+        /// <summary>
+        /// Sets the dialogue option text and hides the button if desired.
+        /// </summary>
+        /// <param name="button">The button to set text on.</param>
+        /// <param name="text">The text to apply.</param>
         private void SetDialogueOptionInternal(Button button, string text)
         {
             if (button == null) return;
