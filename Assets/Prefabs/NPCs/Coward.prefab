@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4556153407337933796
+--- !u!1 &3297066376343357550
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,53 +8,54 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5155935945816834384}
-  - component: {fileID: 968178768747916343}
-  - component: {fileID: 5615582337182177422}
-  - component: {fileID: 9144484468842581267}
-  - component: {fileID: 8850794281488733885}
-  - component: {fileID: 3131129064344898019}
-  - component: {fileID: 869825619415053396}
-  - component: {fileID: 6882198576666297318}
-  - component: {fileID: -4305299369955277029}
-  - component: {fileID: 5733872519525670202}
+  - component: {fileID: 3168306894194644997}
+  - component: {fileID: 6217127095737698681}
+  - component: {fileID: 812672747345851475}
+  - component: {fileID: 3710154545553647601}
+  - component: {fileID: 6340841286487016718}
+  - component: {fileID: 5906817822273611618}
+  - component: {fileID: 1230460638816517745}
+  - component: {fileID: 4840030442360983682}
+  - component: {fileID: -4667766229383264183}
+  - component: {fileID: 4421219648420445820}
+  - component: {fileID: 7899668489594915188}
   m_Layer: 0
-  m_Name: Robot
+  m_Name: Coward
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5155935945816834384
+--- !u!4 &3168306894194644997
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4556153407337933796}
+  m_GameObject: {fileID: 3297066376343357550}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.3, y: 1.4, z: 3.1703415}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &968178768747916343
+--- !u!33 &6217127095737698681
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4556153407337933796}
+  m_GameObject: {fileID: 3297066376343357550}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &5615582337182177422
+--- !u!23 &812672747345851475
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4556153407337933796}
+  m_GameObject: {fileID: 3297066376343357550}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -90,13 +91,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &9144484468842581267
+--- !u!136 &3710154545553647601
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4556153407337933796}
+  m_GameObject: {fileID: 3297066376343357550}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -113,13 +114,13 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!135 &8850794281488733885
+--- !u!135 &6340841286487016718
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4556153407337933796}
+  m_GameObject: {fileID: 3297066376343357550}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -134,13 +135,13 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 3
   m_Center: {x: 0, y: 0, z: 0}
---- !u!195 &3131129064344898019
+--- !u!195 &5906817822273611618
 NavMeshAgent:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4556153407337933796}
+  m_GameObject: {fileID: 3297066376343357550}
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
@@ -156,137 +157,147 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &869825619415053396
+--- !u!114 &1230460638816517745
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4556153407337933796}
+  m_GameObject: {fileID: 3297066376343357550}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f73dec73f2ec2d4c8fc2b9b5defef6d, type: 3}
+  m_Script: {fileID: 11500000, guid: 2c720e20ffae43e45bbb7f4eb5210937, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _npcName: Robot
+  _npcName: Coward
   _startMinigameEvent: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
-  _eventTag: Robot
+  _eventTag: Coward
   _stateDialogueTrees:
     _idleState:
     - _dialogue:
-      - "You there! Praise the sun, I need your assistance. I\u2019m low on power
-        and am afraid I will die if I do not receive my solar light bulb in (time
-        left). Have you seen it?"
-      - Have you found my solar light bulb?
+      - "Thank you for removing that searing light. If I knew what it was I wouldn\u2019t
+        have taken it\u2026 or at least wouldn\u2019t have turned it on."
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 
         _hasPrerequisiteCheck: 0
-        _answer: A Solar light bulb?
+        _answer: You're welcome.
+        _nextResponseIndex: 
+        _advancesNpcState: 1
+        _endsDialogue: 1
+    _minigameReadyState:
+    - _dialogue:
+      - "EEK!! T-that\u2019s probably the engine? As the engineer for this ship,
+        I have it all under control! I just have to\u2026 um\u2026 let\u2019s see\u2026"
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 
+        _hasPrerequisiteCheck: 0
+        _answer: "You\u2019re not a very good engineer are you?"
         _nextResponseIndex: 01000000
         _advancesNpcState: 0
         _endsDialogue: 0
       - _eventToTrigger: {fileID: 0}
         _eventTag: 
         _hasPrerequisiteCheck: 0
-        _answer: No.
+        _answer: That looks dangerous. Need some help?
         _nextResponseIndex: 02000000
         _advancesNpcState: 0
         _endsDialogue: 0
       - _eventToTrigger: {fileID: 0}
         _eventTag: 
-        _hasPrerequisiteCheck: 1
-        _answer: Here it is!
-        _nextResponseIndex: 0300000004000000
+        _hasPrerequisiteCheck: 0
+        _answer: What are you waiting for!
+        _nextResponseIndex: 03000000
         _advancesNpcState: 0
         _endsDialogue: 0
     - _dialogue:
-      - "Yes, my solar light bulb! I typically run on solar power but we haven\u2019t
-        seen the sun in weeks so I've been using a solar light bulb to get by. I
-        was able to check everywhere but the storage room. I\u2019ve only got (time
-        left) of stored power left. What are you standing around for? Go find it!"
-      _playerResponses:
-      - _eventToTrigger: {fileID: 0}
-        _eventTag: 
-        _hasPrerequisiteCheck: 0
-        _answer: <b>Leave
-        _nextResponseIndex: 
-        _advancesNpcState: 0
-        _endsDialogue: 1
-    - _dialogue:
-      - "We haven\u2019t seen the sun in ages and I\u2019ve only got (time left)
-        of stored power left. What are you standing around for? Please! Go find it!"
-      _playerResponses:
-      - _eventToTrigger: {fileID: 0}
-        _eventTag: 
-        _hasPrerequisiteCheck: 0
-        _answer: <b>Leave
-        _nextResponseIndex: 
-        _advancesNpcState: 0
-        _endsDialogue: 1
-    - _dialogue:
-      - Oh praise the holy sun! Thank you! But quick, do you mind connecting those
-        wires for me?
+      - "HOW DARE YOU! I\u2019LL HAVE YOU KNOW THA- *generator sparks and mini boom*
+        EEK! OK! I- I don\u2019t know what to do! Please help me!"
       _playerResponses:
       - _eventToTrigger: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
-        _eventTag: Robot
+        _eventTag: Coward
         _hasPrerequisiteCheck: 0
-        _answer: Of course!
-        _nextResponseIndex: 
+        _answer: Let's see if we can figure out how to fix this.
+        _nextResponseIndex: 01000000
         _advancesNpcState: 0
         _endsDialogue: 1
       - _eventToTrigger: {fileID: 0}
         _eventTag: 
         _hasPrerequisiteCheck: 1
-        _answer: Those are going to have to be recalibrated. Here this should help
-          speed things up.
-        _nextResponseIndex: 05000000
+        _answer: I should be able to fix it with this!
+        _nextResponseIndex: 04000000
         _advancesNpcState: 0
         _endsDialogue: 0
     - _dialogue:
-      - "What? No you don\u2019t. It\u2019s rude to tease a dying robot you know."
-      _playerResponses:
-      - _eventToTrigger: {fileID: 0}
-        _eventTag: 
-        _hasPrerequisiteCheck: 0
-        _answer: <b>Leave
-        _nextResponseIndex: 
-        _advancesNpcState: 0
-        _endsDialogue: 1
-    - _dialogue:
-      - "You haven\u2019t got anything there. Would you please stop wasting time
-        and help connect these wires."
+      - "YES!!! Please, save me!! Fix the engine! I don\u2019t want to be near it
+        when it explodes!"
       _playerResponses:
       - _eventToTrigger: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
-        _eventTag: Robot
+        _eventTag: Coward
         _hasPrerequisiteCheck: 0
-        _answer: <b>Help with the wires
+        _answer: Let's see if we can figure out how to fix this.
+        _nextResponseIndex: 01000000
+        _advancesNpcState: 0
+        _endsDialogue: 1
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 
+        _hasPrerequisiteCheck: 1
+        _answer: I should be able to fix it with this!
+        _nextResponseIndex: 04000000
+        _advancesNpcState: 0
+        _endsDialogue: 0
+    - _dialogue:
+      - "EEK! I- I\u2019m sorry! I just can\u2019t do it! Please, you must help me!
+        Fix this mess!"
+      _playerResponses:
+      - _eventToTrigger: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
+        _eventTag: Coward
+        _hasPrerequisiteCheck: 0
+        _answer: Let's see if we can figure out how to fix this.
+        _nextResponseIndex: 01000000
+        _advancesNpcState: 0
+        _endsDialogue: 1
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 
+        _hasPrerequisiteCheck: 1
+        _answer: I should be able to fix it with this!
+        _nextResponseIndex: 04000000
+        _advancesNpcState: 0
+        _endsDialogue: 0
+    - _dialogue:
+      - "You\u2019re not holding anything. Please hurry up and fix it! It could explode
+        any minute!"
+      _playerResponses:
+      - _eventToTrigger: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
+        _eventTag: Coward
+        _hasPrerequisiteCheck: 0
+        _answer: <b>Help fix the generator
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
-    _minigameReadyState: []
     _playingMinigameState: []
     _postMinigameState:
     - _dialogue:
-      - "That\u2019s much better! Thank you for the help."
+      - "I, always, knew you could do it! Now, about my payment for assisting you\u2026"
       _playerResponses:
-      - _eventToTrigger: {fileID: 11400000, guid: 0dc09a2e909bfa14ba070b27da962183, type: 2}
-        _eventTag: Robot
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 
         _hasPrerequisiteCheck: 0
-        _answer: "I\u2019m trying to get to the bridge. Can you help me?"
+        _answer: Yes of course. <b>*Pets the coward*
         _nextResponseIndex: 01000000
         _advancesNpcState: 0
         _endsDialogue: 0
       - _eventToTrigger: {fileID: 0}
         _eventTag: 
         _hasPrerequisiteCheck: 0
-        _answer: Who was that in the storage room?
+        _answer: What?! No!
         _nextResponseIndex: 02000000
         _advancesNpcState: 0
         _endsDialogue: 0
     - _dialogue:
-      - "The bridge you say? I don\u2019t have clearance to the bridge, but I can
-        get you to the next room. *Unlocks doors* There you go!"
+      - ................................................................... What?......
+        J- just keep the wrench.
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 
@@ -296,9 +307,8 @@ MonoBehaviour:
         _advancesNpcState: 0
         _endsDialogue: 1
     - _dialogue:
-      - "Oh him? That\u2019s the engineer but he\u2019s more of a coward if you ask
-        me. Not to mention his tendency to take what doesn\u2019t belong to him.
-        I wouldn\u2019t trust him, I know I don\u2019t."
+      - "EEK! I- I\u2019m sorry! Please keep the wrench! I promise it\u2019s worth
+        a lot!"
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 
@@ -320,14 +330,44 @@ MonoBehaviour:
     _playingMinigameState: {fileID: 0}
     _postMinigameState: {fileID: 0}
     _failureState: {fileID: 0}
-  _secondsUntilDeath: 60
---- !u!114 &6882198576666297318
+  _secondsUntilExplosion: 180
+  generatorRoomListener: {fileID: 4840030442360983682}
+--- !u!114 &4840030442360983682
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4556153407337933796}
+  m_GameObject: {fileID: 3297066376343357550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a0acc881a336094997b0fb61c6d1983, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _npcEvent: {fileID: 11400000, guid: 9f71d044c4d09304588beadc31eb08d4, type: 2}
+  _targetEventTag: GeneratorRoom
+  _onEventTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1230460638816517745}
+        m_TargetAssemblyTypeName: CowardNpc, Assembly-CSharp
+        m_MethodName: GeneratorEventTriggered
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &-4667766229383264183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3297066376343357550}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a0acc881a336094997b0fb61c6d1983, type: 3}
@@ -338,9 +378,9 @@ MonoBehaviour:
   _onEventTriggered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 869825619415053396}
-        m_TargetAssemblyTypeName: RobotNpc, Assembly-CSharp
-        m_MethodName: CollectLightbulb
+      - m_Target: {fileID: 1230460638816517745}
+        m_TargetAssemblyTypeName: CowardNpc, Assembly-CSharp
+        m_MethodName: LightbulbEventTriggered
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -350,55 +390,55 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &-4305299369955277029
+--- !u!114 &4421219648420445820
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4556153407337933796}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a0acc881a336094997b0fb61c6d1983, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _npcEvent: {fileID: 11400000, guid: 8b7b5ccfabcfc4d4f96da8928978e41e, type: 2}
-  _targetEventTag: Robot
-  _onEventTriggered:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 869825619415053396}
-        m_TargetAssemblyTypeName: RobotNpc, Assembly-CSharp
-        m_MethodName: CheckForStateChange
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &5733872519525670202
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4556153407337933796}
+  m_GameObject: {fileID: 3297066376343357550}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a0acc881a336094997b0fb61c6d1983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _npcEvent: {fileID: 11400000, guid: b0ff38f0f20db8a4ab04033934de185c, type: 2}
-  _targetEventTag: RobotBypass
+  _targetEventTag: CowardBypass
   _onEventTriggered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 869825619415053396}
+      - m_Target: {fileID: 1230460638816517745}
         m_TargetAssemblyTypeName: BaseNpc, Assembly-CSharp
         m_MethodName: CollectedBypassItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7899668489594915188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3297066376343357550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a0acc881a336094997b0fb61c6d1983, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _npcEvent: {fileID: 11400000, guid: 8b7b5ccfabcfc4d4f96da8928978e41e, type: 2}
+  _targetEventTag: Coward
+  _onEventTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1230460638816517745}
+        m_TargetAssemblyTypeName: CowardNpc, Assembly-CSharp
+        m_MethodName: CheckForStateChange
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
