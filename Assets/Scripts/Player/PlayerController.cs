@@ -197,10 +197,6 @@ if (!isGrounded)
         {
             _InteractionCheck = new PlayerInteractSystem(col.name);
         }
-        else
-        {
-            _InteractionCheck = new PlayerInteractSystem("Default None");
-        }
     }
     void OnTriggerExit(Collider col)
     {

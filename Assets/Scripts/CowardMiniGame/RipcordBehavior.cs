@@ -8,10 +8,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class RipcordBehavior : MonoBehaviour
 {
-    
+
+    [Header("UI Stuff")]
+    [SerializeField] private TextMeshPro _successfulPulls;
+
     [Header("Points of Movement")]
     [SerializeField] private float _maxReach;
     [SerializeField]private GameObject _targetFollow;
@@ -41,7 +46,8 @@ public class RipcordBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PressedE == true && transform.position.z > _targetFollow.transform.position.z)
+        _successfulPulls.text = _numReleased.ToString();
+        if (PressedE == true && transform.position.z > _targetFollow.transform.position.z && _numReleased != 3)
         {
             transform.position -= new Vector3(0, 0, _speed * Time.deltaTime);
             GameObject _preview = GameObject.FindWithTag("Release");
@@ -50,7 +56,7 @@ public class RipcordBehavior : MonoBehaviour
                 _preview.GetComponent<Collider>().enabled = false;
             }
         }
-        if(PressedE == true && _doOnce2 == true)
+        if(PressedE == true && _doOnce2 == true && _numReleased != 3)
         {
             Vector3 _previewerPoint = new Vector3(_relocatePoint.x, _relocatePoint.y, Random.Range(_maxReach,_relocatePoint.z));
             Instantiate(_ReleasePreviewer, _previewerPoint, Quaternion.identity);
@@ -87,7 +93,7 @@ public class RipcordBehavior : MonoBehaviour
         if(_numReleased == 3)
         {
             _gears.SetActive(true);
-            Destroy(this);
+            //Destroy(this);
         }
         Debug.Log(_numReleased);
     }
