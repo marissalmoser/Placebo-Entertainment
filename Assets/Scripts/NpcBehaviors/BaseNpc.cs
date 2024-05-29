@@ -200,7 +200,7 @@ public abstract class BaseNpc : MonoBehaviour
                 // Updates NPC's state if needed
                 if (currentResponse.AdvancesNpcState)
                 {
-                    Invoke("CheckForStateChange", 0.2f);
+                    Invoke(nameof(CheckForStateChange), 0.2f);
                 }
 
                 // Checks if dialogue option should end the current dialogue
