@@ -23,7 +23,7 @@ public class InventorySystem
     public List<InventorySlot> CollectionOfSlots => collectionOfSlots;
 
     public event Action<InventoryItemData, int> AddedToInventory;
-    public event Action<InventoryItemData, int> RemovedFrominventory;
+    public event Action<InventoryItemData, int> RemovedFromInventory;
 
     public InventorySystem(int size)
     {
@@ -157,9 +157,10 @@ public class InventorySystem
                 index++;
             }
             dataRemoved = toRemove;
+            RemovedFromInventory?.Invoke(toRemove, amountRemoved);
             return true;
         }
-        dataRemoved = null;
+        dataRemoved = null; //if we didnt remove anything, dataRemoved is null
         return false;
     }
     /// <summary>
