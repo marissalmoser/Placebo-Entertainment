@@ -37,7 +37,7 @@ public class GearBehavior : MonoBehaviour
     }
 
     // Update is called once per frame
-   /* void FixedUpdate()
+    void FixedUpdate()
     {
         transform.localScale = new Vector3(1f, _gearIndi.transform.localScale.y + 0.5f, 1f);
         if (_pc.interact.IsPressed() && _gearSizeNum != _gearSize.Length && _doOnce == true && _scrollable == true)
@@ -54,7 +54,7 @@ public class GearBehavior : MonoBehaviour
         }
         _gearIndi = _gearSize[_gearSizeNum - 1];
         //Debug.Log(_gearSizeNum);
-    }*/
+    }
     void Update()
     {
         if (_gearSizeNum == _rightGearNum)
