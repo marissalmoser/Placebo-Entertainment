@@ -26,10 +26,7 @@ public class InventorySlot
         itemData = thing;
         stackSize = amount;
     }
-    public InventoryItemData GetItemData()
-    {
-        return itemData;
-    }
+
 
     /// <summary>
     /// Going to need this if i want an empty inventory slot, so might as well 
@@ -75,18 +72,5 @@ public class InventorySlot
     public void RemoveFromStackInThisSlot(int amount)
     {
         stackSize -= amount;
-        if (stackSize <= 0)
-        {
-            EmptyThisSlot();
-        }
-    }
-    public int GetRoomLeftInStack()
-    {
-        if (itemData == null)
-        {
-            return 0; // No room in an empty slot for items that don't exist.
-        }
-
-        return ItemData.MaxStackSize - stackSize;
     }
 }

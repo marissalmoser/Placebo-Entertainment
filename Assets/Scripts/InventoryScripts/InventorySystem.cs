@@ -5,12 +5,10 @@
 *    Description: Inventory system is just what inventory holders use
 *    for functionality
 *******************************************************************/
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Events;
 
 [System.Serializable]
 public class InventorySystem 
@@ -22,8 +20,6 @@ public class InventorySystem
     [SerializeField] private List<InventorySlot> collectionOfSlots;
     public List<InventorySlot> CollectionOfSlots => collectionOfSlots;
 
-    public event Action<InventoryItemData, int> AddedToInventory;
-    public event Action<InventoryItemData, int> RemovedFrominventory;
 
     public InventorySystem(int size)
     {
@@ -48,118 +44,26 @@ public class InventorySystem
     /// <param name="itemToAdd"></param>
     /// <param name="amountToAdd"></param>
     /// <returns></returns>
-    public bool AddToInventory(InventoryItemData itemToAdd, int amountToAdd, out int overflowAmount)
+    public bool AddToInventory(InventoryItemData itemToAdd, int amountToAdd)
     {
-        bool addedAnyItems = false;
-        overflowAmount = amountToAdd;
-
-        while (overflowAmount > 0)
+        //If we have one of one item, and pick up the same item, we can just increment count
+        if(ContainsItem(itemToAdd, out List<InventorySlot> slotItemIsIn))
         {
-            //if we have the item, just add to the stack
-            if (ContainsItem(itemToAdd, out List<InventorySlot> slotItemIsIn))
+            foreach(var slot in slotItemIsIn)
             {
-                foreach (var slot in slotItemIsIn)
+                if(slot.RoomLeftInStackInSlot(amountToAdd))
                 {
-                    int roomLeft = slot.GetRoomLeftInStack();
-                    if (roomLeft > 0)
-                    {
-                        if (overflowAmount <= roomLeft)
-                        {
-                            slot.AddToStackInThisSlot(overflowAmount);
-                            AddedToInventory?.Invoke(itemToAdd, overflowAmount);
-                            overflowAmount = 0;
-                            addedAnyItems = true;
-                            return true; // All items added
-                        }
-                        else
-                        {
-                            slot.AddToStackInThisSlot(roomLeft);
-                            overflowAmount -= roomLeft;
-                            AddedToInventory?.Invoke(itemToAdd, roomLeft);
-                            addedAnyItems = true;
-                        }
-                    }
+                    slot.AddToStackInThisSlot(amountToAdd);
+                    return true;
                 }
             }
-            //if all stacks with similar items are full, find a free slot
-            if (HasFreeSlot(out InventorySlot freeSlot))
-            {
-                int maxStack = itemToAdd.MaxStackSize;
-                if (overflowAmount <= maxStack)
-                {
-                    freeSlot.UpdateThisSlot(itemToAdd, overflowAmount);
-                    AddedToInventory?.Invoke(itemToAdd, overflowAmount);
-                    overflowAmount = 0;
-                    addedAnyItems = true;
-                    return true; // All items added
-                }
-                else
-                {
-                    freeSlot.UpdateThisSlot(itemToAdd, maxStack);
-                    overflowAmount -= maxStack;
-                    AddedToInventory?.Invoke(itemToAdd, maxStack);
-                    addedAnyItems = true;
-                }
-            }
-            else
-            {
-                // No more free slots available
-                break;
-            }
+           
         }
-
-        return addedAnyItems;
-    }
-    /// <summary>
-    /// This is a bool also because it might be useful to check if the system
-    /// has enough of an item compared to the int amountToRemove (like a store,
-    /// shop, or checkpoint.) Remove anyways bool (if true) allows a script to
-    /// take all identical items to the toRemove irregardless of if the system 
-    /// has enough. 
-    /// </summary>
-    /// <param name="toRemove"></param> 
-    /// <param name="amountToRemove"></param>
-    /// <param name="RemoveAnyways"></param>
-    /// <param name="dataRemoved"></param>
-    /// <returns></returns>
-    public bool RemoveFromInventory(InventoryItemData toRemove, int amountToRemove, bool RemoveAnyways, out InventoryItemData dataRemoved, out int amountRemoved)
-    {
-        amountRemoved = 0;
-        if (ContainsItem(toRemove, out List<InventorySlot> slotsWithThisItem))
+        if (HasFreeSlot(out InventorySlot freeSlot))
         {
-            int totalAmountInInventory = slotsWithThisItem.Sum(slot => slot.StackSize);
-            if (totalAmountInInventory < amountToRemove && !RemoveAnyways)
-            {
-                Debug.Log("Not enough items in inventory for required operation");
-                dataRemoved = null;
-                return false; 
-            }
-
-            var sortedSlots = slotsWithThisItem.OrderBy(slot => slot.StackSize).ToList();
-            int index = 0;
-
-            while (amountToRemove > 0 && index < sortedSlots.Count)
-            {
-                InventorySlot slot = sortedSlots[index];
-                int amountInSlot = slot.StackSize;
-                if (amountToRemove >= amountInSlot)
-                {
-                    slot.RemoveFromStackInThisSlot(amountInSlot);
-                    amountRemoved += amountInSlot;
-                    amountToRemove -= amountInSlot;
-                }
-                else
-                {
-                    slot.RemoveFromStackInThisSlot(amountToRemove);
-                    amountRemoved += amountToRemove;
-                    amountToRemove = 0;
-                }
-                index++;
-            }
-            dataRemoved = toRemove;
+            freeSlot.UpdateThisSlot(itemToAdd, amountToAdd);
             return true;
         }
-        dataRemoved = null;
         return false;
     }
     /// <summary>
