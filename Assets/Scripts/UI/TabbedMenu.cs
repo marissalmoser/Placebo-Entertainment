@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UIElements;
+using Cursor = UnityEngine.Cursor;
 
 namespace PlaceboEntertainment.UI
 {
@@ -90,6 +91,7 @@ namespace PlaceboEntertainment.UI
         private EventCallback<ClickEvent> _optionEvent2;
         private Button _dialogueOption3;
         private EventCallback<ClickEvent> _optionEvent3;
+        private bool _dialogueVisible;
 
         #endregion
 
@@ -322,6 +324,9 @@ namespace PlaceboEntertainment.UI
         {
             if (dialogueMenu == null) return;
             dialogueMenu.rootVisualElement.style.display = show ? DisplayStyle.Flex : DisplayStyle.None;
+            _dialogueVisible = show;
+            Cursor.visible = _dialogueVisible;
+            Cursor.lockState = _dialogueVisible ? CursorLockMode.None : CursorLockMode.Locked;
         }
 
         #region Testing Helper Methods
@@ -478,11 +483,27 @@ namespace PlaceboEntertainment.UI
             _optionEvent2 = onClick;
         }
         
-        
-        public void SetDialogueOption3(string text, EventCallback<ClickEvent> onClick)
+        public void SetDialogueOption3(string text, BaseNpc npc)
         {
-            SetDialogueOptionInternal(_dialogueOption3, text, _optionEvent3, onClick);
+            SetDialogueOptionInternal(_dialogueOption3, text, _optionEvent3, npc.Interact());
             _optionEvent3 = onClick;
+        }
+
+        public void SetDialogueOption(int index, string text, EventCallback<ClickEvent> onClick)
+        {
+            if (index > 2) return;
+            switch (index)
+            {
+                case 0:
+                    SetDialogueOption1(text, onClick);
+                    break;
+                case 1:
+                    SetDialogueOption2(text, onClick);
+                    break;
+                case 2:
+                    SetDialogueOption3(text, onClick);
+                    break;
+            }
         }
 
         private void SetDialogueOptionInternal(Button button, string text, EventCallback<ClickEvent> oldEvt, EventCallback<ClickEvent> newEvt)
@@ -500,7 +521,11 @@ namespace PlaceboEntertainment.UI
             {
                 button.UnregisterCallback(oldEvt);
             }
-            button.RegisterCallback(newEvt);
+
+            if (newEvt != null)
+            {
+                button.RegisterCallback(newEvt);
+            }
         }
 
         /// <summary>

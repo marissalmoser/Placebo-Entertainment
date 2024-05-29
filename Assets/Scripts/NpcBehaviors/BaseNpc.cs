@@ -210,6 +210,7 @@ public abstract class BaseNpc : MonoBehaviour
                 _isInteracting = false;
                 _shouldEndDialogue = false;
                 // TODO: turn off dialogue UI here
+                _tabbedMenu.ToggleDialogue(false);
                 return;
             }
             
@@ -230,7 +231,9 @@ public abstract class BaseNpc : MonoBehaviour
             _currentDialogueIndex = nextNodeIndex;
             DialogueNode currentNode = _stateDialogueTrees.GetStateData(_currentState)[_currentDialogueIndex];
             Debug.Log(ChooseDialogueFromNode(currentNode)); // TODO: display dialogue here
-
+            string response = ChooseDialogueFromNode(currentNode);
+            _tabbedMenu.DisplayDialogue("kevin", response);
+            _tabbedMenu.ToggleDialogue(true);
             GetPlayerResponses();
         }
     }
@@ -254,6 +257,7 @@ public abstract class BaseNpc : MonoBehaviour
                 if (!option.HasPrerequisiteCheck || CheckDialoguePrerequisite(option))
                 {
                     Debug.Log(option.Answer); // TODO: display player option in UI
+                    _tabbedMenu.SetDialogueOption(i, option.Answer, null);
                 }
             }
         }
