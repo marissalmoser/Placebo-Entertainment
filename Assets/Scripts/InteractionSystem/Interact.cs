@@ -19,9 +19,10 @@ public class Interact : MonoBehaviour
 {
     PlayerControls _playerControls;
     private InputAction _interact;
+    private Camera _camera;
 
     [SerializeField] private GameObject _targetGameObj;
-    [SerializeField] private GameObject _interactable;
+    private IInteractable _interactable;
     private bool _canInteract;
 
     //raycast variables
@@ -36,6 +37,8 @@ public class Interact : MonoBehaviour
         _interact = _playerControls.FindAction("Interact");
         _interact.started += InteractPressed;
 
+        _camera = Camera.main;
+
         StartDetectingInteractions();
     }
 
@@ -47,7 +50,7 @@ public class Interact : MonoBehaviour
     {
         if(_interactable != null)
         {
-            _interactable.GetComponent<IInteractable>().Interact(gameObject);
+            _interactable.Interact(gameObject);
         }
           
     }
@@ -80,7 +83,7 @@ public class Interact : MonoBehaviour
         while(_canInteract)
         {
             //Casts Raycast in the center of the screen
-            Ray r = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
+            Ray r = _camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
             if (Physics.Raycast(r, out _colliderHit, _maxInteractDistance, ~_layerToIgnore))
             {
                 _targetGameObj = _colliderHit.transform.gameObject;
@@ -88,20 +91,22 @@ public class Interact : MonoBehaviour
                 //sets the _interactable variable for the InteractPressed function
                 if (_targetGameObj.TryGetComponent(out IInteractable interactable))
                 {
-                    _interactable = _targetGameObj;
-                    _interactable.GetComponent<IInteractable>().DisplayInteractUI();
+                    _interactable = _targetGameObj.GetComponent<IInteractable>();
+                    _interactable.DisplayInteractUI();
                 }
                 else if (_interactable != null)
                 {
-                    _interactable.GetComponent<IInteractable>().HideInteractUI();
+                    _interactable.HideInteractUI();
                    _interactable = null;
                 }
             }
-            //if(_interactable != null)
-            //{
-            //    _interactable.GetComponent<IInteractable>().HideInteractUI();
-            //    _interactable = null;
-            //}
+            //resets the variables if the player backs away from interactable
+            else if (_interactable != null)
+            {
+                _targetGameObj = null;
+                _interactable.HideInteractUI();
+                _interactable = null;
+            }
             yield return null;
         }
     }

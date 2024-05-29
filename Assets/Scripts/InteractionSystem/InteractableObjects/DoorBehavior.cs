@@ -29,7 +29,7 @@ public class DoorBehavior : MonoBehaviour, IInteractable
     /// <param name="player"></param>
     public void Interact(GameObject player)
     {
-        if (!_isLocked && !_isOpened)
+        if (!_isLocked)
         {
             OpenDoor();
         }

@@ -22,7 +22,13 @@ public interface IInteractable
     /// <param name="player"></param>
     void Interact(GameObject player);
 
+    /// <summary>
+    /// Displays the specific UI prompt for the interactable object
+    /// </summary>
     void DisplayInteractUI();
 
+    /// <summary>
+    /// Hides the specific UI prompt for the interactable object
+    /// </summary>
     void HideInteractUI();
 }
