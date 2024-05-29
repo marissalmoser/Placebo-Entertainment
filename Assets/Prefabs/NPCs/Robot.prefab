@@ -168,6 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f73dec73f2ec2d4c8fc2b9b5defef6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _npcName: Robot
   _startMinigameEvent: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
   _eventTag: Robot
   _stateDialogueTrees:
@@ -208,7 +209,7 @@ MonoBehaviour:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 
         _hasPrerequisiteCheck: 0
-        _answer: '*Leave*'
+        _answer: <b>Leave
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
@@ -219,7 +220,7 @@ MonoBehaviour:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 
         _hasPrerequisiteCheck: 0
-        _answer: '*Leave*'
+        _answer: <b>Leave
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
@@ -248,7 +249,7 @@ MonoBehaviour:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 
         _hasPrerequisiteCheck: 0
-        _answer: '*Leave*'
+        _answer: <b>Leave
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
@@ -259,7 +260,7 @@ MonoBehaviour:
       - _eventToTrigger: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
         _eventTag: Robot
         _hasPrerequisiteCheck: 0
-        _answer: '*Help with the wires*'
+        _answer: <b>Help with the wires
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
@@ -290,7 +291,7 @@ MonoBehaviour:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 
         _hasPrerequisiteCheck: 0
-        _answer: Leave
+        _answer: <b>Leave
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
@@ -302,7 +303,7 @@ MonoBehaviour:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 
         _hasPrerequisiteCheck: 0
-        _answer: Leave
+        _answer: <b>Leave
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1

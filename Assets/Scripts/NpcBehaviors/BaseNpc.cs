@@ -98,6 +98,8 @@ public abstract class BaseNpc : MonoBehaviour
     }
     #endregion
 
+    [SerializeField] protected string _npcName;
+
     [SerializeField] protected NpcEvent _startMinigameEvent;
     [SerializeField] protected string _eventTag;
 
