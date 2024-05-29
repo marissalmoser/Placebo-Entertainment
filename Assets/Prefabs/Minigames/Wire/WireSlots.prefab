@@ -43,6 +43,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 202491556581185948}
     m_Modifications:
     - target: {fileID: 4088436586526684763, guid: 7b46a5d1d01dce4439f4f818851931ac, type: 3}
+      propertyPath: _slotColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4088436586526684763, guid: 7b46a5d1d01dce4439f4f818851931ac, type: 3}
+      propertyPath: _slotColor.g
+      value: 0.67058825
+      objectReference: {fileID: 0}
+    - target: {fileID: 4088436586526684763, guid: 7b46a5d1d01dce4439f4f818851931ac, type: 3}
+      propertyPath: _slotColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4088436586526684763, guid: 7b46a5d1d01dce4439f4f818851931ac, type: 3}
       propertyPath: _matchingWire
       value: 0
       objectReference: {fileID: 0}
@@ -110,6 +122,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 202491556581185948}
     m_Modifications:
     - target: {fileID: 4088436586526684763, guid: 7b46a5d1d01dce4439f4f818851931ac, type: 3}
+      propertyPath: _slotColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4088436586526684763, guid: 7b46a5d1d01dce4439f4f818851931ac, type: 3}
+      propertyPath: _slotColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4088436586526684763, guid: 7b46a5d1d01dce4439f4f818851931ac, type: 3}
+      propertyPath: _slotColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4088436586526684763, guid: 7b46a5d1d01dce4439f4f818851931ac, type: 3}
       propertyPath: _matchingWire
       value: 1
       objectReference: {fileID: 0}
@@ -176,6 +200,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 202491556581185948}
     m_Modifications:
+    - target: {fileID: 4088436586526684763, guid: 7b46a5d1d01dce4439f4f818851931ac, type: 3}
+      propertyPath: _slotColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4088436586526684763, guid: 7b46a5d1d01dce4439f4f818851931ac, type: 3}
+      propertyPath: _slotColor.g
+      value: 0.21176471
+      objectReference: {fileID: 0}
+    - target: {fileID: 4088436586526684763, guid: 7b46a5d1d01dce4439f4f818851931ac, type: 3}
+      propertyPath: _slotColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6965846166660624164, guid: 7b46a5d1d01dce4439f4f818851931ac, type: 3}
       propertyPath: m_Name
       value: WireSlot (2)

@@ -18,6 +18,24 @@ public class RobotNpc : BaseNpc
     private bool _isFirstInteraction = true;
 
     /// <summary>
+    /// Subscribing to wire game won event on initialization
+    /// </summary>
+    protected override void Initialize()
+    {
+        base.Initialize();
+
+        MGWireState.WireGameWon += CheckForStateChange;
+    }
+
+    /// <summary>
+    /// Unsubscribing from event on disable
+    /// </summary>
+    private void OnDisable()
+    {
+        MGWireState.WireGameWon -= CheckForStateChange;
+    }
+
+    /// <summary>
     /// Invoked by event upon collecting lightbulb item
     /// </summary>
     public void CollectLightbulb()

@@ -47,7 +47,5 @@ public class MGWireState : MonoBehaviour
     {
         print("Wire game won");
         WireGameWon?.Invoke();
-        // TODO: Alert other systems that wire game has been won. Use a
-        // static action for this maybe? Work with Nick Gs event system.
     }
 }

@@ -1,6 +1,7 @@
 /*****************************************************************************
 // File Name :         MGWire.cs
 // Author :            Andrea Swihart-DeCoster
+// Contributor :       Nick Grinstead
 // Creation Date :     05/21/24
 //
 // Brief Description : Contains the logic and properties for the wire itself
@@ -13,8 +14,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Android;
 using UnityEngine.Rendering;
+using PlaceboEntertainment.UI;
 
-public class MGWire : MonoBehaviour
+public class MGWire : MonoBehaviour /*, IInteractable */
 {
     public EWireID WireID;
     [SerializeField] private Color _wireColor;
@@ -22,11 +24,21 @@ public class MGWire : MonoBehaviour
 
     [SerializeField] float _sphereScale;
 
+    [SerializeField] private Transform _wireStartPosition;
+    [SerializeField] private Transform _wireEndPosition;
+    [SerializeField] private float _distanceFromPlayer;
+    [SerializeField] private float _maxLength;
+
     private bool _canConnectToSlot = false;
 
     private MGWireSlot _currentSlot = null;
     private MGWireMovement _mgWireMovement;
     private bool _isCorrectlySlotted = false;
+
+    private bool _isInteracting = false;
+    private Transform _cameraTrans;
+    private TabbedMenu _tabbedMenu;
+    private bool _minigameStarted = false;
 
     public enum EWireID
     {
@@ -39,6 +51,88 @@ public class MGWire : MonoBehaviour
         {
             _mgWireMovement = wireMove;
         }
+
+        _tabbedMenu = TabbedMenu.Instance;
+        _cameraTrans = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Transform>();
+    }
+
+    /// <summary>
+    /// Invoked by start minigame event triggered by Robot to enable wire interactions
+    /// </summary>
+    public void StartMinigame()
+    {
+        _minigameStarted = true;
+        MGWireState.WireGameWon += EndMinigame;
+    }
+
+    /// <summary>
+    /// Invoked by minigame won event to disable wire interactions
+    /// </summary>
+    private void EndMinigame()
+    {
+        _minigameStarted = false;
+        MGWireState.WireGameWon -= EndMinigame;
+    }
+
+    // TODO: Implement the IInteractable interface for the following three methods
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="player"></param>
+    public void Interact(GameObject player)
+    {
+        // Can't interact with wires unless the minigame has begun
+        if (_minigameStarted)
+        {
+            if (!_isInteracting)
+            {
+                OnInteract();
+            }
+            else
+            {
+                OnDrop();
+            }
+        }
+    }
+
+    /// <summary>
+    /// For interaction system to toggle interact prompt on
+    /// </summary>
+    public void DisplayInteractUI()
+    {
+        if (_tabbedMenu != null)
+        {
+            _tabbedMenu.ToggleInteractPrompt(true);
+        }
+    }
+
+    /// <summary>
+    /// For interaction system to toggle interact prompt off
+    /// </summary>
+    public void HideInteractUI()
+    {
+        if (_tabbedMenu != null)
+        {
+            _tabbedMenu.ToggleInteractPrompt(false);
+        }
+    }
+
+    /// <summary>
+    /// Make wire end move to a position in front of the camera if the player
+    /// is interacting with this wire
+    /// </summary>
+    private void FixedUpdate()
+    {
+        if (_isInteracting)
+        {
+            Vector3 target = _cameraTrans.position + _cameraTrans.forward * _distanceFromPlayer;
+            _wireEndPosition.position = target;
+
+            if (Vector3.Distance(_wireEndPosition.position, _wireStartPosition.position) > _maxLength)
+            {
+                OnDrop();
+            }
+        }
     }
 
     /// <summary>
@@ -47,8 +141,7 @@ public class MGWire : MonoBehaviour
     /// </summary>
     private void OnInteract()
     {
-        // TODO: When the player interacts with a wire, make the end
-        // kinematic and have it follow the players direction
+        _isInteracting = true;
         _mgWireMovement.ChangeEndKinematic(true);
     }
 
@@ -58,7 +151,7 @@ public class MGWire : MonoBehaviour
     /// </summary>
     private void OnDrop()
     {
-        // TODO: This should be called when the player lets go of the wire.
+        _isInteracting = false;
         _mgWireMovement.ChangeEndKinematic(true);
 
         PlaceWire();
@@ -85,6 +178,7 @@ public class MGWire : MonoBehaviour
     /// </summary>
     public void EndTriggerExit()
     {
+        _isCorrectlySlotted = false;
         _canConnectToSlot = false;
         _currentSlot = null;
     }
@@ -98,8 +192,8 @@ public class MGWire : MonoBehaviour
     {
         if (_canConnectToSlot && _currentSlot && !_isCorrectlySlotted)
         {
-            _isCorrectlySlotted = true;
-            _currentSlot.CheckWire(this);
+            _isCorrectlySlotted = _currentSlot.CheckWire(this);
+            
         }
         else if (!_canConnectToSlot)
         {

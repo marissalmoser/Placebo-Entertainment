@@ -246,6 +246,7 @@ GameObject:
   - component: {fileID: 5510379797789466781}
   - component: {fileID: 5231616981141754585}
   - component: {fileID: 1999621104526795041}
+  - component: {fileID: 8127216469242414048}
   m_Layer: 0
   m_Name: Wire
   m_TagString: Untagged
@@ -287,6 +288,10 @@ MonoBehaviour:
   _wireColor: {r: 0, g: 0.6694646, b: 1, a: 1}
   _interactColor: {r: 0, g: 1, b: 0.038576603, a: 1}
   _sphereScale: 0.3
+  _wireStartPosition: {fileID: 2105087402058434552}
+  _wireEndPosition: {fileID: 3192316250598961245}
+  _distanceFromPlayer: 1.2
+  _maxLength: 4
 --- !u!114 &1999621104526795041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -299,6 +304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4122f783f2b2f5b4ea53761d7310b4d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _segmentParent: {fileID: 4952292206675462064}
   _startTrans: {fileID: 2105087402058434552}
   _endTrans: {fileID: 3192316250598961245}
   _segmentCount: 10
@@ -308,7 +314,35 @@ MonoBehaviour:
   _drag: 1
   _angularDrag: 1
   _usePhysics: 0
-  _segmentParent: {fileID: 4952292206675462064}
+--- !u!114 &8127216469242414048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8166192274761987147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a0acc881a336094997b0fb61c6d1983, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _npcEvent: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
+  _targetEventTag: Robot
+  _onEventTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5231616981141754585}
+        m_TargetAssemblyTypeName: MGWire, Assembly-CSharp
+        m_MethodName: StartMinigame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8207647104228261098
 GameObject:
   m_ObjectHideFlags: 0
