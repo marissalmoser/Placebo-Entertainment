@@ -16,10 +16,10 @@ public class InventoryHolder : MonoBehaviour
 
     [SerializeField] protected InventorySystem inventorySystem;
     [SerializeField] private int inventorySize;
+
     public InventorySystem InventorySystem => inventorySystem;
     private void Awake()
     {
-        inventorySystem = new InventorySystem(inventorySize);
-        
+        inventorySystem = new InventorySystem(inventorySize);     
     }
 }
