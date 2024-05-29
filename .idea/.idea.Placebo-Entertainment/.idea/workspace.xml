@@ -5,10 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0ca99064-d62d-4298-bd79-b6c397975cbd" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/UI Toolkit/AutoFitLabelControl.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/UI Toolkit/AutoFitLabelControl.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/UI Toolkit/LabelAutoFit.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/UI Toolkit/LabelAutoFit.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Placebo-Entertainment/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Placebo-Entertainment/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/NpcTesting.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/NpcTesting.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/NpcBehaviors/BaseNpc.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/NpcBehaviors/BaseNpc.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/TabbedMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/TabbedMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI Toolkit/Dialogue/Dialogue.uxml" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI Toolkit/Dialogue/Dialogue.uxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI Toolkit/Dialogue/DialogueStyle.uss" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI Toolkit/Dialogue/DialogueStyle.uss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,9 +24,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d95d42d5310b4f1ba9374f7ac0776df61744c0/5e/eba9f1ad/IStyle.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d95d42d5310b4f1ba9374f7ac0776df61744c0/ca/40052589/Translate.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d95d42d5310b4f1ba9374f7ac0776df61744c0/fe/7cd49866/StyleBackground.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ed0b65237d8945ad93fa4ff974851be5177e00/74/19ef98b0/Label.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,

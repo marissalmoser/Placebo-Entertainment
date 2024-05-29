@@ -7,7 +7,9 @@
 
 using System;
 using System.Collections.Generic;
+using UI.Components;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Serialization;
 using UnityEngine.UIElements;
 using Cursor = UnityEngine.Cursor;
@@ -86,12 +88,16 @@ namespace PlaceboEntertainment.UI
         private Dictionary<string, VisualElement> _scheduleEntries = new();
         private Label _dialogueText;
         private Button _dialogueOption1;
-        private EventCallback<ClickEvent> _optionEvent1;
+        public Action Option1 { get; set; }
         private Button _dialogueOption2;
-        private EventCallback<ClickEvent> _optionEvent2;
+        public Action Option2 { get; set; }
         private Button _dialogueOption3;
-        private EventCallback<ClickEvent> _optionEvent3;
+        public Action Option3 { get; set; }
         private bool _dialogueVisible;
+        private AutoFitLabelControl _labelControl;
+        private AutoFitLabelControl _dialogueOptionControl1;
+        private AutoFitLabelControl _dialogueOptionControl2;
+        private AutoFitLabelControl _dialogueOptionControl3;
 
         #endregion
 
@@ -150,6 +156,10 @@ namespace PlaceboEntertainment.UI
             _dialogueOption1 = dialogueMenu.rootVisualElement.Q<Button>(DialogueOption1Name);
             _dialogueOption2 = dialogueMenu.rootVisualElement.Q<Button>(DialogueOption2Name);
             _dialogueOption3 = dialogueMenu.rootVisualElement.Q<Button>(DialogueOption3Name);
+            _labelControl = new AutoFitLabelControl(_dialogueText, 35f, 75f);
+            _dialogueOptionControl1 = new AutoFitLabelControl(_dialogueOption1, 16f, 30f);
+            _dialogueOptionControl2 = new AutoFitLabelControl(_dialogueOption2, 16f, 30f);
+            _dialogueOptionControl3 = new AutoFitLabelControl(_dialogueOption3, 16f, 30f);
         }
 
         /// <summary>
@@ -164,6 +174,9 @@ namespace PlaceboEntertainment.UI
             tabMenu.rootVisualElement.style.display = DisplayStyle.None;
             interactPromptMenu.rootVisualElement.style.display = DisplayStyle.None;
             notificationPopupMenu.rootVisualElement.style.display = DisplayStyle.None;
+            _dialogueOption1.RegisterCallback<ClickEvent>(InvokeUnityEvent1OnClick);
+            _dialogueOption2.RegisterCallback<ClickEvent>(InvokeUnityEvent2OnClick);
+            _dialogueOption3.RegisterCallback<ClickEvent>(InvokeUnityEvent3OnClick);
         }
 
         /// <summary>
@@ -172,6 +185,9 @@ namespace PlaceboEntertainment.UI
         private void OnDisable()
         {
             UnRegisterTabCallbacks();
+            _dialogueOption1.UnregisterCallback<ClickEvent>(InvokeUnityEvent1OnClick);
+            _dialogueOption2.UnregisterCallback<ClickEvent>(InvokeUnityEvent2OnClick);
+            _dialogueOption3.UnregisterCallback<ClickEvent>(InvokeUnityEvent3OnClick);
         }
 
         /// <summary>
@@ -342,8 +358,8 @@ namespace PlaceboEntertainment.UI
         [ContextMenu("Try show Text")]
         internal void TestText() => DisplayDialogue("Dave", "I LOVE GAMING!");
 
-        [ContextMenu("Try Option 1")]
-        internal void TestOption1() => SetDialogueOption1("I choose this one", TestOnClick);
+        // [ContextMenu("Try Option 1")]
+        // internal void TestOption1() => SetDialogueOption1("I choose this one", TestOnClick);
         internal void TestOnClick(ClickEvent evt) => print("hello :)");
 
         [ContextMenu("ShowSchedule")]
@@ -471,42 +487,65 @@ namespace PlaceboEntertainment.UI
         
         //todo make this procedural
 
-        public void SetDialogueOption1(string text, EventCallback<ClickEvent> onClick)
+        public void SetDialogueOption1(string text)
         {
-            SetDialogueOptionInternal(_dialogueOption1, text, _optionEvent1, onClick);
-            _optionEvent1 = onClick;
-        }
-        
-        public void SetDialogueOption2(string text, EventCallback<ClickEvent> onClick)
-        {
-            SetDialogueOptionInternal(_dialogueOption2, text, _optionEvent2, onClick);
-            _optionEvent2 = onClick;
-        }
-        
-        public void SetDialogueOption3(string text, BaseNpc npc)
-        {
-            SetDialogueOptionInternal(_dialogueOption3, text, _optionEvent3, npc.Interact());
-            _optionEvent3 = onClick;
+            SetDialogueOptionInternal(_dialogueOption1, text);
         }
 
-        public void SetDialogueOption(int index, string text, EventCallback<ClickEvent> onClick)
+        private void InvokeUnityEvent1OnClick(ClickEvent evt)
+        {
+            Option1?.Invoke();
+        }
+        
+        public void SetDialogueOption2(string text)
+        {
+            SetDialogueOptionInternal(_dialogueOption2, text);
+        }
+        private void InvokeUnityEvent2OnClick(ClickEvent evt)
+        {
+            Option2?.Invoke();
+        }
+        
+        public void SetDialogueOption3(string text)
+        {
+            SetDialogueOptionInternal(_dialogueOption3, text);
+        }
+        private void InvokeUnityEvent3OnClick(ClickEvent evt)
+        {
+            Option3?.Invoke();
+        }
+
+        public void SetDialogueOption(int index, string text, BaseNpc npc)
         {
             if (index > 2) return;
             switch (index)
             {
                 case 0:
-                    SetDialogueOption1(text, onClick);
+                    SetDialogueOption1(text);
+                    Option1 = null;
+                    Option1 += () => npc.Interact(index);
                     break;
                 case 1:
-                    SetDialogueOption2(text, onClick);
+                    SetDialogueOption2(text);
+                    Option2 = null;
+                    Option2 += () => npc.Interact(index);
                     break;
                 case 2:
-                    SetDialogueOption3(text, onClick);
+                    SetDialogueOption3(text);
+                    Option3 = null;
+                    Option3 += () => npc.Interact(index);
                     break;
             }
         }
 
-        private void SetDialogueOptionInternal(Button button, string text, EventCallback<ClickEvent> oldEvt, EventCallback<ClickEvent> newEvt)
+        public void ClearDialogueOptions()
+        {
+            SetDialogueOption1(null);
+            SetDialogueOption2(null);
+            SetDialogueOption3(null);
+        }
+
+        private void SetDialogueOptionInternal(Button button, string text)
         {
             if (button == null) return;
             if (string.IsNullOrWhiteSpace(text))
@@ -517,15 +556,6 @@ namespace PlaceboEntertainment.UI
 
             button.style.display = DisplayStyle.Flex;
             button.text = text;
-            if (oldEvt != null)
-            {
-                button.UnregisterCallback(oldEvt);
-            }
-
-            if (newEvt != null)
-            {
-                button.RegisterCallback(newEvt);
-            }
         }
 
         /// <summary>

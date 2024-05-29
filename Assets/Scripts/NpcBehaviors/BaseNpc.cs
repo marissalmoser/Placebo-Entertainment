@@ -249,6 +249,7 @@ public abstract class BaseNpc : MonoBehaviour
 
             // Displays player dialogue options
             PlayerResponse option;
+            _tabbedMenu.ClearDialogueOptions();
             for (int i = 0; i < currentNode.PlayerResponses.Length; ++i)
             {
                 option = currentNode.PlayerResponses[i];
@@ -257,7 +258,7 @@ public abstract class BaseNpc : MonoBehaviour
                 if (!option.HasPrerequisiteCheck || CheckDialoguePrerequisite(option))
                 {
                     Debug.Log(option.Answer); // TODO: display player option in UI
-                    _tabbedMenu.SetDialogueOption(i, option.Answer, null);
+                    _tabbedMenu.SetDialogueOption(i, option.Answer, this);
                 }
             }
         }
