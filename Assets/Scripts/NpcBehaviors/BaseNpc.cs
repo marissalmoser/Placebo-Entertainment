@@ -66,16 +66,10 @@ public abstract class BaseNpc : MonoBehaviour
     [System.Serializable]
     protected struct DialogueNode
     {
-        //[SerializeField] private NpcEvent _eventToTrigger;
-        //[SerializeField] private string _eventTag;
         [SerializeField] private string[] _dialogue;
-        //[SerializeField] private bool _endsDialogue;
         [SerializeField] private PlayerResponse[] _playerResponses;
 
-        //public NpcEvent EventToTrigger { get => _eventToTrigger; }
-        //public string EventTag { get => _eventTag; }
         public string[] Dialogue { get => _dialogue; }
-        //public bool EndsDialogue { get => _endsDialogue; }
         public PlayerResponse[] PlayerResponses { get => _playerResponses; }
     }
 
@@ -91,6 +85,7 @@ public abstract class BaseNpc : MonoBehaviour
         [SerializeField] private bool _hasPrerequisiteCheck;
         [SerializeField] private string _answer;
         [SerializeField] private int[] _nextResponseIndex;
+        [SerializeField] private bool _advancesNpcState;
         [SerializeField] private bool _endsDialogue;
 
         public NpcEvent EventToTrigger { get => _eventToTrigger; }
@@ -98,9 +93,12 @@ public abstract class BaseNpc : MonoBehaviour
         public bool HasPrerequisiteCheck { get => _hasPrerequisiteCheck; }
         public string Answer { get => _answer; }
         public int[] NextResponseIndex { get => _nextResponseIndex; }
+        public bool AdvancesNpcState { get => _advancesNpcState; }
         public bool EndsDialogue { get => _endsDialogue; }
     }
     #endregion
+
+    [SerializeField] protected string _npcName;
 
     [SerializeField] protected NpcEvent _startMinigameEvent;
     [SerializeField] protected string _eventTag;
@@ -153,15 +151,16 @@ public abstract class BaseNpc : MonoBehaviour
     /// Called when player presses button to interact to initiate an interaction with
     /// a NPC or when giving a dialogue response.
     /// </summary>
-    /// <param name="responseIndex">Index in the dialogue tree, assumes 0 by default</param>
-    public void Interact(int responseIndex = 0)
+    /// <param name="responseIndex">Index in the dialogue tree, assumes 0 by default,
+    /// shouldn't be negative</param>
+    public virtual void Interact(int responseIndex = 0)
     {
         if (_canInteract)
         {
             int newNodeIndex = 0;
 
             // First interaction
-            if (_isInteracting == false)
+            if (_isInteracting == false && _stateDialogueTrees.GetStateData(_currentState).Length > 0)
             {
                 if (_tabbedMenu != null)
                 {
@@ -175,7 +174,15 @@ public abstract class BaseNpc : MonoBehaviour
             else if (_stateDialogueTrees.GetStateData(_currentState).Length > 0)
             {   
                 DialogueNode currentNode = _stateDialogueTrees.GetStateData(_currentState)[_currentDialogueIndex];
-                PlayerResponse currentResponse = currentNode.PlayerResponses[responseIndex];
+                PlayerResponse currentResponse;
+                if (currentNode.PlayerResponses.Length > responseIndex)
+                {
+                    currentResponse = currentNode.PlayerResponses[responseIndex];
+                }
+                else
+                {
+                    currentResponse = currentNode.PlayerResponses[0];
+                }
 
                 // Checks if dialogue option should trigger an event
                 if (currentResponse.EventToTrigger != null)
@@ -184,7 +191,16 @@ public abstract class BaseNpc : MonoBehaviour
                     {
                         EnterPlayingMinigame();
                     }
-                    currentResponse.EventToTrigger.TriggerEvent(currentResponse.EventTag);
+                    else
+                    {
+                        currentResponse.EventToTrigger.TriggerEvent(currentResponse.EventTag);
+                    }
+                }
+
+                // Updates NPC's state if needed
+                if (currentResponse.AdvancesNpcState)
+                {
+                    Invoke(nameof(CheckForStateChange), 0.2f);
                 }
 
                 // Checks if dialogue option should end the current dialogue
@@ -194,9 +210,13 @@ public abstract class BaseNpc : MonoBehaviour
                 }
 
                 // If dialogue didn't end, determines which node to go to next
-                if (!_shouldEndDialogue && responseIndex < currentNode.PlayerResponses.Length)
+                if (!_shouldEndDialogue && currentResponse.HasPrerequisiteCheck)
                 {
                     newNodeIndex = ChooseDialoguePath(currentResponse);
+                }
+                else if (!_shouldEndDialogue)
+                {
+                    newNodeIndex = currentResponse.NextResponseIndex[0];
                 }
             }
             else
@@ -213,7 +233,7 @@ public abstract class BaseNpc : MonoBehaviour
                 _tabbedMenu.ToggleDialogue(false);
                 return;
             }
-            
+
             GetNpcResponse(newNodeIndex);
         }
     }
@@ -253,25 +273,9 @@ public abstract class BaseNpc : MonoBehaviour
             for (int i = 0; i < currentNode.PlayerResponses.Length; ++i)
             {
                 option = currentNode.PlayerResponses[i];
-
-                // Checking if option should display
-                if (!option.HasPrerequisiteCheck || CheckDialoguePrerequisite(option))
-                {
-                    Debug.Log(option.Answer); // TODO: display player option in UI
-                    _tabbedMenu.SetDialogueOption(i, option.Answer, this);
-                }
+                Debug.Log(option.Answer); // TODO: display player option in UI
             }
         }
-    }
-
-    /// <summary>
-    /// This method should be overriden by subclasses and filled with NPC specific
-    /// logic. That overriden function should not call this base function.
-    /// </summary>
-    /// <returns>Whether prerequisite is met or not</returns>
-    protected virtual bool CheckDialoguePrerequisite(PlayerResponse option)
-    {
-        return true;
     }
 
     /// <summary>

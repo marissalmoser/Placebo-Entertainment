@@ -43,7 +43,7 @@ public class RobotNpc : BaseNpc
     {
         base.EnterIdle();
 
-        StartCoroutine("DeathTimer");
+        StartCoroutine(DeathTimer());
     }
 
     /// <summary>
@@ -103,18 +103,13 @@ public class RobotNpc : BaseNpc
         else if (_hasRepairedRobot && _haveBypassItem && _currentState != NpcStates.PostMinigame)
         {
             _shouldEndDialogue = true;
-            Invoke("EnterPostMinigame", 0.2f);
+            Invoke(nameof(EnterPostMinigame), 0.2f);
             return 0;
-        }
-        // Option only has one path
-        else if (option.NextResponseIndex.Length == 1)
-        {
-            return option.NextResponseIndex[0];
         }
         // Don't have minigame bypass
         else
         {
-            return option.NextResponseIndex[1];
+            return option.NextResponseIndex[0];
         }
     }
 
