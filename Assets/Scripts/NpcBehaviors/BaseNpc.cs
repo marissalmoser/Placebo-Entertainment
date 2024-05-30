@@ -137,7 +137,7 @@ public abstract class BaseNpc : MonoBehaviour
         _playerControls = new PlayerControls();
         _playerControls.Enable();
         InputAction interact = _playerControls.FindAction("Interact");
-        interact.performed += ctx => Interact();
+        //interact.performed += ctx => Interact();
 
         _tabbedMenu = TabbedMenu.Instance;
         _navAgent = GetComponent<NavMeshAgent>();
@@ -230,6 +230,7 @@ public abstract class BaseNpc : MonoBehaviour
                 _isInteracting = false;
                 _shouldEndDialogue = false;
                 // TODO: turn off dialogue UI here
+                _tabbedMenu.ToggleDialogue(false);
                 return;
             }
 
@@ -250,7 +251,9 @@ public abstract class BaseNpc : MonoBehaviour
             _currentDialogueIndex = nextNodeIndex;
             DialogueNode currentNode = _stateDialogueTrees.GetStateData(_currentState)[_currentDialogueIndex];
             Debug.Log(ChooseDialogueFromNode(currentNode)); // TODO: display dialogue here
-
+            string response = ChooseDialogueFromNode(currentNode);
+            _tabbedMenu.DisplayDialogue(_npcName, response);
+            _tabbedMenu.ToggleDialogue(true);
             GetPlayerResponses();
         }
     }
@@ -266,6 +269,7 @@ public abstract class BaseNpc : MonoBehaviour
 
             // Displays player dialogue options
             PlayerResponse option;
+            _tabbedMenu.ClearDialogueOptions();
             for (int i = 0; i < currentNode.PlayerResponses.Length; ++i)
             {
                 option = currentNode.PlayerResponses[i];

@@ -7,8 +7,10 @@
 
 using System;
 using System.Collections.Generic;
+using UI.Components;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Events;
 using UnityEngine.Serialization;
 using UnityEngine.UIElements;
 using Cursor = UnityEngine.Cursor;
@@ -30,6 +32,7 @@ namespace PlaceboEntertainment.UI
         [SerializeField] private UIDocument tabMenu;
         [SerializeField] private UIDocument interactPromptMenu;
         [SerializeField] private UIDocument notificationPopupMenu;
+        [SerializeField] private UIDocument dialogueMenu;
 
         [Tooltip("The player object to base position & rotation off of for the mini-map.")] [SerializeField]
         private Transform playerTransform;
@@ -85,7 +88,18 @@ namespace PlaceboEntertainment.UI
         private VisualElement _scheduleContainer;
         private Dictionary<string, VisualElement> _scheduleEntries = new();
         private bool _scheduleVisible = false;
-
+        private Label _dialogueText;
+        private Button _dialogueOption1;
+        public Action Option1 { get; set; }
+        private Button _dialogueOption2;
+        public Action Option2 { get; set; }
+        private Button _dialogueOption3;
+        public Action Option3 { get; set; }
+        private bool _dialogueVisible;
+        private AutoFitLabelControl _labelControl;
+        private AutoFitLabelControl _dialogueOptionControl1;
+        private AutoFitLabelControl _dialogueOptionControl2;
+        private AutoFitLabelControl _dialogueOptionControl3;
 
         #endregion
 
@@ -105,6 +119,10 @@ namespace PlaceboEntertainment.UI
         private const string ScheduleItemName = "ItemName";
         private const string ScheduleIconName = "Icon";
         private const string ScheduleEntryName = "ScheduleEntry";
+        private const string DialogueLabelName = "BottomBar";
+        private const string DialogueOption1Name = "DialogueOption1";
+        private const string DialogueOption2Name = "DialogueOption2";
+        private const string DialogueOption3Name = "DialogueOption3";
 
         #endregion
 
@@ -136,6 +154,15 @@ namespace PlaceboEntertainment.UI
             _playerObject = _tabMenuRoot.Q(PlayerName);
             _interactText = interactPromptMenu.rootVisualElement.Q<Label>(TalkPromptName);
             _scheduleContainer = _tabMenuRoot.Q(ScheduleContainerName);
+            _dialogueText = dialogueMenu.rootVisualElement.Q<Label>(DialogueLabelName);
+            _dialogueOption1 = dialogueMenu.rootVisualElement.Q<Button>(DialogueOption1Name);
+            _dialogueOption2 = dialogueMenu.rootVisualElement.Q<Button>(DialogueOption2Name);
+            _dialogueOption3 = dialogueMenu.rootVisualElement.Q<Button>(DialogueOption3Name);
+            //auto sizers for the text. Unity does not provide one out of the box...WTF?
+            _labelControl = new AutoFitLabelControl(_dialogueText, 35f, 75f);
+            _dialogueOptionControl1 = new AutoFitLabelControl(_dialogueOption1, 16f, 30f);
+            _dialogueOptionControl2 = new AutoFitLabelControl(_dialogueOption2, 16f, 30f);
+            _dialogueOptionControl3 = new AutoFitLabelControl(_dialogueOption3, 16f, 30f);
         }
 
         /// <summary>
@@ -146,9 +173,13 @@ namespace PlaceboEntertainment.UI
             RegisterTabCallbacks();
             //note(alec): unity recommends setting their styles to hide rather than enabling/disabling the behavior.
             //stupid IMO but this way the callbacks stay registered.
+            dialogueMenu.rootVisualElement.style.display = DisplayStyle.None;
             tabMenu.rootVisualElement.style.display = DisplayStyle.None;
             interactPromptMenu.rootVisualElement.style.display = DisplayStyle.None;
             notificationPopupMenu.rootVisualElement.style.display = DisplayStyle.None;
+            _dialogueOption1.RegisterCallback<ClickEvent>(InvokeUnityEvent1OnClick);
+            _dialogueOption2.RegisterCallback<ClickEvent>(InvokeUnityEvent2OnClick);
+            _dialogueOption3.RegisterCallback<ClickEvent>(InvokeUnityEvent3OnClick);
         }
 
         /// <summary>
@@ -178,6 +209,9 @@ namespace PlaceboEntertainment.UI
         {
             UnRegisterTabCallbacks();
             PlayerController.Instance.PlayerControls.BasicControls.OpenSchedule.performed -= OpenScheduleOnPerformed;
+            _dialogueOption1.UnregisterCallback<ClickEvent>(InvokeUnityEvent1OnClick);
+            _dialogueOption2.UnregisterCallback<ClickEvent>(InvokeUnityEvent2OnClick);
+            _dialogueOption3.UnregisterCallback<ClickEvent>(InvokeUnityEvent3OnClick);
         }
 
         /// <summary>
@@ -322,9 +356,35 @@ namespace PlaceboEntertainment.UI
             tabMenu.rootVisualElement.style.display = show ? DisplayStyle.Flex : DisplayStyle.None;
         }
 
+        /// <summary>
+        /// Enables or disables the dialogue display.
+        /// </summary>
+        /// <param name="show">Whether or not to show the dialogue display.</param>
+        public void ToggleDialogue(bool show)
+        {
+            if (dialogueMenu == null) return;
+            dialogueMenu.rootVisualElement.style.display = show ? DisplayStyle.Flex : DisplayStyle.None;
+            _dialogueVisible = show;
+            Cursor.visible = _dialogueVisible;
+            Cursor.lockState = _dialogueVisible ? CursorLockMode.None : CursorLockMode.Locked;
+        }
+
         #region Testing Helper Methods
         
         //NOTE: These methods are designed for testing in editor ONLY. They are not meant for production code.
+
+        [ContextMenu("Show Dialogue")]
+        internal void ShowDialogue() => ToggleDialogue(true);
+        
+        [ContextMenu("Hide Dialogue")]
+        internal void HideDialogue() => ToggleDialogue(false);
+
+        [ContextMenu("Try show Text")]
+        internal void TestText() => DisplayDialogue("Dave", "I LOVE GAMING!");
+
+        // [ContextMenu("Try Option 1")]
+        // internal void TestOption1() => SetDialogueOption1("I choose this one", TestOnClick);
+        internal void TestOnClick(ClickEvent evt) => print("hello :)");
 
         [ContextMenu("ShowSchedule")]
         internal void ShowSchedule() => ToggleSchedule(true);
@@ -439,6 +499,130 @@ namespace PlaceboEntertainment.UI
         {
             if (notificationPopupMenu == null) return;
             notificationPopupMenu.rootVisualElement.style.display = show ? DisplayStyle.Flex : DisplayStyle.None;
+        }
+
+        /// <summary>
+        /// Displays the dialogue for the character. Auto formats the text to be orange for the name.
+        /// </summary>
+        /// <param name="charName"></param>
+        /// <param name="dialogueText"></param>
+        public void DisplayDialogue(string charName, string dialogueText)
+        {
+            if (_dialogueText == null) return;
+            _dialogueText.text = $"<color=\"orange\">{charName} <color=\"white\">- {dialogueText}";
+        }
+        
+        //todo REWRITE THIS WHOLE SECTION
+
+        /// <summary>
+        /// Sets the dialogue option 1 text. Does not set any callbacks.
+        /// </summary>
+        /// <param name="text">The dialogue to display to unformatted.</param>
+        public void SetDialogueOption1(string text)
+        {
+            SetDialogueOptionInternal(_dialogueOption1, text);
+        }
+
+        /// <summary>
+        /// Invokes the option 1 unity event. 
+        /// </summary>
+        /// <param name="evt">Click Event that fired.</param>
+        private void InvokeUnityEvent1OnClick(ClickEvent evt)
+        {
+            Option1?.Invoke();
+        }
+        
+        /// <summary>
+        /// Sets the dialogue option 2 text. Does not set any callbacks.
+        /// </summary>
+        /// <param name="text">The dialogue to display to unformatted.</param>
+        public void SetDialogueOption2(string text)
+        {
+            SetDialogueOptionInternal(_dialogueOption2, text);
+        }
+        
+        // <summary>
+        /// Invokes the option 2 unity event. 
+        /// </summary>
+        /// <param name="evt">Click Event that fired.</param>
+        private void InvokeUnityEvent2OnClick(ClickEvent evt)
+        {
+            Option2?.Invoke();
+        }
+        
+        /// <summary>
+        /// Sets the dialogue option 3 text. Does not set any callbacks.
+        /// </summary>
+        /// <param name="text">The dialogue to display to unformatted.</param>
+        public void SetDialogueOption3(string text)
+        {
+            SetDialogueOptionInternal(_dialogueOption3, text);
+        }
+        
+        // <summary>
+        /// Invokes the option 3 unity event. 
+        /// </summary>
+        /// <param name="evt">Click Event that fired.</param>
+        private void InvokeUnityEvent3OnClick(ClickEvent evt)
+        {
+            Option3?.Invoke();
+        }
+
+        /// <summary>
+        /// Sets the dialogue button at the index. Must be between 0-2. NPC cannot be null.
+        /// </summary>
+        /// <param name="index">The index of the dialogue option.</param>
+        /// <param name="text">The text for the option.</param>
+        /// <param name="npc">The npc to link to.</param>
+        public void SetDialogueOption(int index, string text, BaseNpc npc)
+        {
+            if (index > 2 || index < 0) return;
+            switch (index)
+            {
+                case 0: //Sets the text, clears the previous callbacks, assigns the click event.
+                    SetDialogueOption1(text);
+                    Option1 = null;
+                    Option1 += () => npc.Interact(index);
+                    break;
+                case 1:
+                    SetDialogueOption2(text);
+                    Option2 = null;
+                    Option2 += () => npc.Interact(index);
+                    break;
+                case 2:
+                    SetDialogueOption3(text);
+                    Option3 = null;
+                    Option3 += () => npc.Interact(index);
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Clears all dialogue options and makes them go away.
+        /// </summary>
+        public void ClearDialogueOptions()
+        {
+            SetDialogueOption1(null);
+            SetDialogueOption2(null);
+            SetDialogueOption3(null);
+        }
+
+        /// <summary>
+        /// Sets the dialogue option text and hides the button if desired.
+        /// </summary>
+        /// <param name="button">The button to set text on.</param>
+        /// <param name="text">The text to apply.</param>
+        private void SetDialogueOptionInternal(Button button, string text)
+        {
+            if (button == null) return;
+            if (string.IsNullOrWhiteSpace(text))
+            {
+                button.style.display = DisplayStyle.None;
+                return;
+            }
+
+            button.style.display = DisplayStyle.Flex;
+            button.text = text;
         }
 
         /// <summary>
