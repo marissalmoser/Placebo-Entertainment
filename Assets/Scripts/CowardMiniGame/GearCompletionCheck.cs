@@ -17,6 +17,7 @@ public class GearCompletionCheck : MonoBehaviour
     private int _greenCount;
     [SerializeField] private Renderer[] _matCheck;
     [SerializeField] private GameObject _wrench;
+    [SerializeField] private GameObject _sparkMode;
 
 
 
@@ -49,6 +50,7 @@ public class GearCompletionCheck : MonoBehaviour
         if (_isGameComplete)
         {
             Vector3 _wrenchPoint = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z - 2f);
+            _sparkMode.SetActive(true);
             Instantiate(_wrench, _wrenchPoint, Quaternion.identity);
             Destroy(this);
         }

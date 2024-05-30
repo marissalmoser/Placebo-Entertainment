@@ -7,6 +7,8 @@ TagManager:
   - Interactable
   - Release
   - Gear
+  - Spark
+  - Righty
   layers:
   - Default
   - TransparentFX

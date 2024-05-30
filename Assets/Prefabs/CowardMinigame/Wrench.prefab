@@ -106,8 +106,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.9881176, y: 3.0967689, z: 1.234337}
+  m_Center: {x: -0.012450114, y: 1.048388, z: 0.1171693}
 --- !u!54 &5348353084255382209
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -130,10 +130,10 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 96
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &3971576081575716649
 MonoBehaviour:
@@ -147,8 +147,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b045cdfd094e1c4c91f417096219445, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animate: {fileID: 0}
-  _wrenchSpark: {fileID: 0}
+  _sparksMode: {fileID: 0}
+  _animate: {fileID: 7995032218042838754}
+  _wrenchSpark: {fileID: 105581026523438075, guid: f6bc08b5eeb1ccd40abc015300343b11, type: 3}
   _rightHand: {fileID: 0}
 --- !u!95 &7995032218042838754
 Animator:
@@ -160,10 +161,10 @@ Animator:
   m_GameObject: {fileID: 4549863671916465249}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
+  m_Controller: {fileID: 9100000, guid: f488d074bdc982147bd132d7905c1682, type: 2}
+  m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 

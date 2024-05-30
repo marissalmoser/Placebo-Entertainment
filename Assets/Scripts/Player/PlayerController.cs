@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
         move.canceled += ctx => moveDirection = move.ReadValue<Vector2>();
         move.canceled += ctx => isMoving = false;
         //move.performed += ctx => rb.velocity = 
-        //    new Vector3(move.ReadValue<Vector2>().x * moveSpeed, rb.velocity.y, move.ReadValue<Vector2>().y * moveSpeed);
+       //     new Vector3(move.ReadValue<Vector2>().x * moveSpeed, rb.velocity.y, move.ReadValue<Vector2>().y * moveSpeed);
         //move.canceled += ctx => rb.velocity = new Vector3(0, rb.velocity.y, 0);
 
         //slash.performed += ctx => laser.SetActive(true);

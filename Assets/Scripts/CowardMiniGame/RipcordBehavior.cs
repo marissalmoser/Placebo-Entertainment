@@ -93,6 +93,7 @@ public class RipcordBehavior : MonoBehaviour
         if(_numReleased == 3)
         {
             _gears.SetActive(true);
+            _successfulPulls.color = Color.green;
             //Destroy(this);
         }
         Debug.Log(_numReleased);
