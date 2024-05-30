@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: -4667766229383264183}
   - component: {fileID: 4421219648420445820}
   - component: {fileID: 7899668489594915188}
+  - component: {fileID: 5883686602139835072}
   m_Layer: 0
   m_Name: Coward
   m_TagString: Untagged
@@ -448,3 +449,16 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &5883686602139835072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3297066376343357550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c90c594b96f0ae84c825594819e357d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _npcName: Coward
