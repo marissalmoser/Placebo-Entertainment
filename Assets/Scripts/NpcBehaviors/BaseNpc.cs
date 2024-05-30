@@ -252,7 +252,7 @@ public abstract class BaseNpc : MonoBehaviour
             DialogueNode currentNode = _stateDialogueTrees.GetStateData(_currentState)[_currentDialogueIndex];
             Debug.Log(ChooseDialogueFromNode(currentNode)); // TODO: display dialogue here
             string response = ChooseDialogueFromNode(currentNode);
-            _tabbedMenu.DisplayDialogue("PUT NAME OF CHARACTER HERE", response);
+            _tabbedMenu.DisplayDialogue(_npcName, response);
             _tabbedMenu.ToggleDialogue(true);
             GetPlayerResponses();
         }
