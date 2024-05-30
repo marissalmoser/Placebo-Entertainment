@@ -137,7 +137,7 @@ public abstract class BaseNpc : MonoBehaviour
         _playerControls = new PlayerControls();
         _playerControls.Enable();
         InputAction interact = _playerControls.FindAction("Interact");
-        interact.performed += ctx => Interact();
+        //interact.performed += ctx => Interact();
 
         _tabbedMenu = TabbedMenu.Instance;
         _navAgent = GetComponent<NavMeshAgent>();
