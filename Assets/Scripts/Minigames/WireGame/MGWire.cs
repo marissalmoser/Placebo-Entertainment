@@ -16,7 +16,7 @@ using UnityEngine.Android;
 using UnityEngine.Rendering;
 using PlaceboEntertainment.UI;
 
-public class MGWire : MonoBehaviour /*, IInteractable */
+public class MGWire : MonoBehaviour
 {
     public EWireID WireID;
     [SerializeField] private Color _wireColor;
@@ -36,6 +36,7 @@ public class MGWire : MonoBehaviour /*, IInteractable */
     private bool _isCorrectlySlotted = false;
 
     private bool _isInteracting = false;
+    private bool _canInteract = false;
     private Transform _cameraTrans;
     private TabbedMenu _tabbedMenu;
     private bool _minigameStarted = false;
@@ -62,6 +63,7 @@ public class MGWire : MonoBehaviour /*, IInteractable */
     public void StartMinigame()
     {
         _minigameStarted = true;
+        _canInteract = true;
         MGWireState.WireGameWon += EndMinigame;
     }
 
@@ -74,15 +76,14 @@ public class MGWire : MonoBehaviour /*, IInteractable */
         MGWireState.WireGameWon -= EndMinigame;
     }
 
-    // TODO: Implement the IInteractable interface for the following three methods
     /// <summary>
-    /// 
+    /// Called toggle interacting with this wire
     /// </summary>
-    /// <param name="player"></param>
-    public void Interact(GameObject player)
+    /// <param name="player">Player interacting with the wire</param>
+    public void Interact()
     {
         // Can't interact with wires unless the minigame has begun
-        if (_minigameStarted)
+        if (_minigameStarted && _canInteract)
         {
             if (!_isInteracting)
             {
@@ -100,9 +101,9 @@ public class MGWire : MonoBehaviour /*, IInteractable */
     /// </summary>
     public void DisplayInteractUI()
     {
-        if (_tabbedMenu != null)
+        if (_tabbedMenu != null && _canInteract)
         {
-            _tabbedMenu.ToggleInteractPrompt(true);
+            _tabbedMenu.ToggleInteractPrompt(true, "MOVE");
         }
     }
 
@@ -193,7 +194,12 @@ public class MGWire : MonoBehaviour /*, IInteractable */
         if (_canConnectToSlot && _currentSlot && !_isCorrectlySlotted)
         {
             _isCorrectlySlotted = _currentSlot.CheckWire(this);
-            
+
+            // Prevents the moving of wires that are already in the right place
+            if (_isCorrectlySlotted)
+            {
+                _canInteract = false;
+            }
         }
         else if (!_canConnectToSlot)
         {

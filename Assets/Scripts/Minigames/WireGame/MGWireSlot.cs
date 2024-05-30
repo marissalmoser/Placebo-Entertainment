@@ -48,7 +48,6 @@ public class MGWireSlot : MonoBehaviour
             return true;
         }
 
-        // TODO: Add logic for if the wire was incorrect match
         return false;
     }
 }

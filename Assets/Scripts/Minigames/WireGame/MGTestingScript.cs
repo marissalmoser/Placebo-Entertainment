@@ -21,15 +21,15 @@ public class MGTestingScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            _wiresArray[0].Interact(_player);
+            _wiresArray[0].Interact();
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            _wiresArray[1].Interact(_player);
+            _wiresArray[1].Interact();
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            _wiresArray[2].Interact(_player);
+            _wiresArray[2].Interact();
         }
 
         if (Input.GetKeyDown(KeyCode.M))
