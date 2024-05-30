@@ -568,6 +568,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SampleUI
       objectReference: {fileID: 0}
+    - target: {fileID: 3268437976918378075, guid: 2fcbfa8208ca5c54fa83f3a5c518bb3d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4422286474446707533, guid: 2fcbfa8208ca5c54fa83f3a5c518bb3d, type: 3}
       propertyPath: texture
       value: 
