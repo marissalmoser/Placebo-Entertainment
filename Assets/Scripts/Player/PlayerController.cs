@@ -59,20 +59,19 @@ public class PlayerController : MonoBehaviour
         PlayerControls = new PlayerControls();
         PlayerControls.BasicControls.Enable();
 
-<<<<<<< HEAD
         _InteractionCheck = new PlayerInteractSystem("Default None");
         _doOnce = false;
 
-        move = playerControls.FindAction("Move");
+       /* move = playerControls.FindAction("Move");
         interact = playerControls.FindAction("Interact");
         reset = playerControls.FindAction("Reset");
-        quit = playerControls.FindAction("Quit");
-=======
+        quit = playerControls.FindAction("Quit");*/
+
         move = PlayerControls.FindAction("Move");
         interact = PlayerControls.FindAction("Interact");
         reset = PlayerControls.FindAction("Reset");
         quit = PlayerControls.FindAction("Quit");
->>>>>>> main
+
 
         interact.performed += ctx => _doOnce = true;
         interact.canceled += ctx => _doOnce = false;
