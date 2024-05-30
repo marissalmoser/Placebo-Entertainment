@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using UI.Components;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
 using UnityEngine.UIElements;
@@ -86,6 +87,7 @@ namespace PlaceboEntertainment.UI
         private Label _interactText;
         private VisualElement _scheduleContainer;
         private Dictionary<string, VisualElement> _scheduleEntries = new();
+        private bool _scheduleVisible = false;
         private Label _dialogueText;
         private Button _dialogueOption1;
         public Action Option1 { get; set; }
@@ -181,11 +183,32 @@ namespace PlaceboEntertainment.UI
         }
 
         /// <summary>
+        /// Assigns the performed action of the tab key to opening/closing the schedule UI.
+        /// </summary>
+        private void Start()
+        {
+            PlayerController.Instance.PlayerControls.BasicControls.OpenSchedule.performed += OpenScheduleOnPerformed;
+        }
+
+        /// <summary>
+        /// Callback that gets fired when the tab key is pressed.
+        /// </summary>
+        /// <param name="obj">Callback context of the key that was presed.</param>
+        private void OpenScheduleOnPerformed(InputAction.CallbackContext obj)
+        {
+            _scheduleVisible = !_scheduleVisible;
+            Cursor.visible = _scheduleVisible;
+            Cursor.lockState = _scheduleVisible ? CursorLockMode.None : CursorLockMode.Locked;
+            ToggleSchedule(_scheduleVisible);
+        }
+
+        /// <summary>
         /// Invokes the un-register callbacks function
         /// </summary>
         private void OnDisable()
         {
             UnRegisterTabCallbacks();
+            PlayerController.Instance.PlayerControls.BasicControls.OpenSchedule.performed -= OpenScheduleOnPerformed;
             _dialogueOption1.UnregisterCallback<ClickEvent>(InvokeUnityEvent1OnClick);
             _dialogueOption2.UnregisterCallback<ClickEvent>(InvokeUnityEvent2OnClick);
             _dialogueOption3.UnregisterCallback<ClickEvent>(InvokeUnityEvent3OnClick);
@@ -397,8 +420,6 @@ namespace PlaceboEntertainment.UI
             AddScheduleEntry(new ScheduleEntry("03:30", "Entry number3", "Icon Name", null));
         }
         
-        
-
         #endregion
 
         /// <summary>
