@@ -16,6 +16,7 @@ public class SparksBehavior : MonoBehaviour
     [SerializeField] private float _spawnSpeed;
     private bool _isOn;
     private Vector3 _rangePos;
+    private GameObject _oneFinder;
     
 
     void Awake()
@@ -26,7 +27,8 @@ public class SparksBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(_isOn)
+        _oneFinder = GameObject.FindWithTag("Spark");
+        if(_isOn && _oneFinder == null)
         {
             _rangePos = new Vector3(Random.Range(2f, 6f), 1.5f, 4f);
             StartCoroutine(SpawnSlowly());
