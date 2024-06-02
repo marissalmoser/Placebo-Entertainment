@@ -34,7 +34,7 @@ public class Pickupable: MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         var inventory = other.transform.GetComponent<InventoryHolder>();
-        if (inventory.InventorySystem.AddToInventory(myData, 1))
+        if (inventory.InventorySystem.AddToInventory(myData, 1, out _))
         {
             //IFF successful, destroy gameobject
 
