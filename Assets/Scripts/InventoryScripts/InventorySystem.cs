@@ -6,14 +6,12 @@
 *    for functionality
 *******************************************************************/
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Events;
 
 [System.Serializable]
-public class InventorySystem 
+public class InventorySystem
 {
     private int inventorySlotCount => collectionOfSlots.Count;
     //Can do this because the constructor will ask for a count. This sets iSC
@@ -29,7 +27,7 @@ public class InventorySystem
     {
         collectionOfSlots = new List<InventorySlot>(size);
         //Filling up the inventory system with slots
-        for(int i = 0; i < size; i++)
+        for (int i = 0; i < size; i++)
         {
             collectionOfSlots.Add(new InventorySlot());
             //uses default constructor from InventorySlot.cs
@@ -44,6 +42,8 @@ public class InventorySystem
     /// inventory system, we will just set some obscenely high slot count with
     /// an invisisble inventory.
     /// 
+    /// THe overflowAmount returns the amount of items not added if inventory 
+    /// is absolutely full
     /// </summary>
     /// <param name="itemToAdd"></param>
     /// <param name="amountToAdd"></param>
@@ -113,9 +113,12 @@ public class InventorySystem
     /// <summary>
     /// This is a bool also because it might be useful to check if the system
     /// has enough of an item compared to the int amountToRemove (like a store,
-    /// shop, or checkpoint.) Remove anyways bool (if true) allows a script to
+    /// shop, or checkpoint.) 
+    /// Include a InventoryItemData, and how much of it to remove.
+    /// Remove anyways bool (if true) allows a script to
     /// take all identical items to the toRemove irregardless of if the system 
     /// has enough. 
+    /// Put "out _" if you want to ignore the returned data. 
     /// </summary>
     /// <param name="toRemove"></param> 
     /// <param name="amountToRemove"></param>
@@ -132,7 +135,7 @@ public class InventorySystem
             {
                 Debug.Log("Not enough items in inventory for required operation");
                 dataRemoved = null;
-                return false; 
+                return false;
             }
 
             var sortedSlots = slotsWithThisItem.OrderBy(slot => slot.StackSize).ToList();
@@ -171,12 +174,19 @@ public class InventorySystem
     public bool HasFreeSlot(out InventorySlot freeSlot)
     {
         freeSlot = collectionOfSlots.FirstOrDefault(slotBeingLookedAt => slotBeingLookedAt.ItemData == (null));
-        if(freeSlot != null)
+        if (freeSlot != null)
         {
             return true;
         }
         return false;
     }
+    /// <summary>
+    /// After passing in an inventoryItemData, you will recieve a list of all InventorySlots 
+    /// that contain that item, full or not.
+    /// </summary>
+    /// <param name="itemToAdd"></param>
+    /// <param name="slotToGo"></param>
+    /// <returns></returns>
     public bool ContainsItem(InventoryItemData itemToAdd, out List<InventorySlot> slotToGo)
     {
         //here, we look through our collection of slots (inventory or other) and gather
@@ -184,9 +194,9 @@ public class InventorySystem
         //add them to a list. Ex. if we want to add an apple, and apples have 5 
         //stack size, we would find all slots with apples to use later, bc we
         //could have 2 slots of apples that both arent filled.
-        slotToGo = collectionOfSlots.Where(slotBeingLookedAt => slotBeingLookedAt.ItemData ==itemToAdd).ToList();
+        slotToGo = collectionOfSlots.Where(slotBeingLookedAt => slotBeingLookedAt.ItemData == itemToAdd).ToList();
         //the list.where apparently is really helpful. Researching in progress.
-        if(slotToGo.Count > 0) //change to 1 if broken
+        if (slotToGo.Count > 0) //change to 1 if broken
         {
             return true;
         }
