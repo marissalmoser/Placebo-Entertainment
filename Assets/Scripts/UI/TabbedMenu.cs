@@ -498,16 +498,12 @@ namespace PlaceboEntertainment.UI
             if (_dialogueText == null) return;
             _dialogueText.text = $"<color=\"orange\">{charName} <color=\"white\">- {dialogueText}";
         }
-
-        [ContextMenu("Test Display Dialogue Option")]
-        private void TestDisplayDialogueOption()
-        {
-            ClearDialogueOptions();
-            DisplayDialogueOption("Hello", () => { print("hewwo"); });
-            DisplayDialogue("joe", "howoo");
-            ToggleDialogue(true);
-        }
-
+        
+        /// <summary>
+        /// Creates a dialogue option.
+        /// </summary>
+        /// <param name="text">The text you wish to display.</param>
+        /// <param name="click">An action that gets invoked on click.</param>
         public void DisplayDialogueOption(string text, Action click)
         {
             if (string.IsNullOrEmpty(text)) return;
@@ -528,25 +524,7 @@ namespace PlaceboEntertainment.UI
             dialogueMenu.rootVisualElement.Query(DialogueOptionName)
                 .ForEach(option => { option.parent.Remove(option); });
         }
-
-        /// <summary>
-        /// Sets the dialogue option text and hides the button if desired.
-        /// </summary>
-        /// <param name="button">The button to set text on.</param>
-        /// <param name="text">The text to apply.</param>
-        private void SetDialogueOptionInternal(Button button, string text)
-        {
-            if (button == null) return;
-            if (string.IsNullOrWhiteSpace(text))
-            {
-                button.style.display = DisplayStyle.None;
-                return;
-            }
-
-            button.style.display = DisplayStyle.Flex;
-            button.text = text;
-        }
-
+        
         #endregion
     }
 }
