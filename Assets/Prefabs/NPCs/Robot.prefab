@@ -169,7 +169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _npcName: Robot
   _startMinigameEvent: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
-  _eventTag: 0
+  _eventTag: 6
   _stateDialogueTrees:
     _idleState:
     - _dialogue:
@@ -228,7 +228,7 @@ MonoBehaviour:
         wires for me?
       _playerResponses:
       - _eventToTrigger: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
-        _eventTag: 0
+        _eventTag: 6
         _hasPrerequisiteCheck: 0
         _answer: Of course!
         _nextResponseIndex: 
@@ -257,7 +257,7 @@ MonoBehaviour:
         and help connect these wires."
       _playerResponses:
       - _eventToTrigger: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
-        _eventTag: 0
+        _eventTag: 6
         _hasPrerequisiteCheck: 0
         _answer: <b>Help with the wires
         _nextResponseIndex: 
@@ -270,7 +270,7 @@ MonoBehaviour:
       - "That\u2019s much better! Thank you for the help."
       _playerResponses:
       - _eventToTrigger: {fileID: 11400000, guid: 0dc09a2e909bfa14ba070b27da962183, type: 2}
-        _eventTag: 0
+        _eventTag: 6
         _hasPrerequisiteCheck: 0
         _answer: "I\u2019m trying to get to the bridge. Can you help me?"
         _nextResponseIndex: 01000000

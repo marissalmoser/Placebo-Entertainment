@@ -169,7 +169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _npcName: Coward
   _startMinigameEvent: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
-  _eventTag: 0
+  _eventTag: 1
   _stateDialogueTrees:
     _idleState:
     - _dialogue:
@@ -214,7 +214,7 @@ MonoBehaviour:
         EEK! OK! I- I don\u2019t know what to do! Please help me!"
       _playerResponses:
       - _eventToTrigger: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
-        _eventTag: 0
+        _eventTag: 1
         _hasPrerequisiteCheck: 0
         _answer: Let's see if we can figure out how to fix this.
         _nextResponseIndex: 01000000
@@ -232,7 +232,7 @@ MonoBehaviour:
         when it explodes!"
       _playerResponses:
       - _eventToTrigger: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
-        _eventTag: 0
+        _eventTag: 1
         _hasPrerequisiteCheck: 0
         _answer: Let's see if we can figure out how to fix this.
         _nextResponseIndex: 01000000
@@ -250,7 +250,7 @@ MonoBehaviour:
         Fix this mess!"
       _playerResponses:
       - _eventToTrigger: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
-        _eventTag: 0
+        _eventTag: 1
         _hasPrerequisiteCheck: 0
         _answer: Let's see if we can figure out how to fix this.
         _nextResponseIndex: 01000000
@@ -268,7 +268,7 @@ MonoBehaviour:
         any minute!"
       _playerResponses:
       - _eventToTrigger: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
-        _eventTag: 0
+        _eventTag: 1
         _hasPrerequisiteCheck: 0
         _answer: <b>Help fix the generator
         _nextResponseIndex: 
@@ -329,7 +329,6 @@ MonoBehaviour:
     _postMinigameState: {fileID: 0}
     _failureState: {fileID: 0}
   _secondsUntilExplosion: 180
-  generatorRoomListener: {fileID: 4840030442360983682}
 --- !u!114 &4840030442360983682
 MonoBehaviour:
   m_ObjectHideFlags: 0
