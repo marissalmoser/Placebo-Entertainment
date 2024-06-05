@@ -60,6 +60,7 @@ MonoBehaviour:
   mapBoundaryLowerRight: {fileID: 0}
   emptyScheduleEntry: {fileID: 9197481963319205126, guid: 8a6092203ce997244bc858b05f625324, type: 3}
   fulfilledScheduleEntry: {fileID: 9197481963319205126, guid: 3a1513d3d4e2bab479e69f015fd9808a, type: 3}
+  dialogueButton: {fileID: 9197481963319205126, guid: c00efb0709149b649a92c73e003a5db2, type: 3}
 --- !u!1 &4064622201240816046
 GameObject:
   m_ObjectHideFlags: 0
