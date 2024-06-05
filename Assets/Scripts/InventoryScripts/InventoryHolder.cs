@@ -22,4 +22,8 @@ public class InventoryHolder : MonoBehaviour
     {
         inventorySystem = new InventorySystem(inventorySize);
     }
+    public void SetInventorySystem(InventorySystem system)
+    {
+        inventorySystem = system;
+    }
 }

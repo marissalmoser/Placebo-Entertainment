@@ -35,18 +35,6 @@ public class LoopController : MonoBehaviour
     }
     public void SaveInventory()
     {
-        InventoryHolder inventoryToSave = GameObject.FindGameObjectWithTag("Player").GetComponent<InventoryHolder>();
-        foreach(InventorySlot item in inventoryToSave.InventorySystem.CollectionOfSlots)
-        {
-            
-        }
-    }
-    public void LoadInventory()
-    {
 
-    }
-    public void SaveInventoryToJson()
-    {
-        string jsonData = JsonConvert.SerializeObject(inventoryData);
     }
 }
