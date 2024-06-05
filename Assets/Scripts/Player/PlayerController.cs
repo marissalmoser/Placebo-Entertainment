@@ -68,9 +68,9 @@ public class PlayerController : MonoBehaviour
         move.performed += ctx => isMoving = true;
         move.canceled += ctx => moveDirection = move.ReadValue<Vector2>();
         move.canceled += ctx => isMoving = false;
-        //move.performed += ctx => rb.velocity = 
-        //    new Vector3(move.ReadValue<Vector2>().x * moveSpeed, rb.velocity.y, move.ReadValue<Vector2>().y * moveSpeed);
-        //move.canceled += ctx => rb.velocity = new Vector3(0, rb.velocity.y, 0);
+       // move.performed += ctx => rb.velocity = 
+        //new Vector3(move.ReadValue<Vector2>().x * moveSpeed, rb.velocity.y, move.ReadValue<Vector2>().y * moveSpeed);
+       // move.canceled += ctx => rb.velocity = new Vector3(0, rb.velocity.y, 0);
 
         //slash.performed += ctx => laser.SetActive(true);
         //slash.performed += ctx => transposer.m_XDamping = transposer.m_YDamping = transposer.m_ZDamping = cutCameraDamping;
@@ -148,12 +148,13 @@ public class PlayerController : MonoBehaviour
             velocity = transform.right * moveDirection.x + transform.forward * moveDirection.y;
             velocity = velocity.normalized;
             velocity *= moveSpeed;
-            rb.velocity = new Vector3(velocity.x, rb.velocity.y, velocity.z);
-            //rb.AddForce(velocity * moveSpeed);
+             Vector3 _velocity = new Vector3(velocity.x, 0, velocity.z);
+            rb.MovePosition(transform.position + _velocity * Time.deltaTime);
+            rb.AddForce(velocity * moveSpeed);
         }
         else
         {
-            rb.velocity = new Vector3(0, rb.velocity.y, 0);
+            //rb.MovePosition(transform.position +velocity * 0f);
         }
 
 //float speed = rb.velocity.magnitude;
@@ -182,7 +183,7 @@ if (!isGrounded)
         }
 
         // Player Rotation
-        transform.rotation = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0);
+        rb.rotation = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0);
     }
     void OnTriggerEnter(Collider col)
     {
