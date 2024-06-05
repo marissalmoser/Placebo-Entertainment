@@ -12,7 +12,7 @@ using UnityEngine;
 public class GeneratorRoomCheck : MonoBehaviour
 {
     [SerializeField] private NpcEvent _generatorRoomEvent;
-    [SerializeField] private string _eventTag;
+    [SerializeField] private NpcEvent.NpcEventTags _eventTag;
 
     private void OnTriggerEnter(Collider other)
     {

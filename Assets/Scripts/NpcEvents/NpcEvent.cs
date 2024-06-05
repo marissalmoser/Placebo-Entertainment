@@ -13,17 +13,28 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "NPC Event")]
 public class NpcEvent : ScriptableObject
 {
+    public enum NpcEventTags
+    {
+        Angel,
+        Coward,
+        Fish,
+        Gladiator,
+        Gnomes,
+        Goop,
+        Robot
+    }
+
     private List<NpcEventListener> _eventListeners = new List<NpcEventListener>();
 
     /// <summary>
     /// Called from another script to trigger this event. Event tags serve to 
     /// distinguish events related to different NPCs, quests, items, etc.
     /// </summary>
-    public void TriggerEvent(string eventTag)
+    public void TriggerEvent(NpcEventTags eventTag)
     {
         for (int i = 0; i < _eventListeners.Count; ++i)
         {
-            _eventListeners[i].OnEventTriggered(eventTag);
+            _eventListeners[i].OnEventTriggered(eventTag, this);
         }
     }
 

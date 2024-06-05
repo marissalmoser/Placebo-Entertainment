@@ -34,7 +34,7 @@ public class MGTestingScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.M))
         {
-            _minigameStartEvent.TriggerEvent("Robot");
+            _minigameStartEvent.TriggerEvent(NpcEvent.NpcEventTags.Robot);
             Debug.Log("Start minigame event triggered");
         }
     }
