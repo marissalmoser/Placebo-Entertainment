@@ -11,7 +11,6 @@ using UnityEngine;
 public class CowardNpc : BaseNpc
 {
     [SerializeField] private float _secondsUntilExplosion;
-    [SerializeField] private NpcEventListener generatorRoomListener;
 
     private bool _canTriggerInteraction = false;
 
@@ -20,9 +19,12 @@ public class CowardNpc : BaseNpc
     /// </summary>
     public void GeneratorEventTriggered()
     {
-        _canTriggerInteraction = true;
-        _canInteract = true;
-        Interact();
+        if (_currentState == NpcStates.MinigameReady)
+        {
+            _canTriggerInteraction = true;
+            _canInteract = true;
+            Interact();
+        }
     }
 
     /// <summary>
@@ -71,8 +73,6 @@ public class CowardNpc : BaseNpc
     protected override void Initialize()
     {
         base.Initialize();
-
-        generatorRoomListener.enabled = false;
     }
 
     /// <summary>
@@ -93,7 +93,6 @@ public class CowardNpc : BaseNpc
         base.EnterMinigameReady();
 
         _canTriggerInteraction = false;
-        generatorRoomListener.enabled = true;
     }
 
     /// <summary>

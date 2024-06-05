@@ -36,10 +36,6 @@ public class NpcEventListener : MonoBehaviour
 
     [SerializeField] private TargetEvent[] _eventsToListenFor; 
 
-    //[SerializeField] private NpcEvent _npcEvent;
-    //[SerializeField] private string _targetEventTag;
-    //[SerializeField] private UnityEvent _onEventTriggered;
-
     /// <summary>
     /// Called by NpcEvent to invoke a local UnityEvent if the incoming event tag
     /// matches to target.

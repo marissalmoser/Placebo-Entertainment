@@ -21,7 +21,8 @@ public enum NpcEventTags
     Gladiator,
     Gnomes,
     Goop,
-    Robot
+    Robot,
+    Lightbulb // TODO: remove this tag once NPCs are tied into inventory system
 }
 
 [CreateAssetMenu(menuName = "NPC Event")]

@@ -16,9 +16,6 @@ GameObject:
   - component: {fileID: 5906817822273611618}
   - component: {fileID: 1230460638816517745}
   - component: {fileID: 4840030442360983682}
-  - component: {fileID: -4667766229383264183}
-  - component: {fileID: 4421219648420445820}
-  - component: {fileID: 7899668489594915188}
   - component: {fileID: 5883686602139835072}
   m_Layer: 0
   m_Name: Coward
@@ -172,7 +169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _npcName: Coward
   _startMinigameEvent: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
-  _eventTag: Coward
+  _eventTag: 0
   _stateDialogueTrees:
     _idleState:
     - _dialogue:
@@ -180,7 +177,7 @@ MonoBehaviour:
         have taken it\u2026 or at least wouldn\u2019t have turned it on."
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
-        _eventTag: 
+        _eventTag: 0
         _hasPrerequisiteCheck: 0
         _answer: You're welcome.
         _nextResponseIndex: 
@@ -192,21 +189,21 @@ MonoBehaviour:
         I have it all under control! I just have to\u2026 um\u2026 let\u2019s see\u2026"
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
-        _eventTag: 
+        _eventTag: 0
         _hasPrerequisiteCheck: 0
         _answer: "You\u2019re not a very good engineer are you?"
         _nextResponseIndex: 01000000
         _advancesNpcState: 0
         _endsDialogue: 0
       - _eventToTrigger: {fileID: 0}
-        _eventTag: 
+        _eventTag: 0
         _hasPrerequisiteCheck: 0
         _answer: That looks dangerous. Need some help?
         _nextResponseIndex: 02000000
         _advancesNpcState: 0
         _endsDialogue: 0
       - _eventToTrigger: {fileID: 0}
-        _eventTag: 
+        _eventTag: 0
         _hasPrerequisiteCheck: 0
         _answer: What are you waiting for!
         _nextResponseIndex: 03000000
@@ -217,14 +214,14 @@ MonoBehaviour:
         EEK! OK! I- I don\u2019t know what to do! Please help me!"
       _playerResponses:
       - _eventToTrigger: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
-        _eventTag: Coward
+        _eventTag: 0
         _hasPrerequisiteCheck: 0
         _answer: Let's see if we can figure out how to fix this.
         _nextResponseIndex: 01000000
         _advancesNpcState: 0
         _endsDialogue: 1
       - _eventToTrigger: {fileID: 0}
-        _eventTag: 
+        _eventTag: 0
         _hasPrerequisiteCheck: 1
         _answer: I should be able to fix it with this!
         _nextResponseIndex: 04000000
@@ -235,14 +232,14 @@ MonoBehaviour:
         when it explodes!"
       _playerResponses:
       - _eventToTrigger: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
-        _eventTag: Coward
+        _eventTag: 0
         _hasPrerequisiteCheck: 0
         _answer: Let's see if we can figure out how to fix this.
         _nextResponseIndex: 01000000
         _advancesNpcState: 0
         _endsDialogue: 1
       - _eventToTrigger: {fileID: 0}
-        _eventTag: 
+        _eventTag: 0
         _hasPrerequisiteCheck: 1
         _answer: I should be able to fix it with this!
         _nextResponseIndex: 04000000
@@ -253,14 +250,14 @@ MonoBehaviour:
         Fix this mess!"
       _playerResponses:
       - _eventToTrigger: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
-        _eventTag: Coward
+        _eventTag: 0
         _hasPrerequisiteCheck: 0
         _answer: Let's see if we can figure out how to fix this.
         _nextResponseIndex: 01000000
         _advancesNpcState: 0
         _endsDialogue: 1
       - _eventToTrigger: {fileID: 0}
-        _eventTag: 
+        _eventTag: 0
         _hasPrerequisiteCheck: 1
         _answer: I should be able to fix it with this!
         _nextResponseIndex: 04000000
@@ -271,7 +268,7 @@ MonoBehaviour:
         any minute!"
       _playerResponses:
       - _eventToTrigger: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
-        _eventTag: Coward
+        _eventTag: 0
         _hasPrerequisiteCheck: 0
         _answer: <b>Help fix the generator
         _nextResponseIndex: 
@@ -283,14 +280,14 @@ MonoBehaviour:
       - "I, always, knew you could do it! Now, about my payment for assisting you\u2026"
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
-        _eventTag: 
+        _eventTag: 0
         _hasPrerequisiteCheck: 0
         _answer: Yes of course. <b>*Pets the coward*
         _nextResponseIndex: 01000000
         _advancesNpcState: 0
         _endsDialogue: 0
       - _eventToTrigger: {fileID: 0}
-        _eventTag: 
+        _eventTag: 0
         _hasPrerequisiteCheck: 0
         _answer: What?! No!
         _nextResponseIndex: 02000000
@@ -301,7 +298,7 @@ MonoBehaviour:
         J- just keep the wrench.
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
-        _eventTag: 
+        _eventTag: 0
         _hasPrerequisiteCheck: 0
         _answer: <b>Leave
         _nextResponseIndex: 
@@ -312,7 +309,7 @@ MonoBehaviour:
         a lot!"
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
-        _eventTag: 
+        _eventTag: 0
         _hasPrerequisiteCheck: 0
         _answer: <b>Leave
         _nextResponseIndex: 
@@ -345,110 +342,75 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a0acc881a336094997b0fb61c6d1983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _npcEvent: {fileID: 11400000, guid: 9f71d044c4d09304588beadc31eb08d4, type: 2}
-  _targetEventTag: GeneratorRoom
-  _onEventTriggered:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1230460638816517745}
-        m_TargetAssemblyTypeName: CowardNpc, Assembly-CSharp
-        m_MethodName: GeneratorEventTriggered
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &-4667766229383264183
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3297066376343357550}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a0acc881a336094997b0fb61c6d1983, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _npcEvent: {fileID: 11400000, guid: b0ff38f0f20db8a4ab04033934de185c, type: 2}
-  _targetEventTag: Lightbulb
-  _onEventTriggered:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1230460638816517745}
-        m_TargetAssemblyTypeName: CowardNpc, Assembly-CSharp
-        m_MethodName: LightbulbEventTriggered
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &4421219648420445820
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3297066376343357550}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a0acc881a336094997b0fb61c6d1983, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _npcEvent: {fileID: 11400000, guid: b0ff38f0f20db8a4ab04033934de185c, type: 2}
-  _targetEventTag: CowardBypass
-  _onEventTriggered:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1230460638816517745}
-        m_TargetAssemblyTypeName: BaseNpc, Assembly-CSharp
-        m_MethodName: CollectedBypassItem
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &7899668489594915188
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3297066376343357550}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a0acc881a336094997b0fb61c6d1983, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _npcEvent: {fileID: 11400000, guid: 8b7b5ccfabcfc4d4f96da8928978e41e, type: 2}
-  _targetEventTag: Coward
-  _onEventTriggered:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1230460638816517745}
-        m_TargetAssemblyTypeName: CowardNpc, Assembly-CSharp
-        m_MethodName: CheckForStateChange
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _eventsToListenFor:
+  - _npcEvent: {fileID: 11400000, guid: 9f71d044c4d09304588beadc31eb08d4, type: 2}
+    _npcEventTag: 1
+    _onEventTriggered:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1230460638816517745}
+          m_TargetAssemblyTypeName: CowardNpc, Assembly-CSharp
+          m_MethodName: GeneratorEventTriggered
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - _npcEvent: {fileID: 11400000, guid: b0ff38f0f20db8a4ab04033934de185c, type: 2}
+    _npcEventTag: 7
+    _onEventTriggered:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1230460638816517745}
+          m_TargetAssemblyTypeName: CowardNpc, Assembly-CSharp
+          m_MethodName: LightbulbEventTriggered
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - _npcEvent: {fileID: 11400000, guid: b0ff38f0f20db8a4ab04033934de185c, type: 2}
+    _npcEventTag: 1
+    _onEventTriggered:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1230460638816517745}
+          m_TargetAssemblyTypeName: BaseNpc, Assembly-CSharp
+          m_MethodName: CollectedBypassItem
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - _npcEvent: {fileID: 11400000, guid: 8b7b5ccfabcfc4d4f96da8928978e41e, type: 2}
+    _npcEventTag: 1
+    _onEventTriggered:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1230460638816517745}
+          m_TargetAssemblyTypeName: CowardNpc, Assembly-CSharp
+          m_MethodName: CheckForStateChange
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &5883686602139835072
 MonoBehaviour:
   m_ObjectHideFlags: 0
