@@ -14,15 +14,19 @@ using UnityEngine.Events;
 
 public class NpcEventListener : MonoBehaviour
 {
+    /// <summary>
+    /// This struct contains an event to listen for and a corresponding UnityEvent
+    /// to invoke when that event is triggered
+    /// </summary>
     [System.Serializable]
     private struct TargetEvent
     {
         [SerializeField] private NpcEvent _npcEvent;
-        [SerializeField] private NpcEvent.NpcEventTags _npcEventTag;
+        [SerializeField] private NpcEventTags _npcEventTag;
         [SerializeField] private UnityEvent _onEventTriggered;
 
         public NpcEvent NpcEvent { get => _npcEvent; }
-        public NpcEvent.NpcEventTags NpcEventTag { get => _npcEventTag; }
+        public NpcEventTags NpcEventTag { get => _npcEventTag; }
 
         public void InvokeUnityEvents()
         {
@@ -40,7 +44,7 @@ public class NpcEventListener : MonoBehaviour
     /// Called by NpcEvent to invoke a local UnityEvent if the incoming event tag
     /// matches to target.
     /// </summary>
-    public void OnEventTriggered(NpcEvent.NpcEventTags eventTag, NpcEvent triggeredEvent)
+    public void OnEventTriggered(NpcEventTags eventTag, NpcEvent triggeredEvent)
     {
         foreach (TargetEvent targetEvent in _eventsToListenFor)
         {
@@ -51,6 +55,9 @@ public class NpcEventListener : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Subscribes to all events in list
+    /// </summary>
     private void OnEnable()
     {
         foreach (TargetEvent targetEvent in _eventsToListenFor)
@@ -59,6 +66,9 @@ public class NpcEventListener : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Unsubscribes from all events in list
+    /// </summary>
     private void OnDisable()
     {
         foreach (TargetEvent targetEvent in _eventsToListenFor)

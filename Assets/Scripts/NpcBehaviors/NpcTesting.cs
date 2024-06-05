@@ -13,9 +13,9 @@ public class NpcTesting : MonoBehaviour
 {
     [SerializeField] private BaseNpc _npcToTest;
     [SerializeField] private NpcEvent _eventToTrigger;
-    [SerializeField] private NpcEvent.NpcEventTags _eventTag;
+    [SerializeField] private NpcEventTags _eventTag;
     [SerializeField] private NpcEvent _secondaryEvent;
-    [SerializeField] private NpcEvent.NpcEventTags _secondaryEventTag;
+    [SerializeField] private NpcEventTags _secondaryEventTag;
 
     // Update is called once per frame
     void Update()

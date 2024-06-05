@@ -10,20 +10,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Enum for event tags used in differentiating events of the same type
+/// </summary>
+public enum NpcEventTags
+{
+    Angel,
+    Coward,
+    Fish,
+    Gladiator,
+    Gnomes,
+    Goop,
+    Robot
+}
+
 [CreateAssetMenu(menuName = "NPC Event")]
 public class NpcEvent : ScriptableObject
 {
-    public enum NpcEventTags
-    {
-        Angel,
-        Coward,
-        Fish,
-        Gladiator,
-        Gnomes,
-        Goop,
-        Robot
-    }
-
     private List<NpcEventListener> _eventListeners = new List<NpcEventListener>();
 
     /// <summary>

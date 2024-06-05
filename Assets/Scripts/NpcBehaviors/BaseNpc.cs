@@ -81,7 +81,7 @@ public abstract class BaseNpc : MonoBehaviour
     protected struct PlayerResponse
     {
         [SerializeField] private NpcEvent _eventToTrigger;
-        [SerializeField] private NpcEvent.NpcEventTags _eventTag;
+        [SerializeField] private NpcEventTags _eventTag;
         [SerializeField] private bool _hasPrerequisiteCheck;
         [SerializeField] private string _answer;
         [SerializeField] private int[] _nextResponseIndex;
@@ -89,7 +89,7 @@ public abstract class BaseNpc : MonoBehaviour
         [SerializeField] private bool _endsDialogue;
 
         public NpcEvent EventToTrigger { get => _eventToTrigger; }
-        public NpcEvent.NpcEventTags EventTag { get => _eventTag; }
+        public NpcEventTags EventTag { get => _eventTag; }
         public bool HasPrerequisiteCheck { get => _hasPrerequisiteCheck; }
         public string Answer { get => _answer; }
         public int[] NextResponseIndex { get => _nextResponseIndex; }
@@ -101,7 +101,7 @@ public abstract class BaseNpc : MonoBehaviour
     [SerializeField] protected string _npcName;
 
     [SerializeField] protected NpcEvent _startMinigameEvent;
-    [SerializeField] protected NpcEvent.NpcEventTags _eventTag;
+    [SerializeField] protected NpcEventTags _eventTag;
 
     [SerializeField] protected StateDataGroup<DialogueNode[]> _stateDialogueTrees;
     [SerializeField] protected StateDataGroup<Vector3> _navigationPositions;
