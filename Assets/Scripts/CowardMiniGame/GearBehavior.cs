@@ -1,6 +1,7 @@
 /*****************************************************************************
 // File Name :         GearBehavior.cs
 // Author :            Mark Hanson
+// Contributors :      Marissa Moser
 // Creation Date :     5/24/2024
 //
 // Brief Description : Any function to do for the gears mini game will be found here. Includes swapping slots, Correct slot pattern with all bad ones, and selecting gears for each slot.
@@ -8,16 +9,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PlaceboEntertainment.UI;
 
-public class GearBehavior : MonoBehaviour
+public class GearBehavior : MonoBehaviour, IInteractable
 {
     [Header("Individual Gear")]
     [SerializeField] private GameObject[] _gearSize;
     [SerializeField] private GameObject _gearIndi;
     private int _gearSizeNum;
-    private bool _scrollable;
+    //private bool _scrollable;
     private bool _doOnce;
-    private PlayerController _pc;
+    //private PlayerController _pc;
+    private bool _interact;
 
     [Header("Correct Gear")]
     [SerializeField] private int _rightGearNum;
@@ -30,9 +33,9 @@ public class GearBehavior : MonoBehaviour
     {
         _doOnce = true;
         _gearSizeNum = 1;
-        _scrollable = false;
-        GameObject _pcObject = GameObject.FindWithTag("Player");
-        _pc = _pcObject.GetComponent<PlayerController>();
+        //_scrollable = false;
+        //GameObject _pcObject = GameObject.FindWithTag("Player");
+        //_pc = _pcObject.GetComponent<PlayerController>();
         _rndr = this.GetComponent<Renderer>();
     }
 
@@ -40,13 +43,13 @@ public class GearBehavior : MonoBehaviour
     void FixedUpdate()
     {
         transform.localScale = new Vector3(1f, _gearIndi.transform.localScale.y + 0.5f, 1f);
-        if (_pc.interact.IsPressed() && _gearSizeNum != _gearSize.Length && _doOnce == true && _scrollable == true)
+        if (_interact && _gearSizeNum != _gearSize.Length && _doOnce == true)// && _scrollable == true)
         {
             _gearSizeNum++;
             _doOnce = false;
             StartCoroutine(doOnceCooldown());
         }
-        if (_pc.interact.IsPressed() && _gearSizeNum == _gearSize.Length && _doOnce == true && _scrollable == true)
+        if (_interact && _gearSizeNum == _gearSize.Length && _doOnce == true)// && _scrollable == true)
         {
             _gearSizeNum = 1;
             _doOnce = false;
@@ -72,18 +75,52 @@ public class GearBehavior : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         _doOnce = true;
     }
-    void OnTriggerEnter(Collider col)
+
+    //void OnTriggerEnter(Collider col)
+    //{
+    //    if (col.gameObject.tag == "Player")
+    //    {
+    //        _scrollable = true;
+    //    }
+    //}
+    //void OnTriggerExit(Collider col)
+    //{
+    //    if (col.gameObject.tag == "Player")
+    //    {
+    //        _scrollable = false;
+    //    }
+    //}
+
+    /// <summary>
+    /// Enables gears to be interacted with in update
+    /// </summary>
+    /// <param name="player"></param>
+    public void Interact(GameObject player)
     {
-        if (col.gameObject.tag == "Player")
-        {
-            _scrollable = true;
-        }
+        _interact = true;
     }
-    void OnTriggerExit(Collider col)
+
+    /// <summary>
+    /// Disables gears to be interacted with in update
+    /// </summary>
+    public void CancelInteract()
     {
-        if (col.gameObject.tag == "Player")
-        {
-            _scrollable = false;
-        }
+        _interact = false;
+    }
+
+    /// <summary>
+    /// Shows UI prompt to interact with gears.
+    /// </summary>
+    public void DisplayInteractUI()
+    {
+        TabbedMenu.Instance.ToggleInteractPrompt(true, "GEAR");
+    }
+
+    /// <summary>
+    /// Hides UI prompt to interact with gears.
+    /// </summary>
+    public void HideInteractUI()
+    {
+        TabbedMenu.Instance.ToggleInteractPrompt(false);
     }
 }

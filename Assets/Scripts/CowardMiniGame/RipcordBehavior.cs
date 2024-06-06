@@ -1,6 +1,7 @@
 /*****************************************************************************
 // File Name :         RipcordBehavior.cs
 // Author :            Mark Hanson
+// Contributors :      Marissa Moser
 // Creation Date :     5/23/2024
 //
 // Brief Description : Any function to do for the ripcord mini game can be found hear from pulling it back, pulling towards certain ranges, and counting successful pulls.
@@ -10,8 +11,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using PlaceboEntertainment.UI;
 
-public class RipcordBehavior : MonoBehaviour
+public class RipcordBehavior : MonoBehaviour, IInteractable
 {
 
     [Header("UI Stuff")]
@@ -96,7 +98,7 @@ public class RipcordBehavior : MonoBehaviour
             _successfulPulls.color = Color.green;
             //Destroy(this);
         }
-        Debug.Log(_numReleased);
+        //Debug.Log(_numReleased);
     }
     IEnumerator ReleaseWindow()
     {
@@ -111,5 +113,25 @@ public class RipcordBehavior : MonoBehaviour
             _numReleased++;
             GameObject.Destroy(col.gameObject);
         }
+    }
+
+    public void Interact(GameObject player)
+    {
+        PressedE = true;
+    }
+
+    public void CancelInteract()
+    {
+        PressedE = false;
+    }
+
+    public void DisplayInteractUI()
+    {
+        TabbedMenu.Instance.ToggleInteractPrompt(true, "RIPCORD");
+    }
+
+    public void HideInteractUI()
+    {
+        TabbedMenu.Instance.ToggleInteractPrompt(false);
     }
 }

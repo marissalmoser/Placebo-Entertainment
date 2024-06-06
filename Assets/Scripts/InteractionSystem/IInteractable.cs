@@ -16,19 +16,27 @@ using UnityEngine;
 public interface IInteractable
 {
     /// <summary>
-    /// Function called from player's Interact script. Will contain that object's
-    /// functionality.
+    /// Function called from player's Interact script when interact input is
+    /// detected. Will contain that object's functionality.
     /// </summary>
     /// <param name="player"></param>
     void Interact(GameObject player);
 
     /// <summary>
-    /// Displays the specific UI prompt for the interactable object
+    /// Called when interaction input is canceled. Is not required to implement
+    /// for all interactable objects.
+    /// </summary>
+    void CancelInteract() { }
+
+    /// <summary>
+    /// Called when interaction with an interactable becomes avaliable. Can be
+    /// used to displays the specific UI prompt for the interactable object.
     /// </summary>
     void DisplayInteractUI();
 
     /// <summary>
-    /// Hides the specific UI prompt for the interactable object
+    /// Called when interaction with an interactable becomes unavaliable. Can be
+    /// used to hide the specific UI prompt for the interactable object.
     /// </summary>
     void HideInteractUI();
 }

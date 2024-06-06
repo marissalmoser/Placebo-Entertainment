@@ -51,7 +51,7 @@ public class PlayerInteractSystem
             case "Ripcord":
                 GameObject RcObject = GameObject.Find("Ripcord");
                 RipcordBehavior _rc = RcObject.GetComponent<RipcordBehavior>();
-                _rc.PressedE = true;
+                //_rc.PressedE = true;
                 break;
             default:
                 break;
@@ -65,7 +65,7 @@ public class PlayerInteractSystem
             case "Ripcord":
                 GameObject RcObject = GameObject.Find("Ripcord");
                 RipcordBehavior _rc = RcObject.GetComponent<RipcordBehavior>();
-                _rc.PressedE = false;
+                //_rc.PressedE = false;
                 break;
                 default:
                 break;

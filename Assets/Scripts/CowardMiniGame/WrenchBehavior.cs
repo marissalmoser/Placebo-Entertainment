@@ -1,6 +1,7 @@
 /*****************************************************************************
 // File Name :         WrenchBehavior.cs
 // Author :            Mark Hanson
+// Contributors :      Marissa Moser
 // Creation Date :     5/27/2024
 //
 // Brief Description : Any function to do with the wrench will be found here. Wrench swinging, spark interaction, and completion of this segment of the minigame.
@@ -10,15 +11,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using PlaceboEntertainment.UI;
+using System;
 
-public class WrenchBehavior : MonoBehaviour
+public class WrenchBehavior : MonoBehaviour, IInteractable
 {
     [Header("UI Stuff")]
     [SerializeField] private TextMeshPro _smackedText;
 
     [Header("Wrench overall functions")]
     [SerializeField] private GameObject _sparksMode;
-    private PlayerController _pc;
+    //private PlayerController _pc;
     private int _sparkSmacked;
 
     [Header("Wrench within hand functions")]
@@ -29,6 +32,8 @@ public class WrenchBehavior : MonoBehaviour
     [SerializeField] private GameObject _rightHand;
     private bool _withinProx;
     private bool _isEquipped;
+
+    public static Action SparkSmackedAction;
 
     void Awake()
     {
@@ -41,74 +46,137 @@ public class WrenchBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameObject _pcObject = GameObject.FindWithTag("Player");
-        _pc = _pcObject.GetComponent<PlayerController>();
+        //GameObject _pcObject = GameObject.FindWithTag("Player");
+        //_pc = _pcObject.GetComponent<PlayerController>();
         _isEquipped = false;
-        _withinProx = false;
+        //_withinProx = false;
         _swing = false;
+        SparkSmackedAction += SparkSmacked;
     }
     void FixedUpdate()
     {
-        if (_pc.interact.IsPressed() && _isEquipped == false && _withinProx == true)
-        {
-            transform.parent = _rightHand.transform;
-            _isEquipped = true;
-        }
+        //if (_interact && _isEquipped == false && _withinProx == true)
+        //{
+        //    transform.parent = _rightHand.transform;
+        //    _isEquipped = true;
+        //}
         if(_isEquipped == true)
         {
             transform.position = new Vector3(_rightHand.transform.position.x, _rightHand.transform.position.y, _rightHand.transform.position.z);
             transform.rotation = _rightHand.transform.rotation;
         }
-        if(_pc.interact.IsPressed() && _isEquipped == true)
-        {
-            StartCoroutine(Swinging());
-        }
-        Debug.Log(_isEquipped);
+        //if(_interact && _isEquipped == true)
+        //{
+        //    StartCoroutine(Swinging());
+        //}
+        //Debug.Log(_isEquipped);
     }
     // Update is called once per frame
     void Update()
     {
+        //_smackedText.text = _sparkSmacked.ToString();
+        //if(_swing == true && _isEquipped == true)
+        //{
+        //    GetComponent<Collider>().enabled = true;
+        //}
+        //if(_swing == false && _isEquipped == true)
+        //{
+        //    GetComponent<Collider>().enabled = false;
+        //}
+        //if(_sparkSmacked == 5)
+        //{
+        //    _smackedText.color = Color.green;
+        //    _sparksMode.SetActive(false);
+        //    gameObject.SetActive(false);
+        //}
+    }
+
+    /// <summary>
+    /// A coroutine to manage the swinging animation.
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator Swinging()
+    {
+        print("swing");
+        _animate.SetBool("isSwinging", true);
+        //_swing = true;
+        yield return new WaitForSeconds(0.1f);
+        //_swing = false;
+        _animate.SetBool("isSwinging", false);
+    }
+
+    /// <summary>
+    /// This function is invoked in SparkInteractBehavior whenever a spark is interacted
+    /// with. It keeps track of the number of sparks that have been smacked and ends the game.
+    /// </summary>
+    private void SparkSmacked()
+    {
+        _sparkSmacked++;
         _smackedText.text = _sparkSmacked.ToString();
-        if(_swing == true && _isEquipped == true)
-        {
-            GetComponent<Collider>().enabled = true;
-        }
-        if(_swing == false && _isEquipped == true)
-        {
-            GetComponent<Collider>().enabled = false;
-        }
-        if(_sparkSmacked == 5)
+        StartCoroutine(Swinging());
+        if (_sparkSmacked >= 5)
         {
             _smackedText.color = Color.green;
             _sparksMode.SetActive(false);
             gameObject.SetActive(false);
+
+            //game ends here?
+            print("game end");
         }
     }
-    IEnumerator Swinging()
+
+    //void OnTriggerEnter(Collider col)
+    //{
+    //    if(col.gameObject.tag == "Spark")
+    //    {
+    //        _sparkSmacked++;
+    //        Destroy(col.gameObject);
+    //    }
+        //if (col.gameObject.tag == "Player")
+        //{
+        //    _withinProx = true;
+        //}
+    //}
+    //void OnTriggerExit(Collider col)
+    //{
+    //    if (col.gameObject.tag == "Player")
+    //    {
+    //        _withinProx = false;
+    //    }
+    //}
+
+    /// <summary>
+    /// This function is called when the player interacts with the wrench.
+    /// </summary>
+    /// <param name="player"></param>
+    public void Interact(GameObject player)
     {
-        _animate.SetBool("isSwinging", true);
-        _swing = true;
-        yield return new WaitForSeconds(0.1f);
-        _swing = false;
-        _animate.SetBool("isSwinging", false);
+        print(_isEquipped);
+        if (_isEquipped == false)
+        {
+            transform.parent = _rightHand.transform;
+            GetComponent<Collider>().enabled = false;
+        }
     }
-    void OnTriggerEnter(Collider col)
+
+    /// <summary>
+    /// Shows UI prompt for wrench
+    /// </summary>
+    public void DisplayInteractUI()
     {
-        if(col.gameObject.tag == "Spark")
-        {
-            _sparkSmacked++;
-            Destroy(col.gameObject);
-        }
-        if (col.gameObject.tag == "Player")
-        {
-            _withinProx = true;
-        }
+        TabbedMenu.Instance.ToggleInteractPrompt(true, "WRENCH");
     }
-    void OnTriggerExit(Collider col)
+
+    /// <summary>
+    /// Hides UI prompt for wrench
+    /// </summary>
+    public void HideInteractUI()
     {
-        if (col.gameObject.tag == "Player")
-        {
-            _withinProx = false;
-        }
+        TabbedMenu.Instance.ToggleInteractPrompt(false);
+    }
+
+    private void OnDisable()
+    {
+        SparkSmackedAction -= SparkSmacked;
     }
 }

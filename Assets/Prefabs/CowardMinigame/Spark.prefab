@@ -4987,6 +4987,7 @@ GameObject:
   - component: {fileID: 1475524241051773274}
   - component: {fileID: 8764450488468108013}
   - component: {fileID: 4969368482993150771}
+  - component: {fileID: 6694180042246520435}
   m_Layer: 0
   m_Name: Spark
   m_TagString: Spark
@@ -5075,9 +5076,21 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.8161168
-  m_Center: {x: 0, y: 0.3161168, z: 0}
+  m_Radius: 0.43902117
+  m_Center: {x: -0.04403597, y: 0.064927995, z: 0.016959846}
+--- !u!114 &6694180042246520435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4447755632433226540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 643cccb734fe7434ab44897bdfa225eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

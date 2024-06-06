@@ -102,7 +102,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -147,6 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b045cdfd094e1c4c91f417096219445, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _smackedText: {fileID: 0}
   _sparksMode: {fileID: 0}
   _animate: {fileID: 7995032218042838754}
   _wrenchSpark: {fileID: 105581026523438075, guid: f6bc08b5eeb1ccd40abc015300343b11, type: 3}
