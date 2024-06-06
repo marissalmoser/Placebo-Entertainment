@@ -27,6 +27,25 @@ public class SaveLoadManager : MonoBehaviour
     private const string directory = "/SavedGame/";
     private const string fileName = "SaveGame.sav";
 
+    private SaveData newData = new SaveData();
+    public InventoryItemData itemData;
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            Save(newData);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            Load();
+        }
+        if(Input.GetKeyDown(KeyCode.A))
+        {
+            GameObject.FindGameObjectWithTag("Player").GetComponent<InventoryHolder>().InventorySystem.AddToInventory(itemData, 3);
+        }
+    }
+
     public bool Save(SaveData data)
     {
         OnSaveGame?.Invoke();
