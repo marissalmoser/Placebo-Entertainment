@@ -67,4 +67,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _generatorRoomEvent: {fileID: 11400000, guid: 9f71d044c4d09304588beadc31eb08d4, type: 2}
-  _eventTag: GeneratorRoom
+  _eventTag: 1
