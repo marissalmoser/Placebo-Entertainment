@@ -14,6 +14,7 @@ using Cinemachine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController Instance;
     [SerializeField] float moveSpeed;
     [SerializeField] float jumpForce;
 
@@ -22,7 +23,7 @@ public class PlayerController : MonoBehaviour
     //[SerializeField] float cutCameraFOV;
    // float defaultFOV;
 
-    PlayerControls playerControls;
+    public PlayerControls PlayerControls { get; private set; }
     public InputAction move, interact, reset, quit;
 
     Rigidbody rb;
@@ -41,7 +42,9 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
+        Instance = this;
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
 
         rb = gameObject.GetComponent<Rigidbody>();
         mainCamera = FindObjectOfType<CinemachineVirtualCamera>();
@@ -50,13 +53,13 @@ public class PlayerController : MonoBehaviour
         //defaultFOV = mainCamera.m_Lens.FieldOfView;
         //laser = mainCamera.transform.GetChild(0).gameObject;
 
-        playerControls = new PlayerControls();
-        playerControls.BasicControls.Enable();
+        PlayerControls = new PlayerControls();
+        PlayerControls.BasicControls.Enable();
 
-        move = playerControls.FindAction("Move");
-        interact = playerControls.FindAction("Interact");
-        reset = playerControls.FindAction("Reset");
-        quit = playerControls.FindAction("Quit");
+        move = PlayerControls.FindAction("Move");
+        interact = PlayerControls.FindAction("Interact");
+        reset = PlayerControls.FindAction("Reset");
+        quit = PlayerControls.FindAction("Quit");
 
         move.performed += ctx => moveDirection = move.ReadValue<Vector2>();
         move.performed += ctx => isMoving = true;

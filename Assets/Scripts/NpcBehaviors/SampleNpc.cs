@@ -38,14 +38,6 @@ public class SampleNpc : BaseNpc
             Interact(2);
     }
 
-    protected override bool CheckDialoguePrerequisite(PlayerResponse option)
-    {
-        if (_haveBypassItem)
-            return true;
-        else
-            return false;
-    }
-
     public override void CheckForStateChange()
     {
         // This method should contain various checks to determine the next state

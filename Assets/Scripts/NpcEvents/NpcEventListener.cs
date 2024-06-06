@@ -14,29 +14,62 @@ using UnityEngine.Events;
 
 public class NpcEventListener : MonoBehaviour
 {
-    [SerializeField] private NpcEvent _npcEvent;
-    [SerializeField] private string _targetEventTag;
-    [SerializeField] private UnityEvent _onEventTriggered;
-
     /// <summary>
-    /// Called by NpcEvent to invoke a local UnityEvent if the incoming event tag
-    /// matches to target.
+    /// This struct contains an event to listen for and a corresponding UnityEvent
+    /// to invoke when that event is triggered
     /// </summary>
-    public void OnEventTriggered(string eventTag)
+    [System.Serializable]
+    private struct TargetEvent
     {
-        if (eventTag.Equals(_targetEventTag))
+        [SerializeField] private NpcEvent _npcEvent;
+        [SerializeField] private NpcEventTags _npcEventTag;
+        [SerializeField] private UnityEvent _onEventTriggered;
+
+        public NpcEvent NpcEvent { get => _npcEvent; }
+        public NpcEventTags NpcEventTag { get => _npcEventTag; }
+
+        public void InvokeUnityEvents()
         {
             _onEventTriggered.Invoke();
         }
     }
 
-    private void OnEnable()
+    [SerializeField] private TargetEvent[] _eventsToListenFor; 
+
+    /// <summary>
+    /// Called by NpcEvent to invoke a local UnityEvent if the incoming event tag
+    /// matches to target.
+    /// </summary>
+    public void OnEventTriggered(NpcEventTags eventTag, NpcEvent triggeredEvent)
     {
-        _npcEvent.AddListener(this);
+        foreach (TargetEvent targetEvent in _eventsToListenFor)
+        {
+            if (targetEvent.NpcEventTag == eventTag && targetEvent.NpcEvent == triggeredEvent)
+            {
+                targetEvent.InvokeUnityEvents();
+            }
+        }
     }
 
+    /// <summary>
+    /// Subscribes to all events in list
+    /// </summary>
+    private void OnEnable()
+    {
+        foreach (TargetEvent targetEvent in _eventsToListenFor)
+        {
+            targetEvent.NpcEvent.AddListener(this);
+        }
+    }
+
+    /// <summary>
+    /// Unsubscribes from all events in list
+    /// </summary>
     private void OnDisable()
     {
-        _npcEvent.RemoveListener(this);
+        foreach (TargetEvent targetEvent in _eventsToListenFor)
+        {
+            targetEvent.NpcEvent.RemoveListener(this);
+        }
     }
 }

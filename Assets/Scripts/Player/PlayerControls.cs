@@ -71,6 +71,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""OpenSchedule"",
+                    ""type"": ""Button"",
+                    ""id"": ""6e5d57fd-153e-4580-af9e-37ecc4e953a5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -172,6 +181,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""19e4cfdd-4194-4a5c-a007-85178a4d0174"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenSchedule"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -185,6 +205,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_BasicControls_Reset = m_BasicControls.FindAction("Reset", throwIfNotFound: true);
         m_BasicControls_Quit = m_BasicControls.FindAction("Quit", throwIfNotFound: true);
         m_BasicControls_Interact = m_BasicControls.FindAction("Interact", throwIfNotFound: true);
+        m_BasicControls_OpenSchedule = m_BasicControls.FindAction("OpenSchedule", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -251,6 +272,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_BasicControls_Reset;
     private readonly InputAction m_BasicControls_Quit;
     private readonly InputAction m_BasicControls_Interact;
+    private readonly InputAction m_BasicControls_OpenSchedule;
     public struct BasicControlsActions
     {
         private @PlayerControls m_Wrapper;
@@ -260,6 +282,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Reset => m_Wrapper.m_BasicControls_Reset;
         public InputAction @Quit => m_Wrapper.m_BasicControls_Quit;
         public InputAction @Interact => m_Wrapper.m_BasicControls_Interact;
+        public InputAction @OpenSchedule => m_Wrapper.m_BasicControls_OpenSchedule;
         public InputActionMap Get() { return m_Wrapper.m_BasicControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -284,6 +307,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
+            @OpenSchedule.started += instance.OnOpenSchedule;
+            @OpenSchedule.performed += instance.OnOpenSchedule;
+            @OpenSchedule.canceled += instance.OnOpenSchedule;
         }
 
         private void UnregisterCallbacks(IBasicControlsActions instance)
@@ -303,6 +329,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
+            @OpenSchedule.started -= instance.OnOpenSchedule;
+            @OpenSchedule.performed -= instance.OnOpenSchedule;
+            @OpenSchedule.canceled -= instance.OnOpenSchedule;
         }
 
         public void RemoveCallbacks(IBasicControlsActions instance)
@@ -327,5 +356,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnReset(InputAction.CallbackContext context);
         void OnQuit(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnOpenSchedule(InputAction.CallbackContext context);
     }
 }
