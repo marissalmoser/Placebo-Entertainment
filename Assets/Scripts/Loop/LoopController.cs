@@ -11,6 +11,8 @@ using UnityEngine.SceneManagement;
 public class LoopController : MonoBehaviour
 {
     private Timer loopTimer;
+    [SerializeField] private int loopTimerTime;
+    public int LoopTimerTimer => loopTimerTime;
 
     private void Start()
     {
@@ -18,7 +20,9 @@ public class LoopController : MonoBehaviour
         loopTimer = TimerManager.Instance.CreateTimer("LoopTimer", 180);
         loopTimer.TimesUp += HandleLoopTimerEnd;
     }
-
+    /// <summary>
+    /// Handler for the event
+    /// </summary>
     private void HandleLoopTimerEnd()
     {
         TimerManager.Instance.RemoveTimer("LoopTimer");
@@ -27,14 +31,14 @@ public class LoopController : MonoBehaviour
 
         loopTimer.TimesUp -= HandleLoopTimerEnd;
     }
+    /// <summary>
+    /// Saving, loading the new scene, loading saved data
+    /// </summary>
     public void ResetLoop()
     {
+        SaveLoadManager.Instance.SaveGameToSaveFile();
         int activeSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(activeSceneIndex);
-
-    }
-    public void SaveInventory()
-    {
-
+        SaveLoadManager.Instance.LoadGameFromSaveFile();
     }
 }

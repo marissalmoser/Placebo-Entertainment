@@ -1,27 +1,16 @@
-using System.Collections.Generic;
-using UnityEngine;
-
+/******************************************************************
+*    Author: Elijah Vroman
+*    Contributors: Elijah Vroman,
+*    Date Created: 6/3/24
+*    Description: I can probably make this a struct? All its doing 
+*    is making a SerializeableDictionary
+*******************************************************************/
 [System.Serializable]
-public class SaveData 
+public class SaveData
 {
     public SerializeableDictionary<string, InventorySystem> inventoryDictionary;
     public SaveData()
     {
         inventoryDictionary = new SerializeableDictionary<string, InventorySystem>();
-    }
-    public void CollectInventoryData()
-    {
-        InventoryHolder[] inventoryHolders = GameObject.FindObjectsOfType<InventoryHolder>();
-
-        foreach (var holder in inventoryHolders)
-        {
-            string objectName = holder.gameObject.name;
-            InventorySystem inventorySystem = holder.InventorySystem;
-
-            if (!inventoryDictionary.ContainsKey(objectName))
-            {
-                inventoryDictionary.Add(objectName, inventorySystem);
-            }
-        }
     }
 }

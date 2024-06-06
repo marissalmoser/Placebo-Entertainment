@@ -1,19 +1,19 @@
 /******************************************************************
 *    Author: Elijah Vroman
 *    Contributors: Elijah Vroman,
-*    Date Created: 6/4/24
+*    Date Created: 6/3/24
 *    Description: This class allows Unity to serialize and 
 *    deserialize dictionaries, which it does not natively support. 
-*    Followed tutorial and as of 6/4/24 realized it doesnt need to be,
-*    the tutorial is being  (((extra)))  and a normal dictionary would
-*    suffice. Live and learn. This was all copy paste anyways, pretty 
-*    simple stuff
+*    This allows me to save an inventory (item and amount kvp) to 
+*    JSON easily
 *******************************************************************/
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 //Inherit from the Dictionary class with generic values. Need ISerialization 
 //for its methods; below
+[Serializable]
 public class SerializeableDictionary<TKey, TValue> : Dictionary<TKey, TValue>, ISerializationCallbackReceiver
 {
     //making two serialized lists, one for keys, one for values! Crazy

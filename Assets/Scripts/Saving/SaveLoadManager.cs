@@ -1,3 +1,10 @@
+/******************************************************************
+*    Author: Elijah Vroman
+*    Contributors: Elijah Vroman,
+*    Date Created: 6/2/24
+*    Description: This manager allows saving and loading, assigning 
+*    savedata, deleting savedata,
+*******************************************************************/
 using System;
 using System.IO;
 using UnityEngine;
@@ -32,21 +39,34 @@ public class SaveLoadManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Alpha0))
+        if (Input.GetKeyDown(KeyCode.Alpha0))
         {
-            Save(newData);
+            SaveGameToSaveFile();
         }
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            Load();
+            LoadGameFromSaveFile();
         }
-        if(Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.A))
         {
-            GameObject.FindGameObjectWithTag("Player").GetComponent<InventoryHolder>().InventorySystem.AddToInventory(itemData, 3);
+            GameObject.FindGameObjectWithTag("Player").GetComponent<InventoryHolder>().InventorySystem.AddToInventory(itemData, 3, out _);
         }
     }
-
-    public bool Save(SaveData data)
+    private void CollectInventoryData()
+    {
+        InventoryHolder[] inventoryHolders = FindObjectsOfType<InventoryHolder>();
+        foreach (var holder in inventoryHolders)
+        {
+            string objectName = holder.gameObject.name;
+            InventorySystem inventorySystem = holder.InventorySystem;
+            //print(holder.InventorySystem.CollectionOfSlots[0].GetRoomLeftInStack());
+            if (!newData.inventoryDictionary.ContainsKey(objectName))
+            {
+                newData.inventoryDictionary.Add(objectName, inventorySystem);
+            }
+        }
+    }
+    public bool SaveGameToSaveFile()
     {
         OnSaveGame?.Invoke();
         string dir = Application.persistentDataPath + directory;
@@ -54,19 +74,20 @@ public class SaveLoadManager : MonoBehaviour
         {
             Directory.CreateDirectory(dir);
             //creating a file at this location if it doesnt exist already. If it
-            //does, we will overwrite it
-            data.CollectInventoryData();
-            string jsonString = JsonUtility.ToJson(data, true);
-            //prettyPrint is nice; organizes the file
-            File.WriteAllText(dir + fileName, jsonString);
+            //does, we will overwrite it          
         }
+        CollectInventoryData();
+        string jsonString = JsonUtility.ToJson(newData, true);
+        //prettyPrint is nice; organizes the file
+        File.WriteAllText(dir + fileName, jsonString);
+        GUIUtility.systemCopyBuffer = dir;
         return true;
     }
     /// <summary>
     /// Using json utility to reconstruct our savegame from the file 
     /// </summary>
     /// <returns></returns>
-    public SaveData Load()
+    public SaveData LoadGameFromSaveFile()
     {
         string fullPath = Application.persistentDataPath + directory + fileName;
         SaveData temp = new SaveData();

@@ -6,6 +6,8 @@
 *    manager ahhhhhhhhhh
 *    Anyways, this things main idea it to have a list of Timer classes
 *    that you can affect if you have a bunch of timers running around. 
+*    If programmers want to make a timer, instead of making their own 
+*    they can just use the methods from this script 
 *    The timer class has an "update" method but thats just what this calls every
 *    update. All the bs in update here is because the way the stacks
 *    were running cause of the event it would try to delete a timer 
