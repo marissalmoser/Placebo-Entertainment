@@ -10,6 +10,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Enum for event tags used in differentiating events of the same type
+/// </summary>
+public enum NpcEventTags
+{
+    Angel,
+    Coward,
+    Fish,
+    Gladiator,
+    Gnomes,
+    Goop,
+    Robot,
+    Lightbulb // TODO: remove this tag once NPCs are tied into inventory system
+}
+
 [CreateAssetMenu(menuName = "NPC Event")]
 public class NpcEvent : ScriptableObject
 {
@@ -19,11 +34,11 @@ public class NpcEvent : ScriptableObject
     /// Called from another script to trigger this event. Event tags serve to 
     /// distinguish events related to different NPCs, quests, items, etc.
     /// </summary>
-    public void TriggerEvent(string eventTag)
+    public void TriggerEvent(NpcEventTags eventTag)
     {
         for (int i = 0; i < _eventListeners.Count; ++i)
         {
-            _eventListeners[i].OnEventTriggered(eventTag);
+            _eventListeners[i].OnEventTriggered(eventTag, this);
         }
     }
 

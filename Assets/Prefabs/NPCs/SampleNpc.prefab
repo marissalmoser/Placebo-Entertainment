@@ -166,66 +166,74 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 274fc5b4b31a8c847b6024fcd5ec432a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _npcName: 
   _startMinigameEvent: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
-  _eventTag: Sample
+  _eventTag: 0
   _stateDialogueTrees:
     _idleState:
     - _dialogue:
       - First Dialogue
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
-        _eventTag: 
+        _eventTag: 0
         _hasPrerequisiteCheck: 0
         _answer: Option A
-        _nextResponseIndex: 1
+        _nextResponseIndex: 
+        _advancesNpcState: 0
         _endsDialogue: 0
       - _eventToTrigger: {fileID: 0}
-        _eventTag: 
+        _eventTag: 0
         _hasPrerequisiteCheck: 0
         _answer: Option B
-        _nextResponseIndex: 2
+        _nextResponseIndex: 
+        _advancesNpcState: 0
         _endsDialogue: 0
       - _eventToTrigger: {fileID: 0}
-        _eventTag: 
+        _eventTag: 0
         _hasPrerequisiteCheck: 1
         _answer: Bypass Option C
-        _nextResponseIndex: 3
+        _nextResponseIndex: 
+        _advancesNpcState: 0
         _endsDialogue: 0
     - _dialogue:
       - Dialogue A
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
-        _eventTag: 
+        _eventTag: 0
         _hasPrerequisiteCheck: 0
         _answer: Continue
-        _nextResponseIndex: 4
+        _nextResponseIndex: 
+        _advancesNpcState: 0
         _endsDialogue: 0
     - _dialogue:
       - Dialogue B
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
-        _eventTag: 
+        _eventTag: 0
         _hasPrerequisiteCheck: 0
         _answer: Bye
-        _nextResponseIndex: 0
+        _nextResponseIndex: 
+        _advancesNpcState: 0
         _endsDialogue: 1
     - _dialogue:
       - Cool Bypass Dialogue C
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
-        _eventTag: 
+        _eventTag: 0
         _hasPrerequisiteCheck: 0
         _answer: Bye
-        _nextResponseIndex: 0
+        _nextResponseIndex: 
+        _advancesNpcState: 0
         _endsDialogue: 1
     - _dialogue:
       - Dialogue D
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
-        _eventTag: 
+        _eventTag: 0
         _hasPrerequisiteCheck: 0
         _answer: Bye
-        _nextResponseIndex: 0
+        _nextResponseIndex: 
+        _advancesNpcState: 0
         _endsDialogue: 1
     _minigameReadyState: []
     _playingMinigameState: []
@@ -255,20 +263,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a0acc881a336094997b0fb61c6d1983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _npcEvent: {fileID: 11400000, guid: b0ff38f0f20db8a4ab04033934de185c, type: 2}
-  _targetEventTag: SampleBypass
-  _onEventTriggered:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1866844575688752464}
-        m_TargetAssemblyTypeName: BaseNpc, Assembly-CSharp
-        m_MethodName: CollectedBypassItem
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _eventsToListenFor:
+  - _npcEvent: {fileID: 11400000, guid: b0ff38f0f20db8a4ab04033934de185c, type: 2}
+    _npcEventTag: 0
+    _onEventTriggered:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1866844575688752464}
+          m_TargetAssemblyTypeName: BaseNpc, Assembly-CSharp
+          m_MethodName: CollectedBypassItem
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2

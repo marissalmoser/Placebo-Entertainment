@@ -81,7 +81,7 @@ public abstract class BaseNpc : MonoBehaviour
     protected struct PlayerResponse
     {
         [SerializeField] private NpcEvent _eventToTrigger;
-        [SerializeField] private string _eventTag;
+        [SerializeField] private NpcEventTags _eventTag;
         [SerializeField] private bool _hasPrerequisiteCheck;
         [SerializeField] private string _answer;
         [SerializeField] private int[] _nextResponseIndex;
@@ -89,7 +89,7 @@ public abstract class BaseNpc : MonoBehaviour
         [SerializeField] private bool _endsDialogue;
 
         public NpcEvent EventToTrigger { get => _eventToTrigger; }
-        public string EventTag { get => _eventTag; }
+        public NpcEventTags EventTag { get => _eventTag; }
         public bool HasPrerequisiteCheck { get => _hasPrerequisiteCheck; }
         public string Answer { get => _answer; }
         public int[] NextResponseIndex { get => _nextResponseIndex; }
@@ -101,13 +101,12 @@ public abstract class BaseNpc : MonoBehaviour
     [SerializeField] protected string _npcName;
 
     [SerializeField] protected NpcEvent _startMinigameEvent;
-    [SerializeField] protected string _eventTag;
+    [SerializeField] protected NpcEventTags _eventTag;
 
     [SerializeField] protected StateDataGroup<DialogueNode[]> _stateDialogueTrees;
     [SerializeField] protected StateDataGroup<Vector3> _navigationPositions;
     [SerializeField] protected StateDataGroup<Animation> _stateAnimations;
 
-    protected PlayerControls _playerControls;
     protected NavMeshAgent _navAgent;
     protected Animator _animator;
     protected TabbedMenu _tabbedMenu;
@@ -121,9 +120,9 @@ public abstract class BaseNpc : MonoBehaviour
     protected bool _haveBypassItem = false;
 
     /// <summary>
-    /// Invoking Initialize() on Awake to set up NPC
+    /// Invoking Initialize() on Start to set up NPC
     /// </summary>
-    protected void Awake()
+    protected void Start()
     {
         Initialize();
     }
@@ -134,11 +133,6 @@ public abstract class BaseNpc : MonoBehaviour
     /// </summary>
     protected virtual void Initialize()
     {
-        _playerControls = new PlayerControls();
-        _playerControls.Enable();
-        InputAction interact = _playerControls.FindAction("Interact");
-        //interact.performed += ctx => Interact();
-
         _tabbedMenu = TabbedMenu.Instance;
         _navAgent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
@@ -168,7 +162,6 @@ public abstract class BaseNpc : MonoBehaviour
                 }
                 _isInteracting = true;
                 _currentDialogueIndex = 0;
-                // TODO: turn on dialogue UI here
             }
             // For future interactions determine which dialogue node to go to
             else if (_stateDialogueTrees.GetStateData(_currentState).Length > 0)
@@ -229,7 +222,6 @@ public abstract class BaseNpc : MonoBehaviour
             {
                 _isInteracting = false;
                 _shouldEndDialogue = false;
-                // TODO: turn off dialogue UI here
                 _tabbedMenu.ToggleDialogue(false);
                 return;
             }
@@ -274,6 +266,8 @@ public abstract class BaseNpc : MonoBehaviour
             {
                 option = currentNode.PlayerResponses[i];
                 Debug.Log(option.Answer); // TODO: display player option in UI
+                // TODO: uncomment this once merged with changes for setting dialogue option UI buttons
+                //_tabbedMenu.DisplayDialogueOption(option.Answer, click: () => { Interact(); });
             }
         }
     }
