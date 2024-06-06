@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5782808993643389416}
   - component: {fileID: 6567139428904811185}
   - component: {fileID: 7426901244468234622}
+  - component: {fileID: 5440318830581512884}
   m_Layer: 0
   m_Name: Cinemachine
   m_TagString: Untagged
@@ -58,7 +59,7 @@ MonoBehaviour:
     FieldOfView: 90
     OrthographicSize: 10
     NearClipPlane: 0.1
-    FarClipPlane: 20
+    FarClipPlane: 100
     Dutch: 0
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
@@ -88,6 +89,36 @@ MonoBehaviour:
   m_Offset: {x: -0.5, y: 0.5, z: 3}
   m_ApplyAfter: 0
   m_PreserveComposition: 1
+--- !u!114 &5440318830581512884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4016747490110712917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e501d18bb52cf8c40b1853ca4904654f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_CollideAgainst:
+    serializedVersion: 2
+    m_Bits: 1
+  m_IgnoreTag: 
+  m_TransparentLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_MinimumDistanceFromTarget: 2.85
+  m_AvoidObstacles: 1
+  m_DistanceLimit: 0
+  m_MinimumOcclusionTime: 0
+  m_CameraRadius: 0.1
+  m_Strategy: 1
+  m_MaximumEffort: 4
+  m_SmoothingTime: 0
+  m_Damping: 0
+  m_DampingWhenOccluded: 0
+  m_OptimalTargetDistance: 0
 --- !u!1 &6366673417638366901
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,7 +188,7 @@ MonoBehaviour:
     m_InputAxisValue: 0
     m_InvertInput: 1
     m_MinValue: -90
-    m_MaxValue: 100
+    m_MaxValue: 90
     m_Wrap: 0
     m_Recentering:
       m_enabled: 0

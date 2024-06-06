@@ -34,6 +34,8 @@ public class PlayerController : MonoBehaviour
     PlayerInteractSystem _InteractionCheck;
     private bool _doOnce;
 
+    [SerializeField] bool _isKinemat;
+
     bool isMoving = false;
     Vector2 moveDirection;
     Vector3 velocity;
@@ -59,20 +61,14 @@ public class PlayerController : MonoBehaviour
         PlayerControls = new PlayerControls();
         PlayerControls.BasicControls.Enable();
 
-<<<<<<< HEAD
         _InteractionCheck = new PlayerInteractSystem("Default None");
         _doOnce = true;
 
-        move = playerControls.FindAction("Move");
-        interact = playerControls.FindAction("Interact");
-        reset = playerControls.FindAction("Reset");
-        quit = playerControls.FindAction("Quit");
-=======
+
         move = PlayerControls.FindAction("Move");
         interact = PlayerControls.FindAction("Interact");
         reset = PlayerControls.FindAction("Reset");
         quit = PlayerControls.FindAction("Quit");
->>>>>>> main
 
         move.performed += ctx => moveDirection = move.ReadValue<Vector2>();
         move.performed += ctx => isMoving = true;
@@ -153,7 +149,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         // Player Movement
-        if (isMoving)
+        if (isMoving == true && _isKinemat == true)
         {
             velocity = transform.right * moveDirection.x + transform.forward * moveDirection.y;
             velocity = velocity.normalized;
@@ -162,9 +158,22 @@ public class PlayerController : MonoBehaviour
             rb.MovePosition(transform.position + _velocity * Time.deltaTime);
             rb.AddForce(velocity * moveSpeed);
         }
-        else
+        if(_isKinemat == true)
         {
-            //rb.MovePosition(transform.position +velocity * 0f);
+            rb.isKinematic = true;
+        }
+        if(_isKinemat == false)
+        {
+            rb.isKinematic = false;
+        }
+        if(isMoving == true && _isKinemat == false)
+        {
+            velocity = transform.right * moveDirection.x + transform.forward * moveDirection.y;
+            velocity = velocity.normalized;
+            velocity *= moveSpeed;
+            Vector3 _velocity = new Vector3(velocity.x, 0, velocity.z);
+            rb.MovePosition(transform.position + _velocity * Time.deltaTime);
+            rb.AddForce(velocity);
         }
 
 //float speed = rb.velocity.magnitude;
