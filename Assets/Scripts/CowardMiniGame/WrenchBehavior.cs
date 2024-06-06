@@ -27,7 +27,7 @@ public class WrenchBehavior : MonoBehaviour, IInteractable
     [Header("Wrench within hand functions")]
     [SerializeField] private Animator _animate;
     [SerializeField] private GameObject _wrenchSpark;
-    private bool _swing;
+    //private bool _swing;
     [Header("Wrench outside hand functions")]
     [SerializeField] private GameObject _rightHand;
     private bool _withinProx;
@@ -50,7 +50,7 @@ public class WrenchBehavior : MonoBehaviour, IInteractable
         //_pc = _pcObject.GetComponent<PlayerController>();
         _isEquipped = false;
         //_withinProx = false;
-        _swing = false;
+        //_swing = false;
         SparkSmackedAction += SparkSmacked;
     }
     void FixedUpdate()
@@ -97,11 +97,13 @@ public class WrenchBehavior : MonoBehaviour, IInteractable
     /// <returns></returns>
     IEnumerator Swinging()
     {
-        print("swing");
+        //print("swing");
+        GetComponent<Collider>().enabled = true;
         _animate.SetBool("isSwinging", true);
         //_swing = true;
         yield return new WaitForSeconds(0.1f);
         //_swing = false;
+        GetComponent<Collider>().enabled = false;
         _animate.SetBool("isSwinging", false);
     }
 
@@ -151,11 +153,14 @@ public class WrenchBehavior : MonoBehaviour, IInteractable
     /// <param name="player"></param>
     public void Interact(GameObject player)
     {
-        print(_isEquipped);
         if (_isEquipped == false)
         {
-            transform.parent = _rightHand.transform;
+            _animate.SetTrigger("pickedUp");
+            _isEquipped = true;
             GetComponent<Collider>().enabled = false;
+            transform.position = _rightHand.transform.position;
+            transform.rotation = _rightHand.transform.rotation;
+            transform.parent = _rightHand.transform;
         }
     }
 

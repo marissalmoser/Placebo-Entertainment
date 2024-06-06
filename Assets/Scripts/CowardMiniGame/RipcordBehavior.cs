@@ -13,7 +13,7 @@ using TMPro;
 using UnityEngine.UI;
 using PlaceboEntertainment.UI;
 
-public class RipcordBehavior : MonoBehaviour, IInteractable
+public class RipcordBehavior : MonoBehaviour
 {
 
     [Header("UI Stuff")]
@@ -35,6 +35,8 @@ public class RipcordBehavior : MonoBehaviour, IInteractable
 
     [SerializeField] private GameObject _gears;
 
+    private PlayerController _pc;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,12 +46,15 @@ public class RipcordBehavior : MonoBehaviour, IInteractable
         _hasReleased = false;
         _numReleased = 0;
         _relocatePoint = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+
+        GameObject _pcObject = GameObject.FindWithTag("Player");
+        _pc = _pcObject.GetComponent<PlayerController>();
     }
     // Update is called once per frame
     void Update()
     {
         _successfulPulls.text = _numReleased.ToString();
-        if (PressedE == true && transform.position.z > _targetFollow.transform.position.z && _numReleased != 3)
+        if (_pc.interact.IsPressed() && PressedE == true && transform.position.z > _targetFollow.transform.position.z && _numReleased != 3)
         {
             transform.position -= new Vector3(0, 0, _speed * Time.deltaTime);
             GameObject _preview = GameObject.FindWithTag("Release");
@@ -58,13 +63,13 @@ public class RipcordBehavior : MonoBehaviour, IInteractable
                 _preview.GetComponent<Collider>().enabled = false;
             }
         }
-        if(PressedE == true && _doOnce2 == true && _numReleased != 3)
+        if(_pc.interact.IsPressed() && PressedE == true && _doOnce2 == true && _numReleased != 3)
         {
             Vector3 _previewerPoint = new Vector3(_relocatePoint.x, _relocatePoint.y, Random.Range(_maxReach,_relocatePoint.z));
             Instantiate(_ReleasePreviewer, _previewerPoint, Quaternion.identity);
             _doOnce2 = false;
         }
-        if (PressedE == false && transform.position.z < _relocatePoint.z && transform.position.z != _relocatePoint.z || PressedE == true && transform.position.z < _maxReach && transform.position.z != _relocatePoint.z)
+        if (PressedE == false && transform.position.z < _relocatePoint.z && transform.position.z != _relocatePoint.z || _pc.interact.IsPressed() && PressedE == true && transform.position.z < _maxReach && transform.position.z != _relocatePoint.z)
         {
             transform.position += new Vector3(0, 0, _speed * Time.deltaTime);
             GameObject _preview = GameObject.FindWithTag("Release");
@@ -113,25 +118,20 @@ public class RipcordBehavior : MonoBehaviour, IInteractable
             _numReleased++;
             GameObject.Destroy(col.gameObject);
         }
+
+        if(col.gameObject.tag == "Player")
+        {
+            PressedE = true;
+            TabbedMenu.Instance.ToggleInteractPrompt(true, "RIPCORD");
+        }
     }
 
-    public void Interact(GameObject player)
+    void OnTriggerExit(Collider col)
     {
-        PressedE = true;
-    }
-
-    public void CancelInteract()
-    {
-        PressedE = false;
-    }
-
-    public void DisplayInteractUI()
-    {
-        TabbedMenu.Instance.ToggleInteractPrompt(true, "RIPCORD");
-    }
-
-    public void HideInteractUI()
-    {
-        TabbedMenu.Instance.ToggleInteractPrompt(false);
+        if (col.gameObject.tag == "Player")
+        {
+            PressedE = false;
+            TabbedMenu.Instance.ToggleInteractPrompt(false);
+        }
     }
 }
