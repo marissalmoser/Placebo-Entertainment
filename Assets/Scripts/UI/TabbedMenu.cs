@@ -81,13 +81,6 @@ namespace PlaceboEntertainment.UI
             }
         }
 
-        public struct DialogueButton
-        {
-            public readonly Button Button;
-            public readonly AutoFitLabelControl LabelControl;
-            public string ButtonName;
-        }
-
         #endregion
 
         #region Private
