@@ -113,7 +113,6 @@ public class TimerManager : MonoBehaviour
         if (timerStruct.timer != null)
         {
             timers.Remove(timerStruct);
-            print("TIMERREMOVED");
             return timerStruct.timer;
         }
         print("Timer " + timerName + " does not exist.");

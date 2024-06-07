@@ -35,23 +35,7 @@ public class SaveLoadManager : MonoBehaviour
     private const string fileName = "SaveGame.sav";
 
     private SaveData newData = new SaveData();
-    public InventoryItemData itemData;
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha0))
-        {
-            SaveGameToSaveFile();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            LoadGameFromSaveFile();
-        }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            GameObject.FindGameObjectWithTag("Player").GetComponent<InventoryHolder>().InventorySystem.AddToInventory(itemData, 3, out _);
-        }
-    }
     private void CollectInventoryData()
     {
         InventoryHolder[] inventoryHolders = FindObjectsOfType<InventoryHolder>();

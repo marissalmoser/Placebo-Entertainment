@@ -16,8 +16,8 @@ public class LoopController : MonoBehaviour
 
     private void Start()
     {
-        //Creating a timer. 3 minutes is 180 seconds
-        loopTimer = TimerManager.Instance.CreateTimer("LoopTimer", 180);
+        //Creating a timer. 
+        loopTimer = TimerManager.Instance.CreateTimer("LoopTimer", loopTimerTime);
         loopTimer.TimesUp += HandleLoopTimerEnd;
     }
     /// <summary>
