@@ -6,8 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="0ca99064-d62d-4298-bd79-b6c397975cbd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Placebo-Entertainment/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Placebo-Entertainment/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/NpcBehaviors/BaseNpc.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/NpcBehaviors/BaseNpc.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Plugins/FMOD/Cache/Editor/FMODStudioCache.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/FMOD/Cache/Editor/FMODStudioCache.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/TabbedMenu.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/TabbedMenu.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/TabbedMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/TabbedMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI Toolkit/Dialogue/Dialogue.uxml" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI Toolkit/Dialogue/Dialogue.uxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fmod_editor.log" beforeDir="false" afterPath="$PROJECT_DIR$/fmod_editor.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +24,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ed0b65237d8945ad93fa4ff974851be5177e00/74/19ef98b0/Label.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ed0b65237d8945ad93fa4ff974851be5177e00/bc/bf5ff632/CallbackEventHandler.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -34,7 +40,8 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "DialogueFrontend",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -103,6 +110,7 @@
       <workItem from="1716341224198" duration="6088000" />
       <workItem from="1716869541393" duration="847000" />
       <workItem from="1716870420914" duration="1913000" />
+      <workItem from="1717623546417" duration="3338000" />
     </task>
     <servers />
   </component>

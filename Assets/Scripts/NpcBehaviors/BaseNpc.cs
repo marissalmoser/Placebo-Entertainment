@@ -267,7 +267,7 @@ public abstract class BaseNpc : MonoBehaviour
                 option = currentNode.PlayerResponses[i];
                 Debug.Log(option.Answer); // TODO: display player option in UI
                 // TODO: uncomment this once merged with changes for setting dialogue option UI buttons
-                //_tabbedMenu.DisplayDialogueOption(option.Answer, click: () => { Interact(); });
+                _tabbedMenu.DisplayDialogueOption(option.Answer, click: () => { Interact(i); });
             }
         }
     }
