@@ -14,16 +14,16 @@ using UnityEngine;
 public class InventoryHolder : MonoBehaviour
 {
 
-    [SerializeField] protected InventorySystem inventorySystem;
-    [SerializeField] private int inventorySize;
+    [SerializeField] protected InventorySystem _inventorySystem;
+    [SerializeField] private int _inventorySize;
 
-    public InventorySystem InventorySystem => inventorySystem;
+    public InventorySystem InventorySystem => _inventorySystem;
     private void Awake()
     {
-        inventorySystem = new InventorySystem(inventorySize);     
+        _inventorySystem = new InventorySystem(_inventorySize);     
     }
     public void SetInventorySystem(InventorySystem system)
     {
-        inventorySystem = system;
+        _inventorySystem = system;
     }
 }

@@ -10,55 +10,55 @@ using UnityEngine;
 
 public class Timer
 {
-    private float maxTime;
-    private float timeRemaining;
-    private bool isRunning;
+    private float _maxTime;
+    private float _timeRemaining;
+    private bool _isRunning;
     public event Action TimesUp;
 
     public Timer(int durationInSeconds)
     {
-        maxTime = timeRemaining = durationInSeconds;
-        this.isRunning = false;
+        _maxTime = _timeRemaining = durationInSeconds;
+        _isRunning = false;
     }
     public void UpdateTimer(float deltaTime)
     {
-        if (isRunning)
+        if (_isRunning)
         {
-            timeRemaining -= deltaTime;
-            if (timeRemaining <= 0)
+            _timeRemaining -= deltaTime;
+            if (_timeRemaining <= 0)
             {
-                timeRemaining = 0;
-                isRunning = false;
+                _timeRemaining = 0;
+                _isRunning = false;
                 TimesUp?.Invoke();
             }
         }
     }
     public void StartTimer()
     {
-        isRunning = true;
+        _isRunning = true;
     }
     public void StopTimer()
     {
-        isRunning = false;
+        _isRunning = false;
     }
     public float GetCurrentTimeInSeconds()
     {
-        return timeRemaining;
+        return _timeRemaining;
     }
     public bool IsRunning()
     {
-        return isRunning;
+        return _isRunning;
     }
     public void ResetTimer()
     {
-        timeRemaining = maxTime;
+        _timeRemaining = _maxTime;
     }
     public void IncreaseTime(int minutes, int seconds)
     {
-        timeRemaining = Mathf.Clamp(timeRemaining + (minutes * 60) + seconds, 0, maxTime);
+        _timeRemaining = Mathf.Clamp(_timeRemaining + (minutes * 60) + seconds, 0, _maxTime);
     }
     public void ReduceTime(int minutes, int seconds)
     {
-        timeRemaining = Mathf.Clamp(timeRemaining - (minutes * 60) + seconds, 0, maxTime);
+        _timeRemaining = Mathf.Clamp(_timeRemaining - (minutes * 60) + seconds, 0, _maxTime);
     }
 }

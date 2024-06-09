@@ -18,32 +18,34 @@ public class SerializeableDictionary<TKey, TValue> : Dictionary<TKey, TValue>, I
 {
     //making two serialized lists, one for keys, one for values! Crazy
     [SerializeField]
-    private List<TKey> keys = new List<TKey>();
+    private List<TKey> _keys = new List<TKey>();
     [SerializeField]
-    private List<TValue> values = new List<TValue>();
+    private List<TValue> _values = new List<TValue>();
+
     public void OnBeforeSerialize()
     {
-        keys.Clear();
-        values.Clear();
+        _keys.Clear();
+        _values.Clear();
 
         //kvp is key-value-pair
         foreach (KeyValuePair<TKey, TValue> kvp in this)
         {
-            keys.Add(kvp.Key);
-            values.Add(kvp.Value);
+            _keys.Add(kvp.Key);
+            _values.Add(kvp.Value);
         }
     }
+
     public void OnAfterDeserialize()
     {
         this.Clear();
-        if (keys.Count != values.Count)
+        if (_keys.Count != _values.Count)
         {
             throw new System.Exception(
                 "HUGE oopsies, key-value pairs in your serialized dictionary are mismatched");
         }
-        for (int i = 0; i < keys.Count; i++)
+        for (int i = 0; i < _keys.Count; i++)
         {
-            this.Add(keys[i], values[i]);
+            this.Add(_keys[i], _values[i]);
         }
     }
 }

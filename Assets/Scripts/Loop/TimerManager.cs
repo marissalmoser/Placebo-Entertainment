@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+
 [Serializable]
 public struct TimerStruct
 {
@@ -33,6 +34,7 @@ public struct TimerStruct
 }
 public class TimerManager : MonoBehaviour
 {
+    private List<TimerStruct> _timers = new List<TimerStruct>();
     #region Instance
     //regions are cool, i guess. Just hiding boring stuff
     public static TimerManager Instance { get; private set; }
@@ -41,20 +43,19 @@ public class TimerManager : MonoBehaviour
     {
         if (Instance != null && Instance != this)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
         else
         {
             Instance = this;
-            DontDestroyOnLoad(this.gameObject);
+            DontDestroyOnLoad(gameObject);
         }
     }
     #endregion
 
-    [SerializeField] private List<TimerStruct> timers = new List<TimerStruct>();
     public void Update()
     {
-        if (timers.Count > 0)
+        if (_timers.Count > 0)
         {
             //So im cooking this up, right? And unity has the AUDACITY to give
             //me a "WAH WAH CANT CHANGE COLLECTION WHILE ITERATING OVER IT" bs
@@ -63,29 +64,20 @@ public class TimerManager : MonoBehaviour
             //Apparently effeciency of this "isn't great" (surprise suprise)
             //so im going to look into solutions, but as it is ive spent wayyy
             //too long on timers so im just going to leave the script as is
-            foreach (TimerStruct timerStruct in timers.ToList())
+            foreach (TimerStruct timerStruct in _timers.ToList())
             {
                 timerStruct.timer.UpdateTimer(Time.deltaTime);
                 if (timerStruct.timer.GetCurrentTimeInSeconds() <= 0)
                 {
-                    timers.Remove(timerStruct);
+                    _timers.Remove(timerStruct);
                 }
             }
-            /* Ive tried the reverse for loop; doesnt help in this scenario
-            for(int i =timers.Count-1; i >= 0; i--)
-            {
-                timers[i].timer.UpdateTimer(Time.deltaTime);
-                if (timers[i].timer.GetCurrentTimeInSeconds() <= 0)
-                {
-                    timers.Remove(timers[i]);
-                }
-            }*/
         }
     }
 
     public Timer CreateTimer(string timerName, int durationInSeconds)
     {
-        if (timers.Exists(t => t.timerName == timerName))
+        if (_timers.Exists(t => t.timerName == timerName))
         {
             print("Timer " + timerName + " already exists.");
             return null;
@@ -93,12 +85,12 @@ public class TimerManager : MonoBehaviour
 
         TimerStruct newTimerStruct = new TimerStruct(timerName, durationInSeconds);
         newTimerStruct.timer.StartTimer();
-        timers.Add(newTimerStruct);
+        _timers.Add(newTimerStruct);
         return newTimerStruct.timer;
     }
     public Timer GetTimer(string timerName)
     {
-        TimerStruct timerStruct = timers.Find(thatTimer => thatTimer.timerName == timerName);
+        TimerStruct timerStruct = _timers.Find(thatTimer => thatTimer.timerName == timerName);
         if (timerStruct.timer != null)
         {
             return timerStruct.timer;
@@ -109,10 +101,10 @@ public class TimerManager : MonoBehaviour
 
     public Timer RemoveTimer(string timerName)
     {
-        TimerStruct timerStruct = timers.Find(t => t.timerName == timerName);
+        TimerStruct timerStruct = _timers.Find(t => t.timerName == timerName);
         if (timerStruct.timer != null)
         {
-            timers.Remove(timerStruct);
+            _timers.Remove(timerStruct);
             return timerStruct.timer;
         }
         print("Timer " + timerName + " does not exist.");

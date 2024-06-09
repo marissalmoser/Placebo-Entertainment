@@ -19,12 +19,12 @@ public class SaveLoadManager : MonoBehaviour
     {
         if (Instance != null && Instance != this)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
         else
         {
             Instance = this;
-            DontDestroyOnLoad(this.gameObject);
+            DontDestroyOnLoad(gameObject);
         }
     }
     #endregion
@@ -43,23 +43,24 @@ public class SaveLoadManager : MonoBehaviour
         {
             string objectName = holder.gameObject.name;
             InventorySystem inventorySystem = holder.InventorySystem;
-            //print(holder.InventorySystem.CollectionOfSlots[0].GetRoomLeftInStack());
             if (!newData.inventoryDictionary.ContainsKey(objectName))
             {
                 newData.inventoryDictionary.Add(objectName, inventorySystem);
             }
         }
     }
+
     public bool SaveGameToSaveFile()
     {
         OnSaveGame?.Invoke();
         string dir = Application.persistentDataPath + directory;
+        //creating a file at this location if it doesnt exist already. If it
+        //does, we will overwrite it    
         if (!Directory.Exists(dir))
         {
-            Directory.CreateDirectory(dir);
-            //creating a file at this location if it doesnt exist already. If it
-            //does, we will overwrite it          
+            Directory.CreateDirectory(dir);      
         }
+
         CollectInventoryData();
         string jsonString = JsonUtility.ToJson(newData, true);
         //prettyPrint is nice; organizes the file
@@ -89,6 +90,7 @@ public class SaveLoadManager : MonoBehaviour
         }
         return temp;
     }
+
     public void DeleteSaveData()
     {
         string fullPath = Application.persistentDataPath + directory + fileName;
@@ -97,6 +99,7 @@ public class SaveLoadManager : MonoBehaviour
             File.Delete(fullPath);
         }
     }
+
     private void AssignLoadedData(SaveData data)
     {
         foreach (var entry in data.inventoryDictionary)
