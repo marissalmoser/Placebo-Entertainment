@@ -1,0 +1,3 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:Button text="Dialogue Entry" parse-escape-sequences="true" display-tooltip-when-elided="true" name="DialogueOption" class="DialogueButton" style="white-space: normal;" />
+</ui:UXML>
