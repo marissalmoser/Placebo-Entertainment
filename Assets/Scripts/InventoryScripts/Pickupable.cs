@@ -31,6 +31,7 @@ public class Pickupable: MonoBehaviour
             PickUpRadius = myCollider.radius;
         }
     }
+    /*
     private void OnTriggerEnter(Collider other)
     {
         var inventory = other.transform.GetComponent<InventoryHolder>();
@@ -40,5 +41,5 @@ public class Pickupable: MonoBehaviour
 
             Destroy(gameObject);
         }
-    }
+    }*/
 }

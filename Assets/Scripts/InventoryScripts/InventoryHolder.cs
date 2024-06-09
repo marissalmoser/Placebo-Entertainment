@@ -25,5 +25,15 @@ public class InventoryHolder : MonoBehaviour
     public void SetInventorySystem(InventorySystem system)
     {
         _inventorySystem = system;
+        foreach(InventorySlot slot in _inventorySystem.CollectionOfSlots)
+        {
+            if(slot.GetItemData() != null)
+            {
+                if (slot.GetItemData().DoesNotPersist)
+                {
+                    slot.EmptyThisSlot();
+                }
+            }
+        }
     }
 }
