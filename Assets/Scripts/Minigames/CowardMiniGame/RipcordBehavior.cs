@@ -23,7 +23,7 @@ public class RipcordBehavior : MonoBehaviour
     [SerializeField] private float _maxReach;
     [SerializeField]private GameObject _targetFollow;
     [SerializeField] private float _speed;
-    public bool PressedE;
+    [SerializeField] bool PressedE;
     private Vector3 _relocatePoint;
 
     [Header("Release Windowing")]
@@ -32,6 +32,7 @@ public class RipcordBehavior : MonoBehaviour
     private bool _doOnce2;
     private bool _doOnce;
     private int _numReleased;
+    private GameObject _preview;
 
     [SerializeField] private GameObject _gears;
 
@@ -57,7 +58,7 @@ public class RipcordBehavior : MonoBehaviour
         if (_pc.interact.IsPressed() && PressedE == true && transform.position.z > _targetFollow.transform.position.z && _numReleased != 3)
         {
             transform.position -= new Vector3(0, 0, _speed * Time.deltaTime);
-            GameObject _preview = GameObject.FindWithTag("Release");
+            StartCoroutine(FindPreview());
             if (_preview != null)
             {
                 _preview.GetComponent<Collider>().enabled = false;
@@ -72,7 +73,7 @@ public class RipcordBehavior : MonoBehaviour
         if (PressedE == false && transform.position.z < _relocatePoint.z && transform.position.z != _relocatePoint.z || _pc.interact.IsPressed() && PressedE == true && transform.position.z < _maxReach && transform.position.z != _relocatePoint.z)
         {
             transform.position += new Vector3(0, 0, _speed * Time.deltaTime);
-            GameObject _preview = GameObject.FindWithTag("Release");
+            StartCoroutine(FindPreview());
             if (_preview != null)
             {
                 _preview.GetComponent<Collider>().enabled = true;
@@ -82,16 +83,16 @@ public class RipcordBehavior : MonoBehaviour
         {
             _doOnce = true;
             _doOnce2 = true;
-            GameObject _preexistingPV = GameObject.FindWithTag("Release");
-            if (_preexistingPV != null)
+            StartCoroutine(FindPreview());
+            if (_preview != null)
             {
-                GameObject.Destroy(_preexistingPV);
+                GameObject.Destroy(_preview);
             }
         }
         if(PressedE == false && _doOnce == true)
         {
-            GameObject _preexistingPV = GameObject.FindWithTag("Release");
-            if (_preexistingPV != null && _preexistingPV.transform.position.z > transform.position.z)
+            StartCoroutine(FindPreview());
+            if (_preview != null && _preview.transform.position.z > transform.position.z)
             {
                 StartCoroutine(ReleaseWindow());
                 _doOnce = false;
@@ -110,6 +111,11 @@ public class RipcordBehavior : MonoBehaviour
         _hasReleased = true;
         yield return new WaitForSeconds(0.2f);
         _hasReleased = false;
+    }
+    IEnumerator FindPreview()
+    {
+        _preview = GameObject.FindWithTag("Release");
+        yield return _preview;
     }
     void OnTriggerEnter(Collider col)
     {

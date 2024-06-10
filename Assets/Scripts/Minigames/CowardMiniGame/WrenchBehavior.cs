@@ -55,40 +55,11 @@ public class WrenchBehavior : MonoBehaviour, IInteractable
     }
     void FixedUpdate()
     {
-        //if (_interact && _isEquipped == false && _withinProx == true)
-        //{
-        //    transform.parent = _rightHand.transform;
-        //    _isEquipped = true;
-        //}
         if(_isEquipped == true)
         {
             transform.position = new Vector3(_rightHand.transform.position.x, _rightHand.transform.position.y, _rightHand.transform.position.z);
             transform.rotation = _rightHand.transform.rotation;
         }
-        //if(_interact && _isEquipped == true)
-        //{
-        //    StartCoroutine(Swinging());
-        //}
-        //Debug.Log(_isEquipped);
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        //_smackedText.text = _sparkSmacked.ToString();
-        //if(_swing == true && _isEquipped == true)
-        //{
-        //    GetComponent<Collider>().enabled = true;
-        //}
-        //if(_swing == false && _isEquipped == true)
-        //{
-        //    GetComponent<Collider>().enabled = false;
-        //}
-        //if(_sparkSmacked == 5)
-        //{
-        //    _smackedText.color = Color.green;
-        //    _sparksMode.SetActive(false);
-        //    gameObject.SetActive(false);
-        //}
     }
 
     /// <summary>
@@ -126,27 +97,6 @@ public class WrenchBehavior : MonoBehaviour, IInteractable
             print("game end");
         }
     }
-
-    //void OnTriggerEnter(Collider col)
-    //{
-    //    if(col.gameObject.tag == "Spark")
-    //    {
-    //        _sparkSmacked++;
-    //        Destroy(col.gameObject);
-    //    }
-        //if (col.gameObject.tag == "Player")
-        //{
-        //    _withinProx = true;
-        //}
-    //}
-    //void OnTriggerExit(Collider col)
-    //{
-    //    if (col.gameObject.tag == "Player")
-    //    {
-    //        _withinProx = false;
-    //    }
-    //}
-
     /// <summary>
     /// This function is called when the player interacts with the wrench.
     /// </summary>

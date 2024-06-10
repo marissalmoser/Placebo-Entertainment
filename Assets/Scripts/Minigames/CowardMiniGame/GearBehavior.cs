@@ -39,7 +39,9 @@ public class GearBehavior : MonoBehaviour, IInteractable
         _rndr = this.GetComponent<Renderer>();
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// used for gradually cycling through gear sizes through the list of gears
+    /// </summary>
     void FixedUpdate()
     {
         transform.localScale = new Vector3(1f, _gearIndi.transform.localScale.y + 0.5f, 1f);
@@ -58,6 +60,9 @@ public class GearBehavior : MonoBehaviour, IInteractable
         _gearIndi = _gearSize[_gearSizeNum - 1];
         //Debug.Log(_gearSizeNum);
     }
+    /// <summary>
+    /// if right gear number then make green if not keep red
+    /// </summary>
     void Update()
     {
         if (_gearSizeNum == _rightGearNum)
@@ -70,27 +75,15 @@ public class GearBehavior : MonoBehaviour, IInteractable
             _rndr.material.color = Color.red;
         }
     }
+    /// <summary>
+    /// Cool down for no spamming
+    /// </summary>
+    /// <returns></returns>
     IEnumerator doOnceCooldown()
     {
         yield return new WaitForSeconds(0.2f);
         _doOnce = true;
     }
-
-    //void OnTriggerEnter(Collider col)
-    //{
-    //    if (col.gameObject.tag == "Player")
-    //    {
-    //        _scrollable = true;
-    //    }
-    //}
-    //void OnTriggerExit(Collider col)
-    //{
-    //    if (col.gameObject.tag == "Player")
-    //    {
-    //        _scrollable = false;
-    //    }
-    //}
-
     /// <summary>
     /// Enables gears to be interacted with in update
     /// </summary>

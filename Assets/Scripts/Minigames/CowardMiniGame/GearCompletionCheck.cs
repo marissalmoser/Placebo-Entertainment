@@ -3,7 +3,7 @@
 // Author :            Mark Hanson
 // Creation Date :     5/27/2024
 //
-// Brief Description : Any function to do for the gears mini game will be found here. Includes swapping slots, Correct slot pattern with all bad ones, and selecting gears for each slot.
+// Brief Description : A checker for when each gear is green then start the next phase of the mini game.
 *****************************************************************************/
 using System.Collections;
 using System.Collections.Generic;
