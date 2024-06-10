@@ -18,10 +18,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float moveSpeed;
     [SerializeField] float jumpForce;
 
-    //[SerializeField] float cutCameraDamping;
-    //float defaultDamping;
-    //[SerializeField] float cutCameraFOV;
-   // float defaultFOV;
 
     public PlayerControls PlayerControls { get; private set; }
     public InputAction move, interact, reset, quit;
@@ -29,7 +25,6 @@ public class PlayerController : MonoBehaviour
     Rigidbody rb;
     CinemachineVirtualCamera mainCamera;
     CinemachineTransposer transposer;
-    //[SerializeField] GameObject laser;
 
     PlayerInteractSystem _InteractionCheck;
     private bool _doOnce;
@@ -54,9 +49,6 @@ public class PlayerController : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody>();
         mainCamera = FindObjectOfType<CinemachineVirtualCamera>();
         transposer = mainCamera.GetCinemachineComponent<CinemachineTransposer>();
-        //defaultDamping = transposer.m_XDamping;
-        //defaultFOV = mainCamera.m_Lens.FieldOfView;
-        //laser = mainCamera.transform.GetChild(0).gameObject;
 
         PlayerControls = new PlayerControls();
         PlayerControls.BasicControls.Enable();
@@ -64,6 +56,7 @@ public class PlayerController : MonoBehaviour
         _InteractionCheck = new PlayerInteractSystem("Default None");
         _doOnce = true;
 
+        mainCamera.transform.rotation = transform.rotation;
 
         move = PlayerControls.FindAction("Move");
         interact = PlayerControls.FindAction("Interact");
@@ -74,82 +67,11 @@ public class PlayerController : MonoBehaviour
         move.performed += ctx => isMoving = true;
         move.canceled += ctx => moveDirection = move.ReadValue<Vector2>();
         move.canceled += ctx => isMoving = false;
-       // move.performed += ctx => rb.velocity = 
-        //new Vector3(move.ReadValue<Vector2>().x * moveSpeed, rb.velocity.y, move.ReadValue<Vector2>().y * moveSpeed);
-       // move.canceled += ctx => rb.velocity = new Vector3(0, rb.velocity.y, 0);
-
-        //slash.performed += ctx => laser.SetActive(true);
-        //slash.performed += ctx => transposer.m_XDamping = transposer.m_YDamping = transposer.m_ZDamping = cutCameraDamping;
-        //slash.performed += ctx => cameraLens.FieldOfView = cutCameraFOV;
-        //slash.performed += ctx => StartZoom(true);
-
-       // slash.canceled += ctx => laser.SetActive(false);
-        //slash.canceled += ctx => transposer.m_XDamping = transposer.m_YDamping = transposer.m_ZDamping = defaultDamping;
-        //slash.canceled += ctx => cameraLens.FieldOfView = defaultFOV;
-       // slash.canceled += ctx => StartZoom(false);
     }
-    /// <summary>
-    /// Initiates a camera zoom when inputs are recieved
-    /// </summary>
-    /// <param name="zoomingIn">Determines which coroutine to start</param>
-    //private void StartZoom(bool zoomingIn)
-    //{
-    //    StopAllCoroutines();
-
-    //    if (zoomingIn)
-    //        StartCoroutine(ZoomIn());
-    //    else
-    //        StartCoroutine(ZoomOut());
-    //}
-
-    /// <summary>
-    /// Zooms the camera from defaultFOV to cutCameraFOV
-    /// </summary>
-    //IEnumerator ZoomIn()
-    //{
-    //    float interpolationVal = 0;
-
-    //    while (true)
-    //    {
-    //        yield return new WaitForSeconds(0.01f);
-
-    //        interpolationVal += 0.05f;
-
-    //        mainCamera.m_Lens.FieldOfView = Mathf.Lerp(defaultFOV, cutCameraFOV, interpolationVal);
-
-    //        if (interpolationVal >= 1f && mainCamera.m_Lens.FieldOfView >= defaultFOV)
-    //            break;
-    //    }
-
-    //    mainCamera.m_Lens.FieldOfView = defaultFOV;
-    //}
-
-    /// <summary>
-    /// Zooms the camera from cutCameraFOV back to defaultFOV
-    /// </summary>
-    //IEnumerator ZoomOut()
-    //{
-    //    float interpolationVal = 0;
-
-    //    while (true)
-    //    {
-    //        yield return new WaitForSeconds(0.01f);
-
-    //        interpolationVal += 0.05f;
-
-    //        mainCamera.m_Lens.FieldOfView = Mathf.Lerp(cutCameraFOV, defaultFOV, interpolationVal);
-
-    //        if (interpolationVal >= 1f && mainCamera.m_Lens.FieldOfView <= cutCameraFOV)
-    //            break;
-    //    }
-
-    //    mainCamera.m_Lens.FieldOfView = cutCameraFOV;
-    //}
-
     void FixedUpdate()
     {
         // Player Movement
-        if (isMoving == true && _isKinemat == true)
+        if (isMoving && _isKinemat)
         {
             velocity = transform.right * moveDirection.x + transform.forward * moveDirection.y;
             velocity = velocity.normalized;
@@ -158,7 +80,7 @@ public class PlayerController : MonoBehaviour
             rb.MovePosition(transform.position + _velocity * Time.deltaTime);
             rb.AddForce(velocity * moveSpeed);
         }
-        if(_isKinemat == true)
+        if(_isKinemat)
         {
             rb.isKinematic = true;
         }
@@ -166,7 +88,7 @@ public class PlayerController : MonoBehaviour
         {
             rb.isKinematic = false;
         }
-        if(isMoving == true && _isKinemat == false)
+        if(isMoving && _isKinemat == false)
         {
             velocity = transform.right * moveDirection.x + transform.forward * moveDirection.y;
             velocity = velocity.normalized;
@@ -175,14 +97,6 @@ public class PlayerController : MonoBehaviour
             rb.MovePosition(transform.position + _velocity * Time.deltaTime);
             rb.AddForce(velocity);
         }
-
-//float speed = rb.velocity.magnitude;
-//if (speed > 5)
-//{
-//    float brakeSpeed = speed - 5;
-//    Vector3 brakingVelocity = rb.velocity.normalized * brakeSpeed;
-//    rb.AddForce(-brakingVelocity);
-//}
 
 // Ground Check
 if (!isGrounded)
