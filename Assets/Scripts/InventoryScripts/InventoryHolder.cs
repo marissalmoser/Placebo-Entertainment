@@ -13,7 +13,6 @@ using UnityEngine;
 
 public class InventoryHolder : MonoBehaviour
 {
-
     [SerializeField] protected InventorySystem _inventorySystem;
     [SerializeField] private int _inventorySize;
 
