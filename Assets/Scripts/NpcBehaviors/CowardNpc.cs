@@ -13,6 +13,7 @@ public class CowardNpc : BaseNpc
     [SerializeField] private float _secondsUntilExplosion;
 
     private bool _canTriggerInteraction = false;
+    private bool _canTeleportToGenerator = false;
 
     /// <summary>
     /// Called when the player enters the generator room
@@ -35,6 +36,8 @@ public class CowardNpc : BaseNpc
         _canTriggerInteraction = true;
         _canInteract = true;
         Interact();
+
+        _canTeleportToGenerator = true;
     }
 
     /// <summary>
@@ -148,6 +151,14 @@ public class CowardNpc : BaseNpc
         if (_currentState != NpcStates.PostMinigame)
         {
             EnterFailure();
+        }
+    }
+
+    public void TeleportToLocation(GameObject _destination)
+    {
+        if(_canTeleportToGenerator)
+        {
+            transform.position = _destination.transform.position;
         }
     }
 }
