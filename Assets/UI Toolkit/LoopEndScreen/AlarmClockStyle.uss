@@ -1,0 +1,32 @@
+.AlarmTextBase {
+    -unity-font: url("project://database/Assets/UI%20Toolkit/Orbitron-VariableFont_wght.ttf?fileID=12800000&guid=370c7a8ae574d454ba3d51fe5d4ad339&type=3#Orbitron-VariableFont_wght");
+    -unity-font-definition: url("project://database/Assets/UI%20Toolkit/Orbitron-VariableFont_wght%20SDF.asset?fileID=11400000&guid=5e4f18e21386b0e468c2600c20319a87&type=2#Orbitron-VariableFont_wght SDF");
+    font-size: 91px;
+    color: rgba(197, 29, 29, 0);
+    width: 333px;
+    height: 146px;
+    transform-origin: left top;
+    transition-duration: 0.35s;
+}
+
+.AlarmTextBaseActive {
+    color: rgb(197, 29, 29);
+    transition-duration: 10s;
+    transform-origin: left top;
+    translate: 0 0;
+}
+
+.AlarmTextBig {
+    position: relative;
+    right: auto;
+    top: 16%;
+    scale: 5 5;
+    transform-origin: left top;
+    transition-duration: 30s;
+    left: 7%;
+}
+
+.AlarmTextBackground {
+    background-color: rgb(0, 0, 0);
+    transition-delay: 1s;
+}

@@ -35,8 +35,10 @@ namespace PlaceboEntertainment.UI
         [SerializeField] private UIDocument notificationPopupMenu;
         [SerializeField] private UIDocument dialogueMenu;
         [SerializeField] private UIDocument winScreen;
+        [SerializeField] private UIDocument alarmClockScreen;
 
-        [Tooltip("The player object to base position & rotation off of for the mini-map.")] [SerializeField]
+        [Tooltip("The player object to base position & rotation off of for the mini-map.")] 
+        [SerializeField]
         private Transform playerTransform;
 
         [Tooltip("Rotation offset of the player's y-axis euler angles.")] [SerializeField]
@@ -118,6 +120,11 @@ namespace PlaceboEntertainment.UI
         private const string DialogueOptionContainerName = "DialogueOptionContainer";
         private const string DialogueLabelName = "BottomBar";
         private const string DialogueOptionName = "DialogueOption";
+        private const string AlarmClockScreenName = "Clock";
+        private const string AlarmClockActiveStyleName = "AlarmTextBaseActive";
+        private const string AlarmClockBigStyleName = "AlarmTextBig";
+        private const string AlarmTextBackgroundStyleName = "AlarmTextBackground";
+        private const string AlarmRootName = "Container";
 
         #endregion
 
@@ -156,6 +163,7 @@ namespace PlaceboEntertainment.UI
             _dialogueText = dialogueMenu.rootVisualElement.Q<Label>(DialogueLabelName);
             //auto sizers for the text. Unity does not provide one out of the box...WTF?
             _labelControl = new AutoFitLabelControl(_dialogueText, 35f, 75f);
+            SetLoseScreenUnactive();
         }
 
         /// <summary>
@@ -533,6 +541,42 @@ namespace PlaceboEntertainment.UI
             if (winScreen == null) return;
             winScreen.rootVisualElement.style.display = active ? DisplayStyle.Flex : DisplayStyle.None;
         }
+        
+        #endregion
+        
+        #region AlarmClockScreen
+
+        [ContextMenu(nameof(SetLoseScreenActive))]
+        public void SetLoseScreenActive()
+        {
+            var text = alarmClockScreen.rootVisualElement.Q<Label>(AlarmClockScreenName);
+            text.AddToClassList(AlarmClockActiveStyleName);
+            text.RegisterCallback<TransitionEndEvent>(OnTransitionEnd);
+        }
+
+        private void OnTransitionEnd(TransitionEndEvent evt)
+        {
+            var text = evt.currentTarget as Label;
+            text?.AddToClassList(AlarmClockBigStyleName);
+            text?.schedule.Execute(() =>
+            {
+                text?.RegisterCallback<TransitionEndEvent>(OnBigTransitionEnd);
+            });
+        }
+
+        private void OnBigTransitionEnd(TransitionEndEvent evt)
+        {
+            var text = evt.currentTarget as Label;
+            text?.parent.AddToClassList(AlarmTextBackgroundStyleName);
+        }
+
+        [ContextMenu(nameof(SetLoseScreenUnactive))]
+        public void SetLoseScreenUnactive()
+        {
+            var text = alarmClockScreen.rootVisualElement.Q<Label>(AlarmClockScreenName);
+            text.RemoveFromClassList(AlarmClockActiveStyleName);
+        }
+        
         
         #endregion
     }
