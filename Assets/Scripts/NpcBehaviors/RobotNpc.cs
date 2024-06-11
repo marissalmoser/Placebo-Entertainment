@@ -28,11 +28,30 @@ public class RobotNpc : BaseNpc
     }
 
     /// <summary>
-    /// Unsubscribing from event on disable
+    /// Unsubscribing from events on disable
     /// </summary>
-    private void OnDisable()
+    protected override void OnDisable()
     {
+        base.OnDisable();
+
         MGWireState.WireGameWon -= CheckForStateChange;
+    }
+
+    /// <summary>
+    /// Checks if collected item is either the light bulb or the calibration tool
+    /// </summary>
+    /// <param name="item">The item that was collected</param>
+    /// <param name="quantity">How many of that item was collected</param>
+    public override void CollectedItem(InventoryItemData item, int quantity)
+    {
+        if (item.DisplayName.Equals("Light Bulb"))
+        {
+            _hasLightbulb = true;
+        }
+        else if (item.DisplayName.Equals("Calibration Tool"))
+        {
+            _hasBypassItem = true;
+        }
     }
 
     /// <summary>
@@ -118,7 +137,7 @@ public class RobotNpc : BaseNpc
             return option.NextResponseIndex[1];
         }
         // Bypass for minigame
-        else if (_hasRepairedRobot && _haveBypassItem && _currentState != NpcStates.PostMinigame)
+        else if (_hasRepairedRobot && _hasBypassItem && _currentState != NpcStates.PostMinigame)
         {
             _shouldEndDialogue = true;
             Invoke(nameof(EnterPostMinigame), 0.2f);

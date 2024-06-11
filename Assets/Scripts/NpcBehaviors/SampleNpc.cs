@@ -38,6 +38,13 @@ public class SampleNpc : BaseNpc
             Interact(2);
     }
 
+    public override void CollectedItem(InventoryItemData item, int quantity)
+    {
+        // This method will contain NPC specific logic to react to certain items
+        // being collected
+        throw new System.NotImplementedException();
+    }
+
     public override void CheckForStateChange()
     {
         // This method should contain various checks to determine the next state
@@ -74,7 +81,7 @@ public class SampleNpc : BaseNpc
 
         Debug.Log("Minigame State Reached");
 
-        if (_haveBypassItem)
+        if (_hasBypassItem)
         {
             // Skip minigame
         }

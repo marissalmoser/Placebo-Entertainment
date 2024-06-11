@@ -110,6 +110,7 @@ public abstract class BaseNpc : MonoBehaviour
     protected NavMeshAgent _navAgent;
     protected Animator _animator;
     protected TabbedMenu _tabbedMenu;
+    protected InventorySystem _inventorySystem;
 
     protected NpcStates _currentState = NpcStates.DefaultIdle;
 
@@ -117,7 +118,7 @@ public abstract class BaseNpc : MonoBehaviour
     protected bool _canInteract = false;
     protected bool _shouldEndDialogue = false;
     protected bool _isInteracting = false;
-    protected bool _haveBypassItem = false;
+    protected bool _hasBypassItem = false;
 
     /// <summary>
     /// Invoking Initialize() on Start to set up NPC
@@ -133,6 +134,10 @@ public abstract class BaseNpc : MonoBehaviour
     /// </summary>
     protected virtual void Initialize()
     {
+        GameObject tempPlayer = GameObject.FindGameObjectWithTag("Player");
+        _inventorySystem = tempPlayer.GetComponent<InventoryHolder>().InventorySystem;
+        _inventorySystem.AddedToInventory += CollectedItem;
+
         _tabbedMenu = TabbedMenu.Instance;
         _navAgent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
@@ -303,11 +308,19 @@ public abstract class BaseNpc : MonoBehaviour
     public abstract void CheckForStateChange();
 
     /// <summary>
+    /// Called when AddedToInventory action is invoked to let NPC check if a 
+    /// required item was collected
+    /// </summary>
+    /// <param name="item">The item that was collected</param>
+    /// <param name="quantity">How many of that item was collected</param>
+    public abstract void CollectedItem(InventoryItemData item, int quantity);
+
+    /// <summary>
     /// To be called by event listener when bypass item is collected
     /// </summary>
     public void CollectedBypassItem()
     {
-        _haveBypassItem = true;
+        _hasBypassItem = true;
     }
 
 
@@ -403,6 +416,14 @@ public abstract class BaseNpc : MonoBehaviour
         }
     }
     #endregion
+
+    /// <summary>
+    /// Unsubscribing from action on disable
+    /// </summary>
+    protected virtual void OnDisable()
+    {
+        _inventorySystem.AddedToInventory -= CollectedItem;
+    }
 }
 
 public enum NpcStates

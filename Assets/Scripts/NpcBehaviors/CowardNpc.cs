@@ -28,6 +28,23 @@ public class CowardNpc : BaseNpc
     }
 
     /// <summary>
+    /// Triggers Coward dialogue in response to the light bulb being collected
+    /// </summary>
+    /// <param name="item">The item that was collected</param>
+    /// <param name="quantity">How many of that item was collected</param>
+    public override void CollectedItem(InventoryItemData item, int quantity)
+    {
+        if (item.DisplayName.Equals("Light Bulb"))
+        {
+            LightbulbEventTriggered();
+        }
+        else if (item.DisplayName.Equals("Wrench"))
+        {
+            _hasBypassItem = true;
+        }
+    }
+
+    /// <summary>
     /// Called when event for player picking up lightbulb is triggered
     /// </summary>
     public void LightbulbEventTriggered()
@@ -124,7 +141,7 @@ public class CowardNpc : BaseNpc
     protected override int ChooseDialoguePath(PlayerResponse option)
     {
         // Checks for bypass
-        if (_haveBypassItem && _currentState != NpcStates.PostMinigame)
+        if (_hasBypassItem && _currentState != NpcStates.PostMinigame)
         {
             _shouldEndDialogue = true;
             Invoke("EnterPostMinigame", 0.2f);
