@@ -34,6 +34,7 @@ namespace PlaceboEntertainment.UI
         [SerializeField] private UIDocument interactPromptMenu;
         [SerializeField] private UIDocument notificationPopupMenu;
         [SerializeField] private UIDocument dialogueMenu;
+        [SerializeField] private UIDocument winScreen;
 
         [Tooltip("The player object to base position & rotation off of for the mini-map.")] [SerializeField]
         private Transform playerTransform;
@@ -169,6 +170,7 @@ namespace PlaceboEntertainment.UI
             tabMenu.rootVisualElement.style.display = DisplayStyle.None;
             interactPromptMenu.rootVisualElement.style.display = DisplayStyle.None;
             notificationPopupMenu.rootVisualElement.style.display = DisplayStyle.None;
+            winScreen.rootVisualElement.style.display = DisplayStyle.None;
         }
 
         /// <summary>
@@ -516,6 +518,20 @@ namespace PlaceboEntertainment.UI
         {
             dialogueMenu.rootVisualElement.Query(DialogueOptionName)
                 .ForEach(option => { option.parent.Remove(option); });
+        }
+        
+        #endregion
+        
+        #region WinScreen
+        
+        /// <summary>
+        /// Displays the "You Win!" screen. Will takeover the entire screen.
+        /// </summary>
+        /// <param name="active">Whether or not the screen is displayed.</param>
+        public void ToggleWin(bool active)
+        {
+            if (winScreen == null) return;
+            winScreen.rootVisualElement.style.display = active ? DisplayStyle.Flex : DisplayStyle.None;
         }
         
         #endregion
