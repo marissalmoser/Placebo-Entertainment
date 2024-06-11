@@ -560,7 +560,7 @@ namespace PlaceboEntertainment.UI
             text?.AddToClassList(AlarmClockBigStyleName);
             text?.schedule.Execute(() =>
             {
-                text?.RegisterCallback<TransitionEndEvent>(OnBigTransitionEnd);
+                text.RegisterCallback<TransitionEndEvent>(OnBigTransitionEnd);
             });
         }
 

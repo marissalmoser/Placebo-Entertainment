@@ -11,19 +11,25 @@
 
 .AlarmTextBaseActive {
     color: rgb(197, 29, 29);
-    transition-duration: 10s;
+    transition-duration: 2s;
     transform-origin: left top;
     translate: 0 0;
+    width: 333px;
+    height: 146px;
 }
 
 .AlarmTextBig {
     position: relative;
     right: auto;
-    top: 16%;
+    top: auto;
     scale: 5 5;
+    transition-duration: 3s;
+    left: auto;
+    width: 333px;
+    height: 146px;
     transform-origin: left top;
-    transition-duration: 30s;
-    left: 7%;
+    transition-property: all;
+    translate: 150px 0;
 }
 
 .AlarmTextBackground {
