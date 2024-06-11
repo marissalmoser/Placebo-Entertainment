@@ -1,6 +1,6 @@
 /******************************************************************
 *    Author: Nick Grinstead
-*    Contributors: 
+*    Contributors: Andrea Swihart-DeCoster
 *    Date Created: 5/28/24
 *    Description: NPC class containing logic for the Coward NPC.
 *******************************************************************/
@@ -13,6 +13,7 @@ public class CowardNpc : BaseNpc
     [SerializeField] private float _secondsUntilExplosion;
 
     private bool _canTriggerInteraction = false;
+    private bool _canTeleportToGenerator = false;
 
     /// <summary>
     /// Called when the player enters the generator room
@@ -35,6 +36,8 @@ public class CowardNpc : BaseNpc
         _canTriggerInteraction = true;
         _canInteract = true;
         Interact();
+
+        _canTeleportToGenerator = true;
     }
 
     /// <summary>
@@ -148,6 +151,18 @@ public class CowardNpc : BaseNpc
         if (_currentState != NpcStates.PostMinigame)
         {
             EnterFailure();
+        }
+    }
+
+    /// <summary>
+    /// Teleports the NPC player to a destination
+    /// </summary>
+    /// <param name="destination"> teleport target destination </param>
+    public void TeleportToLocation(GameObject destination)
+    {
+        if(_canTeleportToGenerator)
+        {
+            transform.position = destination.transform.position;
         }
     }
 }
