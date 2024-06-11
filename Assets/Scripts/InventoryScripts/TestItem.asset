@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: TestItem
   m_EditorClassIdentifier: 
   Icon: {fileID: 0}
-  MaxStackSize: 3
+  MaxStackSize: 2
   DisplayName: 
   DisplayDescription: 
