@@ -72,10 +72,14 @@ public class DoorBehavior : MonoBehaviour, IInteractable
     }
 
     /// <summary>
-    /// Evoked by the npc event system to unlock a specific door.
+    /// A public function that can be called from the NPC that will unlock the
+    /// door. Can be altered to also open the door when this happens.
     /// </summary>
     public void UnlockDoor()
     {
         _isLocked = false;
+        
+        //if unlocking door should open the door:
+        //OpenDoor();
     }
 }
