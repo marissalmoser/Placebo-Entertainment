@@ -1,3 +1,12 @@
+/*****************************************************************************
+// File Name :         OnEnterRoom.cs
+// Author :            Andrea Swihart-DeCoster
+// Contributors :
+// Creation Date :     06/10/24
+//
+// Brief Description : Sends out events when the player enters a room.
+*****************************************************************************/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

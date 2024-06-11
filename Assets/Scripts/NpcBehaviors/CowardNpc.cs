@@ -1,6 +1,6 @@
 /******************************************************************
 *    Author: Nick Grinstead
-*    Contributors: 
+*    Contributors: Andrea Swihart-DeCoster
 *    Date Created: 5/28/24
 *    Description: NPC class containing logic for the Coward NPC.
 *******************************************************************/
@@ -154,11 +154,15 @@ public class CowardNpc : BaseNpc
         }
     }
 
-    public void TeleportToLocation(GameObject _destination)
+    /// <summary>
+    /// Teleports the NPC player to a destination
+    /// </summary>
+    /// <param name="destination"> teleport target destination </param>
+    public void TeleportToLocation(GameObject destination)
     {
         if(_canTeleportToGenerator)
         {
-            transform.position = _destination.transform.position;
+            transform.position = destination.transform.position;
         }
     }
 }
