@@ -68,6 +68,7 @@ public class SaveLoadManager : MonoBehaviour
         GUIUtility.systemCopyBuffer = dir;
         return true;
     }
+
     /// <summary>
     /// Using json utility to reconstruct our savegame from the file 
     /// </summary>
