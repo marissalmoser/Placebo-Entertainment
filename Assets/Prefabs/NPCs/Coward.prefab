@@ -168,6 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _npcName: Coward
+  _targetBypassItem: {fileID: 0}
   _startMinigameEvent: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
   _eventTag: 1
   _stateDialogueTrees:
@@ -328,6 +329,7 @@ MonoBehaviour:
     _playingMinigameState: {fileID: 0}
     _postMinigameState: {fileID: 0}
     _failureState: {fileID: 0}
+  _targetLightBulbItem: {fileID: 0}
   _secondsUntilExplosion: 180
 --- !u!114 &4840030442360983682
 MonoBehaviour:
@@ -350,40 +352,6 @@ MonoBehaviour:
         - m_Target: {fileID: 1230460638816517745}
           m_TargetAssemblyTypeName: CowardNpc, Assembly-CSharp
           m_MethodName: GeneratorEventTriggered
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - _npcEvent: {fileID: 11400000, guid: b0ff38f0f20db8a4ab04033934de185c, type: 2}
-    _npcEventTag: 7
-    _onEventTriggered:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1230460638816517745}
-          m_TargetAssemblyTypeName: CowardNpc, Assembly-CSharp
-          m_MethodName: LightbulbEventTriggered
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - _npcEvent: {fileID: 11400000, guid: b0ff38f0f20db8a4ab04033934de185c, type: 2}
-    _npcEventTag: 1
-    _onEventTriggered:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1230460638816517745}
-          m_TargetAssemblyTypeName: BaseNpc, Assembly-CSharp
-          m_MethodName: CollectedBypassItem
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
