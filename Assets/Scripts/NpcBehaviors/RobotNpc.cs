@@ -49,6 +49,7 @@ public class RobotNpc : BaseNpc
 
         if (item == _targetLightBulbItem)
         {
+            Debug.Log("Lightbulb collected");
             _hasLightbulb = true;
         }
     }
@@ -131,7 +132,7 @@ public class RobotNpc : BaseNpc
             return option.NextResponseIndex[0];
         }
         // Trying to repair robot without the lightbulb
-        else if (!_hasRepairedRobot && !_hasLightbulb && option.NextResponseIndex.Length > 1)
+        else if (!_hasRepairedRobot && !_hasLightbulb && option.NextResponseIndex.Length > 0)
         {
             return option.NextResponseIndex[1];
         }
@@ -145,7 +146,14 @@ public class RobotNpc : BaseNpc
         // Don't have minigame bypass
         else
         {
-            return option.NextResponseIndex[0];
+            if (option.NextResponseIndex.Length > 0)
+            {
+                return option.NextResponseIndex[0];
+            }
+            else
+            {
+                return 0;
+            }
         }
     }
 

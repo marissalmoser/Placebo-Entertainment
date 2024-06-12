@@ -48,6 +48,7 @@ public class Pickupable : MonoBehaviour, IInteractable
 
         if (inventoryHolder != null)
         {
+            Debug.Log("Got item");
             inventoryHolder.InventorySystem.AddToInventory(myData, 1, out _);
         }
         else

@@ -49,7 +49,7 @@ public class SampleNpc : BaseNpc
     // Returns dialogue based on if player has bypass item
     protected override int ChooseDialoguePath(PlayerResponse option)
     {
-        if (_hasBypassItem && option.NextResponseIndex.Length > 1)
+        if (_hasBypassItem && option.NextResponseIndex.Length > 0)
         {
             return option.NextResponseIndex[1];
         }

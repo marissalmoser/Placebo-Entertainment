@@ -16,6 +16,8 @@ using System;
 
 public class WrenchBehavior : MonoBehaviour, IInteractable
 {
+    [SerializeField] private NpcEvent _minigameEndEvent;
+
     [Header("UI Stuff")]
     [SerializeField] private TextMeshPro _smackedText;
 
@@ -94,6 +96,7 @@ public class WrenchBehavior : MonoBehaviour, IInteractable
             gameObject.SetActive(false);
 
             //game ends here?
+            _minigameEndEvent.TriggerEvent(NpcEventTags.Coward);
             print("game end");
         }
     }
