@@ -30,7 +30,7 @@ public class SparksBehavior : MonoBehaviour
         _oneFinder = GameObject.FindWithTag("Spark");
         if(_isOn && _oneFinder == null)
         {
-            _rangePos = new Vector3(Random.Range(transform.position.x - 2.0f, transform.position.x + 2.0f), transform.position.y, transform.position.z);
+            _rangePos = new Vector3(Random.Range(transform.position.x - 2.0f, transform.position.x + 2.0f), transform.position.y - 0.5f, transform.position.z - 0.5f);
             StartCoroutine(SpawnSlowly());
             _isOn = false;
         }
