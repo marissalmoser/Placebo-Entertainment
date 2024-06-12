@@ -32826,6 +32826,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1869879217}
     m_Modifications:
+    - target: {fileID: 1230460638816517745, guid: 86879ec7ec26aac4e9231e94c1b6fb04, type: 3}
+      propertyPath: _stateDialogueTrees._idleState.Array.data[0]._playerResponses.Array.data[0]._eventTag
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3168306894194644997, guid: 86879ec7ec26aac4e9231e94c1b6fb04, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.1764705
@@ -32890,6 +32894,10 @@ PrefabInstance:
       propertyPath: _eventsToListenFor.Array.data[4]._onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 1602347891}
+    - target: {fileID: 6340841286487016718, guid: 86879ec7ec26aac4e9231e94c1b6fb04, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -47888,11 +47896,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 578804054939250850, guid: bca78430ba974e94ca8da7d4c3236332, type: 3}
       propertyPath: _loopTimerTime
-      value: 160
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 578804054939250850, guid: bca78430ba974e94ca8da7d4c3236332, type: 3}
       propertyPath: endScreenDelay
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5278445670614390501, guid: bca78430ba974e94ca8da7d4c3236332, type: 3}
       propertyPath: m_Name
@@ -55492,7 +55500,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _inventorySystem:
     collectionOfSlots:
-    - itemData: {fileID: 0}
+    - itemData: {fileID: 11400000, guid: 773aae8864bf18d4a9e19e01b7e04081, type: 2}
       stackSize: 0
     - itemData: {fileID: 0}
       stackSize: 0
