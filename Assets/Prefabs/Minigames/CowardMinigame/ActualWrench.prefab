@@ -147,6 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b045cdfd094e1c4c91f417096219445, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _minigameEndEvent: {fileID: 11400000, guid: 8b7b5ccfabcfc4d4f96da8928978e41e, type: 2}
   _smackedText: {fileID: 0}
   _sparksMode: {fileID: 0}
   _animate: {fileID: 7995032218042838754}

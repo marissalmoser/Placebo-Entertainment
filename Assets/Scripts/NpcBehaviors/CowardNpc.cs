@@ -78,10 +78,11 @@ public class CowardNpc : BaseNpc
     /// shouldn't be negative</param>
     public override void Interact(int responseIndex = 0)
     {
-        if (_canTriggerInteraction)
-        {
+        // Temporarily removing this to make coward slightly less buggy
+        //if (_canTriggerInteraction)
+        //{
             base.Interact(responseIndex);
-        }
+        //}
     }
 
     /// <summary>
@@ -150,7 +151,14 @@ public class CowardNpc : BaseNpc
         // Don't have minigame bypass
         else
         {
-            return option.NextResponseIndex[0];
+            if (option.NextResponseIndex.Length > 0)
+            {
+                return option.NextResponseIndex[0];
+            }
+            else
+            {
+                return 0;
+            }
         }
     }
 
