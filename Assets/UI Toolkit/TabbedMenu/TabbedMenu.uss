@@ -80,7 +80,7 @@
 }
 
 .digitalClock {
-    background-color: rgb(217, 217, 217);
+    background-color: rgb(0, 0, 0);
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
@@ -89,6 +89,11 @@
     height: 142px;
     padding-top: 0;
     margin-top: 46%;
+    -unity-text-align: middle-center;
+    font-size: 101px;
+    -unity-font: url("project://database/Assets/UI%20Toolkit/Orbitron-VariableFont_wght.ttf?fileID=12800000&guid=370c7a8ae574d454ba3d51fe5d4ad339&type=3#Orbitron-VariableFont_wght");
+    -unity-font-definition: url("project://database/Assets/UI%20Toolkit/Orbitron-VariableFont_wght%20SDF.asset?fileID=11400000&guid=5e4f18e21386b0e468c2600c20319a87&type=2#Orbitron-VariableFont_wght SDF");
+    color: rgb(214, 29, 29);
 }
 
 .mapHolder {

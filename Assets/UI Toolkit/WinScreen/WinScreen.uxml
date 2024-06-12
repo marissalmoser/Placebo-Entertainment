@@ -1,0 +1,3 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="ImageContainer" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/UI%20Toolkit/WinScreen/First_Playable_YouWin.png?fileID=2800000&amp;guid=acb8de3d51d0a4849811d3eebf3d76e9&amp;type=3#First_Playable_YouWin&quot;);" />
+</ui:UXML>
