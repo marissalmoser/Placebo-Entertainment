@@ -16,7 +16,7 @@ public class LoopController : MonoBehaviour
     [SerializeField] private int endScreenDelay;
     public int LoopTimerTimer => _loopTimerTime;
 
-    private void Awake()
+    private void Start()
     {
         //Creating a timer. 
         _loopTimer = TimerManager.Instance.CreateTimer("LoopTimer", _loopTimerTime + endScreenDelay);
