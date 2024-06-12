@@ -38,6 +38,7 @@ namespace PlaceboEntertainment.UI
         [SerializeField] private UIDocument alarmClockScreen;
         [SerializeField] private int lossTime = 30;
         [SerializeField] private int endScreenTime = 3;
+        [SerializeField] private float endScreenDelay = 5f;
 
         [Tooltip("The player object to base position & rotation off of for the mini-map.")] [SerializeField]
         private Transform playerTransform;
@@ -218,7 +219,7 @@ namespace PlaceboEntertainment.UI
         private void Update()
         {
             UpdateMinimapPlayer();
-            float time = Mathf.Max(_timer.GetCurrentTimeInSeconds() - 5f, 0f);
+            float time = Mathf.Max(_timer.GetCurrentTimeInSeconds() - endScreenDelay, 0f);
             TimeSpan timeSpan = TimeSpan.FromSeconds(time);
             string timeString = timeSpan.ToString("mm':'ss");
             _alarmClockMenu.text = timeString;
@@ -572,6 +573,10 @@ namespace PlaceboEntertainment.UI
             winScreen.rootVisualElement.style.display = active ? DisplayStyle.Flex : DisplayStyle.None;
         }
 
+        [ContextMenu("Test Win Screen On")]
+        private void Test_WinScreenOn() => ToggleWin(true);
+        [ContextMenu("Test Win Screen Off")]
+        private void Test_WinScreenOff() => ToggleWin(false);
         #endregion
 
         #region AlarmClockScreen
