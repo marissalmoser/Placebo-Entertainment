@@ -11,6 +11,8 @@ using UnityEngine;
 
 public class SampleNpc : BaseNpc
 {
+    [SerializeField] private InventoryItemData _testingItem;
+
     // Update method code for testing
     private void Update()
     {
@@ -21,8 +23,8 @@ public class SampleNpc : BaseNpc
 
         if (Input.GetKeyDown(KeyCode.B))
         {
-            Debug.Log("Acquired bypass item");
-            CollectedBypassItem();
+            CollectedItem(_testingItem, 1);
+            Debug.Log("Item Collected");
         }
 
         if (Input.GetKeyDown(KeyCode.F))
@@ -38,11 +40,23 @@ public class SampleNpc : BaseNpc
             Interact(2);
     }
 
+    // Using this to test if inventory integration works
     public override void CollectedItem(InventoryItemData item, int quantity)
     {
-        // This method will contain NPC specific logic to react to certain items
-        // being collected
-        throw new System.NotImplementedException();
+        base.CollectedItem(item, quantity);
+    }
+
+    // Returns dialogue based on if player has bypass item
+    protected override int ChooseDialoguePath(PlayerResponse option)
+    {
+        if (_hasBypassItem)
+        {
+            return option.NextResponseIndex[1];
+        }
+        else
+        {
+            return option.NextResponseIndex[0];
+        }
     }
 
     public override void CheckForStateChange()

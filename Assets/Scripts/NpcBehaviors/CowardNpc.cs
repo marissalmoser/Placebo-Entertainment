@@ -10,6 +10,7 @@ using UnityEngine;
 
 public class CowardNpc : BaseNpc
 {
+    [SerializeField] private InventoryItemData _targetLightBulbItem;
     [SerializeField] private float _secondsUntilExplosion;
 
     private bool _canTriggerInteraction = false;
@@ -35,13 +36,11 @@ public class CowardNpc : BaseNpc
     /// <param name="quantity">How many of that item was collected</param>
     public override void CollectedItem(InventoryItemData item, int quantity)
     {
-        if (item.DisplayName.Equals("Light Bulb"))
+        base.CollectedItem(item, quantity);
+
+        if (item == _targetLightBulbItem)
         {
             LightbulbEventTriggered();
-        }
-        else if (item.DisplayName.Equals("Wrench"))
-        {
-            _hasBypassItem = true;
         }
     }
 

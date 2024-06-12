@@ -100,6 +100,8 @@ public abstract class BaseNpc : MonoBehaviour
 
     [SerializeField] protected string _npcName;
 
+    [SerializeField] protected InventoryItemData _targetBypassItem;
+
     [SerializeField] protected NpcEvent _startMinigameEvent;
     [SerializeField] protected NpcEventTags _eventTag;
 
@@ -134,8 +136,8 @@ public abstract class BaseNpc : MonoBehaviour
     /// </summary>
     protected virtual void Initialize()
     {
-        GameObject tempPlayer = GameObject.FindGameObjectWithTag("Player");
-        _inventorySystem = tempPlayer.GetComponent<InventoryHolder>().InventorySystem;
+        GameObject tempObject = GameObject.FindGameObjectWithTag("Inventory");
+        _inventorySystem = tempObject.GetComponent<InventoryHolder>().InventorySystem;
         _inventorySystem.AddedToInventory += CollectedItem;
 
         _tabbedMenu = TabbedMenu.Instance;
@@ -308,21 +310,18 @@ public abstract class BaseNpc : MonoBehaviour
     public abstract void CheckForStateChange();
 
     /// <summary>
-    /// Called when AddedToInventory action is invoked to let NPC check if a 
-    /// required item was collected
+    /// Invoked when item is collected to determine if a bypass item was collected
+    /// Can be extended to check for other items
     /// </summary>
     /// <param name="item">The item that was collected</param>
     /// <param name="quantity">How many of that item was collected</param>
-    public abstract void CollectedItem(InventoryItemData item, int quantity);
-
-    /// <summary>
-    /// To be called by event listener when bypass item is collected
-    /// </summary>
-    public void CollectedBypassItem()
+    public virtual void CollectedItem(InventoryItemData item, int quantity)
     {
-        _hasBypassItem = true;
+        if (item == _targetBypassItem)
+        {
+            _hasBypassItem = true;
+        }
     }
-
 
     #region StateFunctions
     /// <summary>

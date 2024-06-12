@@ -10,6 +10,7 @@ using UnityEngine;
 
 public class RobotNpc : BaseNpc
 {
+    [SerializeField] private InventoryItemData _targetLightBulbItem;
     [SerializeField] private float _secondsUntilDeath;
     private float _timeElapsed = 0f;
 
@@ -44,13 +45,11 @@ public class RobotNpc : BaseNpc
     /// <param name="quantity">How many of that item was collected</param>
     public override void CollectedItem(InventoryItemData item, int quantity)
     {
-        if (item.DisplayName.Equals("Light Bulb"))
+        base.CollectedItem(item, quantity);
+
+        if (item == _targetLightBulbItem)
         {
             _hasLightbulb = true;
-        }
-        else if (item.DisplayName.Equals("Calibration Tool"))
-        {
-            _hasBypassItem = true;
         }
     }
 
