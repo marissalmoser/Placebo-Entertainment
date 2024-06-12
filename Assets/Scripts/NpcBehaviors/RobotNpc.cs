@@ -10,6 +10,7 @@ using UnityEngine;
 
 public class RobotNpc : BaseNpc
 {
+    [SerializeField] private InventoryItemData _targetLightBulbItem;
     [SerializeField] private float _secondsUntilDeath;
     private float _timeElapsed = 0f;
 
@@ -28,11 +29,28 @@ public class RobotNpc : BaseNpc
     }
 
     /// <summary>
-    /// Unsubscribing from event on disable
+    /// Unsubscribing from events on disable
     /// </summary>
-    private void OnDisable()
+    protected override void OnDisable()
     {
+        base.OnDisable();
+
         MGWireState.WireGameWon -= CheckForStateChange;
+    }
+
+    /// <summary>
+    /// Checks if collected item is either the light bulb or the calibration tool
+    /// </summary>
+    /// <param name="item">The item that was collected</param>
+    /// <param name="quantity">How many of that item was collected</param>
+    public override void CollectedItem(InventoryItemData item, int quantity)
+    {
+        base.CollectedItem(item, quantity);
+
+        if (item == _targetLightBulbItem)
+        {
+            _hasLightbulb = true;
+        }
     }
 
     /// <summary>
@@ -118,7 +136,7 @@ public class RobotNpc : BaseNpc
             return option.NextResponseIndex[1];
         }
         // Bypass for minigame
-        else if (_hasRepairedRobot && _haveBypassItem && _currentState != NpcStates.PostMinigame)
+        else if (_hasRepairedRobot && _hasBypassItem && _currentState != NpcStates.PostMinigame)
         {
             _shouldEndDialogue = true;
             Invoke(nameof(EnterPostMinigame), 0.2f);

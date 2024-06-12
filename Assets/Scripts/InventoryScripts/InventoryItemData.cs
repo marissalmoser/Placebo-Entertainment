@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Inventory System/Inventory Collectable")]
+[System.Serializable]
 public class InventoryItemData : ScriptableObject
 {
     public Sprite Icon;

@@ -168,6 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _npcName: Coward
+  _targetBypassItem: {fileID: 0}
   _startMinigameEvent: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
   _eventTag: 1
   _stateDialogueTrees:
@@ -328,6 +329,7 @@ MonoBehaviour:
     _playingMinigameState: {fileID: 0}
     _postMinigameState: {fileID: 0}
     _failureState: {fileID: 0}
+  _targetLightBulbItem: {fileID: 0}
   _secondsUntilExplosion: 180
 --- !u!114 &4840030442360983682
 MonoBehaviour:
@@ -359,40 +361,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - _npcEvent: {fileID: 11400000, guid: b0ff38f0f20db8a4ab04033934de185c, type: 2}
-    _npcEventTag: 7
-    _onEventTriggered:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1230460638816517745}
-          m_TargetAssemblyTypeName: CowardNpc, Assembly-CSharp
-          m_MethodName: LightbulbEventTriggered
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - _npcEvent: {fileID: 11400000, guid: b0ff38f0f20db8a4ab04033934de185c, type: 2}
-    _npcEventTag: 1
-    _onEventTriggered:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1230460638816517745}
-          m_TargetAssemblyTypeName: BaseNpc, Assembly-CSharp
-          m_MethodName: CollectedBypassItem
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
   - _npcEvent: {fileID: 11400000, guid: 8b7b5ccfabcfc4d4f96da8928978e41e, type: 2}
     _npcEventTag: 1
     _onEventTriggered:
@@ -410,6 +378,23 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - _npcEvent: {fileID: 11400000, guid: 9f71d044c4d09304588beadc31eb08d4, type: 2}
+    _npcEventTag: 8
+    _onEventTriggered:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1230460638816517745}
+          m_TargetAssemblyTypeName: CowardNpc, Assembly-CSharp
+          m_MethodName: TeleportToLocation
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 6156672475860556976, guid: 872c16daeb8c8a145a3aae75b1c75557, type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
 --- !u!114 &5883686602139835072
 MonoBehaviour:
   m_ObjectHideFlags: 0

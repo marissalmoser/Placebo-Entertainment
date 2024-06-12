@@ -4,11 +4,15 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< HEAD
   - Interactable
   - Release
   - Gear
   - Spark
   - Righty
+=======
+  - Inventory
+>>>>>>> main
   layers:
   - Default
   - TransparentFX

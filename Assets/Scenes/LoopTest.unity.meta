@@ -1,12 +1,16 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Plugins/FMOD/Cache/Editor/FMODStudioCache.asset.meta
 <<<<<<< HEAD
 guid: dbec577d0d6433848a652dcf2292266f
 =======
 guid: ee3e6c41a8b202f40af3046dcc54ef12
 >>>>>>> main
 NativeFormatImporter:
+=======
+guid: c2be85cac5d3ad14f85e8b591cf21169
+DefaultImporter:
+>>>>>>> main:Assets/Scenes/LoopTest.unity.meta
   externalObjects: {}
-  mainObjectFileID: 11400000
   userData: 
   assetBundleName: 
   assetBundleVariant: 
