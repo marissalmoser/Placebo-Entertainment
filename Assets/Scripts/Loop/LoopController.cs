@@ -1,6 +1,6 @@
 /******************************************************************
 *    Author: Elijah Vroman
-*    Contributors: Elijah Vroman
+*    Contributors: Elijah Vroman, Alec Pizziferro
 *    Date Created: 5/30/24?
 *    Description: This monobehavior will be present in the scene to 
 *    control when the scene resets. 
@@ -13,12 +13,13 @@ public class LoopController : MonoBehaviour
 {
     private Timer _loopTimer;
     [SerializeField] private int _loopTimerTime;
+    [SerializeField] private int endScreenDelay;
     public int LoopTimerTimer => _loopTimerTime;
 
     private void Start()
     {
         //Creating a timer. 
-        _loopTimer = TimerManager.Instance.CreateTimer("LoopTimer", _loopTimerTime);
+        _loopTimer = TimerManager.Instance.CreateTimer("LoopTimer", _loopTimerTime + endScreenDelay);
         _loopTimer.TimesUp += HandleLoopTimerEnd;
     }
     /// <summary>

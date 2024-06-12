@@ -18,7 +18,6 @@ namespace UI.Components
             this.MaxFontSizeInPx = maxFontSizeInPx;
             this.labelElement.RegisterCallback<GeometryChangedEvent>(evt => UpdateFontSize());
             this.labelElement.RegisterValueChangedCallback(evt => UpdateFontSize());
-            VisualElement e;
         }
 
         ~AutoFitLabelControl()

@@ -34,6 +34,11 @@ namespace PlaceboEntertainment.UI
         [SerializeField] private UIDocument interactPromptMenu;
         [SerializeField] private UIDocument notificationPopupMenu;
         [SerializeField] private UIDocument dialogueMenu;
+        [SerializeField] private UIDocument winScreen;
+        [SerializeField] private UIDocument alarmClockScreen;
+        [SerializeField] private int lossTime = 30;
+        [SerializeField] private int endScreenTime = 3;
+        [SerializeField] private float endScreenDelay = 5f;
         [SerializeField] private UIDocument crosshair;
 
         [Tooltip("The player object to base position & rotation off of for the mini-map.")] [SerializeField]
@@ -96,6 +101,9 @@ namespace PlaceboEntertainment.UI
         private Label _dialogueText;
         private bool _dialogueVisible;
         private AutoFitLabelControl _labelControl;
+        private Timer _timer;
+        private Label _alarmClockMenu, _alarmClockOverlay;
+        private bool _hasAppliedLoseStyling, _hasBegunLossTransition;
 
         #endregion
 
@@ -118,6 +126,12 @@ namespace PlaceboEntertainment.UI
         private const string DialogueOptionContainerName = "DialogueOptionContainer";
         private const string DialogueLabelName = "BottomBar";
         private const string DialogueOptionName = "DialogueOption";
+        private const string AlarmClockScreenName = "Clock";
+        private const string AlarmClockActiveStyleName = "AlarmTextBaseActive";
+        private const string AlarmClockBigStyleName = "AlarmTextBig";
+        private const string AlarmTextBackgroundStyleName = "AlarmTextBackground";
+        private const string AlarmRootName = "Container";
+        private const string AlarmClockMenuName = "DigitalClock";
 
         #endregion
 
@@ -154,8 +168,11 @@ namespace PlaceboEntertainment.UI
             _scheduleContainer = _tabMenuRoot.Q(ScheduleContainerName);
             _dialogueButtonContainer = dialogueMenu.rootVisualElement.Q(DialogueOptionContainerName);
             _dialogueText = dialogueMenu.rootVisualElement.Q<Label>(DialogueLabelName);
+            _alarmClockOverlay = alarmClockScreen.rootVisualElement.Q<Label>(AlarmClockScreenName);
+            _alarmClockMenu = _tabMenuRoot.Q<Label>(AlarmClockMenuName);
             //auto sizers for the text. Unity does not provide one out of the box...WTF?
             _labelControl = new AutoFitLabelControl(_dialogueText, 35f, 75f);
+            SetLoseScreenUnactive();
         }
 
         /// <summary>
@@ -170,14 +187,22 @@ namespace PlaceboEntertainment.UI
             tabMenu.rootVisualElement.style.display = DisplayStyle.None;
             interactPromptMenu.rootVisualElement.style.display = DisplayStyle.None;
             notificationPopupMenu.rootVisualElement.style.display = DisplayStyle.None;
+            winScreen.rootVisualElement.style.display = DisplayStyle.None;
+            alarmClockScreen.rootVisualElement.style.display = DisplayStyle.None;
         }
 
         /// <summary>
-        /// Assigns the performed action of the tab key to opening/closing the schedule UI.
+        /// Assigns the performed action of the tab key to opening/closing the schedule UI. Also sets up the timer.
         /// </summary>
         private void Start()
         {
             PlayerController.Instance.PlayerControls.BasicControls.OpenSchedule.performed += OpenScheduleOnPerformed;
+            _timer = TimerManager.Instance.GetTimer("LoopTimer");
+            if (_timer == null)
+            {
+                Debug.LogError("Time manager failed to create a timer, perhaps it's not in the scene?",
+                    gameObject);
+            }
         }
 
         /// <summary>
@@ -195,6 +220,22 @@ namespace PlaceboEntertainment.UI
         private void Update()
         {
             UpdateMinimapPlayer();
+            float time = Mathf.Max(_timer.GetCurrentTimeInSeconds() - endScreenDelay, 0f);
+            TimeSpan timeSpan = TimeSpan.FromSeconds(time);
+            string timeString = timeSpan.ToString("mm':'ss");
+            _alarmClockMenu.text = timeString;
+            _alarmClockOverlay.text = timeString;
+
+            if (timeSpan.Seconds == lossTime && !_hasAppliedLoseStyling)
+            {
+                SetLoseScreenActive();
+                _hasAppliedLoseStyling = true; //prevent styles getting applied for multiple frames
+            }
+            else if (timeSpan.Seconds == endScreenTime && !_hasBegunLossTransition)
+            {
+                BeginLoseScreenGrowth();
+                _hasBegunLossTransition = true;
+            }
         }
 
         #endregion
@@ -492,7 +533,7 @@ namespace PlaceboEntertainment.UI
             if (_dialogueText == null) return;
             _dialogueText.text = $"<color=\"orange\">{charName} <color=\"white\">- {dialogueText}";
         }
-        
+
         /// <summary>
         /// Creates a dialogue option.
         /// </summary>
@@ -518,7 +559,66 @@ namespace PlaceboEntertainment.UI
             dialogueMenu.rootVisualElement.Query(DialogueOptionName)
                 .ForEach(option => { option.parent.Remove(option); });
         }
-        
+
+        #endregion
+
+        #region WinScreen
+
+        /// <summary>
+        /// Displays the "You Win!" screen. Will takeover the entire screen.
+        /// </summary>
+        /// <param name="active">Whether or not the screen is displayed.</param>
+        public void ToggleWin(bool active)
+        {
+            if (winScreen == null) return;
+            winScreen.rootVisualElement.style.display = active ? DisplayStyle.Flex : DisplayStyle.None;
+        }
+
+        [ContextMenu("Test Win Screen On")]
+        private void Test_WinScreenOn() => ToggleWin(true);
+        [ContextMenu("Test Win Screen Off")]
+        private void Test_WinScreenOff() => ToggleWin(false);
+        #endregion
+
+        #region AlarmClockScreen
+
+        [ContextMenu(nameof(SetLoseScreenActive))]
+        public void SetLoseScreenActive()
+        {
+            alarmClockScreen.rootVisualElement.style.display = DisplayStyle.Flex;
+            var text = alarmClockScreen.rootVisualElement.Q<Label>(AlarmClockScreenName);
+            text.AddToClassList(AlarmClockActiveStyleName);
+            // text.RegisterCallback<TransitionEndEvent>(OnTransitionEnd);
+        }
+
+        private void BeginLoseScreenGrowth()
+        {
+            var text = alarmClockScreen.rootVisualElement.Q<Label>(AlarmClockScreenName);
+            text.AddToClassList(AlarmClockBigStyleName);
+            text?.schedule.Execute(() => { text.RegisterCallback<TransitionEndEvent>(OnBigTransitionEnd); });
+        }
+
+        private void OnTransitionEnd(TransitionEndEvent evt)
+        {
+            var text = evt.currentTarget as Label;
+            text?.AddToClassList(AlarmClockBigStyleName);
+            text?.schedule.Execute(() => { text.RegisterCallback<TransitionEndEvent>(OnBigTransitionEnd); });
+        }
+
+        private void OnBigTransitionEnd(TransitionEndEvent evt)
+        {
+            var text = evt.currentTarget as Label;
+            text?.parent.AddToClassList(AlarmTextBackgroundStyleName);
+        }
+
+        [ContextMenu(nameof(SetLoseScreenUnactive))]
+        public void SetLoseScreenUnactive()
+        {
+            alarmClockScreen.rootVisualElement.style.display = DisplayStyle.None;
+            var text = alarmClockScreen.rootVisualElement.Q<Label>(AlarmClockScreenName);
+            text.RemoveFromClassList(AlarmClockActiveStyleName);
+        }
+
         #endregion
         
         #region Crosshair
