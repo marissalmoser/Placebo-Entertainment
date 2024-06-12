@@ -23953,6 +23953,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TabbedMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 3268437976918378075, guid: 2fcbfa8208ca5c54fa83f3a5c518bb3d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4422286474446707533, guid: 2fcbfa8208ca5c54fa83f3a5c518bb3d, type: 3}
       propertyPath: playerTransform
       value: 
@@ -30849,7 +30853,7 @@ PrefabInstance:
     - target: {fileID: 7366979465635975259, guid: 5e4440da8a7d6d941bfce3d41aba130e, type: 3}
       propertyPath: _targetFollow
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2128750748}
     - target: {fileID: 7366979465635975259, guid: 5e4440da8a7d6d941bfce3d41aba130e, type: 3}
       propertyPath: _successfulPulls
       value: 
@@ -32880,7 +32884,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3297066376343357550, guid: 86879ec7ec26aac4e9231e94c1b6fb04, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4840030442360983682, guid: 86879ec7ec26aac4e9231e94c1b6fb04, type: 3}
       propertyPath: _eventsToListenFor.Array.data[4]._onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
@@ -55487,8 +55491,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inventorySystem:
-    collectionOfSlots: []
-  _inventorySize: 100
+    collectionOfSlots:
+    - itemData: {fileID: 0}
+      stackSize: 0
+    - itemData: {fileID: 0}
+      stackSize: 0
+    - itemData: {fileID: 0}
+      stackSize: 0
+    - itemData: {fileID: 0}
+      stackSize: 0
+    - itemData: {fileID: 0}
+      stackSize: 0
+  _inventorySize: 5
 --- !u!1 &2135037535
 GameObject:
   m_ObjectHideFlags: 0

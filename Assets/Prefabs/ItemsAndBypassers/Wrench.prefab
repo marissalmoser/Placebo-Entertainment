@@ -67,7 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb565884e72767c439065f4cdf2d8a3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PickUpRadius: 0
+  PickUpRadius: 2
   myData: {fileID: 11400000, guid: ec08ea3ee13c21241a8a4a117cf4beab, type: 2}
 --- !u!1001 &7266211956074099562
 PrefabInstance:
