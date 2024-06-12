@@ -34,6 +34,7 @@ namespace PlaceboEntertainment.UI
         [SerializeField] private UIDocument interactPromptMenu;
         [SerializeField] private UIDocument notificationPopupMenu;
         [SerializeField] private UIDocument dialogueMenu;
+        [SerializeField] private UIDocument crosshair;
 
         [Tooltip("The player object to base position & rotation off of for the mini-map.")] [SerializeField]
         private Transform playerTransform;
@@ -518,6 +519,19 @@ namespace PlaceboEntertainment.UI
                 .ForEach(option => { option.parent.Remove(option); });
         }
         
+        #endregion
+        
+        #region Crosshair
+
+        /// <summary>
+        /// Enables or disables the crosshair.
+        /// </summary>
+        /// <param name="show">Whether or not to show the crosshair.</param>
+        public void ToggleCrosshair(bool show)
+        {
+            if (crosshair == null) return;
+            crosshair.rootVisualElement.style.display = show ? DisplayStyle.Flex : DisplayStyle.None;
+        }
         #endregion
     }
 }
