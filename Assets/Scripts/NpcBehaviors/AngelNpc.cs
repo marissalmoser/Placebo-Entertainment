@@ -38,24 +38,45 @@ public class AngelNpc : BaseNpc
     /// </summary>
     public override void CheckForStateChange()
     {
-        throw new System.NotImplementedException();
+        if (_currentState == NpcStates.DefaultIdle)
+        {
+            EnterMinigameReady();
+        }
     }
 
     /// <summary>
-    /// Decides if the player should win or if the loop resets when talking to
-    /// the Angel. The dialogue path taken will trigger one of the two events
+    /// Temporary set-up for first playable that either resets the loop or 
+    /// displays the winscreen
     /// </summary>
-    /// <param name="option">PlayerResponse being examined</param>
-    /// <returns>int index of the next dialogue node</returns>
-    protected override int ChooseDialoguePath(PlayerResponse option)
+    protected override void EnterMinigameReady()
     {
-        if (_robotGameComplete && _cowardGameComplete)
+        base.EnterMinigameReady();
+
+        if (_cowardGameComplete && _robotGameComplete)
         {
-            return option.NextResponseIndex[1];
+            // TODO: display winscreen
         }
         else
         {
-            return option.NextResponseIndex[0];
+            // TODO: reset loop
+        }
+    }
+
+    /// <summary>
+    /// Chooses different dialogue based on if the player has done both minigames
+    /// or not
+    /// </summary>
+    /// <param name="node">Dialogue node being examined</param>
+    /// <returns>String dialogue to display</returns>
+    protected override string ChooseDialogueFromNode(DialogueNode node)
+    {
+        if (_cowardGameComplete && _robotGameComplete)
+        {
+            return node.Dialogue[1];
+        }
+        else
+        {
+            return node.Dialogue[0];
         }
     }
 }
