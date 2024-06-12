@@ -103,21 +103,7 @@
             },
             {
                 "type": "System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
-<<<<<<< HEAD
                 "key": "editor.stripProBuilderScriptsOnBuild",
-=======
-                "key": "GrowSelection.useAngle",
-                "value": "{\"m_Value\":true}"
-            },
-            {
-                "type": "System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
-                "key": "GrowSelection.iterativeGrow",
-                "value": "{\"m_Value\":false}"
-            },
-            {
-                "type": "System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
-                "key": "UVEditor.showPreviewMaterial",
->>>>>>> main
                 "value": "{\"m_Value\":true}"
             },
             {
@@ -163,11 +149,7 @@
             {
                 "type": "UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                 "key": "ShapeBuilder.LastSize",
-<<<<<<< HEAD
                 "value": "{\"m_Value\":{\"x\":-0.7824325561523438,\"y\":0.7205272912979126,\"z\":-1.6636252403259278}}"
-=======
-                "value": "{\"m_Value\":{\"x\":2.4073486328125,\"y\":4.799144268035889,\"z\":-2.0862464904785158}}"
->>>>>>> main
             },
             {
                 "type": "UnityEngine.Quaternion, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
@@ -226,31 +208,10 @@
             },
             {
                 "type": "UnityEngine.ProBuilder.Shapes.Shape, Unity.ProBuilder, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-<<<<<<< HEAD
-=======
-                "key": "ShapeBuilder.Prism",
-                "value": "{}"
-            },
-            {
-                "type": "UnityEngine.ProBuilder.Shapes.Shape, Unity.ProBuilder, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
->>>>>>> main
                 "key": "ShapeBuilder.Arch",
                 "value": "{}"
             },
             {
-<<<<<<< HEAD
-=======
-                "type": "UnityEngine.ProBuilder.Shapes.Shape, Unity.ProBuilder, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-                "key": "ShapeBuilder.Stairs",
-                "value": "{}"
-            },
-            {
-                "type": "UnityEngine.ProBuilder.Shapes.Shape, Unity.ProBuilder, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-                "key": "ShapeBuilder.Plane",
-                "value": "{}"
-            },
-            {
->>>>>>> main
                 "type": "UnityEngine.ProBuilder.ExtrudeMethod, Unity.ProBuilder, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                 "key": "editor.extrudeMethod",
                 "value": "{\"m_Value\":2}"
@@ -266,29 +227,6 @@
                 "value": "{\"m_Value\":0.20000000298023225}"
             },
             {
-<<<<<<< HEAD
-=======
-                "type": "System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
-                "key": "ExtrudeFaces.distance",
-                "value": "{\"m_Value\":0.5}"
-            },
-            {
-                "type": "System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
-                "key": "GrowSelection.angleValue",
-                "value": "{\"m_Value\":15.0}"
-            },
-            {
-                "type": "System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
-                "key": "uv.uvEditorGridSnapIncrement",
-                "value": "{\"m_Value\":0.125}"
-            },
-            {
-                "type": "UnityEditor.ProBuilder.Actions.DuplicateFaces+DuplicateFaceSetting, Unity.ProBuilder.Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-                "key": "DuplicateFaces.target",
-                "value": "{\"m_Value\":0}"
-            },
-            {
->>>>>>> main
                 "type": "UnityEditor.ProBuilder.Actions.DetachFaces+DetachSetting, Unity.ProBuilder.Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                 "key": "DetachFaces.target",
                 "value": "{\"m_Value\":0}"
