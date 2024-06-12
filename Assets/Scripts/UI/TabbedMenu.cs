@@ -584,7 +584,6 @@ namespace PlaceboEntertainment.UI
         [ContextMenu(nameof(SetLoseScreenActive))]
         public void SetLoseScreenActive()
         {
-            print("its losing time");
             alarmClockScreen.rootVisualElement.style.display = DisplayStyle.Flex;
             var text = alarmClockScreen.rootVisualElement.Q<Label>(AlarmClockScreenName);
             text.AddToClassList(AlarmClockActiveStyleName);
