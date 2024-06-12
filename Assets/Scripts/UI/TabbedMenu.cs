@@ -38,6 +38,7 @@ namespace PlaceboEntertainment.UI
         [SerializeField] private UIDocument alarmClockScreen;
         [SerializeField] private int lossTime = 30;
         [SerializeField] private int endScreenTime = 3;
+
         [Tooltip("The player object to base position & rotation off of for the mini-map.")] [SerializeField]
         private Transform playerTransform;
 
@@ -189,12 +190,17 @@ namespace PlaceboEntertainment.UI
         }
 
         /// <summary>
-        /// Assigns the performed action of the tab key to opening/closing the schedule UI.
+        /// Assigns the performed action of the tab key to opening/closing the schedule UI. Also sets up the timer.
         /// </summary>
         private void Start()
         {
             PlayerController.Instance.PlayerControls.BasicControls.OpenSchedule.performed += OpenScheduleOnPerformed;
             _timer = TimerManager.Instance.GetTimer("LoopTimer");
+            if (_timer == null)
+            {
+                Debug.LogError("Time manager failed to create a timer, perhaps it's not in the scene?",
+                    gameObject);
+            }
         }
 
         /// <summary>
@@ -217,7 +223,7 @@ namespace PlaceboEntertainment.UI
             string timeString = timeSpan.ToString("mm':'ss");
             _alarmClockMenu.text = timeString;
             _alarmClockOverlay.text = timeString;
-            
+
             if (timeSpan.Seconds == lossTime && !_hasAppliedLoseStyling)
             {
                 SetLoseScreenActive();
@@ -585,7 +591,6 @@ namespace PlaceboEntertainment.UI
             var text = alarmClockScreen.rootVisualElement.Q<Label>(AlarmClockScreenName);
             text.AddToClassList(AlarmClockBigStyleName);
             text?.schedule.Execute(() => { text.RegisterCallback<TransitionEndEvent>(OnBigTransitionEnd); });
-
         }
 
         private void OnTransitionEnd(TransitionEndEvent evt)
