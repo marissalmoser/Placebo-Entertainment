@@ -55,7 +55,7 @@ public class RipcordBehavior : MonoBehaviour
     void Update()
     {
         _successfulPulls.text = _numReleased.ToString();
-        if (_pc.interact.IsPressed() && PressedE == true && transform.position.z > _targetFollow.transform.position.z && _numReleased != 3)
+        if (_pc.interact.IsPressed() && PressedE == true && transform.position.z > _targetFollow.transform.position.z + 1.7f && _numReleased != 3)
         {
             transform.position -= new Vector3(0, 0, _speed * Time.deltaTime);
             StartCoroutine(FindPreview());
