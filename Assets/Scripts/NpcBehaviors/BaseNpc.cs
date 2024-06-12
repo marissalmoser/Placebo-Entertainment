@@ -257,7 +257,6 @@ public abstract class BaseNpc : MonoBehaviour
 
             _currentDialogueIndex = nextNodeIndex;
             DialogueNode currentNode = _stateDialogueTrees.GetStateData(_currentState)[_currentDialogueIndex];
-            Debug.Log(ChooseDialogueFromNode(currentNode)); // TODO: display dialogue here
             string response = ChooseDialogueFromNode(currentNode);
             _tabbedMenu.DisplayDialogue(_npcName, response);
             _tabbedMenu.ToggleDialogue(true);
@@ -280,9 +279,8 @@ public abstract class BaseNpc : MonoBehaviour
             for (int i = 0; i < currentNode.PlayerResponses.Length; i++)
             {
                 option = currentNode.PlayerResponses[i];
-                Debug.Log(option.Answer); // TODO: display player option in UI
-                // TODO: uncomment this once merged with changes for setting dialogue option UI buttons
-                _tabbedMenu.DisplayDialogueOption(option.Answer, click: () => { Interact(2); });
+                int index = i;
+                _tabbedMenu.DisplayDialogueOption(option.Answer, click: () => { Interact(index); });
             }
         }
     }
