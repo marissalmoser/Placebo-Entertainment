@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _npcName: Robot
-  _targetBypassItem: {fileID: 0}
+  _targetBypassItem: {fileID: 11400000, guid: ce9c4a38351e1ac41b75157f79779d20, type: 2}
   _startMinigameEvent: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
   _eventTag: 6
   _stateDialogueTrees:
@@ -298,7 +298,7 @@ MonoBehaviour:
     _playingMinigameState: {fileID: 0}
     _postMinigameState: {fileID: 0}
     _failureState: {fileID: 0}
-  _targetLightBulbItem: {fileID: 0}
+  _targetLightBulbItem: {fileID: 11400000, guid: 773aae8864bf18d4a9e19e01b7e04081, type: 2}
   _secondsUntilDeath: 60
 --- !u!114 &6882198576666297318
 MonoBehaviour:

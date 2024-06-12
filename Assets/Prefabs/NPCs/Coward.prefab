@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _npcName: Coward
-  _targetBypassItem: {fileID: 0}
+  _targetBypassItem: {fileID: 11400000, guid: ec08ea3ee13c21241a8a4a117cf4beab, type: 2}
   _startMinigameEvent: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
   _eventTag: 1
   _stateDialogueTrees:
@@ -329,7 +329,7 @@ MonoBehaviour:
     _playingMinigameState: {fileID: 0}
     _postMinigameState: {fileID: 0}
     _failureState: {fileID: 0}
-  _targetLightBulbItem: {fileID: 0}
+  _targetLightBulbItem: {fileID: 11400000, guid: 773aae8864bf18d4a9e19e01b7e04081, type: 2}
   _secondsUntilExplosion: 180
 --- !u!114 &4840030442360983682
 MonoBehaviour:
