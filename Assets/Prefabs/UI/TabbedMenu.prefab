@@ -53,6 +53,7 @@ MonoBehaviour:
   interactPromptMenu: {fileID: 6863479780705166671}
   notificationPopupMenu: {fileID: 6840616893182693465}
   dialogueMenu: {fileID: 4518613424905076575}
+  crosshair: {fileID: 6312009879989638076}
   playerTransform: {fileID: 0}
   miniMapIndicatorEulerOffset: -90
   mapBoundaryUpperLeft: {fileID: 0}
