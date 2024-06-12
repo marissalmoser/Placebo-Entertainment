@@ -24,7 +24,6 @@ public class CowardNpc : BaseNpc
         if (_currentState == NpcStates.MinigameReady)
         {
             _canTriggerInteraction = true;
-            _canInteract = true;
             Interact();
         }
     }
@@ -50,7 +49,6 @@ public class CowardNpc : BaseNpc
     public void LightbulbEventTriggered()
     {
         _canTriggerInteraction = true;
-        _canInteract = true;
         Interact();
 
         _canTeleportToGenerator = true;
