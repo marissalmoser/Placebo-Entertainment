@@ -9,7 +9,7 @@
     </ui:VisualElement>
     <ui:VisualElement name="Divider" class="divider" />
     <ui:VisualElement name="tabContent" class="tabContent">
-        <ui:VisualElement name="MapContent" class="mapBackground unselectedContent" style="flex-direction: row; height: 100%; width: 100%; flex-wrap: nowrap; display: flex;">
+        <ui:VisualElement name="MapContent" class="mapBackground unselectedContent" style="flex-direction: row; height: 100%; width: 100%; flex-wrap: nowrap;">
             <ui:VisualElement name="MapContainer" class="mapContainer">
                 <ui:VisualElement name="MapHolder" class="mapHolder">
                     <ui:VisualElement name="Map" class="mapImage" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/UI%20Toolkit/TabbedMenu/Map.png?fileID=2800000&amp;guid=db9889df8c131da43b36ad102c0f905e&amp;type=3#Map&quot;);">
@@ -22,7 +22,7 @@
                 <ui:Label tabindex="-1" text="05:00" parse-escape-sequences="true" display-tooltip-when-elided="true" name="DigitalClock" class="digitalClock" />
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="ScheduleContent" class="scheduleContent" style="flex-grow: 1; display: none;">
+        <ui:VisualElement name="ScheduleContent" class="scheduleContent" style="flex-grow: 1;">
             <ui:VisualElement name="FilterContainer" class="filterContainer">
                 <ui:Instance template="FilterElementContainer" name="FilterElementContainer" />
                 <ui:VisualElement name="FilterElementContainer">
