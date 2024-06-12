@@ -39,6 +39,7 @@ namespace PlaceboEntertainment.UI
         [SerializeField] private int lossTime = 30;
         [SerializeField] private int endScreenTime = 3;
         [SerializeField] private float endScreenDelay = 5f;
+        [SerializeField] private UIDocument crosshair;
 
         [Tooltip("The player object to base position & rotation off of for the mini-map.")] [SerializeField]
         private Transform playerTransform;
@@ -618,6 +619,19 @@ namespace PlaceboEntertainment.UI
             text.RemoveFromClassList(AlarmClockActiveStyleName);
         }
 
+        #endregion
+        
+        #region Crosshair
+
+        /// <summary>
+        /// Enables or disables the crosshair.
+        /// </summary>
+        /// <param name="show">Whether or not to show the crosshair.</param>
+        public void ToggleCrosshair(bool show)
+        {
+            if (crosshair == null) return;
+            crosshair.rootVisualElement.style.display = show ? DisplayStyle.Flex : DisplayStyle.None;
+        }
         #endregion
     }
 }

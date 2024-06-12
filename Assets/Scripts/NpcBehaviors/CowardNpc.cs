@@ -1,6 +1,6 @@
 /******************************************************************
 *    Author: Nick Grinstead
-*    Contributors: 
+*    Contributors: Andrea Swihart-DeCoster
 *    Date Created: 5/28/24
 *    Description: NPC class containing logic for the Coward NPC.
 *******************************************************************/
@@ -10,9 +10,11 @@ using UnityEngine;
 
 public class CowardNpc : BaseNpc
 {
+    [SerializeField] private InventoryItemData _targetLightBulbItem;
     [SerializeField] private float _secondsUntilExplosion;
 
     private bool _canTriggerInteraction = false;
+    private bool _canTeleportToGenerator = false;
 
     /// <summary>
     /// Called when the player enters the generator room
@@ -22,8 +24,22 @@ public class CowardNpc : BaseNpc
         if (_currentState == NpcStates.MinigameReady)
         {
             _canTriggerInteraction = true;
-            _canInteract = true;
             Interact();
+        }
+    }
+
+    /// <summary>
+    /// Triggers Coward dialogue in response to the light bulb being collected
+    /// </summary>
+    /// <param name="item">The item that was collected</param>
+    /// <param name="quantity">How many of that item was collected</param>
+    public override void CollectedItem(InventoryItemData item, int quantity)
+    {
+        base.CollectedItem(item, quantity);
+
+        if (item == _targetLightBulbItem)
+        {
+            LightbulbEventTriggered();
         }
     }
 
@@ -33,8 +49,9 @@ public class CowardNpc : BaseNpc
     public void LightbulbEventTriggered()
     {
         _canTriggerInteraction = true;
-        _canInteract = true;
         Interact();
+
+        _canTeleportToGenerator = true;
     }
 
     /// <summary>
@@ -124,7 +141,7 @@ public class CowardNpc : BaseNpc
     protected override int ChooseDialoguePath(PlayerResponse option)
     {
         // Checks for bypass
-        if (_haveBypassItem && _currentState != NpcStates.PostMinigame)
+        if (_hasBypassItem && _currentState != NpcStates.PostMinigame)
         {
             _shouldEndDialogue = true;
             Invoke("EnterPostMinigame", 0.2f);
@@ -148,6 +165,18 @@ public class CowardNpc : BaseNpc
         if (_currentState != NpcStates.PostMinigame)
         {
             EnterFailure();
+        }
+    }
+
+    /// <summary>
+    /// Teleports the NPC player to a destination
+    /// </summary>
+    /// <param name="destination"> teleport target destination </param>
+    public void TeleportToLocation(GameObject destination)
+    {
+        if(_canTeleportToGenerator)
+        {
+            transform.position = destination.transform.position;
         }
     }
 }

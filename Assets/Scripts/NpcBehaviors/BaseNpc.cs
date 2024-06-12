@@ -100,6 +100,8 @@ public abstract class BaseNpc : MonoBehaviour
 
     [SerializeField] protected string _npcName;
 
+    [SerializeField] protected InventoryItemData _targetBypassItem;
+
     [SerializeField] protected NpcEvent _startMinigameEvent;
     [SerializeField] protected NpcEventTags _eventTag;
 
@@ -110,14 +112,14 @@ public abstract class BaseNpc : MonoBehaviour
     protected NavMeshAgent _navAgent;
     protected Animator _animator;
     protected TabbedMenu _tabbedMenu;
+    protected InventorySystem _playerInventorySystem;
 
     protected NpcStates _currentState = NpcStates.DefaultIdle;
 
     protected int _currentDialogueIndex = 0;
-    protected bool _canInteract = false;
     protected bool _shouldEndDialogue = false;
     protected bool _isInteracting = false;
-    protected bool _haveBypassItem = false;
+    protected bool _hasBypassItem = false;
 
     /// <summary>
     /// Invoking Initialize() on Start to set up NPC
@@ -133,6 +135,22 @@ public abstract class BaseNpc : MonoBehaviour
     /// </summary>
     protected virtual void Initialize()
     {
+        // Grabbing Player's inventory
+        GameObject tempObject = GameObject.FindGameObjectWithTag("Player");
+        _playerInventorySystem = tempObject.GetComponent<InventoryHolder>().InventorySystem;
+        _playerInventorySystem.AddedToInventory += CollectedItem;
+
+        // Checking if bypass item is in inventory when game resets
+        List<InventorySlot> tempSlotList = new List<InventorySlot>();
+        _playerInventorySystem.ContainsItem(_targetBypassItem, out tempSlotList);
+        foreach (InventorySlot slot in tempSlotList)
+        {
+            if (slot.StackSize > 0)
+            {
+                _hasBypassItem = true;
+            }
+        }
+
         _tabbedMenu = TabbedMenu.Instance;
         _navAgent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
@@ -149,85 +167,82 @@ public abstract class BaseNpc : MonoBehaviour
     /// shouldn't be negative</param>
     public virtual void Interact(int responseIndex = 0)
     {
-        if (_canInteract)
+        int newNodeIndex = 0;
+
+        // First interaction
+        if (_isInteracting == false && _stateDialogueTrees.GetStateData(_currentState).Length > 0)
         {
-            int newNodeIndex = 0;
-
-            // First interaction
-            if (_isInteracting == false && _stateDialogueTrees.GetStateData(_currentState).Length > 0)
+            if (_tabbedMenu != null)
             {
-                if (_tabbedMenu != null)
-                {
-                    _tabbedMenu.ToggleInteractPrompt(true);
-                }
-                _isInteracting = true;
-                _currentDialogueIndex = 0;
+                _tabbedMenu.ToggleInteractPrompt(true);
             }
-            // For future interactions determine which dialogue node to go to
-            else if (_stateDialogueTrees.GetStateData(_currentState).Length > 0)
-            {   
-                DialogueNode currentNode = _stateDialogueTrees.GetStateData(_currentState)[_currentDialogueIndex];
-                PlayerResponse currentResponse;
-                if (currentNode.PlayerResponses.Length > responseIndex)
-                {
-                    currentResponse = currentNode.PlayerResponses[responseIndex];
-                }
-                else
-                {
-                    currentResponse = currentNode.PlayerResponses[0];
-                }
-
-                // Checks if dialogue option should trigger an event
-                if (currentResponse.EventToTrigger != null)
-                {
-                    if (currentResponse.EventToTrigger.name.Equals("OnMinigameStart"))
-                    {
-                        EnterPlayingMinigame();
-                    }
-                    else
-                    {
-                        currentResponse.EventToTrigger.TriggerEvent(currentResponse.EventTag);
-                    }
-                }
-
-                // Updates NPC's state if needed
-                if (currentResponse.AdvancesNpcState)
-                {
-                    Invoke(nameof(CheckForStateChange), 0.2f);
-                }
-
-                // Checks if dialogue option should end the current dialogue
-                if (currentResponse.EndsDialogue)
-                {
-                    _shouldEndDialogue = true;
-                }
-
-                // If dialogue didn't end, determines which node to go to next
-                if (!_shouldEndDialogue && currentResponse.HasPrerequisiteCheck)
-                {
-                    newNodeIndex = ChooseDialoguePath(currentResponse);
-                }
-                else if (!_shouldEndDialogue)
-                {
-                    newNodeIndex = currentResponse.NextResponseIndex[0];
-                }
+            _isInteracting = true;
+            _currentDialogueIndex = 0;
+        }
+        // For future interactions determine which dialogue node to go to
+        else if (_stateDialogueTrees.GetStateData(_currentState).Length > 0)
+        {   
+            DialogueNode currentNode = _stateDialogueTrees.GetStateData(_currentState)[_currentDialogueIndex];
+            PlayerResponse currentResponse;
+            if (currentNode.PlayerResponses.Length > responseIndex)
+            {
+                currentResponse = currentNode.PlayerResponses[responseIndex];
             }
             else
             {
-                // Failsafe for entering a new state mid-dialogue that has no dialogue
-                _shouldEndDialogue = true; 
+                currentResponse = currentNode.PlayerResponses[0];
             }
 
-            if (_shouldEndDialogue)
+            // Checks if dialogue option should trigger an event
+            if (currentResponse.EventToTrigger != null)
             {
-                _isInteracting = false;
-                _shouldEndDialogue = false;
-                _tabbedMenu.ToggleDialogue(false);
-                return;
+                if (currentResponse.EventToTrigger.name.Equals("OnMinigameStart"))
+                {
+                    EnterPlayingMinigame();
+                }
+                else
+                {
+                    currentResponse.EventToTrigger.TriggerEvent(currentResponse.EventTag);
+                }
             }
 
-            GetNpcResponse(newNodeIndex);
+            // Updates NPC's state if needed
+            if (currentResponse.AdvancesNpcState)
+            {
+                Invoke(nameof(CheckForStateChange), 0.2f);
+            }
+
+            // Checks if dialogue option should end the current dialogue
+            if (currentResponse.EndsDialogue)
+            {
+                _shouldEndDialogue = true;
+            }
+
+            // If dialogue didn't end, determines which node to go to next
+            if (!_shouldEndDialogue && currentResponse.HasPrerequisiteCheck)
+            {
+                newNodeIndex = ChooseDialoguePath(currentResponse);
+            }
+            else if (!_shouldEndDialogue)
+            {
+                newNodeIndex = currentResponse.NextResponseIndex[0];
+            }
         }
+        else
+        {
+            // Failsafe for entering a new state mid-dialogue that has no dialogue
+            _shouldEndDialogue = true; 
+        }
+
+        if (_shouldEndDialogue)
+        {
+            _isInteracting = false;
+            _shouldEndDialogue = false;
+            _tabbedMenu.ToggleDialogue(false);
+            return;
+        }
+
+        GetNpcResponse(newNodeIndex);
     }
 
     /// <summary>
@@ -303,13 +318,18 @@ public abstract class BaseNpc : MonoBehaviour
     public abstract void CheckForStateChange();
 
     /// <summary>
-    /// To be called by event listener when bypass item is collected
+    /// Invoked when item is collected to determine if a bypass item was collected
+    /// Can be extended to check for other items
     /// </summary>
-    public void CollectedBypassItem()
+    /// <param name="item">The item that was collected</param>
+    /// <param name="quantity">How many of that item was collected</param>
+    public virtual void CollectedItem(InventoryItemData item, int quantity)
     {
-        _haveBypassItem = true;
+        if (item == _targetBypassItem)
+        {
+            _hasBypassItem = true;
+        }
     }
-
 
     #region StateFunctions
     /// <summary>
@@ -370,39 +390,13 @@ public abstract class BaseNpc : MonoBehaviour
     }
     #endregion
 
-    #region CollisionChecks
     /// <summary>
-    /// Enables ability to interact if the player is close to the NPC
+    /// Unsubscribing from action on disable
     /// </summary>
-    /// <param name="other">Other collider in the collision</param>
-    protected void OnTriggerEnter(Collider other)
+    protected virtual void OnDisable()
     {
-        if (other.CompareTag("Player"))
-        {
-            _canInteract = true;
-            if (_tabbedMenu != null)
-            {
-                _tabbedMenu.ToggleInteractPrompt(true);
-            }
-        }
+        _playerInventorySystem.AddedToInventory -= CollectedItem;
     }
-
-    /// <summary>
-    /// Disables ability to interact if the player moves away from the NPC
-    /// </summary>
-    /// <param name="other">Other collider in the collision</param>
-    protected void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            _canInteract = false;
-            if (_tabbedMenu != null)
-            {
-                _tabbedMenu.ToggleInteractPrompt(false);
-            }
-        }
-    }
-    #endregion
 }
 
 public enum NpcStates
