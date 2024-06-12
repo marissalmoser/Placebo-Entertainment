@@ -19,7 +19,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-
 [Serializable]
 public struct TimerStruct
 {
@@ -32,6 +31,7 @@ public struct TimerStruct
         timer = new Timer(durationInSeconds);
     }
 }
+
 public class TimerManager : MonoBehaviour
 {
     private List<TimerStruct> _timers = new List<TimerStruct>();
