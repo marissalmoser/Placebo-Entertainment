@@ -45,7 +45,7 @@ public class AngelNpc : BaseNpc
     }
 
     /// <summary>
-    /// Temporary set-up for first playable that either resets the loop or 
+    /// Temporary set-up for first playable that either continues the loop or 
     /// displays the winscreen
     /// </summary>
     protected override void EnterMinigameReady()
@@ -54,11 +54,12 @@ public class AngelNpc : BaseNpc
 
         if (_cowardGameComplete && _robotGameComplete)
         {
-            // TODO: display winscreen
+            _tabbedMenu.ToggleWin(true);
         }
         else
         {
-            // TODO: reset loop
+            // Return to idle if player didn't win
+            EnterIdle();
         }
     }
 
