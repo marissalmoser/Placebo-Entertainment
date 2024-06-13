@@ -13,13 +13,26 @@ using UnityEngine;
 
 public class InventoryHolder : MonoBehaviour
 {
+    [SerializeField] protected InventorySystem _inventorySystem;
+    [SerializeField] private int _inventorySize;
 
-    [SerializeField] protected InventorySystem inventorySystem;
-    [SerializeField] private int inventorySize;
-
-    public InventorySystem InventorySystem => inventorySystem;
+    public InventorySystem InventorySystem => _inventorySystem;
     private void Awake()
     {
-        inventorySystem = new InventorySystem(inventorySize);     
+        _inventorySystem = new InventorySystem(_inventorySize);     
+    }
+    public void SetInventorySystem(InventorySystem system)
+    {
+        _inventorySystem = system;
+        foreach(InventorySlot slot in _inventorySystem.CollectionOfSlots)
+        {
+            if(slot.GetItemData() != null)
+            {
+                if (slot.GetItemData().DoesNotPersist)
+                {
+                    slot.EmptyThisSlot();
+                }
+            }
+        }
     }
 }

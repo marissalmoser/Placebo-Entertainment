@@ -10,6 +10,7 @@ using UnityEngine;
 
 public class RobotNpc : BaseNpc
 {
+    [SerializeField] private InventoryItemData _targetLightBulbItem;
     [SerializeField] private float _secondsUntilDeath;
     private float _timeElapsed = 0f;
 
@@ -28,11 +29,29 @@ public class RobotNpc : BaseNpc
     }
 
     /// <summary>
-    /// Unsubscribing from event on disable
+    /// Unsubscribing from events on disable
     /// </summary>
-    private void OnDisable()
+    protected override void OnDisable()
     {
+        base.OnDisable();
+
         MGWireState.WireGameWon -= CheckForStateChange;
+    }
+
+    /// <summary>
+    /// Checks if collected item is either the light bulb or the calibration tool
+    /// </summary>
+    /// <param name="item">The item that was collected</param>
+    /// <param name="quantity">How many of that item was collected</param>
+    public override void CollectedItem(InventoryItemData item, int quantity)
+    {
+        base.CollectedItem(item, quantity);
+
+        if (item == _targetLightBulbItem)
+        {
+            Debug.Log("Lightbulb collected");
+            _hasLightbulb = true;
+        }
     }
 
     /// <summary>
@@ -113,12 +132,12 @@ public class RobotNpc : BaseNpc
             return option.NextResponseIndex[0];
         }
         // Trying to repair robot without the lightbulb
-        else if (!_hasRepairedRobot && !_hasLightbulb && option.NextResponseIndex.Length > 1)
+        else if (!_hasRepairedRobot && !_hasLightbulb && option.NextResponseIndex.Length > 0)
         {
             return option.NextResponseIndex[1];
         }
         // Bypass for minigame
-        else if (_hasRepairedRobot && _haveBypassItem && _currentState != NpcStates.PostMinigame)
+        else if (_hasRepairedRobot && _hasBypassItem && _currentState != NpcStates.PostMinigame)
         {
             _shouldEndDialogue = true;
             Invoke(nameof(EnterPostMinigame), 0.2f);
@@ -127,7 +146,14 @@ public class RobotNpc : BaseNpc
         // Don't have minigame bypass
         else
         {
-            return option.NextResponseIndex[0];
+            if (option.NextResponseIndex.Length > 0)
+            {
+                return option.NextResponseIndex[0];
+            }
+            else
+            {
+                return 0;
+            }
         }
     }
 

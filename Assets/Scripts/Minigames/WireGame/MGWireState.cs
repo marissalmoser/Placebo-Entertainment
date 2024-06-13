@@ -14,6 +14,7 @@ using UnityEngine;
 public class MGWireState : MonoBehaviour
 {
     public static Action WireGameWon;
+    [SerializeField] private NpcEvent _gameWonEvent;
 
     private const int _maxAttachments = 3;
     private int _currentAttachments = 0;
@@ -46,6 +47,7 @@ public class MGWireState : MonoBehaviour
     private void EndWireGame()
     {
         print("Wire game won");
+        _gameWonEvent.TriggerEvent(NpcEventTags.Robot);
         WireGameWon?.Invoke();
     }
 }

@@ -43,14 +43,32 @@ public class PlayerInteractSystem
         switch (ObjectName)
         {
             case "Test":
-                    Debug.Log("E has been pressed");
+                    //Debug.Log("E has been pressed");
                 break;
             case "Default None":
-                Debug.Log("No action was done");
+                //Debug.Log("No action was done");
+                break;
+            case "Ripcord":
+                GameObject RcObject = GameObject.Find("Ripcord");
+                RipcordBehavior _rc = RcObject.GetComponent<RipcordBehavior>();
+                //_rc.PressedE = true;
                 break;
             default:
                 break;
             
+        }
+    }
+    public void ReleaseInteract()
+    {
+        switch(ObjectName)
+        {
+            case "Ripcord":
+                GameObject RcObject = GameObject.Find("Ripcord");
+                RipcordBehavior _rc = RcObject.GetComponent<RipcordBehavior>();
+                //_rc.PressedE = false;
+                break;
+                default:
+                break;
         }
     }
 }

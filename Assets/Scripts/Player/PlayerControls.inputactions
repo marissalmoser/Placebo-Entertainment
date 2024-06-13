@@ -153,7 +153,7 @@
                     "name": "",
                     "id": "9ec8e7d4-56cf-40b4-98c2-e789d03b17d9",
                     "path": "<Keyboard>/e",
-                    "interactions": "",
+                    "interactions": "Hold",
                     "processors": "",
                     "groups": "",
                     "action": "Interact",

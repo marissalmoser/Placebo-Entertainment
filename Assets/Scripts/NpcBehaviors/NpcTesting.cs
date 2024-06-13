@@ -26,12 +26,6 @@ public class NpcTesting : MonoBehaviour
             _npcToTest.CheckForStateChange();
         }
 
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            Debug.Log("Acquired bypass item");
-            _npcToTest.CollectedBypassItem();
-        }
-
         if (Input.GetKeyDown(KeyCode.Alpha1))
             _npcToTest.Interact(0);
         if (Input.GetKeyDown(KeyCode.Alpha2))

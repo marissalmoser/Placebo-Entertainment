@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3241478675477886158}
   - component: {fileID: 190002347449952546}
   - component: {fileID: 1608744599569339440}
-  - component: {fileID: 6688788746275990041}
   - component: {fileID: 4903026629208649315}
   - component: {fileID: 1866844575688752464}
   - component: {fileID: 886804196087669012}
@@ -111,27 +110,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!135 &6688788746275990041
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1813159210467846255}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 3
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &4903026629208649315
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -167,6 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _npcName: 
+  _targetBypassItem: {fileID: 0}
   _startMinigameEvent: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
   _eventTag: 0
   _stateDialogueTrees:
@@ -251,6 +230,7 @@ MonoBehaviour:
     _playingMinigameState: {fileID: 0}
     _postMinigameState: {fileID: 0}
     _failureState: {fileID: 0}
+  _testingItem: {fileID: 0}
 --- !u!114 &886804196087669012
 MonoBehaviour:
   m_ObjectHideFlags: 0

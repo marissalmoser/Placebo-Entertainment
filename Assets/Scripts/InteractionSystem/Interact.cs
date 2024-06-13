@@ -10,6 +10,7 @@
 
 *******************************************************************/
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -36,6 +37,7 @@ public class Interact : MonoBehaviour
         _playerControls.BasicControls.Enable();
         _interact = _playerControls.FindAction("Interact");
         _interact.started += InteractPressed;
+        _interact.canceled += InteractReleased;
 
         _camera = Camera.main;
 
@@ -52,7 +54,6 @@ public class Interact : MonoBehaviour
         {
             _interactable.Interact(gameObject);
         }
-          
     }
 
     /// <summary>
@@ -111,9 +112,22 @@ public class Interact : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Called when Interact input is canceled. Calls CancelInteract() on the
+    /// detected interactable game object.
+    /// </summary>
+    /// <param name="obj"></param>
+    private void InteractReleased(InputAction.CallbackContext obj)
+    {
+        if (_interactable != null)
+        {
+            _interactable.CancelInteract();
+        }
+    }
 
     private void OnDisable()
     {
         _interact.started -= InteractPressed;
+        _interact.canceled -= InteractReleased;
     }
 }

@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 968178768747916343}
   - component: {fileID: 5615582337182177422}
   - component: {fileID: 9144484468842581267}
-  - component: {fileID: 8850794281488733885}
   - component: {fileID: 3131129064344898019}
   - component: {fileID: 869825619415053396}
   - component: {fileID: 6882198576666297318}
@@ -112,27 +111,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!135 &8850794281488733885
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4556153407337933796}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 3
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &3131129064344898019
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -168,6 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _npcName: Robot
+  _targetBypassItem: {fileID: 11400000, guid: ce9c4a38351e1ac41b75157f79779d20, type: 2}
   _startMinigameEvent: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
   _eventTag: 6
   _stateDialogueTrees:
@@ -189,14 +168,14 @@ MonoBehaviour:
         _eventTag: 0
         _hasPrerequisiteCheck: 0
         _answer: No.
-        _nextResponseIndex: 02000000
+        _nextResponseIndex: 0200000002000000
         _advancesNpcState: 0
         _endsDialogue: 0
       - _eventToTrigger: {fileID: 0}
         _eventTag: 0
         _hasPrerequisiteCheck: 1
         _answer: Here it is!
-        _nextResponseIndex: 0300000004000000
+        _nextResponseIndex: 030000000400000004000000
         _advancesNpcState: 0
         _endsDialogue: 0
     - _dialogue:
@@ -319,6 +298,7 @@ MonoBehaviour:
     _playingMinigameState: {fileID: 0}
     _postMinigameState: {fileID: 0}
     _failureState: {fileID: 0}
+  _targetLightBulbItem: {fileID: 11400000, guid: 773aae8864bf18d4a9e19e01b7e04081, type: 2}
   _secondsUntilDeath: 60
 --- !u!114 &6882198576666297318
 MonoBehaviour:
@@ -341,40 +321,6 @@ MonoBehaviour:
         - m_Target: {fileID: 869825619415053396}
           m_TargetAssemblyTypeName: RobotNpc, Assembly-CSharp
           m_MethodName: CheckForStateChange
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - _npcEvent: {fileID: 11400000, guid: b0ff38f0f20db8a4ab04033934de185c, type: 2}
-    _npcEventTag: 7
-    _onEventTriggered:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 869825619415053396}
-          m_TargetAssemblyTypeName: RobotNpc, Assembly-CSharp
-          m_MethodName: CollectLightbulb
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - _npcEvent: {fileID: 11400000, guid: b0ff38f0f20db8a4ab04033934de185c, type: 2}
-    _npcEventTag: 6
-    _onEventTriggered:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 869825619415053396}
-          m_TargetAssemblyTypeName: BaseNpc, Assembly-CSharp
-          m_MethodName: CollectedBypassItem
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
