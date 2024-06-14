@@ -15,11 +15,13 @@ using UnityEngine;
 using UnityEngine.Android;
 using UnityEngine.Rendering;
 using PlaceboEntertainment.UI;
+using UnityEngine.Rendering.Universal;
 
 public class MGWire : MonoBehaviour
 {
     public EWireID WireID;
     [SerializeField] private Color _wireColor;
+    [SerializeField] private Shader _URPShader;
     [SerializeField] private Color _interactColor;
 
     [SerializeField] float _sphereScale;
@@ -239,6 +241,8 @@ public class MGWire : MonoBehaviour
     /// last segment</param>
     private void SetWireColor(Material mat, bool isEndSegment)
     {
+        UnityEngine.Debug.Log(mat.ToString());
+        mat.shader = _URPShader;
         if(!isEndSegment)
         {
             switch (WireID)
