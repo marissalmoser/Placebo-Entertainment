@@ -116,6 +116,40 @@ public class CowardNpc : BaseNpc
     }
 
     /// <summary>
+    /// When in idle state displays different responses based on if player has
+    /// light bulb. For any other state, calls base version of function.
+    /// </summary>
+    protected override void GetPlayerResponses()
+    {
+        if (_currentState != NpcStates.DefaultIdle)
+        {
+            base.GetPlayerResponses();
+        }
+        else
+        {
+            if (_isInteracting)
+            {
+                DialogueNode currentNode = _stateDialogueTrees.GetStateData(_currentState)[_currentDialogueIndex];
+
+                // Displays player dialogue options
+                PlayerResponse option;
+                _tabbedMenu.ClearDialogueOptions();
+
+                if (_hasLightbulb)
+                {
+                    option = currentNode.PlayerResponses[0];
+                    _tabbedMenu.DisplayDialogueOption(option.Answer, click: () => { Interact(0); });
+                }
+                else
+                {
+                    option = currentNode.PlayerResponses[1];
+                    _tabbedMenu.DisplayDialogueOption(option.Answer, click: () => { Interact(1); });
+                }
+            }
+        }
+    }
+
+    /// <summary>
     /// Checks for bypass item to see which path to take
     /// </summary>
     /// <param name="option">PlayerResponse being checked</param>
@@ -141,6 +175,24 @@ public class CowardNpc : BaseNpc
                 return 0;
             }
         }
+    }
+
+    /// <summary>
+    /// Chooses between two responses depending on if the player has taken the 
+    /// light bulb
+    /// </summary>
+    /// <param name="node">DialogueNode being examined</param>
+    /// <returns>string dialogue response</returns>
+    protected override string ChooseDialogueFromNode(DialogueNode node)
+    {
+        // Select different dialogue if player hasn't taken light bulb
+        if (node.Dialogue.Length > 1 && _currentState == NpcStates.DefaultIdle &&
+            !_hasLightbulb)
+        {
+            return node.Dialogue[1];
+        }
+
+        return node.Dialogue[0];
     }
 
     /// <summary>

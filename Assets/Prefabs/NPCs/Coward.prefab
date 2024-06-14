@@ -154,6 +154,7 @@ MonoBehaviour:
     - _dialogue:
       - "Thank you for removing that searing light. If I knew what it was I wouldn\u2019t
         have taken it\u2026 or at least wouldn\u2019t have turned it on."
+      - ...
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 0
@@ -161,6 +162,13 @@ MonoBehaviour:
         _answer: You're welcome.
         _nextResponseIndex: 
         _advancesNpcState: 1
+        _endsDialogue: 1
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 0
+        _hasPrerequisiteCheck: 0
+        _answer: <b>Leave
+        _nextResponseIndex: 
+        _advancesNpcState: 0
         _endsDialogue: 1
     _minigameReadyState:
     - _dialogue:

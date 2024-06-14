@@ -276,7 +276,7 @@ public abstract class BaseNpc : MonoBehaviour
     /// <summary>
     /// Called by GetNpcResponse to display corresponding player responses
     /// </summary>
-    protected void GetPlayerResponses()
+    protected virtual void GetPlayerResponses()
     {
         if (_isInteracting)
         {
