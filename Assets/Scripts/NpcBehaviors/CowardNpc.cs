@@ -15,6 +15,7 @@ public class CowardNpc : BaseNpc
 
     private bool _canTriggerInteraction = false;
     private bool _canTeleportToGenerator = false;
+    private bool _hasLightbulb = false;
 
     /// <summary>
     /// Called when the player enters the generator room
@@ -48,6 +49,7 @@ public class CowardNpc : BaseNpc
     /// </summary>
     public void LightbulbEventTriggered()
     {
+        _hasLightbulb = true;
         _canTriggerInteraction = true;
         Interact();
 
@@ -60,7 +62,7 @@ public class CowardNpc : BaseNpc
     /// </summary>
     public override void CheckForStateChange()
     {
-        if (_currentState == NpcStates.DefaultIdle)
+        if (_currentState == NpcStates.DefaultIdle && _hasLightbulb)
         {
             EnterMinigameReady();
         }

@@ -114,6 +114,7 @@ public abstract class BaseNpc : MonoBehaviour
     protected TabbedMenu _tabbedMenu;
     protected InventorySystem _playerInventorySystem;
     protected PlayerController _playerController;
+    protected Interact _playerInteractBehavior;
 
     protected NpcStates _currentState = NpcStates.DefaultIdle;
 
@@ -141,6 +142,7 @@ public abstract class BaseNpc : MonoBehaviour
         _playerInventorySystem = tempObject.GetComponent<InventoryHolder>().InventorySystem;
         _playerInventorySystem.AddedToInventory += CollectedItem;
         _playerController = PlayerController.Instance;
+        _playerController.TryGetComponent<Interact>(out _playerInteractBehavior);
 
         // Checking if bypass item is in inventory when game resets
         List<InventorySlot> tempSlotList = new List<InventorySlot>();
@@ -182,6 +184,7 @@ public abstract class BaseNpc : MonoBehaviour
             _currentDialogueIndex = 0;
 
             _playerController.LockCharacter(true);
+            _playerInteractBehavior.StopDetectingInteractions();
         }
         // For future interactions determine which dialogue node to go to
         else if (_stateDialogueTrees.GetStateData(_currentState).Length > 0)
@@ -244,6 +247,7 @@ public abstract class BaseNpc : MonoBehaviour
             _shouldEndDialogue = false;
             _tabbedMenu.ToggleDialogue(false);
             _playerController.LockCharacter(false);
+            _playerInteractBehavior.StartDetectingInteractions();
             return;
         }
 
