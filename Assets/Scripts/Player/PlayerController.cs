@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
 
     PlayerInteractSystem _InteractionCheck;
     private bool _doOnce;
+    private bool _isInDialogue = false;
 
     [SerializeField] bool _isKinemat;
 
@@ -71,7 +72,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         // Player Movement
-        if (isMoving && _isKinemat)
+        if (!_isInDialogue && isMoving && _isKinemat)
         {
             velocity = transform.right * moveDirection.x + transform.forward * moveDirection.y;
             velocity = velocity.normalized;
@@ -88,7 +89,7 @@ public class PlayerController : MonoBehaviour
         {
             rb.isKinematic = false;
         }
-        if(isMoving && _isKinemat == false)
+        if(!_isInDialogue && isMoving && _isKinemat == false)
         {
             velocity = transform.right * moveDirection.x + transform.forward * moveDirection.y;
             velocity = velocity.normalized;
@@ -98,8 +99,8 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(velocity);
         }
 
-// Ground Check
-if (!isGrounded)
+        // Ground Check
+        if (!isGrounded)
             isGrounded = Physics.CheckSphere(groundChecker.position, groundDistance, groundMask);
 
         if (interact.IsPressed() && _doOnce == true)
@@ -118,6 +119,17 @@ if (!isGrounded)
         // Player Rotation
         rb.rotation = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0);
     }
+
+    /// <summary>
+    /// Called to lock or unlock player and camera movement during dialogue
+    /// </summary>
+    /// <param name="isLocked">Whether the playeyr should move or not</param>
+    public void LockCharacter(bool isLocked)
+    {
+        _isInDialogue = isLocked;
+        mainCamera.enabled = !isLocked;
+    }
+
     void OnTriggerEnter(Collider col)
     {
         if(col.tag == "Interactable")
