@@ -299,6 +299,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WireID: 0
   _wireColor: {r: 0, g: 0.6694646, b: 1, a: 1}
+  _URPShader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   _interactColor: {r: 0, g: 1, b: 0.038576603, a: 1}
   _sphereScale: 0.3
   _wireStartPosition: {fileID: 2105087402058434552}
