@@ -113,6 +113,8 @@ public abstract class BaseNpc : MonoBehaviour
     protected Animator _animator;
     protected TabbedMenu _tabbedMenu;
     protected InventorySystem _playerInventorySystem;
+    protected PlayerController _playerController;
+    protected Interact _playerInteractBehavior;
 
     protected NpcStates _currentState = NpcStates.DefaultIdle;
 
@@ -139,6 +141,8 @@ public abstract class BaseNpc : MonoBehaviour
         GameObject tempObject = GameObject.FindGameObjectWithTag("Player");
         _playerInventorySystem = tempObject.GetComponent<InventoryHolder>().InventorySystem;
         _playerInventorySystem.AddedToInventory += CollectedItem;
+        _playerController = PlayerController.Instance;
+        _playerInteractBehavior = _playerController.GetComponent<Interact>();
 
         // Checking if bypass item is in inventory when game resets
         List<InventorySlot> tempSlotList = new List<InventorySlot>();
@@ -178,6 +182,9 @@ public abstract class BaseNpc : MonoBehaviour
             }
             _isInteracting = true;
             _currentDialogueIndex = 0;
+
+            _playerController.LockCharacter(true);
+            _playerInteractBehavior.StopDetectingInteractions();
         }
         // For future interactions determine which dialogue node to go to
         else if (_stateDialogueTrees.GetStateData(_currentState).Length > 0)
@@ -239,6 +246,8 @@ public abstract class BaseNpc : MonoBehaviour
             _isInteracting = false;
             _shouldEndDialogue = false;
             _tabbedMenu.ToggleDialogue(false);
+            _playerController.LockCharacter(false);
+            _playerInteractBehavior.StartDetectingInteractions();
             return;
         }
 
@@ -267,7 +276,7 @@ public abstract class BaseNpc : MonoBehaviour
     /// <summary>
     /// Called by GetNpcResponse to display corresponding player responses
     /// </summary>
-    protected void GetPlayerResponses()
+    protected virtual void GetPlayerResponses()
     {
         if (_isInteracting)
         {

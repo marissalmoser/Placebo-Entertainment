@@ -13,8 +13,8 @@ public class CowardNpc : BaseNpc
     [SerializeField] private InventoryItemData _targetLightBulbItem;
     [SerializeField] private float _secondsUntilExplosion;
 
-    private bool _canTriggerInteraction = false;
     private bool _canTeleportToGenerator = false;
+    private bool _hasLightbulb = false;
 
     /// <summary>
     /// Called when the player enters the generator room
@@ -23,7 +23,6 @@ public class CowardNpc : BaseNpc
     {
         if (_currentState == NpcStates.MinigameReady)
         {
-            _canTriggerInteraction = true;
             Interact();
         }
     }
@@ -48,7 +47,7 @@ public class CowardNpc : BaseNpc
     /// </summary>
     public void LightbulbEventTriggered()
     {
-        _canTriggerInteraction = true;
+        _hasLightbulb = true;
         Interact();
 
         _canTeleportToGenerator = true;
@@ -60,7 +59,7 @@ public class CowardNpc : BaseNpc
     /// </summary>
     public override void CheckForStateChange()
     {
-        if (_currentState == NpcStates.DefaultIdle)
+        if (_currentState == NpcStates.DefaultIdle && _hasLightbulb)
         {
             EnterMinigameReady();
         }
@@ -68,21 +67,6 @@ public class CowardNpc : BaseNpc
         {
             EnterPostMinigame();
         }
-    }
-
-    /// <summary>
-    /// Overriding Interact to prevent player from triggering minigame ready
-    /// dialogue without triggering generator explosion event
-    /// </summary>
-    /// <param name="responseIndex">Index in the dialogue tree, assumes 0 by default,
-    /// shouldn't be negative</param>
-    public override void Interact(int responseIndex = 0)
-    {
-        // Temporarily removing this to make coward slightly less buggy
-        //if (_canTriggerInteraction)
-        //{
-            base.Interact(responseIndex);
-        //}
     }
 
     /// <summary>
@@ -109,8 +93,6 @@ public class CowardNpc : BaseNpc
     protected override void EnterMinigameReady()
     {
         base.EnterMinigameReady();
-
-        _canTriggerInteraction = false;
     }
 
     /// <summary>
@@ -120,7 +102,6 @@ public class CowardNpc : BaseNpc
     {
         base.EnterPostMinigame();
 
-        _canTriggerInteraction = true;
         Interact();
     }
 
@@ -132,6 +113,40 @@ public class CowardNpc : BaseNpc
         base.EnterFailure();
 
         // TODO: trigger new loop here
+    }
+
+    /// <summary>
+    /// When in idle state displays different responses based on if player has
+    /// light bulb. For any other state, calls base version of function.
+    /// </summary>
+    protected override void GetPlayerResponses()
+    {
+        if (_currentState != NpcStates.DefaultIdle)
+        {
+            base.GetPlayerResponses();
+        }
+        else
+        {
+            if (_isInteracting)
+            {
+                DialogueNode currentNode = _stateDialogueTrees.GetStateData(_currentState)[_currentDialogueIndex];
+
+                // Displays player dialogue options
+                PlayerResponse option;
+                _tabbedMenu.ClearDialogueOptions();
+
+                if (_hasLightbulb)
+                {
+                    option = currentNode.PlayerResponses[0];
+                    _tabbedMenu.DisplayDialogueOption(option.Answer, click: () => { Interact(0); });
+                }
+                else
+                {
+                    option = currentNode.PlayerResponses[1];
+                    _tabbedMenu.DisplayDialogueOption(option.Answer, click: () => { Interact(1); });
+                }
+            }
+        }
     }
 
     /// <summary>
@@ -160,6 +175,24 @@ public class CowardNpc : BaseNpc
                 return 0;
             }
         }
+    }
+
+    /// <summary>
+    /// Chooses between two responses depending on if the player has taken the 
+    /// light bulb
+    /// </summary>
+    /// <param name="node">DialogueNode being examined</param>
+    /// <returns>string dialogue response</returns>
+    protected override string ChooseDialogueFromNode(DialogueNode node)
+    {
+        // Select different dialogue if player hasn't taken light bulb
+        if (node.Dialogue.Length > 1 && _currentState == NpcStates.DefaultIdle &&
+            !_hasLightbulb)
+        {
+            return node.Dialogue[1];
+        }
+
+        return node.Dialogue[0];
     }
 
     /// <summary>
