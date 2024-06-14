@@ -142,7 +142,7 @@ public abstract class BaseNpc : MonoBehaviour
         _playerInventorySystem = tempObject.GetComponent<InventoryHolder>().InventorySystem;
         _playerInventorySystem.AddedToInventory += CollectedItem;
         _playerController = PlayerController.Instance;
-        _playerController.TryGetComponent<Interact>(out _playerInteractBehavior);
+        _playerInteractBehavior = _playerController.GetComponent<Interact>();
 
         // Checking if bypass item is in inventory when game resets
         List<InventorySlot> tempSlotList = new List<InventorySlot>();

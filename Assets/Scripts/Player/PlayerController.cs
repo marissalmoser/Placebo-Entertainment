@@ -117,17 +117,25 @@ public class PlayerController : MonoBehaviour
         }
 
         // Player Rotation
-        rb.rotation = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0);
+        if (!_isInDialogue)
+            rb.rotation = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0);
     }
 
     /// <summary>
     /// Called to lock or unlock player and camera movement during dialogue
     /// </summary>
-    /// <param name="isLocked">Whether the playeyr should move or not</param>
+    /// <param name="isLocked">Whether the player should move or not</param>
     public void LockCharacter(bool isLocked)
     {
         _isInDialogue = isLocked;
-        mainCamera.enabled = !isLocked;
+
+        // Preventing camera from snapping after dialogue
+        if (!isLocked)
+        {
+            mainCamera.transform.rotation = transform.rotation;
+        }
+
+        mainCamera.gameObject.SetActive(!isLocked);
     }
 
     void OnTriggerEnter(Collider col)

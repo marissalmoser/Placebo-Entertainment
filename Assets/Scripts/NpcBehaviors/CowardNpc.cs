@@ -13,7 +13,6 @@ public class CowardNpc : BaseNpc
     [SerializeField] private InventoryItemData _targetLightBulbItem;
     [SerializeField] private float _secondsUntilExplosion;
 
-    private bool _canTriggerInteraction = false;
     private bool _canTeleportToGenerator = false;
     private bool _hasLightbulb = false;
 
@@ -24,7 +23,6 @@ public class CowardNpc : BaseNpc
     {
         if (_currentState == NpcStates.MinigameReady)
         {
-            _canTriggerInteraction = true;
             Interact();
         }
     }
@@ -50,7 +48,6 @@ public class CowardNpc : BaseNpc
     public void LightbulbEventTriggered()
     {
         _hasLightbulb = true;
-        _canTriggerInteraction = true;
         Interact();
 
         _canTeleportToGenerator = true;
@@ -70,21 +67,6 @@ public class CowardNpc : BaseNpc
         {
             EnterPostMinigame();
         }
-    }
-
-    /// <summary>
-    /// Overriding Interact to prevent player from triggering minigame ready
-    /// dialogue without triggering generator explosion event
-    /// </summary>
-    /// <param name="responseIndex">Index in the dialogue tree, assumes 0 by default,
-    /// shouldn't be negative</param>
-    public override void Interact(int responseIndex = 0)
-    {
-        // Temporarily removing this to make coward slightly less buggy
-        //if (_canTriggerInteraction)
-        //{
-            base.Interact(responseIndex);
-        //}
     }
 
     /// <summary>
@@ -111,8 +93,6 @@ public class CowardNpc : BaseNpc
     protected override void EnterMinigameReady()
     {
         base.EnterMinigameReady();
-
-        _canTriggerInteraction = false;
     }
 
     /// <summary>
@@ -122,7 +102,6 @@ public class CowardNpc : BaseNpc
     {
         base.EnterPostMinigame();
 
-        _canTriggerInteraction = true;
         Interact();
     }
 
