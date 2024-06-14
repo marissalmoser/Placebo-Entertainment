@@ -31353,7 +31353,7 @@ PrefabInstance:
     - target: {fileID: 7366979465635975259, guid: 5e4440da8a7d6d941bfce3d41aba130e, type: 3}
       propertyPath: _targetFollow
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1458976065}
     - target: {fileID: 7366979465635975259, guid: 5e4440da8a7d6d941bfce3d41aba130e, type: 3}
       propertyPath: _successfulPulls
       value: 
