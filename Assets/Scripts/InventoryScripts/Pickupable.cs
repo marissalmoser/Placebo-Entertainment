@@ -50,6 +50,7 @@ public class Pickupable : MonoBehaviour, IInteractable
         {
             Debug.Log("Got item");
             inventoryHolder.InventorySystem.AddToInventory(myData, 1, out _);
+            Destroy(gameObject);
         }
         else
         {
