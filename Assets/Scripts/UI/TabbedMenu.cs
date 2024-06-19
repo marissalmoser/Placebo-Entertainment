@@ -226,12 +226,12 @@ namespace PlaceboEntertainment.UI
             _alarmClockMenu.text = timeString;
             _alarmClockOverlay.text = timeString;
 
-            if (timeSpan.Seconds == lossTime && !_hasAppliedLoseStyling)
+            if (timeSpan.TotalSeconds <= lossTime && !_hasAppliedLoseStyling)
             {
                 SetLoseScreenActive();
                 _hasAppliedLoseStyling = true; //prevent styles getting applied for multiple frames
             }
-            else if (timeSpan.Seconds == endScreenTime && !_hasBegunLossTransition)
+            else if (timeSpan.TotalSeconds <= endScreenTime && !_hasBegunLossTransition)
             {
                 BeginLoseScreenGrowth();
                 _hasBegunLossTransition = true;

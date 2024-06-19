@@ -24329,10 +24329,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4422286474446707533, guid: 2fcbfa8208ca5c54fa83f3a5c518bb3d, type: 3}
-      propertyPath: lossTime
-      value: 150
-      objectReference: {fileID: 0}
-    - target: {fileID: 4422286474446707533, guid: 2fcbfa8208ca5c54fa83f3a5c518bb3d, type: 3}
       propertyPath: playerTransform
       value: 
       objectReference: {fileID: 0}
