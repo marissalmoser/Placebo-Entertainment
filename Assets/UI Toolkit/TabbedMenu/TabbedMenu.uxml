@@ -17,7 +17,7 @@
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="ClockContainer" class="clockContainer">
+            <ui:VisualElement name="ClockContainer" class="clockContainer" style="display: none;">
                 <ui:VisualElement name="Clock" class="clock" />
                 <ui:Label tabindex="-1" text="05:00" parse-escape-sequences="true" display-tooltip-when-elided="true" name="DigitalClock" class="digitalClock" />
             </ui:VisualElement>
