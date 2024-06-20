@@ -104,6 +104,7 @@ namespace PlaceboEntertainment.UI
         private Timer _timer;
         private Label _alarmClockMenu, _alarmClockOverlay;
         private bool _hasAppliedLoseStyling, _hasBegunLossTransition;
+        private bool _hasCheckedForTimer;
 
         #endregion
 
@@ -198,11 +199,6 @@ namespace PlaceboEntertainment.UI
         {
             PlayerController.Instance.PlayerControls.BasicControls.OpenSchedule.performed += OpenScheduleOnPerformed;
             _timer = TimerManager.Instance.GetTimer("LoopTimer");
-            if (_timer == null)
-            {
-                Debug.LogError("Time manager failed to create a timer, perhaps it's not in the scene?",
-                    gameObject);
-            }
         }
 
         /// <summary>
@@ -220,18 +216,32 @@ namespace PlaceboEntertainment.UI
         private void Update()
         {
             UpdateMinimapPlayer();
+            // Sometimes this.Start() executes before LoopController.Start() makes a timer
+            // in which case this failsafe can retrieve the timer
+            if (_timer == null && !_hasCheckedForTimer)
+            {
+                _hasCheckedForTimer = true;
+                _timer = TimerManager.Instance.GetTimer("LoopTimer");
+                if (_timer == null)
+                {
+                    // The timer actually doesn't exist
+                    Debug.LogError("Time manager failed to create a timer, perhaps it's not in the scene?",
+                        gameObject);
+                }
+            }
+
             float time = Mathf.Max(_timer.GetCurrentTimeInSeconds() - endScreenDelay, 0f);
             TimeSpan timeSpan = TimeSpan.FromSeconds(time);
             string timeString = timeSpan.ToString("mm':'ss");
             _alarmClockMenu.text = timeString;
             _alarmClockOverlay.text = timeString;
 
-            if (timeSpan.Seconds == lossTime && !_hasAppliedLoseStyling)
+            if (timeSpan.TotalSeconds <= lossTime && !_hasAppliedLoseStyling)
             {
                 SetLoseScreenActive();
                 _hasAppliedLoseStyling = true; //prevent styles getting applied for multiple frames
             }
-            else if (timeSpan.Seconds == endScreenTime && !_hasBegunLossTransition)
+            else if (timeSpan.TotalSeconds <= endScreenTime && !_hasBegunLossTransition)
             {
                 BeginLoseScreenGrowth();
                 _hasBegunLossTransition = true;
