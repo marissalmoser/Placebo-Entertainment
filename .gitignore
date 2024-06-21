@@ -91,8 +91,9 @@ crashlytics-build.properties
 # Log files can be ignored.
 fmod_editor.log
 
-Assets/Plugins/FMOD/platforms/mac/lib/fmodstudio.bundle/Contents/Info.plist
-Assets/Plugins/FMOD/platforms/mac/lib/fmodstudioL.bundle/Contents/Info.plist
-Assets/Plugins/FMOD/platforms/mac/lib/resonanceaudio.bundle/Contents/Info.plist
-ProjectSettings/Packages/com.unity.probuilder/Settings.json
-ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json
+/[Aa]ssets/Plugins/FMOD/platforms/mac/lib/fmodstudio.bundle/Contents/Info.plist
+/[Aa]ssets/Plugins/FMOD/platforms/mac/lib/fmodstudioL.bundle/Contents/Info.plist
+/[Aa]ssets/Plugins/FMOD/platforms/mac/lib/resonanceaudio.bundle/Contents/Info.plist
+/[Pp]rojectSettings/Packages/com.unity.probuilder/Settings.json
+/[Pp]rojectSettings/Packages/com.unity.testtools.codecoverage/Settings.json
+/[Aa]ssets/Plugins/FMOD/Cache/Editor/FMODStudioCache.asset
