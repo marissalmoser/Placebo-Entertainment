@@ -24,10 +24,10 @@ public class Station3 : StationBehavior
         Left
     }
 
-    [SerializeField] private int _sequenceLength;
-    private List<Direction> _inputSequence;
-    private List<Direction> _correctSequence;
-    private List<int> _correctSequenceInt;
+    private const int _sequenceLength = 5;
+    private List<Direction> _inputSequence = new List<Direction>();
+    private List<Direction> _correctSequence = new List<Direction>();
+    private List<int> _correctSequenceInt = new List<int>();
 
     #region ActionRegistering
     private void OnEnable()
@@ -47,8 +47,8 @@ public class Station3 : StationBehavior
     /// <param name="arrowType">Direction of arrow being pressed</param>
     public void ArrowButtonPressed(Direction arrowType)
     {
-        _inputSequence.Add(arrowType);
-        // TODO: add to input row on screen
+        if (_inputSequence.Count < _sequenceLength)
+            _inputSequence.Add(arrowType);
     }
 
     /// <summary>
@@ -57,19 +57,25 @@ public class Station3 : StationBehavior
     /// <returns>True if sequences match</returns>
     public override bool CheckStates()
     {
-        if (_inputSequence == _correctSequence)
+        for (int i = 0; i < _sequenceLength; i++)
         {
-            RestartStationState();
-            return true;
+            if (i >= _inputSequence.Count || i >= _correctSequence.Count || _inputSequence[i] != _correctSequence[i])
+            {
+                RestartStationState();
+                return false;
+            }
         }
 
-        return false;
+        RestartStationState();
+        return true;
     }
 
+    /// <summary>
+    /// Clears input sequence
+    /// </summary>
     public override void RestartStationState()
     {
         _inputSequence.Clear();
-        // TODO: Clear input row on screen
     }
 
     /// <summary>
@@ -84,10 +90,15 @@ public class Station3 : StationBehavior
 
         for (int i = 0; i < _sequenceLength; i++)
         {
-            int val = UnityEngine.Random.Range(0, 3);
+            int val = UnityEngine.Random.Range(0, 4);
 
             _correctSequence.Add((Direction)val);
             _correctSequenceInt.Add(val);
+        }
+
+        for (int i = 0; i < _correctSequenceInt.Count; i++)
+        {
+            Debug.Log(_correctSequenceInt[i]);
         }
 
         return _correctSequenceInt;
