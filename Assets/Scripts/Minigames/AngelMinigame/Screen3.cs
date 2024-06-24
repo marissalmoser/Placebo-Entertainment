@@ -29,6 +29,7 @@ public class Screen3 : ScreenBehavior
         }
     }
 
+    #region ActionRegistering
     private void OnEnable()
     {
         Station3.ButtonClicked += InputArrow;
@@ -38,6 +39,7 @@ public class Screen3 : ScreenBehavior
     {
         Station3.ButtonClicked -= InputArrow;
     }
+    #endregion
 
     /// <summary>
     /// Invoked when button pressed action is triggered for station 3 to set
@@ -46,7 +48,7 @@ public class Screen3 : ScreenBehavior
     /// <param name="arrowDirection">The direction of the arrow</param>
     private void InputArrow(Station3.Direction arrowDirection)
     {
-        if (_currentInputIndex < 5 && _currentInputIndex < _inputArrowTransforms.Count)
+        if (_currentInputIndex < _inputArrowTransforms.Count)
         {
             int arrowDirectionInt = (int)arrowDirection;
 

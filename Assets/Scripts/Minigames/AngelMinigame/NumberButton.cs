@@ -1,8 +1,8 @@
 /******************************************************************
 *    Author: Nick Grinstead
 *    Contributors: 
-*    Date Created: June 20, 2024
-*    Description: The script for arrow buttons used in Station 3 of the Angel 
+*    Date Created: June 24, 2024
+*    Description: The script for number buttons used in Station 4 of the Angel 
 *    minigame. Extends functionality from ButtonInteraction. 
 *******************************************************************/
 using System.Collections;
@@ -10,14 +10,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using PlaceboEntertainment.UI;
 
-public class ArrowButton : ButtonInteraction
+public class NumberButton : ButtonInteraction
 {
-    [SerializeField] private Station3.Direction _arrowDirection;
+    [SerializeField] private int _buttonNumber;
 
-   /// <summary>
-   /// Invokes an action on station 3 when clicked
-   /// </summary>
-   /// <param name="player">Player interacting with button</param>
+    /// <summary>
+    /// Invokes an action on station 4 when clicked
+    /// </summary>
+    /// <param name="player">Player interacting with button</param>
     public override void Interact(GameObject player)
     {
         _buttonPress.transform.position = _downPosition.transform.position;
@@ -26,18 +26,18 @@ public class ArrowButton : ButtonInteraction
 
         if (IsInteractable)
         {
-            Station3.ButtonClicked?.Invoke(_arrowDirection);
+            Station4.NumberButtonClicked?.Invoke(_buttonNumber);
         }
     }
 
     /// <summary>
-    /// Shows UI prompt for directional arrow
+    /// Shows UI prompt for number button
     /// </summary>
     public override void DisplayInteractUI()
     {
         if (IsInteractable)
         {
-            TabbedMenu.Instance.ToggleInteractPrompt(true, _arrowDirection.ToString());
+            TabbedMenu.Instance.ToggleInteractPrompt(true, _buttonNumber.ToString());
         }
         else
         {

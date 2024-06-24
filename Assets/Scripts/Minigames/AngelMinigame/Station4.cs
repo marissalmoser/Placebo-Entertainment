@@ -1,54 +1,43 @@
 /******************************************************************
 *    Author: Nick Grinstead
 *    Contributors: 
-*    Date Created: June 20, 2024
-*    Description: This is the script for the arrows station in the angel minigame. It
+*    Date Created: June 24, 2024
+*    Description: This is the script for the numbers station in the angel minigame. It
 *    overwrites the functionality for the functions from the base class to determine the
-*    random order, then copies that list into one of ints to be compared with the 
-*    inputed arrows.
+*    random order, and compars that list to an inputted set of ints.
 *******************************************************************/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class Station3 : StationBehavior
+public class Station4 : StationBehavior
 {
-    public static Action<Direction> ButtonClicked;
+    public static Action<int> NumberButtonClicked;
 
-    public enum Direction
-    { 
-        Up,
-        Right,
-        Down,
-        Left
-    }
-
-    private const int _sequenceLength = 5;
-    private List<Direction> _inputSequence = new List<Direction>();
-    private List<Direction> _correctSequence = new List<Direction>();
-    private List<int> _correctSequenceInt = new List<int>();
+    [SerializeField] private int _sequenceLength = 6;
+    private List<int> _inputSequence = new List<int>();
+    private List<int> _correctSequence = new List<int>();
 
     #region ActionRegistering
     private void OnEnable()
     {
-        ButtonClicked += ArrowButtonPressed;
+        NumberButtonClicked += NumberButtonPressed;
     }
 
     private void OnDisable()
     {
-        ButtonClicked -= ArrowButtonPressed;
+        NumberButtonClicked -= NumberButtonPressed;
     }
     #endregion
 
     /// <summary>
-    /// Called when an arrow button is pressed. Adds the input to the input sequence.
+    /// Called when an number button is pressed. Adds the input to the input sequence.
     /// </summary>
-    /// <param name="arrowType">Direction of arrow being pressed</param>
-    public void ArrowButtonPressed(Direction arrowType)
+    /// <param name="num">Number from button being pressed</param>
+    public void NumberButtonPressed(int num)
     {
-        if (_inputSequence.Count < _sequenceLength)
-            _inputSequence.Add(arrowType);
+        _inputSequence.Add(num);
     }
 
     /// <summary>
@@ -81,21 +70,18 @@ public class Station3 : StationBehavior
     /// <summary>
     /// Clears correct sequences before creating a new random sequence.
     /// </summary>
-    /// <returns>Sequence of ints representing correct answer. 
-    ///     0 = up, 1 = right, 2 = down, 3 = left</returns>
+    /// <returns>Sequence of ints representing correct answer</returns>
     public override List<int> SetRandomToMatch()
     {
         _correctSequence.Clear();
-        _correctSequenceInt.Clear();
 
         for (int i = 0; i < _sequenceLength; i++)
         {
-            int val = UnityEngine.Random.Range(0, 4);
-
-            _correctSequence.Add((Direction)val);
-            _correctSequenceInt.Add(val);
+            int val = UnityEngine.Random.Range(0, 10);
+            
+            _correctSequence.Add(val);
         }
 
-        return _correctSequenceInt;
+        return _correctSequence;
     }
 }

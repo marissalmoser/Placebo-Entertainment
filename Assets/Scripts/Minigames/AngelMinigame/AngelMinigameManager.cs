@@ -77,6 +77,7 @@ public class AngelMinigameManager : MonoBehaviour
                 //are in the array, so if some ar ecut this will still work.
                 if(_stationCount < _stations.Count - 1)
                 {
+                    _round = 0;
                     SwitchStation();
                 }
                 else
