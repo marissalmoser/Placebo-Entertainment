@@ -55,7 +55,7 @@ public class LeverInteraction : MonoBehaviour, IInteractable
     /// Sets the lever to the state that is passed in as the parameter.
     /// </summary>
     /// <param name="input"></param>
-    public void SetLever(bool input)
+    public virtual void SetLever(bool input)
     {
         //set to true if not already
         if(input && !_isOn)

@@ -45,6 +45,12 @@ public class StationBehavior : MonoBehaviour
     }
 
     /// <summary>
+    /// Used by Stations 3 and 4 for their clear input levers.
+    /// </summary>
+    public virtual void InvokeClearEvent()
+    { }
+
+    /// <summary>
     /// This function makes a station's confirm button Interactable so that station
     /// can be completed.
     /// </summary>

@@ -19,11 +19,13 @@ public class Screen4 : ScreenBehavior
     private void OnEnable()
     {
         Station4.NumberButtonClicked += InputNumber;
+        Station4.ClearNumbers += ClearInputLine;
     }
 
     private void OnDisable()
     {
         Station4.NumberButtonClicked -= InputNumber;
+        Station4.ClearNumbers -= ClearInputLine;
     }
     #endregion
 
@@ -50,6 +52,14 @@ public class Screen4 : ScreenBehavior
         }
 
         _targetSequenceText.text = newCorrectSequence;
+        ClearInputLine();
+    }
+
+    /// <summary>
+    /// Called to clear inputs from screen.
+    /// </summary>
+    private void ClearInputLine()
+    {
         _inputSequenceText.text = "Input: ";
     }
 }

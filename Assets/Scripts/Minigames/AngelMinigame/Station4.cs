@@ -14,6 +14,7 @@ using System;
 public class Station4 : StationBehavior
 {
     public static Action<int> NumberButtonClicked;
+    public static Action ClearNumbers;
 
     [SerializeField] private int _sequenceLength = 6;
     private List<int> _inputSequence = new List<int>();
@@ -23,13 +24,23 @@ public class Station4 : StationBehavior
     private void OnEnable()
     {
         NumberButtonClicked += NumberButtonPressed;
+        ClearNumbers += RestartStationState;
     }
 
     private void OnDisable()
     {
         NumberButtonClicked -= NumberButtonPressed;
+        ClearNumbers -= RestartStationState;
     }
     #endregion
+
+    /// <summary>
+    /// Invokes ClearNumbers event when lever is pulled.
+    /// </summary>
+    public override void InvokeClearEvent()
+    {
+        ClearNumbers?.Invoke();
+    }
 
     /// <summary>
     /// Called when an number button is pressed. Adds the input to the input sequence.

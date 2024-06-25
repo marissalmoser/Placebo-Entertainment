@@ -15,6 +15,7 @@ using System;
 public class Station3 : StationBehavior
 {
     public static Action<Direction> ButtonClicked;
+    public static Action ClearArrows;
 
     public enum Direction
     { 
@@ -33,13 +34,23 @@ public class Station3 : StationBehavior
     private void OnEnable()
     {
         ButtonClicked += ArrowButtonPressed;
+        ClearArrows += RestartStationState;
     }
 
     private void OnDisable()
     {
         ButtonClicked -= ArrowButtonPressed;
+        ClearArrows -= RestartStationState;
     }
     #endregion
+
+    /// <summary>
+    /// Invokes ClearArrows event when lever is pulled.
+    /// </summary>
+    public override void InvokeClearEvent()
+    {
+        ClearArrows?.Invoke();
+    }
 
     /// <summary>
     /// Called when an arrow button is pressed. Adds the input to the input sequence.

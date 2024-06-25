@@ -33,11 +33,13 @@ public class Screen3 : ScreenBehavior
     private void OnEnable()
     {
         Station3.ButtonClicked += InputArrow;
+        Station3.ClearArrows += ClearInputLine;
     }
 
     private void OnDisable()
     {
         Station3.ButtonClicked -= InputArrow;
+        Station3.ClearArrows -= ClearInputLine;
     }
     #endregion
 
@@ -87,8 +89,6 @@ public class Screen3 : ScreenBehavior
     /// </summary>
     public override void SetOrderToRandom()
     {
-        _currentInputIndex = 0;
-
         for (int i = 0; i < _targetArrowTransforms.Count && i < _screenObjsOrder.Count; i++)
         {
             int arrowDirection = _screenObjsOrder[i];
@@ -116,6 +116,16 @@ public class Screen3 : ScreenBehavior
                     break;
             }
         }
+
+        ClearInputLine();
+    }
+
+    /// <summary>
+    /// Clears inputted arrows.
+    /// </summary>
+    private void ClearInputLine()
+    {
+        _currentInputIndex = 0;
 
         for (int i = 0; i < _inputArrowTransforms.Count; i++)
         {
