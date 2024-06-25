@@ -9,6 +9,20 @@ public class Station2 : StationBehavior
 
     private const int _sequenceLength = 4;
 
+    #region ActionRegistering
+    private void OnEnable()
+    {
+        AngelMinigameManager.TriggerStart += RestartStationState;
+        AngelMinigameManager.TriggerFail += RestartStationState;
+    }
+
+    private void OnDisable()
+    {
+        AngelMinigameManager.TriggerStart -= RestartStationState;
+        AngelMinigameManager.TriggerFail -= RestartStationState;
+    }
+    #endregion
+
     /// <summary>
     /// Checks if the dials match the target sequence.
     /// </summary>

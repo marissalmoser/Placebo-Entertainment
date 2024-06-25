@@ -25,6 +25,8 @@ public struct Station
 public class AngelMinigameManager : MonoBehaviour
 {
     [SerializeField] private List<Station> _stations;
+    [SerializeField] private GameObject _winScreen;
+
     [SerializeField] int _countDownTime;
     private int _currentTime;
 
@@ -193,7 +195,12 @@ public class AngelMinigameManager : MonoBehaviour
         StopAllCoroutines();
         _timerText.text = "0:00";
         _endMinigameEvent.TriggerEvent(_endMinigameEventTag);
-        //TODO: make all the confirm buttons interactable.
+
+        if (_stationCount < _stations.Count && _stationCount >= 0)
+        {
+            _stations[_stationCount].StationScreen.SetActive(false);
+        }
+        _winScreen.SetActive(true);
         print("game over");
     }
 }

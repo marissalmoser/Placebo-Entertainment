@@ -1265,6 +1265,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FrontScreen
       objectReference: {fileID: 0}
+    - target: {fileID: 2413678732761734058, guid: e04fe6e5536e7574caf93d8264c9d7dc, type: 3}
+      propertyPath: m_Name
+      value: WinState
+      objectReference: {fileID: 0}
     - target: {fileID: 2745793240640296763, guid: e04fe6e5536e7574caf93d8264c9d7dc, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -1458,7 +1462,8 @@ PrefabInstance:
       value: 0.7399998
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2413678732761734058, guid: e04fe6e5536e7574caf93d8264c9d7dc, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e04fe6e5536e7574caf93d8264c9d7dc, type: 3}
