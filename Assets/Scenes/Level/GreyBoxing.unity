@@ -43630,6 +43630,17 @@ Transform:
   - {fileID: 704868373}
   m_Father: {fileID: 2109032970}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1443924890 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -3603000809444628348, guid: 35317479d50b1ea46973aa53716499c0, type: 3}
+  m_PrefabInstance: {fileID: 2110992215}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 133e70e434104e243886dfb440f0c8c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1453377049
 GameObject:
   m_ObjectHideFlags: 0
@@ -57527,6 +57538,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Goop
       objectReference: {fileID: 0}
+    - target: {fileID: 3356181948352045349, guid: 35317479d50b1ea46973aa53716499c0, type: 3}
+      propertyPath: _eventsToListenFor.Array.data[0]._onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1443924890}
     - target: {fileID: 7760235768858286636, guid: 35317479d50b1ea46973aa53716499c0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.2368202

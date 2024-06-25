@@ -152,17 +152,57 @@ MonoBehaviour:
   _stateDialogueTrees:
     _idleState:
     - _dialogue:
-      - Seems like there are still crew members in need of help. The ship is doomed!
-      - You helped all the crew members! Let's get out of here!
+      - Ouch
+      _playerResponses:
+      - _eventToTrigger: {fileID: 11400000, guid: b0ff38f0f20db8a4ab04033934de185c, type: 2}
+        _eventTag: 0
+        _hasPrerequisiteCheck: 0
+        _answer: Are you ok?
+        _nextResponseIndex: 01000000
+        _advancesNpcState: 0
+        _endsDialogue: 0
+    - _dialogue:
+      - I appear to be in excruciating pain.
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 0
         _hasPrerequisiteCheck: 0
-        _answer: Continue
+        _answer: <b>Next
+        _nextResponseIndex: 02000000
+        _advancesNpcState: 0
+        _endsDialogue: 0
+    - _dialogue:
+      - "I can\u2019t recall what happened. We went through the wall and then I woke
+        up here."
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 0
+        _hasPrerequisiteCheck: 0
+        _answer: <b>Next
+        _nextResponseIndex: 03000000
+        _advancesNpcState: 0
+        _endsDialogue: 0
+    - _dialogue:
+      - "I need medicine but I can\u2019t seem to move. Please go get me some medicine."
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 0
+        _hasPrerequisiteCheck: 0
+        _answer: <b>Leave
         _nextResponseIndex: 
         _advancesNpcState: 1
         _endsDialogue: 1
-    _minigameReadyState: []
+    _minigameReadyState:
+    - _dialogue:
+      - It worked
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 0
+        _hasPrerequisiteCheck: 0
+        _answer: Testing
+        _nextResponseIndex: 
+        _advancesNpcState: 0
+        _endsDialogue: 1
     _playingMinigameState: []
     _postMinigameState: []
     _failureState: []

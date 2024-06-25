@@ -375,7 +375,46 @@ MonoBehaviour:
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
-    _minigameReadyState: []
+    _minigameReadyState:
+    - _dialogue:
+      - Did you check in with everyone?
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 5
+        _hasPrerequisiteCheck: 0
+        _answer: No
+        _nextResponseIndex: 01000000
+        _advancesNpcState: 0
+        _endsDialogue: 0
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 5
+        _hasPrerequisiteCheck: 0
+        _answer: The captain is injured
+        _nextResponseIndex: 02000000
+        _advancesNpcState: 0
+        _endsDialogue: 0
+    - _dialogue:
+      - Go check on everyone and let me know if anyone needs my help.
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 5
+        _hasPrerequisiteCheck: 0
+        _answer: <b>Leave
+        _nextResponseIndex: 
+        _advancesNpcState: 0
+        _endsDialogue: 1
+    - _dialogue:
+      - "That\u2019s no good. I can\u2019t make anything while stuck in my suit.
+        Luckily I keep medicine for her on standby just in case. It\u2019s over there.
+        Go take that to her."
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 5
+        _hasPrerequisiteCheck: 0
+        _answer: <b>Leave
+        _nextResponseIndex: 
+        _advancesNpcState: 0
+        _endsDialogue: 1
     _playingMinigameState: []
     _postMinigameState: []
     _failureState: []
@@ -404,7 +443,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a0acc881a336094997b0fb61c6d1983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventsToListenFor: []
+  _eventsToListenFor:
+  - _npcEvent: {fileID: 11400000, guid: b0ff38f0f20db8a4ab04033934de185c, type: 2}
+    _npcEventTag: 0
+    _onEventTriggered:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: -3603000809444628348}
+          m_TargetAssemblyTypeName: GoopNpc, Assembly-CSharp
+          m_MethodName: CheckForStateChange
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &4560596353947037845
 MonoBehaviour:
   m_ObjectHideFlags: 0
