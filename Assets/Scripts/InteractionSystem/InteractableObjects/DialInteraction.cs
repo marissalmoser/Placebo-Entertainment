@@ -58,4 +58,17 @@ public class DialInteraction : MonoBehaviour, IInteractable
     {
         TabbedMenu.Instance.ToggleInteractPrompt(false);
     }
+
+    /// <summary>
+    /// Returns the dial to its up position
+    /// </summary>
+    public void ResetDial()
+    {
+        if (_direction != DialDirection.Up)
+        {
+            int difference = 4 - (int) _direction;
+            transform.Rotate(new Vector3(0, 90 * difference, 0));
+            _direction = DialDirection.Up;
+        }
+    }
 }
