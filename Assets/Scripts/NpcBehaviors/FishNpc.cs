@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class FishNpc : BaseNpc
 {
-    [SerializeField] private InventoryItemData d;
     private bool _enteredFireRoom = false;
     [SerializeField] private int secondsUntilFailFireGame;
 
