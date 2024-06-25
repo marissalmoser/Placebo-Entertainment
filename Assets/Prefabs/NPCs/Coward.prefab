@@ -147,7 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _npcName: Coward
   _targetBypassItem: {fileID: 11400000, guid: ec08ea3ee13c21241a8a4a117cf4beab, type: 2}
-  _onEnterFailState: {fileID: 0}
+  _onEnterFailState: {fileID: 11400000, guid: 820e77e5460d5cd4cb472f8466ef6e1c, type: 2}
   _startMinigameEvent: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
   _eventTag: 1
   _stateDialogueTrees:
