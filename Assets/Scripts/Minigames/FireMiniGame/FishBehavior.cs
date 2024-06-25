@@ -31,7 +31,6 @@ public class FishBehavior : MonoBehaviour, IInteractable
     private float _waterAmount;
     [SerializeField] private float _refillWaitTime;
     [SerializeField] private float _waterMaxAmount;
-    private bool _incrementFill;
 
     [Header("Fish overall functions")]
     private bool _refillNow;
@@ -57,7 +56,6 @@ public class FishBehavior : MonoBehaviour, IInteractable
         _waterAmount = _waterMaxAmount;
         _refilled = true;
         _doOnce = true;
-        _incrementFill = true;
 
         _playerControls = new PlayerControls();
         _playerControls.BasicControls.Enable();
@@ -96,10 +94,9 @@ public class FishBehavior : MonoBehaviour, IInteractable
             Instantiate(_water, _firePosition, Quaternion.identity);
         }
         GameObject _waterFinder = GameObject.FindWithTag("Water");
-        if (_waterFinder == null && _incrementFill == true)
+        if (_waterFinder == null)
         {
-            StartCoroutine(fillGradually());
-            _incrementFill = false;
+            _waterAmount += 1.5f;
         }
         if (_refillNow)
         {
@@ -135,13 +132,6 @@ public class FishBehavior : MonoBehaviour, IInteractable
 
             //GAME ENDS HERE
         }
-    }
-    IEnumerator fillGradually()
-    {
-        yield return new WaitForSeconds(1f);
-        _waterAmount += 50f;
-        _incrementFill = true;
-
     }
     
     public void Interact(GameObject player)
