@@ -33457,22 +33457,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1869879217}
     m_Modifications:
-    - target: {fileID: 1230460638816517745, guid: 86879ec7ec26aac4e9231e94c1b6fb04, type: 3}
-      propertyPath: _stateDialogueTrees._idleState.Array.data[0]._playerResponses.Array.data[0]._eventTag
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3168306894194644997, guid: 86879ec7ec26aac4e9231e94c1b6fb04, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.1764705
-      objectReference: {fileID: 0}
-    - target: {fileID: 3168306894194644997, guid: 86879ec7ec26aac4e9231e94c1b6fb04, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.1764705
-      objectReference: {fileID: 0}
-    - target: {fileID: 3168306894194644997, guid: 86879ec7ec26aac4e9231e94c1b6fb04, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.1764705
-      objectReference: {fileID: 0}
     - target: {fileID: 3168306894194644997, guid: 86879ec7ec26aac4e9231e94c1b6fb04, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10.352943
@@ -33516,18 +33500,6 @@ PrefabInstance:
     - target: {fileID: 3297066376343357550, guid: 86879ec7ec26aac4e9231e94c1b6fb04, type: 3}
       propertyPath: m_Name
       value: Coward
-      objectReference: {fileID: 0}
-    - target: {fileID: 3297066376343357550, guid: 86879ec7ec26aac4e9231e94c1b6fb04, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4840030442360983682, guid: 86879ec7ec26aac4e9231e94c1b6fb04, type: 3}
-      propertyPath: _eventsToListenFor.Array.data[4]._onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 1602347891}
-    - target: {fileID: 6340841286487016718, guid: 86879ec7ec26aac4e9231e94c1b6fb04, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -45082,29 +45054,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1869879217}
     m_Modifications:
-    - target: {fileID: 869825619415053396, guid: f188daf20aada014c9268d86af53b853, type: 3}
-      propertyPath: _stateDialogueTrees._idleState.Array.data[0]._playerResponses.Array.data[1]._nextResponseIndex.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 869825619415053396, guid: f188daf20aada014c9268d86af53b853, type: 3}
-      propertyPath: _stateDialogueTrees._idleState.Array.data[0]._playerResponses.Array.data[2]._nextResponseIndex.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4556153407337933796, guid: f188daf20aada014c9268d86af53b853, type: 3}
       propertyPath: m_Name
       value: Robot
-      objectReference: {fileID: 0}
-    - target: {fileID: 5155935945816834384, guid: f188daf20aada014c9268d86af53b853, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.1764705
-      objectReference: {fileID: 0}
-    - target: {fileID: 5155935945816834384, guid: f188daf20aada014c9268d86af53b853, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.1764705
-      objectReference: {fileID: 0}
-    - target: {fileID: 5155935945816834384, guid: f188daf20aada014c9268d86af53b853, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.1764705
       objectReference: {fileID: 0}
     - target: {fileID: 5155935945816834384, guid: f188daf20aada014c9268d86af53b853, type: 3}
       propertyPath: m_LocalPosition.x
@@ -45674,11 +45626,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!1 &1602347891 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8109811193423663344, guid: 2d69cbc6d90c47c438ab29a74cfeee17, type: 3}
-  m_PrefabInstance: {fileID: 1196098402478553962}
-  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1610016771
 Mesh:
   m_ObjectHideFlags: 0

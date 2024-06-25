@@ -102,6 +102,7 @@ public abstract class BaseNpc : MonoBehaviour
 
     [SerializeField] protected InventoryItemData _targetBypassItem;
 
+    [SerializeField] protected NpcEvent _onEnterFailState;
     [SerializeField] protected NpcEvent _startMinigameEvent;
     [SerializeField] protected NpcEventTags _eventTag;
 
@@ -378,6 +379,7 @@ public abstract class BaseNpc : MonoBehaviour
     protected virtual void EnterFailure()
     {
         _currentState = NpcStates.Failure;
+        _onEnterFailState.TriggerEvent(_eventTag);
         StateUpdateHelper();
     }
 
