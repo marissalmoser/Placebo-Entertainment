@@ -12,6 +12,8 @@ using UnityEngine;
 
 public class AngelNpc : BaseNpc
 {
+    [SerializeField] private InventoryItemData _targetPillsItem;
+    private bool _hasPills;
     private bool _robotGameComplete = false;
     private bool _cowardGameComplete = false;
 
@@ -78,6 +80,38 @@ public class AngelNpc : BaseNpc
         else
         {
             return node.Dialogue[0];
+        }
+    }
+    protected override int ChooseDialoguePath(PlayerResponse option)
+    {
+        // Checks for bypass
+        if (_hasPills && _currentState != NpcStates.PostMinigame)
+        {
+            _shouldEndDialogue = true;
+            Invoke(nameof(EnterPostMinigame), 0.2f);
+            return 0;
+        }
+        // Don't have minigame bypass
+        else
+        {
+            if (option.NextResponseIndex.Length > 0)
+            {
+                return option.NextResponseIndex[0];
+            }
+            else
+            {
+                return 0;
+            }
+        }
+    }
+
+    public override void CollectedItem(InventoryItemData item, int quantity)
+    {
+        base.CollectedItem(item, quantity);
+
+        if (item == _targetPillsItem)
+        {
+            _hasPills = true;
         }
     }
 }
