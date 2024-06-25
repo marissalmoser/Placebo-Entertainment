@@ -228,7 +228,7 @@ MonoBehaviour:
         _hasPrerequisiteCheck: 1
         _answer: Those are going to have to be recalibrated. Here this should help
           speed things up.
-        _nextResponseIndex: 06000000
+        _nextResponseIndex: 0600000005000000
         _advancesNpcState: 0
         _endsDialogue: 0
     - _dialogue:
