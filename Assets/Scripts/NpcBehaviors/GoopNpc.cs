@@ -14,7 +14,7 @@ public class GoopNpc : BaseNpc
     {
         if(_hasBook)
         {
-            return 1;
+            return option.NextResponseIndex[1];
         }
         else
         {
@@ -34,7 +34,6 @@ public class GoopNpc : BaseNpc
 
         if (item == _targetBookItem)
         {
-            Debug.Log("Lightbulb collected");
             _hasBook = true;
         }
     }
