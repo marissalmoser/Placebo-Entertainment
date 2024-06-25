@@ -8,7 +8,10 @@ public class GoopNpc : BaseNpc
     private bool _hasBook;
     public override void CheckForStateChange()
     {
-        
+        if (_currentState == NpcStates.DefaultIdle)
+        {
+            EnterMinigameReady();
+        }
     }
     protected override int ChooseDialoguePath(PlayerResponse option)
     {
