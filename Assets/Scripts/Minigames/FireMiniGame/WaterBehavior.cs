@@ -17,7 +17,7 @@ public class WaterBehavior : MonoBehaviour
     void Awake()
     {
         _cam = GameObject.FindWithTag("MainCamera");
-        _rb.AddForce(_cam.transform.forward * 9f, ForceMode.Impulse);
+        _rb.AddForce(_cam.transform.forward * 12f, ForceMode.Impulse);
     }
 
     void OnTriggerEnter(Collider col)

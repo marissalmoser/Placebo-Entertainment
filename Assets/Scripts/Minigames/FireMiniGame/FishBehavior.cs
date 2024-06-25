@@ -24,12 +24,14 @@ public class FishBehavior : MonoBehaviour, IInteractable
     [Header("Fish outside hand functions")]
     private bool _isEquipped;
     [SerializeField] private GameObject _rightHand;
+    [SerializeField] private GameObject _fireSet;
 
     [Header("Fish within hand functions")]
     [SerializeField] private GameObject _water;
     private float _waterAmount;
     [SerializeField] private float _refillWaitTime;
     [SerializeField] private float _waterMaxAmount;
+    private bool _incrementFill;
 
     [Header("Fish overall functions")]
     private bool _refillNow;
@@ -55,6 +57,7 @@ public class FishBehavior : MonoBehaviour, IInteractable
         _waterAmount = _waterMaxAmount;
         _refilled = true;
         _doOnce = true;
+        _incrementFill = true;
 
         _playerControls = new PlayerControls();
         _playerControls.BasicControls.Enable();
@@ -81,6 +84,10 @@ public class FishBehavior : MonoBehaviour, IInteractable
     // Update is called once per frame
     void Update()
     {
+        if(!_isEquipped)
+        {
+            _fireSet.SetActive(false);
+        }
         
         if(leftclick.IsPressed() && _isEquipped && _waterAmount > 0f && _refilled == true)
         {
@@ -89,9 +96,10 @@ public class FishBehavior : MonoBehaviour, IInteractable
             Instantiate(_water, _firePosition, Quaternion.identity);
         }
         GameObject _waterFinder = GameObject.FindWithTag("Water");
-        if (_waterFinder == null)
+        if (_waterFinder == null && _incrementFill == true)
         {
-            _waterAmount += 0.5f;
+            StartCoroutine(fillGradually());
+            _incrementFill = false;
         }
         if (_refillNow)
         {
@@ -128,11 +136,19 @@ public class FishBehavior : MonoBehaviour, IInteractable
             //GAME ENDS HERE
         }
     }
+    IEnumerator fillGradually()
+    {
+        yield return new WaitForSeconds(1f);
+        _waterAmount += 50f;
+        _incrementFill = true;
+
+    }
     
     public void Interact(GameObject player)
     {
         if (!_isEquipped)
         {
+            _fireSet.SetActive(true);
             _isEquipped = true;
             transform.position = _rightHand.transform.position;
             transform.rotation = _rightHand.transform.rotation;
