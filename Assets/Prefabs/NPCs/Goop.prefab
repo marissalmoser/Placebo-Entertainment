@@ -386,7 +386,7 @@ MonoBehaviour:
         _nextResponseIndex: 01000000
         _advancesNpcState: 0
         _endsDialogue: 0
-      - _eventToTrigger: {fileID: 0}
+      - _eventToTrigger: {fileID: 11400000, guid: 8b7b5ccfabcfc4d4f96da8928978e41e, type: 2}
         _eventTag: 5
         _hasPrerequisiteCheck: 0
         _answer: The captain is injured
@@ -460,6 +460,23 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
+          m_CallState: 2
+  - _npcEvent: {fileID: 11400000, guid: 8b7b5ccfabcfc4d4f96da8928978e41e, type: 2}
+    _npcEventTag: 5
+    _onEventTriggered:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 135958869701333940, guid: 9e2d2e42467cdaa469595eb50e8393e1, type: 3}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
           m_CallState: 2
 --- !u!114 &4560596353947037845
 MonoBehaviour:
