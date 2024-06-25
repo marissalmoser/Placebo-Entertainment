@@ -1,3 +1,11 @@
+/******************************************************************
+*    Author: Nick Grinstead
+*    Contributors: 
+*    Date Created: June 24, 2024
+*    Description: Used by the arrows and numbers stations to clear player
+*    inputs. Invokes an action on the connected station when pulled.
+
+*******************************************************************/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,7 +33,7 @@ public class ClearLever : LeverInteraction
         if (!input)
         {
             _station.InvokeClearEvent();
-            Invoke(nameof(SetLeverDelayHelper), 0.2f);
+            Invoke(nameof(SetLeverDelayHelper), 0.3f);
         }
     }
 
