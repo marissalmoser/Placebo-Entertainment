@@ -7,6 +7,7 @@ public class FishNpc : BaseNpc
 {
     private bool _enteredFireRoom = false;
     [SerializeField] private int secondsUntilFailFireGame;
+    private float _timeElapsed = 0f;
 
     public override void CheckForStateChange()
     {
@@ -40,7 +41,8 @@ public class FishNpc : BaseNpc
     protected override void EnterIdle()
     {
         base.EnterIdle();
-        TimerManager.Instance.CreateTimer("FireRoomMiniGameTimer", secondsUntilFailFireGame);
+        //TimerManager.Instance.CreateTimer("FireRoomMiniGameTimer", secondsUntilFailFireGame);
+        StartCoroutine(FireTimer());
     }
     /// <summary>
     /// Lifted this from LoopController
@@ -51,5 +53,19 @@ public class FishNpc : BaseNpc
         int activeSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(activeSceneIndex);
         SaveLoadManager.Instance.LoadGameFromSaveFile();
+    }
+    private IEnumerator FireTimer()
+    {
+        while (_timeElapsed < secondsUntilFailFireGame)
+        {
+            yield return new WaitForSeconds(1f);
+
+            _timeElapsed += 1f;
+        }
+
+        //if (!_hasRepairedRobot)
+        //{
+        //    EnterFailure();
+        //}
     }
 }
