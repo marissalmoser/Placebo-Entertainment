@@ -23,15 +23,20 @@ public class InventoryHolder : MonoBehaviour
     }
     public void SetInventorySystem(InventorySystem system)
     {
-        _inventorySystem = system;
-        foreach(InventorySlot slot in _inventorySystem.CollectionOfSlots)
+        int outputHolder;
+        foreach(InventorySlot slot in system.CollectionOfSlots)
         {
-            if(slot.GetItemData() != null)
+            if(slot.GetItemData() != null && !slot.GetItemData().DoesNotPersist)
             {
-                if (slot.GetItemData().DoesNotPersist)
-                {
-                    slot.EmptyThisSlot();
-                }
+                //if (slot.GetItemData().DoesNotPersist)
+                //{
+                //    slot.EmptyThisSlot();
+                //}
+                //else
+                //{
+                    // Should alert NPC to item being in inventory and put item in new inventory
+                    _inventorySystem.AddToInventory(slot.GetItemData(), 1, out outputHolder);
+                //}
             }
         }
     }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Wrench
   m_EditorClassIdentifier: 
   Icon: {fileID: 0}
-  MaxStackSize: 1
+  MaxStackSize: 20
   DisplayName: Wrench
   DoesNotPersist: 0
   DisplayDescription: Allows player to skip to the 3rd part of the generator minigame
