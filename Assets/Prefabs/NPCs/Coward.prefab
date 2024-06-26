@@ -33,7 +33,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.3, y: 1.4, z: 3.1703415}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.1764705, y: 1.1764705, z: 1.1764705}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -147,6 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _npcName: Coward
   _targetBypassItem: {fileID: 11400000, guid: ec08ea3ee13c21241a8a4a117cf4beab, type: 2}
+  _onEnterFailState: {fileID: 11400000, guid: 820e77e5460d5cd4cb472f8466ef6e1c, type: 2}
   _startMinigameEvent: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
   _eventTag: 1
   _stateDialogueTrees:
@@ -157,7 +158,7 @@ MonoBehaviour:
       - ...
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
-        _eventTag: 0
+        _eventTag: 1
         _hasPrerequisiteCheck: 0
         _answer: You're welcome.
         _nextResponseIndex: 
@@ -385,6 +386,40 @@ MonoBehaviour:
           m_Arguments:
             m_ObjectArgument: {fileID: 6156672475860556976, guid: 872c16daeb8c8a145a3aae75b1c75557, type: 3}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
+  - _npcEvent: {fileID: 11400000, guid: 8b7b5ccfabcfc4d4f96da8928978e41e, type: 2}
+    _npcEventTag: 6
+    _onEventTriggered:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1230460638816517745}
+          m_TargetAssemblyTypeName: CowardNpc, Assembly-CSharp
+          m_MethodName: WireMinigameCompletedEvent
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
+  - _npcEvent: {fileID: 11400000, guid: 820e77e5460d5cd4cb472f8466ef6e1c, type: 2}
+    _npcEventTag: 6
+    _onEventTriggered:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1230460638816517745}
+          m_TargetAssemblyTypeName: CowardNpc, Assembly-CSharp
+          m_MethodName: OnRobotFailState
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
