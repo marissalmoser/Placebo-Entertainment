@@ -58535,6 +58535,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3bc665a840eed6478d02e923f3c9eed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _minigameEndEvent: {fileID: 0}
   leftclick:
     m_Name: Leftclick
     m_Type: 0
