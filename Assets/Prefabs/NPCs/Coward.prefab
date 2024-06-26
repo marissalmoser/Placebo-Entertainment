@@ -389,7 +389,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1230460638816517745}
           m_TargetAssemblyTypeName: CowardNpc, Assembly-CSharp
-          m_MethodName: WireMinigameCompletionEventTriggered
+          m_MethodName: WireMinigameCompletedEvent
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
