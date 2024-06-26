@@ -15,6 +15,8 @@ public class CowardNpc : BaseNpc
 
     private bool _canTeleportToGenerator = false;
     private bool _hasLightbulb = false;
+    private bool _wireGameCompleted = false;
+    private bool _robotIsAlive = true;
 
     /// <summary>
     /// Called when the player enters the generator room
@@ -54,12 +56,21 @@ public class CowardNpc : BaseNpc
     }
 
     /// <summary>
+    /// Called when event for player picking up lightbulb is triggered
+    /// </summary>
+    public void WireMinigameCompletedEvent()
+    {
+        _wireGameCompleted = true;
+    }
+
+    /// <summary>
     /// Called via dialogue to move into minigame ready state as well as from
     /// the minigame complete event to move into the postminigame state
     /// </summary>
     public override void CheckForStateChange()
     {
-        if (_currentState == NpcStates.DefaultIdle && _hasLightbulb)
+        // TODO : Add check if robot is alive (details in disc chat)
+        if (CanBeginMinigame())
         {
             EnterMinigameReady();
         }
@@ -67,6 +78,11 @@ public class CowardNpc : BaseNpc
         {
             EnterPostMinigame();
         }
+    }
+
+    private bool CanBeginMinigame()
+    {
+        return _currentState == NpcStates.DefaultIdle && _hasLightbulb && _wireGameCompleted && _robotIsAlive;
     }
 
     /// <summary>
@@ -207,6 +223,11 @@ public class CowardNpc : BaseNpc
         {
             EnterFailure();
         }
+    }
+
+    public void OnRobotFailState()
+    {
+        _robotIsAlive = false;
     }
 
     /// <summary>
