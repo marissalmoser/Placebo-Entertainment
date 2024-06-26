@@ -34027,7 +34027,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: b3f93d64d20fa1543bd806327a739eb7, type: 2}
     - target: {fileID: 4804941071692204714, guid: 4a03e922f32b7b24f800d1fa30ff0f39, type: 3}
       propertyPath: _isLocked
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5024641018392105954, guid: 4a03e922f32b7b24f800d1fa30ff0f39, type: 3}
       propertyPath: m_Mesh
@@ -40882,7 +40882,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2503066180529942226, guid: 4a03e922f32b7b24f800d1fa30ff0f39, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 119.86
+      value: 95.89
       objectReference: {fileID: 0}
     - target: {fileID: 2503066180529942226, guid: 4a03e922f32b7b24f800d1fa30ff0f39, type: 3}
       propertyPath: m_LocalRotation.w
