@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class FishNpc : BaseNpc
 {
     private bool _enteredFireRoom = false;
+    private bool _hasfish;
     [SerializeField] private int secondsUntilFailFireGame;
     private float _timeElapsed = 0f;
 
@@ -36,6 +37,40 @@ public class FishNpc : BaseNpc
         base.EnterFailure();
 
         ResetLoop();
+    }
+
+    public void SteppedIn()
+    {
+        _hasfish = true;
+    }
+
+    protected override int ChooseDialoguePath(PlayerResponse option)
+    {
+        if(_hasfish)
+        {
+            return option.NextResponseIndex[1];
+        }
+        else if (!_hasfish && option.NextResponseIndex.Length > 0)
+        {
+            return option.NextResponseIndex[0];
+        }
+        else if (_hasfish && _currentState != NpcStates.PostMinigame)
+        {
+            _shouldEndDialogue = true;
+            Invoke(nameof(EnterPostMinigame), 0.2f);
+            return 0;
+        }
+        else
+        {
+            if (option.NextResponseIndex.Length > 0)
+            {
+                return option.NextResponseIndex[0];
+            }
+            else
+            {
+                return 0;
+            }
+        }
     }
 
     protected override void EnterIdle()
