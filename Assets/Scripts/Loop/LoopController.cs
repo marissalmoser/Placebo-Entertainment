@@ -21,6 +21,7 @@ public class LoopController : MonoBehaviour
         //Creating a timer. 
         _loopTimer = TimerManager.Instance.CreateTimer("LoopTimer", _loopTimerTime + endScreenDelay);
         _loopTimer.TimesUp += HandleLoopTimerEnd;
+        LoadSave();
     }
     /// <summary>
     /// Handler for the event
@@ -41,6 +42,13 @@ public class LoopController : MonoBehaviour
         SaveLoadManager.Instance.SaveGameToSaveFile();
         int activeSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(activeSceneIndex);
+    }
+
+    /// <summary>
+    /// Called to load the game
+    /// </summary>
+    private void LoadSave()
+    {
         SaveLoadManager.Instance.LoadGameFromSaveFile();
     }
 }
