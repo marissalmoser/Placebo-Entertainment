@@ -148,7 +148,7 @@ MonoBehaviour:
   _npcName: Angel
   _targetBypassItem: {fileID: 0}
   _onEnterFailState: {fileID: 0}
-  _startMinigameEvent: {fileID: 0}
+  _startMinigameEvent: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
   _eventTag: 0
   _stateDialogueTrees:
     _idleState:
