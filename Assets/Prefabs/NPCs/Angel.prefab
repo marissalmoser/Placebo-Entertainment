@@ -159,7 +159,7 @@ MonoBehaviour:
         _hasPrerequisiteCheck: 0
         _answer: Are you ok?
         _nextResponseIndex: 01000000
-        _advancesNpcState: 0
+        _advancesNpcState: 1
         _endsDialogue: 0
     - _dialogue:
       - I appear to be in excruciating pain.
@@ -190,7 +190,7 @@ MonoBehaviour:
         _hasPrerequisiteCheck: 0
         _answer: <b>Leave
         _nextResponseIndex: 
-        _advancesNpcState: 1
+        _advancesNpcState: 0
         _endsDialogue: 1
     _minigameReadyState:
     - _dialogue:
@@ -218,6 +218,7 @@ MonoBehaviour:
     _playingMinigameState: {fileID: 0}
     _postMinigameState: {fileID: 0}
     _failureState: {fileID: 0}
+  _targetPillsItem: {fileID: 0}
 --- !u!114 &5859531997285546574
 MonoBehaviour:
   m_ObjectHideFlags: 0
