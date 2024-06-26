@@ -281,8 +281,18 @@ MonoBehaviour:
         _advancesNpcState: 0
         _endsDialogue: 0
     - _dialogue:
-      - ................................................................... What?......
-        J- just keep the wrench.
+      - ...................................................................
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 0
+        _hasPrerequisiteCheck: 0
+        _answer: <b>Next
+        _nextResponseIndex: 03000000
+        _advancesNpcState: 0
+        _endsDialogue: 0
+    - _dialogue:
+      - "EEK! I- I\u2019m sorry! Please keep the wrench! I promise it\u2019s worth
+        a lot!"
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 0
@@ -292,8 +302,7 @@ MonoBehaviour:
         _advancesNpcState: 0
         _endsDialogue: 1
     - _dialogue:
-      - "EEK! I- I\u2019m sorry! Please keep the wrench! I promise it\u2019s worth
-        a lot!"
+      - What?...... J- just keep the wrench.
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 0
