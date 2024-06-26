@@ -1,6 +1,6 @@
 /******************************************************************
 *    Author: Nick Grinstead
-*    Contributors: 
+*    Contributors: Elijah Vroman
 *    Date Created: 6/9/24
 *    Description: NPC class containing logic for the Angel NPC.
 *                 Currently set up for the first playable, will need to be updated
@@ -49,21 +49,22 @@ public class AngelNpc : BaseNpc
     /// <summary>
     /// Temporary set-up for first playable that either continues the loop or 
     /// displays the winscreen
+    /// Commented out by Elijah Vroman
     /// </summary>
-    protected override void EnterMinigameReady()
-    {
-        base.EnterMinigameReady();
+    //protected override void EnterMinigameReady()
+    //{
+    //    base.EnterMinigameReady();
 
-        if (_cowardGameComplete && _robotGameComplete)
-        {
-            _tabbedMenu.ToggleWin(true);
-        }
-        else
-        {
-            // Return to idle if player didn't win
-            EnterIdle();
-        }
-    }
+    //    if (_cowardGameComplete && _robotGameComplete)
+    //    {
+    //        _tabbedMenu.ToggleWin(true);
+    //    }
+    //    else
+    //    {
+    //        // Return to idle if player didn't win
+    //        EnterIdle();
+    //    }
+    //}
 
     /// <summary>
     /// Chooses different dialogue based on if the player has done both minigames

@@ -62,7 +62,7 @@ public class FishNpc : BaseNpc
 
             _timeElapsed += 1f;
         }
-
+        //Not sure how the fish confirms the minigame got completed in dialogue
         //if (!_hasRepairedRobot)
         //{
         //    EnterFailure();
