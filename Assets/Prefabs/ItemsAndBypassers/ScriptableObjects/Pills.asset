@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Icon: {fileID: 0}
   MaxStackSize: 1
-  DisplayName: Lightbulb
+  DisplayName: Pills
   DoesNotPersist: 1
   DisplayDescription: 'Collectable item on start
 
