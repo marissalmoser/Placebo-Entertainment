@@ -85,8 +85,16 @@ public class AngelNpc : BaseNpc
     }
     protected override int ChooseDialoguePath(PlayerResponse option)
     {
+        if (_hasPills)
+        {
+            return option.NextResponseIndex[1];
+        }
+        else if(!_hasPills && option.NextResponseIndex.Length > 0)
+        {
+            return option.NextResponseIndex[0];
+        }
         // Checks for bypass
-        if (_hasPills && _currentState != NpcStates.PostMinigame)
+        else if (_hasPills && _currentState != NpcStates.PostMinigame)
         {
             _shouldEndDialogue = true;
             Invoke(nameof(EnterPostMinigame), 0.2f);
@@ -113,6 +121,7 @@ public class AngelNpc : BaseNpc
         if (item == _targetPillsItem)
         {
             _hasPills = true;
+            Debug.Log(_hasPills);
         }
     }
 }
