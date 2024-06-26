@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1650227245951292326}
   - component: {fileID: 1655771408939868639}
   m_Layer: 0
-  m_Name: GoopBypass
+  m_Name: TranslationBook
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

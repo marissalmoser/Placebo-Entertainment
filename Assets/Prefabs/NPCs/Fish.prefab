@@ -1,0 +1,431 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1813159210467846255
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7760235768858286636}
+  - component: {fileID: 3241478675477886158}
+  - component: {fileID: 190002347449952546}
+  - component: {fileID: 1608744599569339440}
+  - component: {fileID: 4903026629208649315}
+  - component: {fileID: 1119676214051789975}
+  - component: {fileID: 5239405601287651569}
+  - component: {fileID: -562392636092693123}
+  m_Layer: 0
+  m_Name: Fish
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7760235768858286636
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813159210467846255}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &3241478675477886158
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813159210467846255}
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &190002347449952546
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813159210467846255}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &1608744599569339440
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813159210467846255}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!195 &4903026629208649315
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813159210467846255}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &1119676214051789975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813159210467846255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eeb129a991b38946b79d6d59268e5e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _npcName: Fish
+  _targetBypassItem: {fileID: 0}
+  _startMinigameEvent: {fileID: 0}
+  _eventTag: 0
+  _stateDialogueTrees:
+    _idleState:
+    - _dialogue:
+      - Hello. You look a bit frazzled. Are you ok bubbles?
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 2
+        _hasPrerequisiteCheck: 1
+        _answer: Do you smell smoke?
+        _nextResponseIndex: 0100000002000000
+        _advancesNpcState: 0
+        _endsDialogue: 0
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 2
+        _hasPrerequisiteCheck: 0
+        _answer: "Something\u2019s wrong in the med bay."
+        _nextResponseIndex: 04000000
+        _advancesNpcState: 0
+        _endsDialogue: 0
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 2
+        _hasPrerequisiteCheck: 0
+        _answer: "We\u2019re in a time loop"
+        _nextResponseIndex: 0a000000
+        _advancesNpcState: 0
+        _endsDialogue: 0
+    - _dialogue:
+      - "No, it\u2019s probably just in your head. Take a few deep breaths. I'll
+        still be here if you want to talk about it later."
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 2
+        _hasPrerequisiteCheck: 0
+        _answer: <b>Leave
+        _nextResponseIndex: 
+        _advancesNpcState: 0
+        _endsDialogue: 1
+    - _dialogue:
+      - "Now that you mention it I do. Something must be wrong in the kitchen. I\u2019ll
+        get some water and we can go put it out."
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 2
+        _hasPrerequisiteCheck: 0
+        _answer: <b>Next
+        _nextResponseIndex: 03000000
+        _advancesNpcState: 0
+        _endsDialogue: 0
+    - _dialogue:
+      - "There\u2019s not really any buckets around. I can hold a lot of water. If
+        you pick me up and direct me at the flames I\u2019ll put them out."
+      _playerResponses:
+      - _eventToTrigger: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
+        _eventTag: 2
+        _hasPrerequisiteCheck: 0
+        _answer: <b>Leave
+        _nextResponseIndex: 
+        _advancesNpcState: 0
+        _endsDialogue: 1
+    - _dialogue:
+      - "Well that\u2019s not good. Is Goop alright?"
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 2
+        _hasPrerequisiteCheck: 0
+        _answer: "Their suit isn\u2019t moving and I can\u2019t understand them."
+        _nextResponseIndex: 05000000
+        _advancesNpcState: 0
+        _endsDialogue: 0
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 2
+        _hasPrerequisiteCheck: 0
+        _answer: "I\u2019m not sure, and I don\u2019t speak the right language to
+          ask."
+        _nextResponseIndex: 08000000
+        _advancesNpcState: 0
+        _endsDialogue: 0
+    - _dialogue:
+      - "That's so? Well it happens from time to time, I\u2019m sure they\u2019re
+        fine."
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 2
+        _hasPrerequisiteCheck: 0
+        _answer: <b>Next
+        _nextResponseIndex: 06000000
+        _advancesNpcState: 0
+        _endsDialogue: 0
+    - _dialogue:
+      - "But it also means that they don\u2019t have their translator with them.
+        Luckily for you I know Goop\u2019s language, it\u2019s pretty easy to pick
+        up."
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 2
+        _hasPrerequisiteCheck: 0
+        _answer: <b>Next
+        _nextResponseIndex: 07000000
+        _advancesNpcState: 0
+        _endsDialogue: 0
+    - _dialogue:
+      - "I had a book for it, but it seems I\u2019ve misplaced it. It\u2019s somewhere
+        here on the ship. If you find it, it\u2019s yours to keep."
+      _playerResponses:
+      - _eventToTrigger: {fileID: 11400000, guid: b0ff38f0f20db8a4ab04033934de185c, type: 2}
+        _eventTag: 2
+        _hasPrerequisiteCheck: 0
+        _answer: <b>Leave
+        _nextResponseIndex: 07000000
+        _advancesNpcState: 0
+        _endsDialogue: 1
+    - _dialogue:
+      - "Hmm, the way to find out is to ask. Luckily for you I know Goop\u2019s language,
+        it\u2019s pretty easy to pick up."
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 2
+        _hasPrerequisiteCheck: 0
+        _answer: <b>Next
+        _nextResponseIndex: 09000000
+        _advancesNpcState: 0
+        _endsDialogue: 0
+    - _dialogue:
+      - "I had a book for it, but it seems I\u2019ve misplaced it. It\u2019s somewhere
+        here on the ship. If you find it, it\u2019s yours to keep."
+      _playerResponses:
+      - _eventToTrigger: {fileID: 11400000, guid: b0ff38f0f20db8a4ab04033934de185c, type: 2}
+        _eventTag: 2
+        _hasPrerequisiteCheck: 0
+        _answer: <b>Leave
+        _nextResponseIndex: 
+        _advancesNpcState: 0
+        _endsDialogue: 1
+    - _dialogue:
+      - A time loop you say? That sure is a problem.
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 2
+        _hasPrerequisiteCheck: 0
+        _answer: <b>Next
+        _nextResponseIndex: 0b000000
+        _advancesNpcState: 0
+        _endsDialogue: 0
+    - _dialogue:
+      - First things first, take a deep breath and slow down.
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 2
+        _hasPrerequisiteCheck: 0
+        _answer: <b>Next
+        _nextResponseIndex: 0c000000
+        _advancesNpcState: 0
+        _endsDialogue: 0
+    - _dialogue:
+      - You know this reminds me of an old expedition from back in the day. My good
+        friend Benni went on that expedition.
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 2
+        _hasPrerequisiteCheck: 0
+        _answer: <b>Next
+        _nextResponseIndex: 0d000000
+        _advancesNpcState: 0
+        _endsDialogue: 0
+    - _dialogue:
+      - "That ship has yet to be heard from. For a while there wasn\u2019t a doubt
+        in my mind that they would return."
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 2
+        _hasPrerequisiteCheck: 0
+        _answer: <b>Next
+        _nextResponseIndex: 0e000000
+        _advancesNpcState: 0
+        _endsDialogue: 0
+    - _dialogue:
+      - "A week after their supposed return date passed everyone I knew thought they
+        were gone for good. I\u2019ve never given up hope."
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 2
+        _hasPrerequisiteCheck: 0
+        _answer: <b>Next
+        _nextResponseIndex: 0f000000
+        _advancesNpcState: 0
+        _endsDialogue: 0
+    - _dialogue:
+      - "If I think about the 5,000 years they\u2019ve been missing, I\u2019ll feel
+        the doubt creep in. I have to take it one day at a time."
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 2
+        _hasPrerequisiteCheck: 0
+        _answer: <b>Next
+        _nextResponseIndex: 10000000
+        _advancesNpcState: 0
+        _endsDialogue: 0
+    - _dialogue:
+      - "Bubbles\u2026 I want you to take a lesson from this. You may feel the doubt
+        creep in, but this time loop is an opportunity to learn anything you want
+        to learn."
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 2
+        _hasPrerequisiteCheck: 0
+        _answer: <b>Next
+        _nextResponseIndex: 11000000
+        _advancesNpcState: 0
+        _endsDialogue: 0
+    - _dialogue:
+      - "There\u2019s no rush to do everything right. Take it one loop at a time.
+        You have all the time in the world."
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 2
+        _hasPrerequisiteCheck: 0
+        _answer: <b>Leave
+        _nextResponseIndex: 
+        _advancesNpcState: 0
+        _endsDialogue: 1
+    _minigameReadyState: []
+    _playingMinigameState: []
+    _postMinigameState: []
+    _failureState: []
+  _navigationPositions:
+    _idleState: {x: 0, y: 0, z: 0}
+    _minigameReadyState: {x: 0, y: 0, z: 0}
+    _playingMinigameState: {x: 0, y: 0, z: 0}
+    _postMinigameState: {x: 0, y: 0, z: 0}
+    _failureState: {x: 0, y: 0, z: 0}
+  _stateAnimations:
+    _idleState: {fileID: 0}
+    _minigameReadyState: {fileID: 0}
+    _playingMinigameState: {fileID: 0}
+    _postMinigameState: {fileID: 0}
+    _failureState: {fileID: 0}
+  secondsUntilFailFireGame: 0
+--- !u!114 &5239405601287651569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813159210467846255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a0acc881a336094997b0fb61c6d1983, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _eventsToListenFor:
+  - _npcEvent: {fileID: 11400000, guid: b0ff38f0f20db8a4ab04033934de185c, type: 2}
+    _npcEventTag: 2
+    _onEventTriggered:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 135958869701333940, guid: 6e3292bc51c06a143a0ec3ba295d2881, type: 3}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+--- !u!114 &-562392636092693123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813159210467846255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c90c594b96f0ae84c825594819e357d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _npcName: Fish
