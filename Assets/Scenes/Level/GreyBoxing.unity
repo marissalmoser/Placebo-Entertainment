@@ -51259,7 +51259,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 578804054939250850, guid: bca78430ba974e94ca8da7d4c3236332, type: 3}
       propertyPath: _loopTimerTime
-      value: 180
+      value: 360
       objectReference: {fileID: 0}
     - target: {fileID: 578804054939250850, guid: bca78430ba974e94ca8da7d4c3236332, type: 3}
       propertyPath: endScreenDelay
@@ -51832,6 +51832,14 @@ PrefabInstance:
     - target: {fileID: 5859531997285546574, guid: e75b614dcfdd9614fb792d12738cffd2, type: 3}
       propertyPath: _eventsToListenFor.Array.data[3]._npcEventTag
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5859531997285546574, guid: e75b614dcfdd9614fb792d12738cffd2, type: 3}
+      propertyPath: _eventsToListenFor.Array.data[0]._onEventTriggered.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5859531997285546574, guid: e75b614dcfdd9614fb792d12738cffd2, type: 3}
+      propertyPath: _eventsToListenFor.Array.data[1]._onEventTriggered.m_PersistentCalls.m_Calls.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5859531997285546574, guid: e75b614dcfdd9614fb792d12738cffd2, type: 3}
       propertyPath: _eventsToListenFor.Array.data[2]._onEventTriggered.m_PersistentCalls.m_Calls.Array.size
