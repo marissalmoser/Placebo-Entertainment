@@ -16,6 +16,7 @@ public class CowardNpc : BaseNpc
     private bool _canTeleportToGenerator = false;
     private bool _hasTeleported = false;
     private bool _hasLightbulb = false;
+    private bool _robotIsAlive = true;
 
     /// <summary>
     /// Called when the player enters the generator room
@@ -68,7 +69,7 @@ public class CowardNpc : BaseNpc
     /// </summary>
     public override void CheckForStateChange()
     {
-        if (_hasTeleported && _currentState == NpcStates.DefaultIdle)
+        if ((_hasTeleported || !_robotIsAlive) && _currentState == NpcStates.DefaultIdle)
         {
             EnterMinigameReady();
         }
@@ -76,14 +77,6 @@ public class CowardNpc : BaseNpc
         {
             EnterPostMinigame();
         }
-    }
-
-    /// <summary>
-    /// Disabling generator room listener
-    /// </summary>
-    protected override void Initialize()
-    {
-        base.Initialize();
     }
 
     /// <summary>
@@ -194,6 +187,14 @@ public class CowardNpc : BaseNpc
         }
 
         return node.Dialogue[0];
+    }
+
+    /// <summary>
+    /// Invoked via event by Robot when it dies
+    /// </summary>
+    public void OnRobotFailState()
+    {
+        _robotIsAlive = false;
     }
 
     /// <summary>
