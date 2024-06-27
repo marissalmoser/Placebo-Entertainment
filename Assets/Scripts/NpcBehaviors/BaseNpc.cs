@@ -379,7 +379,10 @@ public abstract class BaseNpc : MonoBehaviour
     protected virtual void EnterFailure()
     {
         _currentState = NpcStates.Failure;
-        _onEnterFailState.TriggerEvent(_eventTag);
+        if(_onEnterFailState != null)
+        {
+            _onEnterFailState.TriggerEvent(_eventTag);
+        }
         StateUpdateHelper();
     }
 
