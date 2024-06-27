@@ -119,6 +119,8 @@ public class CowardNpc : BaseNpc
         base.EnterPostMinigame();
 
         Interact();
+
+        _playerInventorySystem.AddToInventory(_targetBypassItem, 1, out _);
     }
 
     /// <summary>
