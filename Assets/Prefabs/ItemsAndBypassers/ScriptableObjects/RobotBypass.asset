@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RobotBypass
   m_EditorClassIdentifier: 
   Icon: {fileID: 0}
-  MaxStackSize: 1
+  MaxStackSize: 20
   DisplayName: Calibration Tool
   DoesNotPersist: 0
   DisplayDescription: Allow the player to collect the calibration tool in the storage

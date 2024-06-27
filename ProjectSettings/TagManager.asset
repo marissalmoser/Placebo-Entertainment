@@ -9,6 +9,8 @@ TagManager:
   - Gear
   - Spark
   - Righty
+  - Water
+  - Fire
   layers:
   - Default
   - TransparentFX

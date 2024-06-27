@@ -46,10 +46,16 @@ public class Pickupable : MonoBehaviour, IInteractable
     {
         InventoryHolder inventoryHolder = player.GetComponent<InventoryHolder>();
 
-        if (inventoryHolder != null)
+        //if it is not already in inventory
+        if (inventoryHolder != null && !inventoryHolder.InventorySystem.ContainsItem(myData, out _))
         {
-            Debug.Log("Got item");
+            //Debug.Log("Got item");
             inventoryHolder.InventorySystem.AddToInventory(myData, 1, out _);
+            Destroy(gameObject);
+        }
+        //if it is already in inventory (prevents doubles in inventory)
+        else if(inventoryHolder != null)
+        {
             Destroy(gameObject);
         }
         else

@@ -14,7 +14,9 @@ public class CowardNpc : BaseNpc
     [SerializeField] private float _secondsUntilExplosion;
 
     private bool _canTeleportToGenerator = false;
+    private bool _hasTeleported = false;
     private bool _hasLightbulb = false;
+    private bool _robotIsAlive = true;
 
     /// <summary>
     /// Called when the player enters the generator room
@@ -54,12 +56,20 @@ public class CowardNpc : BaseNpc
     }
 
     /// <summary>
+    /// Called when event for player picking up lightbulb is triggered
+    /// </summary>
+    public void WireMinigameCompletedEvent()
+    {
+        CheckForStateChange();
+    }
+
+    /// <summary>
     /// Called via dialogue to move into minigame ready state as well as from
     /// the minigame complete event to move into the postminigame state
     /// </summary>
     public override void CheckForStateChange()
     {
-        if (_currentState == NpcStates.DefaultIdle && _hasLightbulb)
+        if ((_hasTeleported || !_robotIsAlive) && _currentState == NpcStates.DefaultIdle)
         {
             EnterMinigameReady();
         }
@@ -67,14 +77,6 @@ public class CowardNpc : BaseNpc
         {
             EnterPostMinigame();
         }
-    }
-
-    /// <summary>
-    /// Disabling generator room listener
-    /// </summary>
-    protected override void Initialize()
-    {
-        base.Initialize();
     }
 
     /// <summary>
@@ -88,14 +90,6 @@ public class CowardNpc : BaseNpc
     }
 
     /// <summary>
-    /// Enables listener for when player enters generator room
-    /// </summary>
-    protected override void EnterMinigameReady()
-    {
-        base.EnterMinigameReady();
-    }
-
-    /// <summary>
     /// Starts Coward Interaction 3 when entering post minigame state
     /// </summary>
     protected override void EnterPostMinigame()
@@ -103,6 +97,8 @@ public class CowardNpc : BaseNpc
         base.EnterPostMinigame();
 
         Interact();
+
+        _playerInventorySystem.AddToInventory(_targetBypassItem, 1, out _);
     }
 
     /// <summary>
@@ -196,6 +192,14 @@ public class CowardNpc : BaseNpc
     }
 
     /// <summary>
+    /// Invoked via event by Robot when it dies
+    /// </summary>
+    public void OnRobotFailState()
+    {
+        _robotIsAlive = false;
+    }
+
+    /// <summary>
     /// Waits for a time until the generator explodes before entering the failure state
     /// </summary>
     /// <returns>Waits for the time until explosion</returns>
@@ -218,6 +222,8 @@ public class CowardNpc : BaseNpc
         if(_canTeleportToGenerator)
         {
             transform.position = destination.transform.position;
+            _hasTeleported = true;
+            CheckForStateChange();
         }
     }
 }
