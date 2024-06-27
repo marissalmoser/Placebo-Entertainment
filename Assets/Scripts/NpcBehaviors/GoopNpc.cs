@@ -21,7 +21,7 @@ public class GoopNpc : BaseNpc
     }
     protected override int ChooseDialoguePath(PlayerResponse option)
     {
-        if(_hasBook)
+        if(_hasBypassItem)
         {
             return option.NextResponseIndex[1];
         }
@@ -44,6 +44,7 @@ public class GoopNpc : BaseNpc
         if (item == _targetBookItem)
         {
             _hasBook = true;
+            _hasBypassItem = true;
         }
     }
 }
