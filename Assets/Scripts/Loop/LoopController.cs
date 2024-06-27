@@ -20,7 +20,7 @@ public class LoopController : MonoBehaviour
     {
         //Creating a timer. 
         _loopTimer = TimerManager.Instance.CreateTimer("LoopTimer", _loopTimerTime + endScreenDelay);
-        _loopTimer.TimesUp += HandleLoopTimerEnd;
+        //_loopTimer.TimesUp += HandleLoopTimerEnd;
         LoadSave();
     }
     /// <summary>
@@ -32,7 +32,7 @@ public class LoopController : MonoBehaviour
 
         ResetLoop();
 
-        _loopTimer.TimesUp -= HandleLoopTimerEnd;
+        //_loopTimer.TimesUp -= HandleLoopTimerEnd;
     }
     /// <summary>
     /// Saving, loading the new scene, loading saved data
