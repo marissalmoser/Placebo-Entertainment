@@ -14,9 +14,8 @@ public class CowardNpc : BaseNpc
     [SerializeField] private float _secondsUntilExplosion;
 
     private bool _canTeleportToGenerator = false;
+    private bool _hasTeleported = false;
     private bool _hasLightbulb = false;
-    private bool _wireGameCompleted = false;
-    private bool _robotIsAlive = true;
 
     /// <summary>
     /// Called when the player enters the generator room
@@ -60,7 +59,7 @@ public class CowardNpc : BaseNpc
     /// </summary>
     public void WireMinigameCompletedEvent()
     {
-        _wireGameCompleted = true;
+        CheckForStateChange();
     }
 
     /// <summary>
@@ -69,8 +68,7 @@ public class CowardNpc : BaseNpc
     /// </summary>
     public override void CheckForStateChange()
     {
-        // TODO : Add check if robot is alive (details in disc chat)
-        if (CanBeginMinigame())
+        if (_hasTeleported && _currentState == NpcStates.DefaultIdle)
         {
             EnterMinigameReady();
         }
@@ -78,11 +76,6 @@ public class CowardNpc : BaseNpc
         {
             EnterPostMinigame();
         }
-    }
-
-    private bool CanBeginMinigame()
-    {
-        return _currentState == NpcStates.DefaultIdle && _hasLightbulb && _wireGameCompleted && _robotIsAlive;
     }
 
     /// <summary>
@@ -101,14 +94,6 @@ public class CowardNpc : BaseNpc
         base.EnterIdle();
 
         StartCoroutine("GeneratorTimer");
-    }
-
-    /// <summary>
-    /// Enables listener for when player enters generator room
-    /// </summary>
-    protected override void EnterMinigameReady()
-    {
-        base.EnterMinigameReady();
     }
 
     /// <summary>
@@ -225,11 +210,6 @@ public class CowardNpc : BaseNpc
         }
     }
 
-    public void OnRobotFailState()
-    {
-        _robotIsAlive = false;
-    }
-
     /// <summary>
     /// Teleports the NPC player to a destination
     /// </summary>
@@ -239,6 +219,8 @@ public class CowardNpc : BaseNpc
         if(_canTeleportToGenerator)
         {
             transform.position = destination.transform.position;
+            _hasTeleported = true;
+            CheckForStateChange();
         }
     }
 }
