@@ -14403,7 +14403,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: b3f93d64d20fa1543bd806327a739eb7, type: 2}
     - target: {fileID: 4804941071692204714, guid: 4a03e922f32b7b24f800d1fa30ff0f39, type: 3}
       propertyPath: _isLocked
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5024641018392105954, guid: 4a03e922f32b7b24f800d1fa30ff0f39, type: 3}
       propertyPath: m_Mesh
@@ -34846,7 +34846,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: b3f93d64d20fa1543bd806327a739eb7, type: 2}
     - target: {fileID: 4804941071692204714, guid: 4a03e922f32b7b24f800d1fa30ff0f39, type: 3}
       propertyPath: _isLocked
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5024641018392105954, guid: 4a03e922f32b7b24f800d1fa30ff0f39, type: 3}
       propertyPath: m_Mesh
@@ -41844,7 +41844,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: b3f93d64d20fa1543bd806327a739eb7, type: 2}
     - target: {fileID: 4804941071692204714, guid: 4a03e922f32b7b24f800d1fa30ff0f39, type: 3}
       propertyPath: _isLocked
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5024641018392105954, guid: 4a03e922f32b7b24f800d1fa30ff0f39, type: 3}
       propertyPath: m_Mesh
@@ -51815,7 +51815,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5859531997285546574, guid: e75b614dcfdd9614fb792d12738cffd2, type: 3}
       propertyPath: _eventsToListenFor.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5859531997285546574, guid: e75b614dcfdd9614fb792d12738cffd2, type: 3}
       propertyPath: _eventsToListenFor.Array.data[2]._npcEvent
@@ -51824,6 +51824,10 @@ PrefabInstance:
     - target: {fileID: 5859531997285546574, guid: e75b614dcfdd9614fb792d12738cffd2, type: 3}
       propertyPath: _eventsToListenFor.Array.data[2]._npcEventTag
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5859531997285546574, guid: e75b614dcfdd9614fb792d12738cffd2, type: 3}
+      propertyPath: _eventsToListenFor.Array.data[3]._npcEventTag
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5859531997285546574, guid: e75b614dcfdd9614fb792d12738cffd2, type: 3}
       propertyPath: _eventsToListenFor.Array.data[2]._onEventTriggered.m_PersistentCalls.m_Calls.Array.size
@@ -51844,6 +51848,10 @@ PrefabInstance:
     - target: {fileID: 5859531997285546574, guid: e75b614dcfdd9614fb792d12738cffd2, type: 3}
       propertyPath: _eventsToListenFor.Array.data[2]._onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: CheckForStateChange
+      objectReference: {fileID: 0}
+    - target: {fileID: 5859531997285546574, guid: e75b614dcfdd9614fb792d12738cffd2, type: 3}
+      propertyPath: _eventsToListenFor.Array.data[3]._onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: WinGame
       objectReference: {fileID: 0}
     - target: {fileID: 5859531997285546574, guid: e75b614dcfdd9614fb792d12738cffd2, type: 3}
       propertyPath: _eventsToListenFor.Array.data[2]._onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -51921,6 +51929,14 @@ PrefabInstance:
       propertyPath: _startMinigameEvent
       value: 
       objectReference: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
+    - target: {fileID: 7988089871590522290, guid: e75b614dcfdd9614fb792d12738cffd2, type: 3}
+      propertyPath: _stateDialogueTrees._postMinigameState.Array.data[0]._playerResponses.Array.data[0]._eventTag
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7988089871590522290, guid: e75b614dcfdd9614fb792d12738cffd2, type: 3}
+      propertyPath: _stateDialogueTrees._postMinigameState.Array.data[0]._playerResponses.Array.data[0]._eventToTrigger
+      value: 
+      objectReference: {fileID: 11400000, guid: 8b7b5ccfabcfc4d4f96da8928978e41e, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
