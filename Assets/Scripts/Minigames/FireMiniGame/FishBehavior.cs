@@ -18,6 +18,8 @@ using UnityEngine.InputSystem;
 
 public class FishBehavior : MonoBehaviour, IInteractable
 {
+    [SerializeField] private NpcEvent _minigameEndEvent;
+
     public PlayerControls _playerControls;
     public InputAction leftclick;
 
@@ -82,10 +84,10 @@ public class FishBehavior : MonoBehaviour, IInteractable
     // Update is called once per frame
     void Update()
     {
-        if(!_isEquipped)
-        {
-            _fireSet.SetActive(false);
-        }
+        //if(!_isEquipped)
+        //{
+        //    _fireSet.SetActive(false);
+        //}
         
         if(leftclick.IsPressed() && _isEquipped && _waterAmount > 0f && _refilled == true)
         {
@@ -128,9 +130,10 @@ public class FishBehavior : MonoBehaviour, IInteractable
             _rb.useGravity = true;
             transform.parent = null;
             _isEquipped = false;
-            Destroy(this);
+            Destroy(gameObject);
 
             //GAME ENDS HERE
+            _minigameEndEvent.TriggerEvent(NpcEventTags.Fish);
         }
     }
     
@@ -138,7 +141,7 @@ public class FishBehavior : MonoBehaviour, IInteractable
     {
         if (!_isEquipped)
         {
-            _fireSet.SetActive(true);
+            //_fireSet.SetActive(true);
             _isEquipped = true;
             transform.position = _rightHand.transform.position;
             transform.rotation = _rightHand.transform.rotation;

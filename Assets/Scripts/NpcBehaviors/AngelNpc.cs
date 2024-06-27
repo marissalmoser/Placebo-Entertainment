@@ -1,6 +1,6 @@
 /******************************************************************
 *    Author: Nick Grinstead
-*    Contributors: 
+*    Contributors: Elijah Vroman
 *    Date Created: 6/9/24
 *    Description: NPC class containing logic for the Angel NPC.
 *                 Currently set up for the first playable, will need to be updated
@@ -12,6 +12,8 @@ using UnityEngine;
 
 public class AngelNpc : BaseNpc
 {
+    [SerializeField] private InventoryItemData _targetPillsItem;
+    private bool _hasPills;
     private bool _robotGameComplete = false;
     private bool _cowardGameComplete = false;
 
@@ -42,26 +44,44 @@ public class AngelNpc : BaseNpc
         {
             EnterMinigameReady();
         }
+        else if (_currentState == NpcStates.PlayingMinigame)
+        {
+            EnterPostMinigame();
+        }
+    }
+    protected override void EnterPostMinigame()
+    {
+        base.EnterPostMinigame();
+
+        
     }
 
     /// <summary>
+    /// Temporary wingame as of 6/26
+    /// </summary>
+    public void WinGame()
+    {
+        _tabbedMenu.ToggleWin(true);
+    }
+    /// <summary>
     /// Temporary set-up for first playable that either continues the loop or 
     /// displays the winscreen
+    /// Commented out by Elijah Vroman
     /// </summary>
-    protected override void EnterMinigameReady()
-    {
-        base.EnterMinigameReady();
+    //protected override void EnterMinigameReady()
+    //{
+    //    base.EnterMinigameReady();
 
-        if (_cowardGameComplete && _robotGameComplete)
-        {
-            _tabbedMenu.ToggleWin(true);
-        }
-        else
-        {
-            // Return to idle if player didn't win
-            EnterIdle();
-        }
-    }
+    //    if (_cowardGameComplete && _robotGameComplete)
+    //    {
+    //        _tabbedMenu.ToggleWin(true);
+    //    }
+    //    else
+    //    {
+    //        // Return to idle if player didn't win
+    //        EnterIdle();
+    //    }
+    //}
 
     /// <summary>
     /// Chooses different dialogue based on if the player has done both minigames
@@ -78,6 +98,47 @@ public class AngelNpc : BaseNpc
         else
         {
             return node.Dialogue[0];
+        }
+    }
+    protected override int ChooseDialoguePath(PlayerResponse option)
+    {
+        if (_hasPills)
+        {
+            return option.NextResponseIndex[1];
+        }
+        else if(!_hasPills && option.NextResponseIndex.Length > 0)
+        {
+            return option.NextResponseIndex[0];
+        }
+        // Checks for bypass
+        else if (_hasPills && _currentState != NpcStates.PostMinigame)
+        {
+            _shouldEndDialogue = true;
+            Invoke(nameof(EnterPostMinigame), 0.2f);
+            return 0;
+        }
+        // Don't have minigame bypass
+        else
+        {
+            if (option.NextResponseIndex.Length > 0)
+            {
+                return option.NextResponseIndex[0];
+            }
+            else
+            {
+                return 0;
+            }
+        }
+    }
+
+    public override void CollectedItem(InventoryItemData item, int quantity)
+    {
+        base.CollectedItem(item, quantity);
+
+        if (item == _targetPillsItem)
+        {
+            _hasPills = true;
+            Debug.Log(_hasPills);
         }
     }
 }
