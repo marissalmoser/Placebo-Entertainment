@@ -1,3 +1,9 @@
+/******************************************************************
+*    Author: Elijah Vroman
+*    Contributors: 
+*    Date Created: 6/25/24
+*    Description: NPC class containing logic for the Goop NPC.
+*******************************************************************/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

@@ -44,6 +44,16 @@ public class AngelNpc : BaseNpc
         {
             EnterMinigameReady();
         }
+        else if (_currentState == NpcStates.PlayingMinigame)
+        {
+            EnterPostMinigame();
+        }
+    }
+    protected override void EnterPostMinigame()
+    {
+        base.EnterPostMinigame();
+
+        
     }
 
     /// <summary>
