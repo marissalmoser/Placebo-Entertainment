@@ -25,16 +25,16 @@ public struct TimerStruct
     public string timerName;
     public Timer timer;
 
-    public TimerStruct(string name, int durationInSeconds)
+    public TimerStruct(string name, float maxTime)
     {
         timerName = name;
-        timer = new Timer(durationInSeconds);
+        timer = new Timer(maxTime);
     }
 }
 
 public class TimerManager : MonoBehaviour
 {
-    private List<TimerStruct> _timers = new List<TimerStruct>();
+    public List<TimerStruct> _timers = new List<TimerStruct>();
     #region Instance
     //regions are cool, i guess. Just hiding boring stuff
     public static TimerManager Instance { get; private set; }
@@ -75,7 +75,7 @@ public class TimerManager : MonoBehaviour
         }
     }
 
-    public Timer CreateTimer(string timerName, int durationInSeconds)
+    public Timer CreateTimer(string timerName, float maxTime)
     {
         if (_timers.Exists(t => t.timerName == timerName))
         {
@@ -83,7 +83,7 @@ public class TimerManager : MonoBehaviour
             return null;
         }
 
-        TimerStruct newTimerStruct = new TimerStruct(timerName, durationInSeconds);
+        TimerStruct newTimerStruct = new TimerStruct(timerName, maxTime);
         newTimerStruct.timer.StartTimer();
         _timers.Add(newTimerStruct);
         return newTimerStruct.timer;

@@ -7,17 +7,23 @@
 *******************************************************************/
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
+[Serializable]
 public class Timer
 {
-    private float _maxTime;
-    private float _timeRemaining;
-    private bool _isRunning;
-    public event Action TimesUp;
+    [SerializeField] private float _maxTime;
+    [SerializeField] private bool _isRunning;
+    public float _timeRemaining { get; private set; }
 
-    public Timer(int durationInSeconds)
+    //[Header("Events")]
+    //public UnityEvent EventToStart;
+    //public UnityEvent OnTimesUp;
+
+    public Timer(float maxTime)
     {
-        _maxTime = _timeRemaining = durationInSeconds;
+        _maxTime = maxTime; 
+        _maxTime = _timeRemaining;
         _isRunning = false;
     }
     public void UpdateTimer(float deltaTime)
@@ -29,7 +35,7 @@ public class Timer
             {
                 _timeRemaining = 0;
                 _isRunning = false;
-                TimesUp?.Invoke();
+                //OnTimesUp?.Invoke();
             }
         }
     }
