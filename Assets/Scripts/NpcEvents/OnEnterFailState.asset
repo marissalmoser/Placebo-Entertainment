@@ -9,11 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62ade1df58315364681bb3c04d76625e, type: 3}
-  m_Name: Wrench
+  m_Script: {fileID: 11500000, guid: 5cccd1b3ed5799b449d60399408c05bd, type: 3}
+  m_Name: OnEnterFailState
   m_EditorClassIdentifier: 
-  Icon: {fileID: 0}
-  MaxStackSize: 20
-  DisplayName: Wrench
-  DoesNotPersist: 0
-  DisplayDescription: Allows player to skip to the 3rd part of the generator minigame
