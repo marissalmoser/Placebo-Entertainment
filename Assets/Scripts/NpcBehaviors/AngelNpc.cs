@@ -57,6 +57,13 @@ public class AngelNpc : BaseNpc
     }
 
     /// <summary>
+    /// Temporary wingame as of 6/26
+    /// </summary>
+    public void WinGame()
+    {
+        _tabbedMenu.ToggleWin(true);
+    }
+    /// <summary>
     /// Temporary set-up for first playable that either continues the loop or 
     /// displays the winscreen
     /// Commented out by Elijah Vroman
