@@ -51826,12 +51826,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 8b7b5ccfabcfc4d4f96da8928978e41e, type: 2}
     - target: {fileID: 5859531997285546574, guid: e75b614dcfdd9614fb792d12738cffd2, type: 3}
+      propertyPath: _eventsToListenFor.Array.data[3]._npcEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 6c063e0dc7b42fc4e8a3e9c06253b1c1, type: 2}
+    - target: {fileID: 5859531997285546574, guid: e75b614dcfdd9614fb792d12738cffd2, type: 3}
       propertyPath: _eventsToListenFor.Array.data[2]._npcEventTag
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5859531997285546574, guid: e75b614dcfdd9614fb792d12738cffd2, type: 3}
       propertyPath: _eventsToListenFor.Array.data[3]._npcEventTag
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5859531997285546574, guid: e75b614dcfdd9614fb792d12738cffd2, type: 3}
       propertyPath: _eventsToListenFor.Array.data[0]._onEventTriggered.m_PersistentCalls.m_Calls.Array.size
@@ -51943,12 +51947,12 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
     - target: {fileID: 7988089871590522290, guid: e75b614dcfdd9614fb792d12738cffd2, type: 3}
       propertyPath: _stateDialogueTrees._postMinigameState.Array.data[0]._playerResponses.Array.data[0]._eventTag
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7988089871590522290, guid: e75b614dcfdd9614fb792d12738cffd2, type: 3}
       propertyPath: _stateDialogueTrees._postMinigameState.Array.data[0]._playerResponses.Array.data[0]._eventToTrigger
       value: 
-      objectReference: {fileID: 11400000, guid: 8b7b5ccfabcfc4d4f96da8928978e41e, type: 2}
+      objectReference: {fileID: 11400000, guid: 6c063e0dc7b42fc4e8a3e9c06253b1c1, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

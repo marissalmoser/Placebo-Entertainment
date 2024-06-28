@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 328378149520329121}
   - component: {fileID: 1635395299911554540}
+  - component: {fileID: 1228581567463732128}
   m_Layer: 0
   m_Name: SaveLoadManager
   m_TagString: Untagged
@@ -44,4 +45,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a323bde5cec38474b903eb50a8d4a1f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemData: {fileID: 11400000, guid: c99c6d3c38504bd4d99acd0c0dbbdf12, type: 2}
+--- !u!114 &1228581567463732128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3065488571348474062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a0acc881a336094997b0fb61c6d1983, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _eventsToListenFor:
+  - _npcEvent: {fileID: 11400000, guid: 6c063e0dc7b42fc4e8a3e9c06253b1c1, type: 2}
+    _npcEventTag: 0
+    _onEventTriggered:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1635395299911554540}
+          m_TargetAssemblyTypeName: SaveLoadManager, Assembly-CSharp
+          m_MethodName: DeleteSaveData
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
