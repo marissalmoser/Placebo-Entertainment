@@ -8,6 +8,6 @@
                 <ui:Instance template="DialogueOption" name="DialogueOption" />
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:Label tabindex="-1" text="&lt;color=&quot;orange&quot;&gt;Dave &lt;color=&quot;white&quot;&gt;- Hi there. How&apos;s it going?AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" parse-escape-sequences="true" display-tooltip-when-elided="true" name="BottomBar" class="Bar" style="width: 100%; height: 15%; white-space: normal; font-size: 50px;" />
+        <ui:Label tabindex="-1" text="&lt;color=&quot;orange&quot;&gt;Dave &lt;color=&quot;white&quot;&gt;- Hi there. How&apos;s it going?AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" parse-escape-sequences="true" display-tooltip-when-elided="true" name="BottomBar" class="Bar" style="width: 100%; height: 20%; white-space: normal; font-size: 50px; margin-left: 0; margin-bottom: 0; margin-right: 0; padding-right: 5px; padding-left: 5px;" />
     </ui:VisualElement>
 </ui:UXML>
