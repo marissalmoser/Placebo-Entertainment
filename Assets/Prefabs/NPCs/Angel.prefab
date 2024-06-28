@@ -270,7 +270,7 @@ MonoBehaviour:
         is well.
       _playerResponses:
       - _eventToTrigger: {fileID: 11400000, guid: 6c063e0dc7b42fc4e8a3e9c06253b1c1, type: 2}
-        _eventTag: 0
+        _eventTag: 3
         _hasPrerequisiteCheck: 0
         _answer: <b>Continue
         _nextResponseIndex: 
