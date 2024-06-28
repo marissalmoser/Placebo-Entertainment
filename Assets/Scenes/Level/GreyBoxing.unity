@@ -46147,21 +46147,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3717106574432832137, guid: c305122b038e6e048b647787017c7c42, type: 3}
   m_PrefabInstance: {fileID: 1749669357}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1458976075
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1458976065}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d160751c6b70314a83378fabfab2348, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _inventorySystem:
-    collectionOfSlots: []
-  _inventorySize: 5
 --- !u!43 &1459222149
 Mesh:
   m_ObjectHideFlags: 0
@@ -49862,18 +49847,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 184720611215862423, guid: c305122b038e6e048b647787017c7c42, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -1.5211678
-      objectReference: {fileID: 0}
-    - target: {fileID: 184720611215862423, guid: c305122b038e6e048b647787017c7c42, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.4607649
-      objectReference: {fileID: 0}
-    - target: {fileID: 184720611215862423, guid: c305122b038e6e048b647787017c7c42, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 12.798389
-      objectReference: {fileID: 0}
     - target: {fileID: 3481114042540795502, guid: c305122b038e6e048b647787017c7c42, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10.82
@@ -49914,14 +49887,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6646590932068586755, guid: c305122b038e6e048b647787017c7c42, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -1.0626373
-      objectReference: {fileID: 0}
-    - target: {fileID: 6646590932068586755, guid: c305122b038e6e048b647787017c7c42, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.9607649
-      objectReference: {fileID: 0}
     - target: {fileID: 7286666629876081472, guid: c305122b038e6e048b647787017c7c42, type: 3}
       propertyPath: m_Name
       value: Fullplayer
@@ -49929,10 +49894,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3717106574432832137, guid: c305122b038e6e048b647787017c7c42, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1458976075}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c305122b038e6e048b647787017c7c42, type: 3}
 --- !u!1 &1750895530
 GameObject:

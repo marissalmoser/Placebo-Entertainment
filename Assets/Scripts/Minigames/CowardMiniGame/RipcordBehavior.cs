@@ -55,7 +55,7 @@ public class RipcordBehavior : MonoBehaviour
     void Update()
     {
         _successfulPulls.text = _numReleased.ToString();
-        if (_pc.interact.IsPressed() && PressedE == true && transform.position.z > _targetFollow.transform.position.z + 1.7f && _numReleased != 3)
+        if (_pc.Interact.IsPressed() && PressedE == true && transform.position.z > _targetFollow.transform.position.z + 1.7f && _numReleased != 3)
         {
             transform.position -= new Vector3(0, 0, _speed * Time.deltaTime);
             StartCoroutine(FindPreview());
@@ -64,13 +64,13 @@ public class RipcordBehavior : MonoBehaviour
                 _preview.GetComponent<Collider>().enabled = false;
             }
         }
-        if(_pc.interact.IsPressed() && PressedE == true && _doOnce2 == true && _numReleased != 3)
+        if(_pc.Interact.IsPressed() && PressedE == true && _doOnce2 == true && _numReleased != 3)
         {
             Vector3 _previewerPoint = new Vector3(_relocatePoint.x, _relocatePoint.y, Random.Range(_maxReach,_relocatePoint.z));
             Instantiate(_ReleasePreviewer, _previewerPoint, Quaternion.identity);
             _doOnce2 = false;
         }
-        if (PressedE == false && transform.position.z < _relocatePoint.z && transform.position.z != _relocatePoint.z || _pc.interact.IsPressed() && PressedE == true && transform.position.z < _maxReach && transform.position.z != _relocatePoint.z)
+        if (PressedE == false && transform.position.z < _relocatePoint.z && transform.position.z != _relocatePoint.z || _pc.Interact.IsPressed() && PressedE == true && transform.position.z < _maxReach && transform.position.z != _relocatePoint.z)
         {
             transform.position += new Vector3(0, 0, _speed * Time.deltaTime);
             StartCoroutine(FindPreview());

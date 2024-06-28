@@ -1,6 +1,6 @@
 /*****************************************************************************
 // File Name :         PlayerController.cs
-// Author :            Nick Grinsteasd & Mark Hanson
+// Author :            Nick Grinsteasd & Mark Hanson, Andrea Swihart-DeCoster
 // Creation Date :     5/16/2024
 //
 // Brief Description : All player actions which includes movement, looking around, and interacting with the world
@@ -15,31 +15,39 @@ using Cinemachine;
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance;
-    [SerializeField] float moveSpeed;
-    [SerializeField] float jumpForce;
-
+    [SerializeField] float _moveSpeed;
+    [SerializeField] float _jumpForce;
 
     public PlayerControls PlayerControls { get; private set; }
-    public InputAction move, interact, reset, quit;
+    public InputAction Move, Interact, Reset, Quit;
 
-    Rigidbody rb;
-    CinemachineVirtualCamera mainCamera;
-    CinemachineTransposer transposer;
+    Rigidbody _rb;
+    CinemachineVirtualCamera _mainCamera;
+    CinemachineTransposer _transposer;
 
-    PlayerInteractSystem _InteractionCheck;
+    PlayerInteractSystem InteractionCheck;
     private bool _doOnce;
     private bool _isInDialogue = false;
 
     [SerializeField] bool _isKinemat;
 
-    bool isMoving = false;
-    Vector2 moveDirection;
-    Vector3 velocity;
+    private bool _isMoving = false;
+    private Vector2 _moveDirection;
+    private Vector3 _velocity;
 
-    bool isGrounded = true;
-    float groundDistance = 0.3f;
-    [SerializeField] LayerMask groundMask;
-    [SerializeField] Transform groundChecker;
+    private bool _isGrounded = true;
+    private float _groundedDistance = 0.3f;
+    [SerializeField] LayerMask _groundMask;
+    [SerializeField] Transform _groundChecker;
+
+    private void OnEnable()
+    {
+        Move.performed += ctx => _moveDirection = Move.ReadValue<Vector2>();
+        Move.performed += ctx => _isMoving = true;
+        Move.canceled += ctx => _moveDirection = Move.ReadValue<Vector2>();
+        Move.canceled += ctx => _isMoving = false;
+        Move.canceled += ctx => _rb.velocity = new Vector3(0, _rb.velocity.y, 0);
+    }
 
     void Awake()
     {
@@ -47,77 +55,62 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        rb = gameObject.GetComponent<Rigidbody>();
-        mainCamera = FindObjectOfType<CinemachineVirtualCamera>();
-        transposer = mainCamera.GetCinemachineComponent<CinemachineTransposer>();
+        _rb = GetComponent<Rigidbody>();
+        _mainCamera = FindObjectOfType<CinemachineVirtualCamera>();
+        _transposer = _mainCamera.GetCinemachineComponent<CinemachineTransposer>();
 
         PlayerControls = new PlayerControls();
         PlayerControls.BasicControls.Enable();
 
-        _InteractionCheck = new PlayerInteractSystem("Default None");
+        InteractionCheck = new PlayerInteractSystem("Default None");
         _doOnce = true;
 
-        mainCamera.transform.rotation = transform.rotation;
+        _mainCamera.transform.rotation = transform.rotation;
 
-        move = PlayerControls.FindAction("Move");
-        interact = PlayerControls.FindAction("Interact");
-        reset = PlayerControls.FindAction("Reset");
-        quit = PlayerControls.FindAction("Quit");
-
-        move.performed += ctx => moveDirection = move.ReadValue<Vector2>();
-        move.performed += ctx => isMoving = true;
-        move.canceled += ctx => moveDirection = move.ReadValue<Vector2>();
-        move.canceled += ctx => isMoving = false;
-        move.canceled += ctx => rb.velocity = new Vector3(0, rb.velocity.y, 0);
+        Move = PlayerControls.FindAction("Move");
+        Interact = PlayerControls.FindAction("Interact");
+        Reset = PlayerControls.FindAction("Reset");
+        Quit = PlayerControls.FindAction("Quit");
     }
     void FixedUpdate()
     {
         // Player Movement
-        if (!_isInDialogue && isMoving && _isKinemat)
+        if (!_isInDialogue && _isMoving)
         {
-            rb.velocity = new Vector3(0, rb.velocity.y, 0);
-            velocity = transform.right * moveDirection.x + transform.forward * moveDirection.y;
-            velocity = velocity.normalized;
-            velocity *= moveSpeed;
-            rb.AddForce(velocity * moveSpeed, ForceMode.VelocityChange);
+            _rb.velocity = new Vector3(0, _rb.velocity.y, 0);
+            _velocity = transform.right * _moveDirection.x + transform.forward * _moveDirection.y;
+            _velocity = _velocity.normalized * _moveSpeed;
+            _rb.AddForce(_velocity, ForceMode.VelocityChange);
         }
         if(_isKinemat)
         {
-            rb.isKinematic = true;
+            _rb.isKinematic = true;
         }
         if(_isKinemat == false)
         {
-            rb.isKinematic = false;
-        }
-        if(!_isInDialogue && isMoving && _isKinemat == false)
-        {
-            rb.velocity = new Vector3(0, rb.velocity.y, 0);
-            velocity = transform.right * moveDirection.x + transform.forward * moveDirection.y;
-            velocity = velocity.normalized;
-            velocity *= moveSpeed;
-            rb.AddForce(velocity, ForceMode.VelocityChange);
+            _rb.isKinematic = false;
         }
 
         // Ground Check
-        if (!isGrounded)
-            isGrounded = Physics.CheckSphere(groundChecker.position, groundDistance, groundMask);
+        if (!_isGrounded)
+            _isGrounded = Physics.CheckSphere(_groundChecker.position, _groundedDistance, _groundMask);
 
-        if (interact.IsPressed() && _doOnce == true)
+        if (Interact.IsPressed() && _doOnce == true)
         {
-            _InteractionCheck.CallInteract();
+            InteractionCheck.CallInteract();
         }
-        if (reset.IsPressed())
+        if (Reset.IsPressed())
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-        if (quit.IsPressed())
+        if (Quit.IsPressed())
         {
             Application.Quit();
         }
 
         // Player Rotation
         if (!_isInDialogue)
-            rb.rotation = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0);
+            _rb.rotation = Quaternion.Euler(0, _mainCamera.transform.eulerAngles.y, 0);
     }
 
     /// <summary>
@@ -131,21 +124,30 @@ public class PlayerController : MonoBehaviour
         // Preventing camera from snapping after dialogue
         if (!isLocked)
         {
-            mainCamera.transform.rotation = transform.rotation;
+            _mainCamera.transform.rotation = transform.rotation;
         }
 
-        mainCamera.gameObject.SetActive(!isLocked);
+        _mainCamera.gameObject.SetActive(!isLocked);
     }
 
     void OnTriggerEnter(Collider col)
     {
         if(col.tag == "Interactable")
         {
-            _InteractionCheck = new PlayerInteractSystem(col.name);
+            InteractionCheck = new PlayerInteractSystem(col.name);
         }
     }
     void OnTriggerExit(Collider col)
     {
-        _InteractionCheck = new PlayerInteractSystem("Default None");
+        InteractionCheck = new PlayerInteractSystem("Default None");
+    }
+
+    private void OnDisable()
+    {
+        Move.performed -= ctx => _moveDirection = Move.ReadValue<Vector2>();
+        Move.performed -= ctx => _isMoving = true;
+        Move.canceled -= ctx => _moveDirection = Move.ReadValue<Vector2>();
+        Move.canceled -= ctx => _isMoving = false;
+        Move.canceled -= ctx => _rb.velocity = new Vector3(0, _rb.velocity.y, 0);
     }
 }
