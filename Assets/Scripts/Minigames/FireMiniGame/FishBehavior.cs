@@ -92,6 +92,7 @@ public class FishBehavior : MonoBehaviour, IInteractable
         if(leftclick.IsPressed() && _isEquipped && _waterAmount > 0f && _refilled == true)
         {
             _waterAmount -= 1f;
+            _refillNow = false;
             Vector3 _firePosition = new Vector3(_firePoint.transform.position.x, _firePoint.transform.position.y, _firePoint.transform.position.z);
             Instantiate(_water, _firePosition, Quaternion.identity);
         }
@@ -154,6 +155,7 @@ public class FishBehavior : MonoBehaviour, IInteractable
     {
         _refilled = false;
         _refillNow = false;
+        _waterAmount = 0;
         yield return new WaitForSeconds(_refillWaitTime);
         _refillNow = true;
     }
