@@ -68,18 +68,18 @@ public class PlayerController : MonoBehaviour
         move.performed += ctx => isMoving = true;
         move.canceled += ctx => moveDirection = move.ReadValue<Vector2>();
         move.canceled += ctx => isMoving = false;
+        move.canceled += ctx => rb.velocity = new Vector3(0, rb.velocity.y, 0);
     }
     void FixedUpdate()
     {
         // Player Movement
         if (!_isInDialogue && isMoving && _isKinemat)
         {
+            rb.velocity = new Vector3(0, rb.velocity.y, 0);
             velocity = transform.right * moveDirection.x + transform.forward * moveDirection.y;
             velocity = velocity.normalized;
             velocity *= moveSpeed;
-             Vector3 _velocity = new Vector3(velocity.x, 0, velocity.z);
-            rb.MovePosition(transform.position + _velocity * Time.deltaTime);
-            rb.AddForce(velocity * moveSpeed);
+            rb.AddForce(velocity * moveSpeed, ForceMode.VelocityChange);
         }
         if(_isKinemat)
         {
@@ -91,12 +91,11 @@ public class PlayerController : MonoBehaviour
         }
         if(!_isInDialogue && isMoving && _isKinemat == false)
         {
+            rb.velocity = new Vector3(0, rb.velocity.y, 0);
             velocity = transform.right * moveDirection.x + transform.forward * moveDirection.y;
             velocity = velocity.normalized;
             velocity *= moveSpeed;
-            Vector3 _velocity = new Vector3(velocity.x, 0, velocity.z);
-            rb.MovePosition(transform.position + _velocity * Time.deltaTime);
-            rb.AddForce(velocity);
+            rb.AddForce(velocity, ForceMode.VelocityChange);
         }
 
         // Ground Check
