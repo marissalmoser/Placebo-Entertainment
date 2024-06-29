@@ -27,7 +27,7 @@ public class InteractionDemo : MonoBehaviour
     void FixedUpdate()
     {
         //When in zone and press E say HIIIIII
-        if(_pc.interact.IsPressed() && _interactable == true)
+        if(_pc.Interact.IsPressed() && _interactable == true)
         {
             Debug.Log("HI");
         }
