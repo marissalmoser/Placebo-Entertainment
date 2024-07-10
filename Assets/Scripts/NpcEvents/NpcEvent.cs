@@ -19,12 +19,8 @@ public enum NpcEventTags
     Coward,
     Fish,
     Game,
-    Gladiator,
-    Gnomes,
     Goop,
     Robot,
-    Lightbulb, // TODO: remove this tag once NPCs are tied into inventory system
-    Lab // TODO: possibly remove this once an on-enter room system is created
 }
 
 [CreateAssetMenu(menuName = "NPC Event")]
