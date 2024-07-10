@@ -1020,7 +1020,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1141302275
 Transform:
   m_ObjectHideFlags: 0
@@ -2310,15 +2310,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2530479209911752189, guid: 1200f4cc17903254c98b5bf19a7ca062, type: 3}
       propertyPath: InitialModule.startSize.scalar
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2530479209911752189, guid: 1200f4cc17903254c98b5bf19a7ca062, type: 3}
-      propertyPath: InitialModule.startSize.minScalar
-      value: 0.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2530479209911752189, guid: 1200f4cc17903254c98b5bf19a7ca062, type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2876,7 +2872,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4730773377543536482, guid: 6583433f24e6cae4ca94a8a5ee971267, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
