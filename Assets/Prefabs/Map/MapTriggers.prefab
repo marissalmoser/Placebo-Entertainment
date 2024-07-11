@@ -67,6 +67,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _onEnterRoom: {fileID: 11400000, guid: 9f71d044c4d09304588beadc31eb08d4, type: 2}
+  _eventTag: 5
 --- !u!1 &5266479173306512446
 GameObject:
   m_ObjectHideFlags: 0
