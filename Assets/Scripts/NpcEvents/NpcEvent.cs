@@ -21,6 +21,10 @@ public enum NpcEventTags
     Game,
     Goop,
     Robot,
+
+    GeneratorDeath,
+    FireDeath,
+    ShipDeath
 }
 
 [CreateAssetMenu(menuName = "NPC Event")]
