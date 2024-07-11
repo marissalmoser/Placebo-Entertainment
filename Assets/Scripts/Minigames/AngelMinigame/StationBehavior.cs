@@ -16,6 +16,7 @@ using UnityEngine;
 public class StationBehavior : MonoBehaviour
 {
     [SerializeField] private GameObject _confirmButton;
+    [SerializeField] private GameObject _spotlight;
 
     /// <summary>
     /// The confirm button calls this functin from an action in the minigame manager.
@@ -66,5 +67,21 @@ public class StationBehavior : MonoBehaviour
     public void MakeStationUnconfirmable()
     {
         _confirmButton.GetComponent<ButtonInteraction>().IsInteractable = false;
+    }
+
+    /// <summary>
+    /// This function allows for the minigame manager to enable and disable the spotlight.
+    /// </summary>
+    /// <param name="light"></param>
+    public void SetSpotlight(bool light)
+    {
+        if(light)
+        {
+            _spotlight.SetActive(true);
+        }
+        else
+        {
+            _spotlight.SetActive(false);
+        }
     }
 }
