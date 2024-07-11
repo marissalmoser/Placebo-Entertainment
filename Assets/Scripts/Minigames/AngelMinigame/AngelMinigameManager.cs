@@ -76,7 +76,7 @@ public class AngelMinigameManager : MonoBehaviour
             if(_round >= 3)
             {
                 //checks how many stations are left. This is based on how many stations
-                //are in the array, so if some ar ecut this will still work.
+                //are in the array, so if some are cut this will still work.
                 if(_stationCount < _stations.Count - 1)
                 {
                     _round = 0;
@@ -89,15 +89,23 @@ public class AngelMinigameManager : MonoBehaviour
             }
             else
             {
+                //correct answer
                 StartStation();
-                print("correct");
             }
         }
         else
         {
+            //wrong answer
             StartStation();
-            print("wrong");
+
+            //decrease round count on failure if not at 0
+            if(_round > 0)
+            {
+                _round --;
+            }
         }
+
+        //print(_round);
     }
 
     /// <summary>
