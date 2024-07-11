@@ -190,7 +190,8 @@ public class AngelMinigameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// This function manages turning the spotlights on and off at the begining of 
+    /// the game, then the station switches, and at the end of the game.
     /// </summary>
     private void SetSpotlight()
     {
@@ -235,5 +236,12 @@ public class AngelMinigameManager : MonoBehaviour
         }
         _winScreen.SetActive(true);
         print("game over");
+    }
+
+    private void OnDisable()
+    {
+        AngelStationComplete -= SwitchStation;
+        CheckState -= CheckStates;
+        TriggerFail -= StartStation;
     }
 }
