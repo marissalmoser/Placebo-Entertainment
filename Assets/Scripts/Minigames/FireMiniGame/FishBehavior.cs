@@ -35,6 +35,7 @@ public class FishBehavior : MonoBehaviour, IInteractable
     [SerializeField] private float _waterMaxAmount;
 
     [Header("Fish overall functions")]
+    [SerializeField] private GameObject _npcFish;
     private bool _refillNow;
     private bool _refilled;
     [SerializeField] private GameObject _firePoint;
@@ -62,6 +63,7 @@ public class FishBehavior : MonoBehaviour, IInteractable
         _playerControls = new PlayerControls();
         _playerControls.BasicControls.Enable();
         leftclick = _playerControls.FindAction("LeftClick");
+        _npcFish.SetActive(false);
     }
 
     // Start is called before the first frame update
@@ -134,6 +136,7 @@ public class FishBehavior : MonoBehaviour, IInteractable
             Destroy(gameObject);
 
             //GAME ENDS HERE
+            _npcFish.SetActive(true);
             _minigameEndEvent.TriggerEvent(NpcEventTags.Fish);
         }
     }
