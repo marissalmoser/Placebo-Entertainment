@@ -16,14 +16,14 @@ public class Timer
     [SerializeField] private bool _isRunning;
     public float _timeRemaining { get; private set; }
 
-    //[Header("Events")]
-    //public UnityEvent EventToStart;
-    //public UnityEvent OnTimesUp;
+    [Header("Events")]
+    [SerializeField] private NpcEvent _eventThatStartsTimer;
+    [SerializeField] private NpcEvent _eventTimerCalls;
+    [SerializeField] private NpcEventTags _NPCToAlert;
 
     public Timer(float maxTime)
     {
-        _maxTime = maxTime; 
-        _maxTime = _timeRemaining;
+        _timeRemaining = _maxTime = maxTime;
         _isRunning = false;
     }
     public void UpdateTimer(float deltaTime)
@@ -35,7 +35,7 @@ public class Timer
             {
                 _timeRemaining = 0;
                 _isRunning = false;
-                //OnTimesUp?.Invoke();
+                _eventTimerCalls.TriggerEvent(_NPCToAlert);
             }
         }
     }
@@ -59,12 +59,12 @@ public class Timer
     {
         _timeRemaining = _maxTime;
     }
-    public void IncreaseTime(int minutes, int seconds)
+    public void IncreaseTime(int minutes, float seconds)
     {
-        _timeRemaining = Mathf.Clamp(_timeRemaining + (minutes * 60) + seconds, 0, _maxTime);
+        _timeRemaining = Mathf.Clamp(_timeRemaining + (minutes * 60) + seconds, 0, float.MaxValue);
     }
-    public void ReduceTime(int minutes, int seconds)
+    public void ReduceTime(int minutes, float seconds)
     {
-        _timeRemaining = Mathf.Clamp(_timeRemaining - (minutes * 60) + seconds, 0, _maxTime);
+        _timeRemaining = Mathf.Clamp(_timeRemaining - (minutes * 60) + seconds, 0, float.MaxValue);
     }
 }

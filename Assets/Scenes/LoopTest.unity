@@ -385,6 +385,50 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8988970857005786147, guid: 1a65728030b6253408f6491c72125c40, type: 3}
+      propertyPath: _timers.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8988970857005786147, guid: 1a65728030b6253408f6491c72125c40, type: 3}
+      propertyPath: _timers.Array.data[0].timerName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8988970857005786147, guid: 1a65728030b6253408f6491c72125c40, type: 3}
+      propertyPath: _timers.Array.data[1].timerName
+      value: This
+      objectReference: {fileID: 0}
+    - target: {fileID: 8988970857005786147, guid: 1a65728030b6253408f6491c72125c40, type: 3}
+      propertyPath: _timers.Array.data[0].timer._maxTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8988970857005786147, guid: 1a65728030b6253408f6491c72125c40, type: 3}
+      propertyPath: _timers.Array.data[1].timer._maxTime
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8988970857005786147, guid: 1a65728030b6253408f6491c72125c40, type: 3}
+      propertyPath: _timers.Array.data[0].timer._isRunning
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8988970857005786147, guid: 1a65728030b6253408f6491c72125c40, type: 3}
+      propertyPath: _timers.Array.data[0].timer._NPCToAlert
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8988970857005786147, guid: 1a65728030b6253408f6491c72125c40, type: 3}
+      propertyPath: _timers.Array.data[0].timer._eventTimerCalls
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8988970857005786147, guid: 1a65728030b6253408f6491c72125c40, type: 3}
+      propertyPath: _timers.Array.data[0].timer._eventThatStartsTimer
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8988970857005786147, guid: 1a65728030b6253408f6491c72125c40, type: 3}
+      propertyPath: _timers.Array.data[0].timer._eventTimerCalls.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8988970857005786147, guid: 1a65728030b6253408f6491c72125c40, type: 3}
+      propertyPath: _timers.Array.data[0].timer._eventTimerCalls.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

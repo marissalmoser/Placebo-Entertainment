@@ -35,6 +35,7 @@ public struct TimerStruct
 public class TimerManager : MonoBehaviour
 {
     public List<TimerStruct> _timers = new List<TimerStruct>();
+    private bool test = true;
     #region Instance
     //regions are cool, i guess. Just hiding boring stuff
     public static TimerManager Instance { get; private set; }
@@ -57,8 +58,6 @@ public class TimerManager : MonoBehaviour
     {
         if (_timers.Count > 0)
         {
-            //So im cooking this up, right? And unity has the AUDACITY to give
-            //me a "WAH WAH CANT CHANGE COLLECTION WHILE ITERATING OVER IT" bs
             //So i found a page on stack that said make it .ToList bc then the
             //compiler makes a copy of the list and iterates over that instead
             //Apparently effeciency of this "isn't great" (surprise suprise)
@@ -66,6 +65,12 @@ public class TimerManager : MonoBehaviour
             //too long on timers so im just going to leave the script as is
             foreach (TimerStruct timerStruct in _timers.ToList())
             {
+                if(test)
+                {
+                    //timerStruct.timer.IncreaseTime(0, 5);
+                    test = false;
+                }
+                print(timerStruct.timer.GetCurrentTimeInSeconds());
                 timerStruct.timer.UpdateTimer(Time.deltaTime);
                 if (timerStruct.timer.GetCurrentTimeInSeconds() <= 0)
                 {
