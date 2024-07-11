@@ -37,12 +37,13 @@ public class SlideshowManager : MonoBehaviour
         _playerControls.BasicControls.Enable();
         _playPause = _playerControls.FindAction("PlayPause");
         _playPause.performed += ctx => TogglePlayPause();
+        _playPause.Enable();
 
         _slideshowUI = GetComponent<UIDocument>();
         _slideshowPlayer = GetComponent<VideoPlayer>();
 
-        _slideshowPlayer.loopPointReached += ctx => DonePlaying();
-        _slideshowPlayer.prepareCompleted += ctx => PlayVideo();
+        _slideshowPlayer.loopPointReached += DonePlaying;
+        _slideshowPlayer.prepareCompleted += PlayVideo;
 
         if (_isIntroVideoPlayer)
         {
@@ -56,14 +57,22 @@ public class SlideshowManager : MonoBehaviour
 
     private void OnDisable()
     {
-        _slideshowPlayer.loopPointReached -= ctx => DonePlaying();
-        _slideshowPlayer.prepareCompleted -= ctx => PlayVideo();
+        _slideshowPlayer.loopPointReached -= DonePlaying;
+        _slideshowPlayer.prepareCompleted -= PlayVideo;
+    }
+
+    ~SlideshowManager()
+    {
+        _slideshowPlayer.loopPointReached -= DonePlaying;
+        _slideshowPlayer.prepareCompleted -= PlayVideo;
+
+        _playPause.Disable();
     }
 
     /// <summary>
     /// Invoked when slideshow is over
     /// </summary>
-    private void DonePlaying()
+    private void DonePlaying(VideoPlayer vp)
     {
         _slideshowPlayer.Stop();
 
@@ -80,7 +89,7 @@ public class SlideshowManager : MonoBehaviour
     /// <summary>
     /// Invoked once the video content has been prepared
     /// </summary>
-    private void PlayVideo()
+    private void PlayVideo(VideoPlayer vp)
     {
         _slideshowUI.rootVisualElement.style.display = DisplayStyle.Flex;
         _slideshowPlayer.Play();
@@ -117,13 +126,16 @@ public class SlideshowManager : MonoBehaviour
     /// </summary>
     public void TogglePlayPause()
     {
-        if (_slideshowPlayer.isPlaying)
+        if (_slideshowPlayer != null)
         {
-            _slideshowPlayer.Pause();
-        }
-        else
-        {
-            _slideshowPlayer.Play();
+            if (_slideshowPlayer.isPlaying)
+            {
+                _slideshowPlayer.Pause();
+            }
+            else
+            {
+                _slideshowPlayer.Play();
+            }
         }
     }
 }
