@@ -9,6 +9,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PlaceboEntertainment.UI;
 
 public class ClearLever : LeverInteraction
 {
@@ -43,5 +44,13 @@ public class ClearLever : LeverInteraction
     private void SetLeverDelayHelper()
     {
         SetLever(true);
+    }
+
+    /// <summary>
+    /// Changes the lever interaction prompt to say clear instead of lever.
+    /// </summary>
+    public override void DisplayInteractUI()
+    {
+        TabbedMenu.Instance.ToggleInteractPrompt(true, "CLEAR");
     }
 }

@@ -77,4 +77,10 @@ public class Station1 : StationBehavior
 
         return _leversCorrectStateInt;
     }
+
+    private void OnDisable()
+    {
+        AngelMinigameManager.TriggerStart -= RestartStationState;
+        AngelMinigameManager.TriggerFail -= RestartStationState;
+    }
 }
