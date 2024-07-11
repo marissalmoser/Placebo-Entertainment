@@ -38,7 +38,7 @@ public class LeverInteraction : MonoBehaviour, IInteractable
     /// <summary>
     ///  Displays the specific UI prompt
     /// </summary>
-    public void DisplayInteractUI()
+    public virtual void DisplayInteractUI()
     {
         TabbedMenu.Instance.ToggleInteractPrompt(true, "LEVER");
     }

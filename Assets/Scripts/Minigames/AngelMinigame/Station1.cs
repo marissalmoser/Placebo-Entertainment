@@ -48,6 +48,7 @@ public class Station1 : StationBehavior
 
     public override void RestartStationState()
     {
+        print(_levers[0]);
         foreach (GameObject lever in _levers)
         {
             lever.GetComponent<LeverInteraction>().SetLever(false);

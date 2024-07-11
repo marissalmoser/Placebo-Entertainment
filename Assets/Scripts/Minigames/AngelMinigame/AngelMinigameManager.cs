@@ -110,7 +110,12 @@ public class AngelMinigameManager : MonoBehaviour
         if (_stationCount < _stations.Count && _stationCount >= 0)
         {
             _stations[_stationCount].StationScreen.SetActive(false);
+            _stations[_stationCount].StationBehavior.MakeStationUnconfirmable();
         }
+
+        SetSpotlight();
+        
+
         _stationCount++;
 
         StopAllCoroutines();
@@ -177,6 +182,24 @@ public class AngelMinigameManager : MonoBehaviour
     }
 
     /// <summary>
+    /// 
+    /// </summary>
+    private void SetSpotlight()
+    {
+        //turns off previous spotlight
+        if(_stationCount >= 0)
+        {
+            _stations[_stationCount].StationBehavior.SetSpotlight(false);
+        }
+
+        //enables next spotlight
+        if(_stationCount < _stations.Count - 1)
+        {
+            _stations[_stationCount + 1].StationBehavior.SetSpotlight(true);
+        }
+    }
+
+    /// <summary>
     /// Function called to start the minigame. Triggered by NpcEventListener
     /// looking for OnMinigameStart with tag Angel.
     /// </summary>
@@ -195,6 +218,8 @@ public class AngelMinigameManager : MonoBehaviour
         StopAllCoroutines();
         _timerText.text = "0:00";
         _endMinigameEvent.TriggerEvent(_endMinigameEventTag);
+        SetSpotlight();
+        _stations[_stationCount].StationBehavior.MakeStationUnconfirmable();
 
         if (_stationCount < _stations.Count && _stationCount >= 0)
         {
