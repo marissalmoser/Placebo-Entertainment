@@ -172,7 +172,7 @@ namespace PlaceboEntertainment.UI
             _alarmClockOverlay = alarmClockScreen.rootVisualElement.Q<Label>(AlarmClockScreenName);
             _alarmClockMenu = _tabMenuRoot.Q<Label>(AlarmClockMenuName);
             //auto sizers for the text. Unity does not provide one out of the box...WTF?
-            _labelControl = new AutoFitLabelControl(_dialogueText, 35f, 75f);
+            //_labelControl = new AutoFitLabelControl(_dialogueText, 35f, 75f);
             SetLoseScreenUnactive();
         }
 
