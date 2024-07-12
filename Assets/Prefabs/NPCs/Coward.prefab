@@ -375,7 +375,7 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   - _npcEvent: {fileID: 11400000, guid: 9f71d044c4d09304588beadc31eb08d4, type: 2}
-    _npcEventTag: 9
+    _npcEventTag: 5
     _onEventTriggered:
       m_PersistentCalls:
         m_Calls:

@@ -16675,7 +16675,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _eventsToListenFor:
   - _npcEvent: {fileID: 11400000, guid: 8b7b5ccfabcfc4d4f96da8928978e41e, type: 2}
-    _npcEventTag: 6
+    _npcEventTag: 5
     _onEventTriggered:
       m_PersistentCalls:
         m_Calls:
@@ -30261,7 +30261,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1119676214051789975, guid: 716ab8205bdc2dc46925a8ae53d8d085, type: 3}
   m_PrefabInstance: {fileID: 1314941423}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1744522656}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1eeb129a991b38946b79d6d59268e5e1, type: 3}
@@ -41913,7 +41913,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _eventsToListenFor:
   - _npcEvent: {fileID: 11400000, guid: 0dc09a2e909bfa14ba070b27da962183, type: 2}
-    _npcEventTag: 5
+    _npcEventTag: 4
     _onEventTriggered:
       m_PersistentCalls:
         m_Calls:
@@ -47042,6 +47042,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1869879217}
     m_Modifications:
+    - target: {fileID: 869825619415053396, guid: f188daf20aada014c9268d86af53b853, type: 3}
+      propertyPath: _stateDialogueTrees._postMinigameState.Array.data[0]._playerResponses.Array.data[0]._eventTag
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4556153407337933796, guid: f188daf20aada014c9268d86af53b853, type: 3}
       propertyPath: m_Name
       value: Robot
@@ -48375,7 +48379,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _eventsToListenFor:
   - _npcEvent: {fileID: 11400000, guid: 0dc09a2e909bfa14ba070b27da962183, type: 2}
-    _npcEventTag: 6
+    _npcEventTag: 5
     _onEventTriggered:
       m_PersistentCalls:
         m_Calls:
@@ -49839,6 +49843,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2503066180529942226, guid: 4a03e922f32b7b24f800d1fa30ff0f39, type: 3}
   m_PrefabInstance: {fileID: 1723601199}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1744522656 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1813159210467846255, guid: 716ab8205bdc2dc46925a8ae53d8d085, type: 3}
+  m_PrefabInstance: {fileID: 1314941423}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1749669357
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -49847,6 +49856,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 184720611215862423, guid: c305122b038e6e048b647787017c7c42, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.0626373
+      objectReference: {fileID: 0}
+    - target: {fileID: 184720611215862423, guid: c305122b038e6e048b647787017c7c42, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.9607649
+      objectReference: {fileID: 0}
+    - target: {fileID: 184720611215862423, guid: c305122b038e6e048b647787017c7c42, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 10.564266
+      objectReference: {fileID: 0}
     - target: {fileID: 3481114042540795502, guid: c305122b038e6e048b647787017c7c42, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10.82
@@ -59542,6 +59563,7 @@ MonoBehaviour:
   _water: {fileID: 7092020162496607323, guid: d9f766e8b130dde4d9ab4801adbaee34, type: 3}
   _refillWaitTime: 3
   _waterMaxAmount: 100
+  _npcFish: {fileID: 1744522656}
   _firePoint: {fileID: 7303417283631170982}
   _rb: {fileID: 844829859662455467}
   coll: {fileID: 4605749991957046954}

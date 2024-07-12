@@ -195,7 +195,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 578804054939250850, guid: bca78430ba974e94ca8da7d4c3236332, type: 3}
       propertyPath: _loopTimerTime
-      value: 180
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 578804054939250850, guid: bca78430ba974e94ca8da7d4c3236332, type: 3}
       propertyPath: endScreenDelay

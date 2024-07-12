@@ -147,6 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _npcName: Goop
   _targetBypassItem: {fileID: 0}
+  _onEnterFailState: {fileID: 0}
   _startMinigameEvent: {fileID: 0}
   _eventTag: 5
   _stateDialogueTrees:
@@ -291,7 +292,7 @@ MonoBehaviour:
         opened the door to the bridge for you."
       _playerResponses:
       - _eventToTrigger: {fileID: 11400000, guid: 0dc09a2e909bfa14ba070b27da962183, type: 2}
-        _eventTag: 5
+        _eventTag: 4
         _hasPrerequisiteCheck: 0
         _answer: <b>Leave
         _nextResponseIndex: 
@@ -313,7 +314,7 @@ MonoBehaviour:
         hurt."
       _playerResponses:
       - _eventToTrigger: {fileID: 11400000, guid: 0dc09a2e909bfa14ba070b27da962183, type: 2}
-        _eventTag: 5
+        _eventTag: 4
         _hasPrerequisiteCheck: 0
         _answer: <b>Leave
         _nextResponseIndex: 
@@ -369,7 +370,7 @@ MonoBehaviour:
         hurt."
       _playerResponses:
       - _eventToTrigger: {fileID: 11400000, guid: 0dc09a2e909bfa14ba070b27da962183, type: 2}
-        _eventTag: 5
+        _eventTag: 4
         _hasPrerequisiteCheck: 0
         _answer: <b>Leave
         _nextResponseIndex: 
@@ -387,7 +388,7 @@ MonoBehaviour:
         _advancesNpcState: 0
         _endsDialogue: 0
       - _eventToTrigger: {fileID: 11400000, guid: 8b7b5ccfabcfc4d4f96da8928978e41e, type: 2}
-        _eventTag: 5
+        _eventTag: 0
         _hasPrerequisiteCheck: 0
         _answer: The captain is injured
         _nextResponseIndex: 02000000
@@ -462,11 +463,11 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   - _npcEvent: {fileID: 11400000, guid: 8b7b5ccfabcfc4d4f96da8928978e41e, type: 2}
-    _npcEventTag: 5
+    _npcEventTag: 0
     _onEventTriggered:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 135958869701333940, guid: 9e2d2e42467cdaa469595eb50e8393e1, type: 3}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive
           m_Mode: 6
