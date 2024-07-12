@@ -555,7 +555,7 @@ namespace PlaceboEntertainment.UI
             var newButton = dialogueButton.Instantiate().Q<Button>();
             newButton.text = text;
             //no clue if this'll stick haha
-            AutoFitLabelControl control = new AutoFitLabelControl(newButton, 16f, 30f);
+            //AutoFitLabelControl control = new AutoFitLabelControl(newButton, 16f, 30f);
             // newButton.AddManipulator(new Clickable(click));
             newButton.RegisterCallback<ClickEvent>(evt => click?.Invoke());
             _dialogueButtonContainer.Add(newButton);
