@@ -1,24 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DummyScript : MonoBehaviour
 {
+    [SerializeField] private int _timeAmountOfTimerMadeWithCode;
+    [SerializeField] private string _nameOfTimerMadeWithCode;
     [Header("Events")]
     [SerializeField] private NpcEvent _eventToMakeTimer;
     [SerializeField] private NpcEventTags _NPCToAlert;
-    // Start is called before the first frame update
-    void Start()
-    {
 
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             _eventToMakeTimer.TriggerEvent(_NPCToAlert);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            TimerManager.Instance.CreateTimer(_nameOfTimerMadeWithCode, _timeAmountOfTimerMadeWithCode, null, NpcEventTags.Game);
         }
     }
     public void Print()

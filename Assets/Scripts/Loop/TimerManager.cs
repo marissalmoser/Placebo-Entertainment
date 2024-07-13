@@ -25,10 +25,10 @@ public struct TimerStruct
     public string timerName;
     public Timer timer;
 
-    public TimerStruct(string name, float maxTime)
+    public TimerStruct(string name, float maxTime, NpcEvent eventTimerCalls, NpcEventTags npcToAlert)
     {
         timerName = name;
-        timer = new Timer(maxTime);
+        timer = new Timer(maxTime, eventTimerCalls, npcToAlert);
     }
 }
 
@@ -61,10 +61,6 @@ public class TimerManager : MonoBehaviour
     }
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            CreateTimer("Addition", 10);
-        }
         if (_timers.Count > 0)
         {
             //So i found a page on stack that said make it .ToList bc then the
@@ -103,7 +99,7 @@ public class TimerManager : MonoBehaviour
             timerStruct.Value.timer.StartTimer();
         }
     }
-    public Timer CreateTimer(string timerName, float maxTime)
+    public Timer CreateTimer(string timerName, float maxTime, NpcEvent eventTimerCalls, NpcEventTags npcToAlert)
     {
         if (_timers.Exists(t => t.timerName == timerName))
         {
@@ -111,7 +107,7 @@ public class TimerManager : MonoBehaviour
             return null;
         }
 
-        TimerStruct newTimerStruct = new TimerStruct(timerName, maxTime);
+        TimerStruct newTimerStruct = new TimerStruct(timerName, maxTime, eventTimerCalls, npcToAlert);
         newTimerStruct.timer.StartTimer();
         _timers.Add(newTimerStruct);
         return newTimerStruct.timer;

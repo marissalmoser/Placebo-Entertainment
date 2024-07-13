@@ -19,7 +19,7 @@ public class LoopController : MonoBehaviour
     private void Start()
     {
         //Creating a timer. 
-        _loopTimer = TimerManager.Instance.CreateTimer("LoopTimer", _loopTimerTime + endScreenDelay);
+        _loopTimer = TimerManager.Instance.CreateTimer("LoopTimer", _loopTimerTime + endScreenDelay, null, NpcEventTags.Game);
         //_loopTimer.TimesUp += HandleLoopTimerEnd;
         LoadSave();
     }

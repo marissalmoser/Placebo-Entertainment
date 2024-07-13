@@ -408,6 +408,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df722e01b742ff742b992c7cf67ccdfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _timeAmountOfTimerMadeWithCode: 5
+  _nameOfTimerMadeWithCode: Dummy Timer
   _eventToMakeTimer: {fileID: 11400000, guid: 9f71d044c4d09304588beadc31eb08d4, type: 2}
   _NPCToAlert: 0
 --- !u!1001 &8788146177303538728

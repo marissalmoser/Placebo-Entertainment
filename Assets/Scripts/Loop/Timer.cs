@@ -6,6 +6,7 @@
 *    manager script does the creation, running, and deletion of these
 *******************************************************************/
 using System;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -21,10 +22,12 @@ public class Timer
     [SerializeField] private NpcEvent _eventTimerCalls;
     [SerializeField] private NpcEventTags _NPCToAlert;
 
-    public Timer(float maxTime)
+    public Timer(float maxTime, NpcEvent eventTimerCalls, NpcEventTags npcToAlert)
     {
         _maxTime = maxTime;
         _timeRemaining = _maxTime;
+        _eventTimerCalls = eventTimerCalls;
+        _NPCToAlert = npcToAlert;
     }
     public void UpdateTimer(float deltaTime)
     {
@@ -35,7 +38,14 @@ public class Timer
             {
                 _timeRemaining = 0;
                 _isRunning = false;
-                _eventTimerCalls.TriggerEvent(_NPCToAlert);
+                if( _eventTimerCalls != null )
+                {
+                    _eventTimerCalls.TriggerEvent(_NPCToAlert);
+                }
+                else
+                {
+                    Debug.Log("No event called; is null.");
+                }
             }
         }
     }
