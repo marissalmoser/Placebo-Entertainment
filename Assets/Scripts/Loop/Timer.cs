@@ -6,16 +6,13 @@
 *    manager script does the creation, running, and deletion of these
 *******************************************************************/
 using System;
-using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
-using UnityEngine.Events;
 
 [Serializable]
 public class Timer
 {
     [SerializeField] public float _maxTime;
     [SerializeField] private bool _isRunning;
-    //public float _timeRemaining; 
     public float _timeRemaining { get; private set; }
 
     [Header("Events")]
@@ -29,6 +26,7 @@ public class Timer
         _eventTimerCalls = eventTimerCalls;
         _NPCToAlert = npcToAlert;
     }
+
     public void UpdateTimer(float deltaTime)
     {
         if (_isRunning)
@@ -38,7 +36,7 @@ public class Timer
             {
                 _timeRemaining = 0;
                 _isRunning = false;
-                if( _eventTimerCalls != null )
+                if (_eventTimerCalls != null)
                 {
                     _eventTimerCalls.TriggerEvent(_NPCToAlert);
                 }
@@ -49,30 +47,37 @@ public class Timer
             }
         }
     }
+
     public void StartTimer()
     {
         _isRunning = true;
     }
+
     public void StopTimer()
     {
         _isRunning = false;
     }
+
     public float GetCurrentTimeInSeconds()
     {
         return _timeRemaining;
     }
+
     public bool IsRunning()
     {
         return _isRunning;
     }
+
     public void ResetTimer()
     {
         _timeRemaining = _maxTime;
     }
+
     public void IncreaseTime(int minutes, float seconds)
     {
         _timeRemaining = Mathf.Clamp(_timeRemaining + (minutes * 60) + seconds, 0, float.MaxValue);
     }
+
     public void ReduceTime(int minutes, float seconds)
     {
         _timeRemaining = Mathf.Clamp(_timeRemaining - (minutes * 60) + seconds, 0, float.MaxValue);

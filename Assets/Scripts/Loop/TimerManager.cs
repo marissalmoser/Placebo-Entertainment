@@ -52,6 +52,10 @@ public class TimerManager : MonoBehaviour
         }
     }
     #endregion
+    /// <summary>
+    /// Manually increasing the time for timeRemaining because Timer's 
+    /// constructor isnt doing it (time remaining is always 0)
+    /// </summary>
     public void Start()
     {
         foreach (TimerStruct timer in _timers)
@@ -59,6 +63,7 @@ public class TimerManager : MonoBehaviour
             timer.timer.IncreaseTime(0, timer.timer._maxTime);
         }
     }
+
     public void Update()
     {
         if (_timers.Count > 0)
@@ -99,6 +104,7 @@ public class TimerManager : MonoBehaviour
             timerStruct.Value.timer.StartTimer();
         }
     }
+
     public Timer CreateTimer(string timerName, float maxTime, NpcEvent eventTimerCalls, NpcEventTags npcToAlert)
     {
         if (_timers.Exists(t => t.timerName == timerName))
@@ -112,6 +118,7 @@ public class TimerManager : MonoBehaviour
         _timers.Add(newTimerStruct);
         return newTimerStruct.timer;
     }
+
     public Timer GetTimer(string timerName)
     {
         TimerStruct timerStruct = _timers.Find(thatTimer => thatTimer.timerName == timerName);
