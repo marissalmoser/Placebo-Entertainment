@@ -14,12 +14,15 @@ public class LoopController : MonoBehaviour
     private Timer _loopTimer;
     [SerializeField] private int _loopTimerTime;
     [SerializeField] private int endScreenDelay;
+
+    [SerializeField] private NpcEvent temporaryLoop;
+    [SerializeField] private NpcEventTags temporaryTag;
     public int LoopTimerTimer => _loopTimerTime;
 
     private void Start()
     {
         //Creating a timer. 
-        _loopTimer = TimerManager.Instance.CreateTimer("LoopTimer", _loopTimerTime + endScreenDelay, null, NpcEventTags.Game);
+        _loopTimer = TimerManager.Instance.CreateTimer("LoopTimer", _loopTimerTime + endScreenDelay, temporaryLoop, temporaryTag);
         //_loopTimer.TimesUp += HandleLoopTimerEnd;
         LoadSave();
     }

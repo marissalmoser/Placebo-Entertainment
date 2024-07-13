@@ -49858,15 +49858,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 184720611215862423, guid: c305122b038e6e048b647787017c7c42, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.0626373
+      value: -1.5211678
       objectReference: {fileID: 0}
     - target: {fileID: 184720611215862423, guid: c305122b038e6e048b647787017c7c42, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.9607649
+      value: 1.4607649
       objectReference: {fileID: 0}
     - target: {fileID: 184720611215862423, guid: c305122b038e6e048b647787017c7c42, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10.564266
+      value: 12.798389
       objectReference: {fileID: 0}
     - target: {fileID: 3481114042540795502, guid: c305122b038e6e048b647787017c7c42, type: 3}
       propertyPath: m_LocalPosition.x
@@ -51241,6 +51241,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 578804054939250850, guid: bca78430ba974e94ca8da7d4c3236332, type: 3}
+      propertyPath: temporaryTag
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 578804054939250850, guid: bca78430ba974e94ca8da7d4c3236332, type: 3}
+      propertyPath: temporaryLoop
+      value: 
+      objectReference: {fileID: 11400000, guid: 3ecd2838e2ea86b42a087aad7f6a97a6, type: 2}
+    - target: {fileID: 578804054939250850, guid: bca78430ba974e94ca8da7d4c3236332, type: 3}
       propertyPath: _loopTimerTime
       value: 360
       objectReference: {fileID: 0}
@@ -51295,8 +51303,57 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5278445670614390501, guid: bca78430ba974e94ca8da7d4c3236332, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1833086730}
   m_SourcePrefab: {fileID: 100100000, guid: bca78430ba974e94ca8da7d4c3236332, type: 3}
+--- !u!1 &1833086728 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5278445670614390501, guid: bca78430ba974e94ca8da7d4c3236332, type: 3}
+  m_PrefabInstance: {fileID: 1833086727}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1833086729 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 578804054939250850, guid: bca78430ba974e94ca8da7d4c3236332, type: 3}
+  m_PrefabInstance: {fileID: 1833086727}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1833086728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5462fa4265d98a46a787c5c650b98d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1833086730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1833086728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a0acc881a336094997b0fb61c6d1983, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _eventsToListenFor:
+  - _npcEvent: {fileID: 11400000, guid: 3ecd2838e2ea86b42a087aad7f6a97a6, type: 2}
+    _npcEventTag: 8
+    _onEventTriggered:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1833086729}
+          m_TargetAssemblyTypeName: LoopController, Assembly-CSharp
+          m_MethodName: ResetLoop
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!43 &1860044512
 Mesh:
   m_ObjectHideFlags: 0
