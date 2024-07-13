@@ -8,18 +8,25 @@
 using System;
 using UnityEngine;
 
+[Serializable]
 public class Timer
 {
-    private float _maxTime;
-    private float _timeRemaining;
-    private bool _isRunning;
-    public event Action TimesUp;
+    [SerializeField] public float _maxTime;
+    [SerializeField] private bool _isRunning;
+    public float _timeRemaining { get; private set; }
 
-    public Timer(int durationInSeconds)
+    [Header("Events")]
+    [SerializeField] private NpcEvent _eventTimerCalls;
+    [SerializeField] private NpcEventTags _NPCToAlert;
+
+    public Timer(float maxTime, NpcEvent eventTimerCalls, NpcEventTags npcToAlert)
     {
-        _maxTime = _timeRemaining = durationInSeconds;
-        _isRunning = false;
+        _maxTime = maxTime;
+        _timeRemaining = _maxTime;
+        _eventTimerCalls = eventTimerCalls;
+        _NPCToAlert = npcToAlert;
     }
+
     public void UpdateTimer(float deltaTime)
     {
         if (_isRunning)
@@ -29,35 +36,49 @@ public class Timer
             {
                 _timeRemaining = 0;
                 _isRunning = false;
-                TimesUp?.Invoke();
+                if (_eventTimerCalls != null)
+                {
+                    _eventTimerCalls.TriggerEvent(_NPCToAlert);
+                }
+                else
+                {
+                    Debug.Log("No event called; is null.");
+                }
             }
         }
     }
+
     public void StartTimer()
     {
         _isRunning = true;
     }
+
     public void StopTimer()
     {
         _isRunning = false;
     }
+
     public float GetCurrentTimeInSeconds()
     {
         return _timeRemaining;
     }
+
     public bool IsRunning()
     {
         return _isRunning;
     }
+
     public void ResetTimer()
     {
         _timeRemaining = _maxTime;
     }
-    public void IncreaseTime(int minutes, int seconds)
+
+    public void IncreaseTime(int minutes, float seconds)
     {
         _timeRemaining = Mathf.Clamp(_timeRemaining + (minutes * 60) + seconds, 0, _maxTime);
     }
-    public void ReduceTime(int minutes, int seconds)
+
+    public void ReduceTime(int minutes, float seconds)
     {
         _timeRemaining = Mathf.Clamp(_timeRemaining - (minutes * 60) + seconds, 0, _maxTime);
     }
