@@ -75,11 +75,11 @@ public class Timer
 
     public void IncreaseTime(int minutes, float seconds)
     {
-        _timeRemaining = Mathf.Clamp(_timeRemaining + (minutes * 60) + seconds, 0, float.MaxValue);
+        _timeRemaining = Mathf.Clamp(_timeRemaining + (minutes * 60) + seconds, 0, _maxTime);
     }
 
     public void ReduceTime(int minutes, float seconds)
     {
-        _timeRemaining = Mathf.Clamp(_timeRemaining - (minutes * 60) + seconds, 0, float.MaxValue);
+        _timeRemaining = Mathf.Clamp(_timeRemaining - (minutes * 60) + seconds, 0, _maxTime);
     }
 }
