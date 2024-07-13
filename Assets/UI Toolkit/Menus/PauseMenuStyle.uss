@@ -7,7 +7,7 @@
     width: 95%;
     height: 107px;
     color: rgb(253, 253, 253);
-    font-size: 30px;
+    font-size: 35px;
     -unity-font-style: bold;
     -unity-text-align: middle-center;
     margin-bottom: 2%;

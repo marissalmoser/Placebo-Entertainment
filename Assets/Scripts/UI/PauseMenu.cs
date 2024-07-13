@@ -2,7 +2,8 @@
  *    Author: Nick Grinstead
  *    Contributors:
  *    Date Created: 7/12/2024
- *    Description: 
+ *    Description: Manager script for the pause menu. Automatically handles
+ *                 registering of button callbacks.
  *******************************************************************/
 using System.Collections;
 using System.Collections.Generic;
@@ -21,6 +22,9 @@ public class PauseMenu : MonoBehaviour
     private Button _continueButton;
     private Button _exitButton;
 
+    /// <summary>
+    /// Registering callbacks
+    /// </summary>
     private void Awake()
     {
         _pauseMenu.rootVisualElement.style.display = DisplayStyle.None;
@@ -32,11 +36,17 @@ public class PauseMenu : MonoBehaviour
         _exitButton.RegisterCallback<ClickEvent>(ExitToMenu);
     }
 
+    /// <summary>
+    /// Setting up player inputs
+    /// </summary>
     private void Start()
     {
         PlayerController.Instance.PlayerControls.BasicControls.PauseGame.performed += PauseGamePerformed;
     }
 
+    /// <summary>
+    /// Unregistering callbacks and player inputs
+    /// </summary>
     private void OnDisable()
     {
         _continueButton.UnregisterCallback<ClickEvent>(ContinuePressed);
@@ -45,6 +55,10 @@ public class PauseMenu : MonoBehaviour
         PlayerController.Instance.PlayerControls.BasicControls.PauseGame.performed -= PauseGamePerformed;
     }
 
+    /// <summary>
+    /// Toggles pause menu UI
+    /// </summary>
+    /// <param name="isActive">True if menu should be visible</param>
     public void TogglePauseMenu(bool isActive)
     {
         UnityEngine.Cursor.visible = isActive;
@@ -54,16 +68,28 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = isActive ? 0 : 1;
     }
 
+    /// <summary>
+    /// Invoked by player pause input
+    /// </summary>
+    /// <param name="obj">Callback from input</param>
     private void PauseGamePerformed(InputAction.CallbackContext obj)
     {
         TogglePauseMenu(true);
     }
 
+    /// <summary>
+    /// Invoked when continue button is pressed to disable menu
+    /// </summary>
+    /// <param name="click">ClickEvent from button</param>
     private void ContinuePressed(ClickEvent click)
     {
         TogglePauseMenu(false);
     }
 
+    /// <summary>
+    /// Invoked when main menu button is pressed to load that scene
+    /// </summary>
+    /// <param name="click">ClickEvent from button</param>
     private void ExitToMenu(ClickEvent click)
     {
         Time.timeScale = 1;
