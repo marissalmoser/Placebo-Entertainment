@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -22,6 +23,8 @@ public class PauseMenu : MonoBehaviour
 
     private void Awake()
     {
+        _pauseMenu.rootVisualElement.style.display = DisplayStyle.None;
+
         _continueButton = _pauseMenu.rootVisualElement.Q<Button>(ContinueButtonName);
         _exitButton = _pauseMenu.rootVisualElement.Q<Button>(ExitButtonName);
 
@@ -31,19 +34,29 @@ public class PauseMenu : MonoBehaviour
 
     private void Start()
     {
-        //PlayerController.Instance.PlayerControls.BasicControls.
+        PlayerController.Instance.PlayerControls.BasicControls.PauseGame.performed += PauseGamePerformed;
     }
 
     private void OnDisable()
     {
         _continueButton.UnregisterCallback<ClickEvent>(ContinuePressed);
         _exitButton.UnregisterCallback<ClickEvent>(ExitToMenu);
+
+        PlayerController.Instance.PlayerControls.BasicControls.PauseGame.performed -= PauseGamePerformed;
     }
 
     public void TogglePauseMenu(bool isActive)
     {
+        UnityEngine.Cursor.visible = isActive;
+        UnityEngine.Cursor.lockState = isActive ? CursorLockMode.None : CursorLockMode.Locked;
+
         _pauseMenu.rootVisualElement.style.display = isActive ? DisplayStyle.Flex : DisplayStyle.None;
         Time.timeScale = isActive ? 0 : 1;
+    }
+
+    private void PauseGamePerformed(InputAction.CallbackContext obj)
+    {
+        TogglePauseMenu(true);
     }
 
     private void ContinuePressed(ClickEvent click)
