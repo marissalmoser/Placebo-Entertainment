@@ -12,19 +12,19 @@ using UnityEngine.Events;
 [Serializable]
 public class Timer
 {
-    [SerializeField] private float _maxTime;
+    [SerializeField] public float _maxTime;
     [SerializeField] private bool _isRunning;
+    //public float _timeRemaining; 
     public float _timeRemaining { get; private set; }
 
     [Header("Events")]
-    [SerializeField] private NpcEvent _eventThatStartsTimer;
     [SerializeField] private NpcEvent _eventTimerCalls;
     [SerializeField] private NpcEventTags _NPCToAlert;
 
     public Timer(float maxTime)
     {
-        _timeRemaining = _maxTime = maxTime;
-        _isRunning = false;
+        _maxTime = maxTime;
+        _timeRemaining = _maxTime;
     }
     public void UpdateTimer(float deltaTime)
     {

@@ -35,7 +35,6 @@ public struct TimerStruct
 public class TimerManager : MonoBehaviour
 {
     public List<TimerStruct> _timers = new List<TimerStruct>();
-    private bool test = true;
     #region Instance
     //regions are cool, i guess. Just hiding boring stuff
     public static TimerManager Instance { get; private set; }
@@ -53,9 +52,19 @@ public class TimerManager : MonoBehaviour
         }
     }
     #endregion
-
+    public void Start()
+    {
+        foreach (TimerStruct timer in _timers)
+        {
+            timer.timer.IncreaseTime(0, timer.timer._maxTime);
+        }
+    }
     public void Update()
     {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            CreateTimer("Addition", 10);
+        }
         if (_timers.Count > 0)
         {
             //So i found a page on stack that said make it .ToList bc then the
@@ -65,13 +74,10 @@ public class TimerManager : MonoBehaviour
             //too long on timers so im just going to leave the script as is
             foreach (TimerStruct timerStruct in _timers.ToList())
             {
-                if(test)
+                if (timerStruct.timer.IsRunning())
                 {
-                    //timerStruct.timer.IncreaseTime(0, 5);
-                    test = false;
+                    timerStruct.timer.UpdateTimer(Time.deltaTime);
                 }
-                print(timerStruct.timer.GetCurrentTimeInSeconds());
-                timerStruct.timer.UpdateTimer(Time.deltaTime);
                 if (timerStruct.timer.GetCurrentTimeInSeconds() <= 0)
                 {
                     _timers.Remove(timerStruct);
@@ -80,6 +86,23 @@ public class TimerManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// This is used in the inspector to allow Nick G's NPC event system to 
+    /// alert the timer list that a timer with this name should start counting.
+    /// Specifically, this is used by the EventListener script.
+    /// </summary>
+    /// <param name="timerName"></param>
+    public void StartTimerWithName(string timerName)
+    {
+        //By adding ? to the struct i can make it nullable, which makes for an 
+        //easy check to use in conjunction with searching the list. Ive seen 
+        //videos use this and figured id try it out. - Eli
+        TimerStruct? timerStruct = _timers.Find(thatTimer => thatTimer.timerName == timerName);
+        if (timerStruct.HasValue)
+        {
+            timerStruct.Value.timer.StartTimer();
+        }
+    }
     public Timer CreateTimer(string timerName, float maxTime)
     {
         if (_timers.Exists(t => t.timerName == timerName))
