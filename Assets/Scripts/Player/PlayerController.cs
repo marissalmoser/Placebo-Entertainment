@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
         Move.performed += ctx => _isMoving = true;
         Move.canceled += ctx => _moveDirection = Move.ReadValue<Vector2>();
         Move.canceled += ctx => _isMoving = false;
-        Move.canceled += ctx => _rb.velocity = new Vector3(0, _rb.velocity.y, 0);
+        Move.canceled += ctx => HaltVelocity();
     }
 
     void Awake()
@@ -130,6 +130,15 @@ public class PlayerController : MonoBehaviour
         _mainCamera.gameObject.SetActive(!isLocked);
     }
 
+    /// <summary>
+    /// Invoked when move input is cancelled to stop player movement
+    /// </summary>
+    private void HaltVelocity()
+    {
+        if (_rb != null)
+            _rb.velocity = new Vector3(0, _rb.velocity.y, 0);
+    }
+
     void OnTriggerEnter(Collider col)
     {
         if(col.tag == "Interactable")
@@ -148,6 +157,7 @@ public class PlayerController : MonoBehaviour
         Move.performed -= ctx => _isMoving = true;
         Move.canceled -= ctx => _moveDirection = Move.ReadValue<Vector2>();
         Move.canceled -= ctx => _isMoving = false;
-        Move.canceled -= ctx => _rb.velocity = new Vector3(0, _rb.velocity.y, 0);
+        Move.canceled -= ctx => HaltVelocity();
     }
+
 }
