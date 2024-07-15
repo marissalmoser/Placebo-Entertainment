@@ -172,7 +172,7 @@ namespace PlaceboEntertainment.UI
             _alarmClockOverlay = alarmClockScreen.rootVisualElement.Q<Label>(AlarmClockScreenName);
             _alarmClockMenu = _tabMenuRoot.Q<Label>(AlarmClockMenuName);
             //auto sizers for the text. Unity does not provide one out of the box...WTF?
-            _labelControl = new AutoFitLabelControl(_dialogueText, 35f, 75f);
+            //_labelControl = new AutoFitLabelControl(_dialogueText, 35f, 75f);
             SetLoseScreenUnactive();
         }
 
@@ -233,8 +233,12 @@ namespace PlaceboEntertainment.UI
             float time = Mathf.Max(_timer.GetCurrentTimeInSeconds() - endScreenDelay, 0f);
             TimeSpan timeSpan = TimeSpan.FromSeconds(time);
             string timeString = timeSpan.ToString("mm':'ss");
-            _alarmClockMenu.text = timeString;
             _alarmClockOverlay.text = timeString;
+
+            float timeSinceStart = Mathf.Max(Time.timeSinceLevelLoad, 0f);
+            TimeSpan timeSpanSinceStart = TimeSpan.FromSeconds(timeSinceStart);
+            string timeSinceStartString = timeSpanSinceStart.ToString("mm':'ss");
+            _alarmClockMenu.text = timeSinceStartString;
 
             if (timeSpan.TotalSeconds <= lossTime && !_hasAppliedLoseStyling)
             {
@@ -258,9 +262,8 @@ namespace PlaceboEntertainment.UI
         /// <param name="obj">Callback context of the key that was presed.</param>
         private void OpenScheduleOnPerformed(InputAction.CallbackContext obj)
         {
+            // TODO: clear this out once the dev timer is no longer needed
             _scheduleVisible = !_scheduleVisible;
-            Cursor.visible = _scheduleVisible;
-            Cursor.lockState = _scheduleVisible ? CursorLockMode.None : CursorLockMode.Locked;
             ToggleSchedule(_scheduleVisible);
         }
 
@@ -555,7 +558,7 @@ namespace PlaceboEntertainment.UI
             var newButton = dialogueButton.Instantiate().Q<Button>();
             newButton.text = text;
             //no clue if this'll stick haha
-            AutoFitLabelControl control = new AutoFitLabelControl(newButton, 16f, 30f);
+            //AutoFitLabelControl control = new AutoFitLabelControl(newButton, 16f, 30f);
             // newButton.AddManipulator(new Clickable(click));
             newButton.RegisterCallback<ClickEvent>(evt => click?.Invoke());
             _dialogueButtonContainer.Add(newButton);
