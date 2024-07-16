@@ -1,6 +1,6 @@
 /******************************************************************
 *    Author: Marissa Moser
-*    Contributors: 
+*    Contributors: Nick Grinstead
 *    Date Created: June 19, 2024
 *    Description: This script is the manager for the Angel Minigame. It keeps track
 *    of starting and ending the game, the state of each station, switching between
@@ -32,6 +32,12 @@ public class AngelMinigameManager : MonoBehaviour
     [SerializeField] private Color _trackerDimmedColor = new Color(8, 137, 0, 100);
     [SerializeField] private Color _trackerHighlightedColor = new Color(8, 137, 0, 255);
 
+    [SerializeField] private float _bridgeLayoutDisplayTime;
+    [SerializeField] private GameObject _bridgeLayoutScreen;
+    [SerializeField] private Image[] _layoutStations;
+    private Color _stationDimmedColor;
+    private Color _stationHighlightedColor;
+
     [SerializeField] int _countDownTime;
     private int _currentTime;
 
@@ -54,6 +60,10 @@ public class AngelMinigameManager : MonoBehaviour
         AngelStationComplete += SwitchStation;
         CheckState += CheckStates;
         TriggerFail += StartStation;
+
+        _stationHighlightedColor = _layoutStations[0].color;
+        _stationDimmedColor = _layoutStations[1].color;
+        _timerText.text = "";
 
         //find the scripts on all the screens to ref from the struct
         for (int i = 0; i < _stations.Count; i++)
@@ -85,7 +95,8 @@ public class AngelMinigameManager : MonoBehaviour
                 if(_stationCount < _stations.Count - 1)
                 {
                     _round = 0;
-                    SwitchStation();
+                    StopAllCoroutines();
+                    StartCoroutine(nameof(StationTransition));
                 }
                 else
                 {
@@ -114,24 +125,45 @@ public class AngelMinigameManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Disables previous screen and displays spotlight and map for next station
+    /// </summary>
+    /// <returns>Waits for a specified amount of time before displaying next screen</returns>
+    private IEnumerator StationTransition()
+    {
+        if (_stationCount < _stations.Count && _stationCount >= 0 && _stationCount < _layoutStations.Length)
+        {
+            _stations[_stationCount].StationScreen.SetActive(false);
+            _stations[_stationCount].StationBehavior.MakeStationUnconfirmable();
+            _layoutStations[_stationCount].color = _stationDimmedColor;
+        }
+
+        _stationCount++;
+
+        SetSpotlight();
+
+        _timerText.text = "";
+
+        if (_stationCount < _layoutStations.Length)
+        {
+            _layoutStations[_stationCount].color = _stationHighlightedColor;
+        }
+        _bridgeLayoutScreen.SetActive(true);
+
+        yield return new WaitForSeconds(_bridgeLayoutDisplayTime);
+
+        SwitchStation();
+    }
+
+    /// <summary>
     /// This function will contain the functionality to switch stations once one is
     /// complete. It then starts the next station.
     /// </summary>
     private void SwitchStation()
     {
-        //print("switch to next station");
-        if (_stationCount < _stations.Count && _stationCount >= 0)
-        {
-            _stations[_stationCount].StationScreen.SetActive(false);
-            _stations[_stationCount].StationBehavior.MakeStationUnconfirmable();
-        }
-
         SetSpotlight();
-        
-
-        _stationCount++;
 
         StopAllCoroutines();
+        _bridgeLayoutScreen.SetActive(false);
         _timerText.text = "0:00";
         if (_stationCount < _stations.Count)
         {
@@ -224,15 +256,15 @@ public class AngelMinigameManager : MonoBehaviour
     private void SetSpotlight()
     {
         //turns off previous spotlight
-        if(_stationCount >= 0)
+        if(_stationCount >= 1 && _stationCount < _stations.Count)
         {
-            _stations[_stationCount].StationBehavior.SetSpotlight(false);
+            _stations[_stationCount - 1].StationBehavior.SetSpotlight(false);
         }
 
         //enables next spotlight
-        if(_stationCount < _stations.Count - 1)
+        if(_stationCount < _stations.Count)
         {
-            _stations[_stationCount + 1].StationBehavior.SetSpotlight(true);
+            _stations[_stationCount].StationBehavior.SetSpotlight(true);
         }
     }
 
@@ -242,7 +274,7 @@ public class AngelMinigameManager : MonoBehaviour
     /// </summary>
     public void StartMinigame()
     {
-        _stationCount = -1;
+        _stationCount = 0;
         SwitchStation();
         TriggerStart?.Invoke();
     }
