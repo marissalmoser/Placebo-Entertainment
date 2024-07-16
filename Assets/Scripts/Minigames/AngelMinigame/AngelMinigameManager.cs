@@ -12,6 +12,7 @@ using UnityEngine;
 using System;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEngine.UI;
 
 [System.Serializable]
 public struct Station
@@ -26,6 +27,10 @@ public class AngelMinigameManager : MonoBehaviour
 {
     [SerializeField] private List<Station> _stations;
     [SerializeField] private GameObject _winScreen;
+
+    [SerializeField] private Image[] _roundTrackers;
+    [SerializeField] private Color _trackerDimmedColor = new Color(8, 137, 0, 100);
+    [SerializeField] private Color _trackerHighlightedColor = new Color(8, 137, 0, 255);
 
     [SerializeField] int _countDownTime;
     private int _currentTime;
@@ -95,14 +100,14 @@ public class AngelMinigameManager : MonoBehaviour
         }
         else
         {
+            //decrease round count on failure if not at 0
+            if (_round > 0)
+            {
+                _round--;
+            }
+
             //wrong answer
             StartStation();
-
-            //decrease round count on failure if not at 0
-            if(_round > 0)
-            {
-                _round --;
-            }
         }
 
         //print(_round);
@@ -138,12 +143,30 @@ public class AngelMinigameManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Updates round tracker UI to refect the current number of completed rounds
+    /// </summary>
+    private void UpdateRoundTracker()
+    {
+        for (int i = 0; i < _roundTrackers.Length; ++i)
+        {
+            if (i < _round)
+            {
+                _roundTrackers[i].color = _trackerHighlightedColor;
+            }
+            else
+            {
+                _roundTrackers[i].color = _trackerDimmedColor;
+            }
+        }
+    }
+
+    /// <summary>
     /// This function will set the station and screen with the correct information
     /// based on the station count.
     /// </summary>
     private void StartStation()
     {
-        //print("start station");
+        UpdateRoundTracker();
 
         //set random to match list of ints on station and screen 
         List<int> target = _stations[_stationCount].StationBehavior.SetRandomToMatch();
@@ -186,6 +209,11 @@ public class AngelMinigameManager : MonoBehaviour
             _currentTime -= 1;
         }
 
+        if (_round > 0)
+        {
+            _round--;
+        }
+        UpdateRoundTracker();
         TriggerFail?.Invoke();
     }
 

@@ -1269,6 +1269,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WinState
       objectReference: {fileID: 0}
+    - target: {fileID: 2637527567885963218, guid: e04fe6e5536e7574caf93d8264c9d7dc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2745793240640296763, guid: e04fe6e5536e7574caf93d8264c9d7dc, type: 3}
       propertyPath: m_Sprite
       value: 
