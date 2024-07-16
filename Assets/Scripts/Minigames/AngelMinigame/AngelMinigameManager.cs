@@ -231,11 +231,11 @@ public class AngelMinigameManager : MonoBehaviour
         //turns off previous spotlight
         if(_stationCount >= 1 && _stationCount < _stations.Count)
         {
-            _stations[_stationCount].StationBehavior.SetSpotlight(false);
+            _stations[_stationCount - 1].StationBehavior.SetSpotlight(false);
         }
 
         //enables next spotlight
-        if(_stationCount < _stations.Count - 1)
+        if(_stationCount < _stations.Count)
         {
             _stations[_stationCount].StationBehavior.SetSpotlight(true);
         }
