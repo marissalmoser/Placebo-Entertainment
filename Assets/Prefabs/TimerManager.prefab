@@ -44,4 +44,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e33fedf2a2a58354ab946d3e2fcf483f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timers: []
+  _timers:
+  - timerName: This
+    timer:
+      _maxTime: 10
+      _isRunning: 0
+      EventToStart:
+        m_PersistentCalls:
+          m_Calls: []
+      OnTimesUp:
+        m_PersistentCalls:
+          m_Calls: []

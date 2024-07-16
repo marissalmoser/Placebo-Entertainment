@@ -14,13 +14,16 @@ public class LoopController : MonoBehaviour
     private Timer _loopTimer;
     [SerializeField] private int _loopTimerTime;
     [SerializeField] private int endScreenDelay;
+
+    [SerializeField] private NpcEvent temporaryLoop;
+    [SerializeField] private NpcEventTags temporaryTag;
     public int LoopTimerTimer => _loopTimerTime;
 
     private void Start()
     {
         //Creating a timer. 
-        _loopTimer = TimerManager.Instance.CreateTimer("LoopTimer", _loopTimerTime + endScreenDelay);
-        _loopTimer.TimesUp += HandleLoopTimerEnd;
+        _loopTimer = TimerManager.Instance.CreateTimer("LoopTimer", _loopTimerTime + endScreenDelay, temporaryLoop, temporaryTag);
+        //_loopTimer.TimesUp += HandleLoopTimerEnd;
         LoadSave();
     }
     /// <summary>
@@ -32,7 +35,7 @@ public class LoopController : MonoBehaviour
 
         ResetLoop();
 
-        _loopTimer.TimesUp -= HandleLoopTimerEnd;
+        //_loopTimer.TimesUp -= HandleLoopTimerEnd;
     }
     /// <summary>
     /// Saving, loading the new scene, loading saved data

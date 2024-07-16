@@ -98,6 +98,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PauseGame"",
+                    ""type"": ""Button"",
+                    ""id"": ""6ff5f603-80a8-4a0b-ac26-410d9dfc9f50"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -203,7 +212,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""19e4cfdd-4194-4a5c-a007-85178a4d0174"",
-                    ""path"": ""<Keyboard>/tab"",
+                    ""path"": ""<Keyboard>/shift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -243,6 +252,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""PlayPause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""275c05ee-be63-478c-87cb-f706f2d4fb4a"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PauseGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -259,6 +279,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_BasicControls_OpenSchedule = m_BasicControls.FindAction("OpenSchedule", throwIfNotFound: true);
         m_BasicControls_LeftClick = m_BasicControls.FindAction("LeftClick", throwIfNotFound: true);
         m_BasicControls_PlayPause = m_BasicControls.FindAction("PlayPause", throwIfNotFound: true);
+        m_BasicControls_PauseGame = m_BasicControls.FindAction("PauseGame", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -328,6 +349,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_BasicControls_OpenSchedule;
     private readonly InputAction m_BasicControls_LeftClick;
     private readonly InputAction m_BasicControls_PlayPause;
+    private readonly InputAction m_BasicControls_PauseGame;
     public struct BasicControlsActions
     {
         private @PlayerControls m_Wrapper;
@@ -340,6 +362,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @OpenSchedule => m_Wrapper.m_BasicControls_OpenSchedule;
         public InputAction @LeftClick => m_Wrapper.m_BasicControls_LeftClick;
         public InputAction @PlayPause => m_Wrapper.m_BasicControls_PlayPause;
+        public InputAction @PauseGame => m_Wrapper.m_BasicControls_PauseGame;
         public InputActionMap Get() { return m_Wrapper.m_BasicControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -373,6 +396,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @PlayPause.started += instance.OnPlayPause;
             @PlayPause.performed += instance.OnPlayPause;
             @PlayPause.canceled += instance.OnPlayPause;
+            @PauseGame.started += instance.OnPauseGame;
+            @PauseGame.performed += instance.OnPauseGame;
+            @PauseGame.canceled += instance.OnPauseGame;
         }
 
         private void UnregisterCallbacks(IBasicControlsActions instance)
@@ -401,6 +427,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @PlayPause.started -= instance.OnPlayPause;
             @PlayPause.performed -= instance.OnPlayPause;
             @PlayPause.canceled -= instance.OnPlayPause;
+            @PauseGame.started -= instance.OnPauseGame;
+            @PauseGame.performed -= instance.OnPauseGame;
+            @PauseGame.canceled -= instance.OnPauseGame;
         }
 
         public void RemoveCallbacks(IBasicControlsActions instance)
@@ -428,5 +457,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnOpenSchedule(InputAction.CallbackContext context);
         void OnLeftClick(InputAction.CallbackContext context);
         void OnPlayPause(InputAction.CallbackContext context);
+        void OnPauseGame(InputAction.CallbackContext context);
     }
 }
