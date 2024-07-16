@@ -1,6 +1,6 @@
 /******************************************************************
 *    Author: Marissa Moser
-*    Contributors: 
+*    Contributors: Nick Grinstead
 *    Date Created: June 19, 2024
 *    Description: This script is the manager for the Angel Minigame. It keeps track
 *    of starting and ending the game, the state of each station, switching between
@@ -120,7 +120,10 @@ public class AngelMinigameManager : MonoBehaviour
         //print(_round);
     }
 
-
+    /// <summary>
+    /// Disables previous screen and displays spotlight and map for next station
+    /// </summary>
+    /// <returns>Waits for a specified amount of time before displaying next screen</returns>
     private IEnumerator StationTransition()
     {
         if (_stationCount < _stations.Count && _stationCount >= 0 && _stationCount < _layoutStations.Length)
