@@ -141,6 +141,10 @@ public class AngelMinigameManager : MonoBehaviour
 
         SetSpotlight();
 
+        for (int i = 0; i < _roundTrackers.Length; ++i)
+        {
+            _roundTrackers[i].color = Color.clear;
+        }
         _timerText.text = "";
 
         if (_stationCount < _layoutStations.Length)
@@ -161,6 +165,7 @@ public class AngelMinigameManager : MonoBehaviour
     private void SwitchStation()
     {
         SetSpotlight();
+        UpdateRoundTracker();
 
         StopAllCoroutines();
         _bridgeLayoutScreen.SetActive(false);
@@ -285,6 +290,12 @@ public class AngelMinigameManager : MonoBehaviour
     private void StopMinigame()
     {
         StopAllCoroutines();
+
+        for (int i = 0; i < _roundTrackers.Length; ++i)
+        {
+            _roundTrackers[i].color = Color.clear;
+        }
+
         _timerText.text = "0:00";
         _endMinigameEvent.TriggerEvent(_endMinigameEventTag);
         SetSpotlight();
