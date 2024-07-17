@@ -75,6 +75,7 @@ public class MGWire : MonoBehaviour
     private void EndMinigame()
     {
         _minigameStarted = false;
+        _canInteract = false;
         MGWireState.WireGameWon -= EndMinigame;
     }
 
@@ -198,10 +199,10 @@ public class MGWire : MonoBehaviour
             _isCorrectlySlotted = _currentSlot.CheckWire(this);
 
             // Prevents the moving of wires that are already in the right place
-            if (_isCorrectlySlotted)
-            {
-                _canInteract = false;
-            }
+            //if (_isCorrectlySlotted)
+            //{
+            //    _canInteract = false;
+            //}
         }
         else if (!_canConnectToSlot)
         {
