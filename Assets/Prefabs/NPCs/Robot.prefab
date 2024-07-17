@@ -452,7 +452,7 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   - _npcEvent: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
-    _npcEventTag: 6
+    _npcEventTag: 5
     _onEventTriggered:
       m_PersistentCalls:
         m_Calls:
@@ -547,7 +547,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4813678846531146998, guid: 96e04b3ba4d2ef242a6de3ed3bd0bf8c, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 96e04b3ba4d2ef242a6de3ed3bd0bf8c, type: 3}
       propertyPath: m_Name

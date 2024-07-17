@@ -47468,14 +47468,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1869879217}
     m_Modifications:
-    - target: {fileID: 869825619415053396, guid: f188daf20aada014c9268d86af53b853, type: 3}
-      propertyPath: _stateDialogueTrees._postMinigameState.Array.data[0]._playerResponses.Array.data[0]._eventTag
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2278875521252267084, guid: f188daf20aada014c9268d86af53b853, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4556153407337933796, guid: f188daf20aada014c9268d86af53b853, type: 3}
       propertyPath: m_Name
       value: Robot
@@ -47519,10 +47511,6 @@ PrefabInstance:
     - target: {fileID: 5155935945816834384, guid: f188daf20aada014c9268d86af53b853, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6882198576666297318, guid: f188daf20aada014c9268d86af53b853, type: 3}
-      propertyPath: _eventsToListenFor.Array.data[1]._npcEventTag
-      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
