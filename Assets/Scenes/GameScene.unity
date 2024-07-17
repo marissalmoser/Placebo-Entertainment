@@ -47512,6 +47512,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6882198576666297318, guid: f188daf20aada014c9268d86af53b853, type: 3}
+      propertyPath: _eventsToListenFor.Array.data[1]._npcEventTag
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
