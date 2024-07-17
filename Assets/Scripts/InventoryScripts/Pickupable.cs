@@ -30,7 +30,7 @@ public class Pickupable : MonoBehaviour, IInteractable
     }
 
     [SerializeField] private DescriptionNode _itemDescription;
-    
+
     [SerializeField] private float PickUpRadius;
     [SerializeField] private InventoryItemData myData;
     private SphereCollider myCollider;
@@ -71,6 +71,9 @@ public class Pickupable : MonoBehaviour, IInteractable
         _tabbedMenu.ToggleInteractPrompt(false);
     }
 
+    /// <summary>
+    /// Invoked by dialogue button to stop showing the item's descriptiond
+    /// </summary>
     public void CloseItemDescription()
     {
         _tabbedMenu.ToggleDialogue(false);
@@ -83,6 +86,10 @@ public class Pickupable : MonoBehaviour, IInteractable
         }
     }
 
+    /// <summary>
+    /// Shows item description before adding item to inventory
+    /// </summary>
+    /// <param name="player">The player interacting</param>
     public void Interact(GameObject player)
     {
         _playerController.LockCharacter(true);

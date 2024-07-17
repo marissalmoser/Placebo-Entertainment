@@ -38,6 +38,7 @@ public class WrenchBehavior : MonoBehaviour, IInteractable
     [Header("UI Stuff")]
     [SerializeField] private TextMeshPro _smackedText;
     [SerializeField] private DescriptionNode _itemDescription;
+    [SerializeField] private string _interactPromptText = "WRENCH";
 
     [Header("Wrench overall functions")]
     [SerializeField] private GameObject _sparksMode;
@@ -123,6 +124,9 @@ public class WrenchBehavior : MonoBehaviour, IInteractable
         }
     }
 
+    /// <summary>
+    /// Invoked by dialogue button to stop showing the item's descriptiond
+    /// </summary>
     public void CloseItemDescription()
     {
         _tabbedMenu.ToggleDialogue(false);
@@ -164,7 +168,7 @@ public class WrenchBehavior : MonoBehaviour, IInteractable
     /// </summary>
     public void DisplayInteractUI()
     {
-        TabbedMenu.Instance.ToggleInteractPrompt(true, "WRENCH");
+        TabbedMenu.Instance.ToggleInteractPrompt(true, _interactPromptText);
     }
 
     /// <summary>
