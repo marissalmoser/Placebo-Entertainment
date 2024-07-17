@@ -71,6 +71,8 @@ MonoBehaviour:
   _itemDescription:
     _description: A solar lightbulb needed by the Robot.
     _exitResponse: Leave
+    _eventToTrigger: {fileID: 11400000, guid: b0ff38f0f20db8a4ab04033934de185c, type: 2}
+    _eventTag: 1
   PickUpRadius: 0
   myData: {fileID: 11400000, guid: 773aae8864bf18d4a9e19e01b7e04081, type: 2}
 --- !u!1 &8616247408314149787

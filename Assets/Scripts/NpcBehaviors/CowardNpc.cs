@@ -10,7 +10,6 @@ using UnityEngine;
 
 public class CowardNpc : BaseNpc
 {
-    [SerializeField] private InventoryItemData _targetLightBulbItem;
     [SerializeField] private float _secondsUntilExplosion;
 
     private bool _canTeleportToGenerator = false;
@@ -37,11 +36,6 @@ public class CowardNpc : BaseNpc
     public override void CollectedItem(InventoryItemData item, int quantity)
     {
         base.CollectedItem(item, quantity);
-
-        if (item == _targetLightBulbItem)
-        {
-            LightbulbEventTriggered();
-        }
     }
 
     /// <summary>

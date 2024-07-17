@@ -20,9 +20,13 @@ public class Pickupable : MonoBehaviour, IInteractable
     {
         [SerializeField] private string _description;
         [SerializeField] private string _exitResponse;
+        [SerializeField] private NpcEvent _eventToTrigger;
+        [SerializeField] private NpcEventTags _eventTag;
 
         public string Description { get => _description; }
         public string ExitResponse { get => _exitResponse; }
+        public NpcEvent EventToTrigger { get => _eventToTrigger; }
+        public NpcEventTags EventTag { get => _eventTag; }
     }
 
     [SerializeField] private DescriptionNode _itemDescription;
@@ -72,6 +76,11 @@ public class Pickupable : MonoBehaviour, IInteractable
         _tabbedMenu.ToggleDialogue(false);
         _playerController.LockCharacter(false);
         _playerInteractBehavior.StartDetectingInteractions();
+
+        if (_itemDescription.EventToTrigger != null)
+        {
+            _itemDescription.EventToTrigger.TriggerEvent(_itemDescription.EventTag);
+        }
     }
 
     public void Interact(GameObject player)
