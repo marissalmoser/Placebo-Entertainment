@@ -46,6 +46,7 @@ public class CowardNpc : BaseNpc
         _hasLightbulb = true;
         Interact();
 
+        _tabbedMenu.ToggleInteractPrompt(false);
         _canTeleportToGenerator = true;
     }
 
