@@ -189,35 +189,20 @@ MonoBehaviour:
         _nextResponseIndex: 04000000
         _advancesNpcState: 0
         _endsDialogue: 0
-      - _eventToTrigger: {fileID: 0}
-        _eventTag: 5
-        _hasPrerequisiteCheck: 0
-        _answer: How can I help?
-        _nextResponseIndex: 0d000000
-        _advancesNpcState: 0
-        _endsDialogue: 0
-      - _eventToTrigger: {fileID: 0}
-        _eventTag: 5
-        _hasPrerequisiteCheck: 0
-        _answer: Are you ok?
-        _nextResponseIndex: 10000000
-        _advancesNpcState: 0
-        _endsDialogue: 0
     - _dialogue:
-      - O'a txts. Wu eci'gk hfnobu iu gvdc as huasinwbv, eci'gk bci nczsobu ptmhwobu.
+      - O'a txts. Wu eci'gk hfnobu iu gvdc lv SILUS. Eci'gk bci nczsobu ptmhwobu.
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 5
         _hasPrerequisiteCheck: 0
-        _answer: "I can\u2019t understand you, but I get the feeling that you\u2019re
-          saying I\u2019m not holding anything. Which is fair\u2026. Because I\u2019m
-          not holding anything\u2026."
+        _answer: "I can\u2019t understand you, but I think they mentioned \u201CSilus\u201D?
+          I\u2019d better go see him."
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
     - _dialogue:
-      - "We must\u2019ve hit something. The ship started to shake and knocked over
-        my chemicals."
+      - "We must\u2019ve hit something. The ship started to shake and the more dangerous
+        of my reagents got mixed up and, well, exploded."
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 5
@@ -227,147 +212,68 @@ MonoBehaviour:
         _advancesNpcState: 0
         _endsDialogue: 0
     - _dialogue:
-      - "One minute you\u2019re making allergy meds and the next you\u2019ve created
-        an explosion. I\u2019ll be fine, I\u2019ve been in this situation before-"
-      _playerResponses:
-      - _eventToTrigger: {fileID: 0}
-        _eventTag: 5
-        _hasPrerequisiteCheck: 0
-        _answer: <b>Next
-        _nextResponseIndex: 06000000
-        _advancesNpcState: 0
-        _endsDialogue: 0
-    - _dialogue:
-      - "My translator is just broken and I\u2019m stuck inside my suit. That won\u2019t
-        stop me from doing my job."
+      - "My translator is just broken and I\u2019m stuck inside my suit. I\u2019ll
+        be fine, I\u2019ve been in this situation before."
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 5
         _hasPrerequisiteCheck: 0
         _answer: Ok, how can I help?
-        _nextResponseIndex: 07000000
+        _nextResponseIndex: 06000000
         _advancesNpcState: 0
         _endsDialogue: 0
       - _eventToTrigger: {fileID: 0}
         _eventTag: 5
         _hasPrerequisiteCheck: 0
         _answer: "So you\u2019re ok then?"
-        _nextResponseIndex: 0b000000
-        _advancesNpcState: 0
-        _endsDialogue: 0
-    - _dialogue:
-      - "Unless you have a degree in pharmaceuticals there\u2019s not much you can
-        do for me here."
-      _playerResponses:
-      - _eventToTrigger: {fileID: 0}
-        _eventTag: 5
-        _hasPrerequisiteCheck: 0
-        _answer: <b>Next
-        _nextResponseIndex: 08000000
-        _advancesNpcState: 0
-        _endsDialogue: 0
-    - _dialogue:
-      - "Keep checking in on everybody. If someone\u2019s hurt, send them my way."
-      _playerResponses:
-      - _eventToTrigger: {fileID: 0}
-        _eventTag: 5
-        _hasPrerequisiteCheck: 0
-        _answer: <b>Next
         _nextResponseIndex: 09000000
         _advancesNpcState: 0
         _endsDialogue: 0
     - _dialogue:
-      - "You should really check on the captain, we can\u2019t go anywhere if she\u2019s
-        not in tip top shape."
+      - Keep checking in on everybody. I prepped medicine for every crew member in
+        advance.
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
-        _eventTag: 5
+        _eventTag: 0
+        _hasPrerequisiteCheck: 0
+        _answer: <b>Next
+        _nextResponseIndex: 07000000
+        _advancesNpcState: 0
+        _endsDialogue: 0
+    - _dialogue:
+      - "If someone\u2019s hurt, come back here. I can give you whatever they\u2019d
+        need."
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 0
+        _hasPrerequisiteCheck: 0
+        _answer: Got it.
+        _nextResponseIndex: 08000000
+        _advancesNpcState: 0
+        _endsDialogue: 0
+    - _dialogue:
+      - "It seems like a lot of key cards are on the fritz. Mine seems fine, I\u2019ve
+        opened the door to the bridge for you."
+      _playerResponses:
+      - _eventToTrigger: {fileID: 11400000, guid: 0dc09a2e909bfa14ba070b27da962183, type: 2}
+        _eventTag: 4
+        _hasPrerequisiteCheck: 0
+        _answer: <b>Leave
+        _nextResponseIndex: 
+        _advancesNpcState: 0
+        _endsDialogue: 1
+    - _dialogue:
+      - "Yep, I\u2019m all good. Go check on the rest of the crew."
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 0
         _hasPrerequisiteCheck: 0
         _answer: <b>Next
         _nextResponseIndex: 0a000000
         _advancesNpcState: 0
         _endsDialogue: 0
     - _dialogue:
-      - "It seems like a lot of key cards are on the fritz. Mine seems fine, I\u2019ve
-        opened the door to the bridge for you."
-      _playerResponses:
-      - _eventToTrigger: {fileID: 11400000, guid: 0dc09a2e909bfa14ba070b27da962183, type: 2}
-        _eventTag: 4
-        _hasPrerequisiteCheck: 0
-        _answer: <b>Leave
-        _nextResponseIndex: 
-        _advancesNpcState: 0
-        _endsDialogue: 1
-    - _dialogue:
-      - "Yep, I\u2019m all good. Go check on the rest of the crew. We can\u2019t
-        get anywhere without our captain."
-      _playerResponses:
-      - _eventToTrigger: {fileID: 0}
-        _eventTag: 5
-        _hasPrerequisiteCheck: 0
-        _answer: <b>Next
-        _nextResponseIndex: 0c000000
-        _advancesNpcState: 0
-        _endsDialogue: 0
-    - _dialogue:
-      - "I\u2019ve opened the door to the bridge for you. Let me know if she\u2019s
-        hurt."
-      _playerResponses:
-      - _eventToTrigger: {fileID: 11400000, guid: 0dc09a2e909bfa14ba070b27da962183, type: 2}
-        _eventTag: 4
-        _hasPrerequisiteCheck: 0
-        _answer: <b>Leave
-        _nextResponseIndex: 
-        _advancesNpcState: 0
-        _endsDialogue: 1
-    - _dialogue:
-      - "There\u2019s not much you can do to fix a broken suit. Unless you have a
-        degree in pharmaceuticals there\u2019s not much you can do for me here."
-      _playerResponses:
-      - _eventToTrigger: {fileID: 0}
-        _eventTag: 5
-        _hasPrerequisiteCheck: 0
-        _answer: <b>Next
-        _nextResponseIndex: 0e000000
-        _advancesNpcState: 0
-        _endsDialogue: 0
-    - _dialogue:
-      - "Keep checking in on everybody. If someone\u2019s hurt, send them my way.
-        You should really check on the captain, we can\u2019t go anywhere if she\u2019s
-        not in tip top shape."
-      _playerResponses:
-      - _eventToTrigger: {fileID: 0}
-        _eventTag: 5
-        _hasPrerequisiteCheck: 0
-        _answer: <b>Next
-        _nextResponseIndex: 0f000000
-        _advancesNpcState: 0
-        _endsDialogue: 0
-    - _dialogue:
-      - "It seems like a lot of key cards are on the fritz. Mine seems fine, I\u2019ve
-        opened the door to the bridge for you."
-      _playerResponses:
-      - _eventToTrigger: {fileID: 11400000, guid: 0dc09a2e909bfa14ba070b27da962183, type: 2}
-        _eventTag: 5
-        _hasPrerequisiteCheck: 0
-        _answer: <b>Leave
-        _nextResponseIndex: 
-        _advancesNpcState: 0
-        _endsDialogue: 1
-    - _dialogue:
-      - "Still stuck, but as ok as I can be. Go check on the rest of the crew. We
-        can\u2019t get anywhere without our captain."
-      _playerResponses:
-      - _eventToTrigger: {fileID: 0}
-        _eventTag: 5
-        _hasPrerequisiteCheck: 0
-        _answer: <b>Next
-        _nextResponseIndex: 11000000
-        _advancesNpcState: 0
-        _endsDialogue: 0
-    - _dialogue:
-      - "I\u2019ve opened the door to the bridge for you. Let me know if she\u2019s
-        hurt."
+      - "I\u2019ve opened the door to the bridge for you."
       _playerResponses:
       - _eventToTrigger: {fileID: 11400000, guid: 0dc09a2e909bfa14ba070b27da962183, type: 2}
         _eventTag: 4
@@ -390,12 +296,12 @@ MonoBehaviour:
       - _eventToTrigger: {fileID: 11400000, guid: 8b7b5ccfabcfc4d4f96da8928978e41e, type: 2}
         _eventTag: 0
         _hasPrerequisiteCheck: 0
-        _answer: The captain is injured
+        _answer: The captain is injured.
         _nextResponseIndex: 02000000
         _advancesNpcState: 0
         _endsDialogue: 0
     - _dialogue:
-      - Go check on everyone and let me know if anyone needs my help.
+      - "Well\u2026 If anyone is hurt, I have medicine on standby."
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 5
@@ -405,9 +311,7 @@ MonoBehaviour:
         _advancesNpcState: 0
         _endsDialogue: 1
     - _dialogue:
-      - "That\u2019s no good. I can\u2019t make anything while stuck in my suit.
-        Luckily I keep medicine for her on standby just in case. It\u2019s over there.
-        Go take that to her."
+      - "You\u2019ll need that bottle over there. Go take that to her."
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 5

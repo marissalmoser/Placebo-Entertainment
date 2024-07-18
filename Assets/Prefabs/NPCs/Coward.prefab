@@ -184,8 +184,8 @@ MonoBehaviour:
         _advancesNpcState: 0
         _endsDialogue: 0
     - _dialogue:
-      - "HOW DARE YOU! I\u2019LL HAVE YOU KNOW THA-\u201D *generator sparks and mini
-        boom* \u201CEEK! OK! I- I don\u2019t know what to do! Please help me!"
+      - "HOW DARE YOU! I\u2019LL HAVE YOU KNOW THA- *generator sparks and mini boom*
+        EEK! OK! I- I don\u2019t know what to do! Please help me!"
       _playerResponses:
       - _eventToTrigger: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
         _eventTag: 1
