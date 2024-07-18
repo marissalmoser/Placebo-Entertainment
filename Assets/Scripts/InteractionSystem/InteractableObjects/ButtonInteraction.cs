@@ -13,6 +13,8 @@ using PlaceboEntertainment.UI;
 
 public class ButtonInteraction : MonoBehaviour, IInteractable
 {
+    [SerializeField] private string _interactPromptText = "BUTTON";
+
     [SerializeField] protected GameObject _buttonPress;
     [SerializeField] protected GameObject _upPosition;
     [SerializeField] protected GameObject _downPosition;
@@ -50,7 +52,7 @@ public class ButtonInteraction : MonoBehaviour, IInteractable
     {
         if (IsInteractable)
         {
-            TabbedMenu.Instance.ToggleInteractPrompt(true, "BUTTON");
+            TabbedMenu.Instance.ToggleInteractPrompt(true, _interactPromptText);
         }
     }
 
