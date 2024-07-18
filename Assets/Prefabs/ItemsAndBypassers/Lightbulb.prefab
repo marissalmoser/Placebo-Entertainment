@@ -68,6 +68,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb565884e72767c439065f4cdf2d8a3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _itemDescription:
+    _description: A solar lightbulb needed by the Robot.
+    _exitResponse: Leave
+    _eventToTrigger: {fileID: 11400000, guid: b0ff38f0f20db8a4ab04033934de185c, type: 2}
+    _eventTag: 1
   PickUpRadius: 0
   myData: {fileID: 11400000, guid: 773aae8864bf18d4a9e19e01b7e04081, type: 2}
 --- !u!1001 &1262425923956788556

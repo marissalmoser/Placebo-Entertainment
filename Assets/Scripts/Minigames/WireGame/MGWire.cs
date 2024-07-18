@@ -24,6 +24,8 @@ public class MGWire : MonoBehaviour
     [SerializeField] private Shader _URPShader;
     [SerializeField] private Color _interactColor;
 
+    [SerializeField] private string _interactPromptText = "MOVE";
+
     [SerializeField] float _sphereScale;
 
     [SerializeField] private Transform _wireStartPosition;
@@ -106,7 +108,7 @@ public class MGWire : MonoBehaviour
     {
         if (_tabbedMenu != null && _canInteract)
         {
-            _tabbedMenu.ToggleInteractPrompt(true, "MOVE");
+            _tabbedMenu.ToggleInteractPrompt(true, _interactPromptText);
         }
     }
 

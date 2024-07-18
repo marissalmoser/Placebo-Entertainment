@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &135958869701333940
+--- !u!1 &9033139704177283092
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,66 +8,61 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2965251923356885062}
-  - component: {fileID: 1650227245951292326}
-  - component: {fileID: 1655771408939868639}
+  - component: {fileID: 24898690041709238}
+  - component: {fileID: 2002601398705045057}
+  - component: {fileID: 7436004073277754028}
   m_Layer: 0
-  m_Name: Pills
+  m_Name: MonologueManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2965251923356885062
+--- !u!4 &24898690041709238
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 135958869701333940}
+  m_GameObject: {fileID: 9033139704177283092}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.45, y: 0, z: 3.64}
+  m_LocalPosition: {x: 11.120584, y: 22.656181, z: 34.60681}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &1650227245951292326
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 135958869701333940}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1655771408939868639
+--- !u!114 &2002601398705045057
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 135958869701333940}
+  m_GameObject: {fileID: 9033139704177283092}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb565884e72767c439065f4cdf2d8a3e, type: 3}
+  m_Script: {fileID: 11500000, guid: 8618491c5e5e77248ac308d7bb30feab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemDescription:
-    _description: Pills from the medical bay. These should help the captain.
+  _playerName: Self
+  _monologueNodes:
+  - _monologueLabel: Starting Monologue
+    _monologueText: Hmm... something seems to have happened. I should go check in
+      with the other crew  memebers.
     _exitResponse: Leave
-  PickUpRadius: 0
-  myData: {fileID: 11400000, guid: 4140399a6ecfe844180bcab962e13806, type: 2}
+    _eventToTrigger: {fileID: 0}
+    _eventTag: 0
+--- !u!114 &7436004073277754028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9033139704177283092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a0acc881a336094997b0fb61c6d1983, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _eventsToListenFor: []
