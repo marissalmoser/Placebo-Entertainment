@@ -25,6 +25,7 @@ public class WrenchBehavior : MonoBehaviour, IInteractable
     [SerializeField] private GameObject _sparksMode;
     //private PlayerController _pc;
     private int _sparkSmacked;
+    [SerializeField] private int _maxSpark;
 
     [Header("Wrench within hand functions")]
     [SerializeField] private Animator _animate;
@@ -43,6 +44,8 @@ public class WrenchBehavior : MonoBehaviour, IInteractable
         _sparksMode = GameObject.Find("SparksMode");
         GameObject _smackTextObject = GameObject.Find("Spark num");
         _smackedText = _smackTextObject.GetComponent<TextMeshPro>();
+        GameObject _pc = GameObject.FindWithTag("RightArm");
+        _animate = _pc.GetComponent<Animator>();
     }
 
     // Start is called before the first frame update
@@ -72,32 +75,39 @@ public class WrenchBehavior : MonoBehaviour, IInteractable
     {
         //print("swing");
         GetComponent<Collider>().enabled = true;
-        _animate.SetBool("isSwinging", true);
+        _animate.SetBool("_isSwinging", true);
         //_swing = true;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(1f);
         //_swing = false;
         GetComponent<Collider>().enabled = false;
-        _animate.SetBool("isSwinging", false);
+        _animate.SetBool("_isSwinging", false);
     }
-
+    IEnumerator SystematicShutDown()
+    {
+        yield return new WaitForSeconds(1.1f);
+        gameObject.SetActive(false);
+    }
     /// <summary>
     /// This function is invoked in SparkInteractBehavior whenever a spark is interacted
     /// with. It keeps track of the number of sparks that have been smacked and ends the game.
     /// </summary>
     private void SparkSmacked()
     {
-        _sparkSmacked++;
-        _smackedText.text = _sparkSmacked.ToString();
-        StartCoroutine(Swinging());
-        if (_sparkSmacked >= 5)
+        if (_isEquipped == true)
         {
-            _smackedText.color = Color.green;
-            _sparksMode.SetActive(false);
-            gameObject.SetActive(false);
+            _sparkSmacked++;
+            _smackedText.text = _sparkSmacked.ToString();
+            StartCoroutine(Swinging());
+            if (_sparkSmacked >= _maxSpark)
+            {
+                _smackedText.color = Color.green;
+                _sparksMode.SetActive(false);
+                StartCoroutine(SystematicShutDown());
 
-            //game ends here?
-            _minigameEndEvent.TriggerEvent(NpcEventTags.Coward);
-            print("game end");
+                //game ends here?
+                _minigameEndEvent.TriggerEvent(NpcEventTags.Coward);
+                print("game end");
+            }
         }
     }
     /// <summary>
@@ -108,7 +118,7 @@ public class WrenchBehavior : MonoBehaviour, IInteractable
     {
         if (_isEquipped == false)
         {
-            _animate.SetTrigger("pickedUp");
+            //_animate.SetTrigger("pickedUp");
             _isEquipped = true;
             GetComponent<Collider>().enabled = false;
             transform.position = _rightHand.transform.position;
