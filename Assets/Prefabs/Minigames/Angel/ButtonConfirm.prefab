@@ -311,9 +311,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 863f66bc203592c4f8a06adea2cc1937, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interactPromptText: CONFIRM
   _buttonPress: {fileID: 4552996896802342665}
   _upPosition: {fileID: 6291332482134076295}
   _downPosition: {fileID: 8459378814987905870}
+  IsInteractable: 0
   _buttonCooldownTime: 0.3
 --- !u!1 &8459378814987905870
 GameObject:

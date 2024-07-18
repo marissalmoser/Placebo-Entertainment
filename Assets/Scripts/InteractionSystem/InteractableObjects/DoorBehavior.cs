@@ -13,6 +13,9 @@ using PlaceboEntertainment.UI;
 
 public class DoorBehavior : MonoBehaviour, IInteractable
 {
+    [SerializeField] private string _interactPromptText = "DOOR";
+    [SerializeField] private string _lockedInteractPromptText = "LOCKED DOOR";
+
     private bool _isOpened = false;
     [SerializeField] private bool _isLocked;
     private Animator _anim;
@@ -42,11 +45,11 @@ public class DoorBehavior : MonoBehaviour, IInteractable
     {
         if(!_isLocked && !_isOpened)
         {
-            TabbedMenu.Instance.ToggleInteractPrompt(true, "DOOR");
+            TabbedMenu.Instance.ToggleInteractPrompt(true, _interactPromptText);
         }
         else if(!_isOpened)
         {
-            TabbedMenu.Instance.ToggleInteractPrompt(true, "LOCKED DOOR");
+            TabbedMenu.Instance.ToggleInteractPrompt(true, _lockedInteractPromptText);
         }
 
     }

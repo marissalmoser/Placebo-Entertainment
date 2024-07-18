@@ -150,6 +150,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _minigameEndEvent: {fileID: 11400000, guid: 8b7b5ccfabcfc4d4f96da8928978e41e, type: 2}
   _smackedText: {fileID: 0}
+  _itemDescription:
+    _description: A simple wrench. It should help fix the generator.
+    _exitResponse: Leave
   _sparksMode: {fileID: 0}
   _maxSpark: 1
   _animate: {fileID: 0}

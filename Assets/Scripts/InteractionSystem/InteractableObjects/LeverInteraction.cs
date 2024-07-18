@@ -14,6 +14,8 @@ using PlaceboEntertainment.UI;
 
 public class LeverInteraction : MonoBehaviour, IInteractable
 {
+    [SerializeField] private string _interactPromptText = "LEVER";
+
     [SerializeField] private GameObject _handle;
     public bool _isOn { get; private set; }
 
@@ -40,7 +42,7 @@ public class LeverInteraction : MonoBehaviour, IInteractable
     /// </summary>
     public virtual void DisplayInteractUI()
     {
-        TabbedMenu.Instance.ToggleInteractPrompt(true, "LEVER");
+        TabbedMenu.Instance.ToggleInteractPrompt(true, _interactPromptText);
     }
 
     /// <summary>
