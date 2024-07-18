@@ -93,11 +93,13 @@ public class WrenchBehavior : MonoBehaviour, IInteractable
     /// </summary>
     private void SparkSmacked()
     {
+        print("here");
         if (_isEquipped == true)
         {
             _sparkSmacked++;
             _smackedText.text = _sparkSmacked.ToString();
             StartCoroutine(Swinging());
+            print( _sparkSmacked + " and max: " + _maxSpark);
             if (_sparkSmacked >= _maxSpark)
             {
                 _smackedText.color = Color.green;
