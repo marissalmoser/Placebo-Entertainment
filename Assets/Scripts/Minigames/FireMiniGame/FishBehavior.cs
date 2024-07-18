@@ -44,13 +44,14 @@ public class FishBehavior : MonoBehaviour, IInteractable
     [SerializeField] private Rigidbody _rb;
     [SerializeField] private Collider coll;
 
-
-
-
     [Header("UI Stuff")]
     [SerializeField] private Slider _waterGaugeUI;
     [SerializeField] private GameObject _canvasHolderUI;
-    
+
+    [Header("VFX Stuff")]
+    [SerializeField] private ParticleSystem _waterSpray;
+    [SerializeField] private GameObject _fireAlarmLight;
+
 
     void Awake()
     {
@@ -64,6 +65,7 @@ public class FishBehavior : MonoBehaviour, IInteractable
         _playerControls.BasicControls.Enable();
         leftclick = _playerControls.FindAction("LeftClick");
         _npcFish.SetActive(false);
+        _waterSpray.Stop();
     }
 
     // Start is called before the first frame update
@@ -90,14 +92,20 @@ public class FishBehavior : MonoBehaviour, IInteractable
         //{
         //    _fireSet.SetActive(false);
         //}
-        
-        if(leftclick.IsPressed() && _isEquipped && _waterAmount > 0f && _refilled == true)
+
+        if (leftclick.IsPressed() && _isEquipped && _waterAmount > 0f && _refilled == true)
         {
             _waterAmount -= 1f;
             _refillNow = false;
             Vector3 _firePosition = new Vector3(_firePoint.transform.position.x, _firePoint.transform.position.y, _firePoint.transform.position.z);
             Instantiate(_water, _firePosition, Quaternion.identity);
+            _waterSpray.Play();
         }
+        else
+        {
+            _waterSpray.Stop();
+        }
+        
         GameObject _waterFinder = GameObject.FindWithTag("Water");
         if (_waterFinder == null)
         {
@@ -138,6 +146,7 @@ public class FishBehavior : MonoBehaviour, IInteractable
             //GAME ENDS HERE
             _npcFish.SetActive(true);
             _minigameEndEvent.TriggerEvent(NpcEventTags.Fish);
+            _fireAlarmLight.SetActive(false);
         }
     }
     

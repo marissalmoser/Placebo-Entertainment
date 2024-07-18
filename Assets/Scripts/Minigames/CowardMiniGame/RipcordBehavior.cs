@@ -19,6 +19,9 @@ public class RipcordBehavior : MonoBehaviour
     [Header("UI Stuff")]
     [SerializeField] private TextMeshPro _successfulPulls;
 
+    [Header("VFX Stuff")]
+    [SerializeField] private ParticleSystem _steam;
+
     [Header("Points of Movement")]
     [SerializeField] private float _maxReach;
     [SerializeField]private GameObject _targetFollow;
@@ -102,6 +105,7 @@ public class RipcordBehavior : MonoBehaviour
         {
             _gears.SetActive(true);
             _successfulPulls.color = Color.green;
+            _steam.Stop();
             //Destroy(this);
         }
         //Debug.Log(_numReleased);
