@@ -1,7 +1,7 @@
 /*****************************************************************************
 // File Name :         WrenchBehavior.cs
 // Author :            Mark Hanson
-// Contributors :      Marissa Moser
+// Contributors :      Marissa Moser, Nick Grinstead
 // Creation Date :     5/27/2024
 //
 // Brief Description : Any function to do with the wrench will be found here. Wrench swinging, spark interaction, and completion of this segment of the minigame.
@@ -16,10 +16,29 @@ using System;
 
 public class WrenchBehavior : MonoBehaviour, IInteractable
 {
+    /// <summary>
+    /// Holds an items description and the "leave" player option for it
+    /// </summary>
+    [System.Serializable]
+    protected struct DescriptionNode
+    {
+        [SerializeField] private string _description;
+        [SerializeField] private string _exitResponse;
+        [SerializeField] private NpcEvent _eventToTrigger;
+        [SerializeField] private NpcEventTags _eventTag;
+
+        public string Description { get => _description; }
+        public string ExitResponse { get => _exitResponse; }
+        public NpcEvent EventToTrigger { get => _eventToTrigger; }
+        public NpcEventTags EventTag { get => _eventTag; }
+    }
+
     [SerializeField] private NpcEvent _minigameEndEvent;
 
     [Header("UI Stuff")]
     [SerializeField] private TextMeshPro _smackedText;
+    [SerializeField] private DescriptionNode _itemDescription;
+    [SerializeField] private string _interactPromptText = "WRENCH";
 
     [Header("Wrench overall functions")]
     [SerializeField] private GameObject _sparksMode;
@@ -38,6 +57,10 @@ public class WrenchBehavior : MonoBehaviour, IInteractable
 
     public static Action SparkSmackedAction;
 
+    private TabbedMenu _tabbedMenu;
+    private PlayerController _playerController;
+    private Interact _playerInteractBehavior;
+
     void Awake()
     {
         _rightHand = GameObject.FindWithTag("Righty");
@@ -51,13 +74,13 @@ public class WrenchBehavior : MonoBehaviour, IInteractable
     // Start is called before the first frame update
     void Start()
     {
-        //GameObject _pcObject = GameObject.FindWithTag("Player");
-        //_pc = _pcObject.GetComponent<PlayerController>();
+        _tabbedMenu = TabbedMenu.Instance;
+        _playerController = PlayerController.Instance;
+        _playerInteractBehavior = _playerController.GetComponent<Interact>();
         _isEquipped = false;
-        //_withinProx = false;
-        //_swing = false;
         SparkSmackedAction += SparkSmacked;
     }
+
     void FixedUpdate()
     {
         if(_isEquipped == true)
@@ -112,12 +135,35 @@ public class WrenchBehavior : MonoBehaviour, IInteractable
             }
         }
     }
+
+    /// <summary>
+    /// Invoked by dialogue button to stop showing the item's descriptiond
+    /// </summary>
+    public void CloseItemDescription()
+    {
+        _tabbedMenu.ToggleDialogue(false);
+        _playerController.LockCharacter(false);
+        _playerInteractBehavior.StartDetectingInteractions();
+
+        if (_itemDescription.EventToTrigger != null)
+        {
+            _itemDescription.EventToTrigger.TriggerEvent(_itemDescription.EventTag);
+        }
+    }
+
     /// <summary>
     /// This function is called when the player interacts with the wrench.
     /// </summary>
     /// <param name="player"></param>
     public void Interact(GameObject player)
     {
+        _playerController.LockCharacter(true);
+        _playerInteractBehavior.StopDetectingInteractions();
+        _tabbedMenu.DisplayDialogue("", _itemDescription.Description);
+        _tabbedMenu.ToggleDialogue(true);
+        _tabbedMenu.ClearDialogueOptions();
+        _tabbedMenu.DisplayDialogueOption(_itemDescription.ExitResponse, click: () => { CloseItemDescription(); });
+
         if (_isEquipped == false)
         {
             //_animate.SetTrigger("pickedUp");
@@ -134,7 +180,7 @@ public class WrenchBehavior : MonoBehaviour, IInteractable
     /// </summary>
     public void DisplayInteractUI()
     {
-        TabbedMenu.Instance.ToggleInteractPrompt(true, "WRENCH");
+        TabbedMenu.Instance.ToggleInteractPrompt(true, _interactPromptText);
     }
 
     /// <summary>

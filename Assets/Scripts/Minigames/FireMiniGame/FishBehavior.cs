@@ -50,7 +50,8 @@ public class FishBehavior : MonoBehaviour, IInteractable
     [Header("UI Stuff")]
     [SerializeField] private Slider _waterGaugeUI;
     [SerializeField] private GameObject _canvasHolderUI;
-    
+    [SerializeField] private string _interactPromptText = "FISH";
+
 
     void Awake()
     {
@@ -168,7 +169,7 @@ public class FishBehavior : MonoBehaviour, IInteractable
     /// </summary>
     public void DisplayInteractUI()
     {
-        TabbedMenu.Instance.ToggleInteractPrompt(true, "FISH");
+        TabbedMenu.Instance.ToggleInteractPrompt(true, _interactPromptText);
     }
 
     /// <summary>

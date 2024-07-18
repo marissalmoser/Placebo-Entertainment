@@ -33,13 +33,9 @@ public class FireBehavior : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        if (_curFireEndure >= 5 && _curFireEndure <= 20)
+        if (_curFireEndure >= 15 && _curFireEndure <= 100)
         {
-            transform.localScale = new Vector3(_curFireEndure / 10f, _curFireEndure / 10f, _curFireEndure / 10f);
-        }
-        if(_curFireEndure >= 21)
-        {
-            transform.localScale = new Vector3(2f, 2f, 2f);
+            transform.localScale = new Vector3(_curFireEndure / 30f, _curFireEndure / 30f, _curFireEndure / 30f);
         }
     }
 
