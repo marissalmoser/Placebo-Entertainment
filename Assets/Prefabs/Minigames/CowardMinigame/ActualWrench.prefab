@@ -151,7 +151,8 @@ MonoBehaviour:
   _minigameEndEvent: {fileID: 11400000, guid: 8b7b5ccfabcfc4d4f96da8928978e41e, type: 2}
   _smackedText: {fileID: 0}
   _sparksMode: {fileID: 0}
-  _animate: {fileID: 7995032218042838754}
+  _maxSpark: 1
+  _animate: {fileID: 0}
   _wrenchSpark: {fileID: 105581026523438075, guid: f6bc08b5eeb1ccd40abc015300343b11, type: 3}
   _rightHand: {fileID: 0}
 --- !u!95 &7995032218042838754
