@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 24898690041709238}
   - component: {fileID: 2002601398705045057}
-  - component: {fileID: 7436004073277754028}
   m_Layer: 0
   m_Name: MonologueManager
   m_TagString: Untagged
@@ -53,16 +52,3 @@ MonoBehaviour:
     _exitResponse: Leave
     _eventToTrigger: {fileID: 0}
     _eventTag: 0
---- !u!114 &7436004073277754028
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9033139704177283092}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a0acc881a336094997b0fb61c6d1983, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _eventsToListenFor: []

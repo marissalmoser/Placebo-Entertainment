@@ -451,23 +451,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - _npcEvent: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
-    _npcEventTag: 6
-    _onEventTriggered:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2278875521252267084}
-          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_MethodName: SetActive
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
 --- !u!114 &2523090471910584266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -547,7 +530,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4813678846531146998, guid: 96e04b3ba4d2ef242a6de3ed3bd0bf8c, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 96e04b3ba4d2ef242a6de3ed3bd0bf8c, type: 3}
       propertyPath: m_Name
@@ -564,11 +547,6 @@ PrefabInstance:
 --- !u!4 &1418255210156611145 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3547981330196900111, guid: 96e04b3ba4d2ef242a6de3ed3bd0bf8c, type: 3}
-  m_PrefabInstance: {fileID: 2491143298943680326}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2278875521252267084 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -4813678846531146998, guid: 96e04b3ba4d2ef242a6de3ed3bd0bf8c, type: 3}
   m_PrefabInstance: {fileID: 2491143298943680326}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &2673142413733435565 stripped
