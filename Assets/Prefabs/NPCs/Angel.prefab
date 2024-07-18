@@ -153,66 +153,25 @@ MonoBehaviour:
   _stateDialogueTrees:
     _idleState:
     - _dialogue:
-      - Ouch
+      - Greetings, Commanding Officer. I appear to be in excruciating pain.
       _playerResponses:
       - _eventToTrigger: {fileID: 11400000, guid: b0ff38f0f20db8a4ab04033934de185c, type: 2}
         _eventTag: 0
         _hasPrerequisiteCheck: 0
-        _answer: Are you ok?
+        _answer: What happened?
         _nextResponseIndex: 01000000
-        _advancesNpcState: 0
-        _endsDialogue: 0
-    - _dialogue:
-      - I appear to be in excruciating pain.
-      _playerResponses:
-      - _eventToTrigger: {fileID: 0}
-        _eventTag: 0
-        _hasPrerequisiteCheck: 0
-        _answer: <b>Next
-        _nextResponseIndex: 02000000
-        _advancesNpcState: 0
-        _endsDialogue: 0
-    - _dialogue:
-      - "I can\u2019t recall what happened. We went through the wall and then I woke
-        up here."
-      _playerResponses:
-      - _eventToTrigger: {fileID: 0}
-        _eventTag: 0
-        _hasPrerequisiteCheck: 0
-        _answer: <b>Next
-        _nextResponseIndex: 03000000
-        _advancesNpcState: 0
-        _endsDialogue: 0
-    - _dialogue:
-      - "I need medicine but I can\u2019t seem to move. Please go get me some medicine."
-      _playerResponses:
-      - _eventToTrigger: {fileID: 0}
-        _eventTag: 0
-        _hasPrerequisiteCheck: 0
-        _answer: <b>Leave
-        _nextResponseIndex: 
-        _advancesNpcState: 1
-        _endsDialogue: 1
-    _minigameReadyState:
-    - _dialogue:
-      - Ouch
-      _playerResponses:
-      - _eventToTrigger: {fileID: 0}
-        _eventTag: 0
-        _hasPrerequisiteCheck: 0
-        _answer: Are you ok?
-        _nextResponseIndex: 03000000
         _advancesNpcState: 0
         _endsDialogue: 0
       - _eventToTrigger: {fileID: 0}
         _eventTag: 0
         _hasPrerequisiteCheck: 1
         _answer: This should help.
-        _nextResponseIndex: 0400000005000000
+        _nextResponseIndex: 0300000004000000
         _advancesNpcState: 0
         _endsDialogue: 0
     - _dialogue:
-      - I appear to be in excruciating pain.
+      - I cannot recall what happened. We made it through the Marion and then I woke
+        up here.
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 0
@@ -222,18 +181,68 @@ MonoBehaviour:
         _advancesNpcState: 0
         _endsDialogue: 0
     - _dialogue:
-      - "I can\u2019t recall what happened. We went through the wall and then I woke
-        up here."
+      - I need medical attention but I cannot seem to move. Please seek assistance
+        from Dr. Olpy.
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 0
+        _hasPrerequisiteCheck: 0
+        _answer: <b>Leave
+        _nextResponseIndex: 
+        _advancesNpcState: 0
+        _endsDialogue: 1
+    - _dialogue:
+      - You possess nothing useful.
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 0
+        _hasPrerequisiteCheck: 0
+        _answer: <b>Leave
+        _nextResponseIndex: 
+        _advancesNpcState: 0
+        _endsDialogue: 1
+    - _dialogue:
+      - Thank you. I shall steer but I require assistance with the ship.
+      _playerResponses:
+      - _eventToTrigger: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
+        _eventTag: 0
+        _hasPrerequisiteCheck: 0
+        _answer: <b>Leave
+        _nextResponseIndex: 
+        _advancesNpcState: 0
+        _endsDialogue: 1
+    _minigameReadyState:
+    - _dialogue:
+      - Greetings, Commanding Officer. I appear to be in excruciating pain.
+      _playerResponses:
+      - _eventToTrigger: {fileID: 11400000, guid: b0ff38f0f20db8a4ab04033934de185c, type: 2}
+        _eventTag: 0
+        _hasPrerequisiteCheck: 0
+        _answer: What happened?
+        _nextResponseIndex: 01000000
+        _advancesNpcState: 0
+        _endsDialogue: 0
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 0
+        _hasPrerequisiteCheck: 1
+        _answer: This should help.
+        _nextResponseIndex: 0300000004000000
+        _advancesNpcState: 0
+        _endsDialogue: 0
+    - _dialogue:
+      - I cannot recall what happened. We made it through the Marion and then I woke
+        up here.
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 0
         _hasPrerequisiteCheck: 0
         _answer: <b>Next
-        _nextResponseIndex: 
+        _nextResponseIndex: 02000000
         _advancesNpcState: 0
         _endsDialogue: 0
     - _dialogue:
-      - "I need medicine but I can\u2019t seem to move. Please go get me some medicine."
+      - I need medical attention but I cannot seem to move. Please seek assistance
+        from Dr. Olpy.
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 0
@@ -243,7 +252,7 @@ MonoBehaviour:
         _advancesNpcState: 0
         _endsDialogue: 1
     - _dialogue:
-      - "You\u2019re not holding anything"
+      - You possess nothing useful.
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 0
@@ -253,27 +262,89 @@ MonoBehaviour:
         _advancesNpcState: 0
         _endsDialogue: 1
     - _dialogue:
-      - "Thank you. I should be able to steer but I\u2019ll need assistance with
-        the ship."
+      - Thank you. I shall steer but I require assistance with the ship.
       _playerResponses:
       - _eventToTrigger: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
         _eventTag: 0
         _hasPrerequisiteCheck: 0
-        _answer: <b>Help with the ship
+        _answer: <b>Leave
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
     _playingMinigameState: []
     _postMinigameState:
     - _dialogue:
-      - Thank you for your help. Our ship has safely passed through the wall. All
-        is well.
+      - The crew is safe, yes?
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 0
+        _hasPrerequisiteCheck: 0
+        _answer: Safe and sound.
+        _nextResponseIndex: 01000000
+        _advancesNpcState: 0
+        _endsDialogue: 0
+    - _dialogue:
+      - "Wonderful\u2026 Now then, a question"
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 0
+        _hasPrerequisiteCheck: 0
+        _answer: <b>Next
+        _nextResponseIndex: 02000000
+        _advancesNpcState: 0
+        _endsDialogue: 0
+    - _dialogue:
+      - With my mental faculties in order, and the ship and its crew returned to
+        a working condition, we have a choice to make.
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 0
+        _hasPrerequisiteCheck: 0
+        _answer: <b>Next
+        _nextResponseIndex: 03000000
+        _advancesNpcState: 0
+        _endsDialogue: 0
+    - _dialogue:
+      - We did not travel far through The Marion before disaster struck, in fact,
+        our entryway is still quite close.
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 0
+        _hasPrerequisiteCheck: 0
+        _answer: <b>Next
+        _nextResponseIndex: 04000000
+        _advancesNpcState: 0
+        _endsDialogue: 0
+    - _dialogue:
+      - So, as the one who has seen us through thus far, I offer you the choice.
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 0
+        _hasPrerequisiteCheck: 0
+        _answer: <b>Next
+        _nextResponseIndex: 05000000
+        _advancesNpcState: 0
+        _endsDialogue: 0
+    - _dialogue:
+      - "We can return to the safety of the Sectorian Collective with the lives of
+        our crew intact. Or\u2026 We can press onward, beyond the Marion; to discover
+        what has called us outside of reality."
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 0
+        _hasPrerequisiteCheck: 0
+        _answer: <b>Next
+        _nextResponseIndex: 06000000
+        _advancesNpcState: 0
+        _endsDialogue: 0
+    - _dialogue:
+      - What is your desire?
       _playerResponses:
       - _eventToTrigger: {fileID: 11400000, guid: 6c063e0dc7b42fc4e8a3e9c06253b1c1, type: 2}
         _eventTag: 3
         _hasPrerequisiteCheck: 0
         _answer: <b>Continue
-        _nextResponseIndex: 
+        _nextResponseIndex: 06000000
         _advancesNpcState: 0
         _endsDialogue: 1
     _failureState: []
