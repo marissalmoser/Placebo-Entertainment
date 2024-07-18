@@ -263,7 +263,7 @@ MonoBehaviour:
   _stateDialogueTrees:
     _idleState:
     - _dialogue:
-      - "You there! Praise the sun, I need your assistance. I\u2019m low on power
+      - "You there! Praise the sun, I require your assistance. I\u2019m low on power
         and am afraid I will die if I do not receive my solar light bulb in (time
         left). Have you seen it?"
       - Have you found my solar light bulb?
@@ -271,61 +271,67 @@ MonoBehaviour:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 0
         _hasPrerequisiteCheck: 0
-        _answer: A Solar light bulb?
-        _nextResponseIndex: 01000000
-        _advancesNpcState: 0
-        _endsDialogue: 0
-      - _eventToTrigger: {fileID: 0}
-        _eventTag: 0
-        _hasPrerequisiteCheck: 0
         _answer: No.
-        _nextResponseIndex: 03000000
+        _nextResponseIndex: 01000000
         _advancesNpcState: 0
         _endsDialogue: 0
       - _eventToTrigger: {fileID: 0}
         _eventTag: 0
         _hasPrerequisiteCheck: 1
         _answer: Here it is!
-        _nextResponseIndex: 0400000005000000
+        _nextResponseIndex: 0200000007000000
         _advancesNpcState: 0
         _endsDialogue: 0
     - _dialogue:
-      - "Yes, my solar light bulb! I typically run on solar power; however, we haven\u2019t
-        seen the sun in weeks, so I've been using a solar light bulb to get by."
+      - Flicker! I was able to check everywhere but the storage room. Please! Go
+        find it!
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 0
+        _hasPrerequisiteCheck: 0
+        _answer: <b>Leave
+        _nextResponseIndex: 
+        _advancesNpcState: 0
+        _endsDialogue: 1
+    - _dialogue:
+      - Oh praise the holy sun! Thank you for helping me. Is there anything I can
+        do for you?
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 0
+        _hasPrerequisiteCheck: 0
+        _answer: "I\u2019m trying to get to the bridge. Can you help me?"
+        _nextResponseIndex: 03000000
+        _advancesNpcState: 0
+        _endsDialogue: 0
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 0
+        _hasPrerequisiteCheck: 0
+        _answer: What do you know about the engineer? He seems to be struggling with
+          the generator?
+        _nextResponseIndex: 05000000
+        _advancesNpcState: 0
+        _endsDialogue: 0
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 0
+        _hasPrerequisiteCheck: 0
+        _answer: "I don\u2019t think so."
+        _nextResponseIndex: 
+        _advancesNpcState: 0
+        _endsDialogue: 1
+    - _dialogue:
+      - "The bridge? I don\u2019t have clearance for the bridge."
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 0
         _hasPrerequisiteCheck: 0
         _answer: <b>Next
-        _nextResponseIndex: 02000000
+        _nextResponseIndex: 04000000
         _advancesNpcState: 0
         _endsDialogue: 0
     - _dialogue:
-      - "I was able to check everywhere but the storage room. I\u2019ve only got
-        (time left) of stored power left. What are you standing around for? Go find
-        it!"
-      _playerResponses:
-      - _eventToTrigger: {fileID: 0}
-        _eventTag: 0
-        _hasPrerequisiteCheck: 0
-        _answer: <b>Leave
-        _nextResponseIndex: 
-        _advancesNpcState: 0
-        _endsDialogue: 1
-    - _dialogue:
-      - "We haven\u2019t seen the sun in ages and I\u2019ve only got (time left)
-        of stored power left. What are you standing around for? Please! Go find it!"
-      _playerResponses:
-      - _eventToTrigger: {fileID: 0}
-        _eventTag: 6
-        _hasPrerequisiteCheck: 0
-        _answer: <b>Leave
-        _nextResponseIndex: 
-        _advancesNpcState: 0
-        _endsDialogue: 1
-    - _dialogue:
-      - Oh praise the holy sun! Thank you! But quick, do you mind connecting those
-        wires for me?
+      - "But I could get you to the next room, if the door access system weren\u2019t
+        all jumbled up. Could you take a look at it?"
       _playerResponses:
       - _eventToTrigger: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
         _eventTag: 5
@@ -336,30 +342,40 @@ MonoBehaviour:
         _endsDialogue: 1
       - _eventToTrigger: {fileID: 0}
         _eventTag: 0
-        _hasPrerequisiteCheck: 1
-        _answer: Those are going to have to be recalibrated. Here this should help
-          speed things up.
-        _nextResponseIndex: 0600000005000000
+        _hasPrerequisiteCheck: 0
+        _answer: Not right now.
+        _nextResponseIndex: 
+        _advancesNpcState: 0
+        _endsDialogue: 1
+    - _dialogue:
+      - The engineer is a bit of a coward. This is not the first incident of him
+        doing his job wrong.
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 0
+        _hasPrerequisiteCheck: 0
+        _answer: <b>Next
+        _nextResponseIndex: 06000000
         _advancesNpcState: 0
         _endsDialogue: 0
     - _dialogue:
-      - "What? No you don\u2019t. It\u2019s rude to tease a dying robot you know."
+      - "Not to mention his tendency to take what doesn\u2019t belong to him\u2026
+        especially if it\u2019s shiny."
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
-        _eventTag: 6
+        _eventTag: 0
         _hasPrerequisiteCheck: 0
         _answer: <b>Leave
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
     - _dialogue:
-      - "You\u2019re not holding anything. Would you please stop wasting time and
-        help connect these wires."
+      - "What? No you don\u2019t. It\u2019s rude to tease a dying robot you know."
       _playerResponses:
-      - _eventToTrigger: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
-        _eventTag: 5
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 0
         _hasPrerequisiteCheck: 0
-        _answer: <b>Help with the wires
+        _answer: <b>Leave
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
