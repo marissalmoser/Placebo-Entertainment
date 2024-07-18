@@ -1,6 +1,6 @@
 /******************************************************************
 *    Author: Elijah Vroman
-*    Contributors: Elijah Vroman,
+*    Contributors: Elijah Vroman, Nick Grinstead
 *    Date Created: 5/21/24
 *    Description: PUT THIS ON ANY GAMEOBJECT TO BE INVENTORIED
 *    If what this script is attached to is hit by an inventory 
@@ -12,9 +12,31 @@ using UnityEngine;
 [RequireComponent(typeof(SphereCollider))]
 public class Pickupable : MonoBehaviour, IInteractable
 {
+    /// <summary>
+    /// Holds an items description and the "leave" player option for it
+    /// </summary>
+    [System.Serializable]
+    protected struct DescriptionNode
+    {
+        [SerializeField] private string _description;
+        [SerializeField] private string _exitResponse;
+        [SerializeField] private NpcEvent _eventToTrigger;
+        [SerializeField] private NpcEventTags _eventTag;
+
+        public string Description { get => _description; }
+        public string ExitResponse { get => _exitResponse; }
+        public NpcEvent EventToTrigger { get => _eventToTrigger; }
+        public NpcEventTags EventTag { get => _eventTag; }
+    }
+
+    [SerializeField] private DescriptionNode _itemDescription;
+
     [SerializeField] private float PickUpRadius;
     [SerializeField] private InventoryItemData myData;
     private SphereCollider myCollider;
+    private TabbedMenu _tabbedMenu;
+    private PlayerController _playerController;
+    private Interact _playerInteractBehavior;
 
     private void Awake()
     {
@@ -32,18 +54,51 @@ public class Pickupable : MonoBehaviour, IInteractable
         }
     }
 
+    private void Start()
+    {
+        _tabbedMenu = TabbedMenu.Instance;
+        _playerController = PlayerController.Instance;
+        _playerInteractBehavior = _playerController.GetComponent<Interact>();
+    }
+
     public void DisplayInteractUI()
     {
-        TabbedMenu.Instance.ToggleInteractPrompt(true, "The " + myData.DisplayName);
+        _tabbedMenu.ToggleInteractPrompt(true, "The " + myData.DisplayName);
     }
 
     public void HideInteractUI()
     {
-        TabbedMenu.Instance.ToggleInteractPrompt(false);
+        _tabbedMenu.ToggleInteractPrompt(false);
     }
 
+    /// <summary>
+    /// Invoked by dialogue button to stop showing the item's descriptiond
+    /// </summary>
+    public void CloseItemDescription()
+    {
+        _tabbedMenu.ToggleDialogue(false);
+        _playerController.LockCharacter(false);
+        _playerInteractBehavior.StartDetectingInteractions();
+
+        if (_itemDescription.EventToTrigger != null)
+        {
+            _itemDescription.EventToTrigger.TriggerEvent(_itemDescription.EventTag);
+        }
+    }
+
+    /// <summary>
+    /// Shows item description before adding item to inventory
+    /// </summary>
+    /// <param name="player">The player interacting</param>
     public void Interact(GameObject player)
     {
+        _playerController.LockCharacter(true);
+        _playerInteractBehavior.StopDetectingInteractions();
+        _tabbedMenu.DisplayDialogue("", _itemDescription.Description);
+        _tabbedMenu.ToggleDialogue(true);
+        _tabbedMenu.ClearDialogueOptions();
+        _tabbedMenu.DisplayDialogueOption(_itemDescription.ExitResponse, click: () => { CloseItemDescription(); });
+
         InventoryHolder inventoryHolder = player.GetComponent<InventoryHolder>();
 
         //if it is not already in inventory

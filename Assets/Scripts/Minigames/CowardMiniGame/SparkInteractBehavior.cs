@@ -15,6 +15,8 @@ using PlaceboEntertainment.UI;
 
 public class SparkInteractBehavior : MonoBehaviour, IInteractable
 {
+    [SerializeField] private string _interactPromptText = "SMACK";
+
     /// <summary>
     /// When the player interacts with a spark, this function informs the wrench object
     /// of the smack and then destroys the spark.
@@ -31,7 +33,7 @@ public class SparkInteractBehavior : MonoBehaviour, IInteractable
     /// </summary>
     public void DisplayInteractUI()
     {
-        TabbedMenu.Instance.ToggleInteractPrompt(true, "SMACK");
+        TabbedMenu.Instance.ToggleInteractPrompt(true, _interactPromptText);
     }
 
     /// <summary>

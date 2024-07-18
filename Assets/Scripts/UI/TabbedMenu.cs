@@ -544,7 +544,15 @@ namespace PlaceboEntertainment.UI
         public void DisplayDialogue(string charName, string dialogueText)
         {
             if (_dialogueText == null) return;
-            _dialogueText.text = $"<color=\"orange\">{charName} <color=\"white\">- {dialogueText}";
+
+            if (!charName.Equals(""))
+            {
+                _dialogueText.text = $"<color=\"orange\">{charName} <color=\"white\">- {dialogueText}";
+            }
+            else
+            {
+                _dialogueText.text = $"<color=\"white\">{dialogueText}";
+            }
         }
 
         /// <summary>
