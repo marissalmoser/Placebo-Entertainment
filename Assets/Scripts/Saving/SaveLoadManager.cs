@@ -87,7 +87,7 @@ public class SaveLoadManager : MonoBehaviour
         }
         else
         {
-            print("Dun goofed, save file doesnt exist at given location");
+            print("Save file doesnt exist at given location");
         }
         return temp;
     }
