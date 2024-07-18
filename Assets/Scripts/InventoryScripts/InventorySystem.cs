@@ -69,6 +69,7 @@ public class InventorySystem
                             AddedToInventory?.Invoke(itemToAdd, overflowAmount);
                             overflowAmount = 0;
                             addedAnyItems = true;
+                            SaveLoadManager.Instance.SaveGameToSaveFile();
                             return true; // All items added
                         }
                         else
@@ -77,6 +78,7 @@ public class InventorySystem
                             overflowAmount -= roomLeft;
                             AddedToInventory?.Invoke(itemToAdd, roomLeft);
                             addedAnyItems = true;
+                            SaveLoadManager.Instance.SaveGameToSaveFile();
                         }
                     }
                 }
@@ -91,6 +93,7 @@ public class InventorySystem
                     AddedToInventory?.Invoke(itemToAdd, overflowAmount);
                     overflowAmount = 0;
                     addedAnyItems = true;
+                    SaveLoadManager.Instance.SaveGameToSaveFile();
                     return true; // All items added
                 }
                 else
@@ -99,6 +102,7 @@ public class InventorySystem
                     overflowAmount -= maxStack;
                     AddedToInventory?.Invoke(itemToAdd, maxStack);
                     addedAnyItems = true;
+                    SaveLoadManager.Instance.SaveGameToSaveFile();
                 }
             }
             else
