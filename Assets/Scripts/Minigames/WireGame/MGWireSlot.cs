@@ -20,6 +20,10 @@ public class MGWireSlot : MonoBehaviour
     [SerializeField] private MeshRenderer _slotRenderer;
     [SerializeField] private Color _slotColor;
 
+    [Header("VFX Stuff")]
+    [SerializeField] private ParticleSystem _connectSpark;
+    [SerializeField] private ParticleSystem _disconnectedSparks;
+
     /// <summary>
     /// Setting color of wire slot
     /// </summary>
@@ -45,6 +49,8 @@ public class MGWireSlot : MonoBehaviour
         if(wire.WireID.Equals(_matchingWire))
         {
             CorrectWire?.Invoke();
+            _disconnectedSparks.Stop();
+            _connectSpark.Play();
             return true;
         }
 
