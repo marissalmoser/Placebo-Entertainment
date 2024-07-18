@@ -11,6 +11,7 @@ TagManager:
   - Righty
   - Water
   - Fire
+  - RightArm
   layers:
   - Default
   - TransparentFX
