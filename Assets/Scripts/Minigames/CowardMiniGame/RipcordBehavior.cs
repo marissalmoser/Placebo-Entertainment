@@ -24,6 +24,9 @@ public class RipcordBehavior : MonoBehaviour
     [SerializeField] private GameObject _targetFollow;
     [SerializeField] private float _speed;
     [SerializeField] bool PressedE;
+    private bool _inSwitchPos;
+    private bool _switchDoOnce;
+    private int _switchMove;
     private Vector3 _relocatePoint;
 
     [Header("Release Windowing")]
@@ -51,6 +54,7 @@ public class RipcordBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _switchMove = -1;
         PressedE = false;
         _doOnce = true;
         _doOnce2 = true;
@@ -62,12 +66,27 @@ public class RipcordBehavior : MonoBehaviour
         _pc = _pcObject.GetComponent<PlayerController>();
         _currentLight = 0;
         _lightDoOnce = true;
+        _switchDoOnce = true;
     }
     // Update is called once per frame
     void Update()
     {
         _successfulPulls.text = _numReleased.ToString();
-        if (_pc.Interact.IsPressed() && PressedE == true && transform.position.z > _targetFollow.transform.position.z + 1.7f && _numReleased != 3 && _gameStarted == true)
+        if(_pc.Interact.IsPressed() && _switchDoOnce == true && _inSwitchPos == true)
+        {
+            _switchMove *= -1;
+            _switchDoOnce = false;
+            StartCoroutine(PauseEPress());
+        }
+        if(_switchMove == -1)
+        {
+            PressedE = false;
+        }
+        if (_switchMove == 1)
+        {
+            PressedE = true;
+        }
+        if (PressedE == true && transform.position.z > _targetFollow.transform.position.z + 1.7f && _numReleased != 3 && _gameStarted == true)
         {
             transform.position -= new Vector3(0, 0, _speed * Time.deltaTime);
             StartCoroutine(FindPreview());
@@ -76,13 +95,13 @@ public class RipcordBehavior : MonoBehaviour
                 _preview.GetComponent<Collider>().enabled = false;
             }
         }
-        if (_pc.Interact.IsPressed() && PressedE == true && _doOnce2 == true && _numReleased != 3 && _gameStarted == true)
+        if (PressedE == true && _doOnce2 == true && _numReleased != 3 && _gameStarted == true)
         {
             Vector3 _previewerPoint = new Vector3(_relocatePoint.x, _relocatePoint.y, Random.Range(_maxReach, _relocatePoint.z));
             Instantiate(_ReleasePreviewer, _previewerPoint, Quaternion.identity);
             _doOnce2 = false;
         }
-        if (PressedE == false && transform.position.z < _relocatePoint.z && transform.position.z != _relocatePoint.z || _pc.Interact.IsPressed() && PressedE == true && transform.position.z < _maxReach && transform.position.z != _relocatePoint.z)
+        if (PressedE == false && transform.position.z < _relocatePoint.z && transform.position.z != _relocatePoint.z ||PressedE == true && transform.position.z < _maxReach && transform.position.z != _relocatePoint.z)
         {
             transform.position += new Vector3(0, 0, _speed * Time.deltaTime);
             StartCoroutine(FindPreview());
@@ -141,6 +160,11 @@ public class RipcordBehavior : MonoBehaviour
         //Debug.Log(_numReleased);
 
     }
+    IEnumerator PauseEPress()
+    {
+        yield return new WaitForSeconds(0.4f);
+        _switchDoOnce = true;
+    }
     IEnumerator blinkingLight()
     {
         _listLights[_currentLight].SetActive(true);
@@ -169,8 +193,8 @@ public class RipcordBehavior : MonoBehaviour
 
         if (col.gameObject.tag == "Player")
         {
-            PressedE = true;
-            TabbedMenu.Instance.ToggleInteractPrompt(true, "RIPCORD");
+            _inSwitchPos = true;
+            TabbedMenu.Instance.ToggleInteractPrompt(true, "GRAB");
         }
     }
 
@@ -178,7 +202,8 @@ public class RipcordBehavior : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            PressedE = false;
+            _inSwitchPos = false;
+            _switchMove = -1;
             TabbedMenu.Instance.ToggleInteractPrompt(false);
         }
     }
