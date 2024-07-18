@@ -45,7 +45,7 @@ public class MGWire : MonoBehaviour
 
     public enum EWireID
     {
-        ONE, TWO, THREE
+        ONE, TWO, THREE, FOUR
     }
 
     private void Start()
