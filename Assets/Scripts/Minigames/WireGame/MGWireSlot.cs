@@ -19,6 +19,7 @@ public class MGWireSlot : MonoBehaviour
     [SerializeField] private MGWire.EWireID _matchingWire;
     [SerializeField] private MeshRenderer _slotRenderer;
     [SerializeField] private Color _slotColor;
+    [HideInInspector] public bool IsConnected;
 
     [Header("VFX Stuff")]
     [SerializeField] private ParticleSystem _connectSpark;
@@ -30,6 +31,10 @@ public class MGWireSlot : MonoBehaviour
     private void Start()
     {
         _slotRenderer.material.color = _slotColor;
+
+        //Adds To Slot List in Wire State Script
+        GameObject robo = GameObject.FindWithTag("WireManager");
+        robo.GetComponent<MGWireState>().ListOfWireSlots.Add(this);
     }
 
     /*private void OnDrawGizmos()
@@ -46,8 +51,11 @@ public class MGWireSlot : MonoBehaviour
         Assert.IsNotNull(wire, "Make sure the object passed in is a " +
             "valid wire");
 
+        IsConnected = false;
+
         if(wire.WireID.Equals(_matchingWire))
         {
+            IsConnected = true;
             CorrectWire?.Invoke();
             _disconnectedSparks.Stop();
             _connectSpark.Play();
