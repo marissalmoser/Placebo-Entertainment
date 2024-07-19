@@ -12,6 +12,7 @@ TagManager:
   - Water
   - Fire
   - RightArm
+  - WireManager
   layers:
   - Default
   - TransparentFX
