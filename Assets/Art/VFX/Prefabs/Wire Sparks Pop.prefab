@@ -5017,6 +5017,7 @@ GameObject:
   - component: {fileID: 5053328850166941045}
   - component: {fileID: 1373860831198249239}
   - component: {fileID: 5779396557599111506}
+  - component: {fileID: 5109105867428657250}
   m_Layer: 0
   m_Name: Wire Sparks Pop
   m_TagString: Untagged
@@ -9839,6 +9840,18 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &5109105867428657250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6044104912057279700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 643cccb734fe7434ab44897bdfa225eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8006301389699863548
 GameObject:
   m_ObjectHideFlags: 0

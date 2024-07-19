@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 227778407}
   m_Layer: 0
   m_Name: Robo
-  m_TagString: Untagged
+  m_TagString: WireManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -249,6 +249,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameWonEvent: {fileID: 11400000, guid: 6c063e0dc7b42fc4e8a3e9c06253b1c1, type: 2}
+  _maxAttachments: 3
+  ListOfWireSlots: []
 --- !u!1001 &270001406
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -401,6 +403,10 @@ PrefabInstance:
     - target: {fileID: 184720611215862423, guid: c305122b038e6e048b647787017c7c42, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.5211685
+      objectReference: {fileID: 0}
+    - target: {fileID: 184720611215862423, guid: c305122b038e6e048b647787017c7c42, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.4607649
       objectReference: {fileID: 0}
     - target: {fileID: 184720611215862423, guid: c305122b038e6e048b647787017c7c42, type: 3}
       propertyPath: m_LocalPosition.z

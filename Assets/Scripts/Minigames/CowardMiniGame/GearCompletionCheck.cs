@@ -19,8 +19,8 @@ public class GearCompletionCheck : MonoBehaviour
     [SerializeField] private GameObject _wrench;
     [SerializeField] private GameObject _sparkMode;
 
-
-
+    [Header("VFX Stuff")]
+    [SerializeField] private ParticleSystem _generatorSmoke;
 
     // Start is called before the first frame update
     void Start()
@@ -52,6 +52,7 @@ public class GearCompletionCheck : MonoBehaviour
             Vector3 _wrenchPoint = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z - 2f);
             _sparkMode.SetActive(true);
             Instantiate(_wrench, _wrenchPoint, Quaternion.identity);
+            _generatorSmoke.Stop();
             Destroy(this);
         }
     }
