@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3496418067777485049}
   - component: {fileID: 7366979465635975259}
   - component: {fileID: 6512923153900028700}
+  - component: {fileID: 1487231113976192165}
   m_Layer: 0
   m_Name: Ripcord
   m_TagString: Interactable
@@ -120,11 +121,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _successfulPulls: {fileID: 0}
+  _steam: {fileID: 0}
   _maxReach: -0.5
   _targetFollow: {fileID: 0}
   _speed: 10
   PressedE: 0
   _ReleasePreviewer: {fileID: 3869838787287514708, guid: 8a667c2096252f04a899cdaa3ce0087d, type: 3}
+  _listLights: []
   _gears: {fileID: 0}
 --- !u!54 &6512923153900028700
 Rigidbody:
@@ -153,3 +156,33 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1487231113976192165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491960876064635196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a0acc881a336094997b0fb61c6d1983, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _eventsToListenFor:
+  - _npcEvent: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
+    _npcEventTag: 1
+    _onEventTriggered:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 7366979465635975259}
+          m_TargetAssemblyTypeName: RipcordBehavior, Assembly-CSharp
+          m_MethodName: GameStart
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
