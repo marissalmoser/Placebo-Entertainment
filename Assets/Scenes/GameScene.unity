@@ -18019,6 +18019,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 369651554}
   - {fileID: 1115980966}
   - {fileID: 1482132440}
   - {fileID: 1428089521}
@@ -18284,7 +18285,7 @@ GameObject:
   - component: {fileID: 369651552}
   m_Layer: 0
   m_Name: Robo
-  m_TagString: Untagged
+  m_TagString: WireManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18302,6 +18303,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameWonEvent: {fileID: 11400000, guid: 8b7b5ccfabcfc4d4f96da8928978e41e, type: 2}
+  _maxAttachments: 3
+  ListOfWireSlots: []
 --- !u!114 &369651553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18322,12 +18325,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 369651551}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.52, y: 2.67, z: 7.37}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -25.621107, y: 256.41772, z: 359.01477}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 362340145}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &374410353
 GameObject:
@@ -64534,7 +64537,6 @@ SceneRoots:
   - {fileID: 362340145}
   - {fileID: 106151019}
   - {fileID: 2094144432}
-  - {fileID: 369651554}
   - {fileID: 492889397}
   - {fileID: 1996449659}
   - {fileID: 1749669357}
