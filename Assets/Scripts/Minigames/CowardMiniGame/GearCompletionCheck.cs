@@ -50,6 +50,9 @@ public class GearCompletionCheck : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Starts the sparks section of the coward minigame
+    /// </summary>
     public void StartSparksSection()
     {
         Vector3 _wrenchPoint = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z - 2f);
@@ -59,18 +62,23 @@ public class GearCompletionCheck : MonoBehaviour
         Destroy(this);
     }
 
+    /// <summary>
+    /// Contains functionality that needs to happen when the game is started at the
+    /// sparks section.
+    /// </summary>
     public void StartWithBypass()
     {
         //moves the wrench to the players hand
-        _instantiatedWrench.GetComponent<WrenchBehavior>().Interact(gameObject);
+        _instantiatedWrench.GetComponent<WrenchBehavior>().PickUpWrench();
 
-        //turns all gears green
-        foreach (Renderer gear in _matCheck)
+        //makes gears uninteractable and green
+        foreach (GameObject gear in _realGears)
         {
-            if (gear != null)
+            if (gear.GetComponent<GearBehavior>() != null)
             {
-                gear.material.color = Color.green;
+                Destroy(gear.GetComponent<GearBehavior>());
             }
+            gear.GetComponent<Renderer>().material.color = Color.green;
         }
     }
 }

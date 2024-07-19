@@ -23,16 +23,23 @@ public class GeneratorMinigameManager : MonoBehaviour
         _inventoryHolder = player.GetComponent<InventoryHolder>();
     }
 
+    /// <summary>
+    /// Function called by event listener on generator minigame parent object. This
+    /// function starts the generator/coward minigame from the beginning or spark
+    /// stage based on if the player has the wrench in their inventory.
+    /// </summary>
     public void StartMinigame()
     {
         //if player has wrench, start sparks and enable wrench object
         if(_inventoryHolder.InventorySystem.ContainsItem(_wrenchItemData, out _))
         {
-            //TODO: set ripcord lights to be visually completed
+            //TODO: set ripcord lights and gears to be visually completed
+            _ripcord.GetComponent<RipcordBehavior>().StopRipcordSteam();
             _gears.SetActive(true);
             _gearBottom.GetComponent<GearCompletionCheck>().StartSparksSection();
             _gearBottom.GetComponent<GearCompletionCheck>().StartWithBypass();
         }
+
         //else enable ripcord interaction
         else
         {

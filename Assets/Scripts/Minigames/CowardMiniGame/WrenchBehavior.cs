@@ -116,23 +116,19 @@ public class WrenchBehavior : MonoBehaviour, IInteractable
     /// </summary>
     private void SparkSmacked()
     {
-        print("here");
-        if (_isEquipped == true)
-        {
-            _sparkSmacked++;
-            _smackedText.text = _sparkSmacked.ToString();
-            StartCoroutine(Swinging());
-            print( _sparkSmacked + " and max: " + _maxSpark);
-            if (_sparkSmacked >= _maxSpark)
-            {
-                _smackedText.color = Color.green;
-                _sparksMode.SetActive(false);
-                StartCoroutine(SystematicShutDown());
+        _sparkSmacked++;
+        _smackedText.text = _sparkSmacked.ToString();
+        StartCoroutine(Swinging());
 
-                //game ends here?
-                _minigameEndEvent.TriggerEvent(NpcEventTags.Coward);
-                print("game end");
-            }
+        if (_sparkSmacked >= _maxSpark)
+        {
+            _smackedText.color = Color.green;
+            _sparksMode.SetActive(false);
+            StartCoroutine(SystematicShutDown());
+
+            //game ends here?
+            _minigameEndEvent.TriggerEvent(NpcEventTags.Coward);
+            print("game end");
         }
     }
 
@@ -164,6 +160,14 @@ public class WrenchBehavior : MonoBehaviour, IInteractable
         _tabbedMenu.ClearDialogueOptions();
         _tabbedMenu.DisplayDialogueOption(_itemDescription.ExitResponse, click: () => { CloseItemDescription(); });
 
+        PickUpWrench();
+    }
+
+    /// <summary>
+    /// Function to move the wrench object to the player's hand.
+    /// </summary>
+    public void PickUpWrench()
+    {
         if (_isEquipped == false)
         {
             //_animate.SetTrigger("pickedUp");
