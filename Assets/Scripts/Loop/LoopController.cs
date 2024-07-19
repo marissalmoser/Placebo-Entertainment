@@ -7,22 +7,37 @@
 *******************************************************************/
 
 using UnityEngine;
+using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
 public class LoopController : MonoBehaviour
 {
     private Timer _loopTimer;
+    [SerializeField] private string _loopTimerName;
     [SerializeField] private int _loopTimerTime;
-    [SerializeField] private int endScreenDelay;
-
-    [SerializeField] private NpcEvent temporaryLoop;
-    [SerializeField] private NpcEventTags temporaryTag;
+    [SerializeField] private int _endScreenDelay;
+    [SerializeField] private NpcEvent _temporaryLoop;
+    [SerializeField] private NpcEventTags _temporaryTag;
     public int LoopTimerTimer => _loopTimerTime;
+    public string LoopTimerName => _loopTimerName;
+
+    private List<Timer> _runningTimersAtStart = new List<Timer>();
+    private List<Timer> _pausedTimersAtStart= new List<Timer>();
 
     private void Start()
     {
-        //Creating a timer. 
-        _loopTimer = TimerManager.Instance.CreateTimer("LoopTimer", _loopTimerTime + endScreenDelay, temporaryLoop, temporaryTag);
+        foreach(TimerStruct timer in TimerManager.Instance._timers)
+        {
+            if(timer.timer.IsRunning())
+            {
+                _runningTimersAtStart.Add(timer.timer);
+            }
+            else if (!timer.timer.IsRunning())
+            {
+                _pausedTimersAtStart.Add(timer.timer);  
+            }
+        }
+        _loopTimer = TimerManager.Instance.CreateTimer(LoopTimerName, _loopTimerTime + _endScreenDelay, _temporaryLoop, _temporaryTag);
         //_loopTimer.TimesUp += HandleLoopTimerEnd;
         LoadSave();
     }
@@ -31,7 +46,7 @@ public class LoopController : MonoBehaviour
     /// </summary>
     private void HandleLoopTimerEnd()
     {
-        TimerManager.Instance.RemoveTimer("LoopTimer");
+        TimerManager.Instance.RemoveTimer(LoopTimerName);
 
         ResetLoop();
 
@@ -42,6 +57,15 @@ public class LoopController : MonoBehaviour
     /// </summary>
     public void ResetLoop()
     {
+        foreach(Timer timer in  _runningTimersAtStart)
+        {
+            timer.ResetTimer();
+            timer.StartTimer();
+        }
+        foreach (Timer timer in _pausedTimersAtStart)
+        {
+            timer.ResetTimer();
+        }
         SaveLoadManager.Instance.SaveGameToSaveFile();
         int activeSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(activeSceneIndex);
