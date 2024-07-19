@@ -7,6 +7,7 @@
 *******************************************************************/
 
 using UnityEngine;
+using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
 public class LoopController : MonoBehaviour
@@ -20,9 +21,22 @@ public class LoopController : MonoBehaviour
     public int LoopTimerTimer => _loopTimerTime;
     public string LoopTimerName => _loopTimerName;
 
+    private List<Timer> _runningTimersAtStart = new List<Timer>();
+    private List<Timer> _pausedTimersAtStart= new List<Timer>();
+
     private void Start()
     {
-        //Creating a timer. 
+        foreach(TimerStruct timer in TimerManager.Instance._timers)
+        {
+            if(timer.timer.IsRunning())
+            {
+                _runningTimersAtStart.Add(timer.timer);
+            }
+            else if (!timer.timer.IsRunning())
+            {
+                _pausedTimersAtStart.Add(timer.timer);  
+            }
+        }
         _loopTimer = TimerManager.Instance.CreateTimer(LoopTimerName, _loopTimerTime + _endScreenDelay, _temporaryLoop, _temporaryTag);
         //_loopTimer.TimesUp += HandleLoopTimerEnd;
         LoadSave();
@@ -43,7 +57,15 @@ public class LoopController : MonoBehaviour
     /// </summary>
     public void ResetLoop()
     {
-        TimerManager.Instance.RemoveTimer(LoopTimerName);
+        foreach(Timer timer in  _runningTimersAtStart)
+        {
+            timer.ResetTimer();
+            timer.StartTimer();
+        }
+        foreach (Timer timer in _pausedTimersAtStart)
+        {
+            timer.ResetTimer();
+        }
         SaveLoadManager.Instance.SaveGameToSaveFile();
         int activeSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(activeSceneIndex);
