@@ -125,13 +125,25 @@ public class PlayerController : MonoBehaviour
     {
         _isInDialogue = isLocked;
 
-        // Preventing camera from snapping after dialogue
-        if (!isLocked)
+        if (isLocked)
         {
-            _mainCamera.transform.rotation = transform.rotation;
+            CinemachineCore.UniformDeltaTimeOverride = 0;
+        }
+        else
+        {
+            Invoke(nameof(DelayedCameraUnlock), 0.075f);
+            _mainCamera.transform.eulerAngles = transform.forward;
         }
 
         _mainCamera.gameObject.SetActive(!isLocked);
+    }
+
+    /// <summary>
+    /// Helper function inovoked to delay regaining camera control post-dialogue
+    /// </summary>
+    private void DelayedCameraUnlock()
+    {
+        CinemachineCore.UniformDeltaTimeOverride = 1;
     }
 
     /// <summary>
