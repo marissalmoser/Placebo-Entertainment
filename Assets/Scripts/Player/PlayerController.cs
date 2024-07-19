@@ -131,7 +131,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            Invoke(nameof(DelayedCameraUnlock), 0.075f);
+            Invoke(nameof(DelayedCameraUnlock), 0.1f);
             _mainCamera.transform.eulerAngles = transform.forward;
         }
 
@@ -143,7 +143,8 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void DelayedCameraUnlock()
     {
-        CinemachineCore.UniformDeltaTimeOverride = 1;
+        if (!_isInDialogue)
+            CinemachineCore.UniformDeltaTimeOverride = 1;
     }
 
     /// <summary>
