@@ -18984,6 +18984,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 369858685784445828, guid: c51a393c8d0d671498fc65ccc1893dff, type: 3}
+      propertyPath: _disconnectedSparks
+      value: 
+      objectReference: {fileID: 1528977648}
+    - target: {fileID: 493918670180669429, guid: c51a393c8d0d671498fc65ccc1893dff, type: 3}
+      propertyPath: _connectSpark
+      value: 
+      objectReference: {fileID: 537533383}
+    - target: {fileID: 493918670180669429, guid: c51a393c8d0d671498fc65ccc1893dff, type: 3}
+      propertyPath: _disconnectedSparks
+      value: 
+      objectReference: {fileID: 1189572146}
     - target: {fileID: 3410367222980154362, guid: c51a393c8d0d671498fc65ccc1893dff, type: 3}
       propertyPath: m_Name
       value: WireSlots
@@ -19012,6 +19024,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slot 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7140442516779991974, guid: c51a393c8d0d671498fc65ccc1893dff, type: 3}
+      propertyPath: _connectSpark
+      value: 
+      objectReference: {fileID: 1431078972}
+    - target: {fileID: 7140442516779991974, guid: c51a393c8d0d671498fc65ccc1893dff, type: 3}
+      propertyPath: _disconnectedSparks
+      value: 
+      objectReference: {fileID: 1249029702}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -21467,15 +21487,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5053328850166941045, guid: ddee0cac0f4d6434e8ddb6fe20e9623b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -16.545792
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5053328850166941045, guid: ddee0cac0f4d6434e8ddb6fe20e9623b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.000042915344
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5053328850166941045, guid: ddee0cac0f4d6434e8ddb6fe20e9623b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.00015258789
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5053328850166941045, guid: ddee0cac0f4d6434e8ddb6fe20e9623b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -22678,6 +22698,18 @@ PrefabInstance:
       value: Robot Wire Sparks Correct (1)
       objectReference: {fileID: 0}
     - target: {fileID: 6329864016703300624, guid: f3ee0047d289a81438652cc28d1703d1, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6329864016703300624, guid: f3ee0047d289a81438652cc28d1703d1, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6329864016703300624, guid: f3ee0047d289a81438652cc28d1703d1, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6329864016703300624, guid: f3ee0047d289a81438652cc28d1703d1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.006
       objectReference: {fileID: 0}
@@ -22725,6 +22757,11 @@ PrefabInstance:
 --- !u!4 &531245602 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6329864016703300624, guid: f3ee0047d289a81438652cc28d1703d1, type: 3}
+  m_PrefabInstance: {fileID: 531245601}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &537533383 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3164813175098475585, guid: f3ee0047d289a81438652cc28d1703d1, type: 3}
   m_PrefabInstance: {fileID: 531245601}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &545583256
@@ -28783,15 +28820,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5053328850166941045, guid: ddee0cac0f4d6434e8ddb6fe20e9623b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16.545792
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5053328850166941045, guid: ddee0cac0f4d6434e8ddb6fe20e9623b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.000042915344
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5053328850166941045, guid: ddee0cac0f4d6434e8ddb6fe20e9623b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.00015258789
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5053328850166941045, guid: ddee0cac0f4d6434e8ddb6fe20e9623b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -36017,6 +36054,18 @@ PrefabInstance:
       value: Robot Wire Sparks Correct
       objectReference: {fileID: 0}
     - target: {fileID: 6329864016703300624, guid: f3ee0047d289a81438652cc28d1703d1, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6329864016703300624, guid: f3ee0047d289a81438652cc28d1703d1, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6329864016703300624, guid: f3ee0047d289a81438652cc28d1703d1, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6329864016703300624, guid: f3ee0047d289a81438652cc28d1703d1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.004
       objectReference: {fileID: 0}
@@ -37900,6 +37949,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5053328850166941045, guid: ddee0cac0f4d6434e8ddb6fe20e9623b, type: 3}
   m_PrefabInstance: {fileID: 1189572142}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &1189572146 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1373860831198249239, guid: ddee0cac0f4d6434e8ddb6fe20e9623b, type: 3}
+  m_PrefabInstance: {fileID: 1189572142}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1191802829
 GameObject:
   m_ObjectHideFlags: 0
@@ -38560,6 +38614,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 9216518817143763428, guid: 0eacfb7efde62e749831140f8710c38e, type: 3}
   m_PrefabInstance: {fileID: 1248315353}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1249029702 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1373860831198249239, guid: ddee0cac0f4d6434e8ddb6fe20e9623b, type: 3}
+  m_PrefabInstance: {fileID: 747503219}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1265810818
 PrefabInstance:
@@ -48664,6 +48723,18 @@ PrefabInstance:
       value: Robot Wire Sparks Correct (2)
       objectReference: {fileID: 0}
     - target: {fileID: 6329864016703300624, guid: f3ee0047d289a81438652cc28d1703d1, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6329864016703300624, guid: f3ee0047d289a81438652cc28d1703d1, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6329864016703300624, guid: f3ee0047d289a81438652cc28d1703d1, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6329864016703300624, guid: f3ee0047d289a81438652cc28d1703d1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.002
       objectReference: {fileID: 0}
@@ -48703,6 +48774,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6329864016703300624, guid: f3ee0047d289a81438652cc28d1703d1, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -48711,6 +48786,11 @@ PrefabInstance:
 --- !u!4 &1431078970 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6329864016703300624, guid: f3ee0047d289a81438652cc28d1703d1, type: 3}
+  m_PrefabInstance: {fileID: 1431078969}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1431078972 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3164813175098475585, guid: f3ee0047d289a81438652cc28d1703d1, type: 3}
   m_PrefabInstance: {fileID: 1431078969}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1439213717
@@ -50817,6 +50897,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!198 &1528977648 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1373860831198249239, guid: ddee0cac0f4d6434e8ddb6fe20e9623b, type: 3}
+  m_PrefabInstance: {fileID: 510408532}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1553708491
 PrefabInstance:
   m_ObjectHideFlags: 0
