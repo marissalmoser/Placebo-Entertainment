@@ -66,5 +66,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb565884e72767c439065f4cdf2d8a3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _itemDescription:
+    _description: Pills from the medical bay. These should help the captain.
+    _exitResponse: Leave
   PickUpRadius: 0
   myData: {fileID: 11400000, guid: 4140399a6ecfe844180bcab962e13806, type: 2}

@@ -13,6 +13,8 @@ using PlaceboEntertainment.UI;
 
 public class GearBehavior : MonoBehaviour, IInteractable
 {
+    [SerializeField] private string _interactPromptText = "GEAR";
+
     [Header("Individual Gear")]
     [SerializeField] private GameObject[] _gearSize;
     [SerializeField] private GameObject _gearIndi;
@@ -106,7 +108,7 @@ public class GearBehavior : MonoBehaviour, IInteractable
     /// </summary>
     public void DisplayInteractUI()
     {
-        TabbedMenu.Instance.ToggleInteractPrompt(true, "GEAR");
+        TabbedMenu.Instance.ToggleInteractPrompt(true, _interactPromptText);
     }
 
     /// <summary>

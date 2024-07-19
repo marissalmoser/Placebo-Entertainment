@@ -44,13 +44,14 @@ public class FishBehavior : MonoBehaviour, IInteractable
     [SerializeField] private Rigidbody _rb;
     [SerializeField] private Collider coll;
 
-
-
-
     [Header("UI Stuff")]
     [SerializeField] private Slider _waterGaugeUI;
     [SerializeField] private GameObject _canvasHolderUI;
-    
+    [SerializeField] private string _interactPromptText = "FISH";
+
+    [Header("VFX Stuff")]
+    [SerializeField] private ParticleSystem _waterSpray;
+    [SerializeField] private GameObject _fireAlarmLight;
 
     void Awake()
     {
@@ -97,7 +98,13 @@ public class FishBehavior : MonoBehaviour, IInteractable
             _refillNow = false;
             Vector3 _firePosition = new Vector3(_firePoint.transform.position.x, _firePoint.transform.position.y, _firePoint.transform.position.z);
             Instantiate(_water, _firePosition, Quaternion.identity);
+            _waterSpray.Play();
         }
+        else
+        {
+            _waterSpray.Stop();
+        }
+
         GameObject _waterFinder = GameObject.FindWithTag("Water");
         if (_waterFinder == null)
         {
@@ -138,6 +145,7 @@ public class FishBehavior : MonoBehaviour, IInteractable
             //GAME ENDS HERE
             _npcFish.SetActive(true);
             _minigameEndEvent.TriggerEvent(NpcEventTags.Fish);
+            _fireAlarmLight.SetActive(false);
         }
     }
     
@@ -168,7 +176,7 @@ public class FishBehavior : MonoBehaviour, IInteractable
     /// </summary>
     public void DisplayInteractUI()
     {
-        TabbedMenu.Instance.ToggleInteractPrompt(true, "FISH");
+        TabbedMenu.Instance.ToggleInteractPrompt(true, _interactPromptText);
     }
 
     /// <summary>

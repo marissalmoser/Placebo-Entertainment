@@ -18,6 +18,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float _moveSpeed;
     [SerializeField] float _jumpForce;
 
+    [Header("VFX Stuff")]
+    [SerializeField] private ParticleSystem _footPrints;
+
     public PlayerControls PlayerControls { get; private set; }
     public InputAction Move, Interact, Reset, Quit;
 
@@ -81,6 +84,7 @@ public class PlayerController : MonoBehaviour
             _velocity = transform.right * _moveDirection.x + transform.forward * _moveDirection.y;
             _velocity = _velocity.normalized * _moveSpeed;
             _rb.AddForce(_velocity, ForceMode.VelocityChange);
+            _footPrints.Play();
         }
         if(_isKinemat)
         {
@@ -121,13 +125,26 @@ public class PlayerController : MonoBehaviour
     {
         _isInDialogue = isLocked;
 
-        // Preventing camera from snapping after dialogue
-        if (!isLocked)
+        if (isLocked)
         {
-            _mainCamera.transform.rotation = transform.rotation;
+            CinemachineCore.UniformDeltaTimeOverride = 0;
+        }
+        else
+        {
+            Invoke(nameof(DelayedCameraUnlock), 0.1f);
+            _mainCamera.transform.eulerAngles = transform.forward;
         }
 
         _mainCamera.gameObject.SetActive(!isLocked);
+    }
+
+    /// <summary>
+    /// Helper function inovoked to delay regaining camera control post-dialogue
+    /// </summary>
+    private void DelayedCameraUnlock()
+    {
+        if (!_isInDialogue)
+            CinemachineCore.UniformDeltaTimeOverride = 1;
     }
 
     /// <summary>
@@ -137,6 +154,7 @@ public class PlayerController : MonoBehaviour
     {
         if (_rb != null)
             _rb.velocity = new Vector3(0, _rb.velocity.y, 0);
+            _footPrints.Stop();
     }
 
     void OnTriggerEnter(Collider col)

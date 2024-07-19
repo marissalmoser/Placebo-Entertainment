@@ -22,6 +22,8 @@ public class DialInteraction : MonoBehaviour, IInteractable
 
     public DialDirection _direction { get; private set; }
 
+    [SerializeField] private string _interactPromptText = "DIAL";
+
     /// <summary>
     /// Sets dial direction
     /// </summary>
@@ -48,7 +50,7 @@ public class DialInteraction : MonoBehaviour, IInteractable
     /// </summary>
     public void DisplayInteractUI()
     {
-        TabbedMenu.Instance.ToggleInteractPrompt(true, "DIAL");
+        TabbedMenu.Instance.ToggleInteractPrompt(true, _interactPromptText);
     }
 
     /// <summary>

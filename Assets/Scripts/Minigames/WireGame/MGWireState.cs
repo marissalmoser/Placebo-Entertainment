@@ -16,8 +16,10 @@ public class MGWireState : MonoBehaviour
     public static Action WireGameWon;
     [SerializeField] private NpcEvent _gameWonEvent;
 
-    private const int _maxAttachments = 3;
+    [SerializeField] private int _maxAttachments; // = 3;
     private int _currentAttachments = 0;
+
+    public List<MGWireSlot> ListOfWireSlots;
 
     private void OnEnable()
     {
@@ -35,10 +37,23 @@ public class MGWireState : MonoBehaviour
     /// </summary>
     private void AttachedWire()
     {
-        if(++_currentAttachments == _maxAttachments)
+        //counts how many wires are connected
+        foreach(MGWireSlot wireSlot in ListOfWireSlots)
+        {
+            if(wireSlot.IsConnected)
+            {
+                ++_currentAttachments;
+            }
+        }
+        
+        //checks if enough wires are connected to end the game
+        if (_currentAttachments >= _maxAttachments)
         {
             EndWireGame();
         }
+
+        //resets count
+        _currentAttachments = 0;
     }
 
     /// <summary>

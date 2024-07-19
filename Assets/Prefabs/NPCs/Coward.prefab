@@ -317,7 +317,6 @@ MonoBehaviour:
     _playingMinigameState: {fileID: 0}
     _postMinigameState: {fileID: 0}
     _failureState: {fileID: 0}
-  _targetLightBulbItem: {fileID: 11400000, guid: 773aae8864bf18d4a9e19e01b7e04081, type: 2}
   _secondsUntilExplosion: 180
 --- !u!114 &4840030442360983682
 MonoBehaviour:
@@ -408,6 +407,23 @@ MonoBehaviour:
         - m_Target: {fileID: 1230460638816517745}
           m_TargetAssemblyTypeName: CowardNpc, Assembly-CSharp
           m_MethodName: OnRobotFailState
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
+  - _npcEvent: {fileID: 11400000, guid: b0ff38f0f20db8a4ab04033934de185c, type: 2}
+    _npcEventTag: 1
+    _onEventTriggered:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1230460638816517745}
+          m_TargetAssemblyTypeName: CowardNpc, Assembly-CSharp
+          m_MethodName: LightbulbEventTriggered
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
