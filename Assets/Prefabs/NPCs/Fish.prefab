@@ -145,7 +145,7 @@ MonoBehaviour:
   _stateDialogueTrees:
     _idleState:
     - _dialogue:
-      - Hello. You look a bit frazzled. Are you ok bubbles?
+      - Hello. You look a bit frazzled. Are you ok, bubbles?
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 2
@@ -169,8 +169,8 @@ MonoBehaviour:
         _advancesNpcState: 0
         _endsDialogue: 0
     - _dialogue:
-      - "No, it\u2019s probably just in your head. Take a few deep breaths. I'll
-        still be here if you want to talk about it later."
+      - "Hmm\u2026 I can\u2019t smell anything. Take a few deep breaths, I\u2019m
+        sure everything is fine."
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 2
@@ -180,8 +180,7 @@ MonoBehaviour:
         _advancesNpcState: 0
         _endsDialogue: 1
     - _dialogue:
-      - "Now that you mention it I do. Something must be wrong in the kitchen. I\u2019ll
-        get some water and we can go put it out."
+      - Now that you mention it, I do. Something must be wrong.
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 2
@@ -191,8 +190,8 @@ MonoBehaviour:
         _advancesNpcState: 0
         _endsDialogue: 0
     - _dialogue:
-      - "There\u2019s not really any buckets around. I can hold a lot of water. If
-        you pick me up and direct me at the flames I\u2019ll put them out."
+      - "There aren\u2019t really any buckets around. But I can hold a lot of water.
+        If you pick me up and direct me at the flames, I\u2019ll put them out!"
       _playerResponses:
       - _eventToTrigger: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
         _eventTag: 2
@@ -202,7 +201,7 @@ MonoBehaviour:
         _advancesNpcState: 0
         _endsDialogue: 1
     - _dialogue:
-      - "Well that\u2019s not good. Is Goop alright?"
+      - "Well that\u2019s not good. Is Olpy alright?"
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 2
@@ -214,9 +213,8 @@ MonoBehaviour:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 2
         _hasPrerequisiteCheck: 0
-        _answer: "I\u2019m not sure, and I don\u2019t speak the right language to
-          ask."
-        _nextResponseIndex: 08000000
+        _answer: Their suit was turned off, but they seemed fine.
+        _nextResponseIndex: 15000000
         _advancesNpcState: 0
         _endsDialogue: 0
     - _dialogue:
@@ -231,9 +229,8 @@ MonoBehaviour:
         _advancesNpcState: 0
         _endsDialogue: 0
     - _dialogue:
-      - "But it also means that they don\u2019t have their translator with them.
-        Luckily for you I know Goop\u2019s language, it\u2019s pretty easy to pick
-        up."
+      - "But it could mean their translator is broken. Lucky for you, I know Olpy\u2019s
+        language."
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 2
@@ -243,19 +240,17 @@ MonoBehaviour:
         _advancesNpcState: 0
         _endsDialogue: 0
     - _dialogue:
-      - "I had a book for it, but it seems I\u2019ve misplaced it. It\u2019s somewhere
-        here on the ship. If you find it, it\u2019s yours to keep."
+      - "Let me teach it to you! It\u2019ll be fun! Now where is that\u2026"
       _playerResponses:
-      - _eventToTrigger: {fileID: 11400000, guid: b0ff38f0f20db8a4ab04033934de185c, type: 2}
+      - _eventToTrigger: {fileID: 0}
         _eventTag: 2
         _hasPrerequisiteCheck: 0
-        _answer: <b>Leave
-        _nextResponseIndex: 07000000
+        _answer: <b>Next
+        _nextResponseIndex: 08000000
         _advancesNpcState: 0
-        _endsDialogue: 1
+        _endsDialogue: 0
     - _dialogue:
-      - "Hmm, the way to find out is to ask. Luckily for you I know Goop\u2019s language,
-        it\u2019s pretty easy to pick up."
+      - "Ah, suds\u2026 I had a book for it, but it seems I\u2019ve misplaced it."
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 2
@@ -265,8 +260,8 @@ MonoBehaviour:
         _advancesNpcState: 0
         _endsDialogue: 0
     - _dialogue:
-      - "I had a book for it, but it seems I\u2019ve misplaced it. It\u2019s somewhere
-        here on the ship. If you find it, it\u2019s yours to keep."
+      - "Ah, well, It\u2019s somewhere here on the ship. If you find it, it\u2019s
+        yours to keep."
       _playerResponses:
       - _eventToTrigger: {fileID: 11400000, guid: b0ff38f0f20db8a4ab04033934de185c, type: 2}
         _eventTag: 2
@@ -276,7 +271,7 @@ MonoBehaviour:
         _advancesNpcState: 0
         _endsDialogue: 1
     - _dialogue:
-      - A time loop you say? That sure is a problem.
+      - A time loop you say? My my, that sure is a problem.
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 2
@@ -286,7 +281,7 @@ MonoBehaviour:
         _advancesNpcState: 0
         _endsDialogue: 0
     - _dialogue:
-      - First things first, take a deep breath and slow down.
+      - First things first, take a deep breath and sloooooow down.
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 2
@@ -296,8 +291,8 @@ MonoBehaviour:
         _advancesNpcState: 0
         _endsDialogue: 0
     - _dialogue:
-      - You know this reminds me of an old expedition from back in the day. My good
-        friend Benni went on that expedition.
+      - You know, this reminds me of when my good friend Benni set out on an expedition
+        very similar to this one.
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 2
@@ -307,8 +302,7 @@ MonoBehaviour:
         _advancesNpcState: 0
         _endsDialogue: 0
     - _dialogue:
-      - "That ship has yet to be heard from. For a while there wasn\u2019t a doubt
-        in my mind that they would return."
+      - "\u2026Their ship has yet to be heard from."
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 2
@@ -318,8 +312,8 @@ MonoBehaviour:
         _advancesNpcState: 0
         _endsDialogue: 0
     - _dialogue:
-      - "A week after their supposed return date passed everyone I knew thought they
-        were gone for good. I\u2019ve never given up hope."
+      - A week after their supposed return date passed, everyone I knew thought they
+        were gone for good.
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 2
@@ -329,8 +323,7 @@ MonoBehaviour:
         _advancesNpcState: 0
         _endsDialogue: 0
     - _dialogue:
-      - "If I think about the 5,000 years they\u2019ve been missing, I\u2019ll feel
-        the doubt creep in. I have to take it one day at a time."
+      - "For a while, there wasn\u2019t a doubt in my mind that they would return."
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 2
@@ -340,9 +333,8 @@ MonoBehaviour:
         _advancesNpcState: 0
         _endsDialogue: 0
     - _dialogue:
-      - "Bubbles\u2026 I want you to take a lesson from this. You may feel the doubt
-        creep in, but this time loop is an opportunity to learn anything you want
-        to learn."
+      - "But if I think about the 5,000 years they\u2019ve been missing, I\u2019ll
+        feel the doubt creep in."
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 2
@@ -352,14 +344,57 @@ MonoBehaviour:
         _advancesNpcState: 0
         _endsDialogue: 0
     - _dialogue:
-      - "There\u2019s no rush to do everything right. Take it one loop at a time.
-        You have all the time in the world."
+      - '*Sigh*'
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 2
+        _hasPrerequisiteCheck: 0
+        _answer: <b>Next
+        _nextResponseIndex: 12000000
+        _advancesNpcState: 0
+        _endsDialogue: 0
+    - _dialogue:
+      - "As all those years passed, I\u2019ve learned that all you can do is take
+        things one day at a time."
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 2
+        _hasPrerequisiteCheck: 0
+        _answer: <b>Next
+        _nextResponseIndex: 13000000
+        _advancesNpcState: 0
+        _endsDialogue: 0
+    - _dialogue:
+      - "Bubbles\u2026 You may feel the doubt creep in, but this time loop whatchamacallit
+        is a gift, if you think about it\u2026"
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 2
+        _hasPrerequisiteCheck: 0
+        _answer: <b>Next
+        _nextResponseIndex: 14000000
+        _advancesNpcState: 0
+        _endsDialogue: 0
+    - _dialogue:
+      - "There\u2019s no rush to do everything right. Just take it one loop at a
+        time. You\u2019ve got as many as you need."
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 2
         _hasPrerequisiteCheck: 0
         _answer: <b>Leave
-        _nextResponseIndex: 
+        _nextResponseIndex: 14000000
+        _advancesNpcState: 0
+        _endsDialogue: 1
+    - _dialogue:
+      - "Their suit turned off, eh? Ah, don\u2019t worry, Olpy will be alright. The
+        ole\u2019 thing malfunctions sometimes, they\u2019re used to it."
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 2
+        _hasPrerequisiteCheck: 0
+        _answer: <b>Leave
+        _nextResponseIndex: 14000000
         _advancesNpcState: 0
         _endsDialogue: 1
     _minigameReadyState: []
