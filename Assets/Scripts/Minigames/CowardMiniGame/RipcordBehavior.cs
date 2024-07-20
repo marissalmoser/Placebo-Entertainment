@@ -158,12 +158,21 @@ public class RipcordBehavior : MonoBehaviour
             StopCoroutine(blinkingLight());
             _gears.SetActive(true);
             _successfulPulls.color = Color.green;
-            _steam.Stop();
+            StopRipcordSteam();
             //Destroy(this);
         }
         //Debug.Log(_numReleased);
 
     }
+
+    /// <summary>
+    /// Stops the steam coming from the ripcord.
+    /// </summary>
+    public void StopRipcordSteam()
+    {
+        _steam.Stop();
+    }
+
     IEnumerator PauseEPress()
     {
         yield return new WaitForSeconds(0.4f);
