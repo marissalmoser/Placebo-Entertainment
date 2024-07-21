@@ -43,7 +43,7 @@ public class GeneratorMinigameManager : MonoBehaviour
         //else enable ripcord interaction
         else
         {
-            _ripcord.GetComponent<RipcordBehavior>().GameStart();
+            _ripcord.GetComponent<RipcordBehavior>().ActivateMinigame();
         }
     }
 }

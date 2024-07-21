@@ -410,6 +410,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &426253523 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1504275151306712268, guid: eb31e5856b67aeb4ea3a28c9716afc49, type: 3}
+  m_PrefabInstance: {fileID: 1065288567}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &477045053 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3717106574432832137, guid: c305122b038e6e048b647787017c7c42, type: 3}
@@ -756,10 +761,66 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1504275151306712268, guid: eb31e5856b67aeb4ea3a28c9716afc49, type: 3}
+      propertyPath: m_Name
+      value: Light1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1504275151306712268, guid: eb31e5856b67aeb4ea3a28c9716afc49, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1542659311044884489, guid: eb31e5856b67aeb4ea3a28c9716afc49, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1542659311044884489, guid: eb31e5856b67aeb4ea3a28c9716afc49, type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1641950554968106582, guid: eb31e5856b67aeb4ea3a28c9716afc49, type: 3}
+      propertyPath: m_Name
+      value: Light3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2969817926778219342, guid: eb31e5856b67aeb4ea3a28c9716afc49, type: 3}
+      propertyPath: _speed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2969817926778219342, guid: eb31e5856b67aeb4ea3a28c9716afc49, type: 3}
+      propertyPath: _goalObject
+      value: 
+      objectReference: {fileID: 3869838787287514708, guid: 8a667c2096252f04a899cdaa3ce0087d, type: 3}
+    - target: {fileID: 2969817926778219342, guid: eb31e5856b67aeb4ea3a28c9716afc49, type: 3}
+      propertyPath: _returnSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2969817926778219342, guid: eb31e5856b67aeb4ea3a28c9716afc49, type: 3}
       propertyPath: _targetFollow
       value: 
       objectReference: {fileID: 477045053}
+    - target: {fileID: 2969817926778219342, guid: eb31e5856b67aeb4ea3a28c9716afc49, type: 3}
+      propertyPath: _lightBlinkSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2969817926778219342, guid: eb31e5856b67aeb4ea3a28c9716afc49, type: 3}
+      propertyPath: _lights.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2969817926778219342, guid: eb31e5856b67aeb4ea3a28c9716afc49, type: 3}
+      propertyPath: _lights.Array.data[0]
+      value: 
+      objectReference: {fileID: 426253523}
+    - target: {fileID: 2969817926778219342, guid: eb31e5856b67aeb4ea3a28c9716afc49, type: 3}
+      propertyPath: _lights.Array.data[1]
+      value: 
+      objectReference: {fileID: 1274813667}
+    - target: {fileID: 2969817926778219342, guid: eb31e5856b67aeb4ea3a28c9716afc49, type: 3}
+      propertyPath: _lights.Array.data[2]
+      value: 
+      objectReference: {fileID: 1842954818}
+    - target: {fileID: 2969817926778219342, guid: eb31e5856b67aeb4ea3a28c9716afc49, type: 3}
+      propertyPath: _distanceFromGoalToScore
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3442746782312942411, guid: eb31e5856b67aeb4ea3a28c9716afc49, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -768,6 +829,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 355294247}
+    - target: {fileID: 5194293866317158357, guid: eb31e5856b67aeb4ea3a28c9716afc49, type: 3}
+      propertyPath: m_Name
+      value: Light2
+      objectReference: {fileID: 0}
     - target: {fileID: 6279909926088145406, guid: eb31e5856b67aeb4ea3a28c9716afc49, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -775,6 +840,14 @@ PrefabInstance:
     - target: {fileID: 6419782213234926937, guid: eb31e5856b67aeb4ea3a28c9716afc49, type: 3}
       propertyPath: m_Name
       value: Generator Minigame
+      objectReference: {fileID: 0}
+    - target: {fileID: 6610914691402908201, guid: eb31e5856b67aeb4ea3a28c9716afc49, type: 3}
+      propertyPath: m_Name
+      value: Ripcord
+      objectReference: {fileID: 0}
+    - target: {fileID: 8474918360989098863, guid: eb31e5856b67aeb4ea3a28c9716afc49, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.193
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -790,6 +863,11 @@ PrefabInstance:
 --- !u!1 &1122667440 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6610914691402908201, guid: eb31e5856b67aeb4ea3a28c9716afc49, type: 3}
+  m_PrefabInstance: {fileID: 1065288567}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1274813667 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5194293866317158357, guid: eb31e5856b67aeb4ea3a28c9716afc49, type: 3}
   m_PrefabInstance: {fileID: 1065288567}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1531948535
@@ -1096,6 +1174,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fcbfa8208ca5c54fa83f3a5c518bb3d, type: 3}
+--- !u!1 &1842954818 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1641950554968106582, guid: eb31e5856b67aeb4ea3a28c9716afc49, type: 3}
+  m_PrefabInstance: {fileID: 1065288567}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

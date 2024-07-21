@@ -9,6 +9,6 @@ public class GeneratorDemoStart : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _manager.GetComponent<RipcordBehavior>().GameStart();
+        _manager.GetComponent<RipcordBehavior>().ActivateMinigame();
     }
 }
