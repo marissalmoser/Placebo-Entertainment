@@ -12,15 +12,22 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using PlaceboEntertainment.UI;
+using UnityEngine.InputSystem;
+using System;
 
 public class RipcordBehavior : MonoBehaviour
 {
-    [SerializeField] private float _returnSpeed;
     [SerializeField] private GameObject _gears;
 
-    [Header("Scoring Information")]
-    [SerializeField] private GameObject _goalObject;
-    [SerializeField] private float _distanceFromGoalToScore;
+    [Header("Ripcord Stats")]
+    [SerializeField] private float _followPlayerSpeed;
+    [SerializeField] private Transform _maxPlayerDetectionPosition;
+    [SerializeField] private float _returnSpeed;
+    
+
+    [Header("Goal/Scoring Information")]
+    [SerializeField] private GameObject _scoringRangeObject;
+    [SerializeField] private Transform _maxGoalSpawnPosition;
 
     [Header("UI")]
     [SerializeField] private TextMeshPro _successfulPulls;
@@ -28,29 +35,29 @@ public class RipcordBehavior : MonoBehaviour
     [Header("VFX")]
     [SerializeField] private ParticleSystem _steam;
 
-    [Header("Lights")]
-    [SerializeField] private float _lightBlinkSpeed;
-    [SerializeField] private GameObject[] _lights;
-
     private PlayerController _playerController;
     private GameObject _player;
+
+    private Vector3 _startPosition;
+    private int _score;
+    private GameObject _scoreDetectionRange;
+
+    //bitmask to hit later 8 (player)
+    int layerMask = 1 << 8;
+
     private bool _isFollowingPlayer;
     private bool _lightIsBlinking;
     private bool _canScore;
     private bool _isMinigameActive;
-
-    private Vector3 _startPosition;
-
     private bool _isAtStartPosition;
-    private int _score;
-    private GameObject _goal;
 
-    // Start is called before the first frame update
+    public static Action OnRipcordScore;
+    public static Action<bool> OnPlayerDetectionChange;
+
     void Start()
     {
         _playerController = FindObjectOfType<PlayerController>();
         _player = _playerController.gameObject;
-        
         _isFollowingPlayer = false;
         _canScore = false;
         _isAtStartPosition = true;
@@ -58,18 +65,36 @@ public class RipcordBehavior : MonoBehaviour
         _startPosition = transform.position;
     }
 
+    private void FixedUpdate()
+    {
+        // Cancels the ripcord following if the player is out of the detection range
+        if (_isFollowingPlayer && Physics.OverlapCapsule(transform.position, _maxPlayerDetectionPosition.position, 1f, layerMask).Length <= 0)
+        {
+            StartCoroutine(ReturnToStartPosition());
+        }
+    }
+
+    /// <summary>
+    /// Activates the minigame
+    /// </summary>
     public void ActivateMinigame()
     {
         _isMinigameActive = true;
-        StartCoroutine(BlinkingLight());
     }
 
+    /// <summary>
+    /// Deactivates the minigame
+    /// </summary>
     private void DeactivateMinigame()
     {
         _isMinigameActive = false;
     }
 
-    private void OnInteract()
+    /// <summary>
+    /// When the player presses W within range of the ripcord
+    /// </summary>
+    /// <param name="obj"></param>
+    private void OnInteract(InputAction.CallbackContext obj)
     {
         if (_isAtStartPosition && _score < 3)
         {
@@ -82,6 +107,10 @@ public class RipcordBehavior : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Ripcord follows the players z position backwards
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator FollowPlayer()
     {
         _isFollowingPlayer = true;
@@ -89,53 +118,40 @@ public class RipcordBehavior : MonoBehaviour
 
         while (_isFollowingPlayer)
         {
-            transform.position =
-                    new Vector3(transform.position.x, transform.position.y, Mathf.Lerp(transform.position.z, _player.transform.position.z + 1f, Time.fixedDeltaTime * 1.25f));
+            if (_player.transform.position.z + 1 < transform.position.z)
+            {
+                // Chose to lerp the z value to prevent visual tearing.
+                transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.Lerp(transform.position.z, _player.transform.position.z + 1f, Time.fixedDeltaTime * _followPlayerSpeed));
+            }
 
+            // Waits for fixed update to align with the players movement update.
             yield return new WaitForFixedUpdate();
         }
     }
 
+    /// <summary>
+    /// Spawns the goal object that represents the range where the player can letgo to score
+    /// </summary>
     private void SpawnTargetObject()
     {
-        Vector3 _goalPosition = new Vector3(_startPosition.x, _startPosition.y, Random.Range(_distanceFromGoalToScore, _startPosition.z));
-        _goal = Instantiate(_goalObject, _goalPosition, Quaternion.identity);
-        _goal.GetComponent<Collider>().enabled = false;
+        Vector3 _goalPosition = new Vector3(_startPosition.x, _startPosition.y, UnityEngine.Random.Range(_startPosition.z, _maxGoalSpawnPosition.transform.position.z));
+        _scoreDetectionRange = Instantiate(_scoringRangeObject, _goalPosition, Quaternion.identity);
     }
 
-    IEnumerator BlinkingLight()
-    {
-        while (_isMinigameActive)
-        {
-           /* if (_goal != null && transform.position.z > _goal.transform.position.z + _distanceFromGoalToScore || transform.position.z < _goal.transform.position.z - _distanceFromGoalToScore)
-            {
-                _canScore = true;
-                _lights[_score].SetActive(true);
-            }*/
-
-            // If the ripcord is within the scoring distance threshhold, disable the blinking lights
-            if (transform.position.z < _goal.transform.position.z + _distanceFromGoalToScore || transform.position.z > _goal.transform.position.z - _distanceFromGoalToScore)
-            {
-                _canScore = false;
-                _lights[_score].SetActive(true);
-                yield return new WaitForSeconds(_lightBlinkSpeed);
-                _lights[_score].SetActive(false);
-                yield return new WaitForSeconds(_lightBlinkSpeed);
-            }
-        }
-    }
-
+    /// <summary>
+    /// Ripcord returns to the wall
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator ReturnToStartPosition()
     {
         _isFollowingPlayer = false;
-        _goal.GetComponent<Collider>().enabled = true;
-        _canScore = true;
+        _scoreDetectionRange.GetComponent<Collider>().enabled = true;
 
         while (!_isAtStartPosition)
         {
-            transform.position =
-                         new Vector3(transform.position.x, transform.position.y, Mathf.Lerp(transform.position.z, _startPosition.z, Time.fixedDeltaTime * _returnSpeed));
+            transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.Lerp(transform.position.z, _startPosition.z, Time.fixedDeltaTime * _returnSpeed));
 
+            // Small margin of error to determine if the ripcord is at start
             if (transform.position.z >= (_startPosition.z - 0.1f))
             {
                 _isAtStartPosition = true;
@@ -144,24 +160,32 @@ public class RipcordBehavior : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
 
-        if(_goal != null)
+        // Make sure the score detection range is destroyed once the ripcord returns to the start position
+        if(_scoreDetectionRange != null)
         {
-            Destroy(_goal);
+            Destroy(_scoreDetectionRange);
         }
     }
 
+    /// <summary>
+    /// When the player successfully scores
+    /// </summary>
     private void OnScore()
     {
-        _lights[_score].SetActive(true);
-        _score++;
-        _successfulPulls.text = (_score).ToString();
+        if (_canScore)
+        {
+            _score++;
+
+            OnRipcordScore?.Invoke();
+            _successfulPulls.text = (_score).ToString();
+        }
 
         // Winning score
         if (_score >= 3)
         {
             _gears.SetActive(true);
             _successfulPulls.color = Color.green;
-            StopRipcordSteam();
+            StopGeneratorSteam();
 
             DeactivateMinigame();
         }
@@ -170,7 +194,7 @@ public class RipcordBehavior : MonoBehaviour
     /// <summary>
     /// Stops the steam coming from the ripcord.
     /// </summary>
-    public void StopRipcordSteam()
+    public void StopGeneratorSteam()
     {
         _steam.Stop();
     }
@@ -179,16 +203,23 @@ public class RipcordBehavior : MonoBehaviour
     {
         if (_isMinigameActive)
         {
-            if (collider.gameObject.tag == "Release" && _canScore)
-            {
-                OnScore();
-                Destroy(collider.gameObject);
-            }
-
+            // Enable player interaction
             if (collider.gameObject.tag == "Player")
             {
-                _playerController.Interact.started += ctx => OnInteract();
+                _playerController.Interact.started += OnInteract;
                 TabbedMenu.Instance.ToggleInteractPrompt(true, "GRAB");
+            }
+
+            // Enable scoring when in score-range of the goal when following the player
+            if (collider.gameObject.tag != "Release")
+            {
+                return;
+            }
+
+            if (_isFollowingPlayer)
+            {
+                OnPlayerDetectionChange?.Invoke(true);
+                _canScore = true;
             }
         }
     }
@@ -197,10 +228,26 @@ public class RipcordBehavior : MonoBehaviour
     {
         if (_isMinigameActive)
         {
+            // Disables player interaction & should stop following player if they leave
             if (collider.gameObject.tag == "Player")
             {
-                _playerController.Interact.started -= ctx => OnInteract();
+                _playerController.Interact.started -= OnInteract;
                 TabbedMenu.Instance.ToggleInteractPrompt(false);
+            }
+
+            // Disable scoring if scoring range is exited when following player, otherwise, score points.
+            if (collider.gameObject.tag != "Release")
+            {
+                return;
+            }
+            if (_isFollowingPlayer)
+            {
+                _canScore = false;
+                OnPlayerDetectionChange?.Invoke(false); ;
+            }
+            else
+            {
+                OnScore();
             }
         }
     }
