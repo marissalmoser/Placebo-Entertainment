@@ -246,7 +246,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5497887449726121428}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: PlayerDetectionRange
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -261,7 +261,7 @@ Transform:
   m_GameObject: {fileID: 2708476680567683877}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -7.63}
+  m_LocalPosition: {x: 0, y: 0, z: -4.95}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -463,7 +463,7 @@ Transform:
   m_GameObject: {fileID: 3007890486219347051}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.70710677, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -8.13, y: 6.7174478, z: -19.86}
+  m_LocalPosition: {x: -8.13, y: 8.2, z: -7.56}
   m_LocalScale: {x: 0.085, y: 1.19, z: 0.34}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1008,7 +1008,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2766
+  m_VersionIndex: 2769
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1639,6 +1639,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7366979465635975259, guid: 5e4440da8a7d6d941bfce3d41aba130e, type: 3}
+      propertyPath: _scoringRangeObject
+      value: 
+      objectReference: {fileID: 3869838787287514708, guid: 8a667c2096252f04a899cdaa3ce0087d, type: 3}
+    - target: {fileID: 7366979465635975259, guid: 5e4440da8a7d6d941bfce3d41aba130e, type: 3}
       propertyPath: _lights.Array.data[0]
       value: 
       objectReference: {fileID: 1504275151306712268}
@@ -1655,6 +1659,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5497887449726121428}
     - target: {fileID: 7366979465635975259, guid: 5e4440da8a7d6d941bfce3d41aba130e, type: 3}
+      propertyPath: _maxGoalSpawnPosition
+      value: 
+      objectReference: {fileID: 1360265397287466867}
+    - target: {fileID: 7366979465635975259, guid: 5e4440da8a7d6d941bfce3d41aba130e, type: 3}
       propertyPath: _listLights.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -1670,6 +1678,10 @@ PrefabInstance:
       propertyPath: _listLights.Array.data[2]
       value: 
       objectReference: {fileID: 1641950554968106582}
+    - target: {fileID: 7366979465635975259, guid: 5e4440da8a7d6d941bfce3d41aba130e, type: 3}
+      propertyPath: _maxPlayerDetectionPosition
+      value: 
+      objectReference: {fileID: 5497887449726121428}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2121635463416047298}
   - component: {fileID: 6139527705531569771}
   m_Layer: 0
-  m_Name: Ripcord Release Area
+  m_Name: RipcordReleaseArea
   m_TagString: Release
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

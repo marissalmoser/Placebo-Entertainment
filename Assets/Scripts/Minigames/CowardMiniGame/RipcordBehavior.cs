@@ -21,9 +21,9 @@ public class RipcordBehavior : MonoBehaviour
 
     [Header("Ripcord Stats")]
     [SerializeField] private float _followPlayerSpeed;
-    [SerializeField] private Transform _maxPlayerDetectionPosition;
     [SerializeField] private float _returnSpeed;
-    
+    [SerializeField] private Transform _maxPlayerDetectionPosition;
+
 
     [Header("Goal/Scoring Information")]
     [SerializeField] private GameObject _scoringRangeObject;
