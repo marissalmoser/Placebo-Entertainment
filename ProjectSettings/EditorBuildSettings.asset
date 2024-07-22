@@ -8,16 +8,13 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/MainMenuScene.unity
     guid: 434bfe2d41104ae4e94642d0a7a857c0
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/IntroScene.unity
     guid: 141752bf3b1737c41ae866c2047e515d
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/GameScene.unity
     guid: bfdd2d91b9b8d014f99107d288c64439
-  - enabled: 1
-    path: Assets/Scenes/TestGyms/GeneratorMini.unity
-    guid: f6e3a18986d65154e98ae0e21d287652
   m_configObjects: {}
