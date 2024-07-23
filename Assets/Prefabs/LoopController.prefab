@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5984982064262633398}
   - component: {fileID: 578804054939250850}
+  - component: {fileID: 5918803065580784463}
   m_Layer: 0
   m_Name: LoopController
   m_TagString: Untagged
@@ -44,4 +45,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5462fa4265d98a46a787c5c650b98d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loopTimerTime: 10
+  _loopTimerName: LoopTimer
+  _loopTimerTime: 360
+  _endScreenDelay: 5
+  _temporaryLoop: {fileID: 11400000, guid: 3ecd2838e2ea86b42a087aad7f6a97a6, type: 2}
+  _temporaryTag: 8
+--- !u!114 &5918803065580784463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5278445670614390501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a0acc881a336094997b0fb61c6d1983, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _eventsToListenFor:
+  - _npcEvent: {fileID: 11400000, guid: 3ecd2838e2ea86b42a087aad7f6a97a6, type: 2}
+    _npcEventTag: 8
+    _onEventTriggered:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 578804054939250850}
+          m_TargetAssemblyTypeName: LoopController, Assembly-CSharp
+          m_MethodName: ResetLoop
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
