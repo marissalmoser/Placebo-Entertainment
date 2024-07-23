@@ -247,8 +247,12 @@ public abstract class BaseNpc : MonoBehaviour
             _isInteracting = false;
             _shouldEndDialogue = false;
             _tabbedMenu.ToggleDialogue(false);
-            _playerController.LockCharacter(false);
             _playerInteractBehavior.StartDetectingInteractions();
+
+            // Prevents camera jittering when trying to talk to an NPC with no dialogue
+            if (_stateDialogueTrees.GetStateData(_currentState).Length > 0)
+                _playerController.LockCharacter(false);
+
             return;
         }
 
