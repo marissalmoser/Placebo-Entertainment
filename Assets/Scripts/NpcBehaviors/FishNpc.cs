@@ -1,6 +1,6 @@
 /******************************************************************
 *    Author: Elijah Vroman
-*    Contributors: 
+*    Contributors: Nick Grinstead
 *    Date Created: 6/25/24
 *    Description: NPC class containing logic for the Fish NPC.
 *******************************************************************/
@@ -8,13 +8,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class FishNpc : BaseNpc
 {
+    [SerializeField] private Vector3 _postMinigameFishPos;
+
     private bool _enteredFireRoom = false;
     private bool _hasfish;
     [SerializeField] private int secondsUntilFailFireGame;
     private float _timeElapsed = 0f;
+
+    [SerializeField] private float _fadeOutTime;
+    //[SerializeField] private GameObject _fadeOutObject;
+    //[SerializeField] private Image _fadeOutImage;
+    [SerializeField] private UIDocument _fadeOutDoc;
+    private VisualElement _fadeOutElement;
+
+    private const string FadeOutElementName = "FadeOutBackground";
+    private const string FadeOutClassName = "fadeOut";
+    private const string FadeInClassName = "fadeIn";
+
+    protected override void Initialize()
+    {
+        base.Initialize();
+
+        _fadeOutElement = _fadeOutDoc.rootVisualElement.Q(FadeOutElementName);
+        _fadeOutElement.style.transitionProperty = new List<StylePropertyName> { "opacity" };
+        _fadeOutElement.style.transitionDuration = new List<TimeValue> { new TimeValue(_fadeOutTime, TimeUnit.Second) };
+        _fadeOutElement.style.transitionTimingFunction = new List<EasingFunction> { EasingMode.Linear };
+    }
 
     public override void CheckForStateChange()
     {
@@ -28,14 +52,31 @@ public class FishNpc : BaseNpc
         }
     }
 
-    protected override void EnterMinigameReady()
-    {
-        base.EnterMinigameReady(); 
-    }
-
     protected override void EnterPostMinigame()
     {
-        base.EnterPostMinigame();  
+        base.EnterPostMinigame();
+
+        StartCoroutine(FadeToBlack());
+        _playerController.LockCharacter(true);
+    }
+
+    private IEnumerator FadeToBlack()
+    {
+        // Fade out
+        _fadeOutDoc.rootVisualElement.style.display = DisplayStyle.Flex;
+        _fadeOutElement.style.opacity = 1;
+
+        yield return new WaitForSeconds(_fadeOutTime);
+
+        // Fade in
+        transform.localPosition = _postMinigameFishPos;
+        _fadeOutElement.style.opacity = 0;
+
+        yield return new WaitForSeconds(_fadeOutTime);
+
+        _fadeOutDoc.rootVisualElement.style.display = DisplayStyle.None;
+
+        Interact();
     }
 
     protected override void EnterFailure()
