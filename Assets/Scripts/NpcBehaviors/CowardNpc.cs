@@ -147,15 +147,17 @@ public class CowardNpc : BaseNpc
     /// <returns>Index of next dialogue node</returns>
     protected override int ChooseDialoguePath(PlayerResponse option)
     {
-        // Checks for bypass
-        if (_hasBypassItem && _currentState != NpcStates.PostMinigame)
-        {
-            _shouldEndDialogue = true;
-            Invoke("EnterPostMinigame", 0.2f);
-            return 0;
-        }
+        // Checks for bypass -> commented by Marissa after new bypass update. The item 
+        //      is checked for when the minigame starts and is based on the player's
+        //      inventory, not a bool.
+        //if (_hasBypassItem && _currentState != NpcStates.PostMinigame)
+        //{
+        //    _shouldEndDialogue = true;
+        //    Invoke("EnterPostMinigame", 0.2f);
+        //    return 0;
+        //}
         // Don't have minigame bypass
-        else
+        //else
         {
             if (option.NextResponseIndex.Length > 0)
             {
