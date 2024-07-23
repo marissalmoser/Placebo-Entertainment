@@ -123,6 +123,10 @@ public class PlayerController : MonoBehaviour
     /// <param name="isLocked">Whether the player should move or not</param>
     public void LockCharacter(bool isLocked)
     {
+        // Stops the camera from jittering interacting with NPCs that have no dialogue
+        if (_isInDialogue == isLocked)
+            return;
+
         _isInDialogue = isLocked;
 
         if (isLocked)
