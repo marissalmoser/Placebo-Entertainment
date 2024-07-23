@@ -38,6 +38,7 @@ public class Pickupable : MonoBehaviour, IInteractable
     private PlayerController _playerController;
     private Interact _playerInteractBehavior;
     private bool _isInteractive;
+    [SerializeField] private bool _IsInteractiveOnStart;
 
     private void Awake()
     {
@@ -61,24 +62,44 @@ public class Pickupable : MonoBehaviour, IInteractable
         _playerController = PlayerController.Instance;
         _playerInteractBehavior = _playerController.GetComponent<Interact>();
 
+        //On a delay because player inventory is not always loaded before this script
+        Invoke("ValidateInWorld", 5);
+
+        if (_IsInteractiveOnStart)
+        {
+            MakeInteractive();
+        }
+    }
+
+    /// <summary>
+    /// removes this object from the world if it is already in the players inventory.
+    /// Should only be used for the translation book. 
+    /// </summary>
+    private void ValidateInWorld()
+    {
         GameObject player = GameObject.FindWithTag("Player");
         InventoryHolder inventoryHolder = player.GetComponent<InventoryHolder>();
         if (inventoryHolder.InventorySystem.ContainsItem(myData, out _))
         {
+            //print("Destroyed " + myData.DisplayName);
             Destroy(gameObject);
         }
-
-        _isInteractive = true;
     }
 
     public void DisplayInteractUI()
     {
-        _tabbedMenu.ToggleInteractPrompt(true, "The " + myData.DisplayName);
+        if (_isInteractive)
+        {
+            _tabbedMenu.ToggleInteractPrompt(true, "The " + myData.DisplayName);
+        }
     }
 
     public void HideInteractUI()
     {
-        _tabbedMenu.ToggleInteractPrompt(false);
+        if (_isInteractive)
+        {
+            _tabbedMenu.ToggleInteractPrompt(false);
+        }
     }
 
     /// <summary>

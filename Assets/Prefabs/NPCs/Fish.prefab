@@ -32,8 +32,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.1764705, y: 1.1764705, z: 1.1764705}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3874908170092238415}
   m_Father: {fileID: 0}
@@ -151,7 +151,7 @@ MonoBehaviour:
         _eventTag: 2
         _hasPrerequisiteCheck: 1
         _answer: Do you smell smoke?
-        _nextResponseIndex: 0200000001000000
+        _nextResponseIndex: 0100000002000000
         _advancesNpcState: 0
         _endsDialogue: 0
       - _eventToTrigger: {fileID: 0}
@@ -432,10 +432,10 @@ MonoBehaviour:
     _onEventTriggered:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 135958869701333940, guid: 6e3292bc51c06a143a0ec3ba295d2881, type: 3}
-          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_MethodName: SetActive
-          m_Mode: 6
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: Pickupable, Assembly-CSharp
+          m_MethodName: MakeInteractive
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -449,7 +449,7 @@ MonoBehaviour:
     _onEventTriggered:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 135958869701333940, guid: 6e3292bc51c06a143a0ec3ba295d2881, type: 3}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive
           m_Mode: 6
