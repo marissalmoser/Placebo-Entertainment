@@ -413,7 +413,7 @@ MonoBehaviour:
     _playingMinigameState: {fileID: 0}
     _postMinigameState: {fileID: 0}
     _failureState: {fileID: 0}
-  secondsUntilFailFireGame: 0
+  secondsUntilFailFireGame: 480
 --- !u!114 &5239405601287651569
 MonoBehaviour:
   m_ObjectHideFlags: 0
