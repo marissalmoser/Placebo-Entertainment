@@ -1,6 +1,6 @@
 /******************************************************************
 *    Author: Elijah Vroman
-*    Contributors: Elijah Vroman, Nick Grinstead
+*    Contributors: Elijah Vroman, Nick Grinstead, Marissa Moser
 *    Date Created: 5/21/24
 *    Description: PUT THIS ON ANY GAMEOBJECT TO BE INVENTORIED
 *    If what this script is attached to is hit by an inventory 
@@ -37,6 +37,8 @@ public class Pickupable : MonoBehaviour, IInteractable
     private TabbedMenu _tabbedMenu;
     private PlayerController _playerController;
     private Interact _playerInteractBehavior;
+    private bool _isInteractive;
+    [SerializeField] private bool _IsInteractiveOnStart;
 
     private void Awake()
     {
@@ -59,16 +61,53 @@ public class Pickupable : MonoBehaviour, IInteractable
         _tabbedMenu = TabbedMenu.Instance;
         _playerController = PlayerController.Instance;
         _playerInteractBehavior = _playerController.GetComponent<Interact>();
+
+        //On a delay because player inventory is not always loaded before this script
+        Invoke("ValidateInWorld", 5);
+
+        if (_IsInteractiveOnStart)
+        {
+            MakeInteractive();
+        }
+    }
+
+    /// <summary>
+    /// removes this object from the world if it is already in the players inventory.
+    /// Should only be used for the translation book. 
+    /// </summary>
+    private void ValidateInWorld()
+    {
+        GameObject player = _playerController.gameObject;
+        InventoryHolder inventoryHolder = player.GetComponent<InventoryHolder>();
+        if (inventoryHolder.InventorySystem.ContainsItem(myData, out _))
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void DisplayInteractUI()
     {
-        _tabbedMenu.ToggleInteractPrompt(true, "The " + myData.DisplayName);
+        if (_isInteractive)
+        {
+            _tabbedMenu.ToggleInteractPrompt(true, "The " + myData.DisplayName);
+        }
     }
 
     public void HideInteractUI()
     {
-        _tabbedMenu.ToggleInteractPrompt(false);
+        if (_isInteractive)
+        {
+            _tabbedMenu.ToggleInteractPrompt(false);
+        }
+    }
+
+    /// <summary>
+    /// This function is called by the event system to make the pickupable item
+    /// interactive. 
+    /// </summary>
+    public void MakeInteractive()
+    {
+        _isInteractive = true;
     }
 
     /// <summary>
@@ -92,30 +131,32 @@ public class Pickupable : MonoBehaviour, IInteractable
     /// <param name="player">The player interacting</param>
     public void Interact(GameObject player)
     {
-        _playerController.LockCharacter(true);
-        _playerInteractBehavior.StopDetectingInteractions();
-        _tabbedMenu.DisplayDialogue("", _itemDescription.Description);
-        _tabbedMenu.ToggleDialogue(true);
-        _tabbedMenu.ClearDialogueOptions();
-        _tabbedMenu.DisplayDialogueOption(_itemDescription.ExitResponse, click: () => { CloseItemDescription(); });
+        if(_isInteractive)
+        {
+            _playerController.LockCharacter(true);
+            _playerInteractBehavior.StopDetectingInteractions();
+            _tabbedMenu.DisplayDialogue("", _itemDescription.Description);
+            _tabbedMenu.ToggleDialogue(true);
+            _tabbedMenu.ClearDialogueOptions();
+            _tabbedMenu.DisplayDialogueOption(_itemDescription.ExitResponse, click: () => { CloseItemDescription(); });
 
-        InventoryHolder inventoryHolder = player.GetComponent<InventoryHolder>();
+            InventoryHolder inventoryHolder = player.GetComponent<InventoryHolder>();
 
-        //if it is not already in inventory
-        if (inventoryHolder != null && !inventoryHolder.InventorySystem.ContainsItem(myData, out _))
-        {
-            //Debug.Log("Got item");
-            inventoryHolder.InventorySystem.AddToInventory(myData, 1, out _);
-            Destroy(gameObject);
-        }
-        //if it is already in inventory (prevents doubles in inventory)
-        else if(inventoryHolder != null)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            Debug.LogError("InventoryHolder component not found on player.");
+            
+            if (inventoryHolder != null)
+            {
+                //if item is not already in inventory, add the item to the inventory
+                if (!inventoryHolder.InventorySystem.ContainsItem(myData, out _))
+                {
+                    inventoryHolder.InventorySystem.AddToInventory(myData, 1, out _);
+                }
+
+                Destroy(gameObject);
+            }
+            else
+            {
+                Debug.LogError("InventoryHolder component not found on player.");
+            }
         }
     }
     /* COMMENTED THIS SO ITEMS MUST BE INTERACTED WITH. KEEPING JUST IN CASE

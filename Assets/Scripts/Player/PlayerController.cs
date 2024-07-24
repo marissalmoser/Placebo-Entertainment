@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("VFX Stuff")]
     [SerializeField] private ParticleSystem _footPrints;
+    private ParticleSystem.EmissionModule _footPrintEmission;
 
     public PlayerControls PlayerControls { get; private set; }
     public InputAction Move, Interact, Reset, Quit;
@@ -54,13 +55,19 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(Instance.gameObject);
+        }
         Instance = this;
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
         _rb = GetComponent<Rigidbody>();
         _mainCamera = FindObjectOfType<CinemachineVirtualCamera>();
         _transposer = _mainCamera.GetCinemachineComponent<CinemachineTransposer>();
+        _footPrintEmission = _footPrints.emission;
 
         PlayerControls = new PlayerControls();
         PlayerControls.BasicControls.Enable();
@@ -84,7 +91,7 @@ public class PlayerController : MonoBehaviour
             _velocity = transform.right * _moveDirection.x + transform.forward * _moveDirection.y;
             _velocity = _velocity.normalized * _moveSpeed;
             _rb.AddForce(_velocity, ForceMode.VelocityChange);
-            _footPrints.Play();
+            _footPrintEmission.enabled = true;
         }
         if(_isKinemat)
         {
@@ -137,6 +144,10 @@ public class PlayerController : MonoBehaviour
     /// <param name="isLocked">Whether the player should move or not</param>
     public void LockCharacter(bool isLocked)
     {
+        // Stops the camera from jittering interacting with NPCs that have no dialogue
+        if (_isInDialogue == isLocked)
+            return;
+
         _isInDialogue = isLocked;
 
         if (isLocked)
@@ -167,8 +178,10 @@ public class PlayerController : MonoBehaviour
     private void HaltVelocity()
     {
         if (_rb != null)
+        {
             _rb.velocity = new Vector3(0, _rb.velocity.y, 0);
-            _footPrints.Stop();
+            _footPrintEmission.enabled = false;
+        }
     }
 
     void OnTriggerEnter(Collider col)
