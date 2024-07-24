@@ -77,11 +77,10 @@ public class Pickupable : MonoBehaviour, IInteractable
     /// </summary>
     private void ValidateInWorld()
     {
-        GameObject player = GameObject.FindWithTag("Player");
+        GameObject player = _playerController.gameObject;
         InventoryHolder inventoryHolder = player.GetComponent<InventoryHolder>();
         if (inventoryHolder.InventorySystem.ContainsItem(myData, out _))
         {
-            //print("Destroyed " + myData.DisplayName);
             Destroy(gameObject);
         }
     }
@@ -143,16 +142,15 @@ public class Pickupable : MonoBehaviour, IInteractable
 
             InventoryHolder inventoryHolder = player.GetComponent<InventoryHolder>();
 
-            //if it is not already in inventory
-            if (inventoryHolder != null && !inventoryHolder.InventorySystem.ContainsItem(myData, out _))
+            
+            if (inventoryHolder != null)
             {
-                //Debug.Log("Got item");
-                inventoryHolder.InventorySystem.AddToInventory(myData, 1, out _);
-                Destroy(gameObject);
-            }
-            //if it is already in inventory (prevents doubles in inventory)
-            else if (inventoryHolder != null)
-            {
+                //if item is not already in inventory, add the item to the inventory
+                if (!inventoryHolder.InventorySystem.ContainsItem(myData, out _))
+                {
+                    inventoryHolder.InventorySystem.AddToInventory(myData, 1, out _);
+                }
+
                 Destroy(gameObject);
             }
             else
