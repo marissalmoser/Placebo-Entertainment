@@ -662,29 +662,39 @@ namespace PlaceboEntertainment.UI
         #endregion
 
         #region FadeOutScreen
+
+        /// <summary>
+        /// Called to begin a temporary fade to black
+        /// </summary>
+        /// <param name="fadeOutTime">The total length of the fade out in seconds</param>
         public void StartFadeOut(float fadeOutTime)
         {
             _fadeOutElement.style.transitionDuration = new List<TimeValue> { new TimeValue(fadeOutTime / 2, TimeUnit.Second) };
             StartCoroutine(FadeToBlack(fadeOutTime));
         }
 
+        /// <summary>
+        /// Helper coroutine to handle fading out to a black screen before fading
+        /// back into the game
+        /// </summary>
+        /// <param name="fadeOutTime">Total time of the fade out in seconds</param>
+        /// <returns>Waits for half of fade out time twice</returns>
         private System.Collections.IEnumerator FadeToBlack(float fadeOutTime)
         {
             // Fade out
             fadeOutDoc.rootVisualElement.style.display = DisplayStyle.Flex;
+            _fadeOutElement.style.display = DisplayStyle.Flex;
             _fadeOutElement.style.opacity = 1;
 
             yield return new WaitForSeconds(fadeOutTime / 2);
 
             // Fade in
-            //transform.localPosition = _postMinigameFishPos;
             _fadeOutElement.style.opacity = 0;
 
             yield return new WaitForSeconds(fadeOutTime / 2);
 
             fadeOutDoc.rootVisualElement.style.display = DisplayStyle.None;
-
-            //Interact();
+            _fadeOutElement.style.display = DisplayStyle.None;
         }
         #endregion
     }
