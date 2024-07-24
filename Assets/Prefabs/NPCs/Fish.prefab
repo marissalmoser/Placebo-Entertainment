@@ -425,8 +425,7 @@ MonoBehaviour:
     _failureState: {fileID: 0}
   _postMinigameFishPos: {x: -94, y: -1, z: 9}
   secondsUntilFailFireGame: 0
-  _fadeOutTime: 1.25
-  _fadeOutDoc: {fileID: 0}
+  _fadeOutTime: 2.5
 --- !u!114 &5239405601287651569
 MonoBehaviour:
   m_ObjectHideFlags: 0

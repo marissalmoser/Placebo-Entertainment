@@ -10,6 +10,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
+using PlaceboEntertainment.UI;
 
 public class FishNpc : BaseNpc
 {
@@ -23,21 +24,21 @@ public class FishNpc : BaseNpc
     [SerializeField] private float _fadeOutTime;
     //[SerializeField] private GameObject _fadeOutObject;
     //[SerializeField] private Image _fadeOutImage;
-    [SerializeField] private UIDocument _fadeOutDoc;
-    private VisualElement _fadeOutElement;
+    //[SerializeField] private UIDocument _fadeOutDoc;
+    //private VisualElement _fadeOutElement;
 
-    private const string FadeOutElementName = "FadeOutBackground";
-    private const string FadeOutClassName = "fadeOut";
-    private const string FadeInClassName = "fadeIn";
+    //private const string FadeOutElementName = "FadeOutBackground";
+    //private const string FadeOutClassName = "fadeOut";
+    //private const string FadeInClassName = "fadeIn";
 
     protected override void Initialize()
     {
         base.Initialize();
 
-        _fadeOutElement = _fadeOutDoc.rootVisualElement.Q(FadeOutElementName);
-        _fadeOutElement.style.transitionProperty = new List<StylePropertyName> { "opacity" };
-        _fadeOutElement.style.transitionDuration = new List<TimeValue> { new TimeValue(_fadeOutTime, TimeUnit.Second) };
-        _fadeOutElement.style.transitionTimingFunction = new List<EasingFunction> { EasingMode.Linear };
+        //_fadeOutElement = _fadeOutDoc.rootVisualElement.Q(FadeOutElementName);
+        //_fadeOutElement.style.transitionProperty = new List<StylePropertyName> { "opacity" };
+        //_fadeOutElement.style.transitionDuration = new List<TimeValue> { new TimeValue(_fadeOutTime, TimeUnit.Second) };
+        //_fadeOutElement.style.transitionTimingFunction = new List<EasingFunction> { EasingMode.Linear };
     }
 
     public override void CheckForStateChange()
@@ -56,25 +57,22 @@ public class FishNpc : BaseNpc
     {
         base.EnterPostMinigame();
 
-        StartCoroutine(FadeToBlack());
+        TabbedMenu.Instance.StartFadeOut(_fadeOutTime);
+        StartCoroutine(MoveFishDuringFadeOut());
         _playerController.LockCharacter(true);
     }
 
-    private IEnumerator FadeToBlack()
+    private IEnumerator MoveFishDuringFadeOut()
     {
-        // Fade out
-        _fadeOutDoc.rootVisualElement.style.display = DisplayStyle.Flex;
-        _fadeOutElement.style.opacity = 1;
+        yield return new WaitForSeconds(_fadeOutTime / 2);
 
-        yield return new WaitForSeconds(_fadeOutTime);
-
-        // Fade in
         transform.localPosition = _postMinigameFishPos;
-        _fadeOutElement.style.opacity = 0;
 
-        yield return new WaitForSeconds(_fadeOutTime);
+        yield return new WaitForEndOfFrame();
 
-        _fadeOutDoc.rootVisualElement.style.display = DisplayStyle.None;
+        _playerController.RotateCharacterToTransform(transform);
+
+        yield return new WaitForSeconds(_fadeOutTime / 2);
 
         Interact();
     }

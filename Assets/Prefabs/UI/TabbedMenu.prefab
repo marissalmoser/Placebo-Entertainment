@@ -111,6 +111,7 @@ MonoBehaviour:
   endScreenTime: 3
   endScreenDelay: 5
   crosshair: {fileID: 6312009879989638076}
+  fadeOutDoc: {fileID: 5321231943467584564}
   playerTransform: {fileID: 0}
   miniMapIndicatorEulerOffset: -90
   mapBoundaryUpperLeft: {fileID: 0}
