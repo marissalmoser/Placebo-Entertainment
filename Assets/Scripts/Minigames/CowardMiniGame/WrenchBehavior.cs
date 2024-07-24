@@ -96,15 +96,12 @@ public class WrenchBehavior : MonoBehaviour, IInteractable
     /// <returns></returns>
     IEnumerator Swinging()
     {
-        //print("swing");
         GetComponent<Collider>().enabled = true;
-        //_animate.SetBool("_isSwinging", true);
         _animate.SetTrigger("_swing");
-        //_swing = true;
+
         yield return new WaitForSeconds(1f);
-        //_swing = false;
+
         GetComponent<Collider>().enabled = false;
-        //_animate.SetBool("_isSwinging", false);
     }
     IEnumerator SystematicShutDown()
     {
