@@ -304,7 +304,17 @@ MonoBehaviour:
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
-    _failureState: []
+    _failureState:
+    - _dialogue:
+      - '[The dead Robot is unresponsive]'
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 0
+        _hasPrerequisiteCheck: 0
+        _answer: <b>Leave
+        _nextResponseIndex: 
+        _advancesNpcState: 0
+        _endsDialogue: 1
   _navigationPositions:
     _idleState: {x: 0, y: 0, z: 0}
     _minigameReadyState: {x: 0, y: 0, z: 0}

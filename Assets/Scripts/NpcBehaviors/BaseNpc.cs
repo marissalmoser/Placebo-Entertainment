@@ -249,6 +249,7 @@ public abstract class BaseNpc : MonoBehaviour
             _tabbedMenu.ToggleDialogue(false);
             _playerController.LockCharacter(false);
             _playerInteractBehavior.StartDetectingInteractions();
+
             return;
         }
 
