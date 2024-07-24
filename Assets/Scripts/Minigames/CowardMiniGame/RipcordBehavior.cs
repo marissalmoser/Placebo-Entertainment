@@ -53,7 +53,7 @@ public class RipcordBehavior : MonoBehaviour
     private bool _isAtStartPosition;
 
     public static Action OnRipcordScore;
-    public static Action<bool> OnPlayerDetectionChange;
+    public static Action<bool> OnRipcordReleaseDetection;
 
     void Start()
     {
@@ -219,7 +219,7 @@ public class RipcordBehavior : MonoBehaviour
 
             if (_isFollowingPlayer)
             {
-                OnPlayerDetectionChange?.Invoke(true);
+                OnRipcordReleaseDetection?.Invoke(true);
                 _canScore = true;
             }
         }
@@ -244,7 +244,7 @@ public class RipcordBehavior : MonoBehaviour
             if (_isFollowingPlayer)
             {
                 _canScore = false;
-                OnPlayerDetectionChange?.Invoke(false); ;
+                OnRipcordReleaseDetection?.Invoke(false); ;
             }
             else
             {

@@ -20,13 +20,13 @@ public class LightManager : MonoBehaviour
     private void OnEnable()
     {
         RipcordBehavior.OnRipcordScore += OnScore;
-        RipcordBehavior.OnPlayerDetectionChange += DisableFlashingForCurrentLight;
+        RipcordBehavior.OnRipcordReleaseDetection += DisableFlashingForCurrentLight;
     }
 
     private void OnDisable()
     {
         RipcordBehavior.OnRipcordScore -= OnScore;
-        RipcordBehavior.OnPlayerDetectionChange -= DisableFlashingForCurrentLight;
+        RipcordBehavior.OnRipcordReleaseDetection -= DisableFlashingForCurrentLight;
     }
 
     /// <summary>
