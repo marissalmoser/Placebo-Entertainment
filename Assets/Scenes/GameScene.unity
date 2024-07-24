@@ -287,35 +287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a0acc881a336094997b0fb61c6d1983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventsToListenFor:
-  - _npcEvent: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
-    _npcEventTag: 2
-    _onEventTriggered:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 8514992}
-          m_TargetAssemblyTypeName: TimerManager, Assembly-CSharp
-          m_MethodName: StartTimerWithName
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Example
-            m_BoolArgument: 0
-          m_CallState: 2
---- !u!114 &8514992 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8988970857005786147, guid: 1a65728030b6253408f6491c72125c40, type: 3}
-  m_PrefabInstance: {fileID: 8514989}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8514990}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e33fedf2a2a58354ab946d3e2fcf483f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  _eventsToListenFor: []
 --- !u!1001 &13315319
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38444,7 +38416,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: b3f93d64d20fa1543bd806327a739eb7, type: 2}
     - target: {fileID: 4804941071692204714, guid: 4a03e922f32b7b24f800d1fa30ff0f39, type: 3}
       propertyPath: _isLocked
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5024641018392105954, guid: 4a03e922f32b7b24f800d1fa30ff0f39, type: 3}
       propertyPath: m_Mesh
