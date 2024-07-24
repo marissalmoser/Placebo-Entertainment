@@ -75,6 +75,7 @@ MonoBehaviour:
     _eventTag: 1
   PickUpRadius: 0
   myData: {fileID: 11400000, guid: 773aae8864bf18d4a9e19e01b7e04081, type: 2}
+  _IsInteractiveOnStart: 1
 --- !u!1001 &1262425923956788556
 PrefabInstance:
   m_ObjectHideFlags: 0
