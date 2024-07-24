@@ -1,6 +1,6 @@
 /******************************************************************
  *    Author: Alec Pizziferro
- *    Contributors: Nullptr
+ *    Contributors: Nick Grinstead
  *    Date Created: 5/20/2024
  *    Description: A menu controller script that contains a minimap and schedule.
  *******************************************************************/
@@ -40,6 +40,7 @@ namespace PlaceboEntertainment.UI
         [SerializeField] private int endScreenTime = 3;
         [SerializeField] private float endScreenDelay = 5f;
         [SerializeField] private UIDocument crosshair;
+        [SerializeField] private UIDocument waterMeter;
 
         [Tooltip("The player object to base position & rotation off of for the mini-map.")] [SerializeField]
         private Transform playerTransform;
@@ -56,6 +57,8 @@ namespace PlaceboEntertainment.UI
         [SerializeField] private VisualTreeAsset emptyScheduleEntry;
         [SerializeField] private VisualTreeAsset fulfilledScheduleEntry;
         [SerializeField] private VisualTreeAsset dialogueButton;
+
+        [SerializeField] private Texture2D[] _fishFaceImages;
 
         #endregion
 
@@ -105,6 +108,8 @@ namespace PlaceboEntertainment.UI
         private Label _alarmClockMenu, _alarmClockOverlay;
         private bool _hasAppliedLoseStyling, _hasBegunLossTransition;
         private bool _hasCheckedForTimer;
+        private VisualElement _fishFace;
+        private VisualElement _waterFillMeter;
 
         #endregion
 
@@ -133,6 +138,8 @@ namespace PlaceboEntertainment.UI
         private const string AlarmTextBackgroundStyleName = "AlarmTextBackground";
         private const string AlarmRootName = "Container";
         private const string AlarmClockMenuName = "DigitalClock";
+        private const string FishFaceName = "FishFace";
+        private const string WaterFillMeterName = "WaterMeter";
 
         #endregion
 
@@ -171,6 +178,8 @@ namespace PlaceboEntertainment.UI
             _dialogueText = dialogueMenu.rootVisualElement.Q<Label>(DialogueLabelName);
             _alarmClockOverlay = alarmClockScreen.rootVisualElement.Q<Label>(AlarmClockScreenName);
             _alarmClockMenu = _tabMenuRoot.Q<Label>(AlarmClockMenuName);
+            _fishFace = waterMeter.rootVisualElement.Q(FishFaceName);
+            _waterFillMeter = waterMeter.rootVisualElement.Q(WaterFillMeterName);
             //auto sizers for the text. Unity does not provide one out of the box...WTF?
             //_labelControl = new AutoFitLabelControl(_dialogueText, 35f, 75f);
             SetLoseScreenUnactive();
@@ -190,6 +199,7 @@ namespace PlaceboEntertainment.UI
             notificationPopupMenu.rootVisualElement.style.display = DisplayStyle.None;
             winScreen.rootVisualElement.style.display = DisplayStyle.None;
             alarmClockScreen.rootVisualElement.style.display = DisplayStyle.None;
+            waterMeter.rootVisualElement.style.display = DisplayStyle.None;
         }
 
         /// <summary>
@@ -652,6 +662,43 @@ namespace PlaceboEntertainment.UI
         {
             if (crosshair == null) return;
             crosshair.rootVisualElement.style.display = show ? DisplayStyle.Flex : DisplayStyle.None;
+        }
+        #endregion
+
+        #region WaterMeter
+
+        /// <summary>
+        /// Called to toggle the water meter on or off.
+        /// </summary>
+        /// <param name="isActive">Whether the meter should be displayed</param>
+        public void ToggleWaterMeter(bool isActive)
+        {
+            if (waterMeter == null) { return; }
+            _waterFillMeter.style.width = new StyleLength(Length.Percent(100));
+            waterMeter.rootVisualElement.style.display = isActive ? DisplayStyle.Flex : DisplayStyle.None;
+        }
+
+        /// <summary>
+        /// Called to update the width of the water fill meter.
+        /// </summary>
+        /// <param name="newAmount">Amount of water</param>
+        public void UpdateWaterFill(float newAmount)
+        {
+            float convertedAmount = 22f + ((newAmount / 100f) * 88f);
+            float widthPercent = Mathf.Clamp(convertedAmount, 22f, 100f);
+            _waterFillMeter.style.width = new StyleLength(Length.Percent(widthPercent));
+        }
+
+        /// <summary>
+        /// Updates the fish's face sprite. Assumes 0 = default, 1 = spitting, and 2 = dehydrated.
+        /// </summary>
+        /// <param name="currentState">The current state of the fish</param>
+        public void UpdateFishFaceState(int currentState)
+        {
+            if (currentState < _fishFaceImages.Length)
+            {
+                _fishFace.style.backgroundImage = new StyleBackground(_fishFaceImages[currentState]);
+            }
         }
         #endregion
     }
