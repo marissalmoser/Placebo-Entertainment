@@ -1,7 +1,7 @@
 /*****************************************************************************
 // File Name :         RipcordBehavior.cs
 // Author :            Mark Hanson
-// Contributors :      Marissa Moser
+// Contributors :      Marissa Moser, Andrea Swihart-DeCoster
 // Creation Date :     5/23/2024
 //
 // Brief Description : Any function to do for the ripcord mini game can be found hear from pulling it back, pulling towards certain ranges, and counting successful pulls.
@@ -31,6 +31,7 @@ public class RipcordBehavior : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] private TextMeshPro _successfulPulls;
+    [SerializeField] private String _interactPrompt;
 
     [Header("VFX")]
     [SerializeField] private ParticleSystem _steam;
@@ -207,7 +208,7 @@ public class RipcordBehavior : MonoBehaviour
             if (collider.gameObject.tag == "Player")
             {
                 _playerController.Interact.started += OnInteract;
-                TabbedMenu.Instance.ToggleInteractPrompt(true, "GRAB");
+                TabbedMenu.Instance.ToggleInteractPrompt(true, _interactPrompt);
             }
 
             // Enable scoring when in score-range of the goal when following the player
