@@ -1,7 +1,7 @@
 /*****************************************************************************
 // File Name :         FishBehavior.cs
 // Author :            Mark Hanson
-// Contributors :      Marissa Moser
+// Contributors :      Marissa Moser, Nick Grinstead
 // Creation Date :     6/19/2024
 //
 // Brief Description : Any function to do with the fish will be found here. 
@@ -45,13 +45,15 @@ public class FishBehavior : MonoBehaviour, IInteractable
     [SerializeField] private Collider coll;
 
     [Header("UI Stuff")]
-    [SerializeField] private Slider _waterGaugeUI;
-    [SerializeField] private GameObject _canvasHolderUI;
+    private TabbedMenu _tabbedMenu;
     [SerializeField] private string _interactPromptText = "FISH";
 
     [Header("VFX Stuff")]
     [SerializeField] private ParticleSystem _waterSpray;
     [SerializeField] private GameObject _fireAlarmLight;
+
+    private GameObject _fireFinder;
+    private GameObject _waterFinder;
 
     void Awake()
     {
@@ -65,12 +67,7 @@ public class FishBehavior : MonoBehaviour, IInteractable
         _playerControls.BasicControls.Enable();
         leftclick = _playerControls.FindAction("LeftClick");
         _npcFish.SetActive(false);
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        _canvasHolderUI.SetActive(false);
+        _tabbedMenu = TabbedMenu.Instance;
     }
 
     void FixedUpdate()
@@ -80,18 +77,13 @@ public class FishBehavior : MonoBehaviour, IInteractable
             transform.position = new Vector3(_rightHand.transform.position.x, _rightHand.transform.position.y, _rightHand.transform.position.z);
             transform.rotation = _rightHand.transform.rotation;
         }
-        _waterGaugeUI.maxValue = _waterMaxAmount;
-        _waterGaugeUI.value = _waterAmount;
+        _tabbedMenu.UpdateWaterFill(_waterAmount);
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if(!_isEquipped)
-        //{
-        //    _fireSet.SetActive(false);
-        //}
-        
+        // Shoots water if player is able to when input is given
         if(leftclick.IsPressed() && _isEquipped && _waterAmount > 0f && _refilled == true)
         {
             _waterAmount -= 1f;
@@ -99,13 +91,20 @@ public class FishBehavior : MonoBehaviour, IInteractable
             Vector3 _firePosition = new Vector3(_firePoint.transform.position.x, _firePoint.transform.position.y, _firePoint.transform.position.z);
             Instantiate(_water, _firePosition, Quaternion.identity);
             _waterSpray.Play();
+            _tabbedMenu.UpdateFishFaceState(1);
+        }
+        else if (_refilled)
+        {
+            _waterSpray.Stop();
+            _tabbedMenu.UpdateFishFaceState(0);
         }
         else
         {
             _waterSpray.Stop();
         }
 
-        GameObject _waterFinder = GameObject.FindWithTag("Water");
+        // Updates water amount
+        _waterFinder = GameObject.FindWithTag("Water");
         if (_waterFinder == null)
         {
             _waterAmount += 1.5f;
@@ -116,26 +115,26 @@ public class FishBehavior : MonoBehaviour, IInteractable
         }
         if (_waterAmount <= 0f && _refillNow == false && _doOnce)
         {
+            _waterSpray.Stop();
+            _tabbedMenu.UpdateFishFaceState(2);
             StartCoroutine(WaitForRefill());
             _doOnce = false;
         }
+
+        // Has refilled meter
         if(_waterAmount >= _waterMaxAmount)
         {
             _refillNow = false;
-        }
-        if (_waterAmount > _waterMaxAmount)
-        {
             _waterAmount = _waterMaxAmount;
-        }
-        if (_waterAmount == _waterMaxAmount)
-        {
             _refilled = true;
             _doOnce = true;
         }
-        GameObject _fireFinder = GameObject.FindWithTag("Fire");
+
+        // Checks if fires have been put out
+        _fireFinder = GameObject.FindWithTag("Fire");
         if (_fireFinder == null && _isEquipped)
         {
-            _canvasHolderUI.SetActive(false);
+            _tabbedMenu.ToggleWaterMeter(false);
             coll.isTrigger = false;
             _rb.useGravity = true;
             transform.parent = null;
@@ -153,21 +152,25 @@ public class FishBehavior : MonoBehaviour, IInteractable
     {
         if (!_isEquipped)
         {
-            //_fireSet.SetActive(true);
             _isEquipped = true;
             transform.position = _rightHand.transform.position;
             transform.rotation = _rightHand.transform.rotation;
             transform.parent = _rightHand.transform;
-            _canvasHolderUI.SetActive(true);
+            _tabbedMenu.ToggleWaterMeter(true);
         }
     }
 
+    /// <summary>
+    /// Delay before meter refills
+    /// </summary>
+    /// <returns>Waits for refill wait time</returns>
     IEnumerator WaitForRefill()
     {
         _refilled = false;
         _refillNow = false;
         _waterAmount = 0;
         yield return new WaitForSeconds(_refillWaitTime);
+        _tabbedMenu.UpdateFishFaceState(0);
         _refillNow = true;
     }
 
@@ -186,6 +189,4 @@ public class FishBehavior : MonoBehaviour, IInteractable
     {
         TabbedMenu.Instance.ToggleInteractPrompt(false);
     }
-
-
 }

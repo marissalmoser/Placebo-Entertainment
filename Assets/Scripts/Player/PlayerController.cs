@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("VFX Stuff")]
     [SerializeField] private ParticleSystem _footPrints;
+    private ParticleSystem.EmissionModule _footPrintEmission;
 
     public PlayerControls PlayerControls { get; private set; }
     public InputAction Move, Interact, Reset, Quit;
@@ -54,13 +55,19 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(Instance.gameObject);
+        }
         Instance = this;
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
         _rb = GetComponent<Rigidbody>();
         _mainCamera = FindObjectOfType<CinemachineVirtualCamera>();
         _transposer = _mainCamera.GetCinemachineComponent<CinemachineTransposer>();
+        _footPrintEmission = _footPrints.emission;
 
         PlayerControls = new PlayerControls();
         PlayerControls.BasicControls.Enable();
@@ -84,7 +91,7 @@ public class PlayerController : MonoBehaviour
             _velocity = transform.right * _moveDirection.x + transform.forward * _moveDirection.y;
             _velocity = _velocity.normalized * _moveSpeed;
             _rb.AddForce(_velocity, ForceMode.VelocityChange);
-            _footPrints.Play();
+            _footPrintEmission.enabled = true;
         }
         if(_isKinemat)
         {
@@ -115,6 +122,20 @@ public class PlayerController : MonoBehaviour
         // Player Rotation
         if (!_isInDialogue)
             _rb.rotation = Quaternion.Euler(0, _mainCamera.transform.eulerAngles.y, 0);
+    }
+
+    public void RotateCharacterToTransform(Transform lookTarget)
+    {
+        //Vector3 direction = lookTarget.transform.position - transform.position;
+        //Quaternion rotation = Quaternion.LookRotation(direction);
+        _rb.constraints = RigidbodyConstraints.None;
+        float angle = Mathf.Atan2(lookTarget.localPosition.y - transform.localPosition.y,
+            transform.localPosition.x - lookTarget.localPosition.x) * Mathf.Rad2Deg;
+        _rb.rotation = Quaternion.Euler(0, angle, 0);
+        transform.LookAt(lookTarget);
+        _mainCamera.transform.eulerAngles = new Vector3(0, angle, 0);
+        _rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | 
+            RigidbodyConstraints.FreezeRotationZ;
     }
 
     /// <summary>
@@ -157,8 +178,10 @@ public class PlayerController : MonoBehaviour
     private void HaltVelocity()
     {
         if (_rb != null)
+        {
             _rb.velocity = new Vector3(0, _rb.velocity.y, 0);
-            _footPrints.Stop();
+            _footPrintEmission.enabled = false;
+        }
     }
 
     void OnTriggerEnter(Collider col)
