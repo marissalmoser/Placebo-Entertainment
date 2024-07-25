@@ -114,9 +114,12 @@ public class RipcordBehavior : MonoBehaviour
     /// <returns></returns>
     private IEnumerator FollowPlayer()
     {
+        // Disable blinking when it starts following the player so it can reset properly
+        OnRipcordReleaseDetection?.Invoke(false);
+
         _isFollowingPlayer = true;
         _isAtStartPosition = false;
-
+       
         while (_isFollowingPlayer)
         {
             if (_player.transform.position.z + 1 < transform.position.z)
@@ -145,6 +148,9 @@ public class RipcordBehavior : MonoBehaviour
     /// <returns></returns>
     private IEnumerator ReturnToStartPosition()
     {
+        // Disable blinking when it returns to start so it can reset properly
+        OnRipcordReleaseDetection?.Invoke(false);
+
         _isFollowingPlayer = false;
         _scoreDetectionRange.GetComponent<Collider>().enabled = true;
 
@@ -244,7 +250,7 @@ public class RipcordBehavior : MonoBehaviour
             if (_isFollowingPlayer)
             {
                 _canScore = false;
-                OnRipcordReleaseDetection?.Invoke(false); ;
+                OnRipcordReleaseDetection?.Invoke(false);
             }
             else
             {

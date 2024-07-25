@@ -12,7 +12,7 @@ using UnityEngine;
 
 public class LightManager : MonoBehaviour
 {
-    [SerializeField] private float _blinkingSpeed;
+    [SerializeField] private float _timeBetweenBlinks;
     [SerializeField] GameObject[] _lights;
     private bool _isFlashing;
     private int _currentLight = 0;
@@ -46,9 +46,9 @@ public class LightManager : MonoBehaviour
         while (_currentLight <= _lights.Length - 1)
         {
             _lights[_currentLight].SetActive(true);
-            yield return new WaitForSeconds(_blinkingSpeed);
+            yield return new WaitForSeconds(_timeBetweenBlinks);
             _lights[_currentLight].SetActive(false);
-            yield return new WaitForSeconds(_blinkingSpeed);
+            yield return new WaitForSeconds(_timeBetweenBlinks);
         }
     }
 
