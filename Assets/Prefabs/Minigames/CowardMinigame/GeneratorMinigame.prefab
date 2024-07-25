@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1296869776932576234
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2163848954740760389}
+  m_Layer: 0
+  m_Name: MinSpawnDistance
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2163848954740760389
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1296869776932576234}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.70710677, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -8.13, y: 8.2, z: -1.03}
+  m_LocalScale: {x: 0.085, y: 1.19, z: 0.34}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1286484223369930784}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1504275151306712268
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,7 +277,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5497887449726121428}
   m_Layer: 0
-  m_Name: PlayerDetectionRange
+  m_Name: PlayerFollowDetectionRange
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -1008,7 +1039,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2775
+  m_VersionIndex: 2781
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1148,6 +1179,7 @@ Transform:
   - {fileID: 325118554732079791}
   - {fileID: 4918421113684345650}
   - {fileID: 1360265397287466867}
+  - {fileID: 2163848954740760389}
   - {fileID: 8474918360989098863}
   - {fileID: 7402525080064498408}
   - {fileID: 7593788226381181285}
@@ -1824,6 +1856,10 @@ PrefabInstance:
       propertyPath: _maxGoalSpawnPosition
       value: 
       objectReference: {fileID: 1360265397287466867}
+    - target: {fileID: 7366979465635975259, guid: 5e4440da8a7d6d941bfce3d41aba130e, type: 3}
+      propertyPath: _minGoalSpawnPosition
+      value: 
+      objectReference: {fileID: 2163848954740760389}
     - target: {fileID: 7366979465635975259, guid: 5e4440da8a7d6d941bfce3d41aba130e, type: 3}
       propertyPath: _listLights.Array.size
       value: 3

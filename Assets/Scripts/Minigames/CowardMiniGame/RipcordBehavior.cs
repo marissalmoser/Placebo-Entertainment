@@ -28,6 +28,7 @@ public class RipcordBehavior : MonoBehaviour
     [Header("Goal/Scoring Information")]
     [SerializeField] private GameObject _scoringRangeObject;
     [SerializeField] private Transform _maxGoalSpawnPosition;
+    [SerializeField] private Transform _minGoalSpawnPosition;
 
     [Header("UI")]
     [SerializeField] private TextMeshPro _successfulPulls;
@@ -138,7 +139,7 @@ public class RipcordBehavior : MonoBehaviour
     /// </summary>
     private void SpawnTargetObject()
     {
-        Vector3 _goalPosition = new Vector3(_startPosition.x, _startPosition.y, UnityEngine.Random.Range(_startPosition.z - 23, _maxGoalSpawnPosition.transform.position.z));
+        Vector3 _goalPosition = new Vector3(_startPosition.x, _startPosition.y, UnityEngine.Random.Range(_minGoalSpawnPosition.position.z, _maxGoalSpawnPosition.position.z));
         _scoreDetectionRange = Instantiate(_scoringRangeObject, _goalPosition, Quaternion.identity);
     }
 
