@@ -87,6 +87,7 @@ Transform:
   - {fileID: 3660722356304243353}
   - {fileID: 8105762733405936356}
   - {fileID: 8637235548182530089}
+  - {fileID: 2123436054328822177}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4422286474446707533
@@ -111,6 +112,7 @@ MonoBehaviour:
   endScreenTime: 3
   endScreenDelay: 5
   crosshair: {fileID: 6312009879989638076}
+  fadeOutDoc: {fileID: 2322033219867195235}
   waterMeter: {fileID: 1763628161774448616}
   playerTransform: {fileID: 0}
   miniMapIndicatorEulerOffset: -90
@@ -523,3 +525,51 @@ MonoBehaviour:
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: 6e4f71463bb3dcc4ebe2e7f1b0d797e6, type: 3}
   m_SortingOrder: 0
+--- !u!1 &9031415348286228476
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2123436054328822177}
+  - component: {fileID: 2322033219867195235}
+  m_Layer: 0
+  m_Name: FadeOut
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2123436054328822177
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9031415348286228476}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5028407268189074725}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2322033219867195235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9031415348286228476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PanelSettings: {fileID: 11400000, guid: 85d9a2f3e2ddb844aa712992fa21fe68, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: 1785c801473abc947abb2361c1513a05, type: 3}
+  m_SortingOrder: 1
