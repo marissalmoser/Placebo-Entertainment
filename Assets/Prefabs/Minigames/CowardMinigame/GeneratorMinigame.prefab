@@ -1008,7 +1008,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2772
+  m_VersionIndex: 2775
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1126,7 +1126,7 @@ GameObject:
   - component: {fileID: 6656659449733942724}
   - component: {fileID: 4281622823149269775}
   m_Layer: 0
-  m_Name: Generator Minigame
+  m_Name: GeneratorMinigame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1226,7 +1226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 749ea75e0624b7d4f997c58a4414355f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _blinkingSpeed: 1
+  _timeBetweenBlinks: 0.5
   _lights:
   - {fileID: 1504275151306712268}
   - {fileID: 5194293866317158357}

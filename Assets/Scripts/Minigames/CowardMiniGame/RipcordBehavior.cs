@@ -138,7 +138,7 @@ public class RipcordBehavior : MonoBehaviour
     /// </summary>
     private void SpawnTargetObject()
     {
-        Vector3 _goalPosition = new Vector3(_startPosition.x, _startPosition.y, UnityEngine.Random.Range(_startPosition.z, _maxGoalSpawnPosition.transform.position.z));
+        Vector3 _goalPosition = new Vector3(_startPosition.x, _startPosition.y, UnityEngine.Random.Range(_startPosition.z - 23, _maxGoalSpawnPosition.transform.position.z));
         _scoreDetectionRange = Instantiate(_scoringRangeObject, _goalPosition, Quaternion.identity);
     }
 
