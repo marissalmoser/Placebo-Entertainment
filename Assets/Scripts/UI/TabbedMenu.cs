@@ -40,6 +40,7 @@ namespace PlaceboEntertainment.UI
         [SerializeField] private int endScreenTime = 3;
         [SerializeField] private float endScreenDelay = 5f;
         [SerializeField] private UIDocument crosshair;
+        [SerializeField] private UIDocument fadeOutDoc;
         [SerializeField] private UIDocument waterMeter;
 
         [Tooltip("The player object to base position & rotation off of for the mini-map.")] [SerializeField]
@@ -108,6 +109,7 @@ namespace PlaceboEntertainment.UI
         private Label _alarmClockMenu, _alarmClockOverlay;
         private bool _hasAppliedLoseStyling, _hasBegunLossTransition;
         private bool _hasCheckedForTimer;
+        private VisualElement _fadeOutElement;
         private VisualElement _fishFace;
         private VisualElement _waterFillMeter;
 
@@ -138,6 +140,7 @@ namespace PlaceboEntertainment.UI
         private const string AlarmTextBackgroundStyleName = "AlarmTextBackground";
         private const string AlarmRootName = "Container";
         private const string AlarmClockMenuName = "DigitalClock";
+        private const string FadeOutElementName = "FadeOutBackground";
         private const string FishFaceName = "FishFace";
         private const string WaterFillMeterName = "WaterMeter";
 
@@ -178,6 +181,9 @@ namespace PlaceboEntertainment.UI
             _dialogueText = dialogueMenu.rootVisualElement.Q<Label>(DialogueLabelName);
             _alarmClockOverlay = alarmClockScreen.rootVisualElement.Q<Label>(AlarmClockScreenName);
             _alarmClockMenu = _tabMenuRoot.Q<Label>(AlarmClockMenuName);
+            _fadeOutElement = fadeOutDoc.rootVisualElement.Q(FadeOutElementName);
+            _fadeOutElement.style.transitionProperty = new List<StylePropertyName> { "opacity" };
+            _fadeOutElement.style.transitionTimingFunction = new List<EasingFunction> { EasingMode.Linear };
             _fishFace = waterMeter.rootVisualElement.Q(FishFaceName);
             _waterFillMeter = waterMeter.rootVisualElement.Q(WaterFillMeterName);
             //auto sizers for the text. Unity does not provide one out of the box...WTF?
@@ -662,6 +668,43 @@ namespace PlaceboEntertainment.UI
         {
             if (crosshair == null) return;
             crosshair.rootVisualElement.style.display = show ? DisplayStyle.Flex : DisplayStyle.None;
+        }
+        #endregion
+
+        #region FadeOutScreen
+
+        /// <summary>
+        /// Called to begin a temporary fade to black
+        /// </summary>
+        /// <param name="fadeOutTime">The total length of the fade out in seconds</param>
+        public void StartFadeOut(float fadeOutTime)
+        {
+            _fadeOutElement.style.transitionDuration = new List<TimeValue> { new TimeValue(fadeOutTime / 2, TimeUnit.Second) };
+            StartCoroutine(FadeToBlack(fadeOutTime));
+        }
+
+        /// <summary>
+        /// Helper coroutine to handle fading out to a black screen before fading
+        /// back into the game
+        /// </summary>
+        /// <param name="fadeOutTime">Total time of the fade out in seconds</param>
+        /// <returns>Waits for half of fade out time twice</returns>
+        private System.Collections.IEnumerator FadeToBlack(float fadeOutTime)
+        {
+            // Fade out
+            fadeOutDoc.rootVisualElement.style.display = DisplayStyle.Flex;
+            _fadeOutElement.style.display = DisplayStyle.Flex;
+            _fadeOutElement.style.opacity = 1;
+
+            yield return new WaitForSeconds(fadeOutTime / 2);
+
+            // Fade in
+            _fadeOutElement.style.opacity = 0;
+
+            yield return new WaitForSeconds(fadeOutTime / 2);
+
+            fadeOutDoc.rootVisualElement.style.display = DisplayStyle.None;
+            _fadeOutElement.style.display = DisplayStyle.None;
         }
         #endregion
 

@@ -124,6 +124,20 @@ public class PlayerController : MonoBehaviour
             _rb.rotation = Quaternion.Euler(0, _mainCamera.transform.eulerAngles.y, 0);
     }
 
+    public void RotateCharacterToTransform(Transform lookTarget)
+    {
+        //Vector3 direction = lookTarget.transform.position - transform.position;
+        //Quaternion rotation = Quaternion.LookRotation(direction);
+        _rb.constraints = RigidbodyConstraints.None;
+        float angle = Mathf.Atan2(lookTarget.localPosition.y - transform.localPosition.y,
+            transform.localPosition.x - lookTarget.localPosition.x) * Mathf.Rad2Deg;
+        _rb.rotation = Quaternion.Euler(0, angle, 0);
+        transform.LookAt(lookTarget);
+        _mainCamera.transform.eulerAngles = new Vector3(0, angle, 0);
+        _rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | 
+            RigidbodyConstraints.FreezeRotationZ;
+    }
+
     /// <summary>
     /// Called to lock or unlock player and camera movement during dialogue
     /// </summary>
