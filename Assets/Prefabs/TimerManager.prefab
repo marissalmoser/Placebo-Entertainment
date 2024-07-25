@@ -10,6 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8363901018563324463}
   - component: {fileID: 8988970857005786147}
+  - component: {fileID: 7333871962002907706}
+  - component: {fileID: 3069762370493942464}
+  - component: {fileID: 6989212192566937336}
   m_Layer: 0
   m_Name: TimerManager
   m_TagString: Untagged
@@ -45,13 +48,53 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timers:
-  - timerName: This
+  - timerName: LoopTimer
     timer:
-      _maxTime: 10
-      _isRunning: 0
-      EventToStart:
-        m_PersistentCalls:
-          m_Calls: []
-      OnTimesUp:
-        m_PersistentCalls:
-          m_Calls: []
+      _maxTime: 360
+      _isRunning: 1
+      _eventTimerCalls: {fileID: 11400000, guid: 3ecd2838e2ea86b42a087aad7f6a97a6, type: 2}
+      _NPCToAlert: 8
+  - timerName: RobotDeathTimer
+    timer:
+      _maxTime: 60
+      _isRunning: 1
+      _eventTimerCalls: {fileID: 11400000, guid: 9badf7d641517c347815b632eeaa7bad, type: 2}
+      _NPCToAlert: 5
+--- !u!114 &7333871962002907706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3197978693663432061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a0acc881a336094997b0fb61c6d1983, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _eventsToListenFor: []
+--- !u!114 &3069762370493942464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3197978693663432061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5462fa4265d98a46a787c5c650b98d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6989212192566937336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3197978693663432061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a0acc881a336094997b0fb61c6d1983, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _eventsToListenFor: []

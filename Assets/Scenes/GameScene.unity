@@ -258,36 +258,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8988970857005786147, guid: 1a65728030b6253408f6491c72125c40, type: 3}
-      propertyPath: _timers.Array.data[0].timerName
-      value: Example
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3197978693663432061, guid: 1a65728030b6253408f6491c72125c40, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8514991}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a65728030b6253408f6491c72125c40, type: 3}
---- !u!1 &8514990 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3197978693663432061, guid: 1a65728030b6253408f6491c72125c40, type: 3}
-  m_PrefabInstance: {fileID: 8514989}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8514991
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8514990}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a0acc881a336094997b0fb61c6d1983, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _eventsToListenFor: []
 --- !u!1001 &13315319
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -63788,8 +63763,6 @@ MonoBehaviour:
   _firePoint: {fileID: 7303417283631170982}
   _rb: {fileID: 844829859662455467}
   coll: {fileID: 4605749991957046954}
-  _waterGaugeUI: {fileID: 7253280976048078260}
-  _canvasHolderUI: {fileID: 9192475032716543733}
   _interactPromptText: FISH
   _waterSpray: {fileID: 435705941}
   _fireAlarmLight: {fileID: 476902387}
