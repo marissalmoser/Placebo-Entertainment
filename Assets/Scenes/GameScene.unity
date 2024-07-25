@@ -64143,6 +64143,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 290336837}
+    - target: {fileID: 4281622823149269775, guid: eb31e5856b67aeb4ea3a28c9716afc49, type: 3}
+      propertyPath: _blinkingSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4487275014309915439, guid: eb31e5856b67aeb4ea3a28c9716afc49, type: 3}
       propertyPath: m_Mesh
       value: 
