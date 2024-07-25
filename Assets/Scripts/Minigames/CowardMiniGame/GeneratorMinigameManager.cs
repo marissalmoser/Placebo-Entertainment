@@ -34,7 +34,7 @@ public class GeneratorMinigameManager : MonoBehaviour
         if(_inventoryHolder.InventorySystem.ContainsItem(_wrenchItemData, out _))
         {
             //TODO: set ripcord lights and gears to be visually completed
-            _ripcord.GetComponent<RipcordBehavior>().StopRipcordSteam();
+            _ripcord.GetComponent<RipcordBehavior>().StopGeneratorSteam();
             _gears.SetActive(true);
             _gearBottom.GetComponent<GearCompletionCheck>().StartSparksSection();
             _gearBottom.GetComponent<GearCompletionCheck>().StartWithBypass();
@@ -43,7 +43,7 @@ public class GeneratorMinigameManager : MonoBehaviour
         //else enable ripcord interaction
         else
         {
-            _ripcord.GetComponent<RipcordBehavior>().GameStart();
+            _ripcord.GetComponent<RipcordBehavior>().ActivateMinigame();
         }
     }
 }

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2121635463416047298}
   - component: {fileID: 6139527705531569771}
   m_Layer: 0
-  m_Name: Ripcord Release Area
+  m_Name: RipcordReleaseArea
   m_TagString: Release
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,7 +51,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3869838787287514708}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -105,8 +105,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 5.2956877}
+  m_Center: {x: 0, y: 0, z: 0.14485165}
 --- !u!108 &2121635463416047298
 Light:
   m_ObjectHideFlags: 0
@@ -114,7 +114,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3869838787287514708}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0

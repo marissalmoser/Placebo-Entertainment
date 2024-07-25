@@ -1,7 +1,7 @@
 /*****************************************************************************
 // File Name :         RipcordBehavior.cs
 // Author :            Mark Hanson
-// Contributors :      Marissa Moser
+// Contributors :      Marissa Moser, Andrea Swihart-DeCoster
 // Creation Date :     5/23/2024
 //
 // Brief Description : Any function to do for the ripcord mini game can be found hear from pulling it back, pulling towards certain ranges, and counting successful pulls.
@@ -12,216 +12,251 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using PlaceboEntertainment.UI;
+using UnityEngine.InputSystem;
+using System;
 
 public class RipcordBehavior : MonoBehaviour
 {
-
-    [Header("UI Stuff")]
-    [SerializeField] private TextMeshPro _successfulPulls;
-
-    [Header("VFX Stuff")]
-    [SerializeField] private ParticleSystem _steam;
-
-    [Header("Points of Movement")]
-    [SerializeField] private float _maxReach;
-    [SerializeField] private GameObject _targetFollow;
-    [SerializeField] private float _speed;
-    [SerializeField] bool PressedE;
-    private bool _inSwitchPos;
-    private bool _switchDoOnce;
-    private int _switchMove;
-    private Vector3 _relocatePoint;
-
-    [Header("Release Windowing")]
-    [SerializeField] private GameObject _ReleasePreviewer;
-    private bool _hasReleased;
-    private bool _doOnce2;
-    private bool _doOnce;
-    private int _numReleased;
-    private GameObject _preview;
-
-
-
-    private bool _gameStarted;
-
-    [Header("Light")]
-    private int _currentLight;
-    [SerializeField] private GameObject[] _listLights;
-    private float _lightSpeed;
-    private bool _lightDoOnce;
-
     [SerializeField] private GameObject _gears;
 
-    private PlayerController _pc;
+    [Header("Ripcord Stats")]
+    [SerializeField] private float _followPlayerSpeed;
+    [SerializeField] private float _returnSpeed;
+    [SerializeField] private Transform _maxPlayerDetectionPosition;
 
-    // Start is called before the first frame update
+
+    [Header("Goal/Scoring Information")]
+    [SerializeField] private GameObject _scoringRangeObject;
+    [SerializeField] private Transform _maxGoalSpawnPosition;
+    [SerializeField] private Transform _minGoalSpawnPosition;
+
+    [Header("UI")]
+    [SerializeField] private TextMeshPro _successfulPulls;
+    [SerializeField] private String _interactPrompt;
+
+    [Header("VFX")]
+    [SerializeField] private ParticleSystem _steam;
+
+    private PlayerController _playerController;
+    private GameObject _player;
+
+    private Vector3 _startPosition;
+    private int _score;
+    private GameObject _scoreDetectionRange;
+
+    //bitmask to hit later 8 (player)
+    int layerMask = 1 << 8;
+
+    private bool _isFollowingPlayer;
+    private bool _lightIsBlinking;
+    private bool _canScore;
+    private bool _isMinigameActive;
+    private bool _isAtStartPosition;
+
+    public static Action OnRipcordScore;
+    public static Action<bool> OnRipcordReleaseDetection;
+
     void Start()
     {
-        _switchMove = -1;
-        PressedE = false;
-        _doOnce = true;
-        _doOnce2 = true;
-        _hasReleased = false;
-        _numReleased = 0;
-        _relocatePoint = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-        _gameStarted = false;
-        GameObject _pcObject = GameObject.FindWithTag("Player");
-        _pc = _pcObject.GetComponent<PlayerController>();
-        _currentLight = 0;
-        _lightDoOnce = true;
-        _switchDoOnce = true;
+        _playerController = FindObjectOfType<PlayerController>();
+        _player = _playerController.gameObject;
+        _isFollowingPlayer = false;
+        _canScore = false;
+        _isAtStartPosition = true;
+        _score = 0;
+        _startPosition = transform.position;
     }
-    // Update is called once per frame
-    void Update()
+
+    private void FixedUpdate()
     {
-        _successfulPulls.text = _numReleased.ToString();
-        if(_pc.Interact.IsPressed() && _switchDoOnce == true && _inSwitchPos == true)
+        // Cancels the ripcord following if the player is out of the detection range
+        if (_isFollowingPlayer && Physics.OverlapCapsule(transform.position, _maxPlayerDetectionPosition.position, 1f, layerMask).Length <= 0)
         {
-            _switchMove *= -1;
-            _switchDoOnce = false;
-            StartCoroutine(PauseEPress());
+            StartCoroutine(ReturnToStartPosition());
         }
-        if(_switchMove == -1)
+    }
+
+    /// <summary>
+    /// Activates the minigame
+    /// </summary>
+    public void ActivateMinigame()
+    {
+        _isMinigameActive = true;
+    }
+
+    /// <summary>
+    /// Deactivates the minigame
+    /// </summary>
+    private void DeactivateMinigame()
+    {
+        _isMinigameActive = false;
+    }
+
+    /// <summary>
+    /// When the player presses W within range of the ripcord
+    /// </summary>
+    /// <param name="obj"></param>
+    private void OnInteract(InputAction.CallbackContext obj)
+    {
+        if (_isAtStartPosition && _score < 3)
         {
-            PressedE = false;
+            StartCoroutine(FollowPlayer());
+            SpawnTargetObject();
         }
-        if (_switchMove == 1)
+        else if (!_isAtStartPosition)
         {
-            PressedE = true;
+            StartCoroutine(ReturnToStartPosition());
         }
-        if (PressedE == true && transform.position.z > _targetFollow.transform.position.z + 1.7f && _numReleased != 3 && _gameStarted == true)
+    }
+
+    /// <summary>
+    /// Ripcord follows the players z position backwards
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator FollowPlayer()
+    {
+        // Disable blinking when it starts following the player so it can reset properly
+        OnRipcordReleaseDetection?.Invoke(false);
+
+        _isFollowingPlayer = true;
+        _isAtStartPosition = false;
+       
+        while (_isFollowingPlayer)
         {
-            transform.position -= new Vector3(0, 0, _speed * Time.deltaTime);
-            StartCoroutine(FindPreview());
-            if (_preview != null)
+            if (_player.transform.position.z + 1 < transform.position.z)
             {
-                _preview.GetComponent<Collider>().enabled = false;
+                // Chose to lerp the z value to prevent visual tearing.
+                transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.Lerp(transform.position.z, _player.transform.position.z + 1f, Time.fixedDeltaTime * _followPlayerSpeed));
             }
+
+            // Waits for fixed update to align with the players movement update.
+            yield return new WaitForFixedUpdate();
         }
-        if (PressedE == true && _doOnce2 == true && _numReleased != 3 && _gameStarted == true)
+    }
+
+    /// <summary>
+    /// Spawns the goal object that represents the range where the player can letgo to score
+    /// </summary>
+    private void SpawnTargetObject()
+    {
+        Vector3 _goalPosition = new Vector3(_startPosition.x, _startPosition.y, UnityEngine.Random.Range(_minGoalSpawnPosition.position.z, _maxGoalSpawnPosition.position.z));
+        _scoreDetectionRange = Instantiate(_scoringRangeObject, _goalPosition, Quaternion.identity);
+    }
+
+    /// <summary>
+    /// Ripcord returns to the wall
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator ReturnToStartPosition()
+    {
+        // Disable blinking when it returns to start so it can reset properly
+        OnRipcordReleaseDetection?.Invoke(false);
+
+        _isFollowingPlayer = false;
+        _scoreDetectionRange.GetComponent<Collider>().enabled = true;
+
+        while (!_isAtStartPosition)
         {
-            Vector3 _previewerPoint = new Vector3(_relocatePoint.x, _relocatePoint.y, Random.Range(_maxReach, _relocatePoint.z));
-            Instantiate(_ReleasePreviewer, _previewerPoint, Quaternion.identity);
-            _doOnce2 = false;
-        }
-        if (PressedE == false && transform.position.z < _relocatePoint.z && transform.position.z != _relocatePoint.z ||PressedE == true && transform.position.z < _maxReach && transform.position.z != _relocatePoint.z)
-        {
-            transform.position += new Vector3(0, 0, _speed * Time.deltaTime);
-            StartCoroutine(FindPreview());
-            if (_preview != null)
+            transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.Lerp(transform.position.z, _startPosition.z, Time.fixedDeltaTime * _returnSpeed));
+
+            // Small margin of error to determine if the ripcord is at start
+            if (transform.position.z >= (_startPosition.z - 0.1f))
             {
-                _preview.GetComponent<Collider>().enabled = true;
+                _isAtStartPosition = true;
             }
+
+            yield return new WaitForFixedUpdate();
         }
-        if (PressedE == false && transform.position.z == _relocatePoint.z || PressedE == false && transform.position.z > _relocatePoint.z)
+
+        // Make sure the score detection range is destroyed once the ripcord returns to the start position
+        if(_scoreDetectionRange != null)
         {
-            _doOnce = true;
-            _doOnce2 = true;
-            StartCoroutine(FindPreview());
-            if (_preview != null)
-            {
-                GameObject.Destroy(_preview);
-            }
+            Destroy(_scoreDetectionRange);
         }
-        if (PressedE == false && _doOnce == true)
+    }
+
+    /// <summary>
+    /// When the player successfully scores
+    /// </summary>
+    private void OnScore()
+    {
+        if (_canScore)
         {
-            StartCoroutine(FindPreview());
-            if (_preview != null && _preview.transform.position.z > transform.position.z)
-            {
-                StartCoroutine(ReleaseWindow());
-                _doOnce = false;
-            }
+            _score++;
+
+            OnRipcordScore?.Invoke();
+            _successfulPulls.text = (_score).ToString();
         }
-        if (_numReleased == 0 && _gameStarted == true && _lightDoOnce == true)
+
+        // Winning score
+        if (_score >= 3)
         {
-            _currentLight = 0;
-            StartCoroutine(blinkingLight());
-            _lightDoOnce = false;
-        }
-        if (_numReleased == 1 && _gameStarted == true && _lightDoOnce == true)
-        {
-            _listLights[0].SetActive(true);
-            _currentLight = 1;
-            StartCoroutine(blinkingLight());
-            _lightDoOnce = false;
-        }
-        if(_numReleased == 2 && _gameStarted == true && _lightDoOnce == true)
-        {
-            _listLights[1].SetActive(true);
-            _currentLight = 2;
-            StartCoroutine(blinkingLight());
-            _lightDoOnce = false;
-        }
-        if (_numReleased == 3)
-        {
-            _listLights[2].SetActive(true);
-            StopCoroutine(blinkingLight());
             _gears.SetActive(true);
             _successfulPulls.color = Color.green;
-            StopRipcordSteam();
-            //Destroy(this);
-        }
-        //Debug.Log(_numReleased);
+            StopGeneratorSteam();
 
+            DeactivateMinigame();
+        }
     }
 
     /// <summary>
     /// Stops the steam coming from the ripcord.
     /// </summary>
-    public void StopRipcordSteam()
+    public void StopGeneratorSteam()
     {
         _steam.Stop();
     }
 
-    IEnumerator PauseEPress()
+    void OnTriggerEnter(Collider collider)
     {
-        yield return new WaitForSeconds(0.4f);
-        _switchDoOnce = true;
-    }
-    IEnumerator blinkingLight()
-    {
-        _listLights[_currentLight].SetActive(true);
-        yield return new WaitForSeconds(_lightSpeed);
-        _listLights[_currentLight].SetActive(false);
-        _lightDoOnce = true;
-    }
-    IEnumerator ReleaseWindow()
-    {
-        _hasReleased = true;
-        yield return new WaitForSeconds(0.2f);
-        _hasReleased = false;
-    }
-    IEnumerator FindPreview()
-    {
-        _preview = GameObject.FindWithTag("Release");
-        yield return _preview;
-    }
-    void OnTriggerEnter(Collider col)
-    {
-        if (col.gameObject.tag == "Release" && _hasReleased == true)
+        if (_isMinigameActive)
         {
-            _numReleased++;
-            GameObject.Destroy(col.gameObject);
-        }
+            // Enable player interaction
+            if (collider.gameObject.tag == "Player")
+            {
+                _playerController.Interact.started += OnInteract;
+                TabbedMenu.Instance.ToggleInteractPrompt(true, _interactPrompt);
+            }
 
-        if (col.gameObject.tag == "Player")
-        {
-            _inSwitchPos = true;
-            TabbedMenu.Instance.ToggleInteractPrompt(true, "GRAB");
+            // Enable scoring when in score-range of the goal when following the player
+            if (collider.gameObject.tag != "Release")
+            {
+                return;
+            }
+
+            if (_isFollowingPlayer)
+            {
+                OnRipcordReleaseDetection?.Invoke(true);
+                _canScore = true;
+            }
         }
     }
 
-    void OnTriggerExit(Collider col)
+    void OnTriggerExit(Collider collider)
     {
-        if (col.gameObject.tag == "Player")
+        if (_isMinigameActive)
         {
-            _inSwitchPos = false;
-            _switchMove = -1;
-            TabbedMenu.Instance.ToggleInteractPrompt(false);
+            // Disables player interaction & should stop following player if they leave
+            if (collider.gameObject.tag == "Player")
+            {
+                _playerController.Interact.started -= OnInteract;
+                TabbedMenu.Instance.ToggleInteractPrompt(false);
+            }
+
+            // Disable scoring if scoring range is exited when following player, otherwise, score points.
+            if (collider.gameObject.tag != "Release")
+            {
+                return;
+            }
+            if (_isFollowingPlayer)
+            {
+                _canScore = false;
+                OnRipcordReleaseDetection?.Invoke(false);
+            }
+            else
+            {
+                OnScore();
+            }
         }
-    }
-    public void GameStart()
-    {
-        _gameStarted = true;
     }
 }
