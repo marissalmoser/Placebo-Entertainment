@@ -137,7 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eeb129a991b38946b79d6d59268e5e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _npcName: Fish
+  _npcName: Silus
   _targetBypassItem: {fileID: 0}
   _onEnterFailState: {fileID: 0}
   _startMinigameEvent: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
@@ -502,7 +502,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c90c594b96f0ae84c825594819e357d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _npcName: Fish
+  _npcName: Silus
 --- !u!1001 &3624492862783500708
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -18,7 +18,6 @@ public class SparksBehavior : MonoBehaviour
     private Vector3 _rangePos;
     private GameObject _oneFinder;
     
-
     void Awake()
     {
         _isOn = true;
