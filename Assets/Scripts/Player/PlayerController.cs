@@ -18,9 +18,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float _moveSpeed;
     [SerializeField] float _jumpForce;
 
-    [Header("VFX Stuff")]
+    [Header("VFX")]
     [SerializeField] private ParticleSystem _footPrints;
     private ParticleSystem.EmissionModule _footPrintEmission;
+
+    //Anim Controller
+    private Animator _animator;
 
     public PlayerControls PlayerControls { get; private set; }
     public InputAction Move, Interact, Reset, Quit;
@@ -77,6 +80,9 @@ public class PlayerController : MonoBehaviour
 
         _mainCamera.transform.rotation = transform.rotation;
 
+        //Finding Anim Controller
+        _animator = GetComponentInChildren<Animator>();
+
         Move = PlayerControls.FindAction("Move");
         Interact = PlayerControls.FindAction("Interact");
         Reset = PlayerControls.FindAction("Reset");
@@ -92,6 +98,8 @@ public class PlayerController : MonoBehaviour
             _velocity = _velocity.normalized * _moveSpeed;
             _rb.AddForce(_velocity, ForceMode.VelocityChange);
             _footPrintEmission.enabled = true;
+            
+            _animator.SetFloat("Speed", _velocity.magnitude);
         }
         if(_isKinemat)
         {
@@ -122,6 +130,8 @@ public class PlayerController : MonoBehaviour
         // Player Rotation
         if (!_isInDialogue)
             _rb.rotation = Quaternion.Euler(0, _mainCamera.transform.eulerAngles.y, 0);
+
+        Debug.Log(_velocity);
     }
 
     public void RotateCharacterToTransform(Transform lookTarget)
@@ -181,6 +191,7 @@ public class PlayerController : MonoBehaviour
         {
             _rb.velocity = new Vector3(0, _rb.velocity.y, 0);
             _footPrintEmission.enabled = false;
+            _animator.SetFloat("Speed", 0);
         }
     }
 
