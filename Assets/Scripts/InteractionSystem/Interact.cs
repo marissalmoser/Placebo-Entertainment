@@ -31,8 +31,6 @@ public class Interact : MonoBehaviour
     [SerializeField] private float _maxInteractDistance;
     [SerializeField] LayerMask _layerToIgnore;
 
-    private Animator _animator;
-
     private void Awake()
     {
         _playerControls = new PlayerControls();
@@ -42,8 +40,6 @@ public class Interact : MonoBehaviour
         _interact.canceled += InteractReleased;
 
         _camera = Camera.main;
-
-        _animator = GetComponentInChildren<Animator>();
 
         StartDetectingInteractions();
     }
@@ -57,7 +53,6 @@ public class Interact : MonoBehaviour
         if(_interactable != null)
         {
             _interactable.Interact(gameObject);
-            _animator.SetTrigger("Interact");
         }
     }
 

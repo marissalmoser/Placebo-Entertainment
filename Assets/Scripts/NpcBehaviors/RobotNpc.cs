@@ -18,12 +18,16 @@ public class RobotNpc : BaseNpc
     private bool _hasRepairedRobot = false;
     private bool _isFirstInteraction = true;
 
+    private Animator _anim;
+
     /// <summary>
     /// Subscribing to wire game won event on initialization
     /// </summary>
     protected override void Initialize()
     {
         base.Initialize();
+
+        _anim = GetComponentInChildren<Animator>();
 
         MGWireState.WireGameWon += CheckForStateChange;
     }
@@ -173,6 +177,7 @@ public class RobotNpc : BaseNpc
         if (!_hasRepairedRobot)
         {
             EnterFailure();
+            _anim.SetBool("Dead", true);
         }
     }
 }
