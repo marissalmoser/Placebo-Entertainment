@@ -89,6 +89,8 @@ public class LightManager : MonoBehaviour
         DisableFlashingForCurrentLight(true);
         SetLightColor(true);
         _currentLight++;
+        //MAKE THIS START WHEN PLAYER GRABS RIPCORD
+        //StartCoroutine(BlinkingLights());
     }
 
     /// <summary>
