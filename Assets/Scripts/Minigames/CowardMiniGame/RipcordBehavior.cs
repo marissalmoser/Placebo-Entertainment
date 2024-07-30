@@ -102,6 +102,7 @@ public class RipcordBehavior : MonoBehaviour
         {
             StartCoroutine(FollowPlayer());
             SpawnTargetObject();
+            //TODO: start blinking
         }
         else if (!_isAtStartPosition)
         {
