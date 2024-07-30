@@ -141,6 +141,7 @@ MonoBehaviour:
   _targetBypassItem: {fileID: 11400000, guid: ce9c4a38351e1ac41b75157f79779d20, type: 2}
   _onEnterFailState: {fileID: 11400000, guid: 820e77e5460d5cd4cb472f8466ef6e1c, type: 2}
   _startMinigameEvent: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
+  _onCrisisAvertedEvent: {fileID: 11400000, guid: 3a7a3c3a741795a4289c7839245053db, type: 2}
   _eventTag: 5
   _stateDialogueTrees:
     _idleState:
@@ -328,7 +329,6 @@ MonoBehaviour:
     _postMinigameState: {fileID: 0}
     _failureState: {fileID: 0}
   _targetLightBulbItem: {fileID: 11400000, guid: 773aae8864bf18d4a9e19e01b7e04081, type: 2}
-  _secondsUntilDeath: 60
 --- !u!114 &6882198576666297318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -368,6 +368,23 @@ MonoBehaviour:
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive
           m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+  - _npcEvent: {fileID: 11400000, guid: 9badf7d641517c347815b632eeaa7bad, type: 2}
+    _npcEventTag: 5
+    _onEventTriggered:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 869825619415053396}
+          m_TargetAssemblyTypeName: RobotNpc, Assembly-CSharp
+          m_MethodName: CheckFailure
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -455,7 +472,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4813678846531146998, guid: 96e04b3ba4d2ef242a6de3ed3bd0bf8c, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 96e04b3ba4d2ef242a6de3ed3bd0bf8c, type: 3}
       propertyPath: m_Name

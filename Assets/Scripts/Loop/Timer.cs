@@ -62,6 +62,10 @@ public class Timer
     {
         return _timeRemaining;
     }
+    public NpcEventTags GetTimerTag()
+    { 
+        return _NPCToAlert; 
+    }
 
     public bool IsRunning()
     {

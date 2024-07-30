@@ -98,10 +98,15 @@ public class TimerManager : MonoBehaviour
         //By adding ? to the struct i can make it nullable, which makes for an 
         //easy check to use in conjunction with searching the list. Ive seen 
         //videos use this and figured id try it out. - Eli
-        TimerStruct? timerStruct = _timers.Find(thatTimer => thatTimer.timerName == timerName);
-        if (timerStruct.HasValue)
+        TimerStruct timerStruct = _timers.Find(thatTimer => thatTimer.timerName == timerName);
+        if (timerStruct.timer != null)
         {
-            timerStruct.Value.timer.StartTimer();
+            timerStruct.timer.StartTimer();
+        }
+        else
+        {
+            Debug.LogError("Could not start a timer with the name " + timerStruct.timerName + ". " +
+                "Is there a timer with that name in the inspector of the TimerManager?");
         }
     }
 
@@ -130,6 +135,17 @@ public class TimerManager : MonoBehaviour
         return null;
     }
 
+    public Timer GetTimerByTag(NpcEventTags eventTag)
+    {
+        TimerStruct timerStruct = _timers.Find(thatTimer => thatTimer.timer.GetTimerTag() == eventTag);
+        if (timerStruct.timer != null)
+        {
+            return timerStruct.timer;
+        }
+        print("Timer with tag" + timerStruct.timer.GetTimerTag() + " does not exist.");
+        return null;
+    }
+
     public Timer RemoveTimer(string timerName)
     {
         TimerStruct timerStruct = _timers.Find(t => t.timerName == timerName);
@@ -140,5 +156,23 @@ public class TimerManager : MonoBehaviour
         }
         print("Timer " + timerName + " does not exist.");
         return null;
+    }
+    /// <summary>
+    /// Non return type for inspector
+    /// </summary>
+    /// <param name="timerName"></param>
+    /// <returns></returns>
+    public void RemoveTimerNoReturn(string timerName)
+    {
+        TimerStruct timerStruct = _timers.Find(t => t.timerName == timerName);
+        if (timerStruct.timer != null)
+        {
+            print("removed " + timerStruct.timerName);
+            _timers.Remove(timerStruct);
+        }
+        else
+        {
+            print("Timer " + timerName + " does not exist.");
+        }
     }
 }

@@ -18,7 +18,7 @@ public class FishNpc : BaseNpc
 
     private bool _enteredFireRoom = false;
     private bool _hasfish;
-    [SerializeField] private int secondsUntilFailFireGame;
+   // [SerializeField] private int secondsUntilFailFireGame;
     private float _timeElapsed = 0f;
 
     [SerializeField] private float _fadeOutTime;
@@ -68,12 +68,15 @@ public class FishNpc : BaseNpc
 
     /// <summary>
     /// Resets loop on failure
+    /// E.V.: there is an event listener on the LoopController that listens for
+    /// OnDeath/FireDeath
     /// </summary>
     protected override void EnterFailure()
     {
         base.EnterFailure();
 
-        ResetLoop();
+        Debug.Log("Failed the fire/fish game");
+        //ResetLoop();
     }
 
     /// <summary>
@@ -130,12 +133,14 @@ public class FishNpc : BaseNpc
 
     /// <summary>
     /// Lifted this from LoopController
+    ///  E.V.: there is an event listener on the LoopController that listens for
+    /// OnEnterFailState with the tag Fish that resets the loop
     /// </summary>
-    public void ResetLoop()
-    {
-        SaveLoadManager.Instance.SaveGameToSaveFile();
-        int activeSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(activeSceneIndex);
-        SaveLoadManager.Instance.LoadGameFromSaveFile();
-    }
+    //public void ResetLoop()
+    //{
+    //    SaveLoadManager.Instance.SaveGameToSaveFile();
+    //    int activeSceneIndex = SceneManager.GetActiveScene().buildIndex;
+    //    SceneManager.LoadScene(activeSceneIndex);
+    //    SaveLoadManager.Instance.LoadGameFromSaveFile();
+    //}
 }

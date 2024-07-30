@@ -1,6 +1,6 @@
 /******************************************************************
 *    Author: Nick Grinstead
-*    Contributors: Andrea Swihart-DeCoster
+*    Contributors: Andrea Swihart-DeCoster, Elijah Vroman
 *    Date Created: 5/28/24
 *    Description: NPC class containing logic for the Coward NPC.
 *******************************************************************/
@@ -10,7 +10,7 @@ using UnityEngine;
 
 public class CowardNpc : BaseNpc
 {
-    [SerializeField] private float _secondsUntilExplosion;
+    //[SerializeField] private float _secondsUntilExplosion;
 
     private bool _canTeleportToGenerator = false;
     private bool _hasTeleported = false;
@@ -76,12 +76,13 @@ public class CowardNpc : BaseNpc
 
     /// <summary>
     /// Starts generator timer when entering idle state
+    /// E.V.: there is now a generator timer on the TimerManager
     /// </summary>
     protected override void EnterIdle()
     {
         base.EnterIdle();
 
-        StartCoroutine("GeneratorTimer");
+        //StartCoroutine(GeneratorTimer());
     }
 
     /// <summary>
@@ -98,11 +99,15 @@ public class CowardNpc : BaseNpc
 
     /// <summary>
     /// Restarts the loop due to generator explosion when entering failure state
+    /// E.V.: there is an event listener on the LoopController that listens for
+    /// OnDeath/Generator Death
     /// </summary>
     protected override void EnterFailure()
     {
+        Debug.Log("The generator exploded");
         base.EnterFailure();
 
+        
         // TODO: trigger new loop here
     }
 
@@ -200,15 +205,15 @@ public class CowardNpc : BaseNpc
     /// Waits for a time until the generator explodes before entering the failure state
     /// </summary>
     /// <returns>Waits for the time until explosion</returns>
-    private IEnumerator GeneratorTimer()
-    {
-        yield return new WaitForSeconds(_secondsUntilExplosion);
+    //private IEnumerator GeneratorTimer()
+    //{
+    //    yield return new WaitForSeconds(_secondsUntilExplosion);
 
-        if (_currentState != NpcStates.PostMinigame)
-        {
-            EnterFailure();
-        }
-    }
+    //    if (_currentState != NpcStates.PostMinigame)
+    //    {
+    //        EnterFailure();
+    //    }
+    //}
 
     /// <summary>
     /// Teleports the NPC player to a destination

@@ -415,6 +415,10 @@ public abstract class BaseNpc : MonoBehaviour
     /// </summary>
     protected virtual void OnDisable()
     {
+        //_playerInventorySystem.AddedToInventory -= CollectedItem;
+    }
+    ~BaseNpc()
+    {
         _playerInventorySystem.AddedToInventory -= CollectedItem;
     }
 }
