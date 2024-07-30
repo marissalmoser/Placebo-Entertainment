@@ -33,6 +33,14 @@ public class LightManager : MonoBehaviour
         RipcordBehavior.OnRipcordReleaseDetection -= SetLightColor;
     }
 
+    private void Start()
+    {
+        foreach(GameObject light in _lights)
+        {
+            light.GetComponent<Light>().color = _idleColor;
+        }
+    }
+
     /// <summary>
     /// Starts the blinking lights coroutine so the lights blink
     /// </summary>
