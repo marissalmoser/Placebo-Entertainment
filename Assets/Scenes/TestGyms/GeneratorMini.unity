@@ -1057,34 +1057,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 392118398}
-    - target: {fileID: 4281622823149269775, guid: eb31e5856b67aeb4ea3a28c9716afc49, type: 3}
-      propertyPath: _idleColor.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4281622823149269775, guid: eb31e5856b67aeb4ea3a28c9716afc49, type: 3}
-      propertyPath: _idleColor.b
-      value: 0.6745098
-      objectReference: {fileID: 0}
-    - target: {fileID: 4281622823149269775, guid: eb31e5856b67aeb4ea3a28c9716afc49, type: 3}
-      propertyPath: _idleColor.g
-      value: 0.972549
-      objectReference: {fileID: 0}
-    - target: {fileID: 4281622823149269775, guid: eb31e5856b67aeb4ea3a28c9716afc49, type: 3}
-      propertyPath: _idleColor.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4281622823149269775, guid: eb31e5856b67aeb4ea3a28c9716afc49, type: 3}
-      propertyPath: _correctColor.b
-      value: 0.36386612
-      objectReference: {fileID: 0}
-    - target: {fileID: 4281622823149269775, guid: eb31e5856b67aeb4ea3a28c9716afc49, type: 3}
-      propertyPath: _correctColor.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4281622823149269775, guid: eb31e5856b67aeb4ea3a28c9716afc49, type: 3}
-      propertyPath: _correctColor.r
-      value: 0.25471687
-      objectReference: {fileID: 0}
     - target: {fileID: 4487275014309915439, guid: eb31e5856b67aeb4ea3a28c9716afc49, type: 3}
       propertyPath: m_Mesh
       value: 
