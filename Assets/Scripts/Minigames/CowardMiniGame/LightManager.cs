@@ -14,6 +14,8 @@ public class LightManager : MonoBehaviour
 {
     [SerializeField] private float _timeBetweenBlinks;
     [SerializeField] GameObject[] _lights;
+    [SerializeField] private Color _idleColor;
+    [SerializeField] private Color _correctColor;
     private bool _isFlashing;
     private int _currentLight = 0;
 
@@ -21,12 +23,22 @@ public class LightManager : MonoBehaviour
     {
         RipcordBehavior.OnRipcordScore += OnScore;
         RipcordBehavior.OnRipcordReleaseDetection += DisableFlashingForCurrentLight;
+        RipcordBehavior.OnRipcordReleaseDetection += SetLightColor;
     }
 
     private void OnDisable()
     {
         RipcordBehavior.OnRipcordScore -= OnScore;
         RipcordBehavior.OnRipcordReleaseDetection -= DisableFlashingForCurrentLight;
+        RipcordBehavior.OnRipcordReleaseDetection -= SetLightColor;
+    }
+
+    private void Start()
+    {
+        foreach(GameObject light in _lights)
+        {
+            light.GetComponent<Light>().color = _idleColor;
+        }
     }
 
     /// <summary>
@@ -75,7 +87,23 @@ public class LightManager : MonoBehaviour
     private void OnScore()
     {
         DisableFlashingForCurrentLight(true);
+        SetLightColor(true);
         _currentLight++;
-        StartCoroutine(BlinkingLights());
+    }
+
+    /// <summary>
+    /// Sets the current ripcord light to the color based on input parameter. True
+    /// for correct and false for idle.
+    /// </summary>
+    private void SetLightColor(bool input)
+    {
+        if (input)
+        {
+            _lights[_currentLight].GetComponent<Light>().color = _correctColor;
+        }
+        else
+        {
+            _lights[_currentLight].GetComponent<Light>().color = _idleColor;
+        }
     }
 }
