@@ -25,6 +25,8 @@ public class GearBehavior : MonoBehaviour, IInteractable
 
     [Header("Correct Gear")]
     [SerializeField] private int _rightGearNum;
+    [SerializeField] private float _rotationSpeed;
+    private Vector3 _rotationAngle;
     private bool _isComplete = false;
     public bool IsComplete { get => _isComplete; private set => _isComplete = value; }
 
@@ -33,6 +35,16 @@ public class GearBehavior : MonoBehaviour, IInteractable
     /// </summary>
     void Start()
     {
+        // Ensures rotation is always clockwise
+        if (_rotationSpeed > 0)
+        {
+            _rotationAngle = new Vector3(0, 0, -_rotationSpeed);
+        }
+        else
+        {
+            _rotationAngle = new Vector3(0, 0, _rotationSpeed);
+        }
+
         if (_startingGearIndex >= _gearSizes.Length || _startingGearIndex < 0)
         {
             _startingGearIndex = 0;
@@ -45,6 +57,17 @@ public class GearBehavior : MonoBehaviour, IInteractable
                 _gearSizes[i].SetActive(true);
             else
                 _gearSizes[i].SetActive(false);
+        }
+    }
+
+    /// <summary>
+    /// Rotates gear if it's correctly slotted
+    /// </summary>
+    private void FixedUpdate()
+    {
+        if (_isComplete)
+        {
+            transform.Rotate(_rotationAngle * Time.deltaTime, Space.Self);
         }
     }
 
