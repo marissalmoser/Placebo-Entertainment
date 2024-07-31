@@ -214,7 +214,6 @@ namespace PlaceboEntertainment.UI
         private void Start()
         {
             PlayerController.Instance.PlayerControls.BasicControls.OpenSchedule.performed += OpenScheduleOnPerformed;
-            //_timer = TimerManager.Instance.GetTimer("LoopTimer");
         }
 
         /// <summary>
