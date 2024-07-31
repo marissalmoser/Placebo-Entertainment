@@ -33,7 +33,7 @@ public class GearBehavior : MonoBehaviour, IInteractable
     /// <summary>
     /// Ensures only starting gear is active
     /// </summary>
-    void Start()
+    void Awake()
     {
         // Ensures rotation is always clockwise
         if (_rotationSpeed > 0)
@@ -111,10 +111,13 @@ public class GearBehavior : MonoBehaviour, IInteractable
     public void SetGearToComplete()
     {
         _isComplete = true;
-        if (_currentGearSizeIndex < _gearSizes.Length && _currentGearSizeIndex >= 0)
-            _gearSizes[_currentGearSizeIndex].SetActive(false);
-        if (_rightGearNum < _gearSizes.Length && _rightGearNum >= 0)
-            _gearSizes[_rightGearNum].SetActive(true);
+        for (int i = 0; i < _gearSizes.Length; ++i)
+        {
+            if (i == _rightGearNum)
+                _gearSizes[i].SetActive(true);
+            else
+                _gearSizes[i].SetActive(false);
+        }
     }
 
     /// <summary>
