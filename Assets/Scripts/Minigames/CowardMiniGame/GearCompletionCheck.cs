@@ -1,6 +1,7 @@
 /*****************************************************************************
 // File Name :         GearCompletionCheck.cs
 // Author :            Mark Hanson
+// Contributors :      Nick Grinstead
 // Creation Date :     5/27/2024
 //
 // Brief Description : A checker for when each gear is green then start the next phase of the mini game.
@@ -12,10 +13,8 @@ using UnityEngine;
 public class GearCompletionCheck : MonoBehaviour
 {
     [Header("CheckList")]
-    [SerializeField] private GameObject[] _realGears;
-    private bool _isGameComplete;
-    private int _greenCount;
-    [SerializeField] private Renderer[] _matCheck;
+    [SerializeField] private GameObject[] _gearSlots;
+    private int _completedGears = 0;
     [SerializeField] private GameObject _wrench;
     [SerializeField] private GameObject _sparkMode;
     private GameObject _instantiatedWrench;
@@ -23,29 +22,26 @@ public class GearCompletionCheck : MonoBehaviour
     [Header("VFX Stuff")]
     [SerializeField] private ParticleSystem _generatorSmoke;
 
-    // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
-        _isGameComplete = false;
+        GearBehavior.CorrectGear += CheckForGearCompletion;
     }
 
-    // Update is called once per frame
-    void Update() // TODO: overhall completion checking
+    private void OnDisable()
     {
-        for (int i = 0; i < _realGears.Length; i++)
+        GearBehavior.CorrectGear -= CheckForGearCompletion;
+    }
+
+    /// <summary>
+    /// Invoked when a gear is correctly slotted into place. Checks if all gears
+    /// have been completed.
+    /// </summary>
+    private void CheckForGearCompletion()
+    {
+        _completedGears++;
+
+        if (_completedGears >= _gearSlots.Length)
         {
-           _matCheck[i] = _realGears[i].GetComponent<Renderer>();
-        }
-        for(int i = 0; i < _matCheck.Length; i++)
-        {
-            if (_matCheck[i].material.color == Color.green)
-            {
-                _matCheck[i] = null;
-            }
-        }
-        if (_matCheck[0]== null && _matCheck[1] == null && _matCheck[2] == null && _matCheck[3] == null && _matCheck[4] == null && _matCheck[5].material.color == Color.red)
-        {
-            _matCheck[5].material.color = Color.green;
             StartSparksSection();
         }
     }
@@ -59,7 +55,7 @@ public class GearCompletionCheck : MonoBehaviour
         _sparkMode.SetActive(true);
         _instantiatedWrench = Instantiate(_wrench, _wrenchPoint, Quaternion.identity);
         _generatorSmoke.Stop();
-        Destroy(this);
+        this.enabled = false;
     }
 
     /// <summary>
@@ -71,14 +67,14 @@ public class GearCompletionCheck : MonoBehaviour
         //moves the wrench to the players hand
         _instantiatedWrench.GetComponent<WrenchBehavior>().PickUpWrench();
 
-        //makes gears uninteractable and green
-        foreach (GameObject gear in _realGears) // TODO: update what happens when you start with bypass
+        //Makes gears uninteractable and the right gear size
+        foreach (GameObject gear in _gearSlots)
         {
-            if (gear.GetComponent<GearBehavior>() != null)
+            GearBehavior temp = gear.GetComponent<GearBehavior>();
+            if (temp != null)
             {
-                Destroy(gear.GetComponent<GearBehavior>());
+                temp.SetGearToComplete();
             }
-            gear.GetComponent<Renderer>().material.color = Color.green;
         }
     }
 }

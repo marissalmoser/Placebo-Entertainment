@@ -6,6 +6,7 @@
 //
 // Brief Description : Any function to do for the gears mini game will be found here. Includes swapping slots, Correct slot pattern with all bad ones, and selecting gears for each slot.
 *****************************************************************************/
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,8 @@ using PlaceboEntertainment.UI;
 
 public class GearBehavior : MonoBehaviour, IInteractable
 {
+    public static Action CorrectGear;
+
     [SerializeField] private string _interactPromptText = "GEAR";
 
     [Header("Individual Gear")]
@@ -74,6 +77,7 @@ public class GearBehavior : MonoBehaviour, IInteractable
         if (_currentGearSizeIndex == _rightGearNum)
         {
             _isComplete = true;
+            CorrectGear?.Invoke();
             HideInteractUI();
         }
     }
