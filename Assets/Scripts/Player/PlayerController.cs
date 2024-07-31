@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
 
     Rigidbody _rb;
     CinemachineVirtualCamera _mainCamera;
+    [SerializeField] GameObject _mainCamGameObject;
     CinemachineTransposer _transposer;
 
     PlayerInteractSystem InteractionCheck;
@@ -35,6 +36,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] bool _isKinemat;
 
+    private bool _isPanning = false;
+    [SerializeField] private GameObject _panTarget;
     private bool _isMoving = false;
     private Vector2 _moveDirection;
     private Vector3 _velocity;
@@ -52,7 +55,6 @@ public class PlayerController : MonoBehaviour
         Move.canceled += ctx => _isMoving = false;
         Move.canceled += ctx => HaltVelocity();
     }
-
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -101,7 +103,12 @@ public class PlayerController : MonoBehaviour
         {
             _rb.isKinematic = false;
         }
-
+        if (_isPanning)
+        {
+            _mainCamGameObject.transform.LookAt(_panTarget.transform);
+            
+            Debug.Log("hey");
+        }
         // Ground Check
         if (!_isGrounded)
             _isGrounded = Physics.CheckSphere(_groundChecker.position, _groundedDistance, _groundMask);
@@ -162,6 +169,28 @@ public class PlayerController : MonoBehaviour
 
         _mainCamera.gameObject.SetActive(!isLocked);
     }
+    /// <summary>
+    /// Called to make player face which ever NPC its talking to
+    /// </summary>
+    /// <param name="_targetNPC">The Npc in question to pan towards</param>
+    public void PanCharacter(GameObject _targetNPC)
+    {
+        _isPanning = true;
+        _panTarget = _targetNPC;
+        StartCoroutine(PanStop());
+    }
+    /// <summary>
+    /// the seconds it take to stop panning
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator PanStop()
+    {
+        yield return new WaitForSeconds(1f);
+        _isPanning = false;
+        yield return new WaitForSeconds(0.1f);
+        _panTarget = null;
+        StopCoroutine(PanStop());
+    }
 
     /// <summary>
     /// Helper function inovoked to delay regaining camera control post-dialogue
@@ -170,6 +199,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!_isInDialogue)
             CinemachineCore.UniformDeltaTimeOverride = 1;
+
     }
 
     /// <summary>

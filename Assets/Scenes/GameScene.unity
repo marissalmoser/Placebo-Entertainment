@@ -37671,6 +37671,11 @@ ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 1373860831198249239, guid: ddee0cac0f4d6434e8ddb6fe20e9623b, type: 3}
   m_PrefabInstance: {fileID: 747503219}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1257780968 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3717106574432832137, guid: c305122b038e6e048b647787017c7c42, type: 3}
+  m_PrefabInstance: {fileID: 1749669357}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1265810818
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37679,6 +37684,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1869879217}
     m_Modifications:
+    - target: {fileID: 1230460638816517745, guid: 86879ec7ec26aac4e9231e94c1b6fb04, type: 3}
+      propertyPath: _Player
+      value: 
+      objectReference: {fileID: 1257780968}
     - target: {fileID: 1230460638816517745, guid: 86879ec7ec26aac4e9231e94c1b6fb04, type: 3}
       propertyPath: _secondsUntilExplosion
       value: 480
@@ -54271,6 +54280,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 3717106574432832137, guid: c305122b038e6e048b647787017c7c42, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3740201946531090697, guid: c305122b038e6e048b647787017c7c42, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -55607,6 +55620,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 9060088147861728875, guid: c305122b038e6e048b647787017c7c42, type: 3}
+      propertyPath: _mainCamGameObject
+      value: 
+      objectReference: {fileID: 2002566171}
     - target: {fileID: 9093021038611687771, guid: c305122b038e6e048b647787017c7c42, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -60080,6 +60097,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1996449660}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &2002566171 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8865543037565822744, guid: c305122b038e6e048b647787017c7c42, type: 3}
+  m_PrefabInstance: {fileID: 1749669357}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &2002726585
 Mesh:
   m_ObjectHideFlags: 0

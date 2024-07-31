@@ -11,7 +11,7 @@ using UnityEngine;
 public class CowardNpc : BaseNpc
 {
     [SerializeField] private float _secondsUntilExplosion;
-
+    [SerializeField] private GameObject _Player;
     private bool _canTeleportToGenerator = false;
     private bool _hasTeleported = false;
     private bool _hasLightbulb = false;
@@ -45,7 +45,8 @@ public class CowardNpc : BaseNpc
     {
         _hasLightbulb = true;
         Interact();
-
+        PlayerController _psScript = _Player.GetComponent<PlayerController>();
+        _psScript.PanCharacter(this.gameObject);
         _tabbedMenu.ToggleInteractPrompt(false);
         _canTeleportToGenerator = true;
     }
