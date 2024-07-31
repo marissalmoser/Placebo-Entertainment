@@ -30,7 +30,7 @@ public class GearCompletionCheck : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void Update() // TODO: overhall completion checking
     {
         for (int i = 0; i < _realGears.Length; i++)
         {
@@ -72,7 +72,7 @@ public class GearCompletionCheck : MonoBehaviour
         _instantiatedWrench.GetComponent<WrenchBehavior>().PickUpWrench();
 
         //makes gears uninteractable and green
-        foreach (GameObject gear in _realGears)
+        foreach (GameObject gear in _realGears) // TODO: update what happens when you start with bypass
         {
             if (gear.GetComponent<GearBehavior>() != null)
             {

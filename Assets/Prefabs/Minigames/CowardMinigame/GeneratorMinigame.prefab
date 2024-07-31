@@ -1609,6 +1609,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gear Bottom
       objectReference: {fileID: 0}
+    - target: {fileID: 4525281036796064672, guid: 32acc9123f2c50a468bb4d9e554e491d, type: 3}
+      propertyPath: _gearSize.Array.size
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4737607313687055709, guid: 32acc9123f2c50a468bb4d9e554e491d, type: 3}
       propertyPath: m_LocalScale.x
       value: 5.663221
@@ -1713,8 +1717,13 @@ PrefabInstance:
       propertyPath: _generatorSmoke
       value: 
       objectReference: {fileID: 7842511862168824182}
+    - target: {fileID: 8152836082252495724, guid: 32acc9123f2c50a468bb4d9e554e491d, type: 3}
+      propertyPath: _realGears.Array.data[5]
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2890307384205502230, guid: 32acc9123f2c50a468bb4d9e554e491d, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4737607313687055709, guid: 32acc9123f2c50a468bb4d9e554e491d, type: 3}
       insertIndex: 0

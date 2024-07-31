@@ -1,7 +1,7 @@
 /*****************************************************************************
 // File Name :         GearBehavior.cs
 // Author :            Mark Hanson
-// Contributors :      Marissa Moser
+// Contributors :      Marissa Moser, Nick Grinstead
 // Creation Date :     5/24/2024
 //
 // Brief Description : Any function to do for the gears mini game will be found here. Includes swapping slots, Correct slot pattern with all bad ones, and selecting gears for each slot.
@@ -16,91 +16,78 @@ public class GearBehavior : MonoBehaviour, IInteractable
     [SerializeField] private string _interactPromptText = "GEAR";
 
     [Header("Individual Gear")]
-    [SerializeField] private GameObject[] _gearSize;
-    [SerializeField] private GameObject _gearIndi;
-    private int _gearSizeNum;
-    //private bool _scrollable;
-    private bool _doOnce;
-    //private PlayerController _pc;
-    private bool _interact;
+    [SerializeField] private GameObject[] _gearSizes;
+    [SerializeField] private int _startingGearIndex;
+    private int _currentGearSizeIndex;
 
     [Header("Correct Gear")]
     [SerializeField] private int _rightGearNum;
-    [SerializeField] private Color _matRed;
-    [SerializeField] private Color _matGreen;
-    private Renderer _rndr;
+    private bool _isComplete = false;
+    public bool IsComplete { get => _isComplete; private set => _isComplete = value; }
 
-    // Start is called before the first frame update
+    /// <summary>
+    /// Ensures only starting gear is active
+    /// </summary>
     void Start()
     {
-        _doOnce = true;
-        _gearSizeNum = 1;
-        //_scrollable = false;
-        //GameObject _pcObject = GameObject.FindWithTag("Player");
-        //_pc = _pcObject.GetComponent<PlayerController>();
-        _rndr = this.GetComponent<Renderer>();
+        if (_startingGearIndex >= _gearSizes.Length || _startingGearIndex < 0)
+        {
+            _startingGearIndex = 0;
+        }
+        _currentGearSizeIndex = _startingGearIndex;
+
+        for (int i = 0; i < _gearSizes.Length; ++i)
+        {
+            if (i == _startingGearIndex)
+                _gearSizes[i].SetActive(true);
+            else
+                _gearSizes[i].SetActive(false);
+        }
     }
 
     /// <summary>
-    /// used for gradually cycling through gear sizes through the list of gears
+    /// Cycles through gears if this slot has not been completed
     /// </summary>
-    void FixedUpdate()
-    {
-        transform.localScale = new Vector3(1f, _gearIndi.transform.localScale.y + 0.5f, 1f);
-        if (_interact && _gearSizeNum != _gearSize.Length && _doOnce == true)// && _scrollable == true)
-        {
-            _gearSizeNum++;
-            _doOnce = false;
-            StartCoroutine(doOnceCooldown());
-        }
-        if (_interact && _gearSizeNum == _gearSize.Length && _doOnce == true)// && _scrollable == true)
-        {
-            _gearSizeNum = 1;
-            _doOnce = false;
-            StartCoroutine(doOnceCooldown());
-        }
-        _gearIndi = _gearSize[_gearSizeNum - 1];
-        //Debug.Log(_gearSizeNum);
-    }
-    /// <summary>
-    /// if right gear number then make green if not keep red
-    /// </summary>
-    void Update()
-    {
-        if (_gearSizeNum == _rightGearNum)
-        {
-            _rndr.material.color = Color.green;
-            Destroy(this);
-        }
-        if (_gearSizeNum < _rightGearNum || _gearSizeNum > _rightGearNum)
-        {
-            _rndr.material.color = Color.red;
-        }
-    }
-    /// <summary>
-    /// Cool down for no spamming
-    /// </summary>
-    /// <returns></returns>
-    IEnumerator doOnceCooldown()
-    {
-        yield return new WaitForSeconds(0.2f);
-        _doOnce = true;
-    }
-    /// <summary>
-    /// Enables gears to be interacted with in update
-    /// </summary>
-    /// <param name="player"></param>
+    /// <param name="player">Player interacting</param>
     public void Interact(GameObject player)
     {
-        _interact = true;
+        if (!_isComplete)
+        {
+            int previousIndex = _currentGearSizeIndex;
+            _currentGearSizeIndex++;
+            _currentGearSizeIndex %= _gearSizes.Length;
+
+            if (previousIndex < _gearSizes.Length && previousIndex >= 0)
+                _gearSizes[previousIndex].SetActive(false);
+            if (_currentGearSizeIndex < _gearSizes.Length && _currentGearSizeIndex >= 0)
+                 _gearSizes[_currentGearSizeIndex].SetActive(true);
+            
+            CheckGearCompletion();
+        }
     }
 
     /// <summary>
-    /// Disables gears to be interacted with in update
+    /// Updates _isComplete to true if the current gear matches the correct one
     /// </summary>
-    public void CancelInteract()
+    private void CheckGearCompletion()
     {
-        _interact = false;
+        if (_currentGearSizeIndex == _rightGearNum)
+        {
+            _isComplete = true;
+            HideInteractUI();
+        }
+    }
+
+    /// <summary>
+    /// Called by GearCompletionCheck to force gears into their completed state
+    /// </summary>
+    public void SetGearToComplete()
+    {
+        _isComplete = true;
+        if (_currentGearSizeIndex < _gearSizes.Length && _currentGearSizeIndex >= 0)
+            _gearSizes[_currentGearSizeIndex].SetActive(false);
+        if (_rightGearNum < _gearSizes.Length && _rightGearNum >= 0)
+            _gearSizes[_rightGearNum].SetActive(true);
     }
 
     /// <summary>
@@ -108,7 +95,10 @@ public class GearBehavior : MonoBehaviour, IInteractable
     /// </summary>
     public void DisplayInteractUI()
     {
-        TabbedMenu.Instance.ToggleInteractPrompt(true, _interactPromptText);
+        if (!_isComplete)
+        {
+            TabbedMenu.Instance.ToggleInteractPrompt(true, _interactPromptText);
+        }
     }
 
     /// <summary>
