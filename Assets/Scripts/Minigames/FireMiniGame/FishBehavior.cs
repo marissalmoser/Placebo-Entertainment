@@ -66,8 +66,13 @@ public class FishBehavior : MonoBehaviour, IInteractable
         _playerControls = new PlayerControls();
         _playerControls.BasicControls.Enable();
         leftclick = _playerControls.FindAction("LeftClick");
-        _npcFish.SetActive(false);
+        
+    }
+
+    void Start()
+    {
         _tabbedMenu = TabbedMenu.Instance;
+        _npcFish.SetActive(false);
     }
 
     void FixedUpdate()
