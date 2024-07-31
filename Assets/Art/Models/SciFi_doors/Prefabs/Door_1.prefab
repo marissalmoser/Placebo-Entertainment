@@ -74,8 +74,8 @@ MonoBehaviour:
   _interactPromptText: DOOR
   _lockedInteractPromptText: LOCKED DOOR
   _isLocked: 0
-  _lockedMaterial: {fileID: 0}
-  _unlockedMaterial: {fileID: 0}
+  _material: {fileID: 2100000, guid: 270de10887ae1314390fd8a79892583c, type: 2}
+  _renderer: {fileID: 2335262}
 --- !u!65 &2169736444655066224
 BoxCollider:
   m_ObjectHideFlags: 0
