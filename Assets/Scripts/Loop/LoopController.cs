@@ -24,6 +24,8 @@ public class LoopController : MonoBehaviour
     private List<Timer> _runningTimersAtStart = new List<Timer>();
     private List<Timer> _pausedTimersAtStart= new List<Timer>();
 
+    private static bool _looped = false;
+
     private void Start()
     {
         foreach(TimerStruct timer in TimerManager.Instance._timers)
@@ -40,6 +42,11 @@ public class LoopController : MonoBehaviour
         _loopTimer = TimerManager.Instance.CreateTimer(LoopTimerName, _loopTimerTime + _endScreenDelay, _temporaryLoop, _temporaryTag);
         //_loopTimer.TimesUp += HandleLoopTimerEnd;
         LoadSave();
+        
+        if(_looped == true)
+        {
+            PlayerController.Animator.SetTrigger("Reset");
+        }
     }
     /// <summary>
     /// Handler for the event
@@ -69,6 +76,7 @@ public class LoopController : MonoBehaviour
         SaveLoadManager.Instance.SaveGameToSaveFile();
         int activeSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(activeSceneIndex);
+        _looped = true;
     }
 
     /// <summary>
