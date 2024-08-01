@@ -162,7 +162,6 @@ public class PlayerController : MonoBehaviour
         else
         {
             Invoke(nameof(DelayedCameraUnlock), 0.1f);
-            _mainCamera.transform.eulerAngles = transform.forward;
         }
 
         _mainCamera.gameObject.SetActive(!isLocked);
