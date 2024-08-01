@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     public static Animator Animator { get; private set; }
 
     public PlayerControls PlayerControls { get; private set; }
-    public InputAction Move, Interact, Reset, Quit;
+    public InputAction Move, Interact, Reset;
 
     Rigidbody _rb;
     CinemachineVirtualCamera _mainCamera;
@@ -86,8 +86,8 @@ public class PlayerController : MonoBehaviour
         Move = PlayerControls.FindAction("Move");
         Interact = PlayerControls.FindAction("Interact");
         Reset = PlayerControls.FindAction("Reset");
-        Quit = PlayerControls.FindAction("Quit");
     }
+
     void FixedUpdate()
     {
         // Player Movement
@@ -122,10 +122,6 @@ public class PlayerController : MonoBehaviour
         if (Reset.IsPressed())
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
-        if (Quit.IsPressed())
-        {
-            Application.Quit();
         }
 
         // Player Rotation
@@ -166,7 +162,6 @@ public class PlayerController : MonoBehaviour
         else
         {
             Invoke(nameof(DelayedCameraUnlock), 0.1f);
-            _mainCamera.transform.eulerAngles = transform.forward;
         }
 
         _mainCamera.gameObject.SetActive(!isLocked);

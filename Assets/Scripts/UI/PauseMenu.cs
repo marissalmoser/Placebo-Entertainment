@@ -21,6 +21,7 @@ public class PauseMenu : MonoBehaviour
 
     private Button _continueButton;
     private Button _exitButton;
+    private bool _isGamePaused = false;
 
     /// <summary>
     /// Registering callbacks
@@ -61,6 +62,7 @@ public class PauseMenu : MonoBehaviour
     /// <param name="isActive">True if menu should be visible</param>
     public void TogglePauseMenu(bool isActive)
     {
+        _isGamePaused = isActive;
         UnityEngine.Cursor.visible = isActive;
         UnityEngine.Cursor.lockState = isActive ? CursorLockMode.None : CursorLockMode.Locked;
 
@@ -74,7 +76,7 @@ public class PauseMenu : MonoBehaviour
     /// <param name="obj">Callback from input</param>
     private void PauseGamePerformed(InputAction.CallbackContext obj)
     {
-        TogglePauseMenu(true);
+        TogglePauseMenu(!_isGamePaused);
     }
 
     /// <summary>
