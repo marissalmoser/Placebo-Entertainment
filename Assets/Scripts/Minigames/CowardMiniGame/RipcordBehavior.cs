@@ -90,6 +90,7 @@ public class RipcordBehavior : MonoBehaviour
     private void DeactivateMinigame()
     {
         _isMinigameActive = false;
+        TabbedMenu.Instance.ToggleInteractPrompt(false);
     }
 
     /// <summary>
