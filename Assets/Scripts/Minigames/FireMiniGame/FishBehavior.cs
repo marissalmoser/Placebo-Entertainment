@@ -66,7 +66,6 @@ public class FishBehavior : MonoBehaviour, IInteractable
         _playerControls = new PlayerControls();
         _playerControls.BasicControls.Enable();
         leftclick = _playerControls.FindAction("LeftClick");
-        
     }
 
     void Start()
@@ -94,7 +93,7 @@ public class FishBehavior : MonoBehaviour, IInteractable
             _waterAmount -= 1f;
             _refillNow = false;
             Vector3 _firePosition = new Vector3(_firePoint.transform.position.x, _firePoint.transform.position.y, _firePoint.transform.position.z);
-            Instantiate(_water, _firePosition, Quaternion.identity);
+            //Instantiate(_water, _firePosition, Quaternion.identity);
             _waterSpray.Play();
             _tabbedMenu.UpdateFishFaceState(1);
         }

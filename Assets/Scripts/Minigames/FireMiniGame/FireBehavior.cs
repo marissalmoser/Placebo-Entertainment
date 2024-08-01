@@ -1,6 +1,7 @@
 /*****************************************************************************
 // File Name :         FireBehavior.cs
 // Author :            Mark Hanson
+// Contributors:       Andrea Swihart-DeCoster
 // Creation Date :     6/19/2024
 //
 // Brief Description : Function for destroying fire when it reaches 0 by water touching it
@@ -10,40 +11,99 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Unity.VisualScripting;
+using System.ComponentModel;
 
 public class FireBehavior : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] private int _minFireEndure;
-    [SerializeField] private int _maxFireEndure;
-    [SerializeField] private int _curFireEndure;
+    [SerializeField] private int _waterCooldown;
+    [SerializeField] private float _timeBetweenScaleChanges;
 
-    [Header("Connectors")]
-    [SerializeField] private TextMeshPro _fireNum;
+    [Range(0f,50f)]
+    [Tooltip("How much the fire changes size each time it grows or shrinks")]
+    [SerializeField] private float _absoluteScaleChange;
 
-    void Awake()
+    [Range(0f, 2f)]
+    [Tooltip("Minimum size the fire can start at.")]
+    [SerializeField] private float _minFireSize;
+    [Range(0f, 2f)]
+    [SerializeField] private float _maxFireSize;
+
+    // _scaleChange starts at _absoluteScaleChange then changes to pos or neg situationally
+    private float _scaleChange;
+
+    private void Start()
     {
-        _curFireEndure = Random.Range(_minFireEndure, _maxFireEndure);
+        float startingSize = Random.Range(_minFireSize, _maxFireSize);
+        transform.localScale = new Vector3(startingSize, startingSize, startingSize);
+        _scaleChange = _absoluteScaleChange;
+        StartCoroutine(ChangeFireScale());
     }
-    // Update is called once per frame
-    void Update()
+    /* private void OnParticleCollision(GameObject other)
+     {
+         if (other.TryGetComponent<WaterBehavior>(out WaterBehavior _waterBehavior))
+         {
+             _scaleChange = -_absoluteScaleChange;
+             StopCoroutine(WaterCooldown());
+         }
+     }*/
+
+    private void OnParticleTrigger()
     {
-        _fireNum.text = _curFireEndure.ToString();
-        if (_curFireEndure <= 0)
+        print("test");
+        _scaleChange = -_absoluteScaleChange;
+        StopCoroutine(WaterCooldown());
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.TryGetComponent<WaterBehavior>(out WaterBehavior _waterBehavior))
         {
-            Destroy(gameObject);
+            StartCoroutine(WaterCooldown());
         }
-        if (_curFireEndure >= 15 && _curFireEndure <= 100)
+        
+    }
+
+    /// <summary>
+    /// After the cooldown period, the fire should start growing
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator WaterCooldown()
+    {
+        _scaleChange = 0f;
+        yield return new WaitForSeconds(_waterCooldown);
+        _scaleChange = _absoluteScaleChange;
+    }
+
+    /// <summary>
+    /// Changes the scale of the fire.
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator ChangeFireScale()
+    {
+        // Stops once size is 0
+        while (transform.localScale.x > 0)
         {
-            transform.localScale = new Vector3(_curFireEndure / 30f, _curFireEndure / 30f, _curFireEndure / 30f);
+            // Shouldn't grow if bigger than maxFireSize
+            if (CanFireGrow() || _scaleChange < 0)
+            {
+                // Changes fire scale
+                float newScale = transform.localScale.x + _scaleChange;
+                transform.localScale = new Vector3(newScale, newScale, newScale);
+
+                if (transform.localScale.x <= 0)
+                {
+                    Destroy(gameObject);
+                }
+            }
+
+            yield return new WaitForSeconds(_timeBetweenScaleChanges);
         }
     }
 
-    void OnTriggerEnter(Collider col)
+    private bool CanFireGrow()
     {
-        if (col.gameObject.tag == "Water")
-        {
-            _curFireEndure--;
-        }
+        return _scaleChange > 0 && transform.localScale.x <= _maxFireSize;
     }
 }

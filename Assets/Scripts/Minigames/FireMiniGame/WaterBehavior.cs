@@ -11,7 +11,7 @@ using UnityEngine;
 
 public class WaterBehavior : MonoBehaviour
 {
-    [SerializeField] private Rigidbody _rb;
+   /* [SerializeField] private Rigidbody _rb;
     [SerializeField] private GameObject _cam;
 
     void Awake()
@@ -26,6 +26,6 @@ public class WaterBehavior : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
+    }*/
 
 }
