@@ -1049,6 +1049,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1504275151306712268, guid: eb31e5856b67aeb4ea3a28c9716afc49, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3442746782312942411, guid: eb31e5856b67aeb4ea3a28c9716afc49, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -1057,6 +1061,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 392118398}
+    - target: {fileID: 5194293866317158357, guid: eb31e5856b67aeb4ea3a28c9716afc49, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6279909926088145406, guid: eb31e5856b67aeb4ea3a28c9716afc49, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -1064,6 +1072,10 @@ PrefabInstance:
     - target: {fileID: 6419782213234926937, guid: eb31e5856b67aeb4ea3a28c9716afc49, type: 3}
       propertyPath: m_Name
       value: Generator Minigame
+      objectReference: {fileID: 0}
+    - target: {fileID: 7073288611299208159, guid: eb31e5856b67aeb4ea3a28c9716afc49, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

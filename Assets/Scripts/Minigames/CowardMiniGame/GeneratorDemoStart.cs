@@ -11,6 +11,5 @@ public class GeneratorDemoStart : MonoBehaviour
     void Start()
     {
         _manager.GetComponent<RipcordBehavior>().ActivateMinigame();
-        _lightManager.GetComponent<LightManager>().StartBlinkingLightCoroutine();
     }
 }

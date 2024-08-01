@@ -18,12 +18,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float _moveSpeed;
     [SerializeField] float _jumpForce;
 
-    [Header("VFX Stuff")]
+    [Header("VFX")]
     [SerializeField] private ParticleSystem _footPrints;
     private ParticleSystem.EmissionModule _footPrintEmission;
 
+    //Anim Controller
+    public static Animator Animator { get; private set; }
+
     public PlayerControls PlayerControls { get; private set; }
-    public InputAction Move, Interact, Reset, Quit;
+    public InputAction Move, Interact, Reset;
 
     Rigidbody _rb;
     CinemachineVirtualCamera _mainCamera;
@@ -77,11 +80,14 @@ public class PlayerController : MonoBehaviour
 
         _mainCamera.transform.rotation = transform.rotation;
 
+        //Finding Anim Controller
+        Animator = GetComponentInChildren<Animator>();
+
         Move = PlayerControls.FindAction("Move");
         Interact = PlayerControls.FindAction("Interact");
         Reset = PlayerControls.FindAction("Reset");
-        Quit = PlayerControls.FindAction("Quit");
     }
+
     void FixedUpdate()
     {
         // Player Movement
@@ -92,6 +98,9 @@ public class PlayerController : MonoBehaviour
             _velocity = _velocity.normalized * _moveSpeed;
             _rb.AddForce(_velocity, ForceMode.VelocityChange);
             _footPrintEmission.enabled = true;
+            
+            //Starts Walking Anim
+            Animator.SetFloat("Speed", _velocity.magnitude);
         }
         if(_isKinemat)
         {
@@ -113,10 +122,6 @@ public class PlayerController : MonoBehaviour
         if (Reset.IsPressed())
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
-        if (Quit.IsPressed())
-        {
-            Application.Quit();
         }
 
         // Player Rotation
@@ -157,7 +162,6 @@ public class PlayerController : MonoBehaviour
         else
         {
             Invoke(nameof(DelayedCameraUnlock), 0.1f);
-            _mainCamera.transform.eulerAngles = transform.forward;
         }
 
         _mainCamera.gameObject.SetActive(!isLocked);
@@ -181,6 +185,9 @@ public class PlayerController : MonoBehaviour
         {
             _rb.velocity = new Vector3(0, _rb.velocity.y, 0);
             _footPrintEmission.enabled = false;
+            
+            //Stops Walking Anim
+            Animator.SetFloat("Speed", 0);
         }
     }
 
