@@ -1908,6 +1908,11 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!95 &49476005 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3543369105233053174, guid: f188daf20aada014c9268d86af53b853, type: 3}
+  m_PrefabInstance: {fileID: 1553708491}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &56654706
 Mesh:
   m_ObjectHideFlags: 0
@@ -51261,10 +51266,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6882198576666297318, guid: f188daf20aada014c9268d86af53b853, type: 3}
       propertyPath: _eventsToListenFor.Array.data[1]._onEventTriggered.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6882198576666297318, guid: f188daf20aada014c9268d86af53b853, type: 3}
       propertyPath: _eventsToListenFor.Array.data[1]._onEventTriggered.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6882198576666297318, guid: f188daf20aada014c9268d86af53b853, type: 3}
+      propertyPath: _eventsToListenFor.Array.data[1]._onEventTriggered.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6882198576666297318, guid: f188daf20aada014c9268d86af53b853, type: 3}
@@ -51272,7 +51281,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 25994294}
     - target: {fileID: 6882198576666297318, guid: f188daf20aada014c9268d86af53b853, type: 3}
+      propertyPath: _eventsToListenFor.Array.data[1]._onEventTriggered.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 49476005}
+    - target: {fileID: 6882198576666297318, guid: f188daf20aada014c9268d86af53b853, type: 3}
       propertyPath: _eventsToListenFor.Array.data[1]._onEventTriggered.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6882198576666297318, guid: f188daf20aada014c9268d86af53b853, type: 3}
+      propertyPath: _eventsToListenFor.Array.data[1]._onEventTriggered.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6882198576666297318, guid: f188daf20aada014c9268d86af53b853, type: 3}
@@ -51280,7 +51297,15 @@ PrefabInstance:
       value: SetTrigger
       objectReference: {fileID: 0}
     - target: {fileID: 6882198576666297318, guid: f188daf20aada014c9268d86af53b853, type: 3}
+      propertyPath: _eventsToListenFor.Array.data[1]._onEventTriggered.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: SetTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 6882198576666297318, guid: f188daf20aada014c9268d86af53b853, type: 3}
       propertyPath: _eventsToListenFor.Array.data[1]._onEventTriggered.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: UnityEngine.Animator, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6882198576666297318, guid: f188daf20aada014c9268d86af53b853, type: 3}
+      propertyPath: _eventsToListenFor.Array.data[1]._onEventTriggered.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
       value: UnityEngine.Animator, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6882198576666297318, guid: f188daf20aada014c9268d86af53b853, type: 3}
@@ -51288,11 +51313,23 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6882198576666297318, guid: f188daf20aada014c9268d86af53b853, type: 3}
+      propertyPath: _eventsToListenFor.Array.data[1]._onEventTriggered.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6882198576666297318, guid: f188daf20aada014c9268d86af53b853, type: 3}
       propertyPath: _eventsToListenFor.Array.data[1]._onEventTriggered.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
       value: Open
       objectReference: {fileID: 0}
     - target: {fileID: 6882198576666297318, guid: f188daf20aada014c9268d86af53b853, type: 3}
+      propertyPath: _eventsToListenFor.Array.data[1]._onEventTriggered.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_StringArgument
+      value: Lightbulb
+      objectReference: {fileID: 0}
+    - target: {fileID: 6882198576666297318, guid: f188daf20aada014c9268d86af53b853, type: 3}
       propertyPath: _eventsToListenFor.Array.data[1]._onEventTriggered.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6882198576666297318, guid: f188daf20aada014c9268d86af53b853, type: 3}
+      propertyPath: _eventsToListenFor.Array.data[1]._onEventTriggered.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
