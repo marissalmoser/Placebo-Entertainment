@@ -1,11 +1,12 @@
 /*****************************************************************************
 // File Name :         GearBehavior.cs
 // Author :            Mark Hanson
-// Contributors :      Marissa Moser
+// Contributors :      Marissa Moser, Nick Grinstead
 // Creation Date :     5/24/2024
 //
 // Brief Description : Any function to do for the gears mini game will be found here. Includes swapping slots, Correct slot pattern with all bad ones, and selecting gears for each slot.
 *****************************************************************************/
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,94 +14,115 @@ using PlaceboEntertainment.UI;
 
 public class GearBehavior : MonoBehaviour, IInteractable
 {
+    public static Action CorrectGear;
+
     [SerializeField] private string _interactPromptText = "GEAR";
 
     [Header("Individual Gear")]
-    [SerializeField] private GameObject[] _gearSize;
-    [SerializeField] private GameObject _gearIndi;
-    private int _gearSizeNum;
-    //private bool _scrollable;
-    private bool _doOnce;
-    //private PlayerController _pc;
-    private bool _interact;
+    [SerializeField] private GameObject[] _gearSizes;
+    [SerializeField] private int _startingGearIndex;
 
     [Header("Correct Gear")]
     [SerializeField] private int _rightGearNum;
-    [SerializeField] private Color _matRed;
-    [SerializeField] private Color _matGreen;
-    private Renderer _rndr;
+    [SerializeField] private float _rotationSpeed;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        _doOnce = true;
-        _gearSizeNum = 1;
-        //_scrollable = false;
-        //GameObject _pcObject = GameObject.FindWithTag("Player");
-        //_pc = _pcObject.GetComponent<PlayerController>();
-        _rndr = this.GetComponent<Renderer>();
-    }
+    private int _currentGearSizeIndex;
+    private Vector3 _rotationAngle;
+    private bool _isComplete = false;
+    public bool IsComplete { get => _isComplete; private set => _isComplete = value; }
 
     /// <summary>
-    /// used for gradually cycling through gear sizes through the list of gears
+    /// Ensures only starting gear is active
     /// </summary>
-    void FixedUpdate()
+    void Awake()
     {
-        transform.localScale = new Vector3(1f, _gearIndi.transform.localScale.y + 0.5f, 1f);
-        if (_interact && _gearSizeNum != _gearSize.Length && _doOnce == true)// && _scrollable == true)
+        // Ensures rotation is always clockwise
+        if (_rotationSpeed > 0)
         {
-            _gearSizeNum++;
-            _doOnce = false;
-            StartCoroutine(doOnceCooldown());
+            _rotationAngle = new Vector3(0, 0, -_rotationSpeed);
         }
-        if (_interact && _gearSizeNum == _gearSize.Length && _doOnce == true)// && _scrollable == true)
+        else
         {
-            _gearSizeNum = 1;
-            _doOnce = false;
-            StartCoroutine(doOnceCooldown());
+            _rotationAngle = new Vector3(0, 0, _rotationSpeed);
         }
-        _gearIndi = _gearSize[_gearSizeNum - 1];
-        //Debug.Log(_gearSizeNum);
-    }
-    /// <summary>
-    /// if right gear number then make green if not keep red
-    /// </summary>
-    void Update()
-    {
-        if (_gearSizeNum == _rightGearNum)
+
+        if (_startingGearIndex >= _gearSizes.Length || _startingGearIndex < 0)
         {
-            _rndr.material.color = Color.green;
-            Destroy(this);
+            _startingGearIndex = 0;
         }
-        if (_gearSizeNum < _rightGearNum || _gearSizeNum > _rightGearNum)
+        _currentGearSizeIndex = _startingGearIndex;
+
+        for (int i = 0; i < _gearSizes.Length; ++i)
         {
-            _rndr.material.color = Color.red;
+            if (i == _startingGearIndex)
+                _gearSizes[i].SetActive(true);
+            else
+                _gearSizes[i].SetActive(false);
         }
     }
+
     /// <summary>
-    /// Cool down for no spamming
+    /// Handles the rotation of the gear once it's correctly slotted
     /// </summary>
-    /// <returns></returns>
-    IEnumerator doOnceCooldown()
+    /// <returns>Waits for FixedUpdate</returns>
+    private IEnumerator RotateGear()
     {
-        yield return new WaitForSeconds(0.2f);
-        _doOnce = true;
+        while (true)
+        {
+            transform.Rotate(_rotationAngle * Time.deltaTime, Space.Self);
+            yield return new WaitForFixedUpdate();
+        }
     }
+
     /// <summary>
-    /// Enables gears to be interacted with in update
+    /// Cycles through gears if this slot has not been completed
     /// </summary>
-    /// <param name="player"></param>
+    /// <param name="player">Player interacting</param>
     public void Interact(GameObject player)
     {
-        _interact = true;
+        if (!_isComplete)
+        {
+            int previousIndex = _currentGearSizeIndex;
+            _currentGearSizeIndex++;
+            _currentGearSizeIndex %= _gearSizes.Length;
+
+            if (previousIndex < _gearSizes.Length && previousIndex >= 0)
+                _gearSizes[previousIndex].SetActive(false);
+            if (_currentGearSizeIndex < _gearSizes.Length && _currentGearSizeIndex >= 0)
+                 _gearSizes[_currentGearSizeIndex].SetActive(true);
+            
+            CheckGearCompletion();
+        }
     }
 
     /// <summary>
-    /// Disables gears to be interacted with in update
+    /// Updates _isComplete to true if the current gear matches the correct one
     /// </summary>
-    public void CancelInteract()
+    private void CheckGearCompletion()
     {
-        _interact = false;
+        if (_currentGearSizeIndex == _rightGearNum)
+        {
+            _isComplete = true;
+            StartCoroutine(RotateGear());
+            CorrectGear?.Invoke();
+            HideInteractUI();
+        }
+    }
+
+    /// <summary>
+    /// Called by GearCompletionCheck to force gears into their completed state
+    /// </summary>
+    public void SetGearToComplete()
+    {
+        _isComplete = true;
+        StartCoroutine(RotateGear());
+        for (int i = 0; i < _gearSizes.Length; ++i)
+        {
+            if (i == _rightGearNum)
+                _gearSizes[i].SetActive(true);
+            else
+                _gearSizes[i].SetActive(false);
+        }
     }
 
     /// <summary>
@@ -108,7 +130,10 @@ public class GearBehavior : MonoBehaviour, IInteractable
     /// </summary>
     public void DisplayInteractUI()
     {
-        TabbedMenu.Instance.ToggleInteractPrompt(true, _interactPromptText);
+        if (!_isComplete)
+        {
+            TabbedMenu.Instance.ToggleInteractPrompt(true, _interactPromptText);
+        }
     }
 
     /// <summary>
@@ -117,5 +142,13 @@ public class GearBehavior : MonoBehaviour, IInteractable
     public void HideInteractUI()
     {
         TabbedMenu.Instance.ToggleInteractPrompt(false);
+    }
+
+    /// <summary>
+    /// Making sure rotation coroutine stops
+    /// </summary>
+    private void OnDisable()
+    {
+        StopAllCoroutines();
     }
 }
