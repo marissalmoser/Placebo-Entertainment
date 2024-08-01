@@ -424,7 +424,7 @@ MonoBehaviour:
     _postMinigameState: {fileID: 0}
     _failureState: {fileID: 0}
   _postMinigameFishPos: {x: -94, y: -1, z: 9}
-  secondsUntilFailFireGame: 480
+  _removeTimerEvent: {fileID: 11400000, guid: 9badf7d641517c347815b632eeaa7bad, type: 2}
   _fadeOutTime: 2.5
 --- !u!114 &5239405601287651569
 MonoBehaviour:

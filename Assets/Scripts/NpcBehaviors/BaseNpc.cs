@@ -417,6 +417,7 @@ public abstract class BaseNpc : MonoBehaviour
     {
         //_playerInventorySystem.AddedToInventory -= CollectedItem;
     }
+
     ~BaseNpc()
     {
         _playerInventorySystem.AddedToInventory -= CollectedItem;

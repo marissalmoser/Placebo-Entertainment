@@ -74,16 +74,6 @@ public class RobotNpc : BaseNpc
     }
 
     /// <summary>
-    /// Starts death timer
-    /// </summary>
-    protected override void EnterIdle()
-    {
-        base.EnterIdle();
-
-        //StartCoroutine(DeathTimer());
-    }
-
-    /// <summary>
     /// Moves straight into post-minigame dialogue
     /// </summary>
     protected override void EnterPostMinigame()
@@ -157,24 +147,6 @@ public class RobotNpc : BaseNpc
         }
     }
 
-    /// <summary>
-    /// Runs a timer that when complete will set the Robot to its failure state
-    /// </summary>
-    /// <returns>Waits one second</returns>
-    //private IEnumerator DeathTimer()
-    //{
-    //    while (_timeElapsed < _secondsUntilDeath)
-    //    {
-    //        yield return new WaitForSeconds(1f);
-
-    //        _timeElapsed += 1f;
-    //    }
-
-    //    if (!_hasRepairedRobot)
-    //    {
-    //        EnterFailure();
-    //    }
-    //}
     /// <summary>
     /// Instead of an internal timer, we are moving this to the TimerManager
     /// so that desgin has access to all timers in a nice consolidated place.
