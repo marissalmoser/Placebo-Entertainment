@@ -341,7 +341,7 @@ MonoBehaviour:
     _playingMinigameState: {fileID: 0}
     _postMinigameState: {fileID: 0}
     _failureState: {fileID: 0}
-  _secondsUntilExplosion: 180
+  _removeTimerEvent: {fileID: 11400000, guid: 9badf7d641517c347815b632eeaa7bad, type: 2}
 --- !u!114 &4840030442360983682
 MonoBehaviour:
   m_ObjectHideFlags: 0

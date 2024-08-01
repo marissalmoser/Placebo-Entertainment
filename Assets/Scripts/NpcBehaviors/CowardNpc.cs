@@ -10,7 +10,7 @@ using UnityEngine;
 
 public class CowardNpc : BaseNpc
 {
-    [SerializeField] private float _secondsUntilExplosion;
+    [SerializeField] private NpcEvent _removeTimerEvent;
 
     private bool _canTeleportToGenerator = false;
     private bool _hasTeleported = false;
@@ -76,12 +76,11 @@ public class CowardNpc : BaseNpc
 
     /// <summary>
     /// Starts generator timer when entering idle state
+    /// E.V.: There is now a generator timer on the TimerManager
     /// </summary>
     protected override void EnterIdle()
     {
         base.EnterIdle();
-
-        StartCoroutine("GeneratorTimer");
     }
 
     /// <summary>
@@ -94,6 +93,8 @@ public class CowardNpc : BaseNpc
         Interact();
 
         _playerInventorySystem.AddToInventory(_targetBypassItem, 1, out _);
+
+        _removeTimerEvent.TriggerEvent(NpcEventTags.Coward);
     }
 
     /// <summary>
@@ -102,8 +103,6 @@ public class CowardNpc : BaseNpc
     protected override void EnterFailure()
     {
         base.EnterFailure();
-
-        // TODO: trigger new loop here
     }
 
     /// <summary>
@@ -194,20 +193,6 @@ public class CowardNpc : BaseNpc
     public void OnRobotFailState()
     {
         _robotIsAlive = false;
-    }
-
-    /// <summary>
-    /// Waits for a time until the generator explodes before entering the failure state
-    /// </summary>
-    /// <returns>Waits for the time until explosion</returns>
-    private IEnumerator GeneratorTimer()
-    {
-        yield return new WaitForSeconds(_secondsUntilExplosion);
-
-        if (_currentState != NpcStates.PostMinigame)
-        {
-            EnterFailure();
-        }
     }
 
     /// <summary>
