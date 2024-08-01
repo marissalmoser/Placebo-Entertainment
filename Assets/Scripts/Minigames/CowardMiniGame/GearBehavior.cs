@@ -21,11 +21,12 @@ public class GearBehavior : MonoBehaviour, IInteractable
     [Header("Individual Gear")]
     [SerializeField] private GameObject[] _gearSizes;
     [SerializeField] private int _startingGearIndex;
-    private int _currentGearSizeIndex;
 
     [Header("Correct Gear")]
     [SerializeField] private int _rightGearNum;
     [SerializeField] private float _rotationSpeed;
+
+    private int _currentGearSizeIndex;
     private Vector3 _rotationAngle;
     private bool _isComplete = false;
     public bool IsComplete { get => _isComplete; private set => _isComplete = value; }
@@ -61,13 +62,15 @@ public class GearBehavior : MonoBehaviour, IInteractable
     }
 
     /// <summary>
-    /// Rotates gear if it's correctly slotted
+    /// Handles the rotation of the gear once it's correctly slotted
     /// </summary>
-    private void FixedUpdate()
+    /// <returns>Waits for FixedUpdate</returns>
+    private IEnumerator RotateGear()
     {
-        if (_isComplete)
+        while (true)
         {
             transform.Rotate(_rotationAngle * Time.deltaTime, Space.Self);
+            yield return new WaitForFixedUpdate();
         }
     }
 
@@ -100,6 +103,7 @@ public class GearBehavior : MonoBehaviour, IInteractable
         if (_currentGearSizeIndex == _rightGearNum)
         {
             _isComplete = true;
+            StartCoroutine(RotateGear());
             CorrectGear?.Invoke();
             HideInteractUI();
         }
@@ -111,6 +115,7 @@ public class GearBehavior : MonoBehaviour, IInteractable
     public void SetGearToComplete()
     {
         _isComplete = true;
+        StartCoroutine(RotateGear());
         for (int i = 0; i < _gearSizes.Length; ++i)
         {
             if (i == _rightGearNum)
@@ -137,5 +142,13 @@ public class GearBehavior : MonoBehaviour, IInteractable
     public void HideInteractUI()
     {
         TabbedMenu.Instance.ToggleInteractPrompt(false);
+    }
+
+    /// <summary>
+    /// Making sure rotation coroutine stops
+    /// </summary>
+    private void OnDisable()
+    {
+        StopAllCoroutines();
     }
 }

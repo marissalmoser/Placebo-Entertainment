@@ -14,13 +14,14 @@ public class GearCompletionCheck : MonoBehaviour
 {
     [Header("CheckList")]
     [SerializeField] private GameObject[] _gearSlots;
-    private int _completedGears = 0;
     [SerializeField] private GameObject _wrench;
     [SerializeField] private GameObject _sparkMode;
-    private GameObject _instantiatedWrench;
 
     [Header("VFX Stuff")]
     [SerializeField] private ParticleSystem _generatorSmoke;
+
+    private int _completedGears = 0;
+    private GameObject _instantiatedWrench;
 
     private void OnEnable()
     {
