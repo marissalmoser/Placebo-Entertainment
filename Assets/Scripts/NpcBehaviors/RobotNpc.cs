@@ -172,7 +172,7 @@ public class RobotNpc : BaseNpc
     /// </summary>
     private void PlayRandomTalkingAnim()
     {
-        int rand = Random.Range(1, 3);
+        int rand = Random.Range(1, 4);
         switch(rand)
         {
             case 1:
