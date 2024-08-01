@@ -6,6 +6,7 @@
 *******************************************************************/
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RobotNpc : BaseNpc
@@ -19,6 +20,8 @@ public class RobotNpc : BaseNpc
     private bool _isFirstInteraction = true;
 
     private Animator _anim;
+
+    /*private AnimationClip[] _clips;*/
 
     /// <summary>
     /// Subscribing to wire game won event on initialization
@@ -105,6 +108,7 @@ public class RobotNpc : BaseNpc
     /// <returns>string dialogue to display</returns>
     protected override string ChooseDialogueFromNode(DialogueNode node)
     {
+        PlayRandomTalkingAnim();
         if (node.Dialogue.Length == 1 || _isFirstInteraction)
         {
             _isFirstInteraction = false;
@@ -160,6 +164,27 @@ public class RobotNpc : BaseNpc
             }
         }
     }
+
+    /// <summary>
+    /// Plays random talking animation when selecting a dialogue choice
+    /// </summary>
+    private void PlayRandomTalkingAnim()
+    {
+        int rand = Random.Range(1, 3);
+        switch(rand)
+        {
+            case 1:
+                _anim.SetTrigger("Talking1");
+                break;
+            case 2:
+                _anim.SetTrigger("Talking2");
+                break;
+            case 3:
+                _anim.SetTrigger("Talking3");
+                break;
+        }
+    }
+
 
     /// <summary>
     /// Runs a timer that when complete will set the Robot to its failure state
