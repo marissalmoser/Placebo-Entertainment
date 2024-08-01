@@ -352,11 +352,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 5c654142249e65f4eac69051d7ec0251, type: 3}
---- !u!4 &472434780 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3811286319237332580, guid: 716ab8205bdc2dc46925a8ae53d8d085, type: 3}
-  m_PrefabInstance: {fileID: 688473524}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &547376885 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7185439610072435016, guid: 5c654142249e65f4eac69051d7ec0251, type: 3}
@@ -384,6 +379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b1b3eb2123228341ade130a9ec77ae2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _ps: {fileID: 0}
 --- !u!1001 &653737548
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1156,7 +1152,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 284831111557341597, guid: f55858b00bf86264e988876288ea3225, type: 3}
       propertyPath: stopAction
-      value: 2
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 284831111557341597, guid: f55858b00bf86264e988876288ea3225, type: 3}
+      propertyPath: autoRandomSeed
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 284831111557341597, guid: f55858b00bf86264e988876288ea3225, type: 3}
       propertyPath: TriggerModule.exit
@@ -1188,7 +1188,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 284831111557341597, guid: f55858b00bf86264e988876288ea3225, type: 3}
       propertyPath: TriggerModule.colliderQueryMode
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 284831111557341597, guid: f55858b00bf86264e988876288ea3225, type: 3}
       propertyPath: CollisionModule.collisionMessages
@@ -1217,7 +1217,7 @@ PrefabInstance:
     - target: {fileID: 284831111557341597, guid: f55858b00bf86264e988876288ea3225, type: 3}
       propertyPath: TriggerModule.primitives.Array.data[4]
       value: 
-      objectReference: {fileID: 472434780}
+      objectReference: {fileID: 0}
     - target: {fileID: 1145458058559846375, guid: f55858b00bf86264e988876288ea3225, type: 3}
       propertyPath: _fireSet
       value: 
