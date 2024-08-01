@@ -14,29 +14,32 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField] private UIDocument _mainMenuDoc;
     [SerializeField] private int _introVideoBuildIndex;
+    [SerializeField] private SaveLoadManager _savingManager;
 
     #region Constants
-    private const string StartButtonName = "StartGameButton";
+    private const string NewGameButtonName = "NewGameButton";
+    private const string ContinueButtonName = "ContinueButton";
     private const string SettingsButtonName = "SettingsButton";
-    private const string CreditsButtonName = "CreditsButton";
     private const string QuitButtonName = "QuitButton";
     private const string SettingsBackButtonName = "SettingsBackButton";
-    private const string CreditsBackButtonName = "CreditsBackButton";
+    private const string ConfirmNoButtonName = "ConfirmNoButton";
+    private const string ConfirmYesButtonName = "ConfirmYesButton";
     private const string MainScreenName = "MainMenuBackground";
     private const string SettingsScreenName = "SettingsBackground";
-    private const string CreditsScreenName = "CreditsBackground";
+    private const string ConfirmationScreenName = "ConfirmationBackground";
     #endregion
 
     #region Private
-    private Button _startButton;
+    private Button _newGameButton;
+    private Button _continueButton;
     private Button _settingsButton;
-    private Button _creditsButton;
     private Button _quitButton;
     private Button _settingsBackButton;
-    private Button _creditsBackButton;
+    private Button _confirmNoButton;
+    private Button _confirmYesButton;
     private VisualElement _mainMenuScreen;
     private VisualElement _settingsScreen;
-    private VisualElement _creditsScreen;
+    private VisualElement _confirmationScreen;
     #endregion
 
     /// <summary>
@@ -46,21 +49,29 @@ public class MainMenu : MonoBehaviour
     {
         _mainMenuScreen = _mainMenuDoc.rootVisualElement.Q(MainScreenName);
         _settingsScreen = _mainMenuDoc.rootVisualElement.Q(SettingsScreenName);
-        _creditsScreen = _mainMenuDoc.rootVisualElement.Q(CreditsScreenName);
+        _confirmationScreen = _mainMenuDoc.rootVisualElement.Q(ConfirmationScreenName);
 
-        _startButton = _mainMenuDoc.rootVisualElement.Q<Button>(StartButtonName);
+        _newGameButton = _mainMenuDoc.rootVisualElement.Q<Button>(NewGameButtonName);
         _settingsButton = _mainMenuDoc.rootVisualElement.Q<Button>(SettingsButtonName);
-        _creditsButton = _mainMenuDoc.rootVisualElement.Q<Button>(CreditsButtonName);
+        _continueButton = _mainMenuDoc.rootVisualElement.Q<Button>(ContinueButtonName);
         _quitButton = _mainMenuDoc.rootVisualElement.Q<Button>(QuitButtonName);
         _settingsBackButton = _mainMenuDoc.rootVisualElement.Q<Button>(SettingsBackButtonName);
-        _creditsBackButton = _mainMenuDoc.rootVisualElement.Q<Button>(CreditsBackButtonName);
+        _confirmNoButton = _mainMenuDoc.rootVisualElement.Q<Button>(ConfirmNoButtonName);
+        _confirmYesButton = _mainMenuDoc.rootVisualElement.Q<Button>(ConfirmYesButtonName);
 
-        _startButton.RegisterCallback<ClickEvent>(StartButtonClicked);
+        _newGameButton.RegisterCallback<ClickEvent>(NewGameButtonClicked);
         _settingsButton.RegisterCallback<ClickEvent>(SettingsButtonClicked);
-        _creditsButton.RegisterCallback<ClickEvent>(CreditsButtonClicked);
+        _continueButton.RegisterCallback<ClickEvent>(ContinueButtonClicked);
         _quitButton.RegisterCallback<ClickEvent>(QuitButtonClicked);
         _settingsBackButton.RegisterCallback<ClickEvent>(BackButtonClicked);
-        _creditsBackButton.RegisterCallback<ClickEvent>(BackButtonClicked);
+        _confirmNoButton.RegisterCallback<ClickEvent>(BackButtonClicked);
+        _confirmYesButton.RegisterCallback<ClickEvent>(StartNewGame);
+
+        // Makes continue button visible if saved data exists
+        if (_savingManager != null && _savingManager.DoesSaveFileExist())
+        {
+            _continueButton.style.display = DisplayStyle.Flex;
+        }
     }
 
     /// <summary>
@@ -68,19 +79,20 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     private void OnDisable()
     {
-        _startButton.UnregisterCallback<ClickEvent>(StartButtonClicked);
+        _newGameButton.UnregisterCallback<ClickEvent>(NewGameButtonClicked);
+        _continueButton.UnregisterCallback<ClickEvent>(ContinueButtonClicked);
         _settingsButton.UnregisterCallback<ClickEvent>(SettingsButtonClicked);
-        _creditsButton.UnregisterCallback<ClickEvent>(CreditsButtonClicked);
         _quitButton.UnregisterCallback<ClickEvent>(QuitButtonClicked);
         _settingsBackButton.UnregisterCallback<ClickEvent>(BackButtonClicked);
-        _creditsBackButton.UnregisterCallback<ClickEvent>(BackButtonClicked);
+        _confirmNoButton.UnregisterCallback<ClickEvent>(BackButtonClicked);
+        _confirmYesButton.UnregisterCallback<ClickEvent>(StartNewGame);
     }
 
     /// <summary>
-    /// Loads game level
+    /// Loads intro cutscene
     /// </summary>
     /// <param name="clicked">Click event</param>
-    private void StartButtonClicked(ClickEvent clicked)
+    private void ContinueButtonClicked(ClickEvent clicked)
     {
         SceneManager.LoadScene(_introVideoBuildIndex);
     }
@@ -96,13 +108,27 @@ public class MainMenu : MonoBehaviour
     }
 
     /// <summary>
-    /// Opens credits menu
+    /// Pulls up confirmation UI
     /// </summary>
     /// <param name="clicked">Click event</param>
-    private void CreditsButtonClicked(ClickEvent clicked)
+    private void NewGameButtonClicked(ClickEvent clicked)
     {
         _mainMenuScreen.style.display = DisplayStyle.None;
-        _creditsScreen.style.display = DisplayStyle.Flex;
+        _confirmationScreen.style.display = DisplayStyle.Flex;
+    }
+
+    /// <summary>
+    /// Deletes existing save data and loads the intro scene
+    /// </summary>
+    /// <param name="clicked">Click event</param>
+    private void StartNewGame(ClickEvent clicked)
+    {
+        if (_savingManager != null)
+        {
+            _savingManager.DeleteSaveData();
+        }
+
+        SceneManager.LoadScene(_introVideoBuildIndex);
     }
 
     /// <summary>
@@ -120,7 +146,7 @@ public class MainMenu : MonoBehaviour
     /// <param name="clicked">Click event</param>
     private void BackButtonClicked(ClickEvent clicked)
     {
-        _creditsScreen.style.display = DisplayStyle.None;
+        _confirmationScreen.style.display = DisplayStyle.None;
         _settingsScreen.style.display = DisplayStyle.None;
         _mainMenuScreen.style.display = DisplayStyle.Flex;
     }

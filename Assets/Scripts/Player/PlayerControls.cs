@@ -55,15 +55,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Quit"",
-                    ""type"": ""Button"",
-                    ""id"": ""8c33de0d-6da4-4722-a1a8-91bdda7c4735"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Interact"",
                     ""type"": ""Button"",
                     ""id"": ""07887c75-b144-4247-b615-bb93993a14ac"",
@@ -189,17 +180,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""23e50a33-4cdc-40ae-b0e7-b8c99aed8ad0"",
-                    ""path"": ""<Keyboard>/escape"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Quit"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""9ec8e7d4-56cf-40b4-98c2-e789d03b17d9"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": ""Hold"",
@@ -256,7 +236,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""275c05ee-be63-478c-87cb-f706f2d4fb4a"",
-                    ""path"": ""<Keyboard>/tab"",
+                    ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -274,7 +254,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_BasicControls_Move = m_BasicControls.FindAction("Move", throwIfNotFound: true);
         m_BasicControls_Look = m_BasicControls.FindAction("Look", throwIfNotFound: true);
         m_BasicControls_Reset = m_BasicControls.FindAction("Reset", throwIfNotFound: true);
-        m_BasicControls_Quit = m_BasicControls.FindAction("Quit", throwIfNotFound: true);
         m_BasicControls_Interact = m_BasicControls.FindAction("Interact", throwIfNotFound: true);
         m_BasicControls_OpenSchedule = m_BasicControls.FindAction("OpenSchedule", throwIfNotFound: true);
         m_BasicControls_LeftClick = m_BasicControls.FindAction("LeftClick", throwIfNotFound: true);
@@ -344,7 +323,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_BasicControls_Move;
     private readonly InputAction m_BasicControls_Look;
     private readonly InputAction m_BasicControls_Reset;
-    private readonly InputAction m_BasicControls_Quit;
     private readonly InputAction m_BasicControls_Interact;
     private readonly InputAction m_BasicControls_OpenSchedule;
     private readonly InputAction m_BasicControls_LeftClick;
@@ -357,7 +335,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_BasicControls_Move;
         public InputAction @Look => m_Wrapper.m_BasicControls_Look;
         public InputAction @Reset => m_Wrapper.m_BasicControls_Reset;
-        public InputAction @Quit => m_Wrapper.m_BasicControls_Quit;
         public InputAction @Interact => m_Wrapper.m_BasicControls_Interact;
         public InputAction @OpenSchedule => m_Wrapper.m_BasicControls_OpenSchedule;
         public InputAction @LeftClick => m_Wrapper.m_BasicControls_LeftClick;
@@ -381,9 +358,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Reset.started += instance.OnReset;
             @Reset.performed += instance.OnReset;
             @Reset.canceled += instance.OnReset;
-            @Quit.started += instance.OnQuit;
-            @Quit.performed += instance.OnQuit;
-            @Quit.canceled += instance.OnQuit;
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
@@ -412,9 +386,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Reset.started -= instance.OnReset;
             @Reset.performed -= instance.OnReset;
             @Reset.canceled -= instance.OnReset;
-            @Quit.started -= instance.OnQuit;
-            @Quit.performed -= instance.OnQuit;
-            @Quit.canceled -= instance.OnQuit;
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
@@ -452,7 +423,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnReset(InputAction.CallbackContext context);
-        void OnQuit(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnOpenSchedule(InputAction.CallbackContext context);
         void OnLeftClick(InputAction.CallbackContext context);
