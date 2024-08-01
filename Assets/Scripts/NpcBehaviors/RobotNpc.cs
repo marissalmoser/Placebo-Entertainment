@@ -21,7 +21,7 @@ public class RobotNpc : BaseNpc
 
     private Animator _anim;
 
-    /*private AnimationClip[] _clips;*/
+    [SerializeField] private GameObject _lightbulbMesh;
 
     /// <summary>
     /// Subscribing to wire game won event on initialization
@@ -137,6 +137,8 @@ public class RobotNpc : BaseNpc
         if (!_hasRepairedRobot && _hasLightbulb)
         {
             _hasRepairedRobot = true;
+            _anim.SetTrigger("Lightbulb");
+            _lightbulbMesh.SetActive(true);
             return option.NextResponseIndex[0];
         }
         // Trying to repair robot without the lightbulb
@@ -184,7 +186,6 @@ public class RobotNpc : BaseNpc
                 break;
         }
     }
-
 
     /// <summary>
     /// Runs a timer that when complete will set the Robot to its failure state

@@ -51213,6 +51213,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1869879217}
     m_Modifications:
     - target: {fileID: 869825619415053396, guid: f188daf20aada014c9268d86af53b853, type: 3}
+      propertyPath: _lightbulbMesh
+      value: 
+      objectReference: {fileID: 1553708493}
+    - target: {fileID: 869825619415053396, guid: f188daf20aada014c9268d86af53b853, type: 3}
       propertyPath: _stateDialogueTrees._postMinigameState.Array.data[0]._playerResponses.Array.data[0]._eventTag
       value: 5
       objectReference: {fileID: 0}
@@ -51266,20 +51270,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6882198576666297318, guid: f188daf20aada014c9268d86af53b853, type: 3}
       propertyPath: _eventsToListenFor.Array.data[1]._onEventTriggered.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6882198576666297318, guid: f188daf20aada014c9268d86af53b853, type: 3}
+      propertyPath: _eventsToListenFor.Array.data[1]._onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6882198576666297318, guid: f188daf20aada014c9268d86af53b853, type: 3}
       propertyPath: _eventsToListenFor.Array.data[1]._onEventTriggered.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6882198576666297318, guid: f188daf20aada014c9268d86af53b853, type: 3}
       propertyPath: _eventsToListenFor.Array.data[1]._onEventTriggered.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6882198576666297318, guid: f188daf20aada014c9268d86af53b853, type: 3}
-      propertyPath: _eventsToListenFor.Array.data[1]._onEventTriggered.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      propertyPath: _eventsToListenFor.Array.data[1]._onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 25994294}
+    - target: {fileID: 6882198576666297318, guid: f188daf20aada014c9268d86af53b853, type: 3}
+      propertyPath: _eventsToListenFor.Array.data[1]._onEventTriggered.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1553708493}
     - target: {fileID: 6882198576666297318, guid: f188daf20aada014c9268d86af53b853, type: 3}
       propertyPath: _eventsToListenFor.Array.data[1]._onEventTriggered.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
@@ -51293,16 +51305,24 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6882198576666297318, guid: f188daf20aada014c9268d86af53b853, type: 3}
-      propertyPath: _eventsToListenFor.Array.data[1]._onEventTriggered.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      propertyPath: _eventsToListenFor.Array.data[1]._onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SetTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 6882198576666297318, guid: f188daf20aada014c9268d86af53b853, type: 3}
+      propertyPath: _eventsToListenFor.Array.data[1]._onEventTriggered.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetActive
       objectReference: {fileID: 0}
     - target: {fileID: 6882198576666297318, guid: f188daf20aada014c9268d86af53b853, type: 3}
       propertyPath: _eventsToListenFor.Array.data[1]._onEventTriggered.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
       value: SetTrigger
       objectReference: {fileID: 0}
     - target: {fileID: 6882198576666297318, guid: f188daf20aada014c9268d86af53b853, type: 3}
-      propertyPath: _eventsToListenFor.Array.data[1]._onEventTriggered.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      propertyPath: _eventsToListenFor.Array.data[1]._onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: UnityEngine.Animator, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6882198576666297318, guid: f188daf20aada014c9268d86af53b853, type: 3}
+      propertyPath: _eventsToListenFor.Array.data[1]._onEventTriggered.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6882198576666297318, guid: f188daf20aada014c9268d86af53b853, type: 3}
       propertyPath: _eventsToListenFor.Array.data[1]._onEventTriggered.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
@@ -51317,8 +51337,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6882198576666297318, guid: f188daf20aada014c9268d86af53b853, type: 3}
-      propertyPath: _eventsToListenFor.Array.data[1]._onEventTriggered.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
+      propertyPath: _eventsToListenFor.Array.data[1]._onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: Open
+      objectReference: {fileID: 0}
+    - target: {fileID: 6882198576666297318, guid: f188daf20aada014c9268d86af53b853, type: 3}
+      propertyPath: _eventsToListenFor.Array.data[1]._onEventTriggered.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6882198576666297318, guid: f188daf20aada014c9268d86af53b853, type: 3}
       propertyPath: _eventsToListenFor.Array.data[1]._onEventTriggered.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_StringArgument
@@ -51340,6 +51364,11 @@ PrefabInstance:
 --- !u!4 &1553708492 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5155935945816834384, guid: f188daf20aada014c9268d86af53b853, type: 3}
+  m_PrefabInstance: {fileID: 1553708491}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1553708493 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2278875521252267084, guid: f188daf20aada014c9268d86af53b853, type: 3}
   m_PrefabInstance: {fileID: 1553708491}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1556884167 stripped
