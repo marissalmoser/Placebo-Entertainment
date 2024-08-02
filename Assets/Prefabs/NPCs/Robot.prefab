@@ -330,6 +330,7 @@ MonoBehaviour:
   _unPanTarget: {fileID: 0}
   _targetLightBulbItem: {fileID: 11400000, guid: 773aae8864bf18d4a9e19e01b7e04081, type: 2}
   _secondsUntilDeath: 60
+  _robotCam: {fileID: 0}
 --- !u!114 &6882198576666297318
 MonoBehaviour:
   m_ObjectHideFlags: 0
