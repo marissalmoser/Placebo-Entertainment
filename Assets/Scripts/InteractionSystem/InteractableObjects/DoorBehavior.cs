@@ -87,6 +87,7 @@ public class DoorBehavior : MonoBehaviour, IInteractable
     public void UnlockDoor()
     {
         _isLocked = false;
+        ChangeColor("Blue");
 
         //if unlocking door should open the door:
         //OpenDoor();
