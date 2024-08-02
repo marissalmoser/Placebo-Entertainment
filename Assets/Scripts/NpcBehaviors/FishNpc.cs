@@ -66,6 +66,8 @@ public class FishNpc : BaseNpc
 
     /// <summary>
     /// Resets loop on failure
+    /// E.V.: there is an event listener on the LoopController that listens for
+    /// OnDeath/FireDeath
     /// </summary>
     protected override void EnterFailure()
     {

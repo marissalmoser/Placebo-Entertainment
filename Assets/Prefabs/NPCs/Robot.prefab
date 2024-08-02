@@ -141,6 +141,7 @@ MonoBehaviour:
   _targetBypassItem: {fileID: 11400000, guid: ce9c4a38351e1ac41b75157f79779d20, type: 2}
   _onEnterFailState: {fileID: 11400000, guid: 820e77e5460d5cd4cb472f8466ef6e1c, type: 2}
   _startMinigameEvent: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
+  _onCrisisAvertedEvent: {fileID: 11400000, guid: 3a7a3c3a741795a4289c7839245053db, type: 2}
   _eventTag: 5
   _stateDialogueTrees:
     _idleState:
@@ -328,7 +329,6 @@ MonoBehaviour:
     _postMinigameState: {fileID: 0}
     _failureState: {fileID: 0}
   _targetLightBulbItem: {fileID: 11400000, guid: 773aae8864bf18d4a9e19e01b7e04081, type: 2}
-  _lightbulbMesh: {fileID: 2278875521252267084}
 --- !u!114 &6882198576666297318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,19 +364,19 @@ MonoBehaviour:
     _onEventTriggered:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-          m_MethodName: SetTrigger
-          m_Mode: 5
+        - m_Target: {fileID: 2278875521252267084}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: Open
+            m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-  - _npcEvent: {fileID: 11400000, guid: fc8258980d4d13341abe42a88ac6fdb6, type: 2}
+  - _npcEvent: {fileID: 11400000, guid: 9badf7d641517c347815b632eeaa7bad, type: 2}
     _npcEventTag: 5
     _onEventTriggered:
       m_PersistentCalls:
@@ -391,7 +391,7 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
-            m_BoolArgument: 0
+            m_BoolArgument: 1
           m_CallState: 2
 --- !u!114 &2523090471910584266
 MonoBehaviour:

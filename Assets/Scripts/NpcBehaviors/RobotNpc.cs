@@ -6,7 +6,6 @@
 *******************************************************************/
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class RobotNpc : BaseNpc
@@ -20,8 +19,6 @@ public class RobotNpc : BaseNpc
     private bool _isFirstInteraction = true;
 
     private Animator _anim;
-
-    [SerializeField] private GameObject _lightbulbMesh;
 
     /// <summary>
     /// Subscribing to wire game won event on initialization
@@ -98,7 +95,6 @@ public class RobotNpc : BaseNpc
     /// <returns>string dialogue to display</returns>
     protected override string ChooseDialogueFromNode(DialogueNode node)
     {
-        PlayRandomTalkingAnim();
         if (node.Dialogue.Length == 1 || _isFirstInteraction)
         {
             _isFirstInteraction = false;
@@ -127,8 +123,6 @@ public class RobotNpc : BaseNpc
         if (!_hasRepairedRobot && _hasLightbulb)
         {
             _hasRepairedRobot = true;
-            _anim.SetTrigger("Lightbulb");
-            _lightbulbMesh.SetActive(true);
             return option.NextResponseIndex[0];
         }
         // Trying to repair robot without the lightbulb
@@ -158,7 +152,9 @@ public class RobotNpc : BaseNpc
     }
 
     /// <summary>
-    /// Plays random talking animation when selecting a dialogue choice
+    /// Instead of an internal timer, we are moving this to the TimerManager
+    /// so that desgin has access to all timers in a nice consolidated place.
+    /// There is an event listener on the robot prefab that picks this method
     /// </summary>
     private void PlayRandomTalkingAnim()
     {
@@ -186,6 +182,7 @@ public class RobotNpc : BaseNpc
     {
         if (!_hasRepairedRobot)
         {
+            Debug.Log("The robot died");
             EnterFailure();
             _anim.SetBool("Dead", true);
         }
