@@ -68932,7 +68932,7 @@ PrefabInstance:
       objectReference: {fileID: 290336837}
     - target: {fileID: 4281622823149269775, guid: eb31e5856b67aeb4ea3a28c9716afc49, type: 3}
       propertyPath: _idleColor.b
-      value: 0.09803922
+      value: 0.56078434
       objectReference: {fileID: 0}
     - target: {fileID: 4281622823149269775, guid: eb31e5856b67aeb4ea3a28c9716afc49, type: 3}
       propertyPath: _idleColor.g
