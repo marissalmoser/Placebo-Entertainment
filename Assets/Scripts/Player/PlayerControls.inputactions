@@ -33,15 +33,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Quit",
-                    "type": "Button",
-                    "id": "8c33de0d-6da4-4722-a1a8-91bdda7c4735",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Interact",
                     "type": "Button",
                     "id": "07887c75-b144-4247-b615-bb93993a14ac",
@@ -167,17 +158,6 @@
                 },
                 {
                     "name": "",
-                    "id": "23e50a33-4cdc-40ae-b0e7-b8c99aed8ad0",
-                    "path": "<Keyboard>/escape",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Quit",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "9ec8e7d4-56cf-40b4-98c2-e789d03b17d9",
                     "path": "<Keyboard>/e",
                     "interactions": "Hold",
@@ -234,7 +214,7 @@
                 {
                     "name": "",
                     "id": "275c05ee-be63-478c-87cb-f706f2d4fb4a",
-                    "path": "<Keyboard>/tab",
+                    "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

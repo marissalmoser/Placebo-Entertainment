@@ -160,7 +160,8 @@ public class Pickupable : MonoBehaviour, IInteractable
                 {
                     inventoryHolder.InventorySystem.AddToInventory(myData, 1, out _);
                 }
-
+                
+                PlayerController.Animator.SetTrigger("Interact");
                 Destroy(gameObject);
             }
             else

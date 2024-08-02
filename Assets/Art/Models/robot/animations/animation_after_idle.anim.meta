@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Art/Models/robot/animations/animation_after_idle.anim.meta
+guid: 03581a4778d07a8469ce7e65085c6cfc
+========
+guid: d9c91bef5021cc24f98acdb065afd301
+>>>>>>>> main:Assets/Art/Models/props/Keypad/Animations/DoorClose.anim.meta
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3bc665a840eed6478d02e923f3c9eed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _minigameEndEvent: {fileID: 0}
+  _minigameEndEvent: {fileID: 11400000, guid: 0dc09a2e909bfa14ba070b27da962183, type: 2}
   leftclick:
     m_Name: Leftclick
     m_Type: 0
@@ -120,8 +120,7 @@ MonoBehaviour:
   _firePoint: {fileID: 7303417283685853082}
   _rb: {fileID: 844829859867852951}
   coll: {fileID: 4605749992162346134}
-  _waterGaugeUI: {fileID: 7253280976236863368}
-  _canvasHolderUI: {fileID: 9192475032896693449}
+  _interactPromptText: FISH
   _waterSpray: {fileID: 284831111557341597}
   _fireAlarmLight: {fileID: 0}
 --- !u!65 &4605749992162346134
@@ -814,10 +813,6 @@ PrefabInstance:
     - target: {fileID: 1303894236966975927, guid: 4bd5f0857732d3c42811febdfe3aead8, type: 3}
       propertyPath: m_Name
       value: Water Spray
-      objectReference: {fileID: 0}
-    - target: {fileID: 1303894236966975927, guid: 4bd5f0857732d3c42811febdfe3aead8, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1784305935422449999, guid: 4bd5f0857732d3c42811febdfe3aead8, type: 3}
       propertyPath: m_LocalScale.x

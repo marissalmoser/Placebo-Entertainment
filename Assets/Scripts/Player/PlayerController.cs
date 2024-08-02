@@ -18,11 +18,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float _moveSpeed;
     [SerializeField] float _jumpForce;
 
-    [Header("VFX Stuff")]
+    [Header("VFX")]
     [SerializeField] private ParticleSystem _footPrints;
     private ParticleSystem.EmissionModule _footPrintEmission;
+
+    //Anim Controller
+    public static Animator Animator { get; private set; }
+
     public PlayerControls PlayerControls { get; private set; }
-    public InputAction Move, Interact, Reset, Quit;
+    public InputAction Move, Interact, Reset;
 
     Rigidbody _rb;
     CinemachineVirtualCamera _mainCamera;
@@ -33,11 +37,10 @@ public class PlayerController : MonoBehaviour
     private bool _isInDialogue = false;
 
     [SerializeField] bool _isKinemat;
+
     private bool _isMoving = false;
     private Vector2 _moveDirection;
     private Vector3 _velocity;
-
-    [SerializeField] private GameObject _unPanTarget;
 
     private bool _isGrounded = true;
     private float _groundedDistance = 0.3f;
@@ -52,6 +55,7 @@ public class PlayerController : MonoBehaviour
         Move.canceled += ctx => _isMoving = false;
         Move.canceled += ctx => HaltVelocity();
     }
+
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -76,11 +80,14 @@ public class PlayerController : MonoBehaviour
 
         _mainCamera.transform.rotation = transform.rotation;
 
+        //Finding Anim Controller
+        Animator = GetComponentInChildren<Animator>();
+
         Move = PlayerControls.FindAction("Move");
         Interact = PlayerControls.FindAction("Interact");
         Reset = PlayerControls.FindAction("Reset");
-        Quit = PlayerControls.FindAction("Quit");
     }
+
     void FixedUpdate()
     {
         // Player Movement
@@ -91,6 +98,9 @@ public class PlayerController : MonoBehaviour
             _velocity = _velocity.normalized * _moveSpeed;
             _rb.AddForce(_velocity, ForceMode.VelocityChange);
             _footPrintEmission.enabled = true;
+            
+            //Starts Walking Anim
+            Animator.SetFloat("Speed", _velocity.magnitude);
         }
         if(_isKinemat)
         {
@@ -100,6 +110,7 @@ public class PlayerController : MonoBehaviour
         {
             _rb.isKinematic = false;
         }
+
         // Ground Check
         if (!_isGrounded)
             _isGrounded = Physics.CheckSphere(_groundChecker.position, _groundedDistance, _groundMask);
@@ -112,24 +123,10 @@ public class PlayerController : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-        if (Quit.IsPressed())
-        {
-            Application.Quit();
-        }
 
         // Player Rotation
         if (!_isInDialogue)
-        {
             _rb.rotation = Quaternion.Euler(0, _mainCamera.transform.eulerAngles.y, 0);
-            if (_unPanTarget == null)
-            {
-                _unPanTarget = GameObject.FindWithTag("NPCCAM");
-            }
-            if (_unPanTarget != null)
-            {
-                _unPanTarget.SetActive(false);
-            }
-        }
     }
 
     public void RotateCharacterToTransform(Transform lookTarget)
@@ -165,11 +162,11 @@ public class PlayerController : MonoBehaviour
         else
         {
             Invoke(nameof(DelayedCameraUnlock), 0.1f);
-            _mainCamera.transform.eulerAngles = transform.forward;
         }
 
         _mainCamera.gameObject.SetActive(!isLocked);
     }
+
     /// <summary>
     /// Helper function inovoked to delay regaining camera control post-dialogue
     /// </summary>
@@ -177,7 +174,6 @@ public class PlayerController : MonoBehaviour
     {
         if (!_isInDialogue)
             CinemachineCore.UniformDeltaTimeOverride = 1;
-
     }
 
     /// <summary>
@@ -189,6 +185,9 @@ public class PlayerController : MonoBehaviour
         {
             _rb.velocity = new Vector3(0, _rb.velocity.y, 0);
             _footPrintEmission.enabled = false;
+            
+            //Stops Walking Anim
+            Animator.SetFloat("Speed", 0);
         }
     }
 

@@ -1,6 +1,6 @@
 /******************************************************************
 *    Author: Nick Grinstead
-*    Contributors: Andrea Swihart-DeCoster
+*    Contributors: Andrea Swihart-DeCoster, Elijah Vroman
 *    Date Created: 5/28/24
 *    Description: NPC class containing logic for the Coward NPC.
 *******************************************************************/
@@ -10,13 +10,24 @@ using UnityEngine;
 
 public class CowardNpc : BaseNpc
 {
-    [SerializeField] private float _secondsUntilExplosion;
-    [SerializeField] private GameObject _Player;
+    [SerializeField] private NpcEvent _removeTimerEvent;
+
     private bool _canTeleportToGenerator = false;
     private bool _hasTeleported = false;
     private bool _hasLightbulb = false;
     private bool _robotIsAlive = true;
-    [SerializeField] private GameObject _cowardCam;
+
+    private Animator _anim;
+
+    /// <summary>
+    /// Getting Animator on child
+    /// </summary>
+    protected override void Initialize()
+    {
+        base.Initialize();
+
+        _anim = GetComponentInChildren<Animator>();
+    }
 
     /// <summary>
     /// Called when the player enters the generator room
@@ -45,7 +56,9 @@ public class CowardNpc : BaseNpc
     public void LightbulbEventTriggered()
     {
         _hasLightbulb = true;
+        _anim.SetTrigger("NotBlind");
         Interact();
+
         _tabbedMenu.ToggleInteractPrompt(false);
         _canTeleportToGenerator = true;
     }
@@ -76,12 +89,11 @@ public class CowardNpc : BaseNpc
 
     /// <summary>
     /// Starts generator timer when entering idle state
+    /// E.V.: There is now a generator timer on the TimerManager
     /// </summary>
     protected override void EnterIdle()
     {
         base.EnterIdle();
-
-        StartCoroutine("GeneratorTimer");
     }
 
     /// <summary>
@@ -94,16 +106,19 @@ public class CowardNpc : BaseNpc
         Interact();
 
         _playerInventorySystem.AddToInventory(_targetBypassItem, 1, out _);
+
+        _removeTimerEvent.TriggerEvent(NpcEventTags.Coward);
     }
 
     /// <summary>
     /// Restarts the loop due to generator explosion when entering failure state
+    /// E.V.: there is an event listener on the LoopController that listens for
+    /// OnDeath/Generator Death
     /// </summary>
     protected override void EnterFailure()
     {
+        Debug.Log("The generator exploded");
         base.EnterFailure();
-
-        // TODO: trigger new loop here
     }
 
     /// <summary>
@@ -121,6 +136,7 @@ public class CowardNpc : BaseNpc
             if (_isInteracting)
             {
                 DialogueNode currentNode = _stateDialogueTrees.GetStateData(_currentState)[_currentDialogueIndex];
+
                 // Displays player dialogue options
                 PlayerResponse option;
                 _tabbedMenu.ClearDialogueOptions();
@@ -135,7 +151,6 @@ public class CowardNpc : BaseNpc
                     option = currentNode.PlayerResponses[1];
                     _tabbedMenu.DisplayDialogueOption(option.Answer, click: () => { Interact(1); });
                 }
-                Pan(_cowardCam);
             }
         }
     }
@@ -194,20 +209,6 @@ public class CowardNpc : BaseNpc
     public void OnRobotFailState()
     {
         _robotIsAlive = false;
-    }
-
-    /// <summary>
-    /// Waits for a time until the generator explodes before entering the failure state
-    /// </summary>
-    /// <returns>Waits for the time until explosion</returns>
-    private IEnumerator GeneratorTimer()
-    {
-        yield return new WaitForSeconds(_secondsUntilExplosion);
-
-        if (_currentState != NpcStates.PostMinigame)
-        {
-            EnterFailure();
-        }
     }
 
     /// <summary>

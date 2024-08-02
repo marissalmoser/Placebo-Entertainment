@@ -36,7 +36,6 @@ public class WrenchBehavior : MonoBehaviour, IInteractable
     [SerializeField] private NpcEvent _minigameEndEvent;
 
     [Header("UI Stuff")]
-    [SerializeField] private TextMeshPro _smackedText;
     [SerializeField] private DescriptionNode _itemDescription;
     [SerializeField] private string _interactPromptText = "WRENCH";
 
@@ -66,7 +65,6 @@ public class WrenchBehavior : MonoBehaviour, IInteractable
         _rightHand = GameObject.FindWithTag("Righty");
         _sparksMode = GameObject.Find("SparksMode");
         GameObject _smackTextObject = GameObject.Find("Spark num");
-        _smackedText = _smackTextObject.GetComponent<TextMeshPro>();
         GameObject _pc = GameObject.FindWithTag("RightArm");
         _animate = _pc.GetComponent<Animator>();
     }
@@ -115,12 +113,10 @@ public class WrenchBehavior : MonoBehaviour, IInteractable
     private void SparkSmacked()
     {
         _sparkSmacked++;
-        _smackedText.text = _sparkSmacked.ToString();
         StartCoroutine(Swinging());
 
         if (_sparkSmacked >= _maxSpark)
         {
-            _smackedText.color = Color.green;
             _sparksMode.SetActive(false);
             StartCoroutine(SystematicShutDown());
 
