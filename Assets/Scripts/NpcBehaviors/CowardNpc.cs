@@ -17,6 +17,18 @@ public class CowardNpc : BaseNpc
     private bool _hasLightbulb = false;
     private bool _robotIsAlive = true;
 
+    private Animator _anim;
+
+    /// <summary>
+    /// Getting Animator on child
+    /// </summary>
+    protected override void Initialize()
+    {
+        base.Initialize();
+
+        _anim = GetComponentInChildren<Animator>();
+    }
+
     /// <summary>
     /// Called when the player enters the generator room
     /// </summary>
@@ -44,6 +56,7 @@ public class CowardNpc : BaseNpc
     public void LightbulbEventTriggered()
     {
         _hasLightbulb = true;
+        _anim.SetTrigger("NotBlind");
         Interact();
 
         _tabbedMenu.ToggleInteractPrompt(false);

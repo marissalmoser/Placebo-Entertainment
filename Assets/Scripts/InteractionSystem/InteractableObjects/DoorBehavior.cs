@@ -20,9 +20,15 @@ public class DoorBehavior : MonoBehaviour, IInteractable
     [SerializeField] private bool _isLocked;
     private Animator _anim;
 
+    [SerializeField] private Material _material;
+    [SerializeField] private Renderer _renderer;
+    private Color _color;
+    private float _intensity;
+
     void Start()
     {
         _anim = GetComponent<Animator>();
+        _material = _renderer.GetComponent<Renderer>().material;
     }
 
     /// <summary>
@@ -81,8 +87,28 @@ public class DoorBehavior : MonoBehaviour, IInteractable
     public void UnlockDoor()
     {
         _isLocked = false;
-        
+        ChangeColor("Blue");
+
         //if unlocking door should open the door:
         //OpenDoor();
     }
+
+    public void ChangeColor(string myColor)
+    {
+        switch(myColor)
+        {
+            case "Red": 
+                _color = Color.red;
+                _intensity = 2.0f;
+                _material.SetColor("_EmissionColor", _color * _intensity);
+                break;
+
+            case "Blue":
+                _color = Color.cyan;
+                _intensity = 2.0f;
+                _material.SetColor("_EmissionColor", _color * _intensity);
+                break;
+        }
+    }
+
 }

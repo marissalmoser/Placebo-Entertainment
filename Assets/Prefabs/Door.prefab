@@ -754,6 +754,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c16a7aa287b47944a86ec26455a194ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interactPromptText: DOOR
+  _lockedInteractPromptText: LOCKED DOOR
   _isLocked: 0
 --- !u!65 &3996406041252454236
 BoxCollider:
