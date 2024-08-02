@@ -124,6 +124,9 @@ public abstract class BaseNpc : MonoBehaviour
     protected bool _isInteracting = false;
     protected bool _hasBypassItem = false;
 
+    [SerializeField]private GameObject _unPanTarget;
+    private bool _panable = true;
+
     /// <summary>
     /// Invoking Initialize() on Start to set up NPC
     /// </summary>
@@ -163,6 +166,40 @@ public abstract class BaseNpc : MonoBehaviour
         EnterIdle();
     }
 
+    /// <summary>
+    /// Set cam for specifically npc to be on when talking or minigame
+    /// </summary>
+    /// <param name="targetCam"></param>
+    public virtual void Pan(GameObject targetCam)
+    {
+       if(_panable)
+        {
+            targetCam.SetActive(true);
+            _panable = false;
+            //StartCoroutine(DelayPan());
+        }
+    }
+    /*private IEnumerator DelayPan()
+    {
+        yield return new WaitForSeconds(2f);
+        _panable = false;
+        StopCoroutine(DelayPan());
+    }*/
+    /// <summary>
+    /// UnSet cam back to player cam
+    /// </summary>
+    /// <param name="targetCam"></param>
+    public virtual void Unpan()
+    {
+        if(_unPanTarget ==null)
+        {
+            _unPanTarget = GameObject.FindWithTag("NPCCAM");
+        }
+        if (_unPanTarget != null)
+        {
+            _unPanTarget.SetActive(false);
+        }
+    }
     #region DialogueFunctions
     /// <summary>
     /// Called when player presses button to interact to initiate an interaction with
@@ -244,6 +281,8 @@ public abstract class BaseNpc : MonoBehaviour
 
         if (_shouldEndDialogue)
         {
+            Unpan();
+            _panable = true;
             _isInteracting = false;
             _shouldEndDialogue = false;
             _tabbedMenu.ToggleDialogue(false);

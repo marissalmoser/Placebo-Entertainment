@@ -15,7 +15,7 @@ public class MGWireState : MonoBehaviour
 {
     public static Action WireGameWon;
     [SerializeField] private NpcEvent _gameWonEvent;
-
+    [SerializeField] private GameObject _unPanTarget;
     [SerializeField] private int _maxAttachments; // = 3;
     private int _currentAttachments = 0;
 
@@ -64,5 +64,14 @@ public class MGWireState : MonoBehaviour
         print("Wire game won");
         _gameWonEvent.TriggerEvent(NpcEventTags.Robot);
         WireGameWon?.Invoke();
+        if (_unPanTarget == null)
+        {
+            _unPanTarget = GameObject.FindWithTag("NPCCAM");
+        }
+        if (_unPanTarget != null)
+        {
+            _unPanTarget.SetActive(false);
+        }
+
     }
 }

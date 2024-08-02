@@ -21,13 +21,11 @@ public class PlayerController : MonoBehaviour
     [Header("VFX Stuff")]
     [SerializeField] private ParticleSystem _footPrints;
     private ParticleSystem.EmissionModule _footPrintEmission;
-
     public PlayerControls PlayerControls { get; private set; }
     public InputAction Move, Interact, Reset, Quit;
 
     Rigidbody _rb;
     CinemachineVirtualCamera _mainCamera;
-    [SerializeField] GameObject _mainCamGameObject;
     CinemachineTransposer _transposer;
 
     PlayerInteractSystem InteractionCheck;
@@ -35,12 +33,11 @@ public class PlayerController : MonoBehaviour
     private bool _isInDialogue = false;
 
     [SerializeField] bool _isKinemat;
-
-    private bool _isPanning = false;
-    [SerializeField] private GameObject _panTarget;
     private bool _isMoving = false;
     private Vector2 _moveDirection;
     private Vector3 _velocity;
+
+    [SerializeField] private GameObject _unPanTarget;
 
     private bool _isGrounded = true;
     private float _groundedDistance = 0.3f;
@@ -103,12 +100,6 @@ public class PlayerController : MonoBehaviour
         {
             _rb.isKinematic = false;
         }
-        if (_isPanning)
-        {
-            _mainCamGameObject.transform.LookAt(_panTarget.transform);
-            
-            Debug.Log("hey");
-        }
         // Ground Check
         if (!_isGrounded)
             _isGrounded = Physics.CheckSphere(_groundChecker.position, _groundedDistance, _groundMask);
@@ -128,7 +119,17 @@ public class PlayerController : MonoBehaviour
 
         // Player Rotation
         if (!_isInDialogue)
+        {
             _rb.rotation = Quaternion.Euler(0, _mainCamera.transform.eulerAngles.y, 0);
+            if (_unPanTarget == null)
+            {
+                _unPanTarget = GameObject.FindWithTag("NPCCAM");
+            }
+            if (_unPanTarget != null)
+            {
+                _unPanTarget.SetActive(false);
+            }
+        }
     }
 
     public void RotateCharacterToTransform(Transform lookTarget)
@@ -169,29 +170,6 @@ public class PlayerController : MonoBehaviour
 
         _mainCamera.gameObject.SetActive(!isLocked);
     }
-    /// <summary>
-    /// Called to make player face which ever NPC its talking to
-    /// </summary>
-    /// <param name="_targetNPC">The Npc in question to pan towards</param>
-    public void PanCharacter(GameObject _targetNPC)
-    {
-        _isPanning = true;
-        _panTarget = _targetNPC;
-        StartCoroutine(PanStop());
-    }
-    /// <summary>
-    /// the seconds it take to stop panning
-    /// </summary>
-    /// <returns></returns>
-    private IEnumerator PanStop()
-    {
-        yield return new WaitForSeconds(1f);
-        _isPanning = false;
-        yield return new WaitForSeconds(0.1f);
-        _panTarget = null;
-        StopCoroutine(PanStop());
-    }
-
     /// <summary>
     /// Helper function inovoked to delay regaining camera control post-dialogue
     /// </summary>

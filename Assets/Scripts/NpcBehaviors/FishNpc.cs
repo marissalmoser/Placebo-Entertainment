@@ -1,6 +1,6 @@
 /******************************************************************
 *    Author: Elijah Vroman
-*    Contributors: Nick Grinstead
+*    Contributors: Nick Grinstead, Mark Hanson
 *    Date Created: 6/25/24
 *    Description: NPC class containing logic for the Fish NPC.
 *******************************************************************/
@@ -23,6 +23,8 @@ public class FishNpc : BaseNpc
 
     [SerializeField] private float _fadeOutTime;
 
+    [SerializeField] private GameObject _fishCam;
+
     /// <summary>
     /// Called to update the NPCs state
     /// </summary>
@@ -38,13 +40,19 @@ public class FishNpc : BaseNpc
         }
     }
 
+    protected override string ChooseDialogueFromNode(DialogueNode node)
+    {
+        Pan(_fishCam);
+        return node.Dialogue[0];
+    }
+
     /// <summary>
     /// Begins fade out and fish teleport
     /// </summary>
     protected override void EnterPostMinigame()
     {
         base.EnterPostMinigame();
-
+        Unpan();
         TabbedMenu.Instance.StartFadeOut(_fadeOutTime);
         _playerController.LockCharacter(true);
         StartCoroutine(MoveFishDuringFadeOut());

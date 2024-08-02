@@ -17,6 +17,7 @@ public class RobotNpc : BaseNpc
     private bool _hasLightbulb = false;
     private bool _hasRepairedRobot = false;
     private bool _isFirstInteraction = true;
+    [SerializeField] private GameObject _robotCam;
 
     /// <summary>
     /// Subscribing to wire game won event on initialization
@@ -24,7 +25,6 @@ public class RobotNpc : BaseNpc
     protected override void Initialize()
     {
         base.Initialize();
-
         MGWireState.WireGameWon += CheckForStateChange;
     }
 
@@ -89,7 +89,6 @@ public class RobotNpc : BaseNpc
     protected override void EnterPostMinigame()
     {
         base.EnterPostMinigame();
-
         Interact();
     }
 
@@ -101,6 +100,7 @@ public class RobotNpc : BaseNpc
     /// <returns>string dialogue to display</returns>
     protected override string ChooseDialogueFromNode(DialogueNode node)
     {
+        Pan(_robotCam);
         if (node.Dialogue.Length == 1 || _isFirstInteraction)
         {
             _isFirstInteraction = false;

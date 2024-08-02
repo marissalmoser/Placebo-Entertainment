@@ -16,6 +16,7 @@ public class CowardNpc : BaseNpc
     private bool _hasTeleported = false;
     private bool _hasLightbulb = false;
     private bool _robotIsAlive = true;
+    [SerializeField] private GameObject _cowardCam;
 
     /// <summary>
     /// Called when the player enters the generator room
@@ -45,8 +46,6 @@ public class CowardNpc : BaseNpc
     {
         _hasLightbulb = true;
         Interact();
-        PlayerController _psScript = _Player.GetComponent<PlayerController>();
-        _psScript.PanCharacter(this.gameObject);
         _tabbedMenu.ToggleInteractPrompt(false);
         _canTeleportToGenerator = true;
     }
@@ -122,7 +121,6 @@ public class CowardNpc : BaseNpc
             if (_isInteracting)
             {
                 DialogueNode currentNode = _stateDialogueTrees.GetStateData(_currentState)[_currentDialogueIndex];
-
                 // Displays player dialogue options
                 PlayerResponse option;
                 _tabbedMenu.ClearDialogueOptions();
@@ -137,6 +135,7 @@ public class CowardNpc : BaseNpc
                     option = currentNode.PlayerResponses[1];
                     _tabbedMenu.DisplayDialogueOption(option.Answer, click: () => { Interact(1); });
                 }
+                Pan(_cowardCam);
             }
         }
     }

@@ -31,6 +31,8 @@ public class Pickupable : MonoBehaviour, IInteractable
 
     [SerializeField] private DescriptionNode _itemDescription;
 
+    [SerializeField] private GameObject _unPanTarget;
+
     [SerializeField] private float PickUpRadius;
     [SerializeField] private InventoryItemData myData;
     private SphereCollider myCollider;
@@ -131,7 +133,15 @@ public class Pickupable : MonoBehaviour, IInteractable
     /// <param name="player">The player interacting</param>
     public void Interact(GameObject player)
     {
-        if(_isInteractive)
+        if (_unPanTarget == null)
+        {
+            _unPanTarget = GameObject.FindWithTag("NPCCAM");
+        }
+        if (_unPanTarget != null)
+        {
+            _unPanTarget.SetActive(false);
+        }
+        if (_isInteractive)
         {
             _playerController.LockCharacter(true);
             _playerInteractBehavior.StopDetectingInteractions();

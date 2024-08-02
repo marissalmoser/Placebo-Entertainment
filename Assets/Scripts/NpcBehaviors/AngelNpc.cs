@@ -16,6 +16,7 @@ public class AngelNpc : BaseNpc
     private bool _hasPills;
     private bool _robotGameComplete = false;
     private bool _cowardGameComplete = false;
+    [SerializeField] private GameObject _angelCam;
 
     /// <summary>
     /// Used in first playable for knowing if the robot game is complete
@@ -91,6 +92,7 @@ public class AngelNpc : BaseNpc
     /// <returns>String dialogue to display</returns>
     protected override string ChooseDialogueFromNode(DialogueNode node)
     {
+        Pan(_angelCam);
         if (_cowardGameComplete && _robotGameComplete)
         {
             return node.Dialogue[1];

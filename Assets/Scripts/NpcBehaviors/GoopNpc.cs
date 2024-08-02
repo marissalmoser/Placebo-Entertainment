@@ -12,12 +12,18 @@ public class GoopNpc : BaseNpc
 {
     [SerializeField] private InventoryItemData _targetBookItem;
     private bool _hasBook;
+    [SerializeField] private GameObject _goopCam;
     public override void CheckForStateChange()
     {
         if (_currentState == NpcStates.DefaultIdle)
         {
             EnterMinigameReady();
         }
+    }
+    protected override string ChooseDialogueFromNode(DialogueNode node)
+    {
+        Pan(_goopCam);
+        return node.Dialogue[0];
     }
     protected override int ChooseDialoguePath(PlayerResponse option)
     {
