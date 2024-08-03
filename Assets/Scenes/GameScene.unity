@@ -265,29 +265,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3197978693663432061, guid: 1a65728030b6253408f6491c72125c40, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8514991}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a65728030b6253408f6491c72125c40, type: 3}
---- !u!1 &8514990 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3197978693663432061, guid: 1a65728030b6253408f6491c72125c40, type: 3}
-  m_PrefabInstance: {fileID: 8514989}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8514991
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8514990}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a0acc881a336094997b0fb61c6d1983, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _eventsToListenFor: []
 --- !u!1001 &13315319
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39357,6 +39336,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1869879217}
     m_Modifications:
     - target: {fileID: 1230460638816517745, guid: 86879ec7ec26aac4e9231e94c1b6fb04, type: 3}
+      propertyPath: _removeTimerEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: fc8258980d4d13341abe42a88ac6fdb6, type: 2}
+    - target: {fileID: 1230460638816517745, guid: 86879ec7ec26aac4e9231e94c1b6fb04, type: 3}
       propertyPath: _secondsUntilExplosion
       value: 480
       objectReference: {fileID: 0}
@@ -45905,6 +45888,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1869879217}
     m_Modifications:
+    - target: {fileID: 1119676214051789975, guid: 716ab8205bdc2dc46925a8ae53d8d085, type: 3}
+      propertyPath: _removeTimerEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: fc8258980d4d13341abe42a88ac6fdb6, type: 2}
     - target: {fileID: 1813159210467846255, guid: 716ab8205bdc2dc46925a8ae53d8d085, type: 3}
       propertyPath: m_Name
       value: Fish
