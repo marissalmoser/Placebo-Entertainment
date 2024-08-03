@@ -38,10 +38,6 @@ public class FireBehavior : MonoBehaviour
 
     private void Start()
     {
-        // Each fire should be a diff size so they get random sizes in the range
-        float startingSize = UnityEngine.Random.Range(_minFireSize, _maxFireSize);
-        transform.localScale = new Vector3(startingSize, startingSize, startingSize);
-
         // _scaleChange changes signs based on growing or shrinking and needs to be initialized with the default scale change value
         _scaleChange = _absoluteScaleChange;
         StartCoroutine(ChangeFireScale());
@@ -72,6 +68,13 @@ public class FireBehavior : MonoBehaviour
         }
     }
     #endregion Particle Trigger
+
+    public void SetStartFireSize()
+    {
+        // Each fire should be a diff size so they get random sizes in the range
+        float startingSize = UnityEngine.Random.Range(_minFireSize, _maxFireSize);
+        transform.localScale = new Vector3(startingSize, startingSize, startingSize);
+    }
 
     /// <summary>
     /// Begins the fire growing logic

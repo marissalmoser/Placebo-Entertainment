@@ -29,7 +29,20 @@ public class FireManager : MonoBehaviour
     public void StartMinigame()
     {
         _fires = FindObjectsOfType<FireBehavior>().ToList();
+        InitializeFireSizes();
+
         FindObjectOfType<FishNpc>().gameObject.SetActive(false);
+    }
+    
+    /// <summary>
+    /// Sets the initial fire sizes when the minigame starts
+    /// </summary>
+    private void InitializeFireSizes()
+    {
+        foreach(FireBehavior fire in _fires)
+        {
+            fire.SetStartFireSize();
+        }
     }
 
     private void OnEnable()
