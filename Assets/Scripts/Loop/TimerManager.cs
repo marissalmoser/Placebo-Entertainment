@@ -178,4 +178,16 @@ public class TimerManager : MonoBehaviour
         print("Timer " + timerName + " does not exist.");
         return null;
     }
+    public void RemoveTimerNoReturn(string timerName)
+    {
+        TimerStruct timerStruct = _timers.Find(t => t.timerName == timerName);
+        if (timerStruct.timer != null)
+        {
+            _timers.Remove(timerStruct);
+        }
+        else
+        {
+            print("Timer " + timerName + " does not exist.");
+        }
+    }
 }
