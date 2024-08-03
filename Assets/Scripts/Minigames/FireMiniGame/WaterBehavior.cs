@@ -1,60 +1,63 @@
 /*****************************************************************************
 // File Name :         WaterBehavior.cs
-// Author :            Mark Hanson
+// Author :            Mark 
+// Contributors:       Andrea Swihart-DeCoster
 // Creation Date :     6/19/2024
 //
-// Brief Description : Function for destroying water when its in contact with specific things.
+// Brief Description : Controls the water particle triggers on the fire.
 *****************************************************************************/
-using FMOD;
-using System.Collections;
+
 using System.Collections.Generic;
 using UnityEngine;
 
 public class WaterBehavior : MonoBehaviour
 {
-    [SerializeField] ParticleSystem _ps;
-    /* [SerializeField] private Rigidbody _rb;
-     [SerializeField] private GameObject _cam;
+    private ParticleSystem _particleSyst;
+    private GameObject _currentFireObject;
 
-     void Awake()
-     {
-         _cam = GameObject.FindWithTag("MainCamera");
-         _rb.AddForce(_cam.transform.forward * 12f, ForceMode.Impulse);
-     }
+    private void Start()
+    {
+        _particleSyst = GetComponent<ParticleSystem>();
+    }
 
-     void OnTriggerEnter(Collider col)
-     {
-         if (col.gameObject.name != "FishHose" && col.gameObject.tag != "Water")
-         {
-             Destroy(gameObject);
-         }
-     }*/
     private void OnParticleTrigger()
     {
-        print(_ps.trigger.GetCollider(0).gameObject.name);
+        // Particles inside and particles that have exited the collider
+        List<ParticleSystem.Particle> particlesInside = new List<ParticleSystem.Particle>();
+        List<ParticleSystem.Particle> particlesExited = new List<ParticleSystem.Particle>();
 
-        List<ParticleSystem.Particle> enteredParticles = new List<ParticleSystem.Particle>();
-        List<ParticleSystem.Particle> exitedParticles = new List<ParticleSystem.Particle>();
-
-        ParticleSystem.ColliderData enteredColliderData;
-        ParticleSystem.ColliderData exitedColliderData;
+        // Contains the particle collision info e.g the collider the particle collided with
+        ParticleSystem.ColliderData insideColliderData;
 
         // get the particles which matched the trigger conditions this frame
-        int numParticlesEntered = _ps.GetTriggerParticles(ParticleSystemTriggerEventType.Exit, enteredParticles, out enteredColliderData);
-        int numParticlesExited = _ps.GetTriggerParticles(ParticleSystemTriggerEventType.Exit, exitedParticles, out exitedColliderData);
-        
-        foreach (ParticleSystem.Particle particle in exitedParticles)
-        {
-            // Loop through colliders in exitedColliderData
-            // Loop through enteredParticles
-                // Check if the particle contains this collider
-                    // if not, call the WaterCooldown Function()
-        }
+        int numParticleInside = _particleSyst.GetTriggerParticles(ParticleSystemTriggerEventType.Inside, particlesInside, out insideColliderData);
+        int numParticlesExited = _particleSyst.GetTriggerParticles(ParticleSystemTriggerEventType.Exit, particlesExited);
 
-        foreach (ParticleSystem.Particle particle in enteredParticles)
+        // If there are no particles in the fire collider, start fire growth
+        if (numParticlesExited > 0 && numParticleInside <= 0)
         {
-            // Loop through colliders in enteredColliderData
-                // Start to shrink the fire
+            if (_currentFireObject.TryGetComponent<FireBehavior>(out FireBehavior _fireBehavior))
+            {
+                _fireBehavior.StartFireGrow();
+            }
         }
+        // If there are particles in the fire collider...
+        else if (particlesInside.Count > 0)
+        {
+            // Make sure the collider count is valid.
+            // If the fire is destroyed before this is called OR if the particles all exit before this is called, it will throw a null ref
+            if (insideColliderData.GetColliderCount(0) > 0)
+            {
+                if (!_currentFireObject)
+                {
+                    _currentFireObject = insideColliderData.GetCollider(0, 0).gameObject;
+                }
+            }
+
+            if (_currentFireObject.TryGetComponent<FireBehavior>(out FireBehavior _fireBehavior))
+            {
+                _fireBehavior.StartFireShrink();
+            }
+        }   
     }
 }

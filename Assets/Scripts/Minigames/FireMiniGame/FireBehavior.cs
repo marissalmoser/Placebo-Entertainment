@@ -1,21 +1,20 @@
-    /*****************************************************************************
+/*****************************************************************************
 // File Name :         FireBehavior.cs
 // Author :            Mark Hanson
 // Contributors:       Andrea Swihart-DeCoster
 // Creation Date :     6/19/2024
 //
-// Brief Description : Function for destroying fire when it reaches 0 by water touching it
+// Brief Description : Function for controlling fire scale
 *****************************************************************************/
+
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
-using UnityEngine.UI;
-using Unity.VisualScripting;
-using System.ComponentModel;
 
 public class FireBehavior : MonoBehaviour
 {
+    public static Action OnFireExtinguished;
+
     [Header("Settings")]
     [SerializeField] private int _waterCooldown;
     [SerializeField] private float _timeBetweenScaleChanges;
@@ -35,45 +34,51 @@ public class FireBehavior : MonoBehaviour
 
     private void Start()
     {
-        float startingSize = Random.Range(_minFireSize, _maxFireSize);
+        // Each fire should be a diff size so they get random sizes in the range
+        float startingSize = UnityEngine.Random.Range(_minFireSize, _maxFireSize);
         transform.localScale = new Vector3(startingSize, startingSize, startingSize);
+
+        // _scaleChange changes signs based on growing or shrinking and needs to be initialized with the default scale change value
         _scaleChange = _absoluteScaleChange;
         StartCoroutine(ChangeFireScale());
     }
-    /* private void OnParticleCollision(GameObject other)
-     {
-         if (other.TryGetComponent<WaterBehavior>(out WaterBehavior _waterBehavior))
-         {
-             _scaleChange = -_absoluteScaleChange;
-             StopCoroutine(WaterCooldown());
-         }
-     }*/
 
-    private void OnParticleTrigger()
+    /// <summary>
+    /// Begins the fire growing logic
+    /// </summary>
+    public void StartFireGrow()
     {
-        print("test");
-        _scaleChange = -_absoluteScaleChange;
-        StopCoroutine(WaterCooldown());
+        if (_scaleChange <= 0)
+        {
+            StartCoroutine(CooldownBeforeGrowing());
+        }
     }
 
-    private void OnTriggerExit(Collider other)
+    /// <summary>
+    /// Begins the fire shrinking logic
+    /// </summary>
+    public void StartFireShrink()
     {
-        if(other.TryGetComponent<WaterBehavior>(out WaterBehavior _waterBehavior))
+        if (_scaleChange >= 0)
         {
-            StartCoroutine(WaterCooldown());
+            StopCoroutine(CooldownBeforeGrowing());
+            _scaleChange = -_absoluteScaleChange;
         }
-        
     }
 
     /// <summary>
     /// After the cooldown period, the fire should start growing
     /// </summary>
     /// <returns></returns>
-    private IEnumerator WaterCooldown()
+    private IEnumerator CooldownBeforeGrowing()
     {
-        _scaleChange = 0f;
-        yield return new WaitForSeconds(_waterCooldown);
-        _scaleChange = _absoluteScaleChange;
+        // Only start the cooldown if the fire is currently shrinking (interacting with water)
+        if (_scaleChange <= 0)
+        {
+            _scaleChange = 0f;
+            yield return new WaitForSeconds(_waterCooldown);
+            _scaleChange = _absoluteScaleChange;
+        }
     }
 
     /// <summary>
@@ -92,8 +97,10 @@ public class FireBehavior : MonoBehaviour
                 float newScale = transform.localScale.x + _scaleChange;
                 transform.localScale = new Vector3(newScale, newScale, newScale);
 
+                // Destroy object if fully shrunk
                 if (transform.localScale.x <= 0)
                 {
+                    OnFireExtinguished?.Invoke();
                     Destroy(gameObject);
                 }
             }
@@ -102,6 +109,10 @@ public class FireBehavior : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Checks if fire scale is positive (indicates it's supposed to grow) and that the size has not exceeded the max fire size
+    /// </summary>
+    /// <returns></returns>
     private bool CanFireGrow()
     {
         return _scaleChange > 0 && transform.localScale.x <= _maxFireSize;
