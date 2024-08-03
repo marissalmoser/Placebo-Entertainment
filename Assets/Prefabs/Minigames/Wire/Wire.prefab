@@ -301,11 +301,18 @@ MonoBehaviour:
   _wireColor: {r: 0, g: 0.6694646, b: 1, a: 1}
   _URPShader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   _interactColor: {r: 0, g: 1, b: 0.038576603, a: 1}
+  _blueJack: {fileID: 2100000, guid: 1cbaf47ea5a5d7f44bd8e4c108ca7319, type: 2}
+  _redJack: {fileID: 2100000, guid: e589d6a5faef23e4bb1a9ad337087371, type: 2}
+  _greenJack: {fileID: 2100000, guid: 505f97a60a1af7846971a03322568477, type: 2}
+  _blackJack: {fileID: 2100000, guid: cef5e1c6ec2e0ae4bbb91b025580cab0, type: 2}
+  _interactPromptText: MOVE
   _sphereScale: 0.3
   _wireStartPosition: {fileID: 2105087402058434552}
   _wireEndPosition: {fileID: 3192316250598961245}
   _distanceFromPlayer: 1.2
   _maxLength: 4
+  _avcCable: {fileID: 2797930204726619985, guid: 2b5eb86e2defe1f4598d50bac52bf52f, type: 3}
+  _avcJack: {fileID: 2381357901209176766, guid: 6c6f825c8fc3cc14fa30d1cb19f008d4, type: 3}
 --- !u!114 &1999621104526795041
 MonoBehaviour:
   m_ObjectHideFlags: 0

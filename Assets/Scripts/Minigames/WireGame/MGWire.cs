@@ -23,6 +23,10 @@ public class MGWire : MonoBehaviour
     [SerializeField] private Color _wireColor;
     [SerializeField] private Shader _URPShader;
     [SerializeField] private Color _interactColor;
+    [SerializeField] private Material _blueJack;
+    [SerializeField] private Material _redJack;
+    [SerializeField] private Material _greenJack;
+    [SerializeField] private Material _blackJack;
 
     [SerializeField] private string _interactPromptText = "MOVE";
 
@@ -32,6 +36,9 @@ public class MGWire : MonoBehaviour
     [SerializeField] private Transform _wireEndPosition;
     [SerializeField] private float _distanceFromPlayer;
     [SerializeField] private float _maxLength;
+
+    [SerializeField] private GameObject _avcCable;
+    [SerializeField] private GameObject _avcJack;
 
     private bool _canConnectToSlot = false;
 
@@ -212,6 +219,8 @@ public class MGWire : MonoBehaviour
         }
     }
 
+    // This is a WIP script, there are no comments representative of the new code
+
     /// <summary>
     /// Creates a sphere on a segment to visualize the wire. This is temporary
     /// until we have art assets
@@ -219,51 +228,49 @@ public class MGWire : MonoBehaviour
     /// <param name="parentObj">parent for the sphere</param>
     /// <param name="isEndSegment">defaulted to false, true if this is 
     /// the last sphere so it knows to set it to a unique color.</param>
-    public void CreateSegmentSphere(Transform parentObj, bool isEndSegment = false)
+    public void CreateSegmentStruct(Transform parentObj, bool isEndSegment = false)
     {
-        GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-
-        Destroy(sphere.GetComponent<Collider>());
-
-        sphere.transform.parent = parentObj;
-        sphere.transform.position = parentObj.position;
-        sphere.transform.localScale = new Vector3(1f, 1f, 1f);
-
-        sphere.transform.localScale *= _sphereScale;
-
-        SetWireColor(sphere.GetComponent<MeshRenderer>().material, isEndSegment);
-    }
-
-    /// <summary>
-    /// Sets the color of the sphere of the wire. Each wire has a different 
-    /// color to indicate where it will be slotted [Will be a different
-    /// indication method after first playable]
-    /// </summary>
-    /// <param name="mat">material for the color to be applied</param>
-    /// <param name="isEndSegment">Unique color is set if it's the 
-    /// last segment</param>
-    private void SetWireColor(Material mat, bool isEndSegment)
-    {
-        mat.shader = _URPShader;
-        if(!isEndSegment)
+        GameObject segment;
+        if (isEndSegment)
         {
-            switch (WireID)
-            {
-                case EWireID.ONE:
-                    mat.color = _wireColor;
-                    break;
-                case EWireID.TWO:
-                    mat.color = _wireColor;
-                    break;
-                case EWireID.THREE:
-                    mat.color = _wireColor;
-                    break;
-            }
+            segment = Instantiate<GameObject>(_avcJack);
+            segment.GetComponent<Renderer>().material = GetJackColor();
         }
         else
         {
-            mat.color = _interactColor;
+            segment = Instantiate<GameObject>(_avcCable);
         }
-        
+
+        Destroy(segment.GetComponent<Collider>());
+
+        segment.gameObject.transform.parent = parentObj;
+        segment.gameObject.transform.position = parentObj.position;
+    }
+
+    /// <summary>
+    /// Returns the color of the jack. 
+    /// Each jack color correlates to where it will be slotted into.
+    /// <summary>
+    private Material GetJackColor()
+    {
+        Material mat;
+        switch (WireID)
+        {
+            case EWireID.ONE:
+
+                mat = _blueJack;
+                break;
+            case EWireID.TWO:
+                mat = _greenJack;
+                break;
+            case EWireID.THREE:
+                mat = _redJack;
+                break;
+            default:
+                mat = _blackJack;
+                break;
+        }
+
+        return mat;
     }
 }

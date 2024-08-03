@@ -37,23 +37,6 @@ public class MGWireMovement : MonoBehaviour
         GenerateSegments();
     }
 
-    private void Update()
-    {
-        /*if (Input.GetKeyDown("space"))
-        {
-            Debug.Log("space");
-            ChangeEndKinematic(true);
-        }*/
-    }
-
-    /*private void OnDrawGizmos()
-    {
-        for(int i = 0; i < _segments.Length; i++)
-        {
-            Gizmos.DrawWireSphere(_segments[i].position, 0.1f);
-        }
-    }*/
-
     /// <summary>
     /// Spawns wire segments
     /// </summary>
@@ -166,6 +149,6 @@ public class MGWireMovement : MonoBehaviour
     {
         MGWire wireRef = GetComponentInParent<MGWire>();
         Assert.IsNotNull(wireRef);
-        wireRef.CreateSegmentSphere(parentObj, isLastSegment);
+        wireRef.CreateSegmentStruct(parentObj, isLastSegment);
     }
 }
