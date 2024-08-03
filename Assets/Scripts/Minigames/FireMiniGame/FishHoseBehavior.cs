@@ -16,6 +16,7 @@ using UnityEngine.InputSystem;
 public class FishHoseBehavior : MonoBehaviour, IInteractable
 {
     [SerializeField] private Collider _waterCollisionCollider;
+    [SerializeField] private GameObject _positionInHand;
 
     [Header("Water Settings")]
     [SerializeField] private float _refillWaitTime;
@@ -35,7 +36,6 @@ public class FishHoseBehavior : MonoBehaviour, IInteractable
     [Header("VFX")]
     [SerializeField] private ParticleSystem _waterSpray;
 
-    private GameObject _rightHand;
     private TabbedMenu _tabbedMenu;
 
     private float _currentWaterAmount;
@@ -59,8 +59,6 @@ public class FishHoseBehavior : MonoBehaviour, IInteractable
         _isShooting = false;
         _currentWaterAmount = _maxWaterAmount;
 
-        _rightHand = GameObject.FindWithTag("Righty");
-
         _waterCollisionCollider.gameObject.SetActive(false);
 
         _tabbedMenu = TabbedMenu.Instance;
@@ -70,8 +68,8 @@ public class FishHoseBehavior : MonoBehaviour, IInteractable
     {
         if (_isEquipped)
         {
-            transform.position = new Vector3(_rightHand.transform.position.x, _rightHand.transform.position.y, _rightHand.transform.position.z);
-            transform.rotation = _rightHand.transform.rotation;
+            transform.position = new Vector3(_positionInHand.transform.position.x, _positionInHand.transform.position.y, _positionInHand.transform.position.z);
+            transform.rotation = _positionInHand.transform.rotation;
         }
     }
 
@@ -82,9 +80,9 @@ public class FishHoseBehavior : MonoBehaviour, IInteractable
             _isEquipped = true;
             _tabbedMenu.ToggleWaterMeter(true);
 
-            transform.position = _rightHand.transform.position;
-            transform.rotation = _rightHand.transform.rotation;
-            transform.parent = _rightHand.transform;
+            transform.position = _positionInHand.transform.position;
+            transform.rotation = _positionInHand.transform.rotation;
+            transform.parent = _positionInHand.transform;
         }
     }
 
