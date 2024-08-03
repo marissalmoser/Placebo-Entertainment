@@ -260,7 +260,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8988970857005786147, guid: 1a65728030b6253408f6491c72125c40, type: 3}
       propertyPath: _timers.Array.data[0].timerName
-      value: Example
+      value: LoopTimer
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
