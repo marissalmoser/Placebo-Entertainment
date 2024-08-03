@@ -9,11 +9,12 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class FireBehavior : MonoBehaviour
 {
-    public static Action OnFireExtinguished;
+    public static Action<FireBehavior> OnFireExtinguished;
 
     [Header("Settings")]
     [SerializeField] private int _waterCooldown;
@@ -32,6 +33,9 @@ public class FireBehavior : MonoBehaviour
     // _scaleChange starts at _absoluteScaleChange then changes to pos or neg situationally
     private float _scaleChange;
 
+
+    private ParticleSystem _particleSyst;
+
     private void Start()
     {
         // Each fire should be a diff size so they get random sizes in the range
@@ -41,7 +45,33 @@ public class FireBehavior : MonoBehaviour
         // _scaleChange changes signs based on growing or shrinking and needs to be initialized with the default scale change value
         _scaleChange = _absoluteScaleChange;
         StartCoroutine(ChangeFireScale());
+
+        _particleSyst = GetComponent<ParticleSystem>();
     }
+
+    #region Particle Trigger
+    private void OnParticleTrigger()
+    {
+        // Particles inside and particles that have exited the collider
+        List<ParticleSystem.Particle> particlesInside = new List<ParticleSystem.Particle>();
+        List<ParticleSystem.Particle> particlesExited = new List<ParticleSystem.Particle>();
+
+        // get the particles which matched the trigger conditions this frame
+        int numParticleInside = _particleSyst.GetTriggerParticles(ParticleSystemTriggerEventType.Inside, particlesInside);
+        int numParticlesExited = _particleSyst.GetTriggerParticles(ParticleSystemTriggerEventType.Exit, particlesExited);
+
+        // If there are no particles in the fire collider, start fire growth
+        if (numParticlesExited > 0 && numParticleInside <= 0)
+        {
+            StartFireGrow();
+        }
+        // If there are particles in the fire collider, it should begin to grow
+        else if (particlesInside.Count > 0)
+        {
+            StartFireShrink();
+        }
+    }
+    #endregion Particle Trigger
 
     /// <summary>
     /// Begins the fire growing logic
@@ -100,8 +130,8 @@ public class FireBehavior : MonoBehaviour
                 // Destroy object if fully shrunk
                 if (transform.localScale.x <= 0)
                 {
-                    OnFireExtinguished?.Invoke();
-                    Destroy(gameObject);
+                    OnFireExtinguished?.Invoke(this);
+                    Destroy(transform.parent.gameObject);
                 }
             }
 

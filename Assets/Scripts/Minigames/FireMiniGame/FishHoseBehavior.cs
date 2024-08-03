@@ -16,53 +16,55 @@ using FMOD;
 
 public class FishHoseBehavior : MonoBehaviour, IInteractable
 {
-    [SerializeField] private NpcEvent _minigameEndEvent;
-    [SerializeField] private GameObject _npcFish;
+    [SerializeField] private Collider _waterCollisionCollider;
 
     [Header("Water Settings")]
     [SerializeField] private float _refillWaitTime;
-    [SerializeField] private float _waterMaxAmount;
+
+    [Range(0f, 100f)]   // water meter UI will break if exceeds 100
+    [SerializeField] private int _maxWaterAmount;
+
+    [Tooltip("Smaller values will lower the rate the water meter decreases")]
+    [SerializeField] private float _meterSpendRate;
+
+    [Tooltip("Smaller values will lower the rate the water meter increase")]
+    [SerializeField] private float _meterRefillRate;
 
     [Header("UI")]
     [SerializeField] private string _interactPromptText = "FISH";
 
     [Header("VFX")]
     [SerializeField] private ParticleSystem _waterSpray;
-    [SerializeField] private GameObject _fireAlarmLight;
 
     private GameObject _rightHand;
     private TabbedMenu _tabbedMenu;
 
     private float _currentWaterAmount;
     private bool _isEquipped;
-    private int _numFires;
     private bool _isShooting;
 
     private void OnEnable()
     {
         PlayerController.Instance.Shoot.started += OnShoot;
         PlayerController.Instance.Shoot.canceled += OnRelease;
-        FireBehavior.OnFireExtinguished += OnFireExtinguished;
     }
 
     private void OnDisable()
     {
         PlayerController.Instance.Shoot.started -= OnShoot;
         PlayerController.Instance.Shoot.canceled -= OnRelease;
-        FireBehavior.OnFireExtinguished -= OnFireExtinguished;
     }
 
     private void Start()
     {
-        _npcFish.SetActive(false);
         _isShooting = false;
-        _currentWaterAmount = _waterMaxAmount;
+        _currentWaterAmount = _maxWaterAmount;
 
         _rightHand = GameObject.FindWithTag("Righty");
 
-        _tabbedMenu = TabbedMenu.Instance;
+        _waterCollisionCollider.gameObject.SetActive(false);
 
-        _numFires = FindObjectsOfType<FireBehavior>().Length;
+        _tabbedMenu = TabbedMenu.Instance;
     }
 
     void FixedUpdate()
@@ -87,32 +89,6 @@ public class FishHoseBehavior : MonoBehaviour, IInteractable
         }
     }
 
-    private void OnFireExtinguished()
-    {
-        _numFires--;
-
-        if (_numFires <= 0)
-        {
-            _tabbedMenu.ToggleWaterMeter(false);
-
-            //GAME ENDS HERE
-            EndMinigame();
-        }
-    }
-
-    /// <summary>
-    /// Ends the minigame
-    /// </summary>
-    private void EndMinigame()
-    {
-        _minigameEndEvent.TriggerEvent(NpcEventTags.Fish);
-
-        _npcFish.SetActive(true);
-        _fireAlarmLight.SetActive(false);
-
-        Destroy(gameObject);
-    }
-
     /// <summary>
     /// When the player holds left click down.
     /// </summary>
@@ -129,32 +105,36 @@ public class FishHoseBehavior : MonoBehaviour, IInteractable
             // Shoots water if player is able to when input is given
             if (_currentWaterAmount > 0f)
             {
+                StopAllCoroutines();
                 StartCoroutine(ShootWater());
-            }
-            else
-            {
-                _tabbedMenu.UpdateFishFaceState(0);
             }
         }
     }
 
+    /// <summary>
+    /// Water shooting logic
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator ShootWater()
     {
+        _waterCollisionCollider.gameObject.SetActive(true);
         _waterSpray.Play();
         _isShooting = true;
+        _tabbedMenu.UpdateFishFaceState(1);
 
         while (_currentWaterAmount > 0)
         {
-            _tabbedMenu.UpdateFishFaceState(1);
-
-            _currentWaterAmount -= 1f;
+            _currentWaterAmount -= _meterSpendRate;
             _tabbedMenu.UpdateWaterFill(_currentWaterAmount);
-
             yield return new WaitForEndOfFrame();
         }
         StopWaterSpray();
     }
 
+    /// <summary>
+    /// When player lets go of shoot
+    /// </summary>
+    /// <param name="obj"></param>
     private void OnRelease(InputAction.CallbackContext obj)
     {
         if (_isEquipped)
@@ -163,12 +143,16 @@ public class FishHoseBehavior : MonoBehaviour, IInteractable
         }
     }
 
+    /// <summary>
+    /// Controls the logic when the water spray should stop
+    /// </summary>
     private void StopWaterSpray()
     {
+        _waterCollisionCollider.gameObject.SetActive(false);
+        StopAllCoroutines();    // I wasn't able to explicitly stop the ShootWater coroutine
+        _waterSpray.Stop();
         _isShooting = false;
 
-        _waterSpray.Stop();
-        StopCoroutine(ShootWater());
         StartCoroutine(WaitForRefill());
 
         if (_currentWaterAmount <= 0)
@@ -182,7 +166,6 @@ public class FishHoseBehavior : MonoBehaviour, IInteractable
     /// </summary>
     private IEnumerator WaitForRefill()
     {
-        
         yield return new WaitForSeconds(_refillWaitTime);
         StartCoroutine(RefillWater());
     }
@@ -194,16 +177,16 @@ public class FishHoseBehavior : MonoBehaviour, IInteractable
     {
         _tabbedMenu.UpdateFishFaceState(0);
 
-        while (_currentWaterAmount < _waterMaxAmount)
+        while (_currentWaterAmount < _maxWaterAmount)
         {
-            _currentWaterAmount += 0.5f;
+            _currentWaterAmount += _meterRefillRate;
             _tabbedMenu.UpdateWaterFill(_currentWaterAmount);
 
             yield return new WaitForEndOfFrame();
         }
 
         // Once water meter is full
-        _currentWaterAmount = _waterMaxAmount;
+        _currentWaterAmount = _maxWaterAmount;
     }
 
     /// <summary>
