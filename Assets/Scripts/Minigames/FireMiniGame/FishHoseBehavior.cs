@@ -12,7 +12,6 @@ using System.Collections;
 using UnityEngine;
 using PlaceboEntertainment.UI;
 using UnityEngine.InputSystem;
-using FMOD;
 
 public class FishHoseBehavior : MonoBehaviour, IInteractable
 {

@@ -6,8 +6,6 @@
 // Brief Description : Start the fire minigame in the test gym
 *****************************************************************************/
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TestGymStart : MonoBehaviour
