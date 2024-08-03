@@ -1,6 +1,6 @@
 /******************************************************************
 *    Author: Nick Grinstead
-*    Contributors: 
+*    Contributors: Elijah Vroman
 *    Date Created: 5/22/24
 *    Description: NPC class containing logic for the Robot NPC.
 *******************************************************************/
@@ -12,8 +12,8 @@ using UnityEngine;
 public class RobotNpc : BaseNpc
 {
     [SerializeField] private InventoryItemData _targetLightBulbItem;
-    [SerializeField] private float _secondsUntilDeath;
-    private float _timeElapsed = 0f;
+    //[SerializeField] private float _secondsUntilDeath;
+    //private float _timeElapsed = 0f;
 
     private bool _hasLightbulb = false;
     private bool _hasRepairedRobot = false;
@@ -81,16 +81,6 @@ public class RobotNpc : BaseNpc
     }
 
     /// <summary>
-    /// Starts death timer
-    /// </summary>
-    protected override void EnterIdle()
-    {
-        base.EnterIdle();
-
-        StartCoroutine(DeathTimer());
-    }
-
-    /// <summary>
     /// Moves straight into post-minigame dialogue
     /// </summary>
     protected override void EnterPostMinigame()
@@ -115,7 +105,7 @@ public class RobotNpc : BaseNpc
             string temp = node.Dialogue[0];
             if (temp.Contains("(time left)"))
             {
-                int timeRemaining = (int)(_secondsUntilDeath - _timeElapsed);
+                int timeRemaining = (int)TimerManager.Instance.GetTimerByTag(NpcEventTags.Robot).GetCurrentTimeInSeconds();
                 temp = temp.Replace("(time left)", timeRemaining.ToString() + " seconds");
             }
 
@@ -188,18 +178,12 @@ public class RobotNpc : BaseNpc
     }
 
     /// <summary>
-    /// Runs a timer that when complete will set the Robot to its failure state
+    /// Instead of an internal timer, we are moving this to the TimerManager
+    /// so that desgin has access to all timers in a nice consolidated place.
+    /// There is an event listener on the robot prefab that picks this method
     /// </summary>
-    /// <returns>Waits one second</returns>
-    private IEnumerator DeathTimer()
+    public void CheckFailure()
     {
-        while (_timeElapsed < _secondsUntilDeath)
-        {
-            yield return new WaitForSeconds(1f);
-
-            _timeElapsed += 1f;
-        }
-
         if (!_hasRepairedRobot)
         {
             EnterFailure();

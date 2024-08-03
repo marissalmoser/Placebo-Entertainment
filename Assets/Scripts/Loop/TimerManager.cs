@@ -48,7 +48,7 @@ public class TimerManager : MonoBehaviour
         else
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
     }
     #endregion
@@ -105,6 +105,14 @@ public class TimerManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Create a timer with these attributes on the Timer class
+    /// </summary>
+    /// <param name="timerName">The timer's name</param>
+    /// <param name="maxTime">How long the timer runs</param>
+    /// <param name="eventTimerCalls">Which event the timer should call when the MaxTime - _current time =0 </param>
+    /// <param name="npcToAlert">Which NPC the timer should alert with its NpcEvent when MaxTime - _current time = 0</param>
+    /// <returns></returns>
     public Timer CreateTimer(string timerName, float maxTime, NpcEvent eventTimerCalls, NpcEventTags npcToAlert)
     {
         if (_timers.Exists(t => t.timerName == timerName))
@@ -119,6 +127,13 @@ public class TimerManager : MonoBehaviour
         return newTimerStruct.timer;
     }
 
+    /// <summary>
+    /// Get a timer struct to reference it by using its name. Still looking for a way to avoid it,
+    /// although this is made more difficult because UnityEvents cant be given a enum as a parameter 
+    /// in the inspector.
+    /// </summary>
+    /// <param name="timerName"></param>
+    /// <returns></returns>
     public Timer GetTimer(string timerName)
     {
         TimerStruct timerStruct = _timers.Find(thatTimer => thatTimer.timerName == timerName);
@@ -130,6 +145,28 @@ public class TimerManager : MonoBehaviour
         return null;
     }
 
+    /// <summary>
+    /// Find a timer in the list by using a tag. Although not specific, the limited size of the list 
+    /// makes this viable, and allows a workaround for not using string comparison.
+    /// </summary>
+    /// <param name="eventTag"></param>
+    /// <returns></returns>
+    public Timer GetTimerByTag(NpcEventTags eventTag)
+    {
+        TimerStruct timerStruct = _timers.Find(thatTimer => thatTimer.timer.GetTimerTag() == eventTag);
+        if (timerStruct.timer != null)
+        {
+            return timerStruct.timer;
+        }
+        print("Timer with tag" + eventTag + " does not exist.");
+        return null;
+    }
+
+    /// <summary>
+    /// Remove a timer from the list by using its name.
+    /// </summary>
+    /// <param name="timerName"></param>
+    /// <returns></returns>
     public Timer RemoveTimer(string timerName)
     {
         TimerStruct timerStruct = _timers.Find(t => t.timerName == timerName);
@@ -140,5 +177,17 @@ public class TimerManager : MonoBehaviour
         }
         print("Timer " + timerName + " does not exist.");
         return null;
+    }
+    public void RemoveTimerNoReturn(string timerName)
+    {
+        TimerStruct timerStruct = _timers.Find(t => t.timerName == timerName);
+        if (timerStruct.timer != null)
+        {
+            _timers.Remove(timerStruct);
+        }
+        else
+        {
+            print("Timer " + timerName + " does not exist.");
+        }
     }
 }
