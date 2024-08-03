@@ -4,21 +4,17 @@
 *    Date Created: 6/25/24
 *    Description: NPC class containing logic for the Fish NPC.
 *******************************************************************/
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
 using PlaceboEntertainment.UI;
+using System.Collections;
+using UnityEngine;
 
 public class FishNpc : BaseNpc
 {
     [SerializeField] private Vector3 _postMinigameFishPos;
+    [SerializeField] private NpcEvent _removeTimerEvent;
 
     private bool _enteredFireRoom = false;
     private bool _hasfish;
-    [SerializeField] private int secondsUntilFailFireGame;
     private float _timeElapsed = 0f;
 
     [SerializeField] private float _fadeOutTime;
@@ -48,6 +44,8 @@ public class FishNpc : BaseNpc
         TabbedMenu.Instance.StartFadeOut(_fadeOutTime);
         _playerController.LockCharacter(true);
         StartCoroutine(MoveFishDuringFadeOut());
+
+        _removeTimerEvent.TriggerEvent(NpcEventTags.Fish);
     }
 
     /// <summary>
@@ -73,7 +71,7 @@ public class FishNpc : BaseNpc
     {
         base.EnterFailure();
 
-        ResetLoop();
+        Debug.Log("Failed the fire/fish game");
     }
 
     /// <summary>
@@ -116,26 +114,5 @@ public class FishNpc : BaseNpc
                 return 0;
             }
         }
-    }
-
-    /// <summary>
-    /// Will start the fire death timer
-    /// </summary>
-    protected override void EnterIdle()
-    {
-        base.EnterIdle();
-        // TODO: uncomment this once timer updates are done
-        //TimerManager.Instance.CreateTimer("FireRoomMiniGameTimer", secondsUntilFailFireGame);
-    }
-
-    /// <summary>
-    /// Lifted this from LoopController
-    /// </summary>
-    public void ResetLoop()
-    {
-        SaveLoadManager.Instance.SaveGameToSaveFile();
-        int activeSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(activeSceneIndex);
-        SaveLoadManager.Instance.LoadGameFromSaveFile();
     }
 }

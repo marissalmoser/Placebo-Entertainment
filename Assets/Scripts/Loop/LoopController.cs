@@ -12,14 +12,14 @@ using UnityEngine.SceneManagement;
 
 public class LoopController : MonoBehaviour
 {
-    private Timer _loopTimer;
-    [SerializeField] private string _loopTimerName;
-    [SerializeField] private int _loopTimerTime;
-    [SerializeField] private int _endScreenDelay;
-    [SerializeField] private NpcEvent _temporaryLoop;
-    [SerializeField] private NpcEventTags _temporaryTag;
-    public int LoopTimerTimer => _loopTimerTime;
-    public string LoopTimerName => _loopTimerName;
+    //private Timer _loopTimer;
+    //[SerializeField] private string _loopTimerName;
+    //[SerializeField] private int _loopTimerTime;
+    //[SerializeField] private int _endScreenDelay;
+    //[SerializeField] private NpcEvent _temporaryLoop;
+    //[SerializeField] private NpcEventTags _temporaryTag;
+    //public int LoopTimerTimer => _loopTimerTime;
+    //public string LoopTimerName => _loopTimerName;
 
     private List<Timer> _runningTimersAtStart = new List<Timer>();
     private List<Timer> _pausedTimersAtStart= new List<Timer>();
@@ -39,7 +39,7 @@ public class LoopController : MonoBehaviour
                 _pausedTimersAtStart.Add(timer.timer);  
             }
         }
-        _loopTimer = TimerManager.Instance.CreateTimer(LoopTimerName, _loopTimerTime + _endScreenDelay, _temporaryLoop, _temporaryTag);
+        //_loopTimer = TimerManager.Instance.CreateTimer(LoopTimerName, _loopTimerTime + _endScreenDelay, _temporaryLoop, _temporaryTag);
         //_loopTimer.TimesUp += HandleLoopTimerEnd;
         LoadSave();
         
@@ -53,7 +53,7 @@ public class LoopController : MonoBehaviour
     /// </summary>
     private void HandleLoopTimerEnd()
     {
-        TimerManager.Instance.RemoveTimer(LoopTimerName);
+        //TimerManager.Instance.RemoveTimer(LoopTimerName);
 
         ResetLoop();
 
