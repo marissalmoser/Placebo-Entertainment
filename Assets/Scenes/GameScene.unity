@@ -56585,6 +56585,10 @@ PrefabInstance:
       propertyPath: _moveSpeed
       value: 3.5
       objectReference: {fileID: 0}
+    - target: {fileID: 9060088147861728875, guid: c305122b038e6e048b647787017c7c42, type: 3}
+      propertyPath: Shoot.m_Name
+      value: Shoot
+      objectReference: {fileID: 0}
     - target: {fileID: 9093021038611687771, guid: c305122b038e6e048b647787017c7c42, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -62102,6 +62106,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5270714454554403120, guid: f55858b00bf86264e988876288ea3225, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7462002179016006682, guid: f55858b00bf86264e988876288ea3225, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8332559271829823575, guid: f55858b00bf86264e988876288ea3225, type: 3}
