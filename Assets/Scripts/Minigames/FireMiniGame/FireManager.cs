@@ -79,13 +79,12 @@ public class FireManager : MonoBehaviour
     /// </summary>
     private void EndMinigame()
     {
-        _minigameEndEvent.TriggerEvent(NpcEventTags.Fish);
-
         _fishNPC.SetActive(true);
         _fireAlarmLight.SetActive(false);
 
         Destroy(FishHoseBehavior.Instance.gameObject);
 
+        _minigameEndEvent.TriggerEvent(NpcEventTags.Fish);
         Destroy(gameObject);
     }
 }
