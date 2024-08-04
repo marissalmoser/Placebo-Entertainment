@@ -90,6 +90,8 @@ public class FishHoseBehavior : MonoBehaviour, IInteractable
             transform.position = _positionInHand.transform.position;
             transform.rotation = _positionInHand.transform.rotation;
             transform.parent = _positionInHand.transform;
+            transform.localScale = new Vector3(.7f, .7f, .7f); // This resizes the fish,
+                                                               // but the water spray is still at the old mouth
         }
     }
 
