@@ -20,6 +20,7 @@ public class FireManager : MonoBehaviour
     private List<FireBehavior> _fires;
 
     private TabbedMenu _tabbedMenu;
+    private GameObject _fishNPC;
 
     private void Start()
     {
@@ -31,7 +32,8 @@ public class FireManager : MonoBehaviour
         _fires = FindObjectsOfType<FireBehavior>().ToList();
         InitializeFireSizes();
 
-        FindObjectOfType<FishNpc>().gameObject.SetActive(false);
+        _fishNPC = FindObjectOfType<FishNpc>().gameObject;
+        _fishNPC.SetActive(false);
     }
     
     /// <summary>
@@ -79,7 +81,7 @@ public class FireManager : MonoBehaviour
     {
         _minigameEndEvent.TriggerEvent(NpcEventTags.Fish);
 
-        FindObjectOfType<FishNpc>().gameObject.SetActive(true);
+        _fishNPC.SetActive(true);
         _fireAlarmLight.SetActive(false);
 
         Destroy(FishHoseBehavior.Instance.gameObject);
