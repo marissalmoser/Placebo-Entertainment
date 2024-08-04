@@ -15,6 +15,8 @@ using UnityEngine.InputSystem;
 
 public class FishHoseBehavior : MonoBehaviour, IInteractable
 {
+    public static FishHoseBehavior Instance;
+
     [SerializeField] private Collider _waterCollisionCollider;
     [SerializeField] private GameObject _positionInHand;
 
@@ -56,6 +58,18 @@ public class FishHoseBehavior : MonoBehaviour, IInteractable
         PlayerController.Instance.Shoot.canceled -= OnRelease;
     }
 
+    private void Awake()
+    {
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
+
     private void Start()
     {
         _isShooting = false;
@@ -64,7 +78,6 @@ public class FishHoseBehavior : MonoBehaviour, IInteractable
         _waterCollisionCollider.gameObject.SetActive(false);
 
         _tabbedMenu = TabbedMenu.Instance;
-        FishModel = transform.GetChild(0).gameObject;
     }
 
     public void Interact(GameObject player)
@@ -74,9 +87,9 @@ public class FishHoseBehavior : MonoBehaviour, IInteractable
             _isEquipped = true;
             _tabbedMenu.ToggleWaterMeter(true);
 
-            FishModel.transform.position = _positionInHand.transform.position;
-            FishModel.transform.rotation = _positionInHand.transform.rotation;
-            FishModel.transform.parent = _positionInHand.transform;
+            transform.position = _positionInHand.transform.position;
+            transform.rotation = _positionInHand.transform.rotation;
+            transform.parent = _positionInHand.transform;
         }
     }
 
