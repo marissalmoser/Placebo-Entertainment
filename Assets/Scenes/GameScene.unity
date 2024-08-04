@@ -67521,6 +67521,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: -1.0626373
       objectReference: {fileID: 0}
+    - target: {fileID: 6646590932068586755, guid: c305122b038e6e048b647787017c7c42, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.9607649
+      objectReference: {fileID: 0}
     - target: {fileID: 6650988613498576474, guid: c305122b038e6e048b647787017c7c42, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -88204,6 +88208,7 @@ MonoBehaviour:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 5703229155946148813}
   - {fileID: 2036602883}
   - {fileID: 1869879217}
   - {fileID: 1794136027}
@@ -88225,4 +88230,3 @@ SceneRoots:
   - {fileID: 673271561}
   - {fileID: 2081377316}
   - {fileID: 1825563200}
-  - {fileID: 5703229155946148813}

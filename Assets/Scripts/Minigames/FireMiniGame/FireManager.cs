@@ -82,6 +82,8 @@ public class FireManager : MonoBehaviour
         FindObjectOfType<FishNpc>().gameObject.SetActive(true);
         _fireAlarmLight.SetActive(false);
 
+        Destroy(FishHoseBehavior.FishModel);
+
         Destroy(gameObject);
     }
 }

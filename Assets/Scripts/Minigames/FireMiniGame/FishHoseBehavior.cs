@@ -38,7 +38,7 @@ public class FishHoseBehavior : MonoBehaviour, IInteractable
 
     private TabbedMenu _tabbedMenu;
 
-    private GameObject _fishModel;
+    public static GameObject FishModel { get; private set; }
 
     private float _currentWaterAmount;
     private bool _isEquipped;
@@ -64,16 +64,7 @@ public class FishHoseBehavior : MonoBehaviour, IInteractable
         _waterCollisionCollider.gameObject.SetActive(false);
 
         _tabbedMenu = TabbedMenu.Instance;
-        _fishModel = transform.GetChild(0).gameObject;
-    }
-
-    void FixedUpdate()
-    {
-        if (_isEquipped)
-        {
-            /*transform.position = new Vector3(_positionInHand.transform.position.x, _positionInHand.transform.position.y, _positionInHand.transform.position.z);
-            transform.rotation = _positionInHand.transform.rotation;*/
-        }
+        FishModel = transform.GetChild(0).gameObject;
     }
 
     public void Interact(GameObject player)
@@ -83,9 +74,9 @@ public class FishHoseBehavior : MonoBehaviour, IInteractable
             _isEquipped = true;
             _tabbedMenu.ToggleWaterMeter(true);
 
-            _fishModel.transform.position = _positionInHand.transform.position;
-            _fishModel.transform.rotation = _positionInHand.transform.rotation;
-            _fishModel.transform.parent = _positionInHand.transform;
+            FishModel.transform.position = _positionInHand.transform.position;
+            FishModel.transform.rotation = _positionInHand.transform.rotation;
+            FishModel.transform.parent = _positionInHand.transform;
         }
     }
 
