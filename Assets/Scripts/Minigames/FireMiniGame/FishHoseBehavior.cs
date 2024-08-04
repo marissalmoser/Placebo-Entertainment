@@ -128,7 +128,7 @@ public class FishHoseBehavior : MonoBehaviour, IInteractable
     /// <param name="obj"></param>
     private void OnRelease(InputAction.CallbackContext obj)
     {
-        if (_isEquipped)
+        if (_isEquipped && _isShooting)
         {
             StopWaterSpray();
         }
