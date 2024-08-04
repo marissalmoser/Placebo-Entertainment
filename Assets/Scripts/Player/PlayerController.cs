@@ -120,10 +120,13 @@ public class PlayerController : MonoBehaviour
         {
             InteractionCheck.CallInteract();
         }
+
+#if UNITY_EDITOR
         if (Reset.IsPressed())
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
+#endif
 
         // Player Rotation
         if (!_isInDialogue)

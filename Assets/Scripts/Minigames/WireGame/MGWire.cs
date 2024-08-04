@@ -244,7 +244,6 @@ public class MGWire : MonoBehaviour
     /// last segment</param>
     private void SetWireColor(Material mat, bool isEndSegment)
     {
-        UnityEngine.Debug.Log(mat.ToString());
         mat.shader = _URPShader;
         if(!isEndSegment)
         {
