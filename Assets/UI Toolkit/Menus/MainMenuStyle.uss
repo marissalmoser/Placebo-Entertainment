@@ -40,3 +40,51 @@
 .MainMenuButton:disabled {
     color: rgba(255, 251, 239, 0.6);
 }
+
+.TextElement {
+    color: rgb(255, 251, 239);
+    font-size: 24px;
+    -unity-font: url("project://database/Assets/UI%20Toolkit/Fonts/Bungee/Bungee-Regular.ttf?fileID=12800000&guid=473230090f800fc4b83eeb84e33ceae6&type=3#Bungee-Regular");
+    -unity-font-definition: initial;
+    position: absolute;
+    left: 75px;
+    top: 130px;
+}
+
+#SettingsSlider Label {
+    display: none;
+}
+
+#SettingsSlider #unity-drag-container {
+    display: flex;
+    width: 672px;
+    height: 21px;
+}
+
+#SettingsSlider #unity-tracker {
+    display: flex;
+    background-image: url("project://database/Assets/Art/UI/MainMenu/Slider_bar.png?fileID=2800000&guid=513bd99f0d8d7d445873589f4262114a&type=3#Slider_bar");
+    width: 672px;
+    height: 21px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+
+#SettingsSlider #unity-dragger {
+}
+
+#SettingsSlider #unity-dragger-border {
+    background-image: none;
+    display: none;
+    -unity-background-image-tint-color: rgba(255, 255, 255, 0);
+    opacity: 1;
+}
+
+.circularDragger {
+    width: 58px;
+    height: 58px;
+    background-image: url("project://database/Assets/Art/UI/MainMenu/Slider_Cirlce.png?fileID=2800000&guid=786b0f603c9ea884abc3b355d448b2bf&type=3#Slider_Cirlce");
+    position: absolute;
+}

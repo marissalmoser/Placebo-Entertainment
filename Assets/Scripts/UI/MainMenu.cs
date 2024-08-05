@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class MainMenu : MonoBehaviour
 {
@@ -27,6 +28,7 @@ public class MainMenu : MonoBehaviour
     private const string ConfirmYesButtonName = "ConfirmYesButton";
     private const string ConfirmationTextName = "ProceedText";
 
+    private const string SplashScreenName = "SplashScreenHolder";
     private const string MainScreenName = "MainMenuHolder";
     private const string SettingsScreenName = "SettingsBackground";
     private const string ConfirmationScreenName = "ConfirmationBackground";
@@ -46,6 +48,7 @@ public class MainMenu : MonoBehaviour
     private Button _confirmNoButton;
     private Button _confirmYesButton;
     private Label _confirmText;
+    private VisualElement _splashScreen;
     private VisualElement _mainMenuScreen;
     private VisualElement _settingsScreen;
     private VisualElement _confirmationScreen;
@@ -60,6 +63,10 @@ public class MainMenu : MonoBehaviour
 
     // 0 = splash, 1 = main, 2 = settings selection, 3 = settings submenu
     private int _currentScreenIndex = 0;
+
+    private PlayerControls _playerControls;
+    private InputAction _startGame;
+    private InputAction _backInput;
     #endregion
 
     /// <summary>
@@ -67,6 +74,14 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     private void Awake()
     {
+        _playerControls = new PlayerControls();
+        _playerControls.BasicControls.Enable();
+        _startGame = _playerControls.FindAction("StartGame");
+        _backInput = _playerControls.FindAction("PauseGame");
+        _startGame.performed += ctx => CloseSplashScreen();
+        _backInput.performed += ctx => BackButtonClicked();
+
+        _splashScreen = _mainMenuDoc.rootVisualElement.Q(SplashScreenName);
         _mainMenuScreen = _mainMenuDoc.rootVisualElement.Q(MainScreenName);
         _settingsScreen = _mainMenuDoc.rootVisualElement.Q(SettingsScreenName);
         _confirmationScreen = _mainMenuDoc.rootVisualElement.Q(ConfirmationScreenName);
@@ -125,6 +140,9 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     private void OnDisable()
     {
+        _startGame.performed -= ctx => CloseSplashScreen();
+        _backInput.performed -= ctx => BackButtonClicked();
+
         _newGameButton.UnregisterCallback<ClickEvent>(NewGameButtonClicked);
         _continueButton.UnregisterCallback<ClickEvent>(ContinueButtonClicked);
         _settingsButton.UnregisterCallback<ClickEvent>(SettingsButtonClicked);
@@ -151,6 +169,17 @@ public class MainMenu : MonoBehaviour
             _settingsButton.UnregisterCallback<MouseOutEvent>(evt => { AnimateTab(_continueTab, false); });
             _quitButton.UnregisterCallback<MouseOverEvent>(evt => { AnimateTab(_settingsTab, true); });
             _quitButton.UnregisterCallback<MouseOutEvent>(evt => { AnimateTab(_settingsTab, false); });
+        }
+    }
+
+    private void CloseSplashScreen()
+    {
+        if (_currentScreenIndex == 0)
+        {
+            _currentScreenIndex = 1;
+            _startGame.performed -= ctx => CloseSplashScreen();
+            _splashScreen.style.display = DisplayStyle.None;
+            _mainMenuScreen.style.display = DisplayStyle.Flex;
         }
     }
 
@@ -223,9 +252,17 @@ public class MainMenu : MonoBehaviour
     /// <summary>
     /// Returns to main menu screen from submenu
     /// </summary>
-    /// <param name="clicked">Click event</param>
-    private void BackButtonClicked(ClickEvent clicked)
+    private void BackButtonClicked()
     {
+        if (_currentScreenIndex == 2)
+        {
+            _currentScreenIndex = 1;
+
+        }
+
+
+
+        // TODO: edit this
         _confirmationScreen.style.display = DisplayStyle.None;
         _settingsScreen.style.display = DisplayStyle.None;
         _mainMenuScreen.style.display = DisplayStyle.Flex;
