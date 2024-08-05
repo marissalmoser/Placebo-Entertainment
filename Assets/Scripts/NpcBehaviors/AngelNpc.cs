@@ -64,8 +64,6 @@ public class AngelNpc : BaseNpc
     protected override void EnterPostMinigame()
     {
         base.EnterPostMinigame();
-
-        
     }
 
     /// <summary>
@@ -103,6 +101,7 @@ public class AngelNpc : BaseNpc
     /// <returns>String dialogue to display</returns>
     protected override string ChooseDialogueFromNode(DialogueNode node)
     {
+        PlayRandomTalkingAnim();
         if (_cowardGameComplete && _robotGameComplete)
         {
             return node.Dialogue[1];
@@ -114,6 +113,11 @@ public class AngelNpc : BaseNpc
     }
     protected override int ChooseDialoguePath(PlayerResponse option)
     {
+        if (option.NextResponseIndex.Length == 1)
+        {
+            _anim.SetTrigger("FinalChoice");
+        }
+
         if (_hasPills)
         {
             _anim.SetTrigger("Healed");
@@ -152,6 +156,22 @@ public class AngelNpc : BaseNpc
         {
             _hasPills = true;
             Debug.Log(_hasPills);
+        }
+    }
+    private void PlayRandomTalkingAnim()
+    {
+        int rand = Random.Range(1, 4);
+        switch (rand)
+        {
+            case 1:
+                _anim.SetTrigger("Talking1");
+                break;
+            case 2:
+                _anim.SetTrigger("Talking2");
+                break;
+            case 3:
+                _anim.SetTrigger("Talking3");
+                break;
         }
     }
 }
