@@ -25,6 +25,7 @@ public class MainMenu : MonoBehaviour
     //private const string SettingsBackButtonName = "SettingsBackButton";
     private const string ConfirmNoButtonName = "ConfirmNoButton";
     private const string ConfirmYesButtonName = "ConfirmYesButton";
+    private const string ConfirmationTextName = "ProceedText";
 
     private const string MainScreenName = "MainMenuHolder";
     private const string SettingsScreenName = "SettingsBackground";
@@ -44,6 +45,7 @@ public class MainMenu : MonoBehaviour
     //private Button _settingsBackButton;
     private Button _confirmNoButton;
     private Button _confirmYesButton;
+    private Label _confirmText;
     private VisualElement _mainMenuScreen;
     private VisualElement _settingsScreen;
     private VisualElement _confirmationScreen;
@@ -55,6 +57,9 @@ public class MainMenu : MonoBehaviour
 
     private Coroutine _activeCoroutine;
     private bool _canAnimateTabs = true;
+
+    // 0 = splash, 1 = main, 2 = settings selection, 3 = settings submenu
+    private int _currentScreenIndex = 0;
     #endregion
 
     /// <summary>
@@ -73,6 +78,7 @@ public class MainMenu : MonoBehaviour
         //_settingsBackButton = _mainMenuDoc.rootVisualElement.Q<Button>(SettingsBackButtonName);
         _confirmNoButton = _mainMenuDoc.rootVisualElement.Q<Button>(ConfirmNoButtonName);
         _confirmYesButton = _mainMenuDoc.rootVisualElement.Q<Button>(ConfirmYesButtonName);
+        _confirmText = _mainMenuDoc.rootVisualElement.Q<Label>(ConfirmationTextName);
 
         _newGameTab = _mainMenuDoc.rootVisualElement.Q(NewGameTabName);
         _continueTab = _mainMenuDoc.rootVisualElement.Q(ContinueTabName);
@@ -84,7 +90,7 @@ public class MainMenu : MonoBehaviour
         _continueButton.RegisterCallback<ClickEvent>(ContinueButtonClicked);
         _quitButton.RegisterCallback<ClickEvent>(QuitButtonClicked);
         //_settingsBackButton.RegisterCallback<ClickEvent>(BackButtonClicked);
-        _confirmNoButton.RegisterCallback<ClickEvent>(BackButtonClicked);
+        _confirmNoButton.RegisterCallback<ClickEvent>(ConfirmNoButtonClicked);
         _confirmYesButton.RegisterCallback<ClickEvent>(StartNewGame);
 
         _newGameButton.RegisterCallback<MouseOverEvent>(evt => { AnimateTab(_newGameTab, true); });
@@ -124,7 +130,7 @@ public class MainMenu : MonoBehaviour
         _settingsButton.UnregisterCallback<ClickEvent>(SettingsButtonClicked);
         _quitButton.UnregisterCallback<ClickEvent>(QuitButtonClicked);
         //_settingsBackButton.UnregisterCallback<ClickEvent>(BackButtonClicked);
-        _confirmNoButton.UnregisterCallback<ClickEvent>(BackButtonClicked);
+        _confirmNoButton.UnregisterCallback<ClickEvent>(ConfirmNoButtonClicked);
         _confirmYesButton.UnregisterCallback<ClickEvent>(StartNewGame);
 
         _newGameButton.RegisterCallback<MouseOverEvent>(evt => { AnimateTab(_newGameTab, true); });
@@ -173,8 +179,12 @@ public class MainMenu : MonoBehaviour
     /// <param name="clicked">Click event</param>
     private void NewGameButtonClicked(ClickEvent clicked)
     {
-        _mainMenuScreen.style.display = DisplayStyle.None;
-        _confirmationScreen.style.display = DisplayStyle.Flex;
+        AnimateTab(_newGameTab, true, true);
+        _canAnimateTabs = false;
+
+        _continueButton.SetEnabled(false);
+        _settingsButton.SetEnabled(false);
+        _quitButton.SetEnabled(false);
     }
 
     /// <summary>
@@ -189,6 +199,16 @@ public class MainMenu : MonoBehaviour
         }
 
         SceneManager.LoadScene(_introVideoBuildIndex);
+    }
+
+    private void ConfirmNoButtonClicked(ClickEvent clicked)
+    {
+        _canAnimateTabs = true;
+        AnimateTab(_newGameTab, false);
+
+        _continueButton.SetEnabled(true);
+        _settingsButton.SetEnabled(true);
+        _quitButton.SetEnabled(true);
     }
 
     /// <summary>
@@ -211,7 +231,7 @@ public class MainMenu : MonoBehaviour
         _mainMenuScreen.style.display = DisplayStyle.Flex;
     }
 
-    private void AnimateTab(VisualElement tabToAnimate, bool isActive)
+    private void AnimateTab(VisualElement tabToAnimate, bool isActive, bool extendNGButton = false)
     {
         if (_canAnimateTabs)
         {
@@ -220,7 +240,11 @@ public class MainMenu : MonoBehaviour
                 StopCoroutine(_activeCoroutine);
             }
 
-            if (isActive)
+            if (extendNGButton)
+            {
+                _activeCoroutine = StartCoroutine(ScaleTabWidth(tabToAnimate, 1171f, (float)tabToAnimate.resolvedStyle.width));
+            }
+            else if (isActive)
             {
                 _activeCoroutine = StartCoroutine(ScaleTabWidth(tabToAnimate, 322f, (float)tabToAnimate.resolvedStyle.width));
             }
@@ -244,6 +268,14 @@ public class MainMenu : MonoBehaviour
             yield return null;
         }
 
-        tabToAnimate.style.width = targetWidth;   
+        tabToAnimate.style.width = targetWidth;
+        
+        // Displays proceed options if new game tab was extended
+        if (targetWidth > 322f)
+        {
+            _confirmNoButton.style.display = DisplayStyle.Flex;
+            _confirmYesButton.style.display = DisplayStyle.Flex;
+            _confirmText.style.display = DisplayStyle.Flex;
+        }
     }
 }

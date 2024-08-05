@@ -36,3 +36,7 @@
     right: 1598px;
     left: 0;
 }
+
+.MainMenuButton:disabled {
+    color: rgba(255, 251, 239, 0.6);
+}

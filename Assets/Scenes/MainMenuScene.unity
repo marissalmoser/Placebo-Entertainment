@@ -305,7 +305,7 @@ MonoBehaviour:
   _mainMenuDoc: {fileID: 1117348777}
   _introVideoBuildIndex: 1
   _savingManager: {fileID: 1442069958}
-  _tabAnimationTime: 0.5
+  _tabAnimationTime: 0.25
 --- !u!1 &1317143303
 GameObject:
   m_ObjectHideFlags: 0
