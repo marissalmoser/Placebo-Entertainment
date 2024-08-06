@@ -12,12 +12,10 @@ public class FishNpc : BaseNpc
 {
     [SerializeField] private Vector3 _postMinigameFishPos;
     [SerializeField] private NpcEvent _removeTimerEvent;
+    [SerializeField] private float _fadeOutTime;
 
     private bool _enteredFireRoom = false;
     private bool _hasfish;
-    private float _timeElapsed = 0f;
-
-    [SerializeField] private float _fadeOutTime;
 
     /// <summary>
     /// Called to update the NPCs state
@@ -65,16 +63,6 @@ public class FishNpc : BaseNpc
     }
 
     /// <summary>
-    /// Resets loop on failure
-    /// </summary>
-    protected override void EnterFailure()
-    {
-        base.EnterFailure();
-
-        Debug.Log("Failed the fire/fish game");
-    }
-
-    /// <summary>
     /// 
     /// </summary>
     public void SteppedIn()
@@ -105,14 +93,7 @@ public class FishNpc : BaseNpc
         }
         else
         {
-            if (option.NextResponseIndex.Length > 0)
-            {
-                return option.NextResponseIndex[0];
-            }
-            else
-            {
-                return 0;
-            }
+            return base.ChooseDialoguePath(option);
         }
     }
 }

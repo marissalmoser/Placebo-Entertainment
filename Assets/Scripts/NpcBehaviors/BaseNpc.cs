@@ -6,11 +6,9 @@
 *       Has basic functionality for switching states and interacting
 *       that child scripts will expand upon.
 *******************************************************************/
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.InputSystem;
 using PlaceboEntertainment.UI;
 
 public abstract class BaseNpc : MonoBehaviour
@@ -264,8 +262,6 @@ public abstract class BaseNpc : MonoBehaviour
     {
         if (_isInteracting && nextNodeIndex < _stateDialogueTrees.GetStateData(_currentState).Length)
         {
-            // TODO: hide player response buttons here
-
             _currentDialogueIndex = nextNodeIndex;
             DialogueNode currentNode = _stateDialogueTrees.GetStateData(_currentState)[_currentDialogueIndex];
             string response = ChooseDialogueFromNode(currentNode);
@@ -321,10 +317,7 @@ public abstract class BaseNpc : MonoBehaviour
         {
             return option.NextResponseIndex[0];
         }
-        else
-        {
-            return 0;
-        }
+        return 0;
     }
     #endregion
 
@@ -409,14 +402,6 @@ public abstract class BaseNpc : MonoBehaviour
         }
     }
     #endregion
-
-    /// <summary>
-    /// Unsubscribing from action on disable
-    /// </summary>
-    protected virtual void OnDisable()
-    {
-        //_playerInventorySystem.AddedToInventory -= CollectedItem;
-    }
 
     ~BaseNpc()
     {

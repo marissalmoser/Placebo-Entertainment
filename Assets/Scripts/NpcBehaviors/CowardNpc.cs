@@ -4,8 +4,6 @@
 *    Date Created: 5/28/24
 *    Description: NPC class containing logic for the Coward NPC.
 *******************************************************************/
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CowardNpc : BaseNpc
@@ -20,16 +18,6 @@ public class CowardNpc : BaseNpc
     private Animator _anim;
 
     /// <summary>
-    /// Getting Animator on child
-    /// </summary>
-    protected override void Initialize()
-    {
-        base.Initialize();
-
-        _anim = GetComponentInChildren<Animator>();
-    }
-
-    /// <summary>
     /// Called when the player enters the generator room
     /// </summary>
     public void GeneratorEventTriggered()
@@ -38,16 +26,6 @@ public class CowardNpc : BaseNpc
         {
             Interact();
         }
-    }
-
-    /// <summary>
-    /// Triggers Coward dialogue in response to the light bulb being collected
-    /// </summary>
-    /// <param name="item">The item that was collected</param>
-    /// <param name="quantity">How many of that item was collected</param>
-    public override void CollectedItem(InventoryItemData item, int quantity)
-    {
-        base.CollectedItem(item, quantity);
     }
 
     /// <summary>
@@ -88,15 +66,6 @@ public class CowardNpc : BaseNpc
     }
 
     /// <summary>
-    /// Starts generator timer when entering idle state
-    /// E.V.: There is now a generator timer on the TimerManager
-    /// </summary>
-    protected override void EnterIdle()
-    {
-        base.EnterIdle();
-    }
-
-    /// <summary>
     /// Starts Coward Interaction 3 when entering post minigame state
     /// </summary>
     protected override void EnterPostMinigame()
@@ -108,14 +77,6 @@ public class CowardNpc : BaseNpc
         _playerInventorySystem.AddToInventory(_targetBypassItem, 1, out _);
 
         _removeTimerEvent.TriggerEvent(NpcEventTags.Coward);
-    }
-
-    /// <summary>
-    /// Restarts the loop due to generator explosion when entering failure state
-    /// </summary>
-    protected override void EnterFailure()
-    {
-        base.EnterFailure();
     }
 
     /// <summary>
@@ -153,36 +114,6 @@ public class CowardNpc : BaseNpc
     }
 
     /// <summary>
-    /// Checks for bypass item to see which path to take
-    /// </summary>
-    /// <param name="option">PlayerResponse being checked</param>
-    /// <returns>Index of next dialogue node</returns>
-    protected override int ChooseDialoguePath(PlayerResponse option)
-    {
-        // Checks for bypass -> commented by Marissa after new bypass update. The item 
-        //      is checked for when the minigame starts and is based on the player's
-        //      inventory, not a bool.
-        //if (_hasBypassItem && _currentState != NpcStates.PostMinigame)
-        //{
-        //    _shouldEndDialogue = true;
-        //    Invoke("EnterPostMinigame", 0.2f);
-        //    return 0;
-        //}
-        // Don't have minigame bypass
-        //else
-        {
-            if (option.NextResponseIndex.Length > 0)
-            {
-                return option.NextResponseIndex[0];
-            }
-            else
-            {
-                return 0;
-            }
-        }
-    }
-
-    /// <summary>
     /// Chooses between two responses depending on if the player has taken the 
     /// light bulb
     /// </summary>
@@ -191,13 +122,12 @@ public class CowardNpc : BaseNpc
     protected override string ChooseDialogueFromNode(DialogueNode node)
     {
         // Select different dialogue if player hasn't taken light bulb
-        if (node.Dialogue.Length > 1 && _currentState == NpcStates.DefaultIdle &&
-            !_hasLightbulb)
+        if (node.Dialogue.Length > 1 && _currentState == NpcStates.DefaultIdle && !_hasLightbulb)
         {
             return node.Dialogue[1];
         }
 
-        return node.Dialogue[0];
+        return base.ChooseDialogueFromNode(node);
     }
 
     /// <summary>
