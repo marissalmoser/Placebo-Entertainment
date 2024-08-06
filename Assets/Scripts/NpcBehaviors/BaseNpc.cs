@@ -158,7 +158,12 @@ public abstract class BaseNpc : MonoBehaviour
 
         _tabbedMenu = TabbedMenu.Instance;
         _navAgent = GetComponent<NavMeshAgent>();
+
         _animator = GetComponent<Animator>();
+        if(_animator == null)
+        {
+            _animator = GetComponentInChildren<Animator>(); 
+        }
 
         EnterIdle();
     }
