@@ -39,6 +39,7 @@ public class FishHoseBehavior : MonoBehaviour, IInteractable
     [SerializeField] private ParticleSystem _waterSpray;
 
     private TabbedMenu _tabbedMenu;
+    private Animator _anim;
 
     public static GameObject FishModel { get; private set; }
 
@@ -78,6 +79,8 @@ public class FishHoseBehavior : MonoBehaviour, IInteractable
         _waterCollisionCollider.gameObject.SetActive(false);
 
         _tabbedMenu = TabbedMenu.Instance;
+
+        _anim = GetComponentInChildren<Animator>();
     }
 
     public void Interact(GameObject player)
@@ -86,6 +89,7 @@ public class FishHoseBehavior : MonoBehaviour, IInteractable
         {
             _isEquipped = true;
             _tabbedMenu.ToggleWaterMeter(true);
+            _anim.SetTrigger("Picked");
 
             transform.position = _positionInHand.transform.position;
             transform.rotation = _positionInHand.transform.rotation;
@@ -113,6 +117,7 @@ public class FishHoseBehavior : MonoBehaviour, IInteractable
             {
                 StopAllCoroutines();
                 StartCoroutine(ShootWater());
+                _anim.SetBool("Firing", true);
             }
         }
     }
@@ -134,6 +139,7 @@ public class FishHoseBehavior : MonoBehaviour, IInteractable
             _tabbedMenu.UpdateWaterFill(_currentWaterAmount);
             yield return new WaitForEndOfFrame();
         }
+        _anim.SetBool("Firing", false);
         StopWaterSpray();
     }
 
@@ -145,6 +151,7 @@ public class FishHoseBehavior : MonoBehaviour, IInteractable
     {
         if (_isEquipped && _isShooting)
         {
+            _anim.SetBool("Firing", false);
             StopWaterSpray();
         }
     }
