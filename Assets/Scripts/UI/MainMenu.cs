@@ -66,6 +66,10 @@ public class MainMenu : MonoBehaviour
     private VisualElement _continueTab;
     private VisualElement _settingsTab;
     private VisualElement _quitTab;
+    private Slider _mouseSensSlider;
+    private Slider _masterVolSlider;
+    private Slider _musicVolSlider;
+    private Slider _sfxVolSlider;
 
     private Coroutine _activeCoroutine;
     private bool _canAnimateTabs = true;
@@ -77,12 +81,10 @@ public class MainMenu : MonoBehaviour
     private InputAction _startGame;
     private InputAction _backInput;
 
-    private List<Slider> _sliders = new List<Slider>();
-    private List<VisualElement> _defaultDraggers;
-    private List<VisualElement> _newDraggers = new List<VisualElement>();
+    private SettingsManager _settingsManager;
     #endregion
 
-    #region ButtonCallbacks
+    #region Initialization
     /// <summary>
     /// Registering button callbacks and finding visual elements
     /// </summary>
@@ -115,6 +117,12 @@ public class MainMenu : MonoBehaviour
         _confirmText = _mainMenuDoc.rootVisualElement.Q<Label>(ConfirmationTextName);
         _audioButton = _mainMenuDoc.rootVisualElement.Q<Button>(AudioButtonName);
         _controlsButton = _mainMenuDoc.rootVisualElement.Q<Button>(ControlsButtonName);
+
+        // Assigning slider references
+        _mouseSensSlider = _mainMenuDoc.rootVisualElement.Q<Slider>(MouseSensSliderName);
+        _masterVolSlider = _mainMenuDoc.rootVisualElement.Q<Slider>(MasterSliderName);
+        _musicVolSlider = _mainMenuDoc.rootVisualElement.Q<Slider>(MusicSliderName);
+        _sfxVolSlider = _mainMenuDoc.rootVisualElement.Q<Slider>(SfxSliderName);
 
         // Assigning animated tab references
         _newGameTab = _mainMenuDoc.rootVisualElement.Q(NewGameTabName);
@@ -161,6 +169,21 @@ public class MainMenu : MonoBehaviour
             _settingsButton.RegisterCallback<MouseOutEvent>(evt => { AnimateTab(_continueTab, false); });
             _quitButton.RegisterCallback<MouseOverEvent>(evt => { AnimateTab(_settingsTab, true); });
             _quitButton.RegisterCallback<MouseOutEvent>(evt => { AnimateTab(_settingsTab, false); });
+        }
+    }
+
+    /// <summary>
+    /// Grabbing reference to settings manager
+    /// </summary>
+    private void Start()
+    {
+        _settingsManager = SettingsManager.Instance;
+        if (_settingsManager != null)
+        {
+            _mouseSensSlider.value = _settingsManager.MouseSensitivity;
+            _masterVolSlider.value = _settingsManager.MasterVolume;
+            _musicVolSlider.value = _settingsManager.MusicVolume;
+            _sfxVolSlider.value = _settingsManager.SfxVolume;
         }
     }
 
@@ -254,6 +277,12 @@ public class MainMenu : MonoBehaviour
     private void AudioButtonClicked(ClickEvent clicked)
     {
         _currentScreenIndex = 3;
+        if (_settingsManager != null)
+        {
+            _masterVolSlider.value = _settingsManager.MasterVolume;
+            _musicVolSlider.value = _settingsManager.MusicVolume;
+            _sfxVolSlider.value = _settingsManager.SfxVolume;
+        }
         _settingsSelectionHolder.style.display = DisplayStyle.None;
         _settingsBackPrompt.style.display = DisplayStyle.None;
         _audioScreen.style.display = DisplayStyle.Flex;
@@ -266,6 +295,10 @@ public class MainMenu : MonoBehaviour
     private void ControlsButtonClicked(ClickEvent clicked)
     {
         _currentScreenIndex = 3;
+        if (_settingsManager != null)
+        {
+            _mouseSensSlider.value = _settingsManager.MouseSensitivity;
+        }
         _settingsSelectionHolder.style.display = DisplayStyle.None;
         _settingsBackPrompt.style.display = DisplayStyle.None;
         _controlsScreen.style.display = DisplayStyle.Flex;
@@ -341,6 +374,11 @@ public class MainMenu : MonoBehaviour
         else if (_currentScreenIndex == 3)
         {
             _currentScreenIndex = 2;
+            if (_settingsManager != null)
+            {
+                _settingsManager.SetMouseSensitivity(_mouseSensSlider.value);
+                _settingsManager.SetVolumeValues(_masterVolSlider.value, _musicVolSlider.value, _sfxVolSlider.value);
+            }
             _controlsScreen.style.display = DisplayStyle.None;
             _audioScreen.style.display = DisplayStyle.None;
             _settingsSelectionHolder.style.display = DisplayStyle.Flex;

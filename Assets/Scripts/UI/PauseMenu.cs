@@ -16,6 +16,7 @@ public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private UIDocument _pauseMenu;
 
+    #region Constants
     private const string ContinueButtonName = "ContinueButton";
     private const string SettingsButtonName = "SettingsButton";
     private const string ExitButtonName = "ExitButton";
@@ -25,7 +26,13 @@ public class PauseMenu : MonoBehaviour
     private const string SelectionHolderName = "SettingsSelection";
     private const string AudioHolderName = "AudioHolder";
     private const string ControlsHolderName = "ControlsHolder";
+    private const string MouseSensSliderName = "MouseSensSlider";
+    private const string MasterSliderName = "MasterSlider";
+    private const string MusicSliderName = "MusicSlider";
+    private const string SfxSliderName = "SfxSlider";
+    #endregion
 
+    #region Private
     private Button _continueButton;
     private Button _settingsButton;
     private Button _exitButton;
@@ -35,10 +42,16 @@ public class PauseMenu : MonoBehaviour
     private VisualElement _selectionHolder;
     private VisualElement _audioHolder;
     private VisualElement _controlsHolder;
+    private Slider _mouseSensSlider;
+    private Slider _masterVolSlider;
+    private Slider _musicVolSlider;
+    private Slider _sfxVolSlider;
     private bool _isGamePaused = false;
+    private SettingsManager _settingsManager;
 
     // 0 = pause, 1 = settings selection, 2 = settings submenu
     private int _currentScreenIndex = 0;
+    #endregion
 
     /// <summary>
     /// Registering callbacks
@@ -60,6 +73,12 @@ public class PauseMenu : MonoBehaviour
         _audioHolder = _pauseMenu.rootVisualElement.Q(AudioHolderName);
         _controlsHolder = _pauseMenu.rootVisualElement.Q(ControlsHolderName);
 
+        // Assigning slider references
+        _mouseSensSlider = _pauseMenu.rootVisualElement.Q<Slider>(MouseSensSliderName);
+        _masterVolSlider = _pauseMenu.rootVisualElement.Q<Slider>(MasterSliderName);
+        _musicVolSlider = _pauseMenu.rootVisualElement.Q<Slider>(MusicSliderName);
+        _sfxVolSlider = _pauseMenu.rootVisualElement.Q<Slider>(SfxSliderName);
+
         // Registering button callbacks
         _continueButton.RegisterCallback<ClickEvent>(ContinuePressed);
         _settingsButton.RegisterCallback<ClickEvent>(SettingsButtonClicked);
@@ -69,11 +88,20 @@ public class PauseMenu : MonoBehaviour
     }
 
     /// <summary>
-    /// Setting up player inputs
+    /// Setting up player inputs and slider values
     /// </summary>
     private void Start()
     {
         PlayerController.Instance.PlayerControls.BasicControls.PauseGame.performed += PauseGamePerformed;
+
+        _settingsManager = SettingsManager.Instance;
+        if (_settingsManager != null)
+        {
+            _mouseSensSlider.value = _settingsManager.MouseSensitivity;
+            _masterVolSlider.value = _settingsManager.MasterVolume;
+            _musicVolSlider.value = _settingsManager.MusicVolume;
+            _sfxVolSlider.value = _settingsManager.SfxVolume;
+        }
     }
 
     /// <summary>
@@ -82,6 +110,9 @@ public class PauseMenu : MonoBehaviour
     private void OnDisable()
     {
         _continueButton.UnregisterCallback<ClickEvent>(ContinuePressed);
+        _settingsButton.UnregisterCallback<ClickEvent>(SettingsButtonClicked);
+        _audioButton.UnregisterCallback<ClickEvent>(AudioButtonClicked);
+        _controlsButton.UnregisterCallback<ClickEvent>(ControlsButtonClicked);
         _exitButton.UnregisterCallback<ClickEvent>(ExitToMenu);
 
         PlayerController.Instance.PlayerControls.BasicControls.PauseGame.performed -= PauseGamePerformed;
@@ -129,6 +160,11 @@ public class PauseMenu : MonoBehaviour
         else if (_currentScreenIndex == 2)
         {
             _currentScreenIndex = 1;
+            if (_settingsManager != null)
+            {
+                _settingsManager.SetMouseSensitivity(_mouseSensSlider.value);
+                _settingsManager.SetVolumeValues(_masterVolSlider.value, _musicVolSlider.value, _sfxVolSlider.value);
+            }
             _audioHolder.style.display = DisplayStyle.None;
             _controlsHolder.style.display = DisplayStyle.None;
             _selectionHolder.style.display = DisplayStyle.Flex;
@@ -162,6 +198,12 @@ public class PauseMenu : MonoBehaviour
     private void AudioButtonClicked(ClickEvent clicked)
     {
         _currentScreenIndex = 2;
+        if (_settingsManager != null)
+        {
+            _masterVolSlider.value = _settingsManager.MasterVolume;
+            _musicVolSlider.value = _settingsManager.MusicVolume;
+            _sfxVolSlider.value = _settingsManager.SfxVolume;
+        }
         _selectionHolder.style.display = DisplayStyle.None;
         _audioHolder.style.display = DisplayStyle.Flex;
     }
@@ -173,6 +215,10 @@ public class PauseMenu : MonoBehaviour
     private void ControlsButtonClicked(ClickEvent clicked)
     {
         _currentScreenIndex = 2;
+        if (_settingsManager != null)
+        {
+            _mouseSensSlider.value = _settingsManager.MouseSensitivity;
+        }
         _selectionHolder.style.display = DisplayStyle.None;
         _controlsHolder.style.display = DisplayStyle.Flex;
     }
