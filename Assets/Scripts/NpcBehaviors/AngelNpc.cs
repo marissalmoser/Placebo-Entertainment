@@ -13,10 +13,12 @@ using UnityEngine;
 public class AngelNpc : BaseNpc
 {
     [SerializeField] private InventoryItemData _targetPillsItem;
+    [SerializeField] private NpcEvent _removeTimerEvent;
     private bool _hasPills;
     private bool _robotGameComplete = false;
     private bool _cowardGameComplete = false;
-    private bool _isPostMinigameState = false;
+
+    private Animator _anim;
 
     /// <summary>
     /// Getting Animator on child
@@ -24,6 +26,8 @@ public class AngelNpc : BaseNpc
     protected override void Initialize()
     {
         base.Initialize();
+
+        _anim = GetComponentInChildren<Animator>();
     }
 
         /// <summary>
@@ -62,7 +66,9 @@ public class AngelNpc : BaseNpc
     {
         base.EnterPostMinigame();
 
-        _isPostMinigameState = true;
+        Interact();
+
+        _removeTimerEvent.TriggerEvent(NpcEventTags.Angel);
     }
 
     /// <summary>
@@ -102,25 +108,18 @@ public class AngelNpc : BaseNpc
     {
         if (_cowardGameComplete && _robotGameComplete)
         {
-            PlayRandomTalkingAnim();
             return node.Dialogue[1];
         }
         else
         {
-            return base.ChooseDialogueFromNode(node);
+            return node.Dialogue[0];
         }
     }
     protected override int ChooseDialoguePath(PlayerResponse option)
     {
-        if (_isPostMinigameState && option.NextResponseIndex.Length == 1)
-        {
-            _animator.SetTrigger("FinalChoice");
-            return 0;
-        }
-
         if (_hasPills)
         {
-            _animator.SetTrigger("Healed");
+            _anim.SetTrigger("Healed");
             return option.NextResponseIndex[1];
         }
         else if(!_hasPills && option.NextResponseIndex.Length > 0)
@@ -156,17 +155,6 @@ public class AngelNpc : BaseNpc
         {
             _hasPills = true;
             Debug.Log(_hasPills);
-        }
-    }
-
-    public override void Interact(int responseIndex = 0)
-    {
-        // Overwrote this to add special functionality to play an anim a the 2nd to last dialogue node.
-        base.Interact(responseIndex);
-
-        if (_isPostMinigameState && _currentDialogueIndex == _stateDialogueTrees.GetStateData(_currentState).Length - 1)
-        {
-            _animator.SetTrigger("FinalChoice");
         }
     }
 }
