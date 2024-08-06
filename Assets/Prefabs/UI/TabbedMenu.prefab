@@ -429,6 +429,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pauseMenu: {fileID: 8629523493635206543}
+  _tabAnimationTime: 0.25
 --- !u!1 &6549096012365011319
 GameObject:
   m_ObjectHideFlags: 0
