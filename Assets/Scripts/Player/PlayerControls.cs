@@ -98,6 +98,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""StartGame"",
+                    ""type"": ""Button"",
+                    ""id"": ""52cb5aca-6e92-470d-90f8-b494667f6273"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -243,6 +252,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""PauseGame"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""634258d2-2ccc-4fa8-8eb8-aae753c96105"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""StartGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -259,6 +279,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_BasicControls_LeftClick = m_BasicControls.FindAction("LeftClick", throwIfNotFound: true);
         m_BasicControls_PlayPause = m_BasicControls.FindAction("PlayPause", throwIfNotFound: true);
         m_BasicControls_PauseGame = m_BasicControls.FindAction("PauseGame", throwIfNotFound: true);
+        m_BasicControls_StartGame = m_BasicControls.FindAction("StartGame", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -328,6 +349,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_BasicControls_LeftClick;
     private readonly InputAction m_BasicControls_PlayPause;
     private readonly InputAction m_BasicControls_PauseGame;
+    private readonly InputAction m_BasicControls_StartGame;
     public struct BasicControlsActions
     {
         private @PlayerControls m_Wrapper;
@@ -340,6 +362,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @LeftClick => m_Wrapper.m_BasicControls_LeftClick;
         public InputAction @PlayPause => m_Wrapper.m_BasicControls_PlayPause;
         public InputAction @PauseGame => m_Wrapper.m_BasicControls_PauseGame;
+        public InputAction @StartGame => m_Wrapper.m_BasicControls_StartGame;
         public InputActionMap Get() { return m_Wrapper.m_BasicControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -373,6 +396,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @PauseGame.started += instance.OnPauseGame;
             @PauseGame.performed += instance.OnPauseGame;
             @PauseGame.canceled += instance.OnPauseGame;
+            @StartGame.started += instance.OnStartGame;
+            @StartGame.performed += instance.OnStartGame;
+            @StartGame.canceled += instance.OnStartGame;
         }
 
         private void UnregisterCallbacks(IBasicControlsActions instance)
@@ -401,6 +427,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @PauseGame.started -= instance.OnPauseGame;
             @PauseGame.performed -= instance.OnPauseGame;
             @PauseGame.canceled -= instance.OnPauseGame;
+            @StartGame.started -= instance.OnStartGame;
+            @StartGame.performed -= instance.OnStartGame;
+            @StartGame.canceled -= instance.OnStartGame;
         }
 
         public void RemoveCallbacks(IBasicControlsActions instance)
@@ -428,5 +457,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnLeftClick(InputAction.CallbackContext context);
         void OnPlayPause(InputAction.CallbackContext context);
         void OnPauseGame(InputAction.CallbackContext context);
+        void OnStartGame(InputAction.CallbackContext context);
     }
 }

@@ -17,16 +17,12 @@ public class CowardNpc : BaseNpc
     private bool _hasLightbulb = false;
     private bool _robotIsAlive = true;
 
-    private Animator _anim;
-
     /// <summary>
     /// Getting Animator on child
     /// </summary>
     protected override void Initialize()
     {
         base.Initialize();
-
-        _anim = GetComponentInChildren<Animator>();
     }
 
     /// <summary>
@@ -56,7 +52,7 @@ public class CowardNpc : BaseNpc
     public void LightbulbEventTriggered()
     {
         _hasLightbulb = true;
-        _anim.SetTrigger("NotBlind");
+        _animator.SetTrigger("NotBlind");
         Interact();
 
         _tabbedMenu.ToggleInteractPrompt(false);
@@ -194,10 +190,11 @@ public class CowardNpc : BaseNpc
         if (node.Dialogue.Length > 1 && _currentState == NpcStates.DefaultIdle &&
             !_hasLightbulb)
         {
+            PlayRandomTalkingAnim();
             return node.Dialogue[1];
         }
 
-        return node.Dialogue[0];
+        return base.ChooseDialogueFromNode(node);
     }
 
     /// <summary>
