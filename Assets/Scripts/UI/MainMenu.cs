@@ -2,7 +2,7 @@
  *    Author: Nick Grinstead
  *    Contributors: 
  *    Date Created: 7/11/2024
- *    Description: A menu controller script for the main menu and its buttons.
+ *    Description: A menu controller script for the main menu and its various functions.
  *******************************************************************/
 using System.Collections;
 using System.Collections.Generic;
@@ -156,21 +156,6 @@ public class MainMenu : MonoBehaviour
             _quitButton.RegisterCallback<MouseOverEvent>(evt => { AnimateTab(_settingsTab, true); });
             _quitButton.RegisterCallback<MouseOutEvent>(evt => { AnimateTab(_settingsTab, false); });
         }
-
-        _sliders.Add(_mainMenuDoc.rootVisualElement.Q<Slider>(MouseSensSliderName));
-        _sliders.Add(_mainMenuDoc.rootVisualElement.Q<Slider>(MasterSliderName));
-        _sliders.Add(_mainMenuDoc.rootVisualElement.Q<Slider>(MusicSliderName));
-        _sliders.Add(_mainMenuDoc.rootVisualElement.Q<Slider>(SfxSliderName));
-        _defaultDraggers = _mainMenuDoc.rootVisualElement.Query("unity-dragger").ToList();
-
-        AddNewDraggers();
-
-        for (int i = 0; i < _sliders.Count; ++i)
-        {
-            int index = i;
-            _sliders[i].RegisterCallback<ChangeEvent<float>>(evt => { UpdateDraggerPosition(index); });
-            _sliders[i].value = 50f; // TODO: change to pull from saved data
-        }
     }
 
     /// <summary>
@@ -212,12 +197,6 @@ public class MainMenu : MonoBehaviour
             _settingsButton.UnregisterCallback<MouseOutEvent>(evt => { AnimateTab(_continueTab, false); });
             _quitButton.UnregisterCallback<MouseOverEvent>(evt => { AnimateTab(_settingsTab, true); });
             _quitButton.UnregisterCallback<MouseOutEvent>(evt => { AnimateTab(_settingsTab, false); });
-        }
-
-        for (int i = 0; i < _sliders.Count; ++i)
-        {
-            int index = i;
-            _sliders[i].UnregisterCallback<ChangeEvent<float>>(evt => { UpdateDraggerPosition(index); });
         }
     }
     #endregion
@@ -419,42 +398,6 @@ public class MainMenu : MonoBehaviour
             _confirmNoButton.style.display = DisplayStyle.Flex;
             _confirmYesButton.style.display = DisplayStyle.Flex;
             _confirmText.style.display = DisplayStyle.Flex;
-        }
-    }
-    #endregion
-
-    #region SliderFunctions
-    /// <summary>
-    /// Adds custom slider dragger sprite to sliders
-    /// </summary>
-    private void AddNewDraggers()
-    {
-        for (int i = 0; i < _sliders.Count; ++i)
-        {
-            VisualElement newDragger = new VisualElement();
-            _newDraggers.Add(newDragger);
-            _sliders[i].Add(newDragger);
-            newDragger.name = "CircularDragger";
-            newDragger.AddToClassList("circularDragger");
-            newDragger.pickingMode = PickingMode.Ignore;
-        }
-    }
-
-    /// <summary>
-    /// Moves custom slider dragger sprite to match value of slider
-    /// </summary>
-    /// <param name="draggerIndex">Index of dragger to move</param>
-    private void UpdateDraggerPosition(int draggerIndex)
-    {
-        if (draggerIndex < _newDraggers.Count && draggerIndex < _defaultDraggers.Count)
-        {
-            VisualElement currentCircleDragger = _newDraggers[draggerIndex];
-            VisualElement currentDefaultDragger = _defaultDraggers[draggerIndex];
-
-            Vector2 distance = new Vector2((currentCircleDragger.layout.width - currentDefaultDragger.layout.width) / 2 - 8f,
-                (currentCircleDragger.layout.height - currentDefaultDragger.layout.height) / 2 - 8f);
-            Vector2 position = currentDefaultDragger.parent.LocalToWorld(currentDefaultDragger.transform.position);
-            currentCircleDragger.transform.position = currentCircleDragger.parent.WorldToLocal(position - distance);
         }
     }
     #endregion
