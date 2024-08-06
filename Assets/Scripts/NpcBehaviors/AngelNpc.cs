@@ -13,6 +13,7 @@ using UnityEngine;
 public class AngelNpc : BaseNpc
 {
     [SerializeField] private InventoryItemData _targetPillsItem;
+    [SerializeField] private NpcEvent _removeTimerEvent;
     private bool _hasPills;
     private bool _robotGameComplete = false;
     private bool _cowardGameComplete = false;
@@ -65,7 +66,9 @@ public class AngelNpc : BaseNpc
     {
         base.EnterPostMinigame();
 
-        
+        Interact();
+
+        _removeTimerEvent.TriggerEvent(NpcEventTags.Angel);
     }
 
     /// <summary>
