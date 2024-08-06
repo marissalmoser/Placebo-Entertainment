@@ -88,6 +88,7 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     private void Awake()
     {
+        // Setting up player inputs
         _playerControls = new PlayerControls();
         _playerControls.BasicControls.Enable();
         _startGame = _playerControls.FindAction("StartGame");
@@ -95,6 +96,7 @@ public class MainMenu : MonoBehaviour
         _startGame.performed += ctx => CloseSplashScreen();
         _backInput.performed += ctx => BackButtonClicked();
 
+        // Assigning screen element references
         _splashScreen = _mainMenuDoc.rootVisualElement.Q(SplashScreenName);
         _mainMenuScreen = _mainMenuDoc.rootVisualElement.Q(MainScreenName);
         _mainButtonHolder = _mainMenuDoc.rootVisualElement.Q(MainButtonsHolderName);
@@ -103,6 +105,7 @@ public class MainMenu : MonoBehaviour
         _controlsScreen = _mainMenuDoc.rootVisualElement.Q(ControlsScreenName);
         _audioScreen = _mainMenuDoc.rootVisualElement.Q(AudioScreenName);
 
+        // Assigning button related references
         _newGameButton = _mainMenuDoc.rootVisualElement.Q<Button>(NewGameButtonName);
         _settingsButton = _mainMenuDoc.rootVisualElement.Q<Button>(SettingsButtonName);
         _continueButton = _mainMenuDoc.rootVisualElement.Q<Button>(ContinueButtonName);
@@ -113,11 +116,13 @@ public class MainMenu : MonoBehaviour
         _audioButton = _mainMenuDoc.rootVisualElement.Q<Button>(AudioButtonName);
         _controlsButton = _mainMenuDoc.rootVisualElement.Q<Button>(ControlsButtonName);
 
+        // Assigning animated tab references
         _newGameTab = _mainMenuDoc.rootVisualElement.Q(NewGameTabName);
         _continueTab = _mainMenuDoc.rootVisualElement.Q(ContinueTabName);
         _settingsTab = _mainMenuDoc.rootVisualElement.Q(SettingsTabName);
         _quitTab = _mainMenuDoc.rootVisualElement.Q(QuitTabName);
 
+        // Registering general button ClickEvent callbacks
         _newGameButton.RegisterCallback<ClickEvent>(NewGameButtonClicked);
         _settingsButton.RegisterCallback<ClickEvent>(SettingsButtonClicked);
         _continueButton.RegisterCallback<ClickEvent>(ContinueButtonClicked);
@@ -127,6 +132,7 @@ public class MainMenu : MonoBehaviour
         _audioButton.RegisterCallback<ClickEvent>(AudioButtonClicked);
         _controlsButton.RegisterCallback<ClickEvent>(ControlsButtonClicked);
 
+        // Registering callbacks for animated tabs
         _newGameButton.RegisterCallback<MouseOverEvent>(evt => { AnimateTab(_newGameTab, true); });
         _newGameButton.RegisterCallback<MouseOutEvent>(evt => { AnimateTab(_newGameTab, false); });
         _audioButton.RegisterCallback<MouseOverEvent>(evt => { AnimateTab(_settingsTab, true); });
@@ -134,7 +140,7 @@ public class MainMenu : MonoBehaviour
         _controlsButton.RegisterCallback<MouseOverEvent>(evt => { AnimateTab(_quitTab, true); });
         _controlsButton.RegisterCallback<MouseOutEvent>(evt => { AnimateTab(_quitTab, false); });
 
-        // Makes continue button visible if saved data exists
+        // Makes continue button visible if saved data exists and registers relevant animated tab callbacks
         if (_savingManager != null && _savingManager.DoesSaveFileExist())
         {
             _continueButton.style.display = DisplayStyle.Flex;
@@ -163,9 +169,11 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     private void OnDisable()
     {
+        // Removing player input callbacks
         _startGame.performed -= ctx => CloseSplashScreen();
         _backInput.performed -= ctx => BackButtonClicked();
 
+        // Unregistering button ClickEvent callbacks
         _newGameButton.UnregisterCallback<ClickEvent>(NewGameButtonClicked);
         _continueButton.UnregisterCallback<ClickEvent>(ContinueButtonClicked);
         _settingsButton.UnregisterCallback<ClickEvent>(SettingsButtonClicked);
@@ -175,6 +183,7 @@ public class MainMenu : MonoBehaviour
         _audioButton.UnregisterCallback<ClickEvent>(AudioButtonClicked);
         _controlsButton.UnregisterCallback<ClickEvent>(ControlsButtonClicked);
 
+        // Unregistering animated tab related callbacks
         _newGameButton.UnregisterCallback<MouseOverEvent>(evt => { AnimateTab(_newGameTab, true); });
         _newGameButton.UnregisterCallback<MouseOutEvent>(evt => { AnimateTab(_newGameTab, false); });
         _audioButton.UnregisterCallback<MouseOverEvent>(evt => { AnimateTab(_settingsTab, true); });
@@ -182,6 +191,7 @@ public class MainMenu : MonoBehaviour
         _controlsButton.UnregisterCallback<MouseOverEvent>(evt => { AnimateTab(_quitTab, true); });
         _controlsButton.UnregisterCallback<MouseOutEvent>(evt => { AnimateTab(_quitTab, false); });
 
+        // Unregistering animated tab callbacks dependent on the continue button being present
         if (_savingManager != null && _savingManager.DoesSaveFileExist())
         {
             _continueButton.UnregisterCallback<MouseOverEvent>(evt => { AnimateTab(_continueTab, true); });
@@ -380,12 +390,12 @@ public class MainMenu : MonoBehaviour
     private IEnumerator ScaleTabWidth(VisualElement tabToAnimate, float targetWidth, float startingWidth)
     {
         float elapsedTime = 0f;
-        float time;
+        float lerpingTime;
 
         while (elapsedTime < _tabAnimationTime)
         {
-            time = elapsedTime / _tabAnimationTime;
-            tabToAnimate.style.width = Mathf.Lerp(startingWidth, targetWidth, time);
+            lerpingTime = elapsedTime / _tabAnimationTime;
+            tabToAnimate.style.width = Mathf.Lerp(startingWidth, targetWidth, lerpingTime);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
