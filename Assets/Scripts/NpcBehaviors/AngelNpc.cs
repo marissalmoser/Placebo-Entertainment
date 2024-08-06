@@ -18,16 +18,12 @@ public class AngelNpc : BaseNpc
     private bool _cowardGameComplete = false;
     private bool _isPostMinigameState = false;
 
-    private Animator _anim;
-
     /// <summary>
     /// Getting Animator on child
     /// </summary>
     protected override void Initialize()
     {
         base.Initialize();
-
-        _anim = GetComponentInChildren<Animator>();
     }
 
         /// <summary>
@@ -104,27 +100,27 @@ public class AngelNpc : BaseNpc
     /// <returns>String dialogue to display</returns>
     protected override string ChooseDialogueFromNode(DialogueNode node)
     {
-        PlayRandomTalkingAnim();
         if (_cowardGameComplete && _robotGameComplete)
         {
+            PlayRandomTalkingAnim();
             return node.Dialogue[1];
         }
         else
         {
-            return node.Dialogue[0];
+            return base.ChooseDialogueFromNode(node);
         }
     }
     protected override int ChooseDialoguePath(PlayerResponse option)
     {
         if (_isPostMinigameState && option.NextResponseIndex.Length == 1)
         {
-            _anim.SetTrigger("FinalChoice");
+            _animator.SetTrigger("FinalChoice");
             return 0;
         }
 
         if (_hasPills)
         {
-            _anim.SetTrigger("Healed");
+            _animator.SetTrigger("Healed");
             return option.NextResponseIndex[1];
         }
         else if(!_hasPills && option.NextResponseIndex.Length > 0)
@@ -170,24 +166,7 @@ public class AngelNpc : BaseNpc
 
         if (_isPostMinigameState && _currentDialogueIndex == _stateDialogueTrees.GetStateData(_currentState).Length - 1)
         {
-            _anim.SetTrigger("FinalChoice");
-        }
-    }
-
-    private void PlayRandomTalkingAnim()
-    {
-        int rand = Random.Range(1, 4);
-        switch (rand)
-        {
-            case 1:
-                _anim.SetTrigger("Talking1");
-                break;
-            case 2:
-                _anim.SetTrigger("Talking2");
-                break;
-            case 3:
-                _anim.SetTrigger("Talking3");
-                break;
+            _animator.SetTrigger("FinalChoice");
         }
     }
 }

@@ -16,15 +16,12 @@ public class FishNpc : BaseNpc
     private bool _enteredFireRoom = false;
     private bool _hasfish;
     private float _timeElapsed = 0f;
-    private Animator _anim;
 
     [SerializeField] private float _fadeOutTime;
 
     protected override void Initialize()
     {
         base.Initialize();
-
-        _anim = GetComponentInChildren<Animator>();
     }
 
     /// <summary>
@@ -90,12 +87,6 @@ public class FishNpc : BaseNpc
         _hasfish = true;
     }
 
-    protected override string ChooseDialogueFromNode(DialogueNode node)
-    {
-        PlayRandomTalkingAnim();
-        return node.Dialogue[0];
-    }
-
     /// <summary>
     /// Selects a dialogue path from a player response based on various conditions
     /// </summary>
@@ -127,22 +118,6 @@ public class FishNpc : BaseNpc
             {
                 return 0;
             }
-        }
-    }
-    private void PlayRandomTalkingAnim()
-    {
-        int rand = Random.Range(1, 4);
-        switch (rand)
-        {
-            case 1:
-                _anim.SetTrigger("Talking1");
-                break;
-            case 2:
-                _anim.SetTrigger("Talking2");
-                break;
-            case 3:
-                _anim.SetTrigger("Talking3");
-                break;
         }
     }
 }

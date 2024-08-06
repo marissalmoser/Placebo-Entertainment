@@ -17,16 +17,12 @@ public class CowardNpc : BaseNpc
     private bool _hasLightbulb = false;
     private bool _robotIsAlive = true;
 
-    private Animator _anim;
-
     /// <summary>
     /// Getting Animator on child
     /// </summary>
     protected override void Initialize()
     {
         base.Initialize();
-
-        _anim = GetComponentInChildren<Animator>();
     }
 
     /// <summary>
@@ -56,7 +52,7 @@ public class CowardNpc : BaseNpc
     public void LightbulbEventTriggered()
     {
         _hasLightbulb = true;
-        _anim.SetTrigger("NotBlind");
+        _animator.SetTrigger("NotBlind");
         Interact();
 
         _tabbedMenu.ToggleInteractPrompt(false);
@@ -190,15 +186,15 @@ public class CowardNpc : BaseNpc
     /// <returns>string dialogue response</returns>
     protected override string ChooseDialogueFromNode(DialogueNode node)
     {
-        PlayRandomTalkingAnim();
         // Select different dialogue if player hasn't taken light bulb
         if (node.Dialogue.Length > 1 && _currentState == NpcStates.DefaultIdle &&
             !_hasLightbulb)
         {
+            PlayRandomTalkingAnim();
             return node.Dialogue[1];
         }
 
-        return node.Dialogue[0];
+        return base.ChooseDialogueFromNode(node);
     }
 
     /// <summary>
@@ -220,26 +216,6 @@ public class CowardNpc : BaseNpc
             transform.position = destination.transform.position;
             _hasTeleported = true;
             CheckForStateChange();
-        }
-    }
-
-    /// <summary>
-    /// Plays random talking animation when selecting a dialogue choice
-    /// </summary>
-    private void PlayRandomTalkingAnim()
-    {
-        int rand = Random.Range(1, 4);
-        switch (rand)
-        {
-            case 1:
-                _anim.SetTrigger("Talking1");
-                break;
-            case 2:
-                _anim.SetTrigger("Talking2");
-                break;
-            case 3:
-                _anim.SetTrigger("Talking3");
-                break;
         }
     }
 }

@@ -12,13 +12,10 @@ public class GoopNpc : BaseNpc
 {
     [SerializeField] private InventoryItemData _targetBookItem;
     private bool _hasBook;
-    private Animator _anim;
 
     protected override void Initialize()
     {
         base.Initialize();
-
-        _anim = GetComponentInChildren<Animator>();
     }
 
     public override void CheckForStateChange()
@@ -47,12 +44,6 @@ public class GoopNpc : BaseNpc
         }
     }
 
-    protected override string ChooseDialogueFromNode(DialogueNode node)
-    {
-        PlayRandomTalkingAnim();
-        return node.Dialogue[0];
-    }
-
     public override void CollectedItem(InventoryItemData item, int quantity)
     {
         base.CollectedItem(item, quantity);
@@ -61,23 +52,6 @@ public class GoopNpc : BaseNpc
         {
             _hasBook = true;
             _hasBypassItem = true;
-        }
-    }
-
-    private void PlayRandomTalkingAnim()
-    {
-        int rand = Random.Range(1, 4);
-        switch (rand)
-        {
-            case 1:
-                _anim.SetTrigger("Talking1");
-                break;
-            case 2:
-                _anim.SetTrigger("Talking2");
-                break;
-            case 3:
-                _anim.SetTrigger("Talking3");
-                break;
         }
     }
 }
