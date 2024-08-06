@@ -5,19 +5,24 @@
 //
 // Brief Description : All player actions which includes movement, looking around, and interacting with the world
 *****************************************************************************/
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using Cinemachine;
+using Utils;
 
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance;
     [SerializeField] float _moveSpeed;
     [SerializeField] float _jumpForce;
-
+    [Header("Audio")]
+    [SerializeField] private Oscillator oscillator = new(30f);
+    [SerializeField] private FMODUnity.EventReference footStepEvent;
     [Header("VFX")]
     [SerializeField] private ParticleSystem _footPrints;
     private ParticleSystem.EmissionModule _footPrintEmission;
@@ -98,6 +103,15 @@ public class PlayerController : MonoBehaviour
             _rb.velocity = new Vector3(0, _rb.velocity.y, 0);
             _velocity = transform.right * _moveDirection.x + transform.forward * _moveDirection.y;
             _velocity = _velocity.normalized * _moveSpeed;
+            if (_velocity.sqrMagnitude >= 1f)
+            {
+                oscillator.Advance(Time.fixedDeltaTime);
+                if (oscillator.Wrapped)
+                {
+                    Debug.LogError("AUDIO Implement walking sounds here!");
+                    AudioManager.PlaySoundUnManaged(footStepEvent, _groundChecker.position);
+                }
+            }
             _rb.AddForce(_velocity, ForceMode.VelocityChange);
             _footPrintEmission.enabled = true;
             
