@@ -51,17 +51,17 @@
     top: 130px;
 }
 
-#SettingsSlider Label {
+Slider Label {
     display: none;
 }
 
-#SettingsSlider #unity-drag-container {
+Slider #unity-drag-container {
     display: flex;
     width: 672px;
     height: 21px;
 }
 
-#SettingsSlider #unity-tracker {
+Slider #unity-tracker {
     display: flex;
     background-image: url("project://database/Assets/Art/UI/MainMenu/Slider_bar.png?fileID=2800000&guid=513bd99f0d8d7d445873589f4262114a&type=3#Slider_bar");
     width: 672px;
@@ -72,10 +72,14 @@
     border-bottom-left-radius: 30px;
 }
 
-#SettingsSlider #unity-dragger {
+Slider #unity-dragger {
+    position: relative;
+    align-self: auto;
+    justify-content: flex-start;
+    align-items: stretch;
 }
 
-#SettingsSlider #unity-dragger-border {
+Slider #unity-dragger-border {
     background-image: none;
     display: none;
     -unity-background-image-tint-color: rgba(255, 255, 255, 0);
@@ -87,4 +91,5 @@
     height: 58px;
     background-image: url("project://database/Assets/Art/UI/MainMenu/Slider_Cirlce.png?fileID=2800000&guid=786b0f603c9ea884abc3b355d448b2bf&type=3#Slider_Cirlce");
     position: absolute;
+    align-self: auto;
 }

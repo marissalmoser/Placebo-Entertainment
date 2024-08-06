@@ -6,20 +6,29 @@ using UnityEngine.UIElements;
 public class CustomSlider : MonoBehaviour
 {
     [SerializeField] private UIDocument _rootDocument;
-    private List<VisualElement> _sliders;
+    private List<Slider> _sliders = new List<Slider>();
     private List<VisualElement> _defaultDraggers;
     private List<VisualElement> _newDraggers = new List<VisualElement>();
 
     private void Start()
     {
-        _sliders = _rootDocument.rootVisualElement.Query("SettingsSlider").ToList();
+        _sliders.Add(_rootDocument.rootVisualElement.Q<Slider>("MouseSensSlider"));
+        _sliders.Add(_rootDocument.rootVisualElement.Q<Slider>("MasterSlider"));
+        _sliders.Add(_rootDocument.rootVisualElement.Q<Slider>("MusicSlider"));
+        _sliders.Add(_rootDocument.rootVisualElement.Q<Slider>("SfxSlider"));
         _defaultDraggers = _rootDocument.rootVisualElement.Query("unity-dragger").ToList();
 
         AddNewDraggers();
 
         for (int i = 0; i < _sliders.Count; ++i)
         {
-            _sliders[i].RegisterCallback<ChangeEvent<float>>(evt => { UpdateDraggerPosition(i - 1); });
+            int index = i;
+            _sliders[i].RegisterCallback<ChangeEvent<float>>(evt => { UpdateDraggerPosition(index); });
+        }
+
+        for (int i = 0; i < _sliders.Count; ++i)
+        {
+            _sliders[i].value = 50f;
         }
     }
 
@@ -27,7 +36,8 @@ public class CustomSlider : MonoBehaviour
     {
         for (int i = 0; i < _sliders.Count; ++i)
         {
-            _sliders[i].UnregisterCallback<ChangeEvent<float>>(evt => { UpdateDraggerPosition(i - 1); });
+            int index = i;
+            _sliders[i].UnregisterCallback<ChangeEvent<float>>(evt => { UpdateDraggerPosition(index); });
         }
     }
 
