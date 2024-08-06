@@ -108,7 +108,6 @@ public class PlayerController : MonoBehaviour
                 oscillator.Advance(Time.fixedDeltaTime);
                 if (oscillator.Wrapped)
                 {
-                    Debug.LogError("AUDIO Implement walking sounds here!");
                     AudioManager.PlaySoundUnManaged(footStepEvent, _groundChecker.position);
                 }
             }

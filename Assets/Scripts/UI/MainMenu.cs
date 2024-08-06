@@ -42,7 +42,7 @@ public class MainMenu : MonoBehaviour
     private const string MouseSensSliderName = "MouseSensSlider";
     private const string MasterSliderName = "MasterSlider";
     private const string MusicSliderName = "MusicSlider";
-    private const string SfxSliderName = "SfxSlider";
+    private const string SfxSliderName = "SFXSlider";
     #endregion
 
     #region Private
@@ -81,6 +81,10 @@ public class MainMenu : MonoBehaviour
     private InputAction _startGame;
     private InputAction _backInput;
 
+    private List<VisualElement> _defaultDraggers;
+    private List<VisualElement> _newDraggers = new List<VisualElement>();
+    private UQueryBuilder<Button> _allButtons;
+    private EventInstance _mainMenuMusicInstance;
     private SettingsManager _settingsManager;
     #endregion
 
@@ -205,7 +209,6 @@ public class MainMenu : MonoBehaviour
         _confirmYesButton.UnregisterCallback<ClickEvent>(StartNewGame);
         _audioButton.UnregisterCallback<ClickEvent>(AudioButtonClicked);
         _controlsButton.UnregisterCallback<ClickEvent>(ControlsButtonClicked);
-
         // Unregistering animated tab related callbacks
         _newGameButton.UnregisterCallback<MouseOverEvent>(evt => { AnimateTab(_newGameTab, true); });
         _newGameButton.UnregisterCallback<MouseOutEvent>(evt => { AnimateTab(_newGameTab, false); });

@@ -30,7 +30,7 @@ public class PauseMenu : MonoBehaviour
     private const string MouseSensSliderName = "MouseSensSlider";
     private const string MasterSliderName = "MasterSlider";
     private const string MusicSliderName = "MusicSlider";
-    private const string SfxSliderName = "SfxSlider";
+    private const string SfxSliderName = "SFXSlider";
     private const string TopTabName = "TopTab";
     private const string MiddleTabName = "MiddleTab";
     private const string BottomTabName = "BottomTab";
@@ -56,7 +56,7 @@ public class PauseMenu : MonoBehaviour
     private bool _isGamePaused = false;
     private SettingsManager _settingsManager;
     private Coroutine _activeCoroutine;
-
+    private UQueryBuilder<Button> _allButtons;
     // 0 = pause, 1 = settings selection, 2 = settings submenu
     private int _currentScreenIndex = 0;
     #endregion
@@ -110,6 +110,12 @@ public class PauseMenu : MonoBehaviour
         _settingsButton.RegisterCallback<MouseOutEvent>(evt => { AnimateTab(_middleTab, false); });
         _exitButton.RegisterCallback<MouseOverEvent>(evt => { AnimateTab(_bottomTab, true); });
         _exitButton.RegisterCallback<MouseOutEvent>(evt => { AnimateTab(_bottomTab, false); });
+        
+        _allButtons = _pauseMenu.rootVisualElement.Query<Button>();
+        _allButtons.ForEach(button =>
+        {
+            button.RegisterCallback<ClickEvent>(PlayConfirmSound);
+        });
 
         if (_tabAnimationTime <= 0)
             _tabAnimationTime = 0.25f;
@@ -143,7 +149,13 @@ public class PauseMenu : MonoBehaviour
         _audioButton.UnregisterCallback<ClickEvent>(AudioButtonClicked);
         _controlsButton.UnregisterCallback<ClickEvent>(ControlsButtonClicked);
         _exitButton.UnregisterCallback<ClickEvent>(ExitToMenu);
-
+        _exitButton.UnregisterCallback<ClickEvent>(PlayConfirmSound);
+        
+        _allButtons.ForEach(button =>
+        {
+            button.UnregisterCallback<ClickEvent>(PlayConfirmSound);
+        });
+        
         // Unregistering animated tab related callbacks
         _continueButton.UnregisterCallback<MouseOverEvent>(evt => { AnimateTab(_topTab, true); });
         _continueButton.UnregisterCallback<MouseOutEvent>(evt => { AnimateTab(_topTab, false); });

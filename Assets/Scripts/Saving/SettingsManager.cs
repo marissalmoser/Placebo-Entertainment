@@ -65,6 +65,9 @@ public class SettingsManager : MonoBehaviour
         MasterVolume = Mathf.Clamp(newMasterVol, 0f, 100f);
         MusicVolume = Mathf.Clamp(newMusicVol, 0f, 100f);
         SfxVolume = Mathf.Clamp(newSfxVol, 0f, 100f);
+        FMODUnity.RuntimeManager.StudioSystem.setParameterByName("MasterVolume", newMasterVol);
+        FMODUnity.RuntimeManager.StudioSystem.setParameterByName("SFXVolume",  newSfxVol);
+        FMODUnity.RuntimeManager.StudioSystem.setParameterByName("MusicVolume", newMusicVol);
     }
 
     /// <summary>
@@ -97,7 +100,7 @@ public class SettingsManager : MonoBehaviour
     {
         string fullPath = Application.persistentDataPath + SaveDirectory + FileName;
         // Create loaded data with default values
-        SettingsData loadedData = new SettingsData(50f, 50f, 50f, 50f);
+        SettingsData loadedData = new SettingsData(50f, 100f, 100f, 100f);
 
         if (File.Exists(fullPath))//if a file exists at this path
         {

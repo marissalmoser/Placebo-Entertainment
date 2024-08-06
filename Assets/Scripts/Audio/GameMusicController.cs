@@ -15,7 +15,7 @@ public class GameMusicController : MonoBehaviour
 
     private void Start()
     {
-        _timer = TimerManager.Instance.GetTimer("LoopTimer");
+        _timer = TimerManager.Instance.GetTimer("Example");
         _musicInstance = AudioManager.PlaySound(mainGameMusic, Vector3.zero);
     }
 
