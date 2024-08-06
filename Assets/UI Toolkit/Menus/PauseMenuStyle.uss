@@ -1,20 +1,93 @@
 .PauseButton {
-    background-color: rgb(114, 125, 130);
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-    border-bottom-left-radius: 20px;
-    width: 95%;
-    height: 107px;
-    color: rgb(253, 253, 253);
-    font-size: 35px;
-    -unity-font-style: bold;
-    -unity-text-align: middle-center;
-    margin-bottom: 2%;
+    background-color: rgba(0, 0, 0, 0);
+    font-size: 32px;
+    color: rgb(255, 251, 239);
+    -unity-background-image-tint-color: rgba(255, 255, 255, 0);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    -unity-font: url("project://database/Assets/UI%20Toolkit/Fonts/Bungee/Bungee-Regular.ttf?fileID=12800000&guid=473230090f800fc4b83eeb84e33ceae6&type=3#Bungee-Regular");
+    -unity-font-style: normal;
+    -unity-font-definition: initial;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    -unity-text-align: upper-left;
     transition-duration: 0.15s;
 }
 
 .PauseButton:hover {
-    scale: 1.1 1.1;
-    transition-duration: 0.15s;
+    -unity-font: url("project://database/Assets/UI%20Toolkit/Fonts/Bungee/Bungee-Regular.ttf?fileID=12800000&guid=473230090f800fc4b83eeb84e33ceae6&type=3#Bungee-Regular");
+    color: rgb(7, 12, 30);
+}
+
+.AnimatedTab {
+    background-color: rgb(228, 182, 67);
+    width: 0;
+    height: 68px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    position: absolute;
+    right: 1598px;
+    left: 0;
+}
+
+.TextElement {
+    color: rgb(255, 251, 239);
+    font-size: 24px;
+    -unity-font: url("project://database/Assets/UI%20Toolkit/Fonts/Bungee/Bungee-Regular.ttf?fileID=12800000&guid=473230090f800fc4b83eeb84e33ceae6&type=3#Bungee-Regular");
+    -unity-font-definition: initial;
+    position: absolute;
+    left: 75px;
+    top: 130px;
+}
+
+Slider Label {
+    display: none;
+}
+
+Slider #unity-drag-container {
+    display: flex;
+    width: 672px;
+    height: 58px;
+}
+
+Slider #unity-tracker {
+    display: flex;
+    background-image: url("project://database/Assets/Art/UI/MainMenu/Slider_bar.png?fileID=2800000&guid=513bd99f0d8d7d445873589f4262114a&type=3#Slider_bar");
+    width: 672px;
+    height: 21px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+
+Slider #unity-dragger {
+    position: relative;
+    align-self: auto;
+    justify-content: flex-start;
+    align-items: auto;
+    width: 37px;
+    height: 37px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    background-image: none;
+    padding-bottom: 0;
+    bottom: 0;
+}
+
+Slider #unity-dragger-border {
+    background-image: none;
+    display: none;
+    -unity-background-image-tint-color: rgba(255, 255, 255, 0);
+    opacity: 1;
 }
