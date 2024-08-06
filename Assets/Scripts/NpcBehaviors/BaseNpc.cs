@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using PlaceboEntertainment.UI;
+using UnityEngine.Serialization;
 
 public abstract class BaseNpc : MonoBehaviour
 {
@@ -69,6 +70,7 @@ public abstract class BaseNpc : MonoBehaviour
 
         public string[] Dialogue { get => _dialogue; }
         public PlayerResponse[] PlayerResponses { get => _playerResponses; }
+        [FormerlySerializedAs("dialogueEvent")] public FMODUnity.EventReference DialogueEvent;
     }
 
     /// <summary>

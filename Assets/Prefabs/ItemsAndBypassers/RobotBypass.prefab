@@ -66,5 +66,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb565884e72767c439065f4cdf2d8a3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _itemDescription:
+    _description: 
+    _exitResponse: 
+    _eventToTrigger: {fileID: 0}
+    _eventTag: 0
   PickUpRadius: 0
   myData: {fileID: 11400000, guid: ce9c4a38351e1ac41b75157f79779d20, type: 2}
+  _IsInteractiveOnStart: 0
+  pickupEvent:
+    Guid:
+      Data1: -845400244
+      Data2: 1333520218
+      Data3: 572179079
+      Data4: -1855746747
+    Path: event:/Characters/Player/Item

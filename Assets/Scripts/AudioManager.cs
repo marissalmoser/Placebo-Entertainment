@@ -30,11 +30,28 @@ public class AudioManager : MonoBehaviour
 
     public static void PlaySoundUnManaged(EventReference eventReference, Vector3 position)
     {
+        if (eventReference.IsNull)
+        {
+            return;
+        }
         FMODUnity.RuntimeManager.PlayOneShot(eventReference, position);
+    }
+
+    public static void PlaySoundUnManaged(EventReference eventReference)
+    {
+        if (eventReference.IsNull)
+        {
+            return;
+        }
+        FMODUnity.RuntimeManager.PlayOneShot(eventReference);
     }
 
     public static void PlaySoundUnManaged(EventReference eventReference, GameObject gameObject)
     {
+        if (eventReference.IsNull)
+        {
+            return;
+        }
         FMODUnity.RuntimeManager.PlayOneShotAttached(eventReference, gameObject);
     }
 
