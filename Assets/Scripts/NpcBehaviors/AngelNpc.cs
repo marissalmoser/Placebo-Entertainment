@@ -16,6 +16,7 @@ public class AngelNpc : BaseNpc
     private bool _hasPills;
     private bool _robotGameComplete = false;
     private bool _cowardGameComplete = false;
+    private bool _isPostMinigameState = false;
 
     private Animator _anim;
 
@@ -27,6 +28,8 @@ public class AngelNpc : BaseNpc
         base.Initialize();
 
         _anim = GetComponentInChildren<Animator>();
+
+        EnterPostMinigame();
     }
 
         /// <summary>
@@ -64,6 +67,8 @@ public class AngelNpc : BaseNpc
     protected override void EnterPostMinigame()
     {
         base.EnterPostMinigame();
+
+        _isPostMinigameState = true;
     }
 
     /// <summary>
@@ -113,9 +118,10 @@ public class AngelNpc : BaseNpc
     }
     protected override int ChooseDialoguePath(PlayerResponse option)
     {
-        if (option.NextResponseIndex.Length == 1)
+        if (_isPostMinigameState && option.NextResponseIndex.Length == 1)
         {
             _anim.SetTrigger("FinalChoice");
+            return 0;
         }
 
         if (_hasPills)
@@ -158,6 +164,18 @@ public class AngelNpc : BaseNpc
             Debug.Log(_hasPills);
         }
     }
+
+    public override void Interact(int responseIndex = 0)
+    {
+        // Overwrote this to add special functionality to play an anim a the 2nd to last dialogue node.
+        base.Interact(responseIndex);
+
+        if (_isPostMinigameState && _currentDialogueIndex == _stateDialogueTrees.GetStateData(_currentState).Length - 1)
+        {
+            _anim.SetTrigger("FinalChoice");
+        }
+    }
+
     private void PlayRandomTalkingAnim()
     {
         int rand = Random.Range(1, 4);
