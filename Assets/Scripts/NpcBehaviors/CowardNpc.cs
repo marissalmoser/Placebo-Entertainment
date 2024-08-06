@@ -19,9 +19,6 @@ public class CowardNpc : BaseNpc
 
     private Animator _anim;
 
-    //Creates a reference to the InventoryHolder script
-    private InventoryHolder _inventoryHolder;
-
     /// <summary>
     /// Getting Animator on child
     /// </summary>
@@ -173,22 +170,6 @@ public class CowardNpc : BaseNpc
         //}
         // Don't have minigame bypass
         //else
-
-        //Gets a reference to the player's inventory to check if they have
-        //the wrench
-        GameObject player = GameObject.FindWithTag("Player");
-        _inventoryHolder = player.GetComponent<InventoryHolder>();
-
-        //Checks for the wrench
-        if (_inventoryHolder.InventorySystem.ContainsItem(_targetBypassItem, out _))
-        {
-            return option.NextResponseIndex[1];
-        }
-        else
-        {
-            return option.NextResponseIndex[0];
-        }
-
         {
             if (option.NextResponseIndex.Length > 0)
             {
