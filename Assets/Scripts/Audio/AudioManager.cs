@@ -17,6 +17,9 @@ public class AudioManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        eventInstancesDict.Clear();
+        eventInstanceWorldDict.Clear();
+        paramRefDict.Clear();
     }
 
     private void OnDestroy()
@@ -26,6 +29,9 @@ public class AudioManager : MonoBehaviour
         {
             bus.stopAllEvents(STOP_MODE.IMMEDIATE);
         }
+        eventInstancesDict.Clear();
+        eventInstanceWorldDict.Clear();
+        paramRefDict.Clear();
     }
 
     public static void PlaySoundUnManaged(EventReference eventReference, Vector3 position)

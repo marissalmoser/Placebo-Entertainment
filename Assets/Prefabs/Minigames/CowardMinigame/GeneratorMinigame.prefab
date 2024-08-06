@@ -857,7 +857,7 @@ MonoBehaviour:
       Data2: 1099700886
       Data3: 832975530
       Data4: 1909072095
-    Path: event:/Minigame/Ripcord/GeneratorRunning
+    Path: event:/Minigame/Generator/GeneratorRunning
 --- !u!114 &6656659449733942724
 MonoBehaviour:
   m_ObjectHideFlags: 0
