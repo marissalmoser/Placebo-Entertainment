@@ -23,8 +23,19 @@
 }
 
 .PauseButton:hover {
-    scale: 1.1 1.1;
-    transition-duration: 0.15s;
+    -unity-font: url("project://database/Assets/UI%20Toolkit/Fonts/Bungee/Bungee-Regular.ttf?fileID=12800000&guid=473230090f800fc4b83eeb84e33ceae6&type=3#Bungee-Regular");
+    color: rgb(7, 12, 30);
+}
+
+.AnimatedTab {
+    background-color: rgb(228, 182, 67);
+    width: 0;
+    height: 68px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    position: absolute;
+    right: 1598px;
+    left: 0;
 }
 
 .TextElement {
