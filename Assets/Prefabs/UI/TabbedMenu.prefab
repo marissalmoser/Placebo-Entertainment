@@ -58,6 +58,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5028407268189074725}
   - component: {fileID: 4422286474446707533}
+  - component: {fileID: 4109945314516181468}
   m_Layer: 5
   m_Name: TabbedMenu
   m_TagString: Untagged
@@ -127,6 +128,121 @@ MonoBehaviour:
   - {fileID: 2800000, guid: bce0cce52a02bc2478305533fec3e3cd, type: 3}
   - {fileID: 2800000, guid: 4ed264664ecf7be44be5ef7f58ec3d66, type: 3}
   - {fileID: 2800000, guid: 62d28c9671d6fcb40a465bdd73cb5baa, type: 3}
+--- !u!114 &4109945314516181468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3268437976918378075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a0acc881a336094997b0fb61c6d1983, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _eventsToListenFor:
+  - _npcEvent: {fileID: 11400000, guid: 718aa8d808aa79a40abc3266d2f16f80, type: 2}
+    _npcEventTag: 6
+    _onEventTriggered:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4422286474446707533}
+          m_TargetAssemblyTypeName: PlaceboEntertainment.UI.TabbedMenu, Assembly-CSharp
+          m_MethodName: SetLoseScreenActive
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - _npcEvent: {fileID: 11400000, guid: fc8258980d4d13341abe42a88ac6fdb6, type: 2}
+    _npcEventTag: 1
+    _onEventTriggered:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4422286474446707533}
+          m_TargetAssemblyTypeName: PlaceboEntertainment.UI.TabbedMenu, Assembly-CSharp
+          m_MethodName: SetLoseScreenUnactive
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - _npcEvent: {fileID: 11400000, guid: 718aa8d808aa79a40abc3266d2f16f80, type: 2}
+    _npcEventTag: 7
+    _onEventTriggered:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4422286474446707533}
+          m_TargetAssemblyTypeName: PlaceboEntertainment.UI.TabbedMenu, Assembly-CSharp
+          m_MethodName: SetLoseScreenActive
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - _npcEvent: {fileID: 11400000, guid: fc8258980d4d13341abe42a88ac6fdb6, type: 2}
+    _npcEventTag: 2
+    _onEventTriggered:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4422286474446707533}
+          m_TargetAssemblyTypeName: PlaceboEntertainment.UI.TabbedMenu, Assembly-CSharp
+          m_MethodName: SetLoseScreenUnactive
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - _npcEvent: {fileID: 11400000, guid: 718aa8d808aa79a40abc3266d2f16f80, type: 2}
+    _npcEventTag: 8
+    _onEventTriggered:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4422286474446707533}
+          m_TargetAssemblyTypeName: PlaceboEntertainment.UI.TabbedMenu, Assembly-CSharp
+          m_MethodName: SetLoseScreenActive
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - _npcEvent: {fileID: 11400000, guid: fc8258980d4d13341abe42a88ac6fdb6, type: 2}
+    _npcEventTag: 0
+    _onEventTriggered:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4422286474446707533}
+          m_TargetAssemblyTypeName: PlaceboEntertainment.UI.TabbedMenu, Assembly-CSharp
+          m_MethodName: SetLoseScreenUnactive
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &3315120248618835843
 GameObject:
   m_ObjectHideFlags: 0
