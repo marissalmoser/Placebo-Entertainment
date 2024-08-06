@@ -426,7 +426,6 @@ GameObject:
   - component: {fileID: 470100}
   - component: {fileID: 6583228}
   - component: {fileID: 8253928}
-  - component: {fileID: 11413490}
   m_Layer: 0
   m_Name: DoorTrigger
   m_TagString: Untagged
@@ -566,19 +565,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &11413490
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 157960}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1710071e47f207047873b66de4897107, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioClip: {fileID: 0}
-  animator: {fileID: 9509690}
-  onTriggerEnterParameterName: Open
-  onTriggerExitParameterName: Close
