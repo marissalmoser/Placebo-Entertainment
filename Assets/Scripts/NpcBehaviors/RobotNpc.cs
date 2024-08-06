@@ -6,6 +6,7 @@
 *******************************************************************/
 using System.Collections;
 using System.Collections.Generic;
+using FMOD.Studio;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -162,6 +163,7 @@ public class RobotNpc : BaseNpc
             }
         }
     }
+    
 
     /// <summary>
     /// Instead of an internal timer, we are moving this to the TimerManager
