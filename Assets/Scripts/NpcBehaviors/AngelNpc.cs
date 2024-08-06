@@ -28,8 +28,6 @@ public class AngelNpc : BaseNpc
         base.Initialize();
 
         _anim = GetComponentInChildren<Animator>();
-
-        EnterPostMinigame();
     }
 
         /// <summary>
