@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     public static Animator Animator { get; private set; }
 
     public PlayerControls PlayerControls { get; private set; }
-    public InputAction Move, Interact, Reset;
+    public InputAction Move, Interact, Reset, Shoot;
 
     Rigidbody _rb;
     CinemachineVirtualCamera _mainCamera;
@@ -86,6 +86,7 @@ public class PlayerController : MonoBehaviour
         Move = PlayerControls.FindAction("Move");
         Interact = PlayerControls.FindAction("Interact");
         Reset = PlayerControls.FindAction("Reset");
+        Shoot = PlayerControls.FindAction("LeftClick");
     }
 
     void FixedUpdate()
@@ -119,10 +120,13 @@ public class PlayerController : MonoBehaviour
         {
             InteractionCheck.CallInteract();
         }
+
+#if UNITY_EDITOR
         if (Reset.IsPressed())
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
+#endif
 
         // Player Rotation
         if (!_isInDialogue)

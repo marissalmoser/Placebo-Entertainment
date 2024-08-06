@@ -13,12 +13,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: standardSurface1
-    second: {fileID: 2100000, guid: f1aa9a7b13ca3db4cadab3ca9a1e8b45, type: 2}
+    second: {fileID: 2100000, guid: 5d3b8f462f0ba8e40aafc0d4fd59f7ce, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: standardSurface3
-    second: {fileID: 2100000, guid: d928feb7747964243a49074f71547c81, type: 2}
+    second: {fileID: 2100000, guid: 2cde7171d3d6da9429e0a8555bb5fb4b, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

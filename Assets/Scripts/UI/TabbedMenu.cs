@@ -213,7 +213,9 @@ namespace PlaceboEntertainment.UI
         /// </summary>
         private void Start()
         {
+#if UNITY_EDITOR
             PlayerController.Instance.PlayerControls.BasicControls.OpenSchedule.performed += OpenScheduleOnPerformed;
+#endif
         }
 
         /// <summary>
@@ -222,7 +224,9 @@ namespace PlaceboEntertainment.UI
         private void OnDisable()
         {
             UnRegisterTabCallbacks();
+#if UNITY_EDITOR
             PlayerController.Instance.PlayerControls.BasicControls.OpenSchedule.performed -= OpenScheduleOnPerformed;
+#endif
         }
 
         /// <summary>
