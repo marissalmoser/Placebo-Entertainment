@@ -155,7 +155,7 @@ MonoBehaviour:
   _stateDialogueTrees:
     _idleState:
     - _dialogue:
-      - Sm gjoh wh hcfzkb! W'b yhirq.
+      - "Xk\u2019u qhprlm\u2026"
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 5
@@ -172,7 +172,7 @@ MonoBehaviour:
         _advancesNpcState: 0
         _endsDialogue: 0
     - _dialogue:
-      - Sm gjoh wh hcfzkb! W'b yhirq.
+      - "Xk\u2019u qhprlm\u2026"
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 5
@@ -182,7 +182,7 @@ MonoBehaviour:
         _advancesNpcState: 0
         _endsDialogue: 1
     - _dialogue:
-      - "I\u2019m fine!"
+      - "My suit is broken\u2026"
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 5
@@ -191,20 +191,28 @@ MonoBehaviour:
         _nextResponseIndex: 04000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 5
+        _hasPrerequisiteCheck: 0
+        _answer: I promise to come back to help you later!
+        _nextResponseIndex: 
+        _advancesNpcState: 0
+        _endsDialogue: 1
     - _dialogue:
-      - O'a txts. Wu eci'gk hfnobu iu gvdc lv SILUS. Eci'gk bci nczsobu ptmhwobu.
+      - "Vf khjnuajkph xu qhptlm jmi X ipm\u2019k ugyypul fpg uyljr Ppovpuxpm. Silus
+        utpgai ql jqal kp tlay khjmuajkl."
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 5
         _hasPrerequisiteCheck: 0
-        _answer: "I can\u2019t understand you, but I think they mentioned \u201CSilus\u201D?
+        _answer: "I can\u2019t understand you, but I think you mentioned \u2018Silus\u2019?
           I\u2019d better go see him."
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
     - _dialogue:
-      - "We must\u2019ve hit something. The ship started to shake and the more dangerous
-        of my reagents got mixed up and, well, exploded."
+      - "We must\u2019ve hit something. The ship started to shake and some of my
+        more REACTIVE substances got mixed up and they exploded."
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 5
@@ -214,8 +222,8 @@ MonoBehaviour:
         _advancesNpcState: 0
         _endsDialogue: 0
     - _dialogue:
-      - "My translator is just broken and I\u2019m stuck inside my suit. I\u2019ll
-        be fine, I\u2019ve been in this situation before."
+      - "I\u2019m stuck inside my suit and my translator is broken. Physically I\u2019ll
+        be fine, but THAT\u2019S not the point!"
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 5
@@ -232,8 +240,8 @@ MonoBehaviour:
         _advancesNpcState: 0
         _endsDialogue: 0
     - _dialogue:
-      - Keep checking in on everybody. I prepped medicine for every crew member in
-        advance.
+      - Keep checking in on everybody! I prepared medicine for every crew member
+        in advance.
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 0
@@ -243,8 +251,8 @@ MonoBehaviour:
         _advancesNpcState: 0
         _endsDialogue: 0
     - _dialogue:
-      - "If someone\u2019s hurt, come back here. I can give you whatever they\u2019d
-        need."
+      - "But I can\u2019t HELP them if I can\u2019t MOVE! If someone\u2019s hurt,
+        come back here. I can give you anything they\u2019d need."
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 0
@@ -254,8 +262,8 @@ MonoBehaviour:
         _advancesNpcState: 0
         _endsDialogue: 0
     - _dialogue:
-      - "It seems like a lot of key cards are on the fritz. Mine seems fine, I\u2019ve
-        opened the door to the bridge for you."
+      - "It seems like a lot of key cards are on the fritz. Mine seems fine, so I\u2019ll
+        open the door to the bridge for you now."
       _playerResponses:
       - _eventToTrigger: {fileID: 11400000, guid: 0dc09a2e909bfa14ba070b27da962183, type: 2}
         _eventTag: 4
@@ -265,7 +273,7 @@ MonoBehaviour:
         _advancesNpcState: 0
         _endsDialogue: 1
     - _dialogue:
-      - "Yep, I\u2019m all good. Go check on the rest of the crew."
+      - "I\u2019m fine, but I can\u2019t do my job! Go check on the rest of the crew."
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 0
@@ -275,7 +283,8 @@ MonoBehaviour:
         _advancesNpcState: 0
         _endsDialogue: 0
     - _dialogue:
-      - "I\u2019ve opened the door to the bridge for you."
+      - "Let me know if anyone needs medical help. I\u2019ll open the door to the
+        bridge for you now."
       _playerResponses:
       - _eventToTrigger: {fileID: 11400000, guid: 0dc09a2e909bfa14ba070b27da962183, type: 2}
         _eventTag: 4
@@ -298,12 +307,13 @@ MonoBehaviour:
       - _eventToTrigger: {fileID: 11400000, guid: 8b7b5ccfabcfc4d4f96da8928978e41e, type: 2}
         _eventTag: 0
         _hasPrerequisiteCheck: 0
-        _answer: The captain is injured.
+        _answer: The captain is injured!
         _nextResponseIndex: 02000000
         _advancesNpcState: 0
         _endsDialogue: 0
     - _dialogue:
-      - "Well\u2026 If anyone is hurt, I have medicine on standby."
+      - "Well, don\u2019t just stand there! Keep looking! Remember, if anyone is
+        hurt, I have medicine on standby."
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 5
@@ -313,7 +323,7 @@ MonoBehaviour:
         _advancesNpcState: 0
         _endsDialogue: 1
     - _dialogue:
-      - "You\u2019ll need that bottle over there. Go take that to her."
+      - "You\u2019ll need that bottle over there. Take it to her quickly!"
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 5
