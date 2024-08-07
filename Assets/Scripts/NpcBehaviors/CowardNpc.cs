@@ -17,10 +17,6 @@ public class CowardNpc : BaseNpc
     private bool _hasLightbulb = false;
     private bool _robotIsAlive = true;
 
-    //Creates a reference to the InventoryHolder script so the coward can
-    //check for the wrench
-    private InventoryHolder _inventoryHolder;
-
     /// <summary>
     /// Getting Animator on child
     /// </summary>
@@ -171,12 +167,8 @@ public class CowardNpc : BaseNpc
         // Don't have minigame bypass
         //else
 
-        //Creates a reference to the player's inventory
-        GameObject player = GameObject.FindWithTag("Player");
-        _inventoryHolder = player.GetComponent<InventoryHolder>();
-
         //Checks for the wrench
-        if (_inventoryHolder.InventorySystem.ContainsItem(_targetBypassItem, out _))
+        if (_playerInventorySystem.ContainsItem(_targetBypassItem, out _))
         {
             return option.NextResponseIndex[1];
         }
