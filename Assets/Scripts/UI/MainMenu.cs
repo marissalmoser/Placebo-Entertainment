@@ -7,6 +7,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using FMOD.Studio;
+using FMODUnity;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
@@ -18,6 +19,8 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private int _introVideoBuildIndex;
     [SerializeField] private SaveLoadManager _savingManager;
     [SerializeField] private float _tabAnimationTime;
+    [SerializeField] private EventReference mainMenuMusicEvent;
+    [SerializeField] private EventReference clickEvent;
 
     #region Constants
     private const string NewGameButtonName = "NewGameButton";
@@ -85,6 +88,7 @@ public class MainMenu : MonoBehaviour
     private List<VisualElement> _defaultDraggers;
     private List<VisualElement> _newDraggers = new List<VisualElement>();
     private UQueryBuilder<Button> _allButtons;
+    private List<Slider> _sliders = new List<Slider>();
     private EventInstance _mainMenuMusicInstance;
     private SettingsManager _settingsManager;
     #endregion
@@ -175,6 +179,20 @@ public class MainMenu : MonoBehaviour
             _quitButton.RegisterCallback<MouseOverEvent>(evt => { AnimateTab(_settingsTab, true); });
             _quitButton.RegisterCallback<MouseOutEvent>(evt => { AnimateTab(_settingsTab, false); });
         }
+
+        _mainMenuMusicInstance = AudioManager.PlaySound(mainMenuMusicEvent, Vector3.zero);
+        _allButtons = _mainMenuDoc.rootVisualElement.Query<Button>();
+        _allButtons.ForEach(button => button.RegisterCallback<ClickEvent>(PlayConfirmSound));
+        _sliders = _audioScreen.Query<Slider>().ToList();
+        FMODUnity.RuntimeManager.StudioSystem.getParameterByName("MasterVolume", out float volume);
+        _sliders[0].value = volume;
+        _sliders[0].RegisterCallback<ChangeEvent<float>>(MasterAudioSliderChanged);
+        FMODUnity.RuntimeManager.StudioSystem.getParameterByName("SFXVolume", out volume);
+        _sliders[1].value = volume;
+        _sliders[1].RegisterCallback<ChangeEvent<float>>(SFXAudioSliderChanged);
+        FMODUnity.RuntimeManager.StudioSystem.getParameterByName("MusicVolume", out volume);
+        _sliders[2].value = volume;
+        _sliders[2].RegisterCallback<ChangeEvent<float>>(MusicAudioSliderChanged);
     }
 
     /// <summary>
@@ -235,6 +253,11 @@ public class MainMenu : MonoBehaviour
             _quitButton.UnregisterCallback<MouseOverEvent>(evt => { AnimateTab(_settingsTab, true); });
             _quitButton.UnregisterCallback<MouseOutEvent>(evt => { AnimateTab(_settingsTab, false); });
         }
+        _allButtons.ForEach(button => button.UnregisterCallback<ClickEvent>(PlayConfirmSound));
+        _sliders[0].UnregisterCallback<ChangeEvent<float>>(MasterAudioSliderChanged);
+        _sliders[1].UnregisterCallback<ChangeEvent<float>>(SFXAudioSliderChanged);
+        _sliders[2].UnregisterCallback<ChangeEvent<float>>(MusicAudioSliderChanged);
+        AudioManager.StopSound(_mainMenuMusicInstance);
     }
     #endregion
 
@@ -451,6 +474,32 @@ public class MainMenu : MonoBehaviour
             _confirmYesButton.style.display = DisplayStyle.Flex;
             _confirmText.style.display = DisplayStyle.Flex;
         }
+    }
+
+    private void PlayConfirmSound(ClickEvent evt)
+    {
+        AudioManager.PlaySound(clickEvent, transform.position);
+    }
+    
+    private void MasterAudioSliderChanged(ChangeEvent<float> evt)
+    {
+        //0-100 value expected.
+        var newVolume = evt.newValue;
+        FMODUnity.RuntimeManager.StudioSystem.setParameterByName("MasterVolume", newVolume);
+    }
+
+    private void SFXAudioSliderChanged(ChangeEvent<float> evt)
+    {
+        //0-100 value expected.
+        var newVolume = evt.newValue;
+        FMODUnity.RuntimeManager.StudioSystem.setParameterByName("SFXVolume", newVolume);
+    }
+
+    private void MusicAudioSliderChanged(ChangeEvent<float> evt)
+    {
+        //0-100 value expected.
+        var newVolume = evt.newValue;
+        FMODUnity.RuntimeManager.StudioSystem.setParameterByName("MusicVolume", newVolume);
     }
     #endregion
 }
