@@ -118,11 +118,6 @@ public class CowardNpc : BaseNpc
     /// <returns>Index of next dialogue node</returns>
     protected override int ChooseDialoguePath(PlayerResponse option)
     {
-        // Checks for bypass -> commented by Marissa after new bypass update. The item 
-        //      is checked for when the minigame starts and is based on the player's
-        //      inventory, not a bool.
-        
-
         //Checks for the wrench
         if (_playerInventorySystem.ContainsItem(_targetBypassItem, out _))
         {
@@ -130,18 +125,7 @@ public class CowardNpc : BaseNpc
         }
         else
         {
-            return option.NextResponseIndex[0];
-        }
-
-        {
-            if (option.NextResponseIndex.Length > 0)
-            {
-                return option.NextResponseIndex[0];
-            }
-            else
-            {
-                return 0;
-            }
+            return base.ChooseDialoguePath(option);
         }
     }
 
