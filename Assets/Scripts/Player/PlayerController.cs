@@ -79,6 +79,7 @@ public class PlayerController : MonoBehaviour
         _doOnce = true;
 
         _mainCamera.transform.rotation = transform.rotation;
+        _mainCamera.transform.position = transform.position;
 
         //Finding Anim Controller
         Animator = GetComponentInChildren<Animator>();
