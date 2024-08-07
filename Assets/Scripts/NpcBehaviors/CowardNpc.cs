@@ -169,6 +169,17 @@ public class CowardNpc : BaseNpc
         //}
         // Don't have minigame bypass
         //else
+
+        //Checks for the wrench
+        if (_playerInventorySystem.ContainsItem(_targetBypassItem, out _))
+        {
+            return option.NextResponseIndex[1];
+        }
+        else
+        {
+            return option.NextResponseIndex[0];
+        }
+
         {
             if (option.NextResponseIndex.Length > 0)
             {
