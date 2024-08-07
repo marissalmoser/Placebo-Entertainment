@@ -9,11 +9,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class Screen4 : ScreenBehavior
 {
-    [SerializeField] private TextMeshProUGUI _targetSequenceText;
-    [SerializeField] private TextMeshProUGUI _inputSequenceText;
+    [SerializeField] private List<Image> _targetNumImages;
+    [SerializeField] private List<Image> _inputNumImages;
+
+    // Sprites will be order 0, 1, 2 ... 9
+    [SerializeField] private List<Sprite> _numSprites;
+
+    private int _currentSequenceLength = 0;
 
     #region ActionRegistering
     private void OnEnable()
@@ -36,7 +42,12 @@ public class Screen4 : ScreenBehavior
     /// <param name="num">Number being added to inputs</param>
     public void InputNumber(int num)
     {
-        _inputSequenceText.text += num;
+        if (_currentSequenceLength < _inputNumImages.Count)
+        {
+            _inputNumImages[_currentSequenceLength].sprite = _numSprites[num];
+            _inputNumImages[_currentSequenceLength].enabled = true;
+            _currentSequenceLength++;
+        }
     }
 
     /// <summary>
@@ -45,13 +56,11 @@ public class Screen4 : ScreenBehavior
     /// </summary>
     public override void SetOrderToRandom()
     {
-        string newCorrectSequence = "Target: ";
-        for (int i = 0; i < _screenObjsOrder.Count; i++)
+        for (int i = 0; i < _screenObjsOrder.Count && i < _targetNumImages.Count; i++)
         {
-            newCorrectSequence += _screenObjsOrder[i];
+            _targetNumImages[i].sprite = _numSprites[ _screenObjsOrder[i] ];
         }
 
-        _targetSequenceText.text = newCorrectSequence;
         ClearInputLine();
     }
 
@@ -60,6 +69,12 @@ public class Screen4 : ScreenBehavior
     /// </summary>
     private void ClearInputLine()
     {
-        _inputSequenceText.text = "Input: ";
+        _currentSequenceLength = 0;
+
+        foreach (Image inputNum in _inputNumImages)
+        {
+            inputNum.sprite = _numSprites[0];
+            inputNum.enabled = false;
+        }
     }
 }

@@ -112,6 +112,40 @@ public class CowardNpc : BaseNpc
     }
 
     /// <summary>
+    /// Checks for bypass item to see which path to take
+    /// </summary>
+    /// <param name="option">PlayerResponse being checked</param>
+    /// <returns>Index of next dialogue node</returns>
+    protected override int ChooseDialoguePath(PlayerResponse option)
+    {
+        // Checks for bypass -> commented by Marissa after new bypass update. The item 
+        //      is checked for when the minigame starts and is based on the player's
+        //      inventory, not a bool.
+        
+
+        //Checks for the wrench
+        if (_playerInventorySystem.ContainsItem(_targetBypassItem, out _))
+        {
+            return option.NextResponseIndex[1];
+        }
+        else
+        {
+            return option.NextResponseIndex[0];
+        }
+
+        {
+            if (option.NextResponseIndex.Length > 0)
+            {
+                return option.NextResponseIndex[0];
+            }
+            else
+            {
+                return 0;
+            }
+        }
+    }
+
+    /// <summary>
     /// Chooses between two responses depending on if the player has taken the 
     /// light bulb
     /// </summary>
