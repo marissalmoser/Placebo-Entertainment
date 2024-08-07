@@ -121,6 +121,11 @@ public class PauseMenu : MonoBehaviour
             _tabAnimationTime = 0.25f;
     }
 
+    private void PlayConfirmSound(ClickEvent evt)
+    {
+        throw new System.NotImplementedException();
+    }
+
     /// <summary>
     /// Setting up player inputs and slider values
     /// </summary>

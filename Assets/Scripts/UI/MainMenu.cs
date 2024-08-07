@@ -6,6 +6,7 @@
  *******************************************************************/
 using System.Collections;
 using System.Collections.Generic;
+using FMOD.Studio;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;

@@ -20,8 +20,7 @@ public class RobotNpc : BaseNpc
     private bool _isFirstInteraction = true;
 
     private Animator _anim;
-
-    [SerializeField] private GameObject _lightbulbMesh;
+    
     [SerializeField] private FMODUnity.EventReference lightBulbEvent;
     [SerializeField] private FMODUnity.EventReference deathEvent;
     /// <summary>
