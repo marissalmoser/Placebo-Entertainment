@@ -22,6 +22,7 @@ public class ButtonConfirmInput : ButtonInteraction
     /// <param name="player"></param>
     public override void Interact(GameObject player)
     {
+        AudioManager.PlaySound(interactEvent, _buttonPress.transform.position);
         _buttonPress.transform.position = _downPosition.transform.position;
         _canBePressed = false;
         StartCoroutine(ButtonCooldown());

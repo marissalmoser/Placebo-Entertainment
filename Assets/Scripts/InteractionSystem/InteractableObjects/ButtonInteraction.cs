@@ -22,7 +22,7 @@ public class ButtonInteraction : MonoBehaviour, IInteractable
     public bool IsInteractable;
 
     [SerializeField] private float _buttonCooldownTime;
-
+    [SerializeField] protected FMODUnity.EventReference interactEvent;
     /// <summary>
     /// Sets state of the button
     /// </summary>
@@ -39,6 +39,7 @@ public class ButtonInteraction : MonoBehaviour, IInteractable
     {
         if (_canBePressed && IsInteractable)
         {
+            AudioManager.PlaySound(interactEvent, _buttonPress.transform.position);
             _buttonPress.transform.position = _downPosition.transform.position;
             _canBePressed = false;
             StartCoroutine(ButtonCooldown());
