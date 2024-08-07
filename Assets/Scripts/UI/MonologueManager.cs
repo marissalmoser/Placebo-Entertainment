@@ -61,7 +61,7 @@ public class MonologueManager : MonoBehaviour
 
             _playerController.LockCharacter(true);
             _playerInteractBehavior.StopDetectingInteractions();
-            _tabbedMenu.DisplayDialogue(_playerName, _currentNode.MonologueText);
+            _tabbedMenu.DisplayDialogue(_playerName, _currentNode.MonologueText, null);
             _tabbedMenu.ToggleDialogue(true);
             _tabbedMenu.ClearDialogueOptions();
             _tabbedMenu.DisplayDialogueOption(_currentNode.ExitResponse, click: () => { ExitMonologue(); });
