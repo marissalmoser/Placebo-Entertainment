@@ -11,17 +11,12 @@ using UnityEngine;
 
 public class RobotNpc : BaseNpc
 {
-    [SerializeField] private InventoryItemData _targetLightBulbItem;
-    //[SerializeField] private float _secondsUntilDeath;
-    //private float _timeElapsed = 0f;
+    [SerializeField] private InventoryItemData _targetLightBulbItem; 
+    [SerializeField] private GameObject _lightbulbMesh;
 
     private bool _hasLightbulb = false;
     private bool _hasRepairedRobot = false;
     private bool _isFirstInteraction = true;
-
-    private Animator _anim;
-
-    [SerializeField] private GameObject _lightbulbMesh;
 
     /// <summary>
     /// Subscribing to wire game won event on initialization
@@ -30,18 +25,14 @@ public class RobotNpc : BaseNpc
     {
         base.Initialize();
 
-        _anim = GetComponentInChildren<Animator>();
-
         MGWireState.WireGameWon += CheckForStateChange;
     }
 
     /// <summary>
     /// Unsubscribing from events on disable
     /// </summary>
-    protected override void OnDisable()
+    private void OnDisable()
     {
-        base.OnDisable();
-
         MGWireState.WireGameWon -= CheckForStateChange;
     }
 
@@ -56,7 +47,6 @@ public class RobotNpc : BaseNpc
 
         if (item == _targetLightBulbItem)
         {
-            Debug.Log("Lightbulb collected");
             _hasLightbulb = true;
         }
     }
@@ -112,14 +102,14 @@ public class RobotNpc : BaseNpc
         if (node.Dialogue.Length == 1 || _isFirstInteraction)
         {
             _isFirstInteraction = false;
-            string temp = node.Dialogue[0];
-            if (temp.Contains("(time left)"))
+            string tempNodeDialogue = node.Dialogue[0];
+            if (tempNodeDialogue.Contains("(time left)"))
             {
                 int timeRemaining = (int)TimerManager.Instance.GetTimerByTag(NpcEventTags.Robot).GetCurrentTimeInSeconds();
-                temp = temp.Replace("(time left)", timeRemaining.ToString() + " seconds");
+                tempNodeDialogue = tempNodeDialogue.Replace("(time left)", timeRemaining.ToString() + " seconds");
             }
 
-            return temp;
+            return tempNodeDialogue;
         }
 
         return node.Dialogue[1];
@@ -137,7 +127,7 @@ public class RobotNpc : BaseNpc
         if (!_hasRepairedRobot && _hasLightbulb)
         {
             _hasRepairedRobot = true;
-            _anim.SetTrigger("Lightbulb");
+            _animator.SetTrigger("Lightbulb");
             _lightbulbMesh.SetActive(true);
             return option.NextResponseIndex[0];
         }
@@ -162,28 +152,8 @@ public class RobotNpc : BaseNpc
             }
             else
             {
-                return 0;
+                return base.ChooseDialoguePath(option);
             }
-        }
-    }
-
-    /// <summary>
-    /// Plays random talking animation when selecting a dialogue choice
-    /// </summary>
-    private void PlayRandomTalkingAnim()
-    {
-        int rand = Random.Range(1, 4);
-        switch(rand)
-        {
-            case 1:
-                _anim.SetTrigger("Talking1");
-                break;
-            case 2:
-                _anim.SetTrigger("Talking2");
-                break;
-            case 3:
-                _anim.SetTrigger("Talking3");
-                break;
         }
     }
 
@@ -197,7 +167,7 @@ public class RobotNpc : BaseNpc
         if (!_hasRepairedRobot)
         {
             EnterFailure();
-            _anim.SetBool("Dead", true);
+            _animator.SetBool("Dead", true);
         }
     }
 }
