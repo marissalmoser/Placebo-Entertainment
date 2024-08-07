@@ -138,6 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _npcName: Odon
+  _npcBanner: {fileID: 21300000, guid: 7e95f83bd4f7f604bbd3016e8e3eec9d, type: 3}
   _targetBypassItem: {fileID: 11400000, guid: ec08ea3ee13c21241a8a4a117cf4beab, type: 2}
   _onEnterFailState: {fileID: 11400000, guid: 820e77e5460d5cd4cb472f8466ef6e1c, type: 2}
   _startMinigameEvent: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
@@ -145,21 +146,14 @@ MonoBehaviour:
   _stateDialogueTrees:
     _idleState:
     - _dialogue:
-      - "Thank you for removing that searing light. If I knew what it was I wouldn\u2019t
-        have taken it\u2026 or at least wouldn\u2019t have turned it on."
+      - "EEK- omigosh thank you the light is gone! It was so shiny! But if I knew
+        it would do this, I wouldn\u2019t have taken it!"
       - ...
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 1
         _hasPrerequisiteCheck: 0
         _answer: You're welcome.
-        _nextResponseIndex: 
-        _advancesNpcState: 1
-        _endsDialogue: 1
-      - _eventToTrigger: {fileID: 0}
-        _eventTag: 0
-        _hasPrerequisiteCheck: 0
-        _answer: <b>Leave
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
@@ -198,7 +192,7 @@ MonoBehaviour:
         _eventTag: 0
         _hasPrerequisiteCheck: 1
         _answer: I should be able to fix it with this!
-        _nextResponseIndex: 02000000
+        _nextResponseIndex: 0200000007000000
         _advancesNpcState: 0
         _endsDialogue: 0
       - _eventToTrigger: {fileID: 0}
@@ -245,7 +239,7 @@ MonoBehaviour:
         _eventTag: 0
         _hasPrerequisiteCheck: 1
         _answer: I should be able to fix it with this!
-        _nextResponseIndex: 05000000
+        _nextResponseIndex: 0500000007000000
         _advancesNpcState: 0
         _endsDialogue: 0
       - _eventToTrigger: {fileID: 0}
@@ -277,6 +271,16 @@ MonoBehaviour:
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
+    - _dialogue:
+      - T-That should work!
+      _playerResponses:
+      - _eventToTrigger: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
+        _eventTag: 1
+        _hasPrerequisiteCheck: 0
+        _answer: <b>Whack it.
+        _nextResponseIndex: 
+        _advancesNpcState: 0
+        _endsDialogue: 1
     _playingMinigameState: []
     _postMinigameState:
     - _dialogue:
@@ -293,7 +297,7 @@ MonoBehaviour:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 0
         _hasPrerequisiteCheck: 0
-        _answer: What?! No!
+        _answer: Payment? For doing what?
         _nextResponseIndex: 02000000
         _advancesNpcState: 0
         _endsDialogue: 0
@@ -308,8 +312,7 @@ MonoBehaviour:
         _advancesNpcState: 0
         _endsDialogue: 0
     - _dialogue:
-      - "EEK! I- I\u2019m sorry! Please keep the wrench! I promise it\u2019s worth
-        a lot!"
+      - "EEK! I- I\u2019m sorry! Please keep the wrench!"
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 0
@@ -319,7 +322,7 @@ MonoBehaviour:
         _advancesNpcState: 0
         _endsDialogue: 1
     - _dialogue:
-      - What?...... J- just keep the wrench.
+      - ......J- just keep the wrench.
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 0
