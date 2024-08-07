@@ -10,14 +10,11 @@ using UnityEngine;
 
 public class AngelNpc : BaseNpc
 {
-    [SerializeField] private InventoryItemData _targetPillsItem;
     [SerializeField] private NpcEvent _removeTimerEvent;
-    private bool _hasPills;
+
     private bool _robotGameComplete = false;
     private bool _cowardGameComplete = false;
     private bool _isPostMinigameState = false;
-
-    private Animator _anim;
 
     /// <summary>
     /// Used in first playable for knowing if the robot game is complete
@@ -48,6 +45,7 @@ public class AngelNpc : BaseNpc
             EnterPostMinigame();
         }
     }
+
     protected override void EnterPostMinigame()
     {
         base.EnterPostMinigame();
@@ -94,7 +92,7 @@ public class AngelNpc : BaseNpc
         }
         if (_hasBypassItem)
         {
-            _anim.SetTrigger("Healed");
+            _animator.SetTrigger("Healed");
             return option.NextResponseIndex[1];
         }
         else if(!_hasBypassItem && option.NextResponseIndex.Length > 0)
@@ -114,6 +112,7 @@ public class AngelNpc : BaseNpc
             return base.ChooseDialoguePath(option);
         }
     }
+
     public override void Interact(int responseIndex = 0)
     {
         // Overwrote this to add special functionality to play an anim a the 2nd to last dialogue node.

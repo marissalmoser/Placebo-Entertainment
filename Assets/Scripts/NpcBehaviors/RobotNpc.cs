@@ -18,16 +18,12 @@ public class RobotNpc : BaseNpc
     private bool _hasRepairedRobot = false;
     private bool _isFirstInteraction = true;
 
-    private Animator _anim;
-
     /// <summary>
     /// Subscribing to wire game won event on initialization
     /// </summary>
     protected override void Initialize()
     {
         base.Initialize();
-
-        _anim = GetComponentInChildren<Animator>();
 
         MGWireState.WireGameWon += CheckForStateChange;
     }
@@ -121,7 +117,7 @@ public class RobotNpc : BaseNpc
         if (!_hasRepairedRobot && _hasLightbulb)
         {
             _hasRepairedRobot = true;
-            _anim.SetTrigger("Lightbulb");
+            _animator.SetTrigger("Lightbulb");
             _lightbulbMesh.SetActive(true);
             return option.NextResponseIndex[0];
         }
@@ -152,26 +148,6 @@ public class RobotNpc : BaseNpc
     }
 
     /// <summary>
-    /// Plays random talking animation when selecting a dialogue choice
-    /// </summary>
-    private void PlayRandomTalkingAnim()
-    {
-        int rand = Random.Range(1, 4);
-        switch(rand)
-        {
-            case 1:
-                _anim.SetTrigger("Talking1");
-                break;
-            case 2:
-                _anim.SetTrigger("Talking2");
-                break;
-            case 3:
-                _anim.SetTrigger("Talking3");
-                break;
-        }
-    }
-
-    /// <summary>
     /// Instead of an internal timer, we are moving this to the TimerManager
     /// so that desgin has access to all timers in a nice consolidated place.
     /// There is an event listener on the robot prefab that picks this method
@@ -181,7 +157,7 @@ public class RobotNpc : BaseNpc
         if (!_hasRepairedRobot)
         {
             EnterFailure();
-            _anim.SetBool("Dead", true);
+            _animator.SetBool("Dead", true);
         }
     }
 }
