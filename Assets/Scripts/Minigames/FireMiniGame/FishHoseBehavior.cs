@@ -8,6 +8,7 @@
 Fish water gauge, refill function, fish equip function, and UI for water gauge.
 *****************************************************************************/
 
+using System;
 using System.Collections;
 using FMOD.Studio;
 using FMODUnity;
@@ -46,7 +47,7 @@ public class FishHoseBehavior : MonoBehaviour, IInteractable
     [SerializeField] private FMODUnity.EventReference fishSprayEvent;
 
     private TabbedMenu _tabbedMenu;
-    private ParamRef _fishFireState = new ParamRef() {Name = "FishFiring", Value = 0f};
+    private ParamRef _fishFireState = new ParamRef() {Name = "IsFishFiring", Value = 0f};
     private EventInstance _sprayInstance;
     private Animator _anim;
 
@@ -66,6 +67,11 @@ public class FishHoseBehavior : MonoBehaviour, IInteractable
     {
         PlayerController.Instance.Shoot.started -= OnShoot;
         PlayerController.Instance.Shoot.canceled -= OnRelease;
+    }
+
+    private void OnDestroy()
+    {
+        AudioManager.StopSound(_sprayInstance, true);
     }
 
     private void Awake()
@@ -142,9 +148,9 @@ public class FishHoseBehavior : MonoBehaviour, IInteractable
         _waterSpray.Play();
         _isShooting = true;
         _tabbedMenu.UpdateFishFaceState(1);
-        AudioManager.StopSound(_sprayInstance);
+        AudioManager.StopSound(_sprayInstance, true);
         _fishFireState.Value = 0f;
-        _sprayInstance = AudioManager.PlaySound(fishSprayEvent, transform.position, _fishFireState);
+        _sprayInstance = AudioManager.PlaySoundAttached(fishSprayEvent, transform, _fishFireState);
 
         while (_currentWaterAmount > 0)
         {
@@ -174,7 +180,7 @@ public class FishHoseBehavior : MonoBehaviour, IInteractable
     /// </summary>
     private void StopWaterSpray()
     {
-        AudioManager.StopSound(_sprayInstance);
+        AudioManager.StopSound(_sprayInstance, true);
         _waterCollisionCollider.gameObject.SetActive(false);
         StopAllCoroutines();    // I wasn't able to explicitly stop the ShootWater coroutine
         _waterSpray.Stop();
@@ -216,7 +222,7 @@ public class FishHoseBehavior : MonoBehaviour, IInteractable
 
         // Once water meter is full
         _currentWaterAmount = _maxWaterAmount;
-        AudioManager.StopSound(_sprayInstance);
+        AudioManager.StopSound(_sprayInstance, true);
     }
 
     /// <summary>
