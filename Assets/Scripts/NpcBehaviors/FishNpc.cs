@@ -17,6 +17,11 @@ public class FishNpc : BaseNpc
     private bool _enteredFireRoom = false;
     private bool _hasfish;
 
+    protected override void Initialize()
+    {
+        base.Initialize();
+    }
+
     /// <summary>
     /// Called to update the NPCs state
     /// </summary>

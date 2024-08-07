@@ -46,10 +46,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timers:
-  - timerName: LoopTimer
+  - timerName: Example
     timer:
       _maxTime: 600
-      _isRunning: 1
+      _isRunning: 0
       _eventTimerCalls: {fileID: 11400000, guid: 3ecd2838e2ea86b42a087aad7f6a97a6, type: 2}
       _NPCToAlert: 8
   - timerName: RobotDeathTimer
@@ -70,12 +70,30 @@ MonoBehaviour:
       _isRunning: 1
       _eventTimerCalls: {fileID: 11400000, guid: 3ecd2838e2ea86b42a087aad7f6a97a6, type: 2}
       _NPCToAlert: 7
-  - timerName: 30Seconds
+  - timerName: ShipFailTimer
     timer:
-      _maxTime: 570
+      _maxTime: 600
+      _isRunning: 1
+      _eventTimerCalls: {fileID: 11400000, guid: 3ecd2838e2ea86b42a087aad7f6a97a6, type: 2}
+      _NPCToAlert: 8
+  - timerName: 30SecondsGeneratorPlusDelay
+    timer:
+      _maxTime: 145
       _isRunning: 1
       _eventTimerCalls: {fileID: 11400000, guid: 718aa8d808aa79a40abc3266d2f16f80, type: 2}
-      _NPCToAlert: 3
+      _NPCToAlert: 6
+  - timerName: 30SecondsFirePlusDelay
+    timer:
+      _maxTime: 325
+      _isRunning: 1
+      _eventTimerCalls: {fileID: 11400000, guid: 718aa8d808aa79a40abc3266d2f16f80, type: 2}
+      _NPCToAlert: 7
+  - timerName: 30SecondsShipPlusDelay
+    timer:
+      _maxTime: 565
+      _isRunning: 1
+      _eventTimerCalls: {fileID: 11400000, guid: 718aa8d808aa79a40abc3266d2f16f80, type: 2}
+      _NPCToAlert: 8
 --- !u!114 &7371263332850259969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,6 +124,18 @@ MonoBehaviour:
             m_StringArgument: GeneratorExplodeTimer
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 8988970857005786147}
+          m_TargetAssemblyTypeName: TimerManager, Assembly-CSharp
+          m_MethodName: RemoveTimerNoReturn
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 30SecondsGeneratorPlusDelay
+            m_BoolArgument: 0
+          m_CallState: 2
   - _npcEvent: {fileID: 11400000, guid: fc8258980d4d13341abe42a88ac6fdb6, type: 2}
     _npcEventTag: 2
     _onEventTriggered:
@@ -121,5 +151,46 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: FireFailTimer
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 8988970857005786147}
+          m_TargetAssemblyTypeName: TimerManager, Assembly-CSharp
+          m_MethodName: RemoveTimerNoReturn
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 30SecondsFirePlusDelay
+            m_BoolArgument: 0
+          m_CallState: 2
+  - _npcEvent: {fileID: 11400000, guid: fc8258980d4d13341abe42a88ac6fdb6, type: 2}
+    _npcEventTag: 0
+    _onEventTriggered:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8988970857005786147}
+          m_TargetAssemblyTypeName: TimerManager, Assembly-CSharp
+          m_MethodName: RemoveTimerNoReturn
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: ShipFailTimer
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 8988970857005786147}
+          m_TargetAssemblyTypeName: TimerManager, Assembly-CSharp
+          m_MethodName: RemoveTimerNoReturn
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 30SecondsShipPlusDelay
             m_BoolArgument: 0
           m_CallState: 2

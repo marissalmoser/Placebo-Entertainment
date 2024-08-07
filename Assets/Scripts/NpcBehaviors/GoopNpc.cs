@@ -17,7 +17,7 @@ public class GoopNpc : BaseNpc
 
     protected override int ChooseDialoguePath(PlayerResponse option)
     {
-        if(_hasBypassItem)
+        if (_hasBypassItem)
         {
             return option.NextResponseIndex[1];
         }

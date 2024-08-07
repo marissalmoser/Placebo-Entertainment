@@ -156,7 +156,12 @@ public abstract class BaseNpc : MonoBehaviour
 
         _tabbedMenu = TabbedMenu.Instance;
         _navAgent = GetComponent<NavMeshAgent>();
+
         _animator = GetComponent<Animator>();
+        if(_animator == null)
+        {
+            _animator = GetComponentInChildren<Animator>(); 
+        }
 
         EnterIdle();
     }
@@ -301,6 +306,7 @@ public abstract class BaseNpc : MonoBehaviour
     /// <returns>String dialogue response</returns>
     protected virtual string ChooseDialogueFromNode(DialogueNode node)
     {
+        PlayRandomTalkingAnim();
         return node.Dialogue[0];
     }
 
@@ -320,6 +326,23 @@ public abstract class BaseNpc : MonoBehaviour
         return 0;
     }
     #endregion
+
+    protected void PlayRandomTalkingAnim()
+    {
+        int rand = Random.Range(1, 4);
+        switch (rand)
+        {
+            case 1:
+                _animator.SetTrigger("Talking1");
+                break;
+            case 2:
+                _animator.SetTrigger("Talking2");
+                break;
+            case 3:
+                _animator.SetTrigger("Talking3");
+                break;
+        }
+    }
 
     /// <summary>
     /// When called, checks if the NPC should change to a new state
