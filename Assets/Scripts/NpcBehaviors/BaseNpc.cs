@@ -97,6 +97,7 @@ public abstract class BaseNpc : MonoBehaviour
     #endregion
 
     [SerializeField] protected string _npcName;
+    [SerializeField] protected Sprite _npcBanner;
 
     [SerializeField] protected InventoryItemData _targetBypassItem;
 
@@ -270,7 +271,7 @@ public abstract class BaseNpc : MonoBehaviour
             _currentDialogueIndex = nextNodeIndex;
             DialogueNode currentNode = _stateDialogueTrees.GetStateData(_currentState)[_currentDialogueIndex];
             string response = ChooseDialogueFromNode(currentNode);
-            _tabbedMenu.DisplayDialogue(_npcName, response);
+            _tabbedMenu.DisplayDialogue(_npcName, response, _npcBanner);
             _tabbedMenu.ToggleDialogue(true);
             GetPlayerResponses();
         }

@@ -33,7 +33,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.1764705, y: 1.1764705, z: 1.1764705}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7605938401051990144}
@@ -148,7 +148,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _npcName: Olpy
-  _targetBypassItem: {fileID: 11400000, guid: 6aedf7c082c61264992de20207ac5bad, type: 2}
+  _npcBanner: {fileID: 21300000, guid: 39c658f6fb08336438fd58d645f60010, type: 3}
+  _targetBypassItem: {fileID: 0}
   _onEnterFailState: {fileID: 0}
   _startMinigameEvent: {fileID: 0}
   _eventTag: 5
@@ -337,6 +338,7 @@ MonoBehaviour:
     _playingMinigameState: {fileID: 0}
     _postMinigameState: {fileID: 0}
     _failureState: {fileID: 0}
+  _targetBookItem: {fileID: 11400000, guid: 6aedf7c082c61264992de20207ac5bad, type: 2}
 --- !u!114 &3356181948352045349
 MonoBehaviour:
   m_ObjectHideFlags: 0
