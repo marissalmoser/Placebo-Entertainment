@@ -19,23 +19,11 @@ public class AngelNpc : BaseNpc
     private bool _cowardGameComplete = false;
     private bool _isPostMinigameState = false;
 
-    private Animator _anim;
-
     /// <summary>
-    /// Getting Animator on child
+    /// Used in first playable for knowing if the robot game is complete
+    /// done
     /// </summary>
-    protected override void Initialize()
-    {
-        base.Initialize();
-
-        _anim = GetComponentInChildren<Animator>();
-    }
-
-        /// <summary>
-        /// Used in first playable for knowing if the robot game is complete
-        /// done
-        /// </summary>
-        public void RobotMinigameCompleted()
+    public void RobotMinigameCompleted()
     {
         _robotGameComplete = true;
     }
@@ -67,7 +55,7 @@ public class AngelNpc : BaseNpc
     {
         base.EnterPostMinigame();
 
-        Interact();
+        //Interact();
 
         _removeTimerEvent.TriggerEvent(NpcEventTags.Angel);
 
@@ -127,7 +115,6 @@ public class AngelNpc : BaseNpc
         }
         if (_hasPills)
         {
-            _anim.SetTrigger("Healed");
             return option.NextResponseIndex[1];
         }
         else if(!_hasPills && option.NextResponseIndex.Length > 0)

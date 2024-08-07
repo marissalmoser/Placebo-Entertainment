@@ -74,6 +74,16 @@ public class RobotNpc : BaseNpc
     /// </summary>
     public override void CheckForStateChange()
     {
+        //If statement is used to update the robot's dialogue if the player
+        //doesn't start the robot's minigame
+
+        //Checks if the robot is in the idle state
+        if (_currentState == NpcStates.DefaultIdle)
+        {
+            //Switches the robot to the minigameReady state
+            _currentState = NpcStates.MinigameReady;
+        }
+
         if (_currentState == NpcStates.PlayingMinigame)
         {
             EnterPostMinigame();

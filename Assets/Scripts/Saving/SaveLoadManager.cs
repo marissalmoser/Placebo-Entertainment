@@ -1,6 +1,6 @@
 /******************************************************************
 *    Author: Elijah Vroman
-*    Contributors: Elijah Vroman, Nick Grinstead
+*    Contributors: Elijah Vroman,
 *    Date Created: 6/2/24
 *    Description: This manager allows saving and loading, assigning 
 *    savedata, deleting savedata,
@@ -36,9 +36,6 @@ public class SaveLoadManager : MonoBehaviour
 
     private SaveData newData = new SaveData();
 
-    /// <summary>
-    /// Gathers save data from the inventory
-    /// </summary>
     private void CollectInventoryData()
     {
         InventoryHolder[] inventoryHolders = FindObjectsOfType<InventoryHolder>();
@@ -53,9 +50,6 @@ public class SaveLoadManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Saves game data to a file
-    /// </summary>
     public bool SaveGameToSaveFile()
     {
         OnSaveGame?.Invoke();
@@ -73,20 +67,6 @@ public class SaveLoadManager : MonoBehaviour
         File.WriteAllText(dir + fileName, jsonString);
         GUIUtility.systemCopyBuffer = dir;
         return true;
-    }
-
-    /// <summary>
-    /// Used by external scripts to confirm is saved data exists
-    /// </summary>
-    /// <returns>True if there's saved data</returns>
-    public bool DoesSaveFileExist()
-    {
-        string fullPath = Application.persistentDataPath + directory + fileName;
-
-        if (File.Exists(fullPath))
-            return true;
-        else
-            return false;
     }
 
     /// <summary>
@@ -112,9 +92,6 @@ public class SaveLoadManager : MonoBehaviour
         return temp;
     }
 
-    /// <summary>
-    /// Deletes saved data if it exists
-    /// </summary>
     public void DeleteSaveData()
     {
         string fullPath = Application.persistentDataPath + directory + fileName;
@@ -124,10 +101,6 @@ public class SaveLoadManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Assigns saved data into the inventory system
-    /// </summary>
-    /// <param name="data">Any saved game data</param>
     private void AssignLoadedData(SaveData data)
     {
         foreach (var entry in data.inventoryDictionary)

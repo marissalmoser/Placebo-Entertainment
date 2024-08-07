@@ -1,6 +1,6 @@
 /******************************************************************
 *    Author: Nick Grinstead
-*    Contributors: Andrea Swihart-DeCoster
+*    Contributors: Andrea Swihart-DeCoster, Elijah Vroman
 *    Date Created: 5/28/24
 *    Description: NPC class containing logic for the Coward NPC.
 *******************************************************************/
@@ -108,9 +108,12 @@ public class CowardNpc : BaseNpc
 
     /// <summary>
     /// Restarts the loop due to generator explosion when entering failure state
+    /// E.V.: there is an event listener on the LoopController that listens for
+    /// OnDeath/Generator Death
     /// </summary>
     protected override void EnterFailure()
     {
+        Debug.Log("The generator exploded");
         base.EnterFailure();
     }
 
@@ -166,6 +169,17 @@ public class CowardNpc : BaseNpc
         //}
         // Don't have minigame bypass
         //else
+
+        //Checks for the wrench
+        if (_playerInventorySystem.ContainsItem(_targetBypassItem, out _))
+        {
+            return option.NextResponseIndex[1];
+        }
+        else
+        {
+            return option.NextResponseIndex[0];
+        }
+
         {
             if (option.NextResponseIndex.Length > 0)
             {

@@ -1,8 +1,12 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Art/Models/goop/animations/goop_animation_idle.anim.meta
+guid: 6b34230b68c6a3245888590ace2dc8fc
+========
 guid: 784203b3ceaef224b958929eab3638ca
+>>>>>>>> main:Assets/Art/Models/fish/animations/animation_fish_idle.anim.meta
 NativeFormatImporter:
   externalObjects: {}
-  mainObjectFileID: 7400000
+  mainObjectFileID: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

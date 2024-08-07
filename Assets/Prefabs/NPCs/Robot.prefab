@@ -146,9 +146,9 @@ MonoBehaviour:
   _stateDialogueTrees:
     _idleState:
     - _dialogue:
-      - "You there! Praise the sun, I require your assistance. I\u2019m low on power
-        and am afraid I will die if I do not receive my solar light bulb in (time
-        left). Have you seen it?"
+      - "Thank the Sun and stars you\u2019re here! I\u2019m low on power and my core
+        will extinguish if I do not receive my solar light bulb in (time left). Have
+        you seen it, my friend?"
       - Have you found my solar light bulb?
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
@@ -162,12 +162,12 @@ MonoBehaviour:
         _eventTag: 0
         _hasPrerequisiteCheck: 1
         _answer: Here it is!
-        _nextResponseIndex: 0200000007000000
+        _nextResponseIndex: 0200000008000000
         _advancesNpcState: 0
         _endsDialogue: 0
     - _dialogue:
-      - Flicker! I was able to check everywhere but the storage room. Please! Go
-        find it!
+      - Ah, photons! I was able to check everywhere but the storage room. Please
+        find it for me!
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 0
@@ -190,9 +190,9 @@ MonoBehaviour:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 0
         _hasPrerequisiteCheck: 0
-        _answer: What do you know about the engineer? He seems to be struggling with
-          the generator?
-        _nextResponseIndex: 05000000
+        _answer: What do you know about the engineer? He seemed rather frightened
+          by your lightbulb.
+        _nextResponseIndex: 06000000
         _advancesNpcState: 0
         _endsDialogue: 0
       - _eventToTrigger: {fileID: 0}
@@ -200,10 +200,11 @@ MonoBehaviour:
         _hasPrerequisiteCheck: 0
         _answer: "I don\u2019t think so."
         _nextResponseIndex: 
-        _advancesNpcState: 0
+        _advancesNpcState: 1
         _endsDialogue: 1
     - _dialogue:
-      - "The bridge? I don\u2019t have clearance for the bridge."
+      - "The bridge? You know I don\u2019t have access to the bridge, that\u2019s
+        why I have you!"
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 0
@@ -213,8 +214,116 @@ MonoBehaviour:
         _advancesNpcState: 0
         _endsDialogue: 0
     - _dialogue:
-      - "But I could get you to the next room, if the door access system weren\u2019t
-        all jumbled up. Could you take a look at it?"
+      - "But I could open the hallway door for you, if the door access system wasn\u2019t
+        all jumbled up."
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 0
+        _hasPrerequisiteCheck: 0
+        _answer: <b>Next
+        _nextResponseIndex: 05000000
+        _advancesNpcState: 0
+        _endsDialogue: 0
+    - _dialogue:
+      - As usual, I am improperly proportioned for this task. Could you do it?
+      _playerResponses:
+      - _eventToTrigger: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
+        _eventTag: 5
+        _hasPrerequisiteCheck: 0
+        _answer: Of course!
+        _nextResponseIndex: 
+        _advancesNpcState: 0
+        _endsDialogue: 1
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 0
+        _hasPrerequisiteCheck: 0
+        _answer: Not right now.
+        _nextResponseIndex: 
+        _advancesNpcState: 1
+        _endsDialogue: 1
+    - _dialogue:
+      - "Odon is a bit of a coward. This is not the first incident. He has a tendency
+        to take what doesn\u2019t belong to him\u2026 especially if it\u2019s shiny."
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 0
+        _hasPrerequisiteCheck: 0
+        _answer: <b>Next
+        _nextResponseIndex: 07000000
+        _advancesNpcState: 0
+        _endsDialogue: 0
+    - _dialogue:
+      - "I\u2019ve seen him hit the generator with the wrong end of a wrench\u2026.
+        Sometimes I wonder if he even knows what he\u2019s doing."
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 0
+        _hasPrerequisiteCheck: 0
+        _answer: <b>Leave
+        _nextResponseIndex: 
+        _advancesNpcState: 1
+        _endsDialogue: 1
+    - _dialogue:
+      - "This isn\u2019t the Radion Galaxy. I don\u2019t have the bandwidth for jokes
+        right now, go find my lightbulb!"
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 0
+        _hasPrerequisiteCheck: 0
+        _answer: <b>Leave
+        _nextResponseIndex: 
+        _advancesNpcState: 0
+        _endsDialogue: 1
+    _minigameReadyState:
+    - _dialogue:
+      - Thank you again for helping me. Is there anything else I can do for you?
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 0
+        _hasPrerequisiteCheck: 0
+        _answer: "I\u2019m trying to get to the bridge. Can you help me?"
+        _nextResponseIndex: 01000000
+        _advancesNpcState: 0
+        _endsDialogue: 0
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 0
+        _hasPrerequisiteCheck: 0
+        _answer: What do you know about the engineer? He seemed rather frightened
+          by your lightbulb.
+        _nextResponseIndex: 04000000
+        _advancesNpcState: 0
+        _endsDialogue: 0
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 0
+        _hasPrerequisiteCheck: 0
+        _answer: I don't think so.
+        _nextResponseIndex: 
+        _advancesNpcState: 0
+        _endsDialogue: 1
+    - _dialogue:
+      - "The bridge? You know I don\u2019t have access to the bridge, that\u2019s
+        why I have you!"
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 0
+        _hasPrerequisiteCheck: 0
+        _answer: <b>Next
+        _nextResponseIndex: 02000000
+        _advancesNpcState: 0
+        _endsDialogue: 0
+    - _dialogue:
+      - "But I could open the hallway door for you, if the door access system wasn\u2019t
+        all jumbled up."
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 0
+        _hasPrerequisiteCheck: 0
+        _answer: <b>Next
+        _nextResponseIndex: 03000000
+        _advancesNpcState: 0
+        _endsDialogue: 0
+    - _dialogue:
+      - As usual, I am improperly proportioned for this task. Could you do it?
       _playerResponses:
       - _eventToTrigger: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
         _eventTag: 5
@@ -231,19 +340,19 @@ MonoBehaviour:
         _advancesNpcState: 0
         _endsDialogue: 1
     - _dialogue:
-      - The engineer is a bit of a coward. This is not the first incident of him
-        doing his job wrong.
+      - "Odon is a bit of a coward. This is not the first incident. He has a tendency
+        to take what doesn\u2019t belong to him\u2026 especially if it\u2019s shiny."
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 0
         _hasPrerequisiteCheck: 0
         _answer: <b>Next
-        _nextResponseIndex: 06000000
+        _nextResponseIndex: 05000000
         _advancesNpcState: 0
         _endsDialogue: 0
     - _dialogue:
-      - "Not to mention his tendency to take what doesn\u2019t belong to him\u2026
-        especially if it\u2019s shiny."
+      - "I\u2019ve seen him hit the generator with the wrong end of a wrench\u2026.
+        Sometimes I wonder if he even knows what he\u2019s doing."
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 0
@@ -252,51 +361,40 @@ MonoBehaviour:
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
-    - _dialogue:
-      - "What? No you don\u2019t. It\u2019s rude to tease a dying robot you know."
-      _playerResponses:
-      - _eventToTrigger: {fileID: 0}
-        _eventTag: 0
-        _hasPrerequisiteCheck: 0
-        _answer: <b>Leave
-        _nextResponseIndex: 
-        _advancesNpcState: 0
-        _endsDialogue: 1
-    _minigameReadyState: []
     _playingMinigameState: []
     _postMinigameState:
     - _dialogue:
-      - "That\u2019s much better! Thank you for the help."
+      - Thank you again for helping me. Is there anything else I can do for you?
       _playerResponses:
       - _eventToTrigger: {fileID: 11400000, guid: 0dc09a2e909bfa14ba070b27da962183, type: 2}
         _eventTag: 5
         _hasPrerequisiteCheck: 0
-        _answer: "I\u2019m trying to get to the bridge. Can you help me?"
+        _answer: What do you know about the engineer? He seemed rather frightened
+          by your lightbulb.
         _nextResponseIndex: 01000000
         _advancesNpcState: 0
         _endsDialogue: 0
-      - _eventToTrigger: {fileID: 0}
-        _eventTag: 0
+      - _eventToTrigger: {fileID: 11400000, guid: 0dc09a2e909bfa14ba070b27da962183, type: 2}
+        _eventTag: 5
         _hasPrerequisiteCheck: 0
-        _answer: Who was that in the storage room?
-        _nextResponseIndex: 02000000
-        _advancesNpcState: 0
-        _endsDialogue: 0
-    - _dialogue:
-      - "The bridge you say? I don\u2019t have clearance to the bridge, but I can
-        get you to the next room. *Unlocks doors* There you go!"
-      _playerResponses:
-      - _eventToTrigger: {fileID: 0}
-        _eventTag: 0
-        _hasPrerequisiteCheck: 0
-        _answer: <b>Leave
+        _answer: I don't think so.
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
     - _dialogue:
-      - "Oh him? That\u2019s the engineer but he\u2019s more of a coward if you ask
-        me. Not to mention his tendency to take what doesn\u2019t belong to him.
-        I wouldn\u2019t trust him, I know I don\u2019t."
+      - "Odon is a bit of a coward. This is not the first incident. He has a tendency
+        to take what doesn\u2019t belong to him\u2026 especially if it\u2019s shiny."
+      _playerResponses:
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 0
+        _hasPrerequisiteCheck: 0
+        _answer: <b>Next
+        _nextResponseIndex: 02000000
+        _advancesNpcState: 0
+        _endsDialogue: 0
+    - _dialogue:
+      - "I\u2019ve seen him hit the generator with the wrong end of a wrench\u2026.
+        Sometimes I wonder if he even knows what he\u2019s doing."
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 0
