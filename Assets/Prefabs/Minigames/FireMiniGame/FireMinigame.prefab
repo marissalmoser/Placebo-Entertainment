@@ -30,6 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 654344810626255647}
   - {fileID: 1087604670029060660}
   - {fileID: 7330766815761825132}
   - {fileID: 1348695676573955599}
@@ -6081,6 +6082,72 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1001 &7055471454224793443
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 9050133710876610342}
+    m_Modifications:
+    - target: {fileID: 6566482308650919668, guid: 2622d1f6eb0debf45b5e272c9eb17479, type: 3}
+      propertyPath: m_Name
+      value: Fire Alarm Light Empty
+      objectReference: {fileID: 0}
+    - target: {fileID: 6566482308650919668, guid: 2622d1f6eb0debf45b5e272c9eb17479, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7565663389310366844, guid: 2622d1f6eb0debf45b5e272c9eb17479, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 13.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 7565663389310366844, guid: 2622d1f6eb0debf45b5e272c9eb17479, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 17.555
+      objectReference: {fileID: 0}
+    - target: {fileID: 7565663389310366844, guid: 2622d1f6eb0debf45b5e272c9eb17479, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 29.778053
+      objectReference: {fileID: 0}
+    - target: {fileID: 7565663389310366844, guid: 2622d1f6eb0debf45b5e272c9eb17479, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7565663389310366844, guid: 2622d1f6eb0debf45b5e272c9eb17479, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7565663389310366844, guid: 2622d1f6eb0debf45b5e272c9eb17479, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7565663389310366844, guid: 2622d1f6eb0debf45b5e272c9eb17479, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7565663389310366844, guid: 2622d1f6eb0debf45b5e272c9eb17479, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7565663389310366844, guid: 2622d1f6eb0debf45b5e272c9eb17479, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7565663389310366844, guid: 2622d1f6eb0debf45b5e272c9eb17479, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2622d1f6eb0debf45b5e272c9eb17479, type: 3}
+--- !u!4 &654344810626255647 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7565663389310366844, guid: 2622d1f6eb0debf45b5e272c9eb17479, type: 3}
+  m_PrefabInstance: {fileID: 7055471454224793443}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7970898814110482512
 PrefabInstance:
   m_ObjectHideFlags: 0
