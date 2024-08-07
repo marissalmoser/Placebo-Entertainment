@@ -1,89 +1,245 @@
 fileFormatVersion: 2
 guid: 0357f6f10bd8a624e8abf5e5f4c1ca69
 ModelImporter:
-  serializedVersion: 22
-  fileIDToRecycleName:
-    100000: Box892
-    100002: Object619
-    100004: Object620
-    100006: Object621
-    100008: Object622
-    100010: Object623
-    100012: Object624
-    100014: Object625
-    100016: Object626
-    100018: Object627
-    100020: Object628
-    100022: Object629
-    100024: Object630
-    100026: Object631
-    100028: Object632
-    100030: //RootNode
-    400000: Box892
-    400002: Object619
-    400004: Object620
-    400006: Object621
-    400008: Object622
-    400010: Object623
-    400012: Object624
-    400014: Object625
-    400016: Object626
-    400018: Object627
-    400020: Object628
-    400022: Object629
-    400024: Object630
-    400026: Object631
-    400028: Object632
-    400030: //RootNode
-    2100000: 'Material #27'
-    2300000: Box892
-    2300002: Object619
-    2300004: Object620
-    2300006: Object621
-    2300008: Object622
-    2300010: Object623
-    2300012: Object624
-    2300014: Object625
-    2300016: Object626
-    2300018: Object627
-    2300020: Object628
-    2300022: Object629
-    2300024: Object630
-    2300026: Object631
-    2300028: Object632
-    3300000: Box892
-    3300002: Object619
-    3300004: Object620
-    3300006: Object621
-    3300008: Object622
-    3300010: Object623
-    3300012: Object624
-    3300014: Object625
-    3300016: Object626
-    3300018: Object627
-    3300020: Object628
-    3300022: Object629
-    3300024: Object630
-    3300026: Object631
-    3300028: Object632
-    4300000: Object621
-    4300002: Box892
-    4300004: Object619
-    4300006: Object620
-    4300008: Object622
-    4300010: Object623
-    4300012: Object624
-    4300014: Object625
-    4300016: Object626
-    4300018: Object627
-    4300020: Object628
-    4300022: Object629
-    4300024: Object630
-    4300026: Object631
-    4300028: Object632
+  serializedVersion: 22200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Box892
+  - first:
+      1: 100002
+    second: Object619
+  - first:
+      1: 100004
+    second: Object620
+  - first:
+      1: 100006
+    second: Object621
+  - first:
+      1: 100008
+    second: Object622
+  - first:
+      1: 100010
+    second: Object623
+  - first:
+      1: 100012
+    second: Object624
+  - first:
+      1: 100014
+    second: Object625
+  - first:
+      1: 100016
+    second: Object626
+  - first:
+      1: 100018
+    second: Object627
+  - first:
+      1: 100020
+    second: Object628
+  - first:
+      1: 100022
+    second: Object629
+  - first:
+      1: 100024
+    second: Object630
+  - first:
+      1: 100026
+    second: Object631
+  - first:
+      1: 100028
+    second: Object632
+  - first:
+      1: 100030
+    second: //RootNode
+  - first:
+      4: 400000
+    second: Box892
+  - first:
+      4: 400002
+    second: Object619
+  - first:
+      4: 400004
+    second: Object620
+  - first:
+      4: 400006
+    second: Object621
+  - first:
+      4: 400008
+    second: Object622
+  - first:
+      4: 400010
+    second: Object623
+  - first:
+      4: 400012
+    second: Object624
+  - first:
+      4: 400014
+    second: Object625
+  - first:
+      4: 400016
+    second: Object626
+  - first:
+      4: 400018
+    second: Object627
+  - first:
+      4: 400020
+    second: Object628
+  - first:
+      4: 400022
+    second: Object629
+  - first:
+      4: 400024
+    second: Object630
+  - first:
+      4: 400026
+    second: Object631
+  - first:
+      4: 400028
+    second: Object632
+  - first:
+      4: 400030
+    second: //RootNode
+  - first:
+      21: 2100000
+    second: Material #27
+  - first:
+      23: 2300000
+    second: Box892
+  - first:
+      23: 2300002
+    second: Object619
+  - first:
+      23: 2300004
+    second: Object620
+  - first:
+      23: 2300006
+    second: Object621
+  - first:
+      23: 2300008
+    second: Object622
+  - first:
+      23: 2300010
+    second: Object623
+  - first:
+      23: 2300012
+    second: Object624
+  - first:
+      23: 2300014
+    second: Object625
+  - first:
+      23: 2300016
+    second: Object626
+  - first:
+      23: 2300018
+    second: Object627
+  - first:
+      23: 2300020
+    second: Object628
+  - first:
+      23: 2300022
+    second: Object629
+  - first:
+      23: 2300024
+    second: Object630
+  - first:
+      23: 2300026
+    second: Object631
+  - first:
+      23: 2300028
+    second: Object632
+  - first:
+      33: 3300000
+    second: Box892
+  - first:
+      33: 3300002
+    second: Object619
+  - first:
+      33: 3300004
+    second: Object620
+  - first:
+      33: 3300006
+    second: Object621
+  - first:
+      33: 3300008
+    second: Object622
+  - first:
+      33: 3300010
+    second: Object623
+  - first:
+      33: 3300012
+    second: Object624
+  - first:
+      33: 3300014
+    second: Object625
+  - first:
+      33: 3300016
+    second: Object626
+  - first:
+      33: 3300018
+    second: Object627
+  - first:
+      33: 3300020
+    second: Object628
+  - first:
+      33: 3300022
+    second: Object629
+  - first:
+      33: 3300024
+    second: Object630
+  - first:
+      33: 3300026
+    second: Object631
+  - first:
+      33: 3300028
+    second: Object632
+  - first:
+      43: 4300000
+    second: Object621
+  - first:
+      43: 4300002
+    second: Box892
+  - first:
+      43: 4300004
+    second: Object619
+  - first:
+      43: 4300006
+    second: Object620
+  - first:
+      43: 4300008
+    second: Object622
+  - first:
+      43: 4300010
+    second: Object623
+  - first:
+      43: 4300012
+    second: Object624
+  - first:
+      43: 4300014
+    second: Object625
+  - first:
+      43: 4300016
+    second: Object626
+  - first:
+      43: 4300018
+    second: Object627
+  - first:
+      43: 4300020
+    second: Object628
+  - first:
+      43: 4300022
+    second: Object629
+  - first:
+      43: 4300024
+    second: Object630
+  - first:
+      43: 4300026
+    second: Object631
+  - first:
+      43: 4300028
+    second: Object632
   externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -92,6 +248,7 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
     motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: 
@@ -100,6 +257,7 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
@@ -114,32 +272,49 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 0
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
+    nodeNameCollisionStrategy: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
+    strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -149,14 +324,19 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 0
   humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  importBlendShapeDeformPercent: 0
+  remapMaterialsIfMaterialImportModeIsNone: 1
   additionalBone: 0
   userData: 
   assetBundleName: 

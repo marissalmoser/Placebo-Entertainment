@@ -642,7 +642,6 @@ MonoBehaviour:
   HideSetupWizard: 1
   LastEventReferenceScanVersion: 131617
   Platforms:
-  - {fileID: -9008621229561604981}
   - {fileID: -8513230826130204585}
   - {fileID: -8009475120983660096}
   - {fileID: -6763951882696614487}
@@ -798,7 +797,6 @@ MonoBehaviour:
     HasValue: 0
   displaySortOrder: 0
   childIdentifiers:
-  - 52eb9df5db46521439908db3a29a1bbb
   - b7716510a1f36934c87976f3a81dbf3d
   - 0f8eb3f400726694eb47beb1a9f94ce8
   - e7a046c753c3c3d4aacc91f6597f310d

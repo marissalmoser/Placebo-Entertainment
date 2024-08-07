@@ -1,139 +1,395 @@
 fileFormatVersion: 2
 guid: e900fbebbd438304bb103b7ee8579ca6
 ModelImporter:
-  serializedVersion: 22
-  fileIDToRecycleName:
-    100000: //RootNode
-    100002: Cylinder007
-    100004: Object1070
-    100006: Object1071
-    100008: Object1072
-    100010: Object1073
-    100012: Object1074
-    100014: Object1075
-    100016: Object1076
-    100018: Object1077
-    100020: Object1078
-    100022: Object1079
-    100024: Object1080
-    100026: Object1081
-    100028: Object1082
-    100030: Object1083
-    100032: Object1084
-    100034: Object1085
-    100036: Object1086
-    100038: Object1087
-    100040: Object1088
-    100042: Object1089
-    100044: Object1090
-    100046: Object1091
-    100048: Object1092
-    100050: Object1093
-    400000: //RootNode
-    400002: Cylinder007
-    400004: Object1070
-    400006: Object1071
-    400008: Object1072
-    400010: Object1073
-    400012: Object1074
-    400014: Object1075
-    400016: Object1076
-    400018: Object1077
-    400020: Object1078
-    400022: Object1079
-    400024: Object1080
-    400026: Object1081
-    400028: Object1082
-    400030: Object1083
-    400032: Object1084
-    400034: Object1085
-    400036: Object1086
-    400038: Object1087
-    400040: Object1088
-    400042: Object1089
-    400044: Object1090
-    400046: Object1091
-    400048: Object1092
-    400050: Object1093
-    2100000: 'Material #27'
-    2300000: Cylinder007
-    2300002: Object1070
-    2300004: Object1071
-    2300006: Object1072
-    2300008: Object1073
-    2300010: Object1074
-    2300012: Object1075
-    2300014: Object1076
-    2300016: Object1077
-    2300018: Object1078
-    2300020: Object1079
-    2300022: Object1080
-    2300024: Object1081
-    2300026: Object1082
-    2300028: Object1083
-    2300030: Object1084
-    2300032: Object1085
-    2300034: Object1086
-    2300036: Object1087
-    2300038: Object1088
-    2300040: Object1089
-    2300042: Object1090
-    2300044: Object1091
-    2300046: Object1092
-    2300048: Object1093
-    3300000: Cylinder007
-    3300002: Object1070
-    3300004: Object1071
-    3300006: Object1072
-    3300008: Object1073
-    3300010: Object1074
-    3300012: Object1075
-    3300014: Object1076
-    3300016: Object1077
-    3300018: Object1078
-    3300020: Object1079
-    3300022: Object1080
-    3300024: Object1081
-    3300026: Object1082
-    3300028: Object1083
-    3300030: Object1084
-    3300032: Object1085
-    3300034: Object1086
-    3300036: Object1087
-    3300038: Object1088
-    3300040: Object1089
-    3300042: Object1090
-    3300044: Object1091
-    3300046: Object1092
-    3300048: Object1093
-    4300000: Object1070
-    4300002: Object1071
-    4300004: Cylinder007
-    4300006: Object1072
-    4300008: Object1073
-    4300010: Object1074
-    4300012: Object1075
-    4300014: Object1076
-    4300016: Object1077
-    4300018: Object1078
-    4300020: Object1079
-    4300022: Object1080
-    4300024: Object1081
-    4300026: Object1082
-    4300028: Object1083
-    4300030: Object1084
-    4300032: Object1085
-    4300034: Object1086
-    4300036: Object1087
-    4300038: Object1088
-    4300040: Object1089
-    4300042: Object1090
-    4300044: Object1091
-    4300046: Object1092
-    4300048: Object1093
+  serializedVersion: 22200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: //RootNode
+  - first:
+      1: 100002
+    second: Cylinder007
+  - first:
+      1: 100004
+    second: Object1070
+  - first:
+      1: 100006
+    second: Object1071
+  - first:
+      1: 100008
+    second: Object1072
+  - first:
+      1: 100010
+    second: Object1073
+  - first:
+      1: 100012
+    second: Object1074
+  - first:
+      1: 100014
+    second: Object1075
+  - first:
+      1: 100016
+    second: Object1076
+  - first:
+      1: 100018
+    second: Object1077
+  - first:
+      1: 100020
+    second: Object1078
+  - first:
+      1: 100022
+    second: Object1079
+  - first:
+      1: 100024
+    second: Object1080
+  - first:
+      1: 100026
+    second: Object1081
+  - first:
+      1: 100028
+    second: Object1082
+  - first:
+      1: 100030
+    second: Object1083
+  - first:
+      1: 100032
+    second: Object1084
+  - first:
+      1: 100034
+    second: Object1085
+  - first:
+      1: 100036
+    second: Object1086
+  - first:
+      1: 100038
+    second: Object1087
+  - first:
+      1: 100040
+    second: Object1088
+  - first:
+      1: 100042
+    second: Object1089
+  - first:
+      1: 100044
+    second: Object1090
+  - first:
+      1: 100046
+    second: Object1091
+  - first:
+      1: 100048
+    second: Object1092
+  - first:
+      1: 100050
+    second: Object1093
+  - first:
+      4: 400000
+    second: //RootNode
+  - first:
+      4: 400002
+    second: Cylinder007
+  - first:
+      4: 400004
+    second: Object1070
+  - first:
+      4: 400006
+    second: Object1071
+  - first:
+      4: 400008
+    second: Object1072
+  - first:
+      4: 400010
+    second: Object1073
+  - first:
+      4: 400012
+    second: Object1074
+  - first:
+      4: 400014
+    second: Object1075
+  - first:
+      4: 400016
+    second: Object1076
+  - first:
+      4: 400018
+    second: Object1077
+  - first:
+      4: 400020
+    second: Object1078
+  - first:
+      4: 400022
+    second: Object1079
+  - first:
+      4: 400024
+    second: Object1080
+  - first:
+      4: 400026
+    second: Object1081
+  - first:
+      4: 400028
+    second: Object1082
+  - first:
+      4: 400030
+    second: Object1083
+  - first:
+      4: 400032
+    second: Object1084
+  - first:
+      4: 400034
+    second: Object1085
+  - first:
+      4: 400036
+    second: Object1086
+  - first:
+      4: 400038
+    second: Object1087
+  - first:
+      4: 400040
+    second: Object1088
+  - first:
+      4: 400042
+    second: Object1089
+  - first:
+      4: 400044
+    second: Object1090
+  - first:
+      4: 400046
+    second: Object1091
+  - first:
+      4: 400048
+    second: Object1092
+  - first:
+      4: 400050
+    second: Object1093
+  - first:
+      21: 2100000
+    second: Material #27
+  - first:
+      23: 2300000
+    second: Cylinder007
+  - first:
+      23: 2300002
+    second: Object1070
+  - first:
+      23: 2300004
+    second: Object1071
+  - first:
+      23: 2300006
+    second: Object1072
+  - first:
+      23: 2300008
+    second: Object1073
+  - first:
+      23: 2300010
+    second: Object1074
+  - first:
+      23: 2300012
+    second: Object1075
+  - first:
+      23: 2300014
+    second: Object1076
+  - first:
+      23: 2300016
+    second: Object1077
+  - first:
+      23: 2300018
+    second: Object1078
+  - first:
+      23: 2300020
+    second: Object1079
+  - first:
+      23: 2300022
+    second: Object1080
+  - first:
+      23: 2300024
+    second: Object1081
+  - first:
+      23: 2300026
+    second: Object1082
+  - first:
+      23: 2300028
+    second: Object1083
+  - first:
+      23: 2300030
+    second: Object1084
+  - first:
+      23: 2300032
+    second: Object1085
+  - first:
+      23: 2300034
+    second: Object1086
+  - first:
+      23: 2300036
+    second: Object1087
+  - first:
+      23: 2300038
+    second: Object1088
+  - first:
+      23: 2300040
+    second: Object1089
+  - first:
+      23: 2300042
+    second: Object1090
+  - first:
+      23: 2300044
+    second: Object1091
+  - first:
+      23: 2300046
+    second: Object1092
+  - first:
+      23: 2300048
+    second: Object1093
+  - first:
+      33: 3300000
+    second: Cylinder007
+  - first:
+      33: 3300002
+    second: Object1070
+  - first:
+      33: 3300004
+    second: Object1071
+  - first:
+      33: 3300006
+    second: Object1072
+  - first:
+      33: 3300008
+    second: Object1073
+  - first:
+      33: 3300010
+    second: Object1074
+  - first:
+      33: 3300012
+    second: Object1075
+  - first:
+      33: 3300014
+    second: Object1076
+  - first:
+      33: 3300016
+    second: Object1077
+  - first:
+      33: 3300018
+    second: Object1078
+  - first:
+      33: 3300020
+    second: Object1079
+  - first:
+      33: 3300022
+    second: Object1080
+  - first:
+      33: 3300024
+    second: Object1081
+  - first:
+      33: 3300026
+    second: Object1082
+  - first:
+      33: 3300028
+    second: Object1083
+  - first:
+      33: 3300030
+    second: Object1084
+  - first:
+      33: 3300032
+    second: Object1085
+  - first:
+      33: 3300034
+    second: Object1086
+  - first:
+      33: 3300036
+    second: Object1087
+  - first:
+      33: 3300038
+    second: Object1088
+  - first:
+      33: 3300040
+    second: Object1089
+  - first:
+      33: 3300042
+    second: Object1090
+  - first:
+      33: 3300044
+    second: Object1091
+  - first:
+      33: 3300046
+    second: Object1092
+  - first:
+      33: 3300048
+    second: Object1093
+  - first:
+      43: 4300000
+    second: Object1070
+  - first:
+      43: 4300002
+    second: Object1071
+  - first:
+      43: 4300004
+    second: Cylinder007
+  - first:
+      43: 4300006
+    second: Object1072
+  - first:
+      43: 4300008
+    second: Object1073
+  - first:
+      43: 4300010
+    second: Object1074
+  - first:
+      43: 4300012
+    second: Object1075
+  - first:
+      43: 4300014
+    second: Object1076
+  - first:
+      43: 4300016
+    second: Object1077
+  - first:
+      43: 4300018
+    second: Object1078
+  - first:
+      43: 4300020
+    second: Object1079
+  - first:
+      43: 4300022
+    second: Object1080
+  - first:
+      43: 4300024
+    second: Object1081
+  - first:
+      43: 4300026
+    second: Object1082
+  - first:
+      43: 4300028
+    second: Object1083
+  - first:
+      43: 4300030
+    second: Object1084
+  - first:
+      43: 4300032
+    second: Object1085
+  - first:
+      43: 4300034
+    second: Object1086
+  - first:
+      43: 4300036
+    second: Object1087
+  - first:
+      43: 4300038
+    second: Object1088
+  - first:
+      43: 4300040
+    second: Object1089
+  - first:
+      43: 4300042
+    second: Object1090
+  - first:
+      43: 4300044
+    second: Object1091
+  - first:
+      43: 4300046
+    second: Object1092
+  - first:
+      43: 4300048
+    second: Object1093
   externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -142,6 +398,7 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
     motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: 
@@ -150,6 +407,7 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
@@ -164,32 +422,49 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 0
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
+    nodeNameCollisionStrategy: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
+    strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -199,14 +474,19 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 0
   humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  importBlendShapeDeformPercent: 0
+  remapMaterialsIfMaterialImportModeIsNone: 1
   additionalBone: 0
   userData: 
   assetBundleName: 
