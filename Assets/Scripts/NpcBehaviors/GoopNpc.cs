@@ -12,6 +12,12 @@ public class GoopNpc : BaseNpc
 {
     [SerializeField] private InventoryItemData _targetBookItem;
     private bool _hasBook;
+
+    protected override void Initialize()
+    {
+        base.Initialize();
+    }
+
     public override void CheckForStateChange()
     {
         if (_currentState == NpcStates.DefaultIdle)
@@ -21,7 +27,7 @@ public class GoopNpc : BaseNpc
     }
     protected override int ChooseDialoguePath(PlayerResponse option)
     {
-        if(_hasBypassItem)
+        if (_hasBypassItem)
         {
             return option.NextResponseIndex[1];
         }
@@ -37,6 +43,7 @@ public class GoopNpc : BaseNpc
             }
         }
     }
+
     public override void CollectedItem(InventoryItemData item, int quantity)
     {
         base.CollectedItem(item, quantity);

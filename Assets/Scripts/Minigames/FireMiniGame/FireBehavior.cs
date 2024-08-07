@@ -1,49 +1,153 @@
 /*****************************************************************************
 // File Name :         FireBehavior.cs
 // Author :            Mark Hanson
+// Contributors:       Andrea Swihart-DeCoster
 // Creation Date :     6/19/2024
 //
-// Brief Description : Function for destroying fire when it reaches 0 by water touching it
+// Brief Description : Function for controlling fire scale
 *****************************************************************************/
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
-using UnityEngine.UI;
 
 public class FireBehavior : MonoBehaviour
 {
+    public static Action<FireBehavior> OnFireExtinguished;
+
     [Header("Settings")]
-    [SerializeField] private int _minFireEndure;
-    [SerializeField] private int _maxFireEndure;
-    [SerializeField] private int _curFireEndure;
+    [SerializeField] private int _waterCooldown;
+    [SerializeField] private float _timeBetweenScaleChanges;
 
-    [Header("Connectors")]
-    [SerializeField] private TextMeshPro _fireNum;
+    [Range(0f,50f)]
+    [Tooltip("How much the fire changes size each time it grows or shrinks")]
+    [SerializeField] private float _absoluteScaleChange;
 
-    void Awake()
+    [Range(0f, 2f)]
+    [Tooltip("Minimum size the fire can start at.")]
+    [SerializeField] private float _minFireSize;
+    [Range(0f, 2f)]
+    [SerializeField] private float _maxFireSize;
+
+    // _scaleChange starts at _absoluteScaleChange then changes to pos or neg situationally
+    private float _scaleChange;
+
+
+    private ParticleSystem _particleSyst;
+
+    private void Start()
     {
-        _curFireEndure = Random.Range(_minFireEndure, _maxFireEndure);
+        // _scaleChange changes signs based on growing or shrinking and needs to be initialized with the default scale change value
+        _scaleChange = _absoluteScaleChange;
+        StartCoroutine(ChangeFireScale());
+
+        _particleSyst = GetComponent<ParticleSystem>();
     }
-    // Update is called once per frame
-    void Update()
+
+    #region Particle Trigger
+    private void OnParticleTrigger()
     {
-        _fireNum.text = _curFireEndure.ToString();
-        if (_curFireEndure <= 0)
+        // Particles inside and particles that have exited the collider
+        List<ParticleSystem.Particle> particlesInside = new List<ParticleSystem.Particle>();
+        List<ParticleSystem.Particle> particlesExited = new List<ParticleSystem.Particle>();
+
+        // get the particles which matched the trigger conditions this frame
+        int numParticleInside = _particleSyst.GetTriggerParticles(ParticleSystemTriggerEventType.Inside, particlesInside);
+        int numParticlesExited = _particleSyst.GetTriggerParticles(ParticleSystemTriggerEventType.Exit, particlesExited);
+
+        // If there are no particles in the fire collider, start fire growth
+        if (numParticlesExited > 0 && numParticleInside <= 0)
         {
-            Destroy(gameObject);
+            StartFireGrow();
         }
-        if (_curFireEndure >= 15 && _curFireEndure <= 100)
+        // If there are particles in the fire collider, it should begin to grow
+        else if (particlesInside.Count > 0)
         {
-            transform.localScale = new Vector3(_curFireEndure / 30f, _curFireEndure / 30f, _curFireEndure / 30f);
+            StartFireShrink();
+        }
+    }
+    #endregion Particle Trigger
+
+    public void SetStartFireSize()
+    {
+        // Each fire should be a diff size so they get random sizes in the range
+        float startingSize = UnityEngine.Random.Range(_minFireSize, _maxFireSize);
+        transform.localScale = new Vector3(startingSize, startingSize, startingSize);
+    }
+
+    /// <summary>
+    /// Begins the fire growing logic
+    /// </summary>
+    public void StartFireGrow()
+    {
+        if (_scaleChange <= 0)
+        {
+            StartCoroutine(CooldownBeforeGrowing());
         }
     }
 
-    void OnTriggerEnter(Collider col)
+    /// <summary>
+    /// Begins the fire shrinking logic
+    /// </summary>
+    public void StartFireShrink()
     {
-        if (col.gameObject.tag == "Water")
+        if (_scaleChange >= 0)
         {
-            _curFireEndure--;
+            StopCoroutine(CooldownBeforeGrowing());
+            _scaleChange = -_absoluteScaleChange;
         }
+    }
+
+    /// <summary>
+    /// After the cooldown period, the fire should start growing
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator CooldownBeforeGrowing()
+    {
+        // Only start the cooldown if the fire is currently shrinking (interacting with water)
+        if (_scaleChange <= 0)
+        {
+            _scaleChange = 0f;
+            yield return new WaitForSeconds(_waterCooldown);
+            _scaleChange = _absoluteScaleChange;
+        }
+    }
+
+    /// <summary>
+    /// Changes the scale of the fire.
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator ChangeFireScale()
+    {
+        // Stops once size is 0
+        while (transform.localScale.x > 0)
+        {
+            // Shouldn't grow if bigger than maxFireSize
+            if (CanFireGrow() || _scaleChange < 0)
+            {
+                // Changes fire scale
+                float newScale = transform.localScale.x + _scaleChange;
+                transform.localScale = new Vector3(newScale, newScale, newScale);
+
+                // Destroy object if fully shrunk
+                if (transform.localScale.x <= 0)
+                {
+                    OnFireExtinguished?.Invoke(this);
+                    Destroy(transform.parent.gameObject);
+                }
+            }
+
+            yield return new WaitForSeconds(_timeBetweenScaleChanges);
+        }
+    }
+
+    /// <summary>
+    /// Checks if fire scale is positive (indicates it's supposed to grow) and that the size has not exceeded the max fire size
+    /// </summary>
+    /// <returns></returns>
+    private bool CanFireGrow()
+    {
+        return _scaleChange > 0 && transform.localScale.x <= _maxFireSize;
     }
 }

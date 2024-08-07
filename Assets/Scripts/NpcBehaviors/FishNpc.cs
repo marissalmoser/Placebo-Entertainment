@@ -19,6 +19,11 @@ public class FishNpc : BaseNpc
 
     [SerializeField] private float _fadeOutTime;
 
+    protected override void Initialize()
+    {
+        base.Initialize();
+    }
+
     /// <summary>
     /// Called to update the NPCs state
     /// </summary>

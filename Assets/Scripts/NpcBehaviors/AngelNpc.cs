@@ -13,9 +13,11 @@ using UnityEngine;
 public class AngelNpc : BaseNpc
 {
     [SerializeField] private InventoryItemData _targetPillsItem;
+    [SerializeField] private NpcEvent _removeTimerEvent;
     private bool _hasPills;
     private bool _robotGameComplete = false;
     private bool _cowardGameComplete = false;
+    private bool _isPostMinigameState = false;
 
     /// <summary>
     /// Used in first playable for knowing if the robot game is complete
@@ -53,7 +55,11 @@ public class AngelNpc : BaseNpc
     {
         base.EnterPostMinigame();
 
-        
+        Interact();
+
+        _removeTimerEvent.TriggerEvent(NpcEventTags.Angel);
+
+        _isPostMinigameState = true;
     }
 
     /// <summary>
@@ -102,6 +108,11 @@ public class AngelNpc : BaseNpc
     }
     protected override int ChooseDialoguePath(PlayerResponse option)
     {
+        if (_isPostMinigameState && option.NextResponseIndex.Length == 1)
+        {
+            _animator.SetTrigger("FinalChoice");
+            return 0;
+        }
         if (_hasPills)
         {
             return option.NextResponseIndex[1];
@@ -139,6 +150,16 @@ public class AngelNpc : BaseNpc
         {
             _hasPills = true;
             Debug.Log(_hasPills);
+        }
+    }
+    public override void Interact(int responseIndex = 0)
+    {
+        // Overwrote this to add special functionality to play an anim a the 2nd to last dialogue node.
+        base.Interact(responseIndex);
+
+        if (_isPostMinigameState && _currentDialogueIndex == _stateDialogueTrees.GetStateData(_currentState).Length - 1)
+        {
+            _animator.SetTrigger("FinalChoice");
         }
     }
 }
