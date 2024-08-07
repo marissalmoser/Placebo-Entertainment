@@ -138,6 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _npcName: Silus
+  _npcBanner: {fileID: 21300000, guid: eb33218ba59f23d438997476c13f3260, type: 3}
   _targetBypassItem: {fileID: 0}
   _onEnterFailState: {fileID: 0}
   _startMinigameEvent: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
@@ -150,14 +151,15 @@ MonoBehaviour:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 2
         _hasPrerequisiteCheck: 1
-        _answer: Do you smell smoke?
+        _answer: "I\u2019ve been putting out peoples fires left and right. Is there
+          anything I can help you with?"
         _nextResponseIndex: 0100000002000000
         _advancesNpcState: 0
         _endsDialogue: 0
       - _eventToTrigger: {fileID: 0}
         _eventTag: 2
         _hasPrerequisiteCheck: 0
-        _answer: "Something\u2019s wrong in the med bay."
+        _answer: Should I be worried about the medbay?
         _nextResponseIndex: 04000000
         _advancesNpcState: 0
         _endsDialogue: 0
@@ -169,8 +171,8 @@ MonoBehaviour:
         _advancesNpcState: 0
         _endsDialogue: 0
     - _dialogue:
-      - "Hmm\u2026 I can\u2019t smell anything. Take a few deep breaths, I\u2019m
-        sure everything is fine."
+      - "Everything is fine here. Take a few deep breaths, I\u2019m sure everything
+        will be alright."
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 2
@@ -180,7 +182,8 @@ MonoBehaviour:
         _advancesNpcState: 0
         _endsDialogue: 1
     - _dialogue:
-      - Now that you mention it, I do. Something must be wrong.
+      - Now that you mention it, there is. I thought I heard a siren in the next
+        room. You might need to help me put out a real fire, heheh...
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 2
@@ -190,8 +193,9 @@ MonoBehaviour:
         _advancesNpcState: 0
         _endsDialogue: 0
     - _dialogue:
-      - "There aren\u2019t really any buckets around. But I can hold a lot of water.
-        If you pick me up and direct me at the flames, I\u2019ll put them out!"
+      - "Where\u2019s that darn fire extinguisher\u2026 Oh well, I naturally hold
+        about seven gallons of water. If you pick me up and direct me at the flames,
+        I\u2019ll put them out! See you there, bubbles."
       _playerResponses:
       - _eventToTrigger: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
         _eventTag: 2
@@ -201,19 +205,21 @@ MonoBehaviour:
         _advancesNpcState: 0
         _endsDialogue: 1
     - _dialogue:
-      - "Well that\u2019s not good. Is Olpy alright?"
+      - "Olpy\u2019s in there\u2026 when the ship goes through turbulence, their
+        suit tends to break. Have you checked on them?"
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 2
         _hasPrerequisiteCheck: 0
-        _answer: "Their suit isn\u2019t moving and I can\u2019t understand them."
+        _answer: "I have checked on them. Their suit isn\u2019t moving and I can\u2019t
+          understand them."
         _nextResponseIndex: 05000000
         _advancesNpcState: 0
         _endsDialogue: 0
       - _eventToTrigger: {fileID: 0}
         _eventTag: 2
         _hasPrerequisiteCheck: 0
-        _answer: Their suit was turned off, but they seemed fine.
+        _answer: "No I haven\u2019t."
         _nextResponseIndex: 15000000
         _advancesNpcState: 0
         _endsDialogue: 0
@@ -260,7 +266,7 @@ MonoBehaviour:
         _advancesNpcState: 0
         _endsDialogue: 0
     - _dialogue:
-      - "Ah, well, It\u2019s somewhere here on the ship. If you find it, it\u2019s
+      - "Ah, well, it\u2019s somewhere here on the ship. If you find it, it\u2019s
         yours to keep."
       _playerResponses:
       - _eventToTrigger: {fileID: 11400000, guid: b0ff38f0f20db8a4ab04033934de185c, type: 2}
@@ -387,8 +393,8 @@ MonoBehaviour:
         _advancesNpcState: 0
         _endsDialogue: 1
     - _dialogue:
-      - "Their suit turned off, eh? Ah, don\u2019t worry, Olpy will be alright. The
-        ole\u2019 thing malfunctions sometimes, they\u2019re used to it."
+      - "Might be a good idea to take a peek in there, just to make sure they\u2019re
+        okay. Thanks, bubbles."
       _playerResponses:
       - _eventToTrigger: {fileID: 0}
         _eventTag: 2
@@ -462,9 +468,9 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: FireManager, Assembly-CSharp
-          m_MethodName: StartMinigame
-          m_Mode: 1
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -474,9 +480,9 @@ MonoBehaviour:
             m_BoolArgument: 1
           m_CallState: 2
         - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_MethodName: SetActive
-          m_Mode: 6
+          m_TargetAssemblyTypeName: FireManager, Assembly-CSharp
+          m_MethodName: StartMinigame
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

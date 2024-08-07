@@ -35,8 +35,8 @@ public class AngelMinigameManager : MonoBehaviour
     [SerializeField] private float _bridgeLayoutDisplayTime;
     [SerializeField] private GameObject _bridgeLayoutScreen;
     [SerializeField] private Image[] _layoutStations;
-    private Color _stationDimmedColor;
-    private Color _stationHighlightedColor;
+    [SerializeField] private Sprite _stationHighlightedSprite;
+    [SerializeField] private Sprite _stationGreyedOutSprite;
 
     [SerializeField] int _countDownTime;
     private int _currentTime;
@@ -61,8 +61,6 @@ public class AngelMinigameManager : MonoBehaviour
         CheckState += CheckStates;
         TriggerFail += StartStation;
 
-        _stationHighlightedColor = _layoutStations[0].color;
-        _stationDimmedColor = _layoutStations[1].color;
         _timerText.text = "";
 
         //find the scripts on all the screens to ref from the struct
@@ -134,7 +132,7 @@ public class AngelMinigameManager : MonoBehaviour
         {
             _stations[_stationCount].StationScreen.SetActive(false);
             _stations[_stationCount].StationBehavior.MakeStationUnconfirmable();
-            _layoutStations[_stationCount].color = _stationDimmedColor;
+            _layoutStations[_stationCount].sprite = _stationGreyedOutSprite;
         }
 
         _stationCount++;
@@ -149,7 +147,7 @@ public class AngelMinigameManager : MonoBehaviour
 
         if (_stationCount < _layoutStations.Length)
         {
-            _layoutStations[_stationCount].color = _stationHighlightedColor;
+            _layoutStations[_stationCount].sprite = _stationHighlightedSprite;
         }
         _bridgeLayoutScreen.SetActive(true);
 
