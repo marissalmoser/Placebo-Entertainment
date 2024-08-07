@@ -14,6 +14,8 @@ using UnityEngine.Events;
 using UnityEngine.Serialization;
 using UnityEngine.UIElements;
 using Cursor = UnityEngine.Cursor;
+using System.Collections;
+using Unity.VisualScripting;
 
 namespace PlaceboEntertainment.UI
 {
@@ -229,46 +231,12 @@ namespace PlaceboEntertainment.UI
 #endif
         }
 
-        /// <summary>
-        /// Unity update method. Invokes updating the mini map.
-        /// </summary>
         private void Update()
         {
-            UpdateMinimapPlayer();
-            // Sometimes this.Start() executes before LoopController.Start() makes a timer
-            // in which case this failsafe can retrieve the timer
-            if (_timer == null && !_hasCheckedForTimer)
-            {
-                _hasCheckedForTimer = true;
-                _timer = TimerManager.Instance.GetTimer("LoopTimer");
-                if (_timer == null)
-                {
-                    // The timer actually doesn't exist
-                    Debug.LogError("Time manager failed to create a timer, perhaps it's not in the scene?",
-                        gameObject);
-                }
-            }
-
-            float time = Mathf.Max(_timer.GetCurrentTimeInSeconds() - endScreenDelay, 0f);
-            TimeSpan timeSpan = TimeSpan.FromSeconds(time);
-            string timeString = timeSpan.ToString("mm':'ss");
-            _alarmClockOverlay.text = timeString;
-
             float timeSinceStart = Mathf.Max(Time.timeSinceLevelLoad, 0f);
             TimeSpan timeSpanSinceStart = TimeSpan.FromSeconds(timeSinceStart);
             string timeSinceStartString = timeSpanSinceStart.ToString("mm':'ss");
             _alarmClockMenu.text = timeSinceStartString;
-
-            if (timeSpan.TotalSeconds <= lossTime && !_hasAppliedLoseStyling)
-            {
-                SetLoseScreenActive();
-                _hasAppliedLoseStyling = true; //prevent styles getting applied for multiple frames
-            }
-            else if (timeSpan.TotalSeconds <= endScreenTime && !_hasBegunLossTransition)
-            {
-                BeginLoseScreenGrowth();
-                _hasBegunLossTransition = true;
-            }
         }
 
         #endregion
@@ -622,9 +590,46 @@ namespace PlaceboEntertainment.UI
 
         #region AlarmClockScreen
 
+        /// <summary>
+        /// Instead of finding the loop timer in the timer manager and updating a
+        /// local clock in update, this coroutine is called by the event system when
+        /// 30 seconds is remaining on a timer. (technically 35 seconds, 30 for the
+        /// countdown and then 5 for the black screen)
+        /// </summary>
+        /// <returns></returns>
+        IEnumerator LoseScreenTimer()
+        {
+            float loseTimerDisplayTime = lossTime;
+
+            while (loseTimerDisplayTime >= 0)
+            {
+                //checks to add the 0 before the 1 for 00:01
+                if (loseTimerDisplayTime >= 10)
+                {
+                    _alarmClockOverlay.text = "00:" + loseTimerDisplayTime.ToString();
+                }
+                else
+                {
+                    _alarmClockOverlay.text = "00:0" + loseTimerDisplayTime.ToString();
+                }
+
+                //checks for timer growth time
+                if (loseTimerDisplayTime <= endScreenTime)
+                {
+                    BeginLoseScreenGrowth();
+                }
+
+                loseTimerDisplayTime--;
+                yield return new WaitForSeconds(1);
+            }
+        }
+
         [ContextMenu(nameof(SetLoseScreenActive))]
         public void SetLoseScreenActive()
         {
+            print("set active");
+            StartCoroutine(LoseScreenTimer());
+            //alarmClockScreen.enabled = true;
             alarmClockScreen.rootVisualElement.style.display = DisplayStyle.Flex;
             var text = alarmClockScreen.rootVisualElement.Q<Label>(AlarmClockScreenName);
             text.AddToClassList(AlarmClockActiveStyleName);
@@ -654,9 +659,12 @@ namespace PlaceboEntertainment.UI
         [ContextMenu(nameof(SetLoseScreenUnactive))]
         public void SetLoseScreenUnactive()
         {
+            print("set unactive");
             alarmClockScreen.rootVisualElement.style.display = DisplayStyle.None;
             var text = alarmClockScreen.rootVisualElement.Q<Label>(AlarmClockScreenName);
             text.RemoveFromClassList(AlarmClockActiveStyleName);
+            StopCoroutine(LoseScreenTimer());
+            //alarmClockScreen.enabled = false;
         }
 
         #endregion
