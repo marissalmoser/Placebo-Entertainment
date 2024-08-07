@@ -75355,10 +75355,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: TeleportLocations
       objectReference: {fileID: 0}
-    - target: {fileID: 8146912553300575268, guid: 2d69cbc6d90c47c438ab29a74cfeee17, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2.486
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
