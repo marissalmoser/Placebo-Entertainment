@@ -67,7 +67,7 @@ public class AngelNpc : BaseNpc
     {
         base.EnterPostMinigame();
 
-        Interact();
+        //Interact();
 
         _removeTimerEvent.TriggerEvent(NpcEventTags.Angel);
 
