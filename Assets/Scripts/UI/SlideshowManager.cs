@@ -15,11 +15,6 @@ using UnityEngine.SceneManagement;
 
 public class SlideshowManager : MonoBehaviour
 {
-    private PlayerControls _playerControls;
-    private InputAction _playPause;
-    private UIDocument _slideshowUI;
-    private VideoPlayer _slideshowPlayer;
-
     [SerializeField] private bool _isIntroVideoPlayer = false;
 
     [SerializeField] private int _levelSceneBuildIndex;
@@ -27,6 +22,13 @@ public class SlideshowManager : MonoBehaviour
 
     [SerializeField] private VideoClip _introVideo;
     [SerializeField] private VideoClip[] _endingVideos;
+    [SerializeField] private VideoClip _creditsVideo;
+
+    private PlayerControls _playerControls;
+    private InputAction _playPause;
+    private UIDocument _slideshowUI;
+    private VideoPlayer _slideshowPlayer;
+    private bool _wasCreditsShown = false;
 
     /// <summary>
     /// Setting references and pause inputs. Also plays intro slide show if needed.
@@ -79,6 +81,12 @@ public class SlideshowManager : MonoBehaviour
         if (_isIntroVideoPlayer)
         {
             SceneManager.LoadScene(_levelSceneBuildIndex);
+        }
+        else if (!_wasCreditsShown)
+        {
+            _slideshowPlayer.clip = _creditsVideo;
+            _slideshowPlayer.Prepare();
+            _wasCreditsShown = true;
         }
         else
         {

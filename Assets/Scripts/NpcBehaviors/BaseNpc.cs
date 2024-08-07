@@ -106,7 +106,6 @@ public abstract class BaseNpc : MonoBehaviour
     [SerializeField] protected NpcEventTags _eventTag;
 
     [SerializeField] protected StateDataGroup<DialogueNode[]> _stateDialogueTrees;
-    [SerializeField] protected StateDataGroup<Vector3> _navigationPositions;
     [SerializeField] protected StateDataGroup<Animation> _stateAnimations;
 
     protected NavMeshAgent _navAgent;
@@ -410,12 +409,6 @@ public abstract class BaseNpc : MonoBehaviour
     /// </summary>
     private void StateUpdateHelper()
     {
-        if (_navAgent != null && _navAgent.isOnNavMesh)
-        {
-            Vector3 newPosition = _navigationPositions.GetStateData(_currentState);
-            _navAgent.SetDestination(newPosition);
-        }
-
         if (_animator != null)
         {
             Animation newAnimation = _stateAnimations.GetStateData(_currentState);

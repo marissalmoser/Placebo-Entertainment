@@ -101,7 +101,8 @@ MonoBehaviour:
   _isIntroVideoPlayer: 0
   _levelSceneBuildIndex: 2
   _mainMenuBuildIndex: 0
-  _introVideo: {fileID: 32900000, guid: ac63bee70e9547d4fa8975c81f84c166, type: 3}
+  _introVideo: {fileID: 32900000, guid: a3d4d6f12f420254480280d11ade563e, type: 3}
   _endingVideos:
-  - {fileID: 32900000, guid: 1387afa5d1ced8948a9eefa46d9b5d46, type: 3}
-  - {fileID: 32900000, guid: 245d532d40e9fc04b8b55b08474e86f5, type: 3}
+  - {fileID: 32900000, guid: c366df50e49f583489d5279c238e9a62, type: 3}
+  - {fileID: 32900000, guid: 2cdc3f4e1f837c446aaaaf782ca2854a, type: 3}
+  _creditsVideo: {fileID: 32900000, guid: 33855853eba4c8945b258fa44b7a1f87, type: 3}
