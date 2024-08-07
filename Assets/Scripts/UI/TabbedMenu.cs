@@ -102,6 +102,7 @@ namespace PlaceboEntertainment.UI
         private Label _interactText;
         private VisualElement _scheduleContainer;
         private VisualElement _dialogueButtonContainer;
+        private VisualElement _dialogueBanner;
         private Dictionary<string, VisualElement> _scheduleEntries = new();
         private bool _scheduleVisible = false;
         private Label _dialogueText;
@@ -135,6 +136,7 @@ namespace PlaceboEntertainment.UI
         private const string ScheduleEntryName = "ScheduleEntry";
         private const string DialogueOptionContainerName = "DialogueOptionContainer";
         private const string DialogueLabelName = "BottomBar";
+        private const string DialogueBannerName = "TopBar";
         private const string DialogueOptionName = "DialogueOption";
         private const string AlarmClockScreenName = "Clock";
         private const string AlarmClockActiveStyleName = "AlarmTextBaseActive";
@@ -180,6 +182,7 @@ namespace PlaceboEntertainment.UI
             _interactText = interactPromptMenu.rootVisualElement.Q<Label>(TalkPromptName);
             _scheduleContainer = _tabMenuRoot.Q(ScheduleContainerName);
             _dialogueButtonContainer = dialogueMenu.rootVisualElement.Q(DialogueOptionContainerName);
+            _dialogueBanner = dialogueMenu.rootVisualElement.Q(DialogueBannerName);
             _dialogueText = dialogueMenu.rootVisualElement.Q<Label>(DialogueLabelName);
             _alarmClockOverlay = alarmClockScreen.rootVisualElement.Q<Label>(AlarmClockScreenName);
             _alarmClockMenu = _tabMenuRoot.Q<Label>(AlarmClockMenuName);
@@ -528,9 +531,11 @@ namespace PlaceboEntertainment.UI
         /// </summary>
         /// <param name="charName"></param>
         /// <param name="dialogueText"></param>
-        public void DisplayDialogue(string charName, string dialogueText)
+        public void DisplayDialogue(string charName, string dialogueText, Sprite charBanner)
         {
             if (_dialogueText == null) return;
+
+            _dialogueBanner.style.backgroundImage = new StyleBackground(charBanner);
 
             if (!charName.Equals(""))
             {

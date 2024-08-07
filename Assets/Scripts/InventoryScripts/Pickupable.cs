@@ -135,7 +135,7 @@ public class Pickupable : MonoBehaviour, IInteractable
         {
             _playerController.LockCharacter(true);
             _playerInteractBehavior.StopDetectingInteractions();
-            _tabbedMenu.DisplayDialogue("", _itemDescription.Description);
+            _tabbedMenu.DisplayDialogue("", _itemDescription.Description, null);
             _tabbedMenu.ToggleDialogue(true);
             _tabbedMenu.ClearDialogueOptions();
             _tabbedMenu.DisplayDialogueOption(_itemDescription.ExitResponse, click: () => { CloseItemDescription(); });
