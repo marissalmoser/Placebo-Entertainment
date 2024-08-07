@@ -138,6 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _npcName: Silus
+  _npcBanner: {fileID: 21300000, guid: eb33218ba59f23d438997476c13f3260, type: 3}
   _targetBypassItem: {fileID: 0}
   _onEnterFailState: {fileID: 0}
   _startMinigameEvent: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
