@@ -1135,20 +1135,16 @@ PrefabInstance:
       value: 36.877415
       objectReference: {fileID: 0}
     - target: {fileID: 1145458058559846375, guid: f55858b00bf86264e988876288ea3225, type: 3}
-      propertyPath: _maxWaterAmount
-      value: 98
-      objectReference: {fileID: 0}
-    - target: {fileID: 1145458058559846375, guid: f55858b00bf86264e988876288ea3225, type: 3}
       propertyPath: _meterSpendRate
-      value: 0.2
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 1145458058559846375, guid: f55858b00bf86264e988876288ea3225, type: 3}
       propertyPath: _refillWaitTime
-      value: 1.1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1145458058559846375, guid: f55858b00bf86264e988876288ea3225, type: 3}
       propertyPath: _meterRefillRate
-      value: 0.4
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 1150324171870264051, guid: f55858b00bf86264e988876288ea3225, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -6180,6 +6176,30 @@ PrefabInstance:
       propertyPath: TriggerModule.primitives.Array.data[0]
       value: 
       objectReference: {fileID: 1715956503000187774}
+    - target: {fileID: 2740818995407348374, guid: 23b0abe1b89210e4495200bd88465c4a, type: 3}
+      propertyPath: _maxFireSize
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2740818995407348374, guid: 23b0abe1b89210e4495200bd88465c4a, type: 3}
+      propertyPath: _minFireSize
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2740818995407348374, guid: 23b0abe1b89210e4495200bd88465c4a, type: 3}
+      propertyPath: _timeBetweenScaleChanges
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3323927753307249893, guid: 23b0abe1b89210e4495200bd88465c4a, type: 3}
+      propertyPath: _maxFireSize
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3323927753307249893, guid: 23b0abe1b89210e4495200bd88465c4a, type: 3}
+      propertyPath: _minFireSize
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3323927753307249893, guid: 23b0abe1b89210e4495200bd88465c4a, type: 3}
+      propertyPath: _timeBetweenScaleChanges
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6485760075079857381, guid: 23b0abe1b89210e4495200bd88465c4a, type: 3}
       propertyPath: TriggerModule.primitives.Array.data[0]
       value: 
@@ -6228,9 +6248,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8223529688139048401, guid: 23b0abe1b89210e4495200bd88465c4a, type: 3}
+      propertyPath: _maxFireSize
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8223529688139048401, guid: 23b0abe1b89210e4495200bd88465c4a, type: 3}
+      propertyPath: _minFireSize
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8223529688139048401, guid: 23b0abe1b89210e4495200bd88465c4a, type: 3}
+      propertyPath: _waterCooldown
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8223529688139048401, guid: 23b0abe1b89210e4495200bd88465c4a, type: 3}
+      propertyPath: _timeBetweenScaleChanges
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8505039184153683373, guid: 23b0abe1b89210e4495200bd88465c4a, type: 3}
       propertyPath: m_Name
       value: FireSet
+      objectReference: {fileID: 0}
+    - target: {fileID: 8560316011154795189, guid: 23b0abe1b89210e4495200bd88465c4a, type: 3}
+      propertyPath: _maxFireSize
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8560316011154795189, guid: 23b0abe1b89210e4495200bd88465c4a, type: 3}
+      propertyPath: _minFireSize
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8560316011154795189, guid: 23b0abe1b89210e4495200bd88465c4a, type: 3}
+      propertyPath: _timeBetweenScaleChanges
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8578999707991054022, guid: 23b0abe1b89210e4495200bd88465c4a, type: 3}
