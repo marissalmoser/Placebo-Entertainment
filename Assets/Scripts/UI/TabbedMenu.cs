@@ -62,6 +62,7 @@ namespace PlaceboEntertainment.UI
         [SerializeField] private VisualTreeAsset dialogueButton;
 
         [SerializeField] private Texture2D[] _fishFaceImages;
+        [SerializeField] private FMODUnity.EventReference clickEvent;
 
         #endregion
 
@@ -561,6 +562,7 @@ namespace PlaceboEntertainment.UI
             //AutoFitLabelControl control = new AutoFitLabelControl(newButton, 16f, 30f);
             // newButton.AddManipulator(new Clickable(click));
             newButton.RegisterCallback<ClickEvent>(evt => click?.Invoke());
+            newButton.RegisterCallback<ClickEvent>(evt => AudioManager.PlaySoundUnManaged(clickEvent));
             _dialogueButtonContainer.Add(newButton);
         }
 
