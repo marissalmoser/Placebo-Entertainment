@@ -105,11 +105,12 @@ public class AudioManager : MonoBehaviour
         {
             attachObject = new GameObject(eventReference.Path);
             eventInstanceWorldDict.Add(instance, attachObject);
-            FMODUnity.RuntimeManager.AttachInstanceToGameObject(instance, attachObject.transform, rigidBody: null);
         }
 
         attachObject.transform.parent = followObject;
         attachObject.transform.position = followObject.position;
+        FMODUnity.RuntimeManager.DetachInstanceFromGameObject(instance);
+        FMODUnity.RuntimeManager.AttachInstanceToGameObject(instance, attachObject.transform, rigidBody: null);
 
 
         if (parameters != null)
@@ -183,11 +184,12 @@ public class AudioManager : MonoBehaviour
         {
             attachObject = new GameObject(eventReference.Path);
             eventInstanceWorldDict.Add(instance, attachObject);
-            FMODUnity.RuntimeManager.AttachInstanceToGameObject(instance, attachObject.transform, rb ? rb : null);
         }
 
         attachObject.transform.parent = rb ? rb.transform : null;
         attachObject.transform.position = origin;
+        FMODUnity.RuntimeManager.DetachInstanceFromGameObject(instance);
+        FMODUnity.RuntimeManager.AttachInstanceToGameObject(instance, attachObject.transform, rb ? rb : null);
 
 
         if (parameters != null)
