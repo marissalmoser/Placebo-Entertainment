@@ -48,8 +48,8 @@ MonoBehaviour:
   _playerName: Self
   _monologueNodes:
   - _monologueLabel: Starting Monologue
-    _monologueText: Hmm... something seems to have happened. I should go check in
-      with the other crew  memebers.
+    _monologueText: "Hmm\u2026 something seems to have happened. I should check in
+      with the captain."
     _exitResponse: Leave
     _eventToTrigger: {fileID: 0}
     _eventTag: 0
