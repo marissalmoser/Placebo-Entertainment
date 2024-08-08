@@ -328,7 +328,7 @@ MonoBehaviour:
     - _dialogue:
       - The crew is safe, yes?
       _playerResponses:
-      - _eventToTrigger: {fileID: 0}
+      - _eventToTrigger: {fileID: 11400000, guid: fc8258980d4d13341abe42a88ac6fdb6, type: 2}
         _eventTag: 0
         _hasPrerequisiteCheck: 0
         _answer: Safe and sound.
