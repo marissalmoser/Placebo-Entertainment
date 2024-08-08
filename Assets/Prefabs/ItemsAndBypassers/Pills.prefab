@@ -75,6 +75,13 @@ MonoBehaviour:
   PickUpRadius: 0
   myData: {fileID: 11400000, guid: 4140399a6ecfe844180bcab962e13806, type: 2}
   _IsInteractiveOnStart: 0
+  pickupEvent:
+    Guid:
+      Data1: -845400244
+      Data2: 1333520218
+      Data3: 572179079
+      Data4: -1855746747
+    Path: event:/Characters/Player/Item
 --- !u!1001 &8380807883016592611
 PrefabInstance:
   m_ObjectHideFlags: 0

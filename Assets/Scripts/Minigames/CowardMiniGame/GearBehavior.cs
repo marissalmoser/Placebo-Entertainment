@@ -25,6 +25,7 @@ public class GearBehavior : MonoBehaviour, IInteractable
     [Header("Correct Gear")]
     [SerializeField] private int _rightGearNum;
     [SerializeField] private float _rotationSpeed;
+    [SerializeField] private FMODUnity.EventReference gearChangeEvent;
 
     private int _currentGearSizeIndex;
     private Vector3 _rotationAngle;
@@ -90,7 +91,8 @@ public class GearBehavior : MonoBehaviour, IInteractable
                 _gearSizes[previousIndex].SetActive(false);
             if (_currentGearSizeIndex < _gearSizes.Length && _currentGearSizeIndex >= 0)
                  _gearSizes[_currentGearSizeIndex].SetActive(true);
-            
+
+            AudioManager.PlaySound(gearChangeEvent, transform.position);
             CheckGearCompletion();
         }
     }

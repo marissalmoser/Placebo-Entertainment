@@ -317,6 +317,13 @@ MonoBehaviour:
   _downPosition: {fileID: 8459378814987905870}
   IsInteractable: 0
   _buttonCooldownTime: 0.3
+  interactEvent:
+    Guid:
+      Data1: -458273568
+      Data2: 1323962794
+      Data3: 1248409226
+      Data4: -1491724796
+    Path: event:/Minigame/Angel/ConfirmButton
 --- !u!1 &8459378814987905870
 GameObject:
   m_ObjectHideFlags: 0

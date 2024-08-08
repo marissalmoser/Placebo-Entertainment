@@ -119,6 +119,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cf668135d8b08441866096b28d74e8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interactPromptText: DIAL
+  dialEvent:
+    Guid:
+      Data1: -588663482
+      Data2: 1310235617
+      Data3: -123631221
+      Data4: -703254892
+    Path: event:/Minigame/Angel/Dial
 --- !u!1 &2813561285784493439
 GameObject:
   m_ObjectHideFlags: 0

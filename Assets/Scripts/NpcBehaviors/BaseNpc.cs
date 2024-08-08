@@ -7,9 +7,11 @@
 *       that child scripts will expand upon.
 *******************************************************************/
 using System.Collections.Generic;
+using FMOD.Studio;
 using UnityEngine;
 using UnityEngine.AI;
 using PlaceboEntertainment.UI;
+using UnityEngine.Serialization;
 
 public abstract class BaseNpc : MonoBehaviour
 {
@@ -69,6 +71,7 @@ public abstract class BaseNpc : MonoBehaviour
 
         public string[] Dialogue { get => _dialogue; }
         public PlayerResponse[] PlayerResponses { get => _playerResponses; }
+        [FormerlySerializedAs("dialogueEvent")] public FMODUnity.EventReference DialogueEvent;
     }
 
     /// <summary>
@@ -107,6 +110,7 @@ public abstract class BaseNpc : MonoBehaviour
 
     [SerializeField] protected StateDataGroup<DialogueNode[]> _stateDialogueTrees;
     [SerializeField] protected StateDataGroup<Animation> _stateAnimations;
+    protected EventInstance _dialogueInstance;
 
     protected NavMeshAgent _navAgent;
     protected Animator _animator;
@@ -306,7 +310,7 @@ public abstract class BaseNpc : MonoBehaviour
     /// <returns>String dialogue response</returns>
     protected virtual string ChooseDialogueFromNode(DialogueNode node)
     {
-        PlayRandomTalkingAnim();
+        PlayRandomTalkingAnim(node);
         return node.Dialogue[0];
     }
 
@@ -327,8 +331,10 @@ public abstract class BaseNpc : MonoBehaviour
     }
     #endregion
 
-    protected void PlayRandomTalkingAnim()
+    protected void PlayRandomTalkingAnim(DialogueNode node)
     {
+        AudioManager.StopSound(_dialogueInstance);
+        _dialogueInstance = AudioManager.PlaySound(node.DialogueEvent, transform.position);
         int rand = Random.Range(1, 4);
         switch (rand)
         {

@@ -76,6 +76,13 @@ MonoBehaviour:
   _isLocked: 0
   _material: {fileID: 2100000, guid: 270de10887ae1314390fd8a79892583c, type: 2}
   _renderer: {fileID: 2335262}
+  doorEvent:
+    Guid:
+      Data1: 1570167679
+      Data2: 1136313053
+      Data3: 1989381263
+      Data4: -603663729
+    Path: event:/Environment/OpenDoor
 --- !u!65 &2169736444655066224
 BoxCollider:
   m_ObjectHideFlags: 0
