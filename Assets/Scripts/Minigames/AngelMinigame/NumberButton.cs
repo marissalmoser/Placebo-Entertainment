@@ -20,6 +20,7 @@ public class NumberButton : ButtonInteraction
     /// <param name="player">Player interacting with button</param>
     public override void Interact(GameObject player)
     {
+        AudioManager.PlaySound(interactEvent, _buttonPress.transform.position);
         _buttonPress.transform.position = _downPosition.transform.position;
         _canBePressed = false;
         StartCoroutine(ButtonCooldown());
