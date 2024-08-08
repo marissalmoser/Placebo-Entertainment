@@ -10,6 +10,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using FMOD.Studio;
 using UnityEngine;
 
 public class FireBehavior : MonoBehaviour
@@ -30,6 +31,10 @@ public class FireBehavior : MonoBehaviour
     [Range(0f, 2f)]
     [SerializeField] private float _maxFireSize;
 
+    [SerializeField] private FMODUnity.EventReference fireEvent;
+    [SerializeField] private FMODUnity.EventReference fireDouseEvent;
+
+    private EventInstance _fireInstance;
     // _scaleChange starts at _absoluteScaleChange then changes to pos or neg situationally
     private float _scaleChange;
 
@@ -43,6 +48,12 @@ public class FireBehavior : MonoBehaviour
         StartCoroutine(ChangeFireScale());
 
         _particleSyst = GetComponent<ParticleSystem>();
+        _fireInstance = AudioManager.PlaySound(fireEvent, transform.position);
+    }
+
+    private void OnDestroy()
+    {
+        AudioManager.StopSound(_fireInstance);
     }
 
     #region Particle Trigger
@@ -96,6 +107,7 @@ public class FireBehavior : MonoBehaviour
         {
             StopCoroutine(CooldownBeforeGrowing());
             _scaleChange = -_absoluteScaleChange;
+            AudioManager.PlaySound(fireDouseEvent, transform.position);
         }
     }
 

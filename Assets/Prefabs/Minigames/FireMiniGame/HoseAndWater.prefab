@@ -11065,6 +11065,20 @@ MonoBehaviour:
   _meterRefillRate: 0.5
   _interactPromptText: FISH
   _waterSpray: {fileID: 284831111557341597}
+  fishPickupEvent:
+    Guid:
+      Data1: 1121253473
+      Data2: 1259295224
+      Data3: -1483772004
+      Data4: 1208567544
+    Path: event:/Minigame/Fish/FishPickup
+  fishSprayEvent:
+    Guid:
+      Data1: -6705755
+      Data2: 1266167091
+      Data3: -607760710
+      Data4: -1367934564
+    Path: event:/Minigame/Fish/FishFiring
 --- !u!65 &4605749992162346134
 BoxCollider:
   m_ObjectHideFlags: 0

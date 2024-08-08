@@ -49,7 +49,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _minigameEndEvent: {fileID: 11400000, guid: 0dc09a2e909bfa14ba070b27da962183, type: 2}
-  _fireAlarmLight: {fileID: 6566482308650919668, guid: 2622d1f6eb0debf45b5e272c9eb17479, type: 3}
+  _fireAlarmLight: {fileID: 2252253660791862636}
+  sirenEvent:
+    Guid:
+      Data1: 1110734284
+      Data2: 1129740305
+      Data3: -263389005
+      Data4: -352338331
+    Path: event:/Minigame/Fish/Siren
 --- !u!1 &2109888563746133568
 GameObject:
   m_ObjectHideFlags: 0

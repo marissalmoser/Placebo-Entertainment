@@ -301,11 +301,26 @@ MonoBehaviour:
   _wireColor: {r: 0, g: 0.6694646, b: 1, a: 1}
   _URPShader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   _interactColor: {r: 0, g: 1, b: 0.038576603, a: 1}
+  _interactPromptText: MOVE
   _sphereScale: 0.3
   _wireStartPosition: {fileID: 2105087402058434552}
   _wireEndPosition: {fileID: 3192316250598961245}
   _distanceFromPlayer: 1.2
   _maxLength: 4
+  wireGrabEvent:
+    Guid:
+      Data1: 1036749152
+      Data2: 1155712922
+      Data3: -392175214
+      Data4: 482645600
+    Path: event:/Minigame/WireGrab
+  wireConnectEvent:
+    Guid:
+      Data1: -1354043426
+      Data2: 1251495551
+      Data3: -1982613105
+      Data4: -212138410
+    Path: event:/Minigame/WireConnect
 --- !u!114 &1999621104526795041
 MonoBehaviour:
   m_ObjectHideFlags: 0

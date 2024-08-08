@@ -4941,6 +4941,20 @@ MonoBehaviour:
   _absoluteScaleChange: 0.5
   _minFireSize: 0.3
   _maxFireSize: 1.5
+  fireEvent:
+    Guid:
+      Data1: -1253278272
+      Data2: 1243240926
+      Data3: -412096852
+      Data4: 1662435431
+    Path: event:/Minigame/Fish/FireBurning
+  fireDouseEvent:
+    Guid:
+      Data1: -79913499
+      Data2: 1308136660
+      Data3: 1537432993
+      Data4: -725631942
+    Path: event:/Minigame/Fish/FireDoused
 --- !u!1001 &2055736030151137936
 PrefabInstance:
   m_ObjectHideFlags: 0

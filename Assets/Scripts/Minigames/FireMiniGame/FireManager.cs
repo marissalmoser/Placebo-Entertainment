@@ -9,6 +9,7 @@
 using PlaceboEntertainment.UI;
 using System.Collections.Generic;
 using System.Linq;
+using FMOD.Studio;
 using UnityEngine;
 
 public class FireManager : MonoBehaviour
@@ -17,14 +18,17 @@ public class FireManager : MonoBehaviour
 
     [SerializeField] private GameObject _fireAlarmLight;
 
+    [SerializeField] private FMODUnity.EventReference sirenEvent;
+    
     private List<FireBehavior> _fires;
 
     private TabbedMenu _tabbedMenu;
     private GameObject _fishNPC;
-
+    private EventInstance _sirenInstance;
     private void Start()
     {
         _tabbedMenu = TabbedMenu.Instance;
+        _sirenInstance = AudioManager.PlaySound(sirenEvent, _fireAlarmLight.transform.position);
     }
 
     public void StartMinigame()
@@ -81,6 +85,7 @@ public class FireManager : MonoBehaviour
     {
         _fishNPC.SetActive(true);
         _fireAlarmLight.SetActive(false);
+        AudioManager.StopSound(_sirenInstance);
 
         Destroy(FishHoseBehavior.Instance.gameObject);
 

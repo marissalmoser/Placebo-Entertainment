@@ -16,11 +16,12 @@ public class GeneratorMinigameManager : MonoBehaviour
 
     private InventoryHolder _inventoryHolder;
     [SerializeField] private InventoryItemData _wrenchItemData;
-
+    [SerializeField] private FMODUnity.EventReference generatorRunning;
     private void Start()
     {
         GameObject player = GameObject.FindWithTag("Player");
         _inventoryHolder = player.GetComponent<InventoryHolder>();
+        AudioManager.PlaySound(generatorRunning, _gearBottom.transform.position);
     }
 
     /// <summary>
