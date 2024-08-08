@@ -24,14 +24,19 @@ public class AudioManager : MonoBehaviour
 
     private void OnDestroy()
     {
+        StopAllSounds();
+        eventInstancesDict.Clear();
+        eventInstanceWorldDict.Clear();
+        paramRefDict.Clear();
+    }
+
+    public static void StopAllSounds()
+    {
         var bus = FMODUnity.RuntimeManager.GetBus("bus:/");
         if (bus.isValid())
         {
             bus.stopAllEvents(STOP_MODE.IMMEDIATE);
         }
-        eventInstancesDict.Clear();
-        eventInstanceWorldDict.Clear();
-        paramRefDict.Clear();
     }
 
     public static void PlaySoundUnManaged(EventReference eventReference, Vector3 position)
