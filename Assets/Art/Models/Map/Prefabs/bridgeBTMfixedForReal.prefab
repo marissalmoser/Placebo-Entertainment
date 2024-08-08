@@ -1,5 +1,111 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1851833300910265484
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 596759514610086956}
+  - component: {fileID: 7825631555503501298}
+  m_Layer: 6
+  m_Name: Ramp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &596759514610086956
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1851833300910265484}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.004875815, y: 0.0011640151, z: -0.12994187, w: 0.9915089}
+  m_LocalPosition: {x: -64.164, y: -0.328, z: -39.18}
+  m_LocalScale: {x: 3.5014167, y: 1.1566496, z: 9.6226}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4881886654317414956}
+  m_LocalEulerAnglesHint: {x: 0.571, y: 0.06, z: -14.932}
+--- !u!65 &7825631555503501298
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1851833300910265484}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.8816488, y: 0.3799766, z: 1}
+  m_Center: {x: 0.05917726, y: 0.31001168, z: 3.16183e-11}
+--- !u!1 &7033084666184361309
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 900311500516040393}
+  - component: {fileID: 1338598764561246201}
+  m_Layer: 6
+  m_Name: Ramp (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &900311500516040393
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7033084666184361309}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.004875815, y: 0.0011640151, z: -0.12994187, w: 0.9915089}
+  m_LocalPosition: {x: -71.454, y: 0.34, z: -39.18}
+  m_LocalScale: {x: 3.5014167, y: 1.1566496, z: 9.6226}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4881886654317414956}
+  m_LocalEulerAnglesHint: {x: 0.571, y: 0.06, z: -14.932}
+--- !u!65 &1338598764561246201
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7033084666184361309}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.7245119, y: 0.3799755, z: 1}
+  m_Center: {x: -0.01939402, y: 0.31000838, z: 2.353027e-11}
 --- !u!1001 &4914917540787006919
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -62,6 +168,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: ed008df76dea1cd4a8f619629530fc18, type: 3}
       insertIndex: 0
       addedObject: {fileID: 2694286382677900613}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: ed008df76dea1cd4a8f619629530fc18, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 596759514610086956}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: ed008df76dea1cd4a8f619629530fc18, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 900311500516040393}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: -7755428557687053135, guid: ed008df76dea1cd4a8f619629530fc18, type: 3}
       insertIndex: -1
