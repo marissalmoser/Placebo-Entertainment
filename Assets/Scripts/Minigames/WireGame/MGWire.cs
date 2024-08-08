@@ -32,6 +32,8 @@ public class MGWire : MonoBehaviour
     [SerializeField] private Transform _wireEndPosition;
     [SerializeField] private float _distanceFromPlayer;
     [SerializeField] private float _maxLength;
+    [SerializeField] private FMODUnity.EventReference wireGrabEvent;
+    [SerializeField] private FMODUnity.EventReference wireConnectEvent;
 
     private bool _canConnectToSlot = false;
 
@@ -90,6 +92,7 @@ public class MGWire : MonoBehaviour
         // Can't interact with wires unless the minigame has begun
         if (_minigameStarted && _canInteract)
         {
+            AudioManager.PlaySound(wireGrabEvent, transform.position);
             if (!_isInteracting)
             {
                 OnInteract();
@@ -201,10 +204,10 @@ public class MGWire : MonoBehaviour
             _isCorrectlySlotted = _currentSlot.CheckWire(this);
 
             // Prevents the moving of wires that are already in the right place
-            //if (_isCorrectlySlotted)
-            //{
-            //    _canInteract = false;
-            //}
+            if (_isCorrectlySlotted)
+            {
+                AudioManager.PlaySound(wireConnectEvent, transform.position);
+            }
         }
         else if (!_canConnectToSlot)
         {

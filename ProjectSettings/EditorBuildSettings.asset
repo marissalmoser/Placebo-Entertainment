@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/IntroScene.unity
     guid: 141752bf3b1737c41ae866c2047e515d
   - enabled: 1
+    path: Assets/Scenes/MapOverhaul.unity
+    guid: 72c608e9732cb3a4ab1e92df34ff43cf
+  - enabled: 0
     path: Assets/Scenes/GameScene.unity
     guid: bfdd2d91b9b8d014f99107d288c64439
   m_configObjects: {}

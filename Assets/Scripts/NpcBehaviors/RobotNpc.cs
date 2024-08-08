@@ -6,6 +6,7 @@
 *******************************************************************/
 using System.Collections;
 using System.Collections.Generic;
+using FMOD.Studio;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -18,6 +19,10 @@ public class RobotNpc : BaseNpc
     private bool _hasRepairedRobot = false;
     private bool _isFirstInteraction = true;
 
+    private Animator _anim;
+    
+    [SerializeField] private FMODUnity.EventReference lightBulbEvent;
+    [SerializeField] private FMODUnity.EventReference deathEvent;
     /// <summary>
     /// Subscribing to wire game won event on initialization
     /// </summary>
@@ -98,7 +103,7 @@ public class RobotNpc : BaseNpc
     /// <returns>string dialogue to display</returns>
     protected override string ChooseDialogueFromNode(DialogueNode node)
     {
-        PlayRandomTalkingAnim();
+        PlayRandomTalkingAnim(node);
         if (node.Dialogue.Length == 1 || _isFirstInteraction)
         {
             _isFirstInteraction = false;
@@ -128,6 +133,7 @@ public class RobotNpc : BaseNpc
         {
             _hasRepairedRobot = true;
             _animator.SetTrigger("Lightbulb");
+            AudioManager.PlaySound(lightBulbEvent, transform.position);
             _lightbulbMesh.SetActive(true);
             return option.NextResponseIndex[0];
         }
@@ -156,6 +162,7 @@ public class RobotNpc : BaseNpc
             }
         }
     }
+    
 
     /// <summary>
     /// Instead of an internal timer, we are moving this to the TimerManager
@@ -168,6 +175,7 @@ public class RobotNpc : BaseNpc
         {
             EnterFailure();
             _animator.SetBool("Dead", true);
+            AudioManager.PlaySound(deathEvent, transform.position);
         }
     }
 }

@@ -4,6 +4,9 @@
 *    Date Created: 5/28/24
 *    Description: NPC class containing logic for the Coward NPC.
 *******************************************************************/
+using System.Collections;
+using System.Collections.Generic;
+using FMOD.Studio;
 using UnityEngine;
 
 public class CowardNpc : BaseNpc
@@ -14,6 +17,7 @@ public class CowardNpc : BaseNpc
     private bool _hasTeleported = false;
     private bool _hasLightbulb = false;
     private bool _robotIsAlive = true;
+    private EventInstance _currentDialogueInstance;
 
     /// <summary>
     /// Called when the player enters the generator room
@@ -140,7 +144,7 @@ public class CowardNpc : BaseNpc
         // Select different dialogue if player hasn't taken light bulb
         if (node.Dialogue.Length > 1 && _currentState == NpcStates.DefaultIdle && !_hasLightbulb)
         {
-            PlayRandomTalkingAnim();
+            PlayRandomTalkingAnim(node);
             return node.Dialogue[1];
         }
 

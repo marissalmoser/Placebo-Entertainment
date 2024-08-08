@@ -6,6 +6,8 @@
 *    If what this script is attached to is hit by an inventory 
 *    system, it is added to that inventory.
 *******************************************************************/
+
+using FMODUnity;
 using PlaceboEntertainment.UI;
 using UnityEngine;
 
@@ -39,6 +41,7 @@ public class Pickupable : MonoBehaviour, IInteractable
     private Interact _playerInteractBehavior;
     private bool _isInteractive;
     [SerializeField] private bool _IsInteractiveOnStart;
+    [SerializeField] private FMODUnity.EventReference pickupEvent;
 
     private void Awake()
     {
@@ -133,6 +136,7 @@ public class Pickupable : MonoBehaviour, IInteractable
     {
         if(_isInteractive)
         {
+            AudioManager.PlaySoundUnManaged(pickupEvent, gameObject);
             _playerController.LockCharacter(true);
             _playerInteractBehavior.StopDetectingInteractions();
             _tabbedMenu.DisplayDialogue("", _itemDescription.Description, null);

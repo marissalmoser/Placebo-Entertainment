@@ -149,15 +149,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _minigameEndEvent: {fileID: 11400000, guid: 8b7b5ccfabcfc4d4f96da8928978e41e, type: 2}
-  _smackedText: {fileID: 0}
   _itemDescription:
     _description: A simple wrench. It should help fix the generator.
     _exitResponse: Leave
+    _eventToTrigger: {fileID: 0}
+    _eventTag: 0
+  _interactPromptText: WRENCH
   _sparksMode: {fileID: 0}
   _maxSpark: 1
   _animate: {fileID: 0}
   _wrenchSpark: {fileID: 105581026523438075, guid: f6bc08b5eeb1ccd40abc015300343b11, type: 3}
   _rightHand: {fileID: 0}
+  pickupEvent:
+    Guid:
+      Data1: -845400244
+      Data2: 1333520218
+      Data3: 572179079
+      Data4: -1855746747
+    Path: event:/Characters/Player/Item
 --- !u!95 &7995032218042838754
 Animator:
   serializedVersion: 5
