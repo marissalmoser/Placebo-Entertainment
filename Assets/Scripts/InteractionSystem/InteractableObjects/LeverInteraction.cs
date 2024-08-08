@@ -26,7 +26,6 @@ public class LeverInteraction : MonoBehaviour, IInteractable
     public virtual void Interact(GameObject player)
     {
         //print("interact");
-        AudioManager.PlaySound(leverEvent, transform.position);
         if (!_isOn)
         {
             SetLever(true);
@@ -59,6 +58,7 @@ public class LeverInteraction : MonoBehaviour, IInteractable
     /// <param name="input"></param>
     public virtual void SetLever(bool input)
     {
+        AudioManager.PlaySound(leverEvent, transform.position);
         //set to true if not already
         if(input && !_isOn)
         {
