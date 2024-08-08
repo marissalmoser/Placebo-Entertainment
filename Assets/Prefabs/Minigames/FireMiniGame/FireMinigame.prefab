@@ -1134,6 +1134,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 36.877415
       objectReference: {fileID: 0}
+    - target: {fileID: 1145458058559846375, guid: f55858b00bf86264e988876288ea3225, type: 3}
+      propertyPath: _maxWaterAmount
+      value: 98
+      objectReference: {fileID: 0}
+    - target: {fileID: 1145458058559846375, guid: f55858b00bf86264e988876288ea3225, type: 3}
+      propertyPath: _meterSpendRate
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1145458058559846375, guid: f55858b00bf86264e988876288ea3225, type: 3}
+      propertyPath: _refillWaitTime
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1145458058559846375, guid: f55858b00bf86264e988876288ea3225, type: 3}
+      propertyPath: _meterRefillRate
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 1150324171870264051, guid: f55858b00bf86264e988876288ea3225, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: -5.540027
