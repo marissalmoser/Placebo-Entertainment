@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3168306894194644997}
   - component: {fileID: 812672747345851475}
   - component: {fileID: 3710154545553647601}
-  - component: {fileID: 5906817822273611618}
   - component: {fileID: 1230460638816517745}
   - component: {fileID: 4840030442360983682}
   - component: {fileID: 5883686602139835072}
@@ -103,28 +102,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!195 &5906817822273611618
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3297066376343357550}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 1
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!114 &1230460638816517745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,6 +134,13 @@ MonoBehaviour:
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
+      DialogueEvent:
+        Guid:
+          Data1: 778340369
+          Data2: 1087770850
+          Data3: 724357786
+          Data4: 1580500361
+        Path: event:/Characters/Coward/Coward1
     _minigameReadyState:
     - _dialogue:
       - "EEK!! T-that\u2019s probably the engine? *Ahem* As the engineer for this
@@ -177,6 +161,13 @@ MonoBehaviour:
         _nextResponseIndex: 04000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - "HOW DARE YOU! I\u2019LL HAVE YOU KNOW THA- *generator sparks and mini boom*
         EEK! OK! I- I don\u2019t know what to do! Please help me!"
@@ -202,6 +193,13 @@ MonoBehaviour:
         _nextResponseIndex: 03000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - "F-Fix it with what?! You\u2019re not holding anything! Just hurry up and
         fix it!"
@@ -213,6 +211,13 @@ MonoBehaviour:
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - "WHAAAAT?! Uhh umm uhh, I mean\u2026 y-yeah! I\u2019ll just\u2026 do my job,
         then? Heheh\u2026"
@@ -224,6 +229,13 @@ MonoBehaviour:
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - "YES!!! Please, save me!! Fix the engine! I don\u2019t want to be near it
         when it explodes!"
@@ -249,6 +261,13 @@ MonoBehaviour:
         _nextResponseIndex: 06000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - "F-Fix it with what?! You\u2019re not holding anything! Just hurry up and
         fix it!"
@@ -260,6 +279,13 @@ MonoBehaviour:
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - "WHAAAAT?! Uhh umm uhh, I mean\u2026 y-yeah! I\u2019ll just\u2026 do my job,
         then? Heheh\u2026"
@@ -271,6 +297,13 @@ MonoBehaviour:
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - T-That should work!
       _playerResponses:
@@ -281,6 +314,13 @@ MonoBehaviour:
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     _playingMinigameState: []
     _postMinigameState:
     - _dialogue:
@@ -301,6 +341,13 @@ MonoBehaviour:
         _nextResponseIndex: 02000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - ...................................................................
       _playerResponses:
@@ -311,6 +358,13 @@ MonoBehaviour:
         _nextResponseIndex: 03000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - "EEK! I- I\u2019m sorry! Please keep the wrench!"
       _playerResponses:
@@ -321,6 +375,13 @@ MonoBehaviour:
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - ......J- just keep the wrench.
       _playerResponses:
@@ -331,13 +392,14 @@ MonoBehaviour:
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     _failureState: []
-  _navigationPositions:
-    _idleState: {x: 0, y: 0, z: 0}
-    _minigameReadyState: {x: 0, y: 0, z: 0}
-    _playingMinigameState: {x: 0, y: 0, z: 0}
-    _postMinigameState: {x: 0, y: 0, z: 0}
-    _failureState: {x: 0, y: 0, z: 0}
   _stateAnimations:
     _idleState: {fileID: 0}
     _minigameReadyState: {fileID: 0}

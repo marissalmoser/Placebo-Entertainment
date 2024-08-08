@@ -30,6 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 654344810626255647}
   - {fileID: 1087604670029060660}
   - {fileID: 7330766815761825132}
   - {fileID: 1348695676573955599}
@@ -48,7 +49,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _minigameEndEvent: {fileID: 11400000, guid: 0dc09a2e909bfa14ba070b27da962183, type: 2}
-  _fireAlarmLight: {fileID: 6566482308650919668, guid: 2622d1f6eb0debf45b5e272c9eb17479, type: 3}
+  _fireAlarmLight: {fileID: 2252253660791862636}
+  sirenEvent:
+    Guid:
+      Data1: 1110734284
+      Data2: 1129740305
+      Data3: -263389005
+      Data4: -352338331
+    Path: event:/Minigame/Fish/Siren
 --- !u!1 &2109888563746133568
 GameObject:
   m_ObjectHideFlags: 0
@@ -1132,6 +1140,18 @@ PrefabInstance:
     - target: {fileID: 1140246817220841063, guid: f55858b00bf86264e988876288ea3225, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 36.877415
+      objectReference: {fileID: 0}
+    - target: {fileID: 1145458058559846375, guid: f55858b00bf86264e988876288ea3225, type: 3}
+      propertyPath: _meterSpendRate
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1145458058559846375, guid: f55858b00bf86264e988876288ea3225, type: 3}
+      propertyPath: _refillWaitTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1145458058559846375, guid: f55858b00bf86264e988876288ea3225, type: 3}
+      propertyPath: _meterRefillRate
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 1150324171870264051, guid: f55858b00bf86264e988876288ea3225, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -6081,6 +6101,72 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1001 &7055471454224793443
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 9050133710876610342}
+    m_Modifications:
+    - target: {fileID: 6566482308650919668, guid: 2622d1f6eb0debf45b5e272c9eb17479, type: 3}
+      propertyPath: m_Name
+      value: Fire Alarm Light Empty
+      objectReference: {fileID: 0}
+    - target: {fileID: 6566482308650919668, guid: 2622d1f6eb0debf45b5e272c9eb17479, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7565663389310366844, guid: 2622d1f6eb0debf45b5e272c9eb17479, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 13.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 7565663389310366844, guid: 2622d1f6eb0debf45b5e272c9eb17479, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 17.555
+      objectReference: {fileID: 0}
+    - target: {fileID: 7565663389310366844, guid: 2622d1f6eb0debf45b5e272c9eb17479, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 29.778053
+      objectReference: {fileID: 0}
+    - target: {fileID: 7565663389310366844, guid: 2622d1f6eb0debf45b5e272c9eb17479, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7565663389310366844, guid: 2622d1f6eb0debf45b5e272c9eb17479, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7565663389310366844, guid: 2622d1f6eb0debf45b5e272c9eb17479, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7565663389310366844, guid: 2622d1f6eb0debf45b5e272c9eb17479, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7565663389310366844, guid: 2622d1f6eb0debf45b5e272c9eb17479, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7565663389310366844, guid: 2622d1f6eb0debf45b5e272c9eb17479, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7565663389310366844, guid: 2622d1f6eb0debf45b5e272c9eb17479, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2622d1f6eb0debf45b5e272c9eb17479, type: 3}
+--- !u!4 &654344810626255647 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7565663389310366844, guid: 2622d1f6eb0debf45b5e272c9eb17479, type: 3}
+  m_PrefabInstance: {fileID: 7055471454224793443}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7970898814110482512
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6097,6 +6183,30 @@ PrefabInstance:
       propertyPath: TriggerModule.primitives.Array.data[0]
       value: 
       objectReference: {fileID: 1715956503000187774}
+    - target: {fileID: 2740818995407348374, guid: 23b0abe1b89210e4495200bd88465c4a, type: 3}
+      propertyPath: _maxFireSize
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2740818995407348374, guid: 23b0abe1b89210e4495200bd88465c4a, type: 3}
+      propertyPath: _minFireSize
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2740818995407348374, guid: 23b0abe1b89210e4495200bd88465c4a, type: 3}
+      propertyPath: _timeBetweenScaleChanges
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3323927753307249893, guid: 23b0abe1b89210e4495200bd88465c4a, type: 3}
+      propertyPath: _maxFireSize
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3323927753307249893, guid: 23b0abe1b89210e4495200bd88465c4a, type: 3}
+      propertyPath: _minFireSize
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3323927753307249893, guid: 23b0abe1b89210e4495200bd88465c4a, type: 3}
+      propertyPath: _timeBetweenScaleChanges
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6485760075079857381, guid: 23b0abe1b89210e4495200bd88465c4a, type: 3}
       propertyPath: TriggerModule.primitives.Array.data[0]
       value: 
@@ -6145,9 +6255,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8223529688139048401, guid: 23b0abe1b89210e4495200bd88465c4a, type: 3}
+      propertyPath: _maxFireSize
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8223529688139048401, guid: 23b0abe1b89210e4495200bd88465c4a, type: 3}
+      propertyPath: _minFireSize
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8223529688139048401, guid: 23b0abe1b89210e4495200bd88465c4a, type: 3}
+      propertyPath: _waterCooldown
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8223529688139048401, guid: 23b0abe1b89210e4495200bd88465c4a, type: 3}
+      propertyPath: _timeBetweenScaleChanges
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8505039184153683373, guid: 23b0abe1b89210e4495200bd88465c4a, type: 3}
       propertyPath: m_Name
       value: FireSet
+      objectReference: {fileID: 0}
+    - target: {fileID: 8560316011154795189, guid: 23b0abe1b89210e4495200bd88465c4a, type: 3}
+      propertyPath: _maxFireSize
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8560316011154795189, guid: 23b0abe1b89210e4495200bd88465c4a, type: 3}
+      propertyPath: _minFireSize
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8560316011154795189, guid: 23b0abe1b89210e4495200bd88465c4a, type: 3}
+      propertyPath: _timeBetweenScaleChanges
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8578999707991054022, guid: 23b0abe1b89210e4495200bd88465c4a, type: 3}

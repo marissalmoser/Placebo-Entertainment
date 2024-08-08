@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3241478675477886158}
   - component: {fileID: 190002347449952546}
   - component: {fileID: 1608744599569339440}
-  - component: {fileID: 4903026629208649315}
   - component: {fileID: -3603000809444628348}
   - component: {fileID: 3356181948352045349}
   - component: {fileID: 4560596353947037845}
@@ -113,28 +112,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!195 &4903026629208649315
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1813159210467846255}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 1
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!114 &-3603000809444628348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,7 +126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _npcName: Olpy
   _npcBanner: {fileID: 21300000, guid: 39c658f6fb08336438fd58d645f60010, type: 3}
-  _targetBypassItem: {fileID: 0}
+  _targetBypassItem: {fileID: 11400000, guid: 6aedf7c082c61264992de20207ac5bad, type: 2}
   _onEnterFailState: {fileID: 0}
   _startMinigameEvent: {fileID: 0}
   _eventTag: 5
@@ -172,6 +149,13 @@ MonoBehaviour:
         _nextResponseIndex: 0300000002000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: -469824619
+          Data2: 1321721804
+          Data3: 1085993399
+          Data4: 1353961625
+        Path: event:/Characters/Goop/Goop1
     - _dialogue:
       - "Xk\u2019u qhprlm\u2026"
       _playerResponses:
@@ -182,6 +166,13 @@ MonoBehaviour:
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
+      DialogueEvent:
+        Guid:
+          Data1: 936260595
+          Data2: 1301886406
+          Data3: -1502983244
+          Data4: 1107237370
+        Path: event:/Characters/Goop/Goop2
     - _dialogue:
       - "My suit is broken\u2026"
       _playerResponses:
@@ -199,6 +190,13 @@ MonoBehaviour:
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - "Vf khjnuajkph xu qhptlm jmi X ipm\u2019k ugyypul fpg uyljr Ppovpuxpm. Silus
         utpgai ql jqal kp tlay khjmuajkl."
@@ -211,6 +209,13 @@ MonoBehaviour:
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - "We must\u2019ve hit something. The ship started to shake and some of my
         more REACTIVE substances got mixed up and they exploded."
@@ -222,6 +227,13 @@ MonoBehaviour:
         _nextResponseIndex: 05000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - "I\u2019m stuck inside my suit and my translator is broken. Physically I\u2019ll
         be fine, but THAT\u2019S not the point!"
@@ -240,6 +252,13 @@ MonoBehaviour:
         _nextResponseIndex: 09000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - Keep checking in on everybody! I prepared medicine for every crew member
         in advance.
@@ -251,6 +270,13 @@ MonoBehaviour:
         _nextResponseIndex: 07000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - "But I can\u2019t HELP them if I can\u2019t MOVE! If someone\u2019s hurt,
         come back here. I can give you anything they\u2019d need."
@@ -262,6 +288,13 @@ MonoBehaviour:
         _nextResponseIndex: 08000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - "It seems like a lot of key cards are on the fritz. Mine seems fine, so I\u2019ll
         open the door to the bridge for you now."
@@ -273,6 +306,13 @@ MonoBehaviour:
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - "I\u2019m fine, but I can\u2019t do my job! Go check on the rest of the crew."
       _playerResponses:
@@ -283,6 +323,13 @@ MonoBehaviour:
         _nextResponseIndex: 0a000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - "Let me know if anyone needs medical help. I\u2019ll open the door to the
         bridge for you now."
@@ -294,6 +341,13 @@ MonoBehaviour:
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     _minigameReadyState:
     - _dialogue:
       - Did you check in with everyone?
@@ -312,6 +366,13 @@ MonoBehaviour:
         _nextResponseIndex: 02000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - "Well, don\u2019t just stand there! Keep looking! Remember, if anyone is
         hurt, I have medicine on standby."
@@ -323,6 +384,13 @@ MonoBehaviour:
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - "You\u2019ll need that bottle over there. Take it to her quickly!"
       _playerResponses:
@@ -333,22 +401,22 @@ MonoBehaviour:
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     _playingMinigameState: []
     _postMinigameState: []
     _failureState: []
-  _navigationPositions:
-    _idleState: {x: 0, y: 0, z: 0}
-    _minigameReadyState: {x: 0, y: 0, z: 0}
-    _playingMinigameState: {x: 0, y: 0, z: 0}
-    _postMinigameState: {x: 0, y: 0, z: 0}
-    _failureState: {x: 0, y: 0, z: 0}
   _stateAnimations:
     _idleState: {fileID: 0}
     _minigameReadyState: {fileID: 0}
     _playingMinigameState: {fileID: 0}
     _postMinigameState: {fileID: 0}
     _failureState: {fileID: 0}
-  _targetBookItem: {fileID: 11400000, guid: 6aedf7c082c61264992de20207ac5bad, type: 2}
 --- !u!114 &3356181948352045349
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,36 +6,21 @@
 *                 Currently set up for the first playable, will need to be updated
 *                 for future milestones with more features.
 *******************************************************************/
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AngelNpc : BaseNpc
 {
-    [SerializeField] private InventoryItemData _targetPillsItem;
     [SerializeField] private NpcEvent _removeTimerEvent;
-    private bool _hasPills;
+
     private bool _robotGameComplete = false;
     private bool _cowardGameComplete = false;
     private bool _isPostMinigameState = false;
 
-    private Animator _anim;
-
     /// <summary>
-    /// Getting Animator on child
+    /// Used in first playable for knowing if the robot game is complete
+    /// done
     /// </summary>
-    protected override void Initialize()
-    {
-        base.Initialize();
-
-        _anim = GetComponentInChildren<Animator>();
-    }
-
-        /// <summary>
-        /// Used in first playable for knowing if the robot game is complete
-        /// done
-        /// </summary>
-        public void RobotMinigameCompleted()
+    public void RobotMinigameCompleted()
     {
         _robotGameComplete = true;
     }
@@ -49,9 +34,6 @@ public class AngelNpc : BaseNpc
         _cowardGameComplete = true;
     }
 
-    /// <summary>
-    /// TODO: implement this method for the full version of the Angel
-    /// </summary>
     public override void CheckForStateChange()
     {
         if (_currentState == NpcStates.DefaultIdle)
@@ -63,6 +45,7 @@ public class AngelNpc : BaseNpc
             EnterPostMinigame();
         }
     }
+
     protected override void EnterPostMinigame()
     {
         base.EnterPostMinigame();
@@ -81,25 +64,6 @@ public class AngelNpc : BaseNpc
     {
         _tabbedMenu.ToggleWin(true);
     }
-    /// <summary>
-    /// Temporary set-up for first playable that either continues the loop or 
-    /// displays the winscreen
-    /// Commented out by Elijah Vroman
-    /// </summary>
-    //protected override void EnterMinigameReady()
-    //{
-    //    base.EnterMinigameReady();
-
-    //    if (_cowardGameComplete && _robotGameComplete)
-    //    {
-    //        _tabbedMenu.ToggleWin(true);
-    //    }
-    //    else
-    //    {
-    //        // Return to idle if player didn't win
-    //        EnterIdle();
-    //    }
-    //}
 
     /// <summary>
     /// Chooses different dialogue based on if the player has done both minigames
@@ -109,15 +73,17 @@ public class AngelNpc : BaseNpc
     /// <returns>String dialogue to display</returns>
     protected override string ChooseDialogueFromNode(DialogueNode node)
     {
+        PlayRandomTalkingAnim(node);
         if (_cowardGameComplete && _robotGameComplete)
         {
             return node.Dialogue[1];
         }
         else
         {
-            return node.Dialogue[0];
+            return base.ChooseDialogueFromNode(node);
         }
     }
+
     protected override int ChooseDialoguePath(PlayerResponse option)
     {
         if (_isPostMinigameState && option.NextResponseIndex.Length == 1)
@@ -125,17 +91,17 @@ public class AngelNpc : BaseNpc
             _animator.SetTrigger("FinalChoice");
             return 0;
         }
-        if (_hasPills)
+        if (_hasBypassItem)
         {
-            _anim.SetTrigger("Healed");
+            _animator.SetTrigger("Healed");
             return option.NextResponseIndex[1];
         }
-        else if(!_hasPills && option.NextResponseIndex.Length > 0)
+        else if(!_hasBypassItem && option.NextResponseIndex.Length > 0)
         {
             return option.NextResponseIndex[0];
         }
         // Checks for bypass
-        else if (_hasPills && _currentState != NpcStates.PostMinigame)
+        else if (_hasBypassItem && _currentState != NpcStates.PostMinigame)
         {
             _shouldEndDialogue = true;
             Invoke(nameof(EnterPostMinigame), 0.2f);
@@ -144,27 +110,10 @@ public class AngelNpc : BaseNpc
         // Don't have minigame bypass
         else
         {
-            if (option.NextResponseIndex.Length > 0)
-            {
-                return option.NextResponseIndex[0];
-            }
-            else
-            {
-                return 0;
-            }
+            return base.ChooseDialoguePath(option);
         }
     }
 
-    public override void CollectedItem(InventoryItemData item, int quantity)
-    {
-        base.CollectedItem(item, quantity);
-
-        if (item == _targetPillsItem)
-        {
-            _hasPills = true;
-            Debug.Log(_hasPills);
-        }
-    }
     public override void Interact(int responseIndex = 0)
     {
         // Overwrote this to add special functionality to play an anim a the 2nd to last dialogue node.

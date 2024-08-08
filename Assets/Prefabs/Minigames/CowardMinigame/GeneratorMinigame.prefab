@@ -851,6 +851,13 @@ MonoBehaviour:
   _gearBottom: {fileID: 7150725026754449161}
   _gears: {fileID: 132773615768641289}
   _wrenchItemData: {fileID: 11400000, guid: ec08ea3ee13c21241a8a4a117cf4beab, type: 2}
+  generatorRunning:
+    Guid:
+      Data1: -2032686107
+      Data2: 1099700886
+      Data3: 832975530
+      Data4: 1909072095
+    Path: event:/Minigame/Generator/GeneratorRunning
 --- !u!114 &6656659449733942724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -910,6 +917,8 @@ MonoBehaviour:
   - {fileID: 8907953789608098946}
   - {fileID: 5052179447383595863}
   - {fileID: 1713243775169657968}
+  _idleColor: {r: 0, g: 0, b: 0, a: 0}
+  _correctColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1001 &699508142379515710
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1551,6 +1560,46 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6301997741563698740, guid: 32acc9123f2c50a468bb4d9e554e491d, type: 3}
+      propertyPath: sparkEvent.Path
+      value: event:/Minigame/Ripcord/SparkAppear
+      objectReference: {fileID: 0}
+    - target: {fileID: 6301997741563698740, guid: 32acc9123f2c50a468bb4d9e554e491d, type: 3}
+      propertyPath: sparkStopEvent.Path
+      value: event:/Minigame/Ripcord/SparkHit
+      objectReference: {fileID: 0}
+    - target: {fileID: 6301997741563698740, guid: 32acc9123f2c50a468bb4d9e554e491d, type: 3}
+      propertyPath: sparkEvent.Guid.Data1
+      value: -604486963
+      objectReference: {fileID: 0}
+    - target: {fileID: 6301997741563698740, guid: 32acc9123f2c50a468bb4d9e554e491d, type: 3}
+      propertyPath: sparkEvent.Guid.Data2
+      value: 1087910779
+      objectReference: {fileID: 0}
+    - target: {fileID: 6301997741563698740, guid: 32acc9123f2c50a468bb4d9e554e491d, type: 3}
+      propertyPath: sparkEvent.Guid.Data3
+      value: -1848844404
+      objectReference: {fileID: 0}
+    - target: {fileID: 6301997741563698740, guid: 32acc9123f2c50a468bb4d9e554e491d, type: 3}
+      propertyPath: sparkEvent.Guid.Data4
+      value: -2096581234
+      objectReference: {fileID: 0}
+    - target: {fileID: 6301997741563698740, guid: 32acc9123f2c50a468bb4d9e554e491d, type: 3}
+      propertyPath: sparkStopEvent.Guid.Data1
+      value: 957230639
+      objectReference: {fileID: 0}
+    - target: {fileID: 6301997741563698740, guid: 32acc9123f2c50a468bb4d9e554e491d, type: 3}
+      propertyPath: sparkStopEvent.Guid.Data2
+      value: 1242176697
+      objectReference: {fileID: 0}
+    - target: {fileID: 6301997741563698740, guid: 32acc9123f2c50a468bb4d9e554e491d, type: 3}
+      propertyPath: sparkStopEvent.Guid.Data3
+      value: 522772666
+      objectReference: {fileID: 0}
+    - target: {fileID: 6301997741563698740, guid: 32acc9123f2c50a468bb4d9e554e491d, type: 3}
+      propertyPath: sparkStopEvent.Guid.Data4
+      value: -723324592
+      objectReference: {fileID: 0}
     - target: {fileID: 6506349697954163508, guid: 32acc9123f2c50a468bb4d9e554e491d, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -1680,6 +1729,10 @@ PrefabInstance:
       value: GRAB
       objectReference: {fileID: 0}
     - target: {fileID: 7366979465635975259, guid: 5e4440da8a7d6d941bfce3d41aba130e, type: 3}
+      propertyPath: ripcordRev.Path
+      value: event:/Minigame/Ripcord/RipcordPoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 7366979465635975259, guid: 5e4440da8a7d6d941bfce3d41aba130e, type: 3}
       propertyPath: _lightBlinkSpeed
       value: 1
       objectReference: {fileID: 0}
@@ -1687,6 +1740,14 @@ PrefabInstance:
       propertyPath: _successfulPulls
       value: 
       objectReference: {fileID: 5313039945959885194}
+    - target: {fileID: 7366979465635975259, guid: 5e4440da8a7d6d941bfce3d41aba130e, type: 3}
+      propertyPath: ripcordPull.Path
+      value: event:/Minigame/Ripcord/RipcordPull
+      objectReference: {fileID: 0}
+    - target: {fileID: 7366979465635975259, guid: 5e4440da8a7d6d941bfce3d41aba130e, type: 3}
+      propertyPath: ripcordFinal.Path
+      value: event:/Minigame/Ripcord/RipcordSuccess
+      objectReference: {fileID: 0}
     - target: {fileID: 7366979465635975259, guid: 5e4440da8a7d6d941bfce3d41aba130e, type: 3}
       propertyPath: _followPlayerSpeed
       value: 3
@@ -1712,8 +1773,56 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2163848954740760389}
     - target: {fileID: 7366979465635975259, guid: 5e4440da8a7d6d941bfce3d41aba130e, type: 3}
+      propertyPath: ripcordRev.Guid.Data1
+      value: -2711697
+      objectReference: {fileID: 0}
+    - target: {fileID: 7366979465635975259, guid: 5e4440da8a7d6d941bfce3d41aba130e, type: 3}
+      propertyPath: ripcordRev.Guid.Data2
+      value: 1309110814
+      objectReference: {fileID: 0}
+    - target: {fileID: 7366979465635975259, guid: 5e4440da8a7d6d941bfce3d41aba130e, type: 3}
+      propertyPath: ripcordRev.Guid.Data3
+      value: -1587489381
+      objectReference: {fileID: 0}
+    - target: {fileID: 7366979465635975259, guid: 5e4440da8a7d6d941bfce3d41aba130e, type: 3}
+      propertyPath: ripcordRev.Guid.Data4
+      value: 1444540927
+      objectReference: {fileID: 0}
+    - target: {fileID: 7366979465635975259, guid: 5e4440da8a7d6d941bfce3d41aba130e, type: 3}
       propertyPath: _listLights.Array.size
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7366979465635975259, guid: 5e4440da8a7d6d941bfce3d41aba130e, type: 3}
+      propertyPath: ripcordPull.Guid.Data1
+      value: 187797399
+      objectReference: {fileID: 0}
+    - target: {fileID: 7366979465635975259, guid: 5e4440da8a7d6d941bfce3d41aba130e, type: 3}
+      propertyPath: ripcordPull.Guid.Data2
+      value: 1261613410
+      objectReference: {fileID: 0}
+    - target: {fileID: 7366979465635975259, guid: 5e4440da8a7d6d941bfce3d41aba130e, type: 3}
+      propertyPath: ripcordPull.Guid.Data3
+      value: 1268831645
+      objectReference: {fileID: 0}
+    - target: {fileID: 7366979465635975259, guid: 5e4440da8a7d6d941bfce3d41aba130e, type: 3}
+      propertyPath: ripcordPull.Guid.Data4
+      value: -1040788582
+      objectReference: {fileID: 0}
+    - target: {fileID: 7366979465635975259, guid: 5e4440da8a7d6d941bfce3d41aba130e, type: 3}
+      propertyPath: ripcordFinal.Guid.Data1
+      value: 991316379
+      objectReference: {fileID: 0}
+    - target: {fileID: 7366979465635975259, guid: 5e4440da8a7d6d941bfce3d41aba130e, type: 3}
+      propertyPath: ripcordFinal.Guid.Data2
+      value: 1238968600
+      objectReference: {fileID: 0}
+    - target: {fileID: 7366979465635975259, guid: 5e4440da8a7d6d941bfce3d41aba130e, type: 3}
+      propertyPath: ripcordFinal.Guid.Data3
+      value: 1604837819
+      objectReference: {fileID: 0}
+    - target: {fileID: 7366979465635975259, guid: 5e4440da8a7d6d941bfce3d41aba130e, type: 3}
+      propertyPath: ripcordFinal.Guid.Data4
+      value: 1721092538
       objectReference: {fileID: 0}
     - target: {fileID: 7366979465635975259, guid: 5e4440da8a7d6d941bfce3d41aba130e, type: 3}
       propertyPath: _maxPlayerDetectionPosition

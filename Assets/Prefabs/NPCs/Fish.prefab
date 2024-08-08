@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7760235768858286636}
   - component: {fileID: 190002347449952546}
   - component: {fileID: 1608744599569339440}
-  - component: {fileID: 4903026629208649315}
   - component: {fileID: 1119676214051789975}
   - component: {fileID: 5239405601287651569}
   - component: {fileID: -562392636092693123}
@@ -103,28 +102,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!195 &4903026629208649315
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1813159210467846255}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 1
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!114 &1119676214051789975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,6 +147,13 @@ MonoBehaviour:
         _nextResponseIndex: 0a000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: -1363511257
+          Data2: 1260227613
+          Data3: 1310014630
+          Data4: 2069358084
+        Path: event:/Characters/Fish/Fish1
     - _dialogue:
       - "Everything is fine here. Take a few deep breaths, I\u2019m sure everything
         will be alright."
@@ -181,6 +165,13 @@ MonoBehaviour:
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
+      DialogueEvent:
+        Guid:
+          Data1: -1363511257
+          Data2: 1260227613
+          Data3: 1310014630
+          Data4: 2069358084
+        Path: event:/Characters/Fish/Fish1
     - _dialogue:
       - Now that you mention it, there is. I thought I heard a siren in the next
         room. You might need to help me put out a real fire, heheh...
@@ -192,6 +183,13 @@ MonoBehaviour:
         _nextResponseIndex: 03000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - "Where\u2019s that darn fire extinguisher\u2026 Oh well, I naturally hold
         about seven gallons of water. If you pick me up and direct me at the flames,
@@ -204,6 +202,13 @@ MonoBehaviour:
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - "Olpy\u2019s in there\u2026 when the ship goes through turbulence, their
         suit tends to break. Have you checked on them?"
@@ -223,6 +228,13 @@ MonoBehaviour:
         _nextResponseIndex: 15000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - "That's so? Well it happens from time to time, I\u2019m sure they\u2019re
         fine."
@@ -234,6 +246,13 @@ MonoBehaviour:
         _nextResponseIndex: 06000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - "But it could mean their translator is broken. Lucky for you, I know Olpy\u2019s
         language."
@@ -245,6 +264,13 @@ MonoBehaviour:
         _nextResponseIndex: 07000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - "Let me teach it to you! It\u2019ll be fun! Now where is that\u2026"
       _playerResponses:
@@ -255,6 +281,13 @@ MonoBehaviour:
         _nextResponseIndex: 08000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - "Ah, suds\u2026 I had a book for it, but it seems I\u2019ve misplaced it."
       _playerResponses:
@@ -265,6 +298,13 @@ MonoBehaviour:
         _nextResponseIndex: 09000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - "Ah, well, it\u2019s somewhere here on the ship. If you find it, it\u2019s
         yours to keep."
@@ -276,6 +316,13 @@ MonoBehaviour:
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - A time loop you say? My my, that sure is a problem.
       _playerResponses:
@@ -286,6 +333,13 @@ MonoBehaviour:
         _nextResponseIndex: 0b000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - First things first, take a deep breath and sloooooow down.
       _playerResponses:
@@ -296,6 +350,13 @@ MonoBehaviour:
         _nextResponseIndex: 0c000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - You know, this reminds me of when my good friend Benni set out on an expedition
         very similar to this one.
@@ -307,6 +368,13 @@ MonoBehaviour:
         _nextResponseIndex: 0d000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - "\u2026Their ship has yet to be heard from."
       _playerResponses:
@@ -317,6 +385,13 @@ MonoBehaviour:
         _nextResponseIndex: 0e000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - A week after their supposed return date passed, everyone I knew thought they
         were gone for good.
@@ -328,6 +403,13 @@ MonoBehaviour:
         _nextResponseIndex: 0f000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - "For a while, there wasn\u2019t a doubt in my mind that they would return."
       _playerResponses:
@@ -338,6 +420,13 @@ MonoBehaviour:
         _nextResponseIndex: 10000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - "But if I think about the 5,000 years they\u2019ve been missing, I\u2019ll
         feel the doubt creep in."
@@ -349,6 +438,13 @@ MonoBehaviour:
         _nextResponseIndex: 11000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - '*Sigh*'
       _playerResponses:
@@ -359,6 +455,13 @@ MonoBehaviour:
         _nextResponseIndex: 12000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - "As all those years passed, I\u2019ve learned that all you can do is take
         things one day at a time."
@@ -370,6 +473,13 @@ MonoBehaviour:
         _nextResponseIndex: 13000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - "Bubbles\u2026 You may feel the doubt creep in, but this time loop whatchamacallit
         is a gift, if you think about it\u2026"
@@ -381,6 +491,13 @@ MonoBehaviour:
         _nextResponseIndex: 14000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - "There\u2019s no rush to do everything right. Just take it one loop at a
         time. You\u2019ve got as many as you need."
@@ -392,6 +509,13 @@ MonoBehaviour:
         _nextResponseIndex: 14000000
         _advancesNpcState: 0
         _endsDialogue: 1
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - "Might be a good idea to take a peek in there, just to make sure they\u2019re
         okay. Thanks, bubbles."
@@ -403,6 +527,13 @@ MonoBehaviour:
         _nextResponseIndex: 14000000
         _advancesNpcState: 0
         _endsDialogue: 1
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     _minigameReadyState: []
     _playingMinigameState: []
     _postMinigameState:
@@ -416,6 +547,13 @@ MonoBehaviour:
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     _failureState: []
   _navigationPositions:
     _idleState: {x: 0, y: 0, z: 0}
@@ -468,9 +606,9 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: FireManager, Assembly-CSharp
-          m_MethodName: StartMinigame
-          m_Mode: 1
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -480,9 +618,9 @@ MonoBehaviour:
             m_BoolArgument: 1
           m_CallState: 2
         - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_MethodName: SetActive
-          m_Mode: 6
+          m_TargetAssemblyTypeName: FireManager, Assembly-CSharp
+          m_MethodName: StartMinigame
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

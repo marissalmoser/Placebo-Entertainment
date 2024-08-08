@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5155935945816834384}
   - component: {fileID: 5615582337182177422}
   - component: {fileID: 9144484468842581267}
-  - component: {fileID: 3131129064344898019}
   - component: {fileID: 869825619415053396}
   - component: {fileID: 6882198576666297318}
   - component: {fileID: 2523090471910584266}
@@ -103,28 +102,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!195 &3131129064344898019
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4556153407337933796}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 1
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!114 &869825619415053396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,6 +142,13 @@ MonoBehaviour:
         _nextResponseIndex: 0200000008000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: -1172723921
+          Data2: 1130274623
+          Data3: -1453584486
+          Data4: 879694184
+        Path: event:/Characters/Robot/RobotNeutral
     - _dialogue:
       - Ah, photons! I was able to check everywhere but the storage room. Please
         find it for me!
@@ -176,6 +160,13 @@ MonoBehaviour:
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
+      DialogueEvent:
+        Guid:
+          Data1: -1172723921
+          Data2: 1130274623
+          Data3: -1453584486
+          Data4: 879694184
+        Path: event:/Characters/Robot/RobotNeutral
     - _dialogue:
       - Oh praise the holy sun! Thank you for helping me. Is there anything I can
         do for you?
@@ -202,6 +193,13 @@ MonoBehaviour:
         _nextResponseIndex: 
         _advancesNpcState: 1
         _endsDialogue: 1
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - "The bridge? You know I don\u2019t have access to the bridge, that\u2019s
         why I have you!"
@@ -213,6 +211,13 @@ MonoBehaviour:
         _nextResponseIndex: 04000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - "But I could open the hallway door for you, if the door access system wasn\u2019t
         all jumbled up."
@@ -224,6 +229,13 @@ MonoBehaviour:
         _nextResponseIndex: 05000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - As usual, I am improperly proportioned for this task. Could you do it?
       _playerResponses:
@@ -241,6 +253,13 @@ MonoBehaviour:
         _nextResponseIndex: 
         _advancesNpcState: 1
         _endsDialogue: 1
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - "Odon is a bit of a coward. This is not the first incident. He has a tendency
         to take what doesn\u2019t belong to him\u2026 especially if it\u2019s shiny."
@@ -252,6 +271,13 @@ MonoBehaviour:
         _nextResponseIndex: 07000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - "I\u2019ve seen him hit the generator with the wrong end of a wrench\u2026.
         Sometimes I wonder if he even knows what he\u2019s doing."
@@ -263,6 +289,13 @@ MonoBehaviour:
         _nextResponseIndex: 
         _advancesNpcState: 1
         _endsDialogue: 1
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - "This isn\u2019t the Radion Galaxy. I don\u2019t have the bandwidth for jokes
         right now, go find my lightbulb!"
@@ -274,6 +307,13 @@ MonoBehaviour:
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     _minigameReadyState:
     - _dialogue:
       - Thank you again for helping me. Is there anything else I can do for you?
@@ -300,6 +340,13 @@ MonoBehaviour:
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - "The bridge? You know I don\u2019t have access to the bridge, that\u2019s
         why I have you!"
@@ -311,6 +358,13 @@ MonoBehaviour:
         _nextResponseIndex: 02000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - "But I could open the hallway door for you, if the door access system wasn\u2019t
         all jumbled up."
@@ -322,6 +376,13 @@ MonoBehaviour:
         _nextResponseIndex: 03000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - As usual, I am improperly proportioned for this task. Could you do it?
       _playerResponses:
@@ -339,6 +400,13 @@ MonoBehaviour:
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - "Odon is a bit of a coward. This is not the first incident. He has a tendency
         to take what doesn\u2019t belong to him\u2026 especially if it\u2019s shiny."
@@ -350,6 +418,13 @@ MonoBehaviour:
         _nextResponseIndex: 05000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - "I\u2019ve seen him hit the generator with the wrong end of a wrench\u2026.
         Sometimes I wonder if he even knows what he\u2019s doing."
@@ -361,6 +436,13 @@ MonoBehaviour:
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     _playingMinigameState: []
     _postMinigameState:
     - _dialogue:
@@ -381,6 +463,13 @@ MonoBehaviour:
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - "Odon is a bit of a coward. This is not the first incident. He has a tendency
         to take what doesn\u2019t belong to him\u2026 especially if it\u2019s shiny."
@@ -392,6 +481,13 @@ MonoBehaviour:
         _nextResponseIndex: 02000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - "I\u2019ve seen him hit the generator with the wrong end of a wrench\u2026.
         Sometimes I wonder if he even knows what he\u2019s doing."
@@ -403,6 +499,13 @@ MonoBehaviour:
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     _failureState:
     - _dialogue:
       - '[The dead Robot is unresponsive]'
@@ -414,12 +517,13 @@ MonoBehaviour:
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
-  _navigationPositions:
-    _idleState: {x: 0, y: 0, z: 0}
-    _minigameReadyState: {x: 0, y: 0, z: 0}
-    _playingMinigameState: {x: 0, y: 0, z: 0}
-    _postMinigameState: {x: 0, y: 0, z: 0}
-    _failureState: {x: 0, y: 0, z: 0}
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
   _stateAnimations:
     _idleState: {fileID: 0}
     _minigameReadyState: {fileID: 0}
@@ -428,6 +532,20 @@ MonoBehaviour:
     _failureState: {fileID: 0}
   _targetLightBulbItem: {fileID: 11400000, guid: 773aae8864bf18d4a9e19e01b7e04081, type: 2}
   _lightbulbMesh: {fileID: 2278875521252267084}
+  lightBulbEvent:
+    Guid:
+      Data1: 242415194
+      Data2: 1131165384
+      Data3: -1436377705
+      Data4: 217777509
+    Path: event:/Characters/Robot/RobotScrew
+  deathEvent:
+    Guid:
+      Data1: -2078086933
+      Data2: 1223270320
+      Data3: -1168562029
+      Data4: 672319839
+    Path: event:/Characters/Robot/RobotDeath
 --- !u!114 &6882198576666297318
 MonoBehaviour:
   m_ObjectHideFlags: 0

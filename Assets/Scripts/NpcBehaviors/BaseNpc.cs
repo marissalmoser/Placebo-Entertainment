@@ -6,12 +6,12 @@
 *       Has basic functionality for switching states and interacting
 *       that child scripts will expand upon.
 *******************************************************************/
-using System.Collections;
 using System.Collections.Generic;
+using FMOD.Studio;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.InputSystem;
 using PlaceboEntertainment.UI;
+using UnityEngine.Serialization;
 
 public abstract class BaseNpc : MonoBehaviour
 {
@@ -71,6 +71,7 @@ public abstract class BaseNpc : MonoBehaviour
 
         public string[] Dialogue { get => _dialogue; }
         public PlayerResponse[] PlayerResponses { get => _playerResponses; }
+        [FormerlySerializedAs("dialogueEvent")] public FMODUnity.EventReference DialogueEvent;
     }
 
     /// <summary>
@@ -108,8 +109,8 @@ public abstract class BaseNpc : MonoBehaviour
     [SerializeField] protected NpcEventTags _eventTag;
 
     [SerializeField] protected StateDataGroup<DialogueNode[]> _stateDialogueTrees;
-    [SerializeField] protected StateDataGroup<Vector3> _navigationPositions;
     [SerializeField] protected StateDataGroup<Animation> _stateAnimations;
+    protected EventInstance _dialogueInstance;
 
     protected NavMeshAgent _navAgent;
     protected Animator _animator;
@@ -270,8 +271,6 @@ public abstract class BaseNpc : MonoBehaviour
     {
         if (_isInteracting && nextNodeIndex < _stateDialogueTrees.GetStateData(_currentState).Length)
         {
-            // TODO: hide player response buttons here
-
             _currentDialogueIndex = nextNodeIndex;
             DialogueNode currentNode = _stateDialogueTrees.GetStateData(_currentState)[_currentDialogueIndex];
             string response = ChooseDialogueFromNode(currentNode);
@@ -311,7 +310,7 @@ public abstract class BaseNpc : MonoBehaviour
     /// <returns>String dialogue response</returns>
     protected virtual string ChooseDialogueFromNode(DialogueNode node)
     {
-        PlayRandomTalkingAnim();
+        PlayRandomTalkingAnim(node);
         return node.Dialogue[0];
     }
 
@@ -328,15 +327,14 @@ public abstract class BaseNpc : MonoBehaviour
         {
             return option.NextResponseIndex[0];
         }
-        else
-        {
-            return 0;
-        }
+        return 0;
     }
     #endregion
 
-    protected void PlayRandomTalkingAnim()
+    protected void PlayRandomTalkingAnim(DialogueNode node)
     {
+        AudioManager.StopSound(_dialogueInstance);
+        _dialogueInstance = AudioManager.PlaySound(node.DialogueEvent, transform.position);
         int rand = Random.Range(1, 4);
         switch (rand)
         {
@@ -417,12 +415,6 @@ public abstract class BaseNpc : MonoBehaviour
     /// </summary>
     private void StateUpdateHelper()
     {
-        if (_navAgent != null && _navAgent.isOnNavMesh)
-        {
-            Vector3 newPosition = _navigationPositions.GetStateData(_currentState);
-            _navAgent.SetDestination(newPosition);
-        }
-
         if (_animator != null)
         {
             Animation newAnimation = _stateAnimations.GetStateData(_currentState);
@@ -433,14 +425,6 @@ public abstract class BaseNpc : MonoBehaviour
         }
     }
     #endregion
-
-    /// <summary>
-    /// Unsubscribing from action on disable
-    /// </summary>
-    protected virtual void OnDisable()
-    {
-        //_playerInventorySystem.AddedToInventory -= CollectedItem;
-    }
 
     ~BaseNpc()
     {
