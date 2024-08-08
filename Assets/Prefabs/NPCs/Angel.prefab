@@ -328,7 +328,7 @@ MonoBehaviour:
     - _dialogue:
       - The crew is safe, yes?
       _playerResponses:
-      - _eventToTrigger: {fileID: 0}
+      - _eventToTrigger: {fileID: 11400000, guid: fc8258980d4d13341abe42a88ac6fdb6, type: 2}
         _eventTag: 0
         _hasPrerequisiteCheck: 0
         _answer: Safe and sound.
@@ -510,7 +510,7 @@ MonoBehaviour:
     - _dialogue:
       - Let us see what lies beyond together.
       _playerResponses:
-      - _eventToTrigger: {fileID: 11400000, guid: 6c063e0dc7b42fc4e8a3e9c06253b1c1, type: 2}
+      - _eventToTrigger: {fileID: 11400000, guid: 79af595eb319158438b5f3a5e1ebd488, type: 2}
         _eventTag: 3
         _hasPrerequisiteCheck: 0
         _answer: <b>Proceed
@@ -578,7 +578,7 @@ MonoBehaviour:
     - _dialogue:
       - Let us return home.
       _playerResponses:
-      - _eventToTrigger: {fileID: 11400000, guid: 6c063e0dc7b42fc4e8a3e9c06253b1c1, type: 2}
+      - _eventToTrigger: {fileID: 11400000, guid: 568815febe15e9b47930ec0d4002cfd1, type: 2}
         _eventTag: 3
         _hasPrerequisiteCheck: 0
         _answer: <b>Return
@@ -631,23 +631,6 @@ MonoBehaviour:
         - m_Target: {fileID: 7988089871590522290}
           m_TargetAssemblyTypeName: AngelNpc, Assembly-CSharp
           m_MethodName: CheckForStateChange
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - _npcEvent: {fileID: 11400000, guid: 6c063e0dc7b42fc4e8a3e9c06253b1c1, type: 2}
-    _npcEventTag: 3
-    _onEventTriggered:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 7988089871590522290}
-          m_TargetAssemblyTypeName: AngelNpc, Assembly-CSharp
-          m_MethodName: WinGame
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

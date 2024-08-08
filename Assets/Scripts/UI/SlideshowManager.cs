@@ -135,6 +135,9 @@ public class SlideshowManager : MonoBehaviour
     {
         if (videoIndex < _endingVideos.Length && videoIndex >= 0)
         {
+            PlayerController.Instance.enabled = false;
+            AudioManager.StopAllSounds();
+
             _selectedAudio = _endingVideos[videoIndex].Audio;
             _slideshowPlayer.clip = _endingVideos[videoIndex].Footage;
             _slideshowPlayer.Prepare();
