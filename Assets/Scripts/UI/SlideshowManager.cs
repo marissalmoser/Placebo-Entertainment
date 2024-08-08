@@ -135,7 +135,7 @@ public class SlideshowManager : MonoBehaviour
     {
         if (videoIndex < _endingVideos.Length && videoIndex >= 0)
         {
-            PlayerController.Instance.LockCharacter(true);
+            PlayerController.Instance.enabled = false;
             AudioManager.StopAllSounds();
 
             _selectedAudio = _endingVideos[videoIndex].Audio;
