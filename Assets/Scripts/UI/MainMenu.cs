@@ -21,6 +21,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private float _tabAnimationTime;
     [SerializeField] private EventReference mainMenuMusicEvent;
     [SerializeField] private EventReference clickEvent;
+    [SerializeField] private int _gameSceneVideoIndex = 2;
 
     #region Constants
     private const string NewGameButtonName = "NewGameButton";
@@ -282,7 +283,7 @@ public class MainMenu : MonoBehaviour
     /// <param name="clicked">Click event</param>
     private void ContinueButtonClicked(ClickEvent clicked)
     {
-        SceneManager.LoadScene(_introVideoBuildIndex);
+        SceneManager.LoadScene(_gameSceneVideoIndex);
     }
 
     /// <summary>

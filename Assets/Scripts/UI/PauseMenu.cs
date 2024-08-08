@@ -7,6 +7,7 @@
  *******************************************************************/
 using System.Collections;
 using System.Collections.Generic;
+using FMODUnity;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
@@ -16,6 +17,7 @@ public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private UIDocument _pauseMenu;
     [SerializeField] private float _tabAnimationTime = 0.25f;
+    [SerializeField] private EventReference confirmEvent;
 
     #region Constants
     private const string ContinueButtonName = "ContinueButton";
@@ -57,6 +59,8 @@ public class PauseMenu : MonoBehaviour
     private SettingsManager _settingsManager;
     private Coroutine _activeCoroutine;
     private UQueryBuilder<Button> _allButtons;
+
+    private List<Slider> _sliders = new List<Slider>();
     // 0 = pause, 1 = settings selection, 2 = settings submenu
     private int _currentScreenIndex = 0;
     #endregion
@@ -119,11 +123,22 @@ public class PauseMenu : MonoBehaviour
 
         if (_tabAnimationTime <= 0)
             _tabAnimationTime = 0.25f;
+        
+        _sliders = _audioHolder.Query<Slider>().ToList();
+        FMODUnity.RuntimeManager.StudioSystem.getParameterByName("MasterVolume", out float volume);
+        _sliders[0].value = volume;
+        _sliders[0].RegisterCallback<ChangeEvent<float>>(MasterAudioSliderChanged);
+        FMODUnity.RuntimeManager.StudioSystem.getParameterByName("SFXVolume", out volume);
+        _sliders[1].value = volume;
+        _sliders[1].RegisterCallback<ChangeEvent<float>>(SFXAudioSliderChanged);
+        FMODUnity.RuntimeManager.StudioSystem.getParameterByName("MusicVolume", out volume);
+        _sliders[2].value = volume;
+        _sliders[2].RegisterCallback<ChangeEvent<float>>(MusicAudioSliderChanged);
     }
 
     private void PlayConfirmSound(ClickEvent evt)
     {
-        throw new System.NotImplementedException();
+        AudioManager.PlaySound(confirmEvent, transform.position);
     }
 
     /// <summary>
@@ -174,6 +189,9 @@ public class PauseMenu : MonoBehaviour
         _exitButton.UnregisterCallback<MouseOutEvent>(evt => { AnimateTab(_bottomTab, false); });
 
         PlayerController.Instance.PlayerControls.BasicControls.PauseGame.performed -= PauseGamePerformed;
+        _sliders[0].UnregisterCallback<ChangeEvent<float>>(MasterAudioSliderChanged);
+        _sliders[1].UnregisterCallback<ChangeEvent<float>>(SFXAudioSliderChanged);
+        _sliders[2].UnregisterCallback<ChangeEvent<float>>(MusicAudioSliderChanged);
     }
 
     /// <summary>
@@ -336,6 +354,27 @@ public class PauseMenu : MonoBehaviour
         }
 
         tabToAnimate.style.width = targetWidth;
+    }
+    
+    private void MasterAudioSliderChanged(ChangeEvent<float> evt)
+    {
+        //0-100 value expected.
+        var newVolume = evt.newValue;
+        FMODUnity.RuntimeManager.StudioSystem.setParameterByName("MasterVolume", newVolume);
+    }
+
+    private void SFXAudioSliderChanged(ChangeEvent<float> evt)
+    {
+        //0-100 value expected.
+        var newVolume = evt.newValue;
+        FMODUnity.RuntimeManager.StudioSystem.setParameterByName("SFXVolume", newVolume);
+    }
+
+    private void MusicAudioSliderChanged(ChangeEvent<float> evt)
+    {
+        //0-100 value expected.
+        var newVolume = evt.newValue;
+        FMODUnity.RuntimeManager.StudioSystem.setParameterByName("MusicVolume", newVolume);
     }
     #endregion
 }

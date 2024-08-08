@@ -9,38 +9,34 @@ public class GameMusicController : MonoBehaviour
     [SerializeField] private FMODUnity.EventReference mainGameMusic;
     [SerializeField] private FMODUnity.EventReference loopMusic;
     private const float LoopEndTime = 33f;
-    private Timer _timer;
+    private const float LoopTime = 600f;
+    private Timer _shipFailTimer;
+    private Timer _generatorExplodeTimer;
+    private Timer _fireFailTimer;
     private EventInstance _musicInstance;
     private bool _hasEndedTime;
 
     private void Start()
     {
-        _timer = TimerManager.Instance.GetTimer("Example");
+        _shipFailTimer = TimerManager.Instance.GetTimer("ShipFailTimer");
+        _fireFailTimer = TimerManager.Instance.GetTimer("FireFailTimer");
+        _generatorExplodeTimer = TimerManager.Instance.GetTimer("GeneratorExplodeTimer");
         _musicInstance = AudioManager.PlaySound(mainGameMusic, Vector3.zero);
     }
 
-    private void Update()
+    public void SetMusic(bool loop)
     {
-        float currentTime = _timer.GetCurrentTimeInSeconds(); //how i wish we had a callback for this...
-
-        if (currentTime < LoopEndTime + 1)
+        if (loop)
         {
-            if (!_hasEndedTime)
-            {
-                //stop the main gameplay music
-                AudioManager.StopSound(_musicInstance);
-                //start loop music
-                AudioManager.PlaySound(loopMusic, Vector3.zero);
-                _hasEndedTime = true;
-            }
+            AudioManager.StopSound(_musicInstance);
+            //start loop music
+            _musicInstance = AudioManager.PlaySound(loopMusic, Vector3.zero);
         }
-        else if (currentTime > LoopEndTime)
+        else
         {
-            if (_hasEndedTime)
-            {
-                _musicInstance = AudioManager.PlaySound(mainGameMusic, Vector3.zero);
-                _hasEndedTime = false;
-            }
+            AudioManager.StopSound(_musicInstance);
+            //start loop music
+            _musicInstance = AudioManager.PlaySound(mainGameMusic, Vector3.zero);
         }
     }
 }
