@@ -8,10 +8,12 @@
 *******************************************************************/
 using UnityEngine;
 using System.IO;
+using System;
 
 public class SettingsManager : MonoBehaviour
 {
     public static SettingsManager Instance;
+    public event Action MouseSensUpdated;
 
     private const string SaveDirectory = "/Settings/";
     private const string FileName = "SettingsData.sav";
@@ -52,6 +54,7 @@ public class SettingsManager : MonoBehaviour
     public void SetMouseSensitivity(float newSens)
     {
         MouseSensitivity = Mathf.Clamp(newSens, 0f, 100f);
+        MouseSensUpdated?.Invoke();
     }
 
     /// <summary>
