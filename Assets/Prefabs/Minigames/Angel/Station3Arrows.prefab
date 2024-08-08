@@ -612,6 +612,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interactPromptText: LEVER
+  leverEvent:
+    Guid:
+      Data1: 2104462760
+      Data2: 1260496103
+      Data3: -304394855
+      Data4: -1279290902
+    Path: event:/Minigame/Angel/Lever
   _handle: {fileID: 7182517924704595777}
   _station: {fileID: 7774374520379086935}
 --- !u!1 &7182517924704595777 stripped
