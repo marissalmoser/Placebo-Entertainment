@@ -128,6 +128,13 @@ MonoBehaviour:
   - {fileID: 2800000, guid: bce0cce52a02bc2478305533fec3e3cd, type: 3}
   - {fileID: 2800000, guid: 4ed264664ecf7be44be5ef7f58ec3d66, type: 3}
   - {fileID: 2800000, guid: 62d28c9671d6fcb40a465bdd73cb5baa, type: 3}
+  clickEvent:
+    Guid:
+      Data1: 1296358480
+      Data2: 1112954192
+      Data3: 1272656575
+      Data4: -939859315
+    Path: event:/Misc/UI_Confirm
 --- !u!114 &4109945314516181468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -546,6 +553,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pauseMenu: {fileID: 8629523493635206543}
   _tabAnimationTime: 0.25
+  confirmEvent:
+    Guid:
+      Data1: 1296358480
+      Data2: 1112954192
+      Data3: 1272656575
+      Data4: -939859315
+    Path: event:/Misc/UI_Confirm
 --- !u!1 &6549096012365011319
 GameObject:
   m_ObjectHideFlags: 0

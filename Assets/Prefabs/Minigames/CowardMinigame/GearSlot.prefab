@@ -81,6 +81,13 @@ MonoBehaviour:
   _startingGearIndex: 0
   _rightGearNum: 0
   _rotationSpeed: 45
+  gearChangeEvent:
+    Guid:
+      Data1: -9123021
+      Data2: 1140962724
+      Data3: -407151954
+      Data4: -396694192
+    Path: event:/Minigame/Ripcord/Gear
 --- !u!33 &2146586533007174966
 MeshFilter:
   m_ObjectHideFlags: 0
