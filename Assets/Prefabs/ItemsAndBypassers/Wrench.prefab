@@ -70,8 +70,18 @@ MonoBehaviour:
   _itemDescription:
     _description: A simple wrench. This should help with fixing the generator.
     _exitResponse: Leave
+    _eventToTrigger: {fileID: 0}
+    _eventTag: 0
   PickUpRadius: 2
   myData: {fileID: 11400000, guid: ec08ea3ee13c21241a8a4a117cf4beab, type: 2}
+  _IsInteractiveOnStart: 0
+  pickupEvent:
+    Guid:
+      Data1: -845400244
+      Data2: 1333520218
+      Data3: 572179079
+      Data4: -1855746747
+    Path: event:/Characters/Player/Item
 --- !u!1001 &7266211956074099562
 PrefabInstance:
   m_ObjectHideFlags: 0

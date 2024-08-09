@@ -5,8 +5,12 @@
  *    Description: A manager script for the slideshow player. Has functions that
  *                 play different videos when called.
  *******************************************************************/
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using FMOD.Studio;
+using FMODUnity;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.Video;
@@ -15,20 +19,27 @@ using UnityEngine.SceneManagement;
 
 public class SlideshowManager : MonoBehaviour
 {
+    [Serializable]
+    public struct Video
+    {
+        public VideoClip Footage;
+        public EventReference Audio;
+    }
     [SerializeField] private bool _isIntroVideoPlayer = false;
 
     [SerializeField] private int _levelSceneBuildIndex;
     [SerializeField] private int _mainMenuBuildIndex;
 
-    [SerializeField] private VideoClip _introVideo;
-    [SerializeField] private VideoClip[] _endingVideos;
-    [SerializeField] private VideoClip _creditsVideo;
-
+    [SerializeField] private Video _introVideo;
+    [SerializeField] private Video[] _endingVideos;
+    [SerializeField] private Video _creditsVideo;
+    private EventReference _selectedAudio;
     private PlayerControls _playerControls;
     private InputAction _playPause;
     private UIDocument _slideshowUI;
     private VideoPlayer _slideshowPlayer;
     private bool _wasCreditsShown = false;
+    private EventInstance _currentAudioPlayback;
 
     /// <summary>
     /// Setting references and pause inputs. Also plays intro slide show if needed.
@@ -38,8 +49,8 @@ public class SlideshowManager : MonoBehaviour
         _playerControls = new PlayerControls();
         _playerControls.BasicControls.Enable();
         _playPause = _playerControls.FindAction("PlayPause");
-        _playPause.performed += ctx => TogglePlayPause();
-        _playPause.Enable();
+        // _playPause.performed += ctx => TogglePlayPause();
+        // _playPause.Enable();
 
         _slideshowUI = GetComponent<UIDocument>();
         _slideshowPlayer = GetComponent<VideoPlayer>();
@@ -84,7 +95,8 @@ public class SlideshowManager : MonoBehaviour
         }
         else if (!_wasCreditsShown)
         {
-            _slideshowPlayer.clip = _creditsVideo;
+            _selectedAudio = _creditsVideo.Audio;
+            _slideshowPlayer.clip = _creditsVideo.Footage;
             _slideshowPlayer.Prepare();
             _wasCreditsShown = true;
         }
@@ -100,6 +112,8 @@ public class SlideshowManager : MonoBehaviour
     private void PlayVideo(VideoPlayer vp)
     {
         _slideshowUI.rootVisualElement.style.display = DisplayStyle.Flex;
+        AudioManager.StopSound(_currentAudioPlayback);
+        _currentAudioPlayback = AudioManager.PlaySound(_selectedAudio, transform.position);
         _slideshowPlayer.Play();
     }
 
@@ -108,7 +122,8 @@ public class SlideshowManager : MonoBehaviour
     /// </summary>
     public void PlayIntroSlideshow()
     {
-        _slideshowPlayer.clip = _introVideo;
+        _selectedAudio = _introVideo.Audio;
+        _slideshowPlayer.clip = _introVideo.Footage;
         _slideshowPlayer.Prepare();
     }
 
@@ -120,7 +135,11 @@ public class SlideshowManager : MonoBehaviour
     {
         if (videoIndex < _endingVideos.Length && videoIndex >= 0)
         {
-            _slideshowPlayer.clip = _endingVideos[videoIndex];
+            PlayerController.Instance.enabled = false;
+            AudioManager.StopAllSounds();
+
+            _selectedAudio = _endingVideos[videoIndex].Audio;
+            _slideshowPlayer.clip = _endingVideos[videoIndex].Footage;
             _slideshowPlayer.Prepare();
         }
         else

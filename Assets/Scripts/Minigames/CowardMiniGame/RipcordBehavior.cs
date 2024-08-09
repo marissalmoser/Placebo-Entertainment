@@ -14,6 +14,8 @@ using UnityEngine.UI;
 using PlaceboEntertainment.UI;
 using UnityEngine.InputSystem;
 using System;
+using FMOD.Studio;
+using Utils;
 
 public class RipcordBehavior : MonoBehaviour
 {
@@ -36,6 +38,13 @@ public class RipcordBehavior : MonoBehaviour
 
     [Header("VFX")]
     [SerializeField] private ParticleSystem _steam;
+
+    [Header("Audio")] 
+    [SerializeField] private FMODUnity.EventReference ripcordPull;
+
+    [SerializeField] private FMODUnity.EventReference ripcordRev;
+    [SerializeField] private FMODUnity.EventReference ripcordFinal;
+    [SerializeField] private float ripCoordPlaybackRate = 0.02f;
 
     private PlayerController _playerController;
     private GameObject _player;
@@ -121,11 +130,16 @@ public class RipcordBehavior : MonoBehaviour
 
         _isFollowingPlayer = true;
         _isAtStartPosition = false;
-       
+        var prevPos = transform.position;
         while (_isFollowingPlayer)
         {
             if (_player.transform.position.z + 1 < transform.position.z)
             {
+                if ((transform.position - prevPos).sqrMagnitude > ripCoordPlaybackRate * ripCoordPlaybackRate)
+                {
+                    AudioManager.PlaySound(ripcordPull, transform.position);
+                }
+                prevPos = transform.position;
                 // Chose to lerp the z value to prevent visual tearing.
                 transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.Lerp(transform.position.z, _player.transform.position.z + 1f, Time.fixedDeltaTime * _followPlayerSpeed));
             }
@@ -155,9 +169,14 @@ public class RipcordBehavior : MonoBehaviour
 
         _isFollowingPlayer = false;
         _scoreDetectionRange.GetComponent<Collider>().enabled = true;
-
+        var prevPos = transform.position;
         while (!_isAtStartPosition)
         {
+            if ((transform.position - prevPos).sqrMagnitude > ripCoordPlaybackRate * ripCoordPlaybackRate)
+            {
+                AudioManager.PlaySound(ripcordPull, transform.position);
+            }
+            prevPos = transform.position;
             transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.Lerp(transform.position.z, _startPosition.z, Time.fixedDeltaTime * _returnSpeed));
 
             // Small margin of error to determine if the ripcord is at start
@@ -186,12 +205,18 @@ public class RipcordBehavior : MonoBehaviour
             _score++;
 
             OnRipcordScore?.Invoke();
+            if (_score < 3)
+            {
+                AudioManager.PlaySound(ripcordRev, transform.position);
+            }
+            
             _successfulPulls.text = (_score).ToString();
         }
 
         // Winning score
         if (_score >= 3)
         {
+            AudioManager.PlaySound(ripcordFinal, transform.position);
             _gears.SetActive(true);
             _successfulPulls.color = Color.green;
             StopGeneratorSteam();

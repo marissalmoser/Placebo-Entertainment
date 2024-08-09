@@ -73,6 +73,7 @@ public class AngelNpc : BaseNpc
     /// <returns>String dialogue to display</returns>
     protected override string ChooseDialogueFromNode(DialogueNode node)
     {
+        PlayRandomTalkingAnim(node);
         if (_cowardGameComplete && _robotGameComplete)
         {
             return node.Dialogue[1];

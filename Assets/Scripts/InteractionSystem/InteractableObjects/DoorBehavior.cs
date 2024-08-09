@@ -22,6 +22,7 @@ public class DoorBehavior : MonoBehaviour, IInteractable
 
     [SerializeField] private Material _material;
     [SerializeField] private Renderer _renderer;
+    [SerializeField] private FMODUnity.EventReference doorEvent;
     private Color _color;
     private float _intensity;
 
@@ -75,6 +76,7 @@ public class DoorBehavior : MonoBehaviour, IInteractable
     {
         _isOpened = true;
         _anim.SetTrigger("_openDoor");
+        AudioManager.PlaySound(doorEvent, transform.position, null);
         GetComponent<BoxCollider>().enabled = false;
         //disabe UI - should I just remove the interactable script from the door?
         HideInteractUI();

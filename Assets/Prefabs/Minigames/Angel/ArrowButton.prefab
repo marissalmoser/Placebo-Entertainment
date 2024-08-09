@@ -254,11 +254,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b2cf241284171b4bba4b798ddbaa40e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interactPromptText: BUTTON
   _buttonPress: {fileID: 6591651633132190194}
   _upPosition: {fileID: 5583504693812641706}
   _downPosition: {fileID: 379901423783437830}
   IsInteractable: 1
   _buttonCooldownTime: 0.3
+  interactEvent:
+    Guid:
+      Data1: -978504167
+      Data2: 1086819756
+      Data3: -1435403370
+      Data4: 204840968
+    Path: event:/Minigame/Angel/Button
   _arrowDirection: 0
 --- !u!1 &5583504693812641706
 GameObject:

@@ -51,6 +51,8 @@ public class WrenchBehavior : MonoBehaviour, IInteractable
     //private bool _swing;
     [Header("Wrench outside hand functions")]
     [SerializeField] private GameObject _rightHand;
+
+    [SerializeField] private FMODUnity.EventReference pickupEvent;
     private bool _withinProx;
     private bool _isEquipped;
 
@@ -165,6 +167,7 @@ public class WrenchBehavior : MonoBehaviour, IInteractable
         if (_isEquipped == false)
         {
             //_animate.SetTrigger("pickedUp");
+            AudioManager.PlaySound(pickupEvent, transform.position);
             _isEquipped = true;
             GetComponent<Collider>().enabled = false;
             transform.position = _rightHand.transform.position;

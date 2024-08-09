@@ -15,7 +15,7 @@ using PlaceboEntertainment.UI;
 public class LeverInteraction : MonoBehaviour, IInteractable
 {
     [SerializeField] private string _interactPromptText = "LEVER";
-
+    [SerializeField] private FMODUnity.EventReference leverEvent;
     [SerializeField] private GameObject _handle;
     public bool _isOn { get; private set; }
 
@@ -26,7 +26,6 @@ public class LeverInteraction : MonoBehaviour, IInteractable
     public virtual void Interact(GameObject player)
     {
         //print("interact");
-
         if (!_isOn)
         {
             SetLever(true);
@@ -59,6 +58,7 @@ public class LeverInteraction : MonoBehaviour, IInteractable
     /// <param name="input"></param>
     public virtual void SetLever(bool input)
     {
+        AudioManager.PlaySound(leverEvent, transform.position);
         //set to true if not already
         if(input && !_isOn)
         {

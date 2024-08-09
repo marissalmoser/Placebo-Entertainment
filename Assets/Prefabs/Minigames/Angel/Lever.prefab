@@ -285,6 +285,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0d7388b0f80cd3448e06e4b64ce2377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interactPromptText: LEVER
+  leverEvent:
+    Guid:
+      Data1: 2104462760
+      Data2: 1260496103
+      Data3: -304394855
+      Data4: -1279290902
+    Path: event:/Minigame/Angel/Lever
   _handle: {fileID: 8277482519248280222}
 --- !u!1 &8277482519248280222
 GameObject:

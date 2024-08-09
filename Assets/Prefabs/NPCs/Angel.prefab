@@ -149,6 +149,13 @@ MonoBehaviour:
         _nextResponseIndex: 0300000004000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: -695088548
+          Data2: 1327507626
+          Data3: 28375228
+          Data4: -1654734108
+        Path: event:/Characters/Angel/AngelHurt1
     - _dialogue:
       - I cannot recall. When we experienced turbulence, I got knocked out and woke
         up here.
@@ -160,6 +167,13 @@ MonoBehaviour:
         _nextResponseIndex: 02000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: -1021499679
+          Data2: 1159189524
+          Data3: -2043455333
+          Data4: 1105297950
+        Path: event:/Characters/Angel/AngelHurt2
     - _dialogue:
       - I need medical attention but I cannot seem to move. Please seek assistance
         from Dr. Olpy.
@@ -171,6 +185,13 @@ MonoBehaviour:
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - You possess nothing useful.
       _playerResponses:
@@ -181,6 +202,13 @@ MonoBehaviour:
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - Thank you. The ship is caught halfway through the marion and we must get
         to one side. I shall steer but I require assistance with the navigation systems.
@@ -192,6 +220,13 @@ MonoBehaviour:
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     _minigameReadyState:
     - _dialogue:
       - Greetings, Commanding Officer. I am injured and need medical assistance.
@@ -210,6 +245,13 @@ MonoBehaviour:
         _nextResponseIndex: 0300000004000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - I cannot recall. When we experienced turbulence, I got knocked out and woke
         up here.
@@ -221,6 +263,13 @@ MonoBehaviour:
         _nextResponseIndex: 02000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - I need medical attention but I cannot seem to move. Please seek assistance
         from Dr. Olpy.
@@ -232,6 +281,13 @@ MonoBehaviour:
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - You possess nothing useful.
       _playerResponses:
@@ -242,6 +298,13 @@ MonoBehaviour:
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - Thank you. The ship is caught halfway through the marion and we must get
         to one side. I shall steer but I require assistance with the navigation systems.
@@ -253,18 +316,32 @@ MonoBehaviour:
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     _playingMinigameState: []
     _postMinigameState:
     - _dialogue:
       - The crew is safe, yes?
       _playerResponses:
-      - _eventToTrigger: {fileID: 0}
+      - _eventToTrigger: {fileID: 11400000, guid: fc8258980d4d13341abe42a88ac6fdb6, type: 2}
         _eventTag: 0
         _hasPrerequisiteCheck: 0
         _answer: Safe and sound.
         _nextResponseIndex: 01000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - "Good\u2026 Now then, a question"
       _playerResponses:
@@ -275,6 +352,13 @@ MonoBehaviour:
         _nextResponseIndex: 02000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - With my health in order, and the ship and its crew returned to a working
         condition, we have a choice to make.
@@ -286,6 +370,13 @@ MonoBehaviour:
         _nextResponseIndex: 03000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - "We have made it beyond Marion and have entered into a plane of non-reality.
         There\u2019s no telling what\u2019s out there, if anything can exist at all.
@@ -298,6 +389,13 @@ MonoBehaviour:
         _nextResponseIndex: 04000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - So, as the one who has seen us through thus far, I offer you the choice.
       _playerResponses:
@@ -308,6 +406,13 @@ MonoBehaviour:
         _nextResponseIndex: 05000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - "We can return to the safety of the Sectorian Collective with the lives of
         our crew intact. Or\u2026 We can press onward, beyond the Marion; to discover
@@ -320,6 +425,13 @@ MonoBehaviour:
         _nextResponseIndex: 06000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - What is your desire?
       _playerResponses:
@@ -337,6 +449,13 @@ MonoBehaviour:
         _nextResponseIndex: 0b000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - Alright.
       _playerResponses:
@@ -347,6 +466,13 @@ MonoBehaviour:
         _nextResponseIndex: 08000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - "I trust you, Commanding Officer\u2026"
       _playerResponses:
@@ -357,6 +483,13 @@ MonoBehaviour:
         _nextResponseIndex: 09000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - Cassidey.
       _playerResponses:
@@ -367,16 +500,30 @@ MonoBehaviour:
         _nextResponseIndex: 0a000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - Let us see what lies beyond together.
       _playerResponses:
-      - _eventToTrigger: {fileID: 11400000, guid: 6c063e0dc7b42fc4e8a3e9c06253b1c1, type: 2}
+      - _eventToTrigger: {fileID: 11400000, guid: 79af595eb319158438b5f3a5e1ebd488, type: 2}
         _eventTag: 3
         _hasPrerequisiteCheck: 0
         _answer: <b>Proceed
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - Alright.
       _playerResponses:
@@ -387,6 +534,13 @@ MonoBehaviour:
         _nextResponseIndex: 0c000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - "I trust you, Commanding Officer\u2026"
       _playerResponses:
@@ -397,6 +551,13 @@ MonoBehaviour:
         _nextResponseIndex: 0d000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - Cassidey.
       _playerResponses:
@@ -407,23 +568,31 @@ MonoBehaviour:
         _nextResponseIndex: 0e000000
         _advancesNpcState: 0
         _endsDialogue: 0
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     - _dialogue:
       - Let us return home.
       _playerResponses:
-      - _eventToTrigger: {fileID: 11400000, guid: 6c063e0dc7b42fc4e8a3e9c06253b1c1, type: 2}
+      - _eventToTrigger: {fileID: 11400000, guid: 568815febe15e9b47930ec0d4002cfd1, type: 2}
         _eventTag: 3
         _hasPrerequisiteCheck: 0
         _answer: <b>Return
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
+      DialogueEvent:
+        Guid:
+          Data1: 0
+          Data2: 0
+          Data3: 0
+          Data4: 0
+        Path: 
     _failureState: []
-  _navigationPositions:
-    _idleState: {x: 0, y: 0, z: 0}
-    _minigameReadyState: {x: 0, y: 0, z: 0}
-    _playingMinigameState: {x: 0, y: 0, z: 0}
-    _postMinigameState: {x: 0, y: 0, z: 0}
-    _failureState: {x: 0, y: 0, z: 0}
   _stateAnimations:
     _idleState: {fileID: 0}
     _minigameReadyState: {fileID: 0}
@@ -462,23 +631,6 @@ MonoBehaviour:
         - m_Target: {fileID: 7988089871590522290}
           m_TargetAssemblyTypeName: AngelNpc, Assembly-CSharp
           m_MethodName: CheckForStateChange
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - _npcEvent: {fileID: 11400000, guid: 6c063e0dc7b42fc4e8a3e9c06253b1c1, type: 2}
-    _npcEventTag: 3
-    _onEventTriggered:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 7988089871590522290}
-          m_TargetAssemblyTypeName: AngelNpc, Assembly-CSharp
-          m_MethodName: WinGame
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

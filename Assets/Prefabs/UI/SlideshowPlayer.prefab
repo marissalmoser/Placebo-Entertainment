@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 647476111563329795}
   - component: {fileID: 2867414783562219539}
   - component: {fileID: 7853009991006257867}
+  - component: {fileID: 2958979765807339549}
   m_Layer: 5
   m_Name: SlideshowPlayer
   m_TagString: Untagged
@@ -101,8 +102,95 @@ MonoBehaviour:
   _isIntroVideoPlayer: 0
   _levelSceneBuildIndex: 2
   _mainMenuBuildIndex: 0
-  _introVideo: {fileID: 32900000, guid: a3d4d6f12f420254480280d11ade563e, type: 3}
+  _introVideo:
+    Footage: {fileID: 0}
+    Audio:
+      Guid:
+        Data1: 0
+        Data2: 0
+        Data3: 0
+        Data4: 0
+      Path: 
   _endingVideos:
-  - {fileID: 32900000, guid: c366df50e49f583489d5279c238e9a62, type: 3}
-  - {fileID: 32900000, guid: 2cdc3f4e1f837c446aaaaf782ca2854a, type: 3}
-  _creditsVideo: {fileID: 32900000, guid: 33855853eba4c8945b258fa44b7a1f87, type: 3}
+  - Footage: {fileID: 0}
+    Audio:
+      Guid:
+        Data1: 0
+        Data2: 0
+        Data3: 0
+        Data4: 0
+      Path: 
+  - Footage: {fileID: 0}
+    Audio:
+      Guid:
+        Data1: 0
+        Data2: 0
+        Data3: 0
+        Data4: 0
+      Path: 
+  _creditsVideo:
+    Footage: {fileID: 0}
+    Audio:
+      Guid:
+        Data1: 0
+        Data2: 0
+        Data3: 0
+        Data4: 0
+      Path: 
+--- !u!114 &2958979765807339549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1472396435569786546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a0acc881a336094997b0fb61c6d1983, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _eventsToListenFor:
+  - _npcEvent: {fileID: 11400000, guid: 79af595eb319158438b5f3a5e1ebd488, type: 2}
+    _npcEventTag: 3
+    _onEventTriggered:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 7853009991006257867}
+          m_TargetAssemblyTypeName: SlideshowManager, Assembly-CSharp
+          m_MethodName: PlayEndingSlideshow
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - _npcEvent: {fileID: 11400000, guid: 79af595eb319158438b5f3a5e1ebd488, type: 2}
+    _npcEventTag: 3
+    _onEventTriggered:
+      m_PersistentCalls:
+        m_Calls: []
+  - _npcEvent: {fileID: 11400000, guid: 568815febe15e9b47930ec0d4002cfd1, type: 2}
+    _npcEventTag: 3
+    _onEventTriggered:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 7853009991006257867}
+          m_TargetAssemblyTypeName: SlideshowManager, Assembly-CSharp
+          m_MethodName: PlayEndingSlideshow
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - _npcEvent: {fileID: 11400000, guid: 568815febe15e9b47930ec0d4002cfd1, type: 2}
+    _npcEventTag: 3
+    _onEventTriggered:
+      m_PersistentCalls:
+        m_Calls: []

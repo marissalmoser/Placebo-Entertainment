@@ -23,6 +23,7 @@ public class DialInteraction : MonoBehaviour, IInteractable
     public DialDirection _direction { get; private set; }
 
     [SerializeField] private string _interactPromptText = "DIAL";
+    [SerializeField] private FMODUnity.EventReference dialEvent;
 
     /// <summary>
     /// Sets dial direction
@@ -43,6 +44,7 @@ public class DialInteraction : MonoBehaviour, IInteractable
         _direction = (DialDirection) newDirection;
 
         transform.Rotate(new Vector3(0, 90, 0));
+        AudioManager.PlaySound(dialEvent, transform.position);
     }
 
     /// <summary>

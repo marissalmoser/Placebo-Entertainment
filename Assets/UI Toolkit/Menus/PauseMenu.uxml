@@ -39,11 +39,11 @@
         <ui:Label tabindex="-1" text="Audio" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MainText" class="TextElement" style="font-size: 64px;" />
         <ui:VisualElement name="DividerLine" style="flex-grow: 1; position: absolute; left: 75px; top: 202px; width: 455px; height: 5px; background-image: url(&quot;project://database/Assets/Art/UI/MainMenu/Header_Underline.png?fileID=2800000&amp;guid=64e11146fe14c4d48ba01e2d0e4ef7da&amp;type=3#Header_Underline&quot;);" />
         <ui:Label tabindex="-1" text="Master Volume" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MasterHeader" class="TextElement" style="top: 252px; font-size: 30px;" />
-        <ui:Slider label="Slider" high-value="100" name="MasterSlider" style="background-image: none; width: 672px; height: 21px; left: 78px; bottom: auto; top: 329px; position: absolute;" />
-        <ui:Label tabindex="-1" text="Master Volume" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MusicHeader" class="TextElement" style="top: 425px; font-size: 30px;" />
-        <ui:Slider label="Slider" high-value="100" name="MusicSlider" style="background-image: none; width: 672px; height: 21px; left: 78px; bottom: auto; top: 502px; position: absolute;" />
-        <ui:Label tabindex="-1" text="Master Volume" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SfxHeader" class="TextElement" style="top: 598px; font-size: 30px;" />
-        <ui:Slider label="Slider" high-value="100" name="SfxSlider" style="background-image: none; width: 672px; height: 21px; left: 78px; bottom: auto; top: 675px; position: absolute;" />
+        <ui:Slider label="Slider" high-value="100" name="MasterSlider" style="background-image: none; width: 672px; height: 21px; left: 78px; bottom: auto; top: 302px; position: absolute;" />
+        <ui:Label tabindex="-1" text="SFX Volume" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SFXHeader" class="TextElement" style="top: 598px; font-size: 30px;" />
+        <ui:Slider label="Slider" high-value="100" name="SFXSlider" style="background-image: none; width: 672px; height: 21px; left: 78px; bottom: auto; top: 648px; position: absolute;" />
+        <ui:Label tabindex="-1" text="Music Volume" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MusicHeader" class="TextElement" style="top: 425px; font-size: 30px;" />
+        <ui:Slider label="Slider" high-value="100" name="MusicSlider" style="background-image: none; width: 672px; height: 21px; left: 78px; bottom: auto; top: 475px; position: absolute;" />
     </ui:VisualElement>
     <ui:VisualElement name="ControlsHolder" style="display: none; background-image: none; width: 100%; height: 100%; background-color: rgb(0, 0, 0);">
         <ui:VisualElement name="ControlsBackPrompt" style="flex-grow: 0; width: auto; height: auto; align-items: center; align-self: center; justify-content: center; flex-direction: row; position: absolute; margin-top: 0; padding-top: 0; transform-origin: center; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; border-left-color: rgba(7, 12, 30, 0); border-right-color: rgba(7, 12, 30, 0); border-top-color: rgba(7, 12, 30, 0); border-bottom-color: rgba(7, 12, 30, 0); left: auto; top: 912px; right: 81px; bottom: auto;">
@@ -72,6 +72,6 @@
         </ui:VisualElement>
         <ui:VisualElement name="MouseImage" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Art/UI/MainMenu/Mouse.png?fileID=2800000&amp;guid=fe8156eeb922903499fbb59f869a6663&amp;type=3#Mouse&quot;); position: absolute; left: 512px; bottom: 332px; width: 51px; height: 68px;" />
         <ui:Label tabindex="-1" text="Mouse Sensitivity" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MouseSensText" class="TextElement" style="top: 793px; font-size: 30px; left: 74px;" />
-        <ui:Slider label="Slider" high-value="100" name="MouseSensSlider" style="background-image: none; width: 672px; height: 21px; left: 74px; bottom: auto; top: 870px;" />
+        <ui:Slider label="Slider" high-value="100" name="MouseSensSlider" style="background-image: none; width: 672px; height: 21px; left: 74px; bottom: auto; top: 843px;" />
     </ui:VisualElement>
 </ui:UXML>
