@@ -469,6 +469,7 @@ GameObject:
   - component: {fileID: 7043136950593557684}
   - component: {fileID: 4322697624923503399}
   - component: {fileID: 4913116934636954327}
+  - component: {fileID: 7048270489031227367}
   m_Layer: 8
   m_Name: Cinemachine
   m_TagString: Untagged
@@ -485,7 +486,7 @@ Transform:
   m_GameObject: {fileID: 3909336886699579972}
   serializedVersion: 2
   m_LocalRotation: {x: 0.08877446, y: 0.69455385, z: -0.08701222, w: 0.7086205}
-  m_LocalPosition: {x: -1.9895744, y: 0, z: -0.5399933}
+  m_LocalPosition: {x: -1.9895746, y: 0, z: -0.5399947}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -576,6 +577,20 @@ MonoBehaviour:
   m_Damping: 0
   m_DampingWhenOccluded: 0
   m_OptimalTargetDistance: 0
+--- !u!114 &7048270489031227367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3909336886699579972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1422a104d2e5f424d9ac243d0662c5e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cameraSpeedLowEnd: 100
+  _cameraSpeedHighEnd: 600
 --- !u!1 &4342943814779370530
 GameObject:
   m_ObjectHideFlags: 0
@@ -884,7 +899,7 @@ Transform:
   m_GameObject: {fileID: 8865543037565822744}
   serializedVersion: 2
   m_LocalRotation: {x: 0.124306194, y: -0, z: -0, w: 0.99224395}
-  m_LocalPosition: {x: 0.04146611, y: 0.49999994, z: 0.23412389}
+  m_LocalPosition: {x: 0.04146891, y: 0.5, z: 0.2341242}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
