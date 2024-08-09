@@ -191,10 +191,13 @@ public class AudioManager : MonoBehaviour
             eventInstanceWorldDict.Add(instance, attachObject);
         }
 
-        attachObject.transform.parent = rb ? rb.transform : null;
-        attachObject.transform.position = origin;
-        FMODUnity.RuntimeManager.DetachInstanceFromGameObject(instance);
-        FMODUnity.RuntimeManager.AttachInstanceToGameObject(instance, attachObject.transform, rb ? rb : null);
+        if (attachObject != null)
+        {
+            attachObject.transform.parent = rb ? rb.transform : null;
+            attachObject.transform.position = origin;
+            FMODUnity.RuntimeManager.DetachInstanceFromGameObject(instance);
+            FMODUnity.RuntimeManager.AttachInstanceToGameObject(instance, attachObject.transform, rb ? rb : null);
+        }
 
 
         if (parameters != null)
