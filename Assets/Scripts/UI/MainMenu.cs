@@ -17,7 +17,6 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField] private UIDocument _mainMenuDoc;
     [SerializeField] private int _introVideoBuildIndex;
-    [SerializeField] private SaveLoadManager _savingManager;
     [SerializeField] private float _tabAnimationTime;
     [SerializeField] private EventReference mainMenuMusicEvent;
     [SerializeField] private EventReference clickEvent;
@@ -82,6 +81,7 @@ public class MainMenu : MonoBehaviour
     // 0 = splash, 1 = main, 2 = settings selection, 3 = settings submenu
     private int _currentScreenIndex = 0;
 
+    private SaveLoadManager _savingManager;
     private PlayerControls _playerControls;
     private InputAction _startGame;
     private InputAction _backInput;
@@ -158,29 +158,6 @@ public class MainMenu : MonoBehaviour
         _controlsButton.RegisterCallback<MouseOverEvent>(evt => { AnimateTab(_quitTab, true); });
         _controlsButton.RegisterCallback<MouseOutEvent>(evt => { AnimateTab(_quitTab, false); });
 
-        // Makes continue button visible if saved data exists and registers relevant animated tab callbacks
-        if (_savingManager != null && _savingManager.DoesSaveFileExist())
-        {
-            _continueButton.style.display = DisplayStyle.Flex;
-
-            _continueButton.RegisterCallback<MouseOverEvent>(evt => { AnimateTab(_continueTab, true); });
-            _continueButton.RegisterCallback<MouseOutEvent>(evt => { AnimateTab(_continueTab, false); });
-            _settingsButton.RegisterCallback<MouseOverEvent>(evt => { AnimateTab(_settingsTab, true); });
-            _settingsButton.RegisterCallback<MouseOutEvent>(evt => { AnimateTab(_settingsTab, false); });
-            _quitButton.RegisterCallback<MouseOverEvent>(evt => { AnimateTab(_quitTab, true); });
-            _quitButton.RegisterCallback<MouseOutEvent>(evt => { AnimateTab(_quitTab, false); });
-        }
-        else
-        {
-            // Using different tabs to account for the lack of a continue button
-            _continueButton.style.display = DisplayStyle.None;
-
-            _settingsButton.RegisterCallback<MouseOverEvent>(evt => { AnimateTab(_continueTab, true); });
-            _settingsButton.RegisterCallback<MouseOutEvent>(evt => { AnimateTab(_continueTab, false); });
-            _quitButton.RegisterCallback<MouseOverEvent>(evt => { AnimateTab(_settingsTab, true); });
-            _quitButton.RegisterCallback<MouseOutEvent>(evt => { AnimateTab(_settingsTab, false); });
-        }
-
         _mainMenuMusicInstance = AudioManager.PlaySound(mainMenuMusicEvent, Vector3.zero);
         _allButtons = _mainMenuDoc.rootVisualElement.Query<Button>();
         _allButtons.ForEach(button => button.RegisterCallback<ClickEvent>(PlayConfirmSound));
@@ -208,6 +185,30 @@ public class MainMenu : MonoBehaviour
             _masterVolSlider.value = _settingsManager.MasterVolume;
             _musicVolSlider.value = _settingsManager.MusicVolume;
             _sfxVolSlider.value = _settingsManager.SfxVolume;
+        }
+
+        _savingManager = SaveLoadManager.Instance;
+        // Makes continue button visible if saved data exists and registers relevant animated tab callbacks
+        if (_savingManager != null && _savingManager.DoesSaveFileExist())
+        {
+            _continueButton.style.display = DisplayStyle.Flex;
+
+            _continueButton.RegisterCallback<MouseOverEvent>(evt => { AnimateTab(_continueTab, true); });
+            _continueButton.RegisterCallback<MouseOutEvent>(evt => { AnimateTab(_continueTab, false); });
+            _settingsButton.RegisterCallback<MouseOverEvent>(evt => { AnimateTab(_settingsTab, true); });
+            _settingsButton.RegisterCallback<MouseOutEvent>(evt => { AnimateTab(_settingsTab, false); });
+            _quitButton.RegisterCallback<MouseOverEvent>(evt => { AnimateTab(_quitTab, true); });
+            _quitButton.RegisterCallback<MouseOutEvent>(evt => { AnimateTab(_quitTab, false); });
+        }
+        else
+        {
+            // Using different tabs to account for the lack of a continue button
+            _continueButton.style.display = DisplayStyle.None;
+
+            _settingsButton.RegisterCallback<MouseOverEvent>(evt => { AnimateTab(_continueTab, true); });
+            _settingsButton.RegisterCallback<MouseOutEvent>(evt => { AnimateTab(_continueTab, false); });
+            _quitButton.RegisterCallback<MouseOverEvent>(evt => { AnimateTab(_settingsTab, true); });
+            _quitButton.RegisterCallback<MouseOutEvent>(evt => { AnimateTab(_settingsTab, false); });
         }
     }
 
