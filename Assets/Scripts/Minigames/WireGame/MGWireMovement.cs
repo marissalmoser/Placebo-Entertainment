@@ -37,23 +37,6 @@ public class MGWireMovement : MonoBehaviour
         GenerateSegments();
     }
 
-    private void Update()
-    {
-        /*if (Input.GetKeyDown("space"))
-        {
-            Debug.Log("space");
-            ChangeEndKinematic(true);
-        }*/
-    }
-
-    /*private void OnDrawGizmos()
-    {
-        for(int i = 0; i < _segments.Length; i++)
-        {
-            Gizmos.DrawWireSphere(_segments[i].position, 0.1f);
-        }
-    }*/
-
     /// <summary>
     /// Spawns wire segments
     /// </summary>
@@ -77,7 +60,11 @@ public class MGWireMovement : MonoBehaviour
 
             prevTrans = segment.transform;
 
+            Debug.Log(segment.transform.rotation);
+
             GenerateSphereObj(_segments[i], (i == _segmentCount - 1));
+
+            Debug.Log(segment.transform.rotation);
         }
 
         JoinSegment(_endTrans, prevTrans, true, true);
@@ -102,8 +89,10 @@ public class MGWireMovement : MonoBehaviour
 
         if(_usePhysics)
         {
+            //CapsuleCollider capsuleCollider = currentTrans.AddComponent<CapsuleCollider>();
             SphereCollider sphereCollider = currentTrans.AddComponent<SphereCollider>();
             sphereCollider.radius = _radius;
+            //capsuleCollider.radius = _radius;
         }
 
         if(connectedTrans != null)
@@ -116,13 +105,17 @@ public class MGWireMovement : MonoBehaviour
             if(isCloseConnected)
             {
                 // Applies to end
-                joint.connectedAnchor = Vector3.forward * 0.1f;
+                joint.connectedAnchor = Vector3.forward * 0.1f; // I think this is where the problems lie, how???
+                Debug.DrawRay(joint.transform.position, new Vector3(1,1,1), color:Color.red, 20f);
+
+                joint.GetComponent<Rigidbody>().freezeRotation = true;
             }
             else
             {
                 // Applies to start and other segments
                 joint.connectedAnchor = 
                     Vector3.forward * (_totalLength / _segmentCount);
+                Debug.DrawRay(joint.transform.position, new Vector3(1, 1, 1), color: Color.red, 20f);
             }
 
             joint.xMotion = ConfigurableJointMotion.Locked;
@@ -166,6 +159,6 @@ public class MGWireMovement : MonoBehaviour
     {
         MGWire wireRef = GetComponentInParent<MGWire>();
         Assert.IsNotNull(wireRef);
-        wireRef.CreateSegmentSphere(parentObj, isLastSegment);
+        wireRef.CreateSegmentStruct(parentObj, isLastSegment);
     }
 }

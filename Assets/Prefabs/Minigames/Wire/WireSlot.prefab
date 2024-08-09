@@ -154,7 +154,9 @@ MonoBehaviour:
   _matchingWire: 2
   _slotRenderer: {fileID: 5026326117409111226}
   _slotColor: {r: 0, g: 0, b: 0, a: 0}
+  IsConnected: 0
   _connectSpark: {fileID: 3164813175098475585, guid: f3ee0047d289a81438652cc28d1703d1, type: 3}
+  _disconnectedSparks: {fileID: 1373860831198249239, guid: ddee0cac0f4d6434e8ddb6fe20e9623b, type: 3}
 --- !u!65 &4879361753229163800
 BoxCollider:
   m_ObjectHideFlags: 0
