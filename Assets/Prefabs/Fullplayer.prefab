@@ -345,7 +345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58946de553462ec46aad589f2365e628, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 3.5
+  _moveSpeed: 4.5
   _jumpForce: 0
   oscillator:
     <CurrentFrequency>k__BackingField: 15
@@ -469,6 +469,7 @@ GameObject:
   - component: {fileID: 7043136950593557684}
   - component: {fileID: 4322697624923503399}
   - component: {fileID: 4913116934636954327}
+  - component: {fileID: 8059624633785670056}
   m_Layer: 8
   m_Name: Cinemachine
   m_TagString: Untagged
@@ -576,6 +577,20 @@ MonoBehaviour:
   m_Damping: 0
   m_DampingWhenOccluded: 0
   m_OptimalTargetDistance: 0
+--- !u!114 &8059624633785670056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3909336886699579972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1422a104d2e5f424d9ac243d0662c5e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cameraSpeedLowEnd: 150
+  _cameraSpeedHighEnd: 400
 --- !u!1 &4342943814779370530
 GameObject:
   m_ObjectHideFlags: 0
@@ -884,7 +899,7 @@ Transform:
   m_GameObject: {fileID: 8865543037565822744}
   serializedVersion: 2
   m_LocalRotation: {x: 0.124306194, y: -0, z: -0, w: 0.99224395}
-  m_LocalPosition: {x: 0.04146611, y: 0.49999994, z: 0.23412389}
+  m_LocalPosition: {x: 0.04146611, y: 0.5, z: 0.23412389}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
