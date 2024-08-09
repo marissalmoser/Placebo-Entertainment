@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8000495540909241637}
   serializedVersion: 2
-  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 0
@@ -35,7 +35,7 @@ Transform:
   - {fileID: 3673700023957605561}
   - {fileID: 9093081053933443849}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 180}
 --- !u!33 &1594848078761885326
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -107,6 +107,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4088436586526684763, guid: 7b46a5d1d01dce4439f4f818851931ac, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4088436586526684763, guid: 7b46a5d1d01dce4439f4f818851931ac, type: 3}
       propertyPath: _slotColor.b
       value: 0
       objectReference: {fileID: 0}
@@ -117,6 +121,10 @@ PrefabInstance:
     - target: {fileID: 4088436586526684763, guid: 7b46a5d1d01dce4439f4f818851931ac, type: 3}
       propertyPath: _slotColor.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5026326117409111226, guid: 7b46a5d1d01dce4439f4f818851931ac, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6965846166660624164, guid: 7b46a5d1d01dce4439f4f818851931ac, type: 3}
       propertyPath: m_Name
@@ -220,6 +228,10 @@ PrefabInstance:
       propertyPath: _matchingWire
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5026326117409111226, guid: 7b46a5d1d01dce4439f4f818851931ac, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6965846166660624164, guid: 7b46a5d1d01dce4439f4f818851931ac, type: 3}
       propertyPath: m_Name
       value: WireSlot
@@ -308,6 +320,10 @@ PrefabInstance:
       value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 4088436586526684763, guid: 7b46a5d1d01dce4439f4f818851931ac, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4088436586526684763, guid: 7b46a5d1d01dce4439f4f818851931ac, type: 3}
       propertyPath: _slotColor.b
       value: 1
       objectReference: {fileID: 0}
@@ -322,6 +338,10 @@ PrefabInstance:
     - target: {fileID: 4088436586526684763, guid: 7b46a5d1d01dce4439f4f818851931ac, type: 3}
       propertyPath: _matchingWire
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5026326117409111226, guid: 7b46a5d1d01dce4439f4f818851931ac, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6965846166660624164, guid: 7b46a5d1d01dce4439f4f818851931ac, type: 3}
       propertyPath: m_Name
