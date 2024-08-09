@@ -29,7 +29,7 @@
     height: 146px;
     transform-origin: left top;
     transition-property: all;
-    translate: 150px 0;
+    translate: 150px 200px;
 }
 
 .AlarmTextBackground {
