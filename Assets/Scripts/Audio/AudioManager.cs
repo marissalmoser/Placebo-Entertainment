@@ -108,7 +108,7 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-            attachObject = new GameObject(eventReference.Path);
+            attachObject = new GameObject(eventReference.Guid.ToString());
             eventInstanceWorldDict.Add(instance, attachObject);
         }
 
@@ -187,7 +187,7 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-            attachObject = new GameObject(eventReference.Path);
+            attachObject = new GameObject(eventReference.Guid.ToString());
             eventInstanceWorldDict.Add(instance, attachObject);
         }
 
