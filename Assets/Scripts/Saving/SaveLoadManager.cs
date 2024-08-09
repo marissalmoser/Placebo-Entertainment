@@ -42,6 +42,7 @@ public class SaveLoadManager : MonoBehaviour
     private void CollectInventoryData()
     {
         InventoryHolder[] inventoryHolders = FindObjectsOfType<InventoryHolder>();
+        newData = new SaveData();
         foreach (var holder in inventoryHolders)
         {
             string objectName = holder.gameObject.name;
