@@ -178,6 +178,8 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     private void Start()
     {
+        UnityEngine.Cursor.visible = true;
+
         _settingsManager = SettingsManager.Instance;
         if (_settingsManager != null)
         {
