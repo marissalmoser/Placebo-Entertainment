@@ -134,6 +134,13 @@ MonoBehaviour:
         _nextResponseIndex: 
         _advancesNpcState: 0
         _endsDialogue: 1
+      - _eventToTrigger: {fileID: 0}
+        _eventTag: 1
+        _hasPrerequisiteCheck: 0
+        _answer: Ok...
+        _nextResponseIndex: 
+        _advancesNpcState: 0
+        _endsDialogue: 1
       DialogueEvent:
         Guid:
           Data1: 778340369
