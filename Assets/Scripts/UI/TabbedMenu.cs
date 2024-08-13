@@ -116,6 +116,7 @@ namespace PlaceboEntertainment.UI
         private VisualElement _fadeOutElement;
         private VisualElement _fishFace;
         private VisualElement _waterFillMeter;
+        private bool _isLoseScreenActive = false;
 
         #endregion
 
@@ -634,44 +635,56 @@ namespace PlaceboEntertainment.UI
         [ContextMenu(nameof(SetLoseScreenActive))]
         public void SetLoseScreenActive()
         {
-            print("set active");
-            StartCoroutine(LoseScreenTimer());
-            //alarmClockScreen.enabled = true;
+            _isLoseScreenActive = true;
+            StartCoroutine(nameof(LoseScreenTimer));
             alarmClockScreen.rootVisualElement.style.display = DisplayStyle.Flex;
             var text = alarmClockScreen.rootVisualElement.Q<Label>(AlarmClockScreenName);
             text.AddToClassList(AlarmClockActiveStyleName);
-            // text.RegisterCallback<TransitionEndEvent>(OnTransitionEnd);
         }
 
         private void BeginLoseScreenGrowth()
         {
-            var text = alarmClockScreen.rootVisualElement.Q<Label>(AlarmClockScreenName);
-            text.AddToClassList(AlarmClockBigStyleName);
-            text?.schedule.Execute(() => { text.RegisterCallback<TransitionEndEvent>(OnBigTransitionEnd); });
+            if (_isLoseScreenActive)
+            {
+                var text = alarmClockScreen.rootVisualElement.Q<Label>(AlarmClockScreenName);
+                text.AddToClassList(AlarmClockBigStyleName);
+                text?.schedule.Execute(() => { text.RegisterCallback<TransitionEndEvent>(OnBigTransitionEnd); });
+            }
         }
 
         private void OnTransitionEnd(TransitionEndEvent evt)
         {
-            var text = evt.currentTarget as Label;
-            text?.AddToClassList(AlarmClockBigStyleName);
-            text?.schedule.Execute(() => { text.RegisterCallback<TransitionEndEvent>(OnBigTransitionEnd); });
+            if (_isLoseScreenActive)
+            {
+                var text = evt.currentTarget as Label;
+                text?.AddToClassList(AlarmClockBigStyleName);
+                text?.schedule.Execute(() => { text.RegisterCallback<TransitionEndEvent>(OnBigTransitionEnd); });
+            }
         }
 
         private void OnBigTransitionEnd(TransitionEndEvent evt)
         {
-            var text = evt.currentTarget as Label;
-            text?.parent.AddToClassList(AlarmTextBackgroundStyleName);
+            if (_isLoseScreenActive)
+            {
+                var text = evt.currentTarget as Label;
+                text?.parent.AddToClassList(AlarmTextBackgroundStyleName);
+            }
         }
 
         [ContextMenu(nameof(SetLoseScreenUnactive))]
         public void SetLoseScreenUnactive()
         {
-            print("set unactive");
+            _isLoseScreenActive = false;
             alarmClockScreen.rootVisualElement.style.display = DisplayStyle.None;
             var text = alarmClockScreen.rootVisualElement.Q<Label>(AlarmClockScreenName);
+            
+            // Removing styles and callbacks from previous timer transition
             text.RemoveFromClassList(AlarmClockActiveStyleName);
-            StopCoroutine(LoseScreenTimer());
-            //alarmClockScreen.enabled = false;
+            text.RemoveFromClassList(AlarmClockBigStyleName);
+            text.parent.RemoveFromClassList(AlarmTextBackgroundStyleName);
+            text.UnregisterCallback<TransitionEndEvent>(OnBigTransitionEnd);
+
+            StopCoroutine(nameof(LoseScreenTimer));
         }
 
         #endregion

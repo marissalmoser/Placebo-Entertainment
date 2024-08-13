@@ -32,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.1764705, y: 1.1764705, z: 1.1764705}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7605938401051990144}
@@ -168,11 +168,11 @@ MonoBehaviour:
         _endsDialogue: 1
       DialogueEvent:
         Guid:
-          Data1: 936260595
-          Data2: 1301886406
-          Data3: -1502983244
-          Data4: 1107237370
-        Path: event:/Characters/Goop/Goop2
+          Data1: -469824619
+          Data2: 1321721804
+          Data3: 1085993399
+          Data4: 1353961625
+        Path: event:/Characters/Goop/Goop1
     - _dialogue:
       - "My suit is broken\u2026"
       _playerResponses:
@@ -192,11 +192,11 @@ MonoBehaviour:
         _endsDialogue: 1
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: -469824619
+          Data2: 1321721804
+          Data3: 1085993399
+          Data4: 1353961625
+        Path: event:/Characters/Goop/Goop1
     - _dialogue:
       - "Vf khjnuajkph xu qhptlm jmi X ipm\u2019k ugyypul fpg uyljr Ppovpuxpm. Silus
         utpgai ql jqal kp tlay khjmuajkl."
@@ -211,11 +211,11 @@ MonoBehaviour:
         _endsDialogue: 1
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: 936260595
+          Data2: 1301886406
+          Data3: -1502983244
+          Data4: 1107237370
+        Path: event:/Characters/Goop/Goop2
     - _dialogue:
       - "We must\u2019ve hit something. The ship started to shake and some of my
         more REACTIVE substances got mixed up and they exploded."
@@ -229,11 +229,11 @@ MonoBehaviour:
         _endsDialogue: 0
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: 1890765375
+          Data2: 1216311284
+          Data3: 1790141344
+          Data4: -1226414248
+        Path: event:/Characters/Goop/Goop3
     - _dialogue:
       - "I\u2019m stuck inside my suit and my translator is broken. Physically I\u2019ll
         be fine, but THAT\u2019S not the point!"
@@ -254,11 +254,11 @@ MonoBehaviour:
         _endsDialogue: 0
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: -469824619
+          Data2: 1321721804
+          Data3: 1085993399
+          Data4: 1353961625
+        Path: event:/Characters/Goop/Goop1
     - _dialogue:
       - Keep checking in on everybody! I prepared medicine for every crew member
         in advance.
@@ -272,11 +272,11 @@ MonoBehaviour:
         _endsDialogue: 0
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: 936260595
+          Data2: 1301886406
+          Data3: -1502983244
+          Data4: 1107237370
+        Path: event:/Characters/Goop/Goop2
     - _dialogue:
       - "But I can\u2019t HELP them if I can\u2019t MOVE! If someone\u2019s hurt,
         come back here. I can give you anything they\u2019d need."
@@ -290,11 +290,11 @@ MonoBehaviour:
         _endsDialogue: 0
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: 1890765375
+          Data2: 1216311284
+          Data3: 1790141344
+          Data4: -1226414248
+        Path: event:/Characters/Goop/Goop3
     - _dialogue:
       - "It seems like a lot of key cards are on the fritz. Mine seems fine, so I\u2019ll
         open the door to the bridge for you now."
@@ -308,11 +308,11 @@ MonoBehaviour:
         _endsDialogue: 1
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: 936260595
+          Data2: 1301886406
+          Data3: -1502983244
+          Data4: 1107237370
+        Path: event:/Characters/Goop/Goop2
     - _dialogue:
       - "I\u2019m fine, but I can\u2019t do my job! Go check on the rest of the crew."
       _playerResponses:
@@ -325,11 +325,11 @@ MonoBehaviour:
         _endsDialogue: 0
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: 1890765375
+          Data2: 1216311284
+          Data3: 1790141344
+          Data4: -1226414248
+        Path: event:/Characters/Goop/Goop3
     - _dialogue:
       - "Let me know if anyone needs medical help. I\u2019ll open the door to the
         bridge for you now."
@@ -343,11 +343,11 @@ MonoBehaviour:
         _endsDialogue: 1
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: 936260595
+          Data2: 1301886406
+          Data3: -1502983244
+          Data4: 1107237370
+        Path: event:/Characters/Goop/Goop2
     _minigameReadyState:
     - _dialogue:
       - Did you check in with everyone?
@@ -368,11 +368,11 @@ MonoBehaviour:
         _endsDialogue: 0
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: 936260595
+          Data2: 1301886406
+          Data3: -1502983244
+          Data4: 1107237370
+        Path: event:/Characters/Goop/Goop2
     - _dialogue:
       - "Well, don\u2019t just stand there! Keep looking! Remember, if anyone is
         hurt, I have medicine on standby."
@@ -386,11 +386,11 @@ MonoBehaviour:
         _endsDialogue: 1
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: 1890765375
+          Data2: 1216311284
+          Data3: 1790141344
+          Data4: -1226414248
+        Path: event:/Characters/Goop/Goop3
     - _dialogue:
       - "You\u2019ll need that bottle over there. Take it to her quickly!"
       _playerResponses:
@@ -403,11 +403,11 @@ MonoBehaviour:
         _endsDialogue: 1
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: -469824619
+          Data2: 1321721804
+          Data3: 1085993399
+          Data4: 1353961625
+        Path: event:/Characters/Goop/Goop1
     _playingMinigameState: []
     _postMinigameState: []
     _failureState: []

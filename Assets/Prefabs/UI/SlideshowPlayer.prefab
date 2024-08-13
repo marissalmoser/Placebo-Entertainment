@@ -103,40 +103,40 @@ MonoBehaviour:
   _levelSceneBuildIndex: 2
   _mainMenuBuildIndex: 0
   _introVideo:
-    Footage: {fileID: 0}
+    Footage: {fileID: 32900000, guid: a3d4d6f12f420254480280d11ade563e, type: 3}
     Audio:
       Guid:
-        Data1: 0
-        Data2: 0
-        Data3: 0
-        Data4: 0
-      Path: 
+        Data1: -1102539410
+        Data2: 1288188959
+        Data3: 231022502
+        Data4: 1804586094
+      Path: event:/Music/IntroMusic
   _endingVideos:
-  - Footage: {fileID: 0}
+  - Footage: {fileID: 32900000, guid: c366df50e49f583489d5279c238e9a62, type: 3}
     Audio:
       Guid:
-        Data1: 0
-        Data2: 0
-        Data3: 0
-        Data4: 0
-      Path: 
-  - Footage: {fileID: 0}
+        Data1: -610255504
+        Data2: 1267682107
+        Data3: 2139688629
+        Data4: -1854750853
+      Path: event:/Music/End1Music
+  - Footage: {fileID: 32900000, guid: 2cdc3f4e1f837c446aaaaf782ca2854a, type: 3}
     Audio:
       Guid:
-        Data1: 0
-        Data2: 0
-        Data3: 0
-        Data4: 0
-      Path: 
+        Data1: 177177910
+        Data2: 1169837329
+        Data3: -1245273705
+        Data4: -1362075128
+      Path: event:/Music/End2Music
   _creditsVideo:
-    Footage: {fileID: 0}
+    Footage: {fileID: 32900000, guid: 33855853eba4c8945b258fa44b7a1f87, type: 3}
     Audio:
       Guid:
-        Data1: 0
-        Data2: 0
-        Data3: 0
-        Data4: 0
-      Path: 
+        Data1: -1270926275
+        Data2: 1127379045
+        Data3: 393922433
+        Data4: 1656204256
+      Path: event:/Music/CreditsMusic
 --- !u!114 &2958979765807339549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,7 +171,19 @@ MonoBehaviour:
     _npcEventTag: 3
     _onEventTriggered:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   - _npcEvent: {fileID: 11400000, guid: 568815febe15e9b47930ec0d4002cfd1, type: 2}
     _npcEventTag: 3
     _onEventTriggered:
@@ -193,4 +205,16 @@ MonoBehaviour:
     _npcEventTag: 3
     _onEventTriggered:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2

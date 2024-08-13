@@ -258,7 +258,7 @@ Transform:
   m_GameObject: {fileID: 3007890486219347051}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.70710677, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -8.13, y: 8.2, z: -7.56}
+  m_LocalPosition: {x: -8.13, y: 8.2, z: -5.96}
   m_LocalScale: {x: 0.085, y: 1.19, z: 0.34}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -686,7 +686,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2781
+  m_VersionIndex: 2784
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -917,8 +917,8 @@ MonoBehaviour:
   - {fileID: 8907953789608098946}
   - {fileID: 5052179447383595863}
   - {fileID: 1713243775169657968}
-  _idleColor: {r: 0, g: 0, b: 0, a: 0}
-  _correctColor: {r: 0, g: 0, b: 0, a: 0}
+  _idleColor: {r: 0, g: 1, b: 0.56078434, a: 0}
+  _correctColor: {r: 0, g: 1, b: 0.09803922, a: 0}
 --- !u!1001 &699508142379515710
 PrefabInstance:
   m_ObjectHideFlags: 0
