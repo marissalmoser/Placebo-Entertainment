@@ -12,6 +12,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using PlaceboEntertainment.UI;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -39,6 +40,7 @@ public class PauseMenu : MonoBehaviour
     #endregion
 
     #region Private
+    private TabbedMenu _tabbedMenu;
     private Button _continueButton;
     private Button _settingsButton;
     private Button _exitButton;
@@ -147,6 +149,7 @@ public class PauseMenu : MonoBehaviour
     private void Start()
     {
         PlayerController.Instance.PlayerControls.BasicControls.PauseGame.performed += PauseGamePerformed;
+        _tabbedMenu = TabbedMenu.Instance;
 
         _settingsManager = SettingsManager.Instance;
         if (_settingsManager != null)
@@ -201,8 +204,18 @@ public class PauseMenu : MonoBehaviour
     public void TogglePauseMenu(bool isActive)
     {
         _isGamePaused = isActive;
-        UnityEngine.Cursor.visible = isActive;
-        UnityEngine.Cursor.lockState = isActive ? CursorLockMode.None : CursorLockMode.Locked;
+        
+        // Ensures mouse is still visible when pausing during dialogue
+        if (_tabbedMenu != null && _tabbedMenu.DialogueVisible)
+        {
+            UnityEngine.Cursor.visible = true;
+            UnityEngine.Cursor.lockState = CursorLockMode.None;
+        }
+        else
+        {
+            UnityEngine.Cursor.visible = isActive;
+            UnityEngine.Cursor.lockState = isActive ? CursorLockMode.None : CursorLockMode.Locked;
+        }
 
         _pauseMenu.rootVisualElement.style.display = isActive ? DisplayStyle.Flex : DisplayStyle.None;
         Time.timeScale = isActive ? 0 : 1;
