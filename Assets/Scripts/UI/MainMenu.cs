@@ -179,6 +179,7 @@ public class MainMenu : MonoBehaviour
     private void Start()
     {
         UnityEngine.Cursor.visible = true;
+        UnityEngine.Cursor.lockState = CursorLockMode.None;
 
         _settingsManager = SettingsManager.Instance;
         if (_settingsManager != null)
