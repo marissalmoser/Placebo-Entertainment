@@ -144,11 +144,11 @@ MonoBehaviour:
         _endsDialogue: 0
       DialogueEvent:
         Guid:
-          Data1: -1172723921
-          Data2: 1130274623
-          Data3: -1453584486
-          Data4: 879694184
-        Path: event:/Characters/Robot/RobotNeutral
+          Data1: 1555098386
+          Data2: 1184392191
+          Data3: -854021493
+          Data4: -570653700
+        Path: event:/Characters/Robot/RobotLow
     - _dialogue:
       - Ah, photons! I was able to check everywhere but the storage room. Please
         find it for me!
@@ -162,11 +162,11 @@ MonoBehaviour:
         _endsDialogue: 1
       DialogueEvent:
         Guid:
-          Data1: -1172723921
-          Data2: 1130274623
-          Data3: -1453584486
-          Data4: 879694184
-        Path: event:/Characters/Robot/RobotNeutral
+          Data1: -1429341491
+          Data2: 1257606360
+          Data3: 1567080119
+          Data4: -1238960249
+        Path: event:/Characters/Robot/RobotLow2
     - _dialogue:
       - Oh praise the holy sun! Thank you for helping me. Is there anything I can
         do for you?
@@ -195,11 +195,11 @@ MonoBehaviour:
         _endsDialogue: 1
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: 242415194
+          Data2: 1131165384
+          Data3: -1436377705
+          Data4: 217777509
+        Path: event:/Characters/Robot/RobotScrew
     - _dialogue:
       - "The bridge? You know I don\u2019t have access to the bridge, that\u2019s
         why I have you!"
@@ -213,11 +213,11 @@ MonoBehaviour:
         _endsDialogue: 0
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: -1172723921
+          Data2: 1130274623
+          Data3: -1453584486
+          Data4: 879694184
+        Path: event:/Characters/Robot/RobotNeutral
     - _dialogue:
       - "But I could open the hallway door for you, if the door access system wasn\u2019t
         all jumbled up."
@@ -231,11 +231,11 @@ MonoBehaviour:
         _endsDialogue: 0
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: 1221100884
+          Data2: 1228969400
+          Data3: 2073048974
+          Data4: -688514987
+        Path: event:/Characters/Robot/RobotNeutral2
     - _dialogue:
       - As usual, I am improperly proportioned for this task. Could you do it?
       _playerResponses:
@@ -255,11 +255,11 @@ MonoBehaviour:
         _endsDialogue: 1
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: 655303529
+          Data2: 1320123368
+          Data3: -478613826
+          Data4: 2034579764
+        Path: event:/Characters/Robot/RobotNeutral3
     - _dialogue:
       - "Odon is a bit of a coward. This is not the first incident. He has a tendency
         to take what doesn\u2019t belong to him\u2026 especially if it\u2019s shiny."
@@ -273,11 +273,11 @@ MonoBehaviour:
         _endsDialogue: 0
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: 655303529
+          Data2: 1320123368
+          Data3: -478613826
+          Data4: 2034579764
+        Path: event:/Characters/Robot/RobotNeutral3
     - _dialogue:
       - "I\u2019ve seen him hit the generator with the wrong end of a wrench\u2026.
         Sometimes I wonder if he even knows what he\u2019s doing."
@@ -291,11 +291,11 @@ MonoBehaviour:
         _endsDialogue: 1
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: -1172723921
+          Data2: 1130274623
+          Data3: -1453584486
+          Data4: 879694184
+        Path: event:/Characters/Robot/RobotNeutral
     - _dialogue:
       - "This isn\u2019t the Radion Galaxy. I don\u2019t have the bandwidth for jokes
         right now, go find my lightbulb!"
@@ -309,11 +309,11 @@ MonoBehaviour:
         _endsDialogue: 1
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: -1429341491
+          Data2: 1257606360
+          Data3: 1567080119
+          Data4: -1238960249
+        Path: event:/Characters/Robot/RobotLow2
     _minigameReadyState:
     - _dialogue:
       - Thank you again for helping me. Is there anything else I can do for you?
@@ -342,11 +342,11 @@ MonoBehaviour:
         _endsDialogue: 1
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: 1221100884
+          Data2: 1228969400
+          Data3: 2073048974
+          Data4: -688514987
+        Path: event:/Characters/Robot/RobotNeutral2
     - _dialogue:
       - "The bridge? You know I don\u2019t have access to the bridge, that\u2019s
         why I have you!"
@@ -360,11 +360,11 @@ MonoBehaviour:
         _endsDialogue: 0
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: -1172723921
+          Data2: 1130274623
+          Data3: -1453584486
+          Data4: 879694184
+        Path: event:/Characters/Robot/RobotNeutral
     - _dialogue:
       - "But I could open the hallway door for you, if the door access system wasn\u2019t
         all jumbled up."
@@ -378,11 +378,11 @@ MonoBehaviour:
         _endsDialogue: 0
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: 655303529
+          Data2: 1320123368
+          Data3: -478613826
+          Data4: 2034579764
+        Path: event:/Characters/Robot/RobotNeutral3
     - _dialogue:
       - As usual, I am improperly proportioned for this task. Could you do it?
       _playerResponses:
@@ -402,11 +402,11 @@ MonoBehaviour:
         _endsDialogue: 1
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: -1172723921
+          Data2: 1130274623
+          Data3: -1453584486
+          Data4: 879694184
+        Path: event:/Characters/Robot/RobotNeutral
     - _dialogue:
       - "Odon is a bit of a coward. This is not the first incident. He has a tendency
         to take what doesn\u2019t belong to him\u2026 especially if it\u2019s shiny."
@@ -420,11 +420,11 @@ MonoBehaviour:
         _endsDialogue: 0
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: 655303529
+          Data2: 1320123368
+          Data3: -478613826
+          Data4: 2034579764
+        Path: event:/Characters/Robot/RobotNeutral3
     - _dialogue:
       - "I\u2019ve seen him hit the generator with the wrong end of a wrench\u2026.
         Sometimes I wonder if he even knows what he\u2019s doing."
@@ -438,11 +438,11 @@ MonoBehaviour:
         _endsDialogue: 1
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: 655303529
+          Data2: 1320123368
+          Data3: -478613826
+          Data4: 2034579764
+        Path: event:/Characters/Robot/RobotNeutral3
     _playingMinigameState: []
     _postMinigameState:
     - _dialogue:
@@ -465,11 +465,11 @@ MonoBehaviour:
         _endsDialogue: 1
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: 1221100884
+          Data2: 1228969400
+          Data3: 2073048974
+          Data4: -688514987
+        Path: event:/Characters/Robot/RobotNeutral2
     - _dialogue:
       - "Odon is a bit of a coward. This is not the first incident. He has a tendency
         to take what doesn\u2019t belong to him\u2026 especially if it\u2019s shiny."
@@ -483,11 +483,11 @@ MonoBehaviour:
         _endsDialogue: 0
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: 655303529
+          Data2: 1320123368
+          Data3: -478613826
+          Data4: 2034579764
+        Path: event:/Characters/Robot/RobotNeutral3
     - _dialogue:
       - "I\u2019ve seen him hit the generator with the wrong end of a wrench\u2026.
         Sometimes I wonder if he even knows what he\u2019s doing."
@@ -501,11 +501,11 @@ MonoBehaviour:
         _endsDialogue: 1
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: 655303529
+          Data2: 1320123368
+          Data3: -478613826
+          Data4: 2034579764
+        Path: event:/Characters/Robot/RobotNeutral3
     _failureState:
     - _dialogue:
       - '[The dead Robot is unresponsive]'
@@ -534,11 +534,11 @@ MonoBehaviour:
   _lightbulbMesh: {fileID: 2278875521252267084}
   lightBulbEvent:
     Guid:
-      Data1: 242415194
-      Data2: 1131165384
-      Data3: -1436377705
-      Data4: 217777509
-    Path: event:/Characters/Robot/RobotScrew
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   deathEvent:
     Guid:
       Data1: -2078086933
@@ -598,7 +598,36 @@ MonoBehaviour:
     _onEventTriggered:
       m_PersistentCalls:
         m_Calls:
+        - m_Target: {fileID: 3543369105233053174}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Dead
+            m_BoolArgument: 0
+          m_CallState: 2
         - m_Target: {fileID: 869825619415053396}
+          m_TargetAssemblyTypeName: RobotNpc, Assembly-CSharp
+          m_MethodName: CheckFailure
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Dead
+            m_BoolArgument: 0
+          m_CallState: 2
+  - _npcEvent: {fileID: 11400000, guid: 0b378c7bf95cf604c879b63ee58613f0, type: 2}
+    _npcEventTag: 5
+    _onEventTriggered:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4556153407337933796}
           m_TargetAssemblyTypeName: RobotNpc, Assembly-CSharp
           m_MethodName: CheckFailure
           m_Mode: 1
