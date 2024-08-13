@@ -143,11 +143,11 @@ MonoBehaviour:
         _endsDialogue: 1
       DialogueEvent:
         Guid:
-          Data1: 778340369
-          Data2: 1087770850
-          Data3: 724357786
-          Data4: 1580500361
-        Path: event:/Characters/Coward/Coward1
+          Data1: -965347095
+          Data2: 1341420391
+          Data3: -1187573853
+          Data4: 2189390
+        Path: event:/Characters/Coward/Coward2
     _minigameReadyState:
     - _dialogue:
       - "EEK!! T-that\u2019s probably the engine? *Ahem* As the engineer for this
@@ -170,11 +170,11 @@ MonoBehaviour:
         _endsDialogue: 0
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: -965347095
+          Data2: 1341420391
+          Data3: -1187573853
+          Data4: 2189390
+        Path: event:/Characters/Coward/Coward2
     - _dialogue:
       - "HOW DARE YOU! I\u2019LL HAVE YOU KNOW THA- *generator sparks and mini boom*
         EEK! OK! I- I don\u2019t know what to do! Please help me!"
@@ -202,11 +202,11 @@ MonoBehaviour:
         _endsDialogue: 0
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: 778340369
+          Data2: 1087770850
+          Data3: 724357786
+          Data4: 1580500361
+        Path: event:/Characters/Coward/Coward1
     - _dialogue:
       - "F-Fix it with what?! You\u2019re not holding anything! Just hurry up and
         fix it!"
@@ -220,11 +220,11 @@ MonoBehaviour:
         _endsDialogue: 1
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: 479919326
+          Data2: 1077552377
+          Data3: 2107259297
+          Data4: 489266115
+        Path: event:/Characters/Coward/Coward3
     - _dialogue:
       - "WHAAAAT?! Uhh umm uhh, I mean\u2026 y-yeah! I\u2019ll just\u2026 do my job,
         then? Heheh\u2026"
@@ -238,11 +238,11 @@ MonoBehaviour:
         _endsDialogue: 1
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: 479919326
+          Data2: 1077552377
+          Data3: 2107259297
+          Data4: 489266115
+        Path: event:/Characters/Coward/Coward3
     - _dialogue:
       - "YES!!! Please, save me!! Fix the engine! I don\u2019t want to be near it
         when it explodes!"
@@ -270,11 +270,11 @@ MonoBehaviour:
         _endsDialogue: 0
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: 778340369
+          Data2: 1087770850
+          Data3: 724357786
+          Data4: 1580500361
+        Path: event:/Characters/Coward/Coward1
     - _dialogue:
       - "F-Fix it with what?! You\u2019re not holding anything! Just hurry up and
         fix it!"
@@ -288,11 +288,11 @@ MonoBehaviour:
         _endsDialogue: 1
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: 479919326
+          Data2: 1077552377
+          Data3: 2107259297
+          Data4: 489266115
+        Path: event:/Characters/Coward/Coward3
     - _dialogue:
       - "WHAAAAT?! Uhh umm uhh, I mean\u2026 y-yeah! I\u2019ll just\u2026 do my job,
         then? Heheh\u2026"
@@ -306,13 +306,13 @@ MonoBehaviour:
         _endsDialogue: 1
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: 479919326
+          Data2: 1077552377
+          Data3: 2107259297
+          Data4: 489266115
+        Path: event:/Characters/Coward/Coward3
     - _dialogue:
-      - T-That should work!
+      - Th-That should work!
       _playerResponses:
       - _eventToTrigger: {fileID: 11400000, guid: dd6c7f105503f694baf744be912b1974, type: 2}
         _eventTag: 1
@@ -323,11 +323,11 @@ MonoBehaviour:
         _endsDialogue: 1
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: 479919326
+          Data2: 1077552377
+          Data3: 2107259297
+          Data4: 489266115
+        Path: event:/Characters/Coward/Coward3
     _playingMinigameState: []
     _postMinigameState:
     - _dialogue:
@@ -350,11 +350,11 @@ MonoBehaviour:
         _endsDialogue: 0
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: 778340369
+          Data2: 1087770850
+          Data3: 724357786
+          Data4: 1580500361
+        Path: event:/Characters/Coward/Coward1
     - _dialogue:
       - ...................................................................
       _playerResponses:
@@ -384,11 +384,11 @@ MonoBehaviour:
         _endsDialogue: 1
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: -965347095
+          Data2: 1341420391
+          Data3: -1187573853
+          Data4: 2189390
+        Path: event:/Characters/Coward/Coward2
     - _dialogue:
       - ......J- just keep the wrench.
       _playerResponses:
@@ -401,11 +401,11 @@ MonoBehaviour:
         _endsDialogue: 1
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: 479919326
+          Data2: 1077552377
+          Data3: 2107259297
+          Data4: 489266115
+        Path: event:/Characters/Coward/Coward3
     _failureState: []
   _stateAnimations:
     _idleState: {fileID: 0}
@@ -471,7 +471,7 @@ MonoBehaviour:
           m_MethodName: TeleportToLocation
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 6156672475860556976, guid: 872c16daeb8c8a145a3aae75b1c75557, type: 3}
+            m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0

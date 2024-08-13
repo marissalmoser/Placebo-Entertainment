@@ -59,7 +59,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _eventsToListenFor:
   - _npcEvent: {fileID: 11400000, guid: 6c063e0dc7b42fc4e8a3e9c06253b1c1, type: 2}
-    _npcEventTag: 0
+    _npcEventTag: 3
     _onEventTriggered:
       m_PersistentCalls:
         m_Calls:

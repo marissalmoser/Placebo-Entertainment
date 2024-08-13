@@ -167,11 +167,11 @@ MonoBehaviour:
         _endsDialogue: 1
       DialogueEvent:
         Guid:
-          Data1: -1363511257
-          Data2: 1260227613
-          Data3: 1310014630
-          Data4: 2069358084
-        Path: event:/Characters/Fish/Fish1
+          Data1: 1855277214
+          Data2: 1145456549
+          Data3: -145878603
+          Data4: -863283826
+        Path: event:/Characters/Fish/Fish4
     - _dialogue:
       - Now that you mention it, there is. I thought I heard a siren in the next
         room. You might need to help me put out a real fire, heheh...
@@ -185,11 +185,11 @@ MonoBehaviour:
         _endsDialogue: 0
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: 215194898
+          Data2: 1133840317
+          Data3: -1376300136
+          Data4: 1349358957
+        Path: event:/Characters/Fish/Fish3
     - _dialogue:
       - "Where\u2019s that darn fire extinguisher\u2026 Oh well, I naturally hold
         about seven gallons of water. If you pick me up and direct me at the flames,
@@ -204,11 +204,11 @@ MonoBehaviour:
         _endsDialogue: 1
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: -687471435
+          Data2: 1184505184
+          Data3: -73982027
+          Data4: 611369628
+        Path: event:/Characters/Fish/Fish2
     - _dialogue:
       - "Olpy\u2019s in there\u2026 when the ship goes through turbulence, their
         suit tends to break. Have you checked on them?"
@@ -230,11 +230,11 @@ MonoBehaviour:
         _endsDialogue: 0
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: -1363511257
+          Data2: 1260227613
+          Data3: 1310014630
+          Data4: 2069358084
+        Path: event:/Characters/Fish/Fish1
     - _dialogue:
       - "That's so? Well it happens from time to time, I\u2019m sure they\u2019re
         fine."
@@ -248,11 +248,11 @@ MonoBehaviour:
         _endsDialogue: 0
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: 1855277214
+          Data2: 1145456549
+          Data3: -145878603
+          Data4: -863283826
+        Path: event:/Characters/Fish/Fish4
     - _dialogue:
       - "But it could mean their translator is broken. Lucky for you, I know Olpy\u2019s
         language."
@@ -266,11 +266,11 @@ MonoBehaviour:
         _endsDialogue: 0
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: -1363511257
+          Data2: 1260227613
+          Data3: 1310014630
+          Data4: 2069358084
+        Path: event:/Characters/Fish/Fish1
     - _dialogue:
       - "Let me teach it to you! It\u2019ll be fun! Now where is that\u2026"
       _playerResponses:
@@ -283,11 +283,11 @@ MonoBehaviour:
         _endsDialogue: 0
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: 215194898
+          Data2: 1133840317
+          Data3: -1376300136
+          Data4: 1349358957
+        Path: event:/Characters/Fish/Fish3
     - _dialogue:
       - "Ah, suds\u2026 I had a book for it, but it seems I\u2019ve misplaced it."
       _playerResponses:
@@ -300,11 +300,11 @@ MonoBehaviour:
         _endsDialogue: 0
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: 1855277214
+          Data2: 1145456549
+          Data3: -145878603
+          Data4: -863283826
+        Path: event:/Characters/Fish/Fish4
     - _dialogue:
       - "Ah, well, it\u2019s somewhere here on the ship. If you find it, it\u2019s
         yours to keep."
@@ -318,11 +318,11 @@ MonoBehaviour:
         _endsDialogue: 1
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: -687471435
+          Data2: 1184505184
+          Data3: -73982027
+          Data4: 611369628
+        Path: event:/Characters/Fish/Fish2
     - _dialogue:
       - A time loop you say? My my, that sure is a problem.
       _playerResponses:
@@ -335,11 +335,11 @@ MonoBehaviour:
         _endsDialogue: 0
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: -1363511257
+          Data2: 1260227613
+          Data3: 1310014630
+          Data4: 2069358084
+        Path: event:/Characters/Fish/Fish1
     - _dialogue:
       - First things first, take a deep breath and sloooooow down.
       _playerResponses:
@@ -352,11 +352,11 @@ MonoBehaviour:
         _endsDialogue: 0
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: 1855277214
+          Data2: 1145456549
+          Data3: -145878603
+          Data4: -863283826
+        Path: event:/Characters/Fish/Fish4
     - _dialogue:
       - You know, this reminds me of when my good friend Benni set out on an expedition
         very similar to this one.
@@ -370,11 +370,11 @@ MonoBehaviour:
         _endsDialogue: 0
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: -687471435
+          Data2: 1184505184
+          Data3: -73982027
+          Data4: 611369628
+        Path: event:/Characters/Fish/Fish2
     - _dialogue:
       - "\u2026Their ship has yet to be heard from."
       _playerResponses:
@@ -387,11 +387,11 @@ MonoBehaviour:
         _endsDialogue: 0
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: 1855277214
+          Data2: 1145456549
+          Data3: -145878603
+          Data4: -863283826
+        Path: event:/Characters/Fish/Fish4
     - _dialogue:
       - A week after their supposed return date passed, everyone I knew thought they
         were gone for good.
@@ -405,11 +405,11 @@ MonoBehaviour:
         _endsDialogue: 0
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: 215194898
+          Data2: 1133840317
+          Data3: -1376300136
+          Data4: 1349358957
+        Path: event:/Characters/Fish/Fish3
     - _dialogue:
       - "For a while, there wasn\u2019t a doubt in my mind that they would return."
       _playerResponses:
@@ -422,11 +422,11 @@ MonoBehaviour:
         _endsDialogue: 0
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: -1363511257
+          Data2: 1260227613
+          Data3: 1310014630
+          Data4: 2069358084
+        Path: event:/Characters/Fish/Fish1
     - _dialogue:
       - "But if I think about the 5,000 years they\u2019ve been missing, I\u2019ll
         feel the doubt creep in."
@@ -440,11 +440,11 @@ MonoBehaviour:
         _endsDialogue: 0
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: -687471435
+          Data2: 1184505184
+          Data3: -73982027
+          Data4: 611369628
+        Path: event:/Characters/Fish/Fish2
     - _dialogue:
       - '*Sigh*'
       _playerResponses:
@@ -475,11 +475,11 @@ MonoBehaviour:
         _endsDialogue: 0
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: -1363511257
+          Data2: 1260227613
+          Data3: 1310014630
+          Data4: 2069358084
+        Path: event:/Characters/Fish/Fish1
     - _dialogue:
       - "Bubbles\u2026 You may feel the doubt creep in, but this time loop whatchamacallit
         is a gift, if you think about it\u2026"
@@ -493,11 +493,11 @@ MonoBehaviour:
         _endsDialogue: 0
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: 1855277214
+          Data2: 1145456549
+          Data3: -145878603
+          Data4: -863283826
+        Path: event:/Characters/Fish/Fish4
     - _dialogue:
       - "There\u2019s no rush to do everything right. Just take it one loop at a
         time. You\u2019ve got as many as you need."
@@ -511,11 +511,11 @@ MonoBehaviour:
         _endsDialogue: 1
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: -687471435
+          Data2: 1184505184
+          Data3: -73982027
+          Data4: 611369628
+        Path: event:/Characters/Fish/Fish2
     - _dialogue:
       - "Might be a good idea to take a peek in there, just to make sure they\u2019re
         okay. Thanks, bubbles."
@@ -529,11 +529,11 @@ MonoBehaviour:
         _endsDialogue: 1
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: -687471435
+          Data2: 1184505184
+          Data3: -73982027
+          Data4: 611369628
+        Path: event:/Characters/Fish/Fish2
     _minigameReadyState: []
     _playingMinigameState: []
     _postMinigameState:
@@ -549,25 +549,19 @@ MonoBehaviour:
         _endsDialogue: 1
       DialogueEvent:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
+          Data1: 215194898
+          Data2: 1133840317
+          Data3: -1376300136
+          Data4: 1349358957
+        Path: event:/Characters/Fish/Fish3
     _failureState: []
-  _navigationPositions:
-    _idleState: {x: 0, y: 0, z: 0}
-    _minigameReadyState: {x: 0, y: 0, z: 0}
-    _playingMinigameState: {x: 0, y: 0, z: 0}
-    _postMinigameState: {x: 0, y: 0, z: 0}
-    _failureState: {x: 0, y: 0, z: 0}
   _stateAnimations:
     _idleState: {fileID: 0}
     _minigameReadyState: {fileID: 0}
     _playingMinigameState: {fileID: 0}
     _postMinigameState: {fileID: 0}
     _failureState: {fileID: 0}
-  _postMinigameFishPos: {x: -94, y: -1, z: 9}
+  _postMinigameFishPos: {x: -98.76, y: -1, z: 64.49}
   _removeTimerEvent: {fileID: 11400000, guid: fc8258980d4d13341abe42a88ac6fdb6, type: 2}
   _fadeOutTime: 2.5
 --- !u!114 &5239405601287651569
