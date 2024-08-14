@@ -94,6 +94,7 @@ namespace PlaceboEntertainment.UI
             }
         }
 
+        public bool DialogueVisible { get => _dialogueVisible; }
         #endregion
 
         #region Private
