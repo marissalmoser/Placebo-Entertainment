@@ -143,14 +143,14 @@ public class MainMenu : MonoBehaviour
         _quitTab = _mainMenuDoc.rootVisualElement.Q(QuitTabName);
 
         // Registering general button ClickEvent callbacks
-        _newGameButton.RegisterCallback<ClickEvent>(NewGameButtonClicked);
-        _settingsButton.RegisterCallback<ClickEvent>(SettingsButtonClicked);
-        _continueButton.RegisterCallback<ClickEvent>(ContinueButtonClicked);
-        _quitButton.RegisterCallback<ClickEvent>(QuitButtonClicked);
-        _confirmNoButton.RegisterCallback<ClickEvent>(ConfirmNoButtonClicked);
-        _confirmYesButton.RegisterCallback<ClickEvent>(StartNewGame);
-        _audioButton.RegisterCallback<ClickEvent>(AudioButtonClicked);
-        _controlsButton.RegisterCallback<ClickEvent>(ControlsButtonClicked);
+        _newGameButton.RegisterCallback<NavigationSubmitEvent>(NewGameButtonClicked);
+        _settingsButton.RegisterCallback<NavigationSubmitEvent>(SettingsButtonClicked);
+        _continueButton.RegisterCallback<NavigationSubmitEvent>(ContinueButtonClicked);
+        _quitButton.RegisterCallback<NavigationSubmitEvent>(QuitButtonClicked);
+        _confirmNoButton.RegisterCallback<NavigationSubmitEvent>(ConfirmNoButtonClicked);
+        _confirmYesButton.RegisterCallback<NavigationSubmitEvent>(StartNewGame);
+        _audioButton.RegisterCallback<NavigationSubmitEvent>(AudioButtonClicked);
+        _controlsButton.RegisterCallback<NavigationSubmitEvent>(ControlsButtonClicked);
 
         // Registering callbacks for animated tabs
         _newGameButton.RegisterCallback<MouseOverEvent>(evt => { AnimateTab(_newGameTab, true); });
@@ -169,7 +169,7 @@ public class MainMenu : MonoBehaviour
 
         _mainMenuMusicInstance = AudioManager.PlaySound(mainMenuMusicEvent, Vector3.zero);
         _allButtons = _mainMenuDoc.rootVisualElement.Query<Button>();
-        _allButtons.ForEach(button => button.RegisterCallback<ClickEvent>(PlayConfirmSound));
+        _allButtons.ForEach(button => button.RegisterCallback<NavigationSubmitEvent>(PlayConfirmSound));
         _sliders = _audioScreen.Query<Slider>().ToList();
         FMODUnity.RuntimeManager.StudioSystem.getParameterByName("MasterVolume", out float volume);
         _sliders[0].value = volume;
@@ -245,15 +245,15 @@ public class MainMenu : MonoBehaviour
         _startGame.performed -= ctx => CloseSplashScreen();
         _backInput.performed -= ctx => BackButtonClicked();
 
-        // Unregistering button ClickEvent callbacks
-        _newGameButton.UnregisterCallback<ClickEvent>(NewGameButtonClicked);
-        _continueButton.UnregisterCallback<ClickEvent>(ContinueButtonClicked);
-        _settingsButton.UnregisterCallback<ClickEvent>(SettingsButtonClicked);
-        _quitButton.UnregisterCallback<ClickEvent>(QuitButtonClicked);
-        _confirmNoButton.UnregisterCallback<ClickEvent>(ConfirmNoButtonClicked);
-        _confirmYesButton.UnregisterCallback<ClickEvent>(StartNewGame);
-        _audioButton.UnregisterCallback<ClickEvent>(AudioButtonClicked);
-        _controlsButton.UnregisterCallback<ClickEvent>(ControlsButtonClicked);
+        // Unregistering button NavigationSubmitEvent callbacks
+        _newGameButton.UnregisterCallback<NavigationSubmitEvent>(NewGameButtonClicked);
+        _continueButton.UnregisterCallback<NavigationSubmitEvent>(ContinueButtonClicked);
+        _settingsButton.UnregisterCallback<NavigationSubmitEvent>(SettingsButtonClicked);
+        _quitButton.UnregisterCallback<NavigationSubmitEvent>(QuitButtonClicked);
+        _confirmNoButton.UnregisterCallback<NavigationSubmitEvent>(ConfirmNoButtonClicked);
+        _confirmYesButton.UnregisterCallback<NavigationSubmitEvent>(StartNewGame);
+        _audioButton.UnregisterCallback<NavigationSubmitEvent>(AudioButtonClicked);
+        _controlsButton.UnregisterCallback<NavigationSubmitEvent>(ControlsButtonClicked);
         // Unregistering animated tab related callbacks
         _newGameButton.UnregisterCallback<MouseOverEvent>(evt => { AnimateTab(_newGameTab, true); });
         _newGameButton.UnregisterCallback<MouseOutEvent>(evt => { AnimateTab(_newGameTab, false); });
@@ -297,7 +297,7 @@ public class MainMenu : MonoBehaviour
             _quitButton.UnregisterCallback<FocusInEvent>(evt => { AnimateTab(_settingsTab, true); });
             _quitButton.UnregisterCallback<FocusOutEvent>(evt => { AnimateTab(_settingsTab, false); });
         }
-        _allButtons.ForEach(button => button.UnregisterCallback<ClickEvent>(PlayConfirmSound));
+        _allButtons.ForEach(button => button.UnregisterCallback<NavigationSubmitEvent>(PlayConfirmSound));
         _sliders[0].UnregisterCallback<ChangeEvent<float>>(MasterAudioSliderChanged);
         _sliders[1].UnregisterCallback<ChangeEvent<float>>(SFXAudioSliderChanged);
         _sliders[2].UnregisterCallback<ChangeEvent<float>>(MusicAudioSliderChanged);
@@ -325,7 +325,7 @@ public class MainMenu : MonoBehaviour
     /// Loads intro cutscene
     /// </summary>
     /// <param name="clicked">Click event</param>
-    private void ContinueButtonClicked(ClickEvent clicked)
+    private void ContinueButtonClicked(NavigationSubmitEvent clicked)
     {
         SceneManager.LoadScene(_gameSceneVideoIndex);
     }
@@ -334,7 +334,7 @@ public class MainMenu : MonoBehaviour
     /// Opens settings selection menu
     /// </summary>
     /// <param name="clicked">Click event</param>
-    private void SettingsButtonClicked(ClickEvent clicked)
+    private void SettingsButtonClicked(NavigationSubmitEvent clicked)
     {
         _currentScreenIndex = 2;
         _mainButtonHolder.style.display = DisplayStyle.None;
@@ -346,7 +346,7 @@ public class MainMenu : MonoBehaviour
     /// Opens audio options submenu
     /// </summary>
     /// <param name="clicked">Click event</param>
-    private void AudioButtonClicked(ClickEvent clicked)
+    private void AudioButtonClicked(NavigationSubmitEvent clicked)
     {
         _currentScreenIndex = 3;
         if (_settingsManager != null)
@@ -364,7 +364,7 @@ public class MainMenu : MonoBehaviour
     /// Opens controls options submenu
     /// </summary>
     /// <param name="clicked">Click event</param>
-    private void ControlsButtonClicked(ClickEvent clicked)
+    private void ControlsButtonClicked(NavigationSubmitEvent clicked)
     {
         _currentScreenIndex = 3;
         if (_settingsManager != null)
@@ -380,7 +380,7 @@ public class MainMenu : MonoBehaviour
     /// Pulls up confirmation UI
     /// </summary>
     /// <param name="clicked">Click event</param>
-    private void NewGameButtonClicked(ClickEvent clicked)
+    private void NewGameButtonClicked(NavigationSubmitEvent clicked)
     {
         AnimateTab(_newGameTab, true, true);
         _canAnimateTabs = false;
@@ -394,7 +394,7 @@ public class MainMenu : MonoBehaviour
     /// Deletes existing save data and loads the intro scene
     /// </summary>
     /// <param name="clicked">Click event</param>
-    private void StartNewGame(ClickEvent clicked)
+    private void StartNewGame(NavigationSubmitEvent clicked)
     {
         if (_savingManager != null)
         {
@@ -408,7 +408,7 @@ public class MainMenu : MonoBehaviour
     /// Pulls up new game confirmation options
     /// </summary>
     /// <param name="clicked">Click event</param>
-    private void ConfirmNoButtonClicked(ClickEvent clicked)
+    private void ConfirmNoButtonClicked(NavigationSubmitEvent clicked)
     {
         _canAnimateTabs = true;
         AnimateTab(_newGameTab, false);
@@ -426,7 +426,7 @@ public class MainMenu : MonoBehaviour
     /// Closes application
     /// </summary>
     /// <param name="clicked">Click event</param>
-    private void QuitButtonClicked(ClickEvent clicked)
+    private void QuitButtonClicked(NavigationSubmitEvent clicked)
     {
         Application.Quit();
     }
@@ -523,7 +523,7 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    private void PlayConfirmSound(ClickEvent evt)
+    private void PlayConfirmSound(NavigationSubmitEvent evt)
     {
         AudioManager.PlaySound(clickEvent, transform.position);
     }
