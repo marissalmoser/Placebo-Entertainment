@@ -145,8 +145,30 @@
                 },
                 {
                     "name": "",
+                    "id": "ba598e74-743b-477e-8ff4-1d074debefca",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "b56295b2-32da-4ab6-a254-6ae37ecb01f4",
                     "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b66050c0-0f4f-4d18-b88d-d12be2bdd116",
+                    "path": "<Gamepad>/rightStick",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -167,9 +189,31 @@
                 },
                 {
                     "name": "",
+                    "id": "6fd1c497-0f5f-4d77-baf7-59baad257ab2",
+                    "path": "<Gamepad>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Reset",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "9ec8e7d4-56cf-40b4-98c2-e789d03b17d9",
                     "path": "<Keyboard>/e",
                     "interactions": "Hold",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7e6dd329-01c1-4b85-b290-2e7c281b8ba3",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Interact",
@@ -189,9 +233,31 @@
                 },
                 {
                     "name": "",
+                    "id": "9abaccd4-1a28-49b3-b4d8-cb617e7dffe6",
+                    "path": "<Gamepad>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OpenSchedule",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "562cd299-17b4-4e22-8606-6189008bc72a",
                     "path": "<Mouse>/leftButton",
                     "interactions": "Hold",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1ede4830-7263-4c2d-af08-25ed2bb5f113",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "LeftClick",
@@ -222,6 +288,17 @@
                 },
                 {
                     "name": "",
+                    "id": "2e48fc0a-935a-479a-8c00-a32e43bb9d29",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PlayPause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "275c05ee-be63-478c-87cb-f706f2d4fb4a",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
@@ -233,8 +310,30 @@
                 },
                 {
                     "name": "",
+                    "id": "9dc13471-a491-461b-b352-02a44fe38aba",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PauseGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "634258d2-2ccc-4fa8-8eb8-aae753c96105",
                     "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "StartGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "38bf8e0e-6e53-4cf7-a910-711fc455c7d5",
+                    "path": "<Gamepad>/start",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
