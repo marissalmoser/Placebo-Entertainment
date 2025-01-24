@@ -81,6 +81,8 @@ public class MainMenu : MonoBehaviour
     // 0 = splash, 1 = main, 2 = settings selection, 3 = settings submenu
     private int _currentScreenIndex = 0;
 
+    private int _currentMenuButtonIndex = 0;
+
     private SaveLoadManager _savingManager;
     private PlayerControls _playerControls;
     private InputAction _startGame;
@@ -158,6 +160,13 @@ public class MainMenu : MonoBehaviour
         _controlsButton.RegisterCallback<MouseOverEvent>(evt => { AnimateTab(_quitTab, true); });
         _controlsButton.RegisterCallback<MouseOutEvent>(evt => { AnimateTab(_quitTab, false); });
 
+        _newGameButton.RegisterCallback<FocusInEvent>(evt => { AnimateTab(_newGameTab, true); });
+        _newGameButton.RegisterCallback<FocusOutEvent>(evt => { AnimateTab(_newGameTab, false); });
+        _audioButton.RegisterCallback<FocusInEvent>(evt => { AnimateTab(_settingsTab, true); });
+        _audioButton.RegisterCallback<FocusOutEvent>(evt => { AnimateTab(_settingsTab, false); });
+        _controlsButton.RegisterCallback<FocusInEvent>(evt => { AnimateTab(_quitTab, true); });
+        _controlsButton.RegisterCallback<FocusOutEvent>(evt => { AnimateTab(_quitTab, false); });
+
         _mainMenuMusicInstance = AudioManager.PlaySound(mainMenuMusicEvent, Vector3.zero);
         _allButtons = _mainMenuDoc.rootVisualElement.Query<Button>();
         _allButtons.ForEach(button => button.RegisterCallback<ClickEvent>(PlayConfirmSound));
@@ -202,6 +211,13 @@ public class MainMenu : MonoBehaviour
             _settingsButton.RegisterCallback<MouseOutEvent>(evt => { AnimateTab(_settingsTab, false); });
             _quitButton.RegisterCallback<MouseOverEvent>(evt => { AnimateTab(_quitTab, true); });
             _quitButton.RegisterCallback<MouseOutEvent>(evt => { AnimateTab(_quitTab, false); });
+
+            _continueButton.RegisterCallback<FocusInEvent>(evt => { AnimateTab(_continueTab, true); });
+            _continueButton.RegisterCallback<FocusOutEvent>(evt => { AnimateTab(_continueTab, false); });
+            _settingsButton.RegisterCallback<FocusInEvent>(evt => { AnimateTab(_settingsTab, true); });
+            _settingsButton.RegisterCallback<FocusOutEvent>(evt => { AnimateTab(_settingsTab, false); });
+            _quitButton.RegisterCallback<FocusInEvent>(evt => { AnimateTab(_quitTab, true); });
+            _quitButton.RegisterCallback<FocusOutEvent>(evt => { AnimateTab(_quitTab, false); });
         }
         else
         {
@@ -212,6 +228,11 @@ public class MainMenu : MonoBehaviour
             _settingsButton.RegisterCallback<MouseOutEvent>(evt => { AnimateTab(_continueTab, false); });
             _quitButton.RegisterCallback<MouseOverEvent>(evt => { AnimateTab(_settingsTab, true); });
             _quitButton.RegisterCallback<MouseOutEvent>(evt => { AnimateTab(_settingsTab, false); });
+
+            _settingsButton.RegisterCallback<FocusInEvent>(evt => { AnimateTab(_continueTab, true); });
+            _settingsButton.RegisterCallback<FocusOutEvent>(evt => { AnimateTab(_continueTab, false); });
+            _quitButton.RegisterCallback<FocusInEvent>(evt => { AnimateTab(_settingsTab, true); });
+            _quitButton.RegisterCallback<FocusOutEvent>(evt => { AnimateTab(_settingsTab, false); });
         }
     }
 
@@ -240,6 +261,12 @@ public class MainMenu : MonoBehaviour
         _audioButton.UnregisterCallback<MouseOutEvent>(evt => { AnimateTab(_settingsTab, false); });
         _controlsButton.UnregisterCallback<MouseOverEvent>(evt => { AnimateTab(_quitTab, true); });
         _controlsButton.UnregisterCallback<MouseOutEvent>(evt => { AnimateTab(_quitTab, false); });
+        _newGameButton.UnregisterCallback<FocusInEvent>(evt => { AnimateTab(_newGameTab, true); });
+        _newGameButton.UnregisterCallback<FocusOutEvent>(evt => { AnimateTab(_newGameTab, false); });
+        _audioButton.UnregisterCallback<FocusInEvent>(evt => { AnimateTab(_settingsTab, true); });
+        _audioButton.UnregisterCallback<FocusOutEvent>(evt => { AnimateTab(_settingsTab, false); });
+        _controlsButton.UnregisterCallback<FocusInEvent>(evt => { AnimateTab(_quitTab, true); });
+        _controlsButton.UnregisterCallback<FocusOutEvent>(evt => { AnimateTab(_quitTab, false); });
 
         // Unregistering animated tab callbacks dependent on the continue button being present
         if (_savingManager != null && _savingManager.DoesSaveFileExist())
@@ -250,6 +277,13 @@ public class MainMenu : MonoBehaviour
             _settingsButton.UnregisterCallback<MouseOutEvent>(evt => { AnimateTab(_settingsTab, false); });
             _quitButton.UnregisterCallback<MouseOverEvent>(evt => { AnimateTab(_quitTab, true); });
             _quitButton.UnregisterCallback<MouseOutEvent>(evt => { AnimateTab(_quitTab, false); });
+
+            _continueButton.UnregisterCallback<FocusInEvent>(evt => { AnimateTab(_continueTab, true); });
+            _continueButton.UnregisterCallback<FocusOutEvent>(evt => { AnimateTab(_continueTab, false); });
+            _settingsButton.UnregisterCallback<FocusInEvent>(evt => { AnimateTab(_settingsTab, true); });
+            _settingsButton.UnregisterCallback<FocusOutEvent>(evt => { AnimateTab(_settingsTab, false); });
+            _quitButton.UnregisterCallback<FocusInEvent>(evt => { AnimateTab(_quitTab, true); });
+            _quitButton.UnregisterCallback<FocusOutEvent>(evt => { AnimateTab(_quitTab, false); });
         }
         else
         {
@@ -257,6 +291,11 @@ public class MainMenu : MonoBehaviour
             _settingsButton.UnregisterCallback<MouseOutEvent>(evt => { AnimateTab(_continueTab, false); });
             _quitButton.UnregisterCallback<MouseOverEvent>(evt => { AnimateTab(_settingsTab, true); });
             _quitButton.UnregisterCallback<MouseOutEvent>(evt => { AnimateTab(_settingsTab, false); });
+
+            _settingsButton.UnregisterCallback<FocusInEvent>(evt => { AnimateTab(_continueTab, true); });
+            _settingsButton.UnregisterCallback<FocusOutEvent>(evt => { AnimateTab(_continueTab, false); });
+            _quitButton.UnregisterCallback<FocusInEvent>(evt => { AnimateTab(_settingsTab, true); });
+            _quitButton.UnregisterCallback<FocusOutEvent>(evt => { AnimateTab(_settingsTab, false); });
         }
         _allButtons.ForEach(button => button.UnregisterCallback<ClickEvent>(PlayConfirmSound));
         _sliders[0].UnregisterCallback<ChangeEvent<float>>(MasterAudioSliderChanged);
@@ -278,6 +317,7 @@ public class MainMenu : MonoBehaviour
             _startGame.performed -= ctx => CloseSplashScreen();
             _splashScreen.style.display = DisplayStyle.None;
             _mainMenuScreen.style.display = DisplayStyle.Flex;
+            _newGameButton.Focus();
         }
     }
 
@@ -428,6 +468,8 @@ public class MainMenu : MonoBehaviour
     /// <param name="extendNGButton">Normally false, true when extending new game tab out for confirmation</param>
     private void AnimateTab(VisualElement tabToAnimate, bool isActive, bool extendNGButton = false)
     {
+        Debug.Log("Tab to animate: " + tabToAnimate.name);
+
         if (_canAnimateTabs)
         {
             if (_activeCoroutine != null && !isActive)
