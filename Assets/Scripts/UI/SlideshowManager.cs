@@ -40,7 +40,6 @@ public class SlideshowManager : MonoBehaviour
     [SerializeField] private Video _creditsVideo;
     private EventReference _selectedAudio;
     private PlayerControls _playerControls;
-    private InputAction _togglePause;
     private InputAction _skipVideo;
     private UIDocument _slideshowUI;
     private VideoPlayer _slideshowPlayer;
@@ -99,8 +98,7 @@ public class SlideshowManager : MonoBehaviour
     {
         _slideshowPlayer.loopPointReached -= DonePlaying;
         _slideshowPlayer.prepareCompleted -= PlayVideo;
-
-        _togglePause.Disable();
+        
     }
 
     /// <summary>
