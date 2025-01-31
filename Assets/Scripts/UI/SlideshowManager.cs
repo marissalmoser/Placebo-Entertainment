@@ -55,7 +55,6 @@ public class SlideshowManager : MonoBehaviour
         if (_skipCinematic && _isIntroVideoPlayer)
         {
             SceneManager.LoadScene(_levelSceneBuildIndex);
-            return;
         }
         _playerControls = new PlayerControls();
         _playerControls.BasicControls.Enable();
