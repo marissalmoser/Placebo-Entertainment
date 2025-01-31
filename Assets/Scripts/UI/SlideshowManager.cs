@@ -106,8 +106,6 @@ public class SlideshowManager : MonoBehaviour
     /// </summary>
     private void DonePlaying(VideoPlayer vp)
     {
-        //_slideshowPlayer.Stop();
-
         if (_isIntroVideoPlayer)
         {
             SceneManager.LoadScene(_levelSceneBuildIndex);
