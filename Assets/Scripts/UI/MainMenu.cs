@@ -12,6 +12,8 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem.Users;
 
 public class MainMenu : MonoBehaviour
 {
@@ -78,6 +80,9 @@ public class MainMenu : MonoBehaviour
     private Coroutine _activeCoroutine;
     private bool _canAnimateTabs = true;
 
+    private GameObject _lastFocusedElement;
+    private Button _lastFocusedVisualElement;
+
     // 0 = splash, 1 = main, 2 = settings selection, 3 = settings submenu
     private int _currentScreenIndex = 0;
 
@@ -109,6 +114,7 @@ public class MainMenu : MonoBehaviour
         _backInput = _playerControls.FindAction("Cancel");
         _startGame.performed += ctx => CloseSplashScreen();
         _backInput.performed += ctx => BackButtonClicked();
+        InputUser.onChange += UpdateFocusOnInputChange;
 
         // Assigning screen element references
         _splashScreen = _mainMenuDoc.rootVisualElement.Q(SplashScreenName);
@@ -159,6 +165,18 @@ public class MainMenu : MonoBehaviour
         _audioButton.RegisterCallback<MouseOutEvent>(evt => { AnimateTab(_settingsTab, false); });
         _controlsButton.RegisterCallback<MouseOverEvent>(evt => { AnimateTab(_quitTab, true); });
         _controlsButton.RegisterCallback<MouseOutEvent>(evt => { AnimateTab(_quitTab, false); });
+
+        _newGameButton.RegisterCallback<MouseOverEvent>(evt => { ChangeButtonFocus(_newGameButton); });
+        _audioButton.RegisterCallback<MouseOverEvent>(evt => { ChangeButtonFocus(_audioButton); });
+        _controlsButton.RegisterCallback<MouseOverEvent>(evt => { ChangeButtonFocus(_controlsButton); });
+        _settingsButton.RegisterCallback<MouseOverEvent>(evt => { ChangeButtonFocus(_settingsButton); });
+        _quitButton.RegisterCallback<MouseOverEvent>(evt => { ChangeButtonFocus(_quitButton); });
+
+        _newGameButton.RegisterCallback<MouseOutEvent>(evt => { ClearButtonFocus(); });
+        _audioButton.RegisterCallback<MouseOutEvent>(evt => { ClearButtonFocus(); });
+        _controlsButton.RegisterCallback<MouseOutEvent>(evt => { ClearButtonFocus(); });
+        _settingsButton.RegisterCallback<MouseOutEvent>(evt => { ClearButtonFocus(); });
+        _quitButton.RegisterCallback<MouseOutEvent>(evt => { ClearButtonFocus(); });
 
         _newGameButton.RegisterCallback<FocusInEvent>(evt => { AnimateTab(_newGameTab, true); });
         _newGameButton.RegisterCallback<FocusOutEvent>(evt => { AnimateTab(_newGameTab, false); });
@@ -212,6 +230,9 @@ public class MainMenu : MonoBehaviour
             _quitButton.RegisterCallback<MouseOverEvent>(evt => { AnimateTab(_quitTab, true); });
             _quitButton.RegisterCallback<MouseOutEvent>(evt => { AnimateTab(_quitTab, false); });
 
+            _continueButton.RegisterCallback<MouseOverEvent>(evt => { ChangeButtonFocus(_continueButton); });
+            _continueButton.RegisterCallback<MouseOutEvent>(evt => { ClearButtonFocus(); });
+
             _continueButton.RegisterCallback<FocusInEvent>(evt => { AnimateTab(_continueTab, true); });
             _continueButton.RegisterCallback<FocusOutEvent>(evt => { AnimateTab(_continueTab, false); });
             _settingsButton.RegisterCallback<FocusInEvent>(evt => { AnimateTab(_settingsTab, true); });
@@ -261,6 +282,21 @@ public class MainMenu : MonoBehaviour
         _audioButton.UnregisterCallback<MouseOutEvent>(evt => { AnimateTab(_settingsTab, false); });
         _controlsButton.UnregisterCallback<MouseOverEvent>(evt => { AnimateTab(_quitTab, true); });
         _controlsButton.UnregisterCallback<MouseOutEvent>(evt => { AnimateTab(_quitTab, false); });
+
+        _newGameButton.UnregisterCallback<MouseOverEvent>(evt => { ChangeButtonFocus(_newGameButton); });
+        _audioButton.UnregisterCallback<MouseOverEvent>(evt => { ChangeButtonFocus(_audioButton); });
+        _controlsButton.UnregisterCallback<MouseOverEvent>(evt => { ChangeButtonFocus(_controlsButton); });
+        _settingsButton.UnregisterCallback<MouseOverEvent>(evt => { ChangeButtonFocus(_settingsButton); });
+        _quitButton.UnregisterCallback<MouseOverEvent>(evt => { ChangeButtonFocus(_quitButton); });
+        _continueButton.UnregisterCallback<MouseOverEvent>(evt => { ChangeButtonFocus(_continueButton); });
+
+        _newGameButton.UnregisterCallback<MouseOutEvent>(evt => { ClearButtonFocus(); });
+        _audioButton.UnregisterCallback<MouseOutEvent>(evt => { ClearButtonFocus(); });
+        _controlsButton.UnregisterCallback<MouseOutEvent>(evt => { ClearButtonFocus(); });
+        _settingsButton.UnregisterCallback<MouseOutEvent>(evt => { ClearButtonFocus(); });
+        _quitButton.UnregisterCallback<MouseOutEvent>(evt => { ClearButtonFocus(); });
+        _continueButton.UnregisterCallback<MouseOutEvent>(evt => { ClearButtonFocus(); });
+
         _newGameButton.UnregisterCallback<FocusInEvent>(evt => { AnimateTab(_newGameTab, true); });
         _newGameButton.UnregisterCallback<FocusOutEvent>(evt => { AnimateTab(_newGameTab, false); });
         _audioButton.UnregisterCallback<FocusInEvent>(evt => { AnimateTab(_settingsTab, true); });
@@ -306,6 +342,41 @@ public class MainMenu : MonoBehaviour
     #endregion
 
     #region ButtonFunctions
+    /// <summary>
+    /// Clears button focus when mouse stops hovering over a button
+    /// </summary>
+    private void UpdateFocusOnInputChange(InputUser user, InputUserChange change, InputDevice device)
+    {
+        if (device is Gamepad)
+        {
+            EventSystem.current.SetSelectedGameObject(_lastFocusedElement);
+            _lastFocusedVisualElement.Focus();
+        }
+        else if (device is Keyboard)
+        {
+            _lastFocusedElement = EventSystem.current.currentSelectedGameObject;
+            EventSystem.current.SetSelectedGameObject(null);
+        }
+    }
+
+    /// <summary>
+    /// Called when mouse leaves a button
+    /// </summary>
+    private void ClearButtonFocus()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+    }
+
+    /// <summary>
+    /// Called when the mouse hovers over a button after using a controller
+    /// to change what button is focused
+    /// </summary>
+    private void ChangeButtonFocus(Button buttonToFocus)
+    {
+        buttonToFocus.Focus();
+        _lastFocusedVisualElement = buttonToFocus;
+    }
+
     /// <summary>
     /// Closes the splash screen when enter is pressed
     /// </summary>
