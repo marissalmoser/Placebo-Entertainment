@@ -21,11 +21,6 @@
     -unity-text-align: upper-left;
 }
 
-/* .MainMenuButton:hover {
-    -unity-font: url("project://database/Assets/UI%20Toolkit/Fonts/Bungee/Bungee-Regular.ttf?fileID=12800000&guid=473230090f800fc4b83eeb84e33ceae6&type=3#Bungee-Regular");
-    color: rgb(7, 12, 30);
-} */
-
 .MainMenuButton:focus {
     -unity-font: url("project://database/Assets/UI%20Toolkit/Fonts/Bungee/Bungee-Regular.ttf?fileID=12800000&guid=473230090f800fc4b83eeb84e33ceae6&type=3#Bungee-Regular");
     color: rgb(7, 12, 30);

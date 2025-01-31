@@ -148,7 +148,7 @@ public class MainMenu : MonoBehaviour
         _settingsTab = _mainMenuDoc.rootVisualElement.Q(SettingsTabName);
         _quitTab = _mainMenuDoc.rootVisualElement.Q(QuitTabName);
 
-        // Registering general button ClickEvent callbacks
+        // Registering general button NavigationSubmitEvent callbacks
         _newGameButton.RegisterCallback<NavigationSubmitEvent>(NewGameButtonClicked);
         _settingsButton.RegisterCallback<NavigationSubmitEvent>(SettingsButtonClicked);
         _continueButton.RegisterCallback<NavigationSubmitEvent>(ContinueButtonClicked);
@@ -262,6 +262,8 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     private void OnDisable()
     {
+        InputUser.onChange -= UpdateFocusOnInputChange;
+
         // Removing player input callbacks
         _startGame.performed -= ctx => CloseSplashScreen();
         _backInput.performed -= ctx => BackButtonClicked();
@@ -350,7 +352,12 @@ public class MainMenu : MonoBehaviour
         if (device is Gamepad)
         {
             EventSystem.current.SetSelectedGameObject(_lastFocusedElement);
-            _lastFocusedVisualElement.Focus();
+            //_lastFocusedVisualElement.Focus();
+
+            if (_currentScreenIndex == 0)
+                _newGameButton.Focus();
+            else if (_currentScreenIndex == 1)
+                _audioButton.Focus();
         }
         else if (device is Keyboard)
         {
