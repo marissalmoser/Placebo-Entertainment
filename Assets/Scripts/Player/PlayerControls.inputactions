@@ -60,13 +60,13 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "PlayPause",
+                    "name": "SkipPause",
                     "type": "Button",
-                    "id": "c7673e9c-1263-498d-8f96-d5e08da4b134",
+                    "id": "7e0f660e-36ed-4041-8cfb-776b993c1ec0",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "PauseGame",
@@ -200,28 +200,6 @@
                 },
                 {
                     "name": "",
-                    "id": "5ccb10af-50fb-4a67-913a-4bce5fbbb77f",
-                    "path": "<Keyboard>/anyKey",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "PlayPause",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "0c92e088-76d7-4468-b9e2-8fe6847fd99e",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "PlayPause",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "275c05ee-be63-478c-87cb-f706f2d4fb4a",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
@@ -239,6 +217,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "StartGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ad651664-5efe-430b-a2e1-935223879ffe",
+                    "path": "<Keyboard>/space",
+                    "interactions": "Hold(duration=2.4,pressPoint=0.2),Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SkipPause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
