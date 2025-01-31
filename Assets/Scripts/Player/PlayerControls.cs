@@ -107,6 +107,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""QuitGame"",
+                    ""type"": ""Button"",
+                    ""id"": ""1b335cee-0dc4-40b4-98b5-0692d2a0f7cc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -351,6 +360,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""StartGame"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""86e02ab8-7744-4a5e-81b1-4b134de7bf4e"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""QuitGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -368,6 +388,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_BasicControls_SkipPause = m_BasicControls.FindAction("SkipPause", throwIfNotFound: true);
         m_BasicControls_PauseGame = m_BasicControls.FindAction("PauseGame", throwIfNotFound: true);
         m_BasicControls_StartGame = m_BasicControls.FindAction("StartGame", throwIfNotFound: true);
+        m_BasicControls_QuitGame = m_BasicControls.FindAction("QuitGame", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -438,6 +459,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_BasicControls_SkipPause;
     private readonly InputAction m_BasicControls_PauseGame;
     private readonly InputAction m_BasicControls_StartGame;
+    private readonly InputAction m_BasicControls_QuitGame;
     public struct BasicControlsActions
     {
         private @PlayerControls m_Wrapper;
@@ -451,6 +473,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @SkipPause => m_Wrapper.m_BasicControls_SkipPause;
         public InputAction @PauseGame => m_Wrapper.m_BasicControls_PauseGame;
         public InputAction @StartGame => m_Wrapper.m_BasicControls_StartGame;
+        public InputAction @QuitGame => m_Wrapper.m_BasicControls_QuitGame;
         public InputActionMap Get() { return m_Wrapper.m_BasicControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -487,6 +510,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @StartGame.started += instance.OnStartGame;
             @StartGame.performed += instance.OnStartGame;
             @StartGame.canceled += instance.OnStartGame;
+            @QuitGame.started += instance.OnQuitGame;
+            @QuitGame.performed += instance.OnQuitGame;
+            @QuitGame.canceled += instance.OnQuitGame;
         }
 
         private void UnregisterCallbacks(IBasicControlsActions instance)
@@ -518,6 +544,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @StartGame.started -= instance.OnStartGame;
             @StartGame.performed -= instance.OnStartGame;
             @StartGame.canceled -= instance.OnStartGame;
+            @QuitGame.started -= instance.OnQuitGame;
+            @QuitGame.performed -= instance.OnQuitGame;
+            @QuitGame.canceled -= instance.OnQuitGame;
         }
 
         public void RemoveCallbacks(IBasicControlsActions instance)
@@ -546,5 +575,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnSkipPause(InputAction.CallbackContext context);
         void OnPauseGame(InputAction.CallbackContext context);
         void OnStartGame(InputAction.CallbackContext context);
+        void OnQuitGame(InputAction.CallbackContext context);
     }
 }
