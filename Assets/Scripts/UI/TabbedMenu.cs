@@ -102,6 +102,7 @@ namespace PlaceboEntertainment.UI
         private VisualElement _tabMenuRoot;
         private VisualElement _playerObject;
         private Label _interactText;
+        private Label _interactIcon;
         private VisualElement _scheduleContainer;
         private VisualElement _dialogueButtonContainer;
         private VisualElement _dialogueBanner;
@@ -497,8 +498,16 @@ namespace PlaceboEntertainment.UI
             if (show)
             {
                 _interactText.text = text;
-            }
+                if (Input.GetJoystickNames().Length > 0)
+                {
+                    _interactIcon.text = "X";
+                }
 
+                if (Input.GetJoystickNames().Length == 0)
+                {
+                    _interactIcon.text = "E";
+                }
+            }
             interactPromptMenu.rootVisualElement.style.display = show ? DisplayStyle.Flex : DisplayStyle.None;
         }
 
