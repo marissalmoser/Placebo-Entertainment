@@ -85,6 +85,7 @@ public class MainMenu : MonoBehaviour
     private PlayerControls _playerControls;
     private InputAction _startGame;
     private InputAction _backInput;
+    private InputAction _quitInput;
 
     private List<VisualElement> _defaultDraggers;
     private List<VisualElement> _newDraggers = new List<VisualElement>();
@@ -105,8 +106,11 @@ public class MainMenu : MonoBehaviour
         _playerControls.BasicControls.Enable();
         _startGame = _playerControls.FindAction("StartGame");
         _backInput = _playerControls.FindAction("PauseGame");
+        _quitInput = _playerControls.FindAction("QuitGame");
         _startGame.performed += ctx => CloseSplashScreen();
         _backInput.performed += ctx => BackButtonClicked();
+        _quitInput.performed += ctx => QuitButtonClicked(null);
+        
 
         // Assigning screen element references
         _splashScreen = _mainMenuDoc.rootVisualElement.Q(SplashScreenName);
