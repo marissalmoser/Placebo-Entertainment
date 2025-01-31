@@ -82,13 +82,13 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""SkipPause"",
+                    ""name"": ""PlayPause"",
                     ""type"": ""Button"",
-                    ""id"": ""7e0f660e-36ed-4041-8cfb-776b993c1ec0"",
+                    ""id"": ""c7673e9c-1263-498d-8f96-d5e08da4b134"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": true
+                    ""initialStateCheck"": false
                 },
                 {
                     ""name"": ""PauseGame"",
@@ -167,8 +167,30 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""ba598e74-743b-477e-8ff4-1d074debefca"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""b56295b2-32da-4ab6-a254-6ae37ecb01f4"",
                     ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b66050c0-0f4f-4d18-b88d-d12be2bdd116"",
+                    ""path"": ""<Gamepad>/rightStick"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -189,6 +211,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""6fd1c497-0f5f-4d77-baf7-59baad257ab2"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reset"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""9ec8e7d4-56cf-40b4-98c2-e789d03b17d9"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": ""Hold"",
@@ -200,8 +233,30 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""7e6dd329-01c1-4b85-b290-2e7c281b8ba3"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""19e4cfdd-4194-4a5c-a007-85178a4d0174"",
                     ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenSchedule"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9abaccd4-1a28-49b3-b4d8-cb617e7dffe6"",
+                    ""path"": ""<Gamepad>/select"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -222,8 +277,63 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""1ede4830-7263-4c2d-af08-25ed2bb5f113"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeftClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5ccb10af-50fb-4a67-913a-4bce5fbbb77f"",
+                    ""path"": ""<Keyboard>/anyKey"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlayPause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0c92e088-76d7-4468-b9e2-8fe6847fd99e"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlayPause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2e48fc0a-935a-479a-8c00-a32e43bb9d29"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlayPause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""275c05ee-be63-478c-87cb-f706f2d4fb4a"",
                     ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PauseGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9dc13471-a491-461b-b352-02a44fe38aba"",
+                    ""path"": ""<Gamepad>/start"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -244,12 +354,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""ad651664-5efe-430b-a2e1-935223879ffe"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": ""Hold(duration=2.4,pressPoint=0.2),Press"",
+                    ""id"": ""38bf8e0e-6e53-4cf7-a910-711fc455c7d5"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""SkipPause"",
+                    ""action"": ""StartGame"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -266,7 +376,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_BasicControls_Interact = m_BasicControls.FindAction("Interact", throwIfNotFound: true);
         m_BasicControls_OpenSchedule = m_BasicControls.FindAction("OpenSchedule", throwIfNotFound: true);
         m_BasicControls_LeftClick = m_BasicControls.FindAction("LeftClick", throwIfNotFound: true);
-        m_BasicControls_SkipPause = m_BasicControls.FindAction("SkipPause", throwIfNotFound: true);
+        m_BasicControls_PlayPause = m_BasicControls.FindAction("PlayPause", throwIfNotFound: true);
         m_BasicControls_PauseGame = m_BasicControls.FindAction("PauseGame", throwIfNotFound: true);
         m_BasicControls_StartGame = m_BasicControls.FindAction("StartGame", throwIfNotFound: true);
     }
@@ -336,7 +446,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_BasicControls_Interact;
     private readonly InputAction m_BasicControls_OpenSchedule;
     private readonly InputAction m_BasicControls_LeftClick;
-    private readonly InputAction m_BasicControls_SkipPause;
+    private readonly InputAction m_BasicControls_PlayPause;
     private readonly InputAction m_BasicControls_PauseGame;
     private readonly InputAction m_BasicControls_StartGame;
     public struct BasicControlsActions
@@ -349,7 +459,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Interact => m_Wrapper.m_BasicControls_Interact;
         public InputAction @OpenSchedule => m_Wrapper.m_BasicControls_OpenSchedule;
         public InputAction @LeftClick => m_Wrapper.m_BasicControls_LeftClick;
-        public InputAction @SkipPause => m_Wrapper.m_BasicControls_SkipPause;
+        public InputAction @PlayPause => m_Wrapper.m_BasicControls_PlayPause;
         public InputAction @PauseGame => m_Wrapper.m_BasicControls_PauseGame;
         public InputAction @StartGame => m_Wrapper.m_BasicControls_StartGame;
         public InputActionMap Get() { return m_Wrapper.m_BasicControls; }
@@ -379,9 +489,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @LeftClick.started += instance.OnLeftClick;
             @LeftClick.performed += instance.OnLeftClick;
             @LeftClick.canceled += instance.OnLeftClick;
-            @SkipPause.started += instance.OnSkipPause;
-            @SkipPause.performed += instance.OnSkipPause;
-            @SkipPause.canceled += instance.OnSkipPause;
+            @PlayPause.started += instance.OnPlayPause;
+            @PlayPause.performed += instance.OnPlayPause;
+            @PlayPause.canceled += instance.OnPlayPause;
             @PauseGame.started += instance.OnPauseGame;
             @PauseGame.performed += instance.OnPauseGame;
             @PauseGame.canceled += instance.OnPauseGame;
@@ -410,9 +520,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @LeftClick.started -= instance.OnLeftClick;
             @LeftClick.performed -= instance.OnLeftClick;
             @LeftClick.canceled -= instance.OnLeftClick;
-            @SkipPause.started -= instance.OnSkipPause;
-            @SkipPause.performed -= instance.OnSkipPause;
-            @SkipPause.canceled -= instance.OnSkipPause;
+            @PlayPause.started -= instance.OnPlayPause;
+            @PlayPause.performed -= instance.OnPlayPause;
+            @PlayPause.canceled -= instance.OnPlayPause;
             @PauseGame.started -= instance.OnPauseGame;
             @PauseGame.performed -= instance.OnPauseGame;
             @PauseGame.canceled -= instance.OnPauseGame;
@@ -444,7 +554,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnOpenSchedule(InputAction.CallbackContext context);
         void OnLeftClick(InputAction.CallbackContext context);
-        void OnSkipPause(InputAction.CallbackContext context);
+        void OnPlayPause(InputAction.CallbackContext context);
         void OnPauseGame(InputAction.CallbackContext context);
         void OnStartGame(InputAction.CallbackContext context);
     }
