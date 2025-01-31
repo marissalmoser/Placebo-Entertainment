@@ -104,9 +104,9 @@ public class MainMenu : MonoBehaviour
     {
         // Setting up player inputs
         _playerControls = new PlayerControls();
-        _playerControls.BasicControls.Enable();
+        _playerControls.UI.Enable();
         _startGame = _playerControls.FindAction("StartGame");
-        _backInput = _playerControls.FindAction("PauseGame");
+        _backInput = _playerControls.FindAction("Cancel");
         _startGame.performed += ctx => CloseSplashScreen();
         _backInput.performed += ctx => BackButtonClicked();
 
@@ -327,7 +327,8 @@ public class MainMenu : MonoBehaviour
     /// <param name="clicked">Click event</param>
     private void ContinueButtonClicked(NavigationSubmitEvent clicked)
     {
-        SceneManager.LoadScene(_gameSceneVideoIndex);
+        if (_currentScreenIndex == 1)
+            SceneManager.LoadScene(_gameSceneVideoIndex);
     }
 
     /// <summary>
@@ -336,10 +337,13 @@ public class MainMenu : MonoBehaviour
     /// <param name="clicked">Click event</param>
     private void SettingsButtonClicked(NavigationSubmitEvent clicked)
     {
-        _currentScreenIndex = 2;
-        _mainButtonHolder.style.display = DisplayStyle.None;
-        _settingsSelectionHolder.style.display = DisplayStyle.Flex;
-        _settingsBackPrompt.style.display = DisplayStyle.Flex;
+        if (_currentScreenIndex == 1)
+        {
+            _currentScreenIndex = 2;
+            _mainButtonHolder.style.display = DisplayStyle.None;
+            _settingsSelectionHolder.style.display = DisplayStyle.Flex;
+            _settingsBackPrompt.style.display = DisplayStyle.Flex;
+        }
     }
 
     /// <summary>
@@ -348,16 +352,19 @@ public class MainMenu : MonoBehaviour
     /// <param name="clicked">Click event</param>
     private void AudioButtonClicked(NavigationSubmitEvent clicked)
     {
-        _currentScreenIndex = 3;
-        if (_settingsManager != null)
+        if (_currentScreenIndex == 2)
         {
-            _masterVolSlider.value = _settingsManager.MasterVolume;
-            _musicVolSlider.value = _settingsManager.MusicVolume;
-            _sfxVolSlider.value = _settingsManager.SfxVolume;
+            _currentScreenIndex = 3;
+            if (_settingsManager != null)
+            {
+                _masterVolSlider.value = _settingsManager.MasterVolume;
+                _musicVolSlider.value = _settingsManager.MusicVolume;
+                _sfxVolSlider.value = _settingsManager.SfxVolume;
+            }
+            _settingsSelectionHolder.style.display = DisplayStyle.None;
+            _settingsBackPrompt.style.display = DisplayStyle.None;
+            _audioScreen.style.display = DisplayStyle.Flex;
         }
-        _settingsSelectionHolder.style.display = DisplayStyle.None;
-        _settingsBackPrompt.style.display = DisplayStyle.None;
-        _audioScreen.style.display = DisplayStyle.Flex;
     }
 
     /// <summary>
@@ -366,14 +373,17 @@ public class MainMenu : MonoBehaviour
     /// <param name="clicked">Click event</param>
     private void ControlsButtonClicked(NavigationSubmitEvent clicked)
     {
-        _currentScreenIndex = 3;
-        if (_settingsManager != null)
+        if (_currentScreenIndex == 2)
         {
-            _mouseSensSlider.value = _settingsManager.MouseSensitivity;
+            _currentScreenIndex = 3;
+            if (_settingsManager != null)
+            {
+                _mouseSensSlider.value = _settingsManager.MouseSensitivity;
+            }
+            _settingsSelectionHolder.style.display = DisplayStyle.None;
+            _settingsBackPrompt.style.display = DisplayStyle.None;
+            _controlsScreen.style.display = DisplayStyle.Flex;
         }
-        _settingsSelectionHolder.style.display = DisplayStyle.None;
-        _settingsBackPrompt.style.display = DisplayStyle.None;
-        _controlsScreen.style.display = DisplayStyle.Flex;
     }
 
     /// <summary>
@@ -382,12 +392,15 @@ public class MainMenu : MonoBehaviour
     /// <param name="clicked">Click event</param>
     private void NewGameButtonClicked(NavigationSubmitEvent clicked)
     {
-        AnimateTab(_newGameTab, true, true);
-        _canAnimateTabs = false;
+        if (_currentScreenIndex == 1)
+        {
+            AnimateTab(_newGameTab, true, true);
+            _canAnimateTabs = false;
 
-        _continueButton.SetEnabled(false);
-        _settingsButton.SetEnabled(false);
-        _quitButton.SetEnabled(false);
+            _continueButton.SetEnabled(false);
+            _settingsButton.SetEnabled(false);
+            _quitButton.SetEnabled(false);
+        }
     }
 
     /// <summary>
@@ -428,7 +441,8 @@ public class MainMenu : MonoBehaviour
     /// <param name="clicked">Click event</param>
     private void QuitButtonClicked(NavigationSubmitEvent clicked)
     {
-        Application.Quit();
+        if (_currentScreenIndex == 1)
+            Application.Quit();
     }
 
     /// <summary>
