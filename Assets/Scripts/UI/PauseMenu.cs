@@ -70,6 +70,8 @@ public class PauseMenu : MonoBehaviour
     private List<Slider> _sliders = new List<Slider>();
     // 0 = pause, 1 = settings selection, 2 = settings submenu
     private int _currentScreenIndex = 0;
+
+    private bool _isFocused = false;
     #endregion
 
     /// <summary>
@@ -77,8 +79,6 @@ public class PauseMenu : MonoBehaviour
     /// </summary>
     private void Awake()
     {
-        InputUser.onChange += UpdateFocusOnInputChange;
-
         _pauseMenu.rootVisualElement.style.display = DisplayStyle.None;
 
         // Getting references to buttons
@@ -196,8 +196,6 @@ public class PauseMenu : MonoBehaviour
     /// </summary>
     private void OnDisable()
     {
-        InputUser.onChange -= UpdateFocusOnInputChange;
-
         // Unregistering button callbacks
         _continueButton.UnregisterCallback<NavigationSubmitEvent>(ContinuePressed);
         _settingsButton.UnregisterCallback<NavigationSubmitEvent>(SettingsButtonClicked);
@@ -319,33 +317,12 @@ public class PauseMenu : MonoBehaviour
     }
 
     /// <summary>
-    /// Clears button focus when mouse stops hovering over a button
-    /// </summary>
-    private void UpdateFocusOnInputChange(InputUser user, InputUserChange change, InputDevice device)
-    {
-        if (device is Gamepad)
-        {
-            EventSystem.current.SetSelectedGameObject(_lastFocusedElement);
-            //_lastFocusedVisualElement.Focus();
-
-            if (_currentScreenIndex == 0)
-                _continueButton.Focus();
-            else if (_currentScreenIndex == 1)
-                _audioButton.Focus();
-        }
-        else if (device is Keyboard)
-        {
-            _lastFocusedElement = EventSystem.current.currentSelectedGameObject;
-            //EventSystem.current.SetSelectedGameObject(null);
-        }
-    }
-
-    /// <summary>
     /// Called when mouse leaves a button
     /// </summary>
     private void ClearButtonFocus()
     {
         EventSystem.current.SetSelectedGameObject(null);
+        _isFocused = false;
     }
 
     /// <summary>
@@ -356,6 +333,30 @@ public class PauseMenu : MonoBehaviour
     {
         buttonToFocus.Focus();
         _lastFocusedVisualElement = buttonToFocus;
+    }
+
+    /// <summary>
+    /// When a controller is used and the game isn't focused on something,
+    /// focus on a button
+    /// </summary>
+    private void ControllerUsed()
+    {
+        if (_isFocused) { return; }
+
+        _isFocused = true;
+
+        if (_lastFocusedVisualElement != null)
+        {
+            _lastFocusedVisualElement.Focus();
+        }
+        else if (_currentScreenIndex == 0)
+        {
+            _continueButton.Focus();
+        }
+        else if (_currentScreenIndex == 1)
+        {
+            _audioButton.Focus();
+        }
     }
 
     /// <summary>
