@@ -125,6 +125,7 @@ namespace PlaceboEntertainment.UI
         #region Constants
 
         private const string TalkPromptName = "TextPrompt";
+        private const string TalkIconName = "Button";
         private const string TabClassName = "tab";
         private const string SelectedTabClassName = "currentlySelectedTab";
         private const string UnSelectedTabClassName = "currentlyUnSelectedTab";
@@ -184,6 +185,7 @@ namespace PlaceboEntertainment.UI
             _tabMenuRoot = tabMenu.rootVisualElement;
             _playerObject = _tabMenuRoot.Q(PlayerName);
             _interactText = interactPromptMenu.rootVisualElement.Q<Label>(TalkPromptName);
+            _interactIcon = interactPromptMenu.rootVisualElement.Q<Label>(TalkIconName);
             _scheduleContainer = _tabMenuRoot.Q(ScheduleContainerName);
             _dialogueButtonContainer = dialogueMenu.rootVisualElement.Q(DialogueOptionContainerName);
             _dialogueBanner = dialogueMenu.rootVisualElement.Q(DialogueBannerName);
@@ -498,15 +500,15 @@ namespace PlaceboEntertainment.UI
             if (show)
             {
                 _interactText.text = text;
-                if (Input.GetJoystickNames().Length > 0)
-                {
-                    _interactIcon.text = "X";
-                }
-
                 if (Input.GetJoystickNames().Length == 0)
                 {
                     _interactIcon.text = "E";
                 }
+                else if (Input.GetJoystickNames().Length > 0)
+                {
+                    _interactIcon.text = "X";
+                }
+                
             }
             interactPromptMenu.rootVisualElement.style.display = show ? DisplayStyle.Flex : DisplayStyle.None;
         }
