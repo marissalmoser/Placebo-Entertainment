@@ -60,12 +60,12 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "PlayPause",
+                    "name": "SkipPause",
                     "type": "Button",
                     "id": "c7673e9c-1263-498d-8f96-d5e08da4b134",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Hold(duration=2.4,pressPoint=0.2),Press",
                     "initialStateCheck": false
                 },
                 {
@@ -81,6 +81,15 @@
                     "name": "StartGame",
                     "type": "Button",
                     "id": "52cb5aca-6e92-470d-90f8-b494667f6273",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "QuitGame",
+                    "type": "Button",
+                    "id": "1b335cee-0dc4-40b4-98b5-0692d2a0f7cc",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -266,34 +275,23 @@
                 },
                 {
                     "name": "",
-                    "id": "5ccb10af-50fb-4a67-913a-4bce5fbbb77f",
-                    "path": "<Keyboard>/anyKey",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "PlayPause",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "0c92e088-76d7-4468-b9e2-8fe6847fd99e",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "PlayPause",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "2e48fc0a-935a-479a-8c00-a32e43bb9d29",
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "PlayPause",
+                    "action": "SkipPause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f6a9bac0-158f-4246-9467-2cacb1b497cd",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SkipPause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -338,6 +336,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "StartGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "86e02ab8-7744-4a5e-81b1-4b134de7bf4e",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "QuitGame",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
