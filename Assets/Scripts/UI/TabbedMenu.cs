@@ -565,6 +565,7 @@ namespace PlaceboEntertainment.UI
             // newButton.AddManipulator(new Clickable(click));
             newButton.RegisterCallback<NavigationSubmitEvent>(evt => click?.Invoke());
             newButton.RegisterCallback<NavigationSubmitEvent>(evt => AudioManager.PlaySoundUnManaged(clickEvent));
+            newButton.RegisterCallback<MouseOverEvent>(evt => newButton.Focus());
             _dialogueButtonContainer.Add(newButton);
         }
 
