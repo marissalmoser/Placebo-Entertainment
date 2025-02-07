@@ -180,6 +180,7 @@ public class PauseMenu : MonoBehaviour
     {
         PlayerController.Instance.PlayerControls.BasicControls.PauseGame.performed += PauseGamePerformed;
         _tabbedMenu = TabbedMenu.Instance;
+        PlayerController.Instance.PlayerControls.UI.ControllerDetection.performed += ctx => ControllerUsed();
 
         _settingsManager = SettingsManager.Instance;
         if (_settingsManager != null)
@@ -196,6 +197,8 @@ public class PauseMenu : MonoBehaviour
     /// </summary>
     private void OnDisable()
     {
+        PlayerController.Instance.PlayerControls.UI.ControllerDetection.performed -= ctx => ControllerUsed();
+
         // Unregistering button callbacks
         _continueButton.UnregisterCallback<NavigationSubmitEvent>(ContinuePressed);
         _settingsButton.UnregisterCallback<NavigationSubmitEvent>(SettingsButtonClicked);

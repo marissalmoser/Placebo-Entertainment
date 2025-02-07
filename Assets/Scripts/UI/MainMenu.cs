@@ -270,6 +270,7 @@ public class MainMenu : MonoBehaviour
         // Removing player input callbacks
         _startGame.performed -= ctx => CloseSplashScreen();
         _backInput.performed -= ctx => BackButtonClicked();
+        _playerControls.UI.ControllerDetection.performed -= ctx => ControllerUsed();
 
         // Unregistering button NavigationSubmitEvent callbacks
         _newGameButton.UnregisterCallback<NavigationSubmitEvent>(NewGameButtonClicked);
