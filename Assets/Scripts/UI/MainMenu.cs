@@ -663,6 +663,11 @@ public class MainMenu : MonoBehaviour
     }
     #endregion
 
+    /// <summary>
+    /// Moves the sliders more smoothly when using a controller
+    /// </summary>
+    /// <param name="selectedSlider">Slider to move</param>
+    /// <param name="direction">Direction to move the slider</param>
     private void UpdateSliderWithEvent(Slider selectedSlider, NavigationMoveEvent.Direction direction)
     {
         float multiplier = direction == NavigationMoveEvent.Direction.Left ? -1f :
