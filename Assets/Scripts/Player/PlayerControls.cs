@@ -467,6 +467,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ControllerDetection"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""ea6cc398-511b-4424-8f6c-2faa159034ad"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -909,6 +918,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""StartGame"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""70f6de42-4029-4544-951a-6e08fb169af8"",
+                    ""path"": ""<Gamepad>/dpad"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ControllerDetection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a24d6ae4-738c-4796-9749-a9b74e53253f"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ControllerDetection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -939,6 +970,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
         m_UI_StartGame = m_UI.FindAction("StartGame", throwIfNotFound: true);
+        m_UI_ControllerDetection = m_UI.FindAction("ControllerDetection", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1121,6 +1153,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_TrackedDevicePosition;
     private readonly InputAction m_UI_TrackedDeviceOrientation;
     private readonly InputAction m_UI_StartGame;
+    private readonly InputAction m_UI_ControllerDetection;
     public struct UIActions
     {
         private @PlayerControls m_Wrapper;
@@ -1136,6 +1169,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @TrackedDevicePosition => m_Wrapper.m_UI_TrackedDevicePosition;
         public InputAction @TrackedDeviceOrientation => m_Wrapper.m_UI_TrackedDeviceOrientation;
         public InputAction @StartGame => m_Wrapper.m_UI_StartGame;
+        public InputAction @ControllerDetection => m_Wrapper.m_UI_ControllerDetection;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1178,6 +1212,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @StartGame.started += instance.OnStartGame;
             @StartGame.performed += instance.OnStartGame;
             @StartGame.canceled += instance.OnStartGame;
+            @ControllerDetection.started += instance.OnControllerDetection;
+            @ControllerDetection.performed += instance.OnControllerDetection;
+            @ControllerDetection.canceled += instance.OnControllerDetection;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -1215,6 +1252,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @StartGame.started -= instance.OnStartGame;
             @StartGame.performed -= instance.OnStartGame;
             @StartGame.canceled -= instance.OnStartGame;
+            @ControllerDetection.started -= instance.OnControllerDetection;
+            @ControllerDetection.performed -= instance.OnControllerDetection;
+            @ControllerDetection.canceled -= instance.OnControllerDetection;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -1257,5 +1297,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
         void OnStartGame(InputAction.CallbackContext context);
+        void OnControllerDetection(InputAction.CallbackContext context);
     }
 }

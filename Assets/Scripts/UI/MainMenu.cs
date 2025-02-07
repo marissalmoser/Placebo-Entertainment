@@ -99,6 +99,8 @@ public class MainMenu : MonoBehaviour
     private List<Slider> _sliders = new List<Slider>();
     private EventInstance _mainMenuMusicInstance;
     private SettingsManager _settingsManager;
+
+    private bool _isFocused = false;
     #endregion
 
     #region Initialization
@@ -114,7 +116,7 @@ public class MainMenu : MonoBehaviour
         _backInput = _playerControls.FindAction("Cancel");
         _startGame.performed += ctx => CloseSplashScreen();
         _backInput.performed += ctx => BackButtonClicked();
-        InputUser.onChange += UpdateFocusOnInputChange;
+        _playerControls.UI.ControllerDetection.performed += ctx => ControllerUsed();
 
         // Assigning screen element references
         _splashScreen = _mainMenuDoc.rootVisualElement.Q(SplashScreenName);
@@ -262,8 +264,6 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     private void OnDisable()
     {
-        InputUser.onChange -= UpdateFocusOnInputChange;
-
         // Removing player input callbacks
         _startGame.performed -= ctx => CloseSplashScreen();
         _backInput.performed -= ctx => BackButtonClicked();
@@ -345,33 +345,12 @@ public class MainMenu : MonoBehaviour
 
     #region ButtonFunctions
     /// <summary>
-    /// Clears button focus when mouse stops hovering over a button
-    /// </summary>
-    private void UpdateFocusOnInputChange(InputUser user, InputUserChange change, InputDevice device)
-    {
-        if (device is Gamepad)
-        {
-            EventSystem.current.SetSelectedGameObject(_lastFocusedElement);
-            //_lastFocusedVisualElement.Focus();
-
-            if (_currentScreenIndex == 0)
-                _newGameButton.Focus();
-            else if (_currentScreenIndex == 1)
-                _audioButton.Focus();
-        }
-        else if (device is Keyboard)
-        {
-            _lastFocusedElement = EventSystem.current.currentSelectedGameObject;
-            EventSystem.current.SetSelectedGameObject(null);
-        }
-    }
-
-    /// <summary>
     /// Called when mouse leaves a button
     /// </summary>
     private void ClearButtonFocus()
     {
         EventSystem.current.SetSelectedGameObject(null);
+        _isFocused = false;
     }
 
     /// <summary>
@@ -382,6 +361,30 @@ public class MainMenu : MonoBehaviour
     {
         buttonToFocus.Focus();
         _lastFocusedVisualElement = buttonToFocus;
+    }
+
+    /// <summary>
+    /// When a controller is used and the game isn't focused on something,
+    /// focus on a button
+    /// </summary>
+    private void ControllerUsed()
+    {
+        if (_isFocused) { return; }
+
+        _isFocused = true;
+
+        if (_lastFocusedVisualElement != null)
+        {
+            _lastFocusedVisualElement.Focus();
+        }
+        else if (_currentScreenIndex == 0)
+        {
+            _newGameButton.Focus();
+        }
+        else if (_currentScreenIndex == 1)
+        {
+            _audioButton.Focus();
+        }
     }
 
     /// <summary>

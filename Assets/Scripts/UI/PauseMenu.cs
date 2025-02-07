@@ -336,7 +336,7 @@ public class PauseMenu : MonoBehaviour
         else if (device is Keyboard)
         {
             _lastFocusedElement = EventSystem.current.currentSelectedGameObject;
-            EventSystem.current.SetSelectedGameObject(null);
+            //EventSystem.current.SetSelectedGameObject(null);
         }
     }
 
