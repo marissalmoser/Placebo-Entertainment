@@ -98,7 +98,6 @@ namespace PlaceboEntertainment.UI
         #endregion
 
         #region Private
-
         private VisualElement _tabMenuRoot;
         private VisualElement _playerObject;
         private Label _interactText;
@@ -115,6 +114,7 @@ namespace PlaceboEntertainment.UI
         private Label _alarmClockMenu, _alarmClockOverlay;
         private bool _hasAppliedLoseStyling, _hasBegunLossTransition;
         private bool _hasCheckedForTimer;
+        private bool _checkForController;
         private VisualElement _fadeOutElement;
         private VisualElement _fishFace;
         private VisualElement _waterFillMeter;
@@ -500,11 +500,11 @@ namespace PlaceboEntertainment.UI
             if (show)
             {
                 _interactText.text = text;
-                if (Input.GetJoystickNames().Length == 0)
+                if (PlayerController.Instance.PlayerControls.BasicControls.ControllerDetection == null)
                 {
                     _interactIcon.text = "E";
                 }
-                else if (Input.GetJoystickNames().Length > 0)
+                else if (PlayerController.Instance.PlayerControls.BasicControls.ControllerDetection != null)
                 {
                     _interactIcon.text = "X";
                 }
@@ -513,6 +513,14 @@ namespace PlaceboEntertainment.UI
             interactPromptMenu.rootVisualElement.style.display = show ? DisplayStyle.Flex : DisplayStyle.None;
         }
 
+        private void ControllerUsed()
+        {
+            if (_checkForController == false)
+            {
+                _checkForController = true;
+            }
+        }
+        
         /// <summary>
         /// Enables or disables the schedule updated notification.
         /// </summary>

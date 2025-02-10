@@ -116,6 +116,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ControllerDetection"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""bcd544c3-1f3b-43d1-9c48-2f42cd68f538"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -369,6 +378,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""QuitGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""13ac32af-c095-4d27-80a2-ea94465a978e"",
+                    ""path"": ""<Gamepad>/dpad"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ControllerDetection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""14a66e5a-2316-4d71-9da1-7dc9b89f1e1d"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ControllerDetection"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -966,6 +997,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_BasicControls_SkipPause = m_BasicControls.FindAction("SkipPause", throwIfNotFound: true);
         m_BasicControls_PauseGame = m_BasicControls.FindAction("PauseGame", throwIfNotFound: true);
         m_BasicControls_StartGame = m_BasicControls.FindAction("StartGame", throwIfNotFound: true);
+        m_BasicControls_QuitGame = m_BasicControls.FindAction("QuitGame", throwIfNotFound: true);
+        m_BasicControls_ControllerDetection = m_BasicControls.FindAction("ControllerDetection", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -980,7 +1013,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
         m_UI_StartGame = m_UI.FindAction("StartGame", throwIfNotFound: true);
         m_UI_ControllerDetection = m_UI.FindAction("ControllerDetection", throwIfNotFound: true);
-        m_BasicControls_QuitGame = m_BasicControls.FindAction("QuitGame", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1052,6 +1084,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_BasicControls_PauseGame;
     private readonly InputAction m_BasicControls_StartGame;
     private readonly InputAction m_BasicControls_QuitGame;
+    private readonly InputAction m_BasicControls_ControllerDetection;
     public struct BasicControlsActions
     {
         private @PlayerControls m_Wrapper;
@@ -1066,6 +1099,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @PauseGame => m_Wrapper.m_BasicControls_PauseGame;
         public InputAction @StartGame => m_Wrapper.m_BasicControls_StartGame;
         public InputAction @QuitGame => m_Wrapper.m_BasicControls_QuitGame;
+        public InputAction @ControllerDetection => m_Wrapper.m_BasicControls_ControllerDetection;
         public InputActionMap Get() { return m_Wrapper.m_BasicControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1105,6 +1139,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @QuitGame.started += instance.OnQuitGame;
             @QuitGame.performed += instance.OnQuitGame;
             @QuitGame.canceled += instance.OnQuitGame;
+            @ControllerDetection.started += instance.OnControllerDetection;
+            @ControllerDetection.performed += instance.OnControllerDetection;
+            @ControllerDetection.canceled += instance.OnControllerDetection;
         }
 
         private void UnregisterCallbacks(IBasicControlsActions instance)
@@ -1139,6 +1176,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @QuitGame.started -= instance.OnQuitGame;
             @QuitGame.performed -= instance.OnQuitGame;
             @QuitGame.canceled -= instance.OnQuitGame;
+            @ControllerDetection.started -= instance.OnControllerDetection;
+            @ControllerDetection.performed -= instance.OnControllerDetection;
+            @ControllerDetection.canceled -= instance.OnControllerDetection;
         }
 
         public void RemoveCallbacks(IBasicControlsActions instance)
@@ -1302,6 +1342,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnPauseGame(InputAction.CallbackContext context);
         void OnStartGame(InputAction.CallbackContext context);
         void OnQuitGame(InputAction.CallbackContext context);
+        void OnControllerDetection(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
